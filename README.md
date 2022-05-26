@@ -2,7 +2,7 @@
 
 Oi, Grandad! is a 4 voice granular synthesiser built with [HISE](http://hise.audio). 
 
-![enter image description here](https://raw.githubusercontent.com/publicsamples/Oi-Grandad/main/oi%20grandad/oigrandad.png)
+![enter image description here](https://github.com/publicsamples/Oi-Grandad/blob/main/oi%20grandad!/oigrandad.png?raw=true)
 
 It features:
 
