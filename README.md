@@ -6,13 +6,13 @@ Oi, Grandad! is a 4 voice granular synthesiser built with [HISE](http://hise.aud
 
 It features:
 
- - 4 indépendant voices capable of being played all at once, or by
+ - 4 independant voices capable of being played all at once, or by
    cycling between each round robin style
 
  - 4 LFOs with tempo sync
  -  2 Modulation Sequencers  
  - 4 Looping AR envelopes 
- -  Drone button for sustain playback
+ -  Drone button for sustained playback
  -   1GB sound library
  - Delay per voice
 
