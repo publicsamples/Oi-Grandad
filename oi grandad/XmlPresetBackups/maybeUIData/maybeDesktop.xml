@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="20.0" y="27.0"
+             width="270.0" height="100.0" processorId="Script FX1" sampleIndex="0"
+             bgColour="4288163374" itemColour2="4288788000" textColour="4293263104"
+             itemColour="4280811650"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform2" x="20.0" y="160.0"
+             width="270.0" height="100.0" processorId="Script FX2" sampleIndex="0"
+             bgColour="4288163374" itemColour2="4288788000" textColour="4293263104"
+             itemColour="4280811650"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform3" x="20.0" y="290.0"
+             width="270.0" height="100.0" processorId="Script FX3" sampleIndex="0"
+             bgColour="4288163374" itemColour2="4288788000" textColour="4293263104"
+             itemColour="4280811650"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform4" x="20.0" y="420.0"
+             width="270.0" height="100.0" processorId="Script FX4" sampleIndex="0"
+             bgColour="4288163374" itemColour2="4288788000" textColour="4293263104"
+             itemColour="4280811650"/>
+  <Component type="ScriptButton" id="Hold" x="310.0" y="30.0" processorId="Release Trigger1"
+             parameterId="Enabled" width="70.0" height="40.0"/>
+  <Component type="ScriptButton" id="Cycle" x="310.0" y="80.0" processorId="MidiMuter1"
+             parameterId="Enabled" width="70.0" height="40.0"/>
+  <Component type="ScriptButton" id="Hold2" x="310.0" y="160.0" text="Hold"
+             processorId="Release Trigger2" parameterId="Enabled" width="70.0"
+             height="40.0"/>
+  <Component type="ScriptButton" id="Cycle2" x="310.0" y="220.0" text="Cycle"
+             processorId="MidiMuter2" parameterId="Enabled" width="70.0" height="40.0"/>
+  <Component type="ScriptButton" id="Button5" x="310.0" y="290.0" text="Hold"
+             processorId="Release Trigger3" parameterId="Enabled" width="70.0"
+             height="40.0"/>
+  <Component type="ScriptButton" id="Cycle3" x="310.0" y="350.0" text="Cycle"
+             processorId="MidiMuter3" parameterId="Enabled" width="70.0" height="40.0"/>
+  <Component type="ScriptButton" id="Button7" x="310.0" y="420.0" text="Hold"
+             width="70.0" height="40.0"/>
+  <Component type="ScriptButton" id="Cycle4" x="310.0" y="470.0" text="Cycle"
+             processorId="MidiMuter4" parameterId="Enabled" width="70.0" height="40.0"/>
+  <Component type="ScriptButton" id="Button1" x="610.0" y="100.0" processorId="Midi Controller1"
+             parameterId="Intensity"/>
+</ContentProperties>

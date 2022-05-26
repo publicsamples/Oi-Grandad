@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="f1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="f1" Bypassed="0">
+    <Nodes>
+      <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+            NodeColour="4288956338">
+        <Properties>
+          <Property ID="Connection" Value=""/>
+        </Properties>
+        <ModulationTargets>
+          <Connection NodeId="add" ParameterId="Value"/>
+        </ModulationTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="add" FactoryPath="math.add" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="envelope_follower" FactoryPath="dynamics.envelope_follower"
+            Bypassed="0">
+        <ComplexData>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1"/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     SkewFactor="0.2313782125711441" ID="Attack" Value="20.0"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     SkewFactor="0.2313782125711441" ID="Release" Value="20.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ProcessSignal" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

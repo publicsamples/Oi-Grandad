@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="seq2" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="seq2" Bypassed="0">
+    <Nodes>
+      <Node ID="seq" FactoryPath="project.seq" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scale" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="gamma" Value="0.5057500004768372"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="tempo" Value="0.1168593764305115"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="mutl" Value="0.3289843797683716"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Smooth" Value="1.0"/>
+        </Parameters>
+        <ComplexData>
+          <SliderPacks>
+            <SliderPack Index="-1"/>
+          </SliderPacks>
+        </ComplexData>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

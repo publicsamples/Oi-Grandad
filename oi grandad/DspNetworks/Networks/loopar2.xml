@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="loopar2" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="loopar2" Bypassed="0">
+    <Nodes>
+      <Node ID="lfo" FactoryPath="project.lfo" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="tempo" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="multi" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="attack" Value="0.322265625"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="rel" Value="0.8154374957084656"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

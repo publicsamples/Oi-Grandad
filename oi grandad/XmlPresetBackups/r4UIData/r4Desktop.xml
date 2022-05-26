@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="20.0" y="30.0"
+             width="270.0" height="100.0" processorId="Script FX1" sampleIndex="0"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform2" x="20.0" y="160.0"
+             width="270.0" height="100.0" processorId="Script FX2" sampleIndex="0"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform3" x="20.0" y="280.0"
+             width="270.0" height="100.0" processorId="Script FX3" sampleIndex="0"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform4" x="20.0" y="400.0"
+             width="270.0" height="100.0" processorId="Script FX4" sampleIndex="0"/>
+  <Component type="ScriptButton" id="Button1" x="370.0" y="70.0" width="120"
+             height="20" isPluginParameter="1" isMetaParameter="1" processorId="MidiMuter1"
+             parameterId="Bypass"/>
+  <Component type="ScriptButton" id="Button2" x="360.0" y="130.0" saveInPreset="0"
+             processorId="" linkedTo="Button1"/>
+</ContentProperties>

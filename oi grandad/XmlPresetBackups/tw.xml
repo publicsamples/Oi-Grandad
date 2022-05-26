@@ -1,0 +1,2353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Processor Type="SynthChain" ID="tw" Bypassed="0" Gain="0.5299999713897705"
+           Balance="0.0" VoiceLimit="64.0" KillFadeTime="20.0" IconColour="0"
+           packageName="" BuildVersion="650">
+  <ChildProcessors>
+    <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptProcessor" ID="ui" Bypassed="0">
+          <ChildProcessors/>
+          <Content>
+            <Control type="ScriptButton" id="Hold1" value="1.0"/>
+            <Control type="ScriptButton" id="Button1" value="1.0"/>
+            <Control type="ScriptButton" id="Button2" value="1.0"/>
+            <Control type="ScriptButton" id="Button3" value="1.0"/>
+            <Control type="ScriptButton" id="Button4" value="1.0"/>
+            <Control type="ScriptSlider" id="Knob7" value="37.0"/>
+            <Control type="ScriptSlider" id="Knob8" value="71.0"/>
+            <Control type="ScriptSlider" id="Knob9" value="0.0"/>
+            <Control type="ScriptButton" id="Button10" value="1.0"/>
+            <Control type="ScriptSlider" id="vol1lfo1" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo2" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo3" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo4" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo5" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo1" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo2" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo3" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo4" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo5" value="0.0"/>
+            <Control type="ScriptButton" id="cyclea" value="1.0"/>
+            <Control type="ScriptSlider" id="Vol1" value="0.8199999928474426"/>
+            <Control type="ScriptSlider" id="attack1" value="0.0"/>
+            <Control type="ScriptSlider" id="Release1" value="57.0"/>
+            <Control type="ScriptComboBox" id="vol1modsel" value="3.0"/>
+            <Control type="ScriptSlider" id="cutoff1" value="5692.0"/>
+            <Control type="ScriptSlider" id="res1" value="3.890000104904175"/>
+            <Control type="ScriptComboBox" id="cut1modsel" value="2.0"/>
+            <Control type="ScriptSlider" id="pan1" value="-1.0"/>
+            <Control type="ScriptSlider" id="pos1lfo2" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo3" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo4" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo5" value="0.4900000095367432"/>
+            <Control type="ScriptSlider" id="Position1" value="0.449999988079071"/>
+            <Control type="ScriptSlider" id="Dense1" value="0.0"/>
+            <Control type="ScriptSlider" id="pitch1" value="0.5"/>
+            <Control type="ScriptSlider" id="grainsize1" value="0.9100000262260437"/>
+            <Control type="ScriptSlider" id="spread1" value="0.0"/>
+            <Control type="ScriptSlider" id="detune1" value="0.0"/>
+            <Control type="ScriptComboBox" id="pos1modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="pos1lfo1" value="0.0"/>
+            <Control type="ScriptComboBox" id="grain1modsel" value="4.0"/>
+            <Control type="ScriptSlider" id="grain1lfo1" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo2" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo3" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo4" value="0.0"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data="{PROJECT_FOLDER}Scrubs/usub.wav"
+                     rangeStart="0" rangeEnd="1326506"/>
+            <Control type="ScriptSlider" id="grain1lfo5" value="0.2899999916553497"/>
+            <Control type="ScriptSlider" id="lfo1" value="13.05000019073486"/>
+            <Control type="ScriptComboBox" id="lfoshape1" value="5.0"/>
+            <Control type="ScriptButton" id="sync1" value="1.0"/>
+            <Control type="ScriptSlider" id="lfo2" value="0.0"/>
+            <Control type="ScriptButton" id="sync2" value="0.0"/>
+            <Control type="ScriptComboBox" id="lfoshape2" value="1.0"/>
+            <Control type="ScriptSlider" id="lfo3" value="9.65000057220459"/>
+            <Control type="ScriptComboBox" id="lfoshape3" value="1.0"/>
+            <Control type="ScriptButton" id="sync3" value="0.0"/>
+            <Control type="ScriptSlider" id="lfo4" value="0.949999988079071"/>
+            <Control type="ScriptComboBox" id="lfoshape4" value="1.0"/>
+            <Control type="ScriptButton" id="sync4" value="0.0"/>
+            <Control type="ScriptSlider" id="lfo5" value="0.05000000074505806"/>
+            <Control type="ScriptComboBox" id="lfoshape5" value="1.0"/>
+            <Control type="ScriptButton" id="sync5" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob10" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob11" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob12" value="0.0"/>
+            <Control type="ScriptButton" id="Button11" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo6" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo7" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo8" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo9" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo10" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo6" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo7" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo8" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo9" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo6" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo7" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo8" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo9" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo10" value="0.0"/>
+            <Control type="ScriptButton" id="cyclea1" value="0.0"/>
+            <Control type="ScriptSlider" id="Vol2" value="0.0"/>
+            <Control type="ScriptSlider" id="attack2" value="0.0"/>
+            <Control type="ScriptSlider" id="Release2" value="0.0"/>
+            <Control type="ScriptComboBox" id="vol2modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="cutoff2" value="0.0"/>
+            <Control type="ScriptSlider" id="res2" value="0.0"/>
+            <Control type="ScriptComboBox" id="cut2modsel1" value="1.0"/>
+            <Control type="ScriptSlider" id="pan2" value="0.0"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform2" value="0.0" data="{PROJECT_FOLDER}Scrubs/usub.wav"
+                     rangeStart="0" rangeEnd="1326506"/>
+            <Control type="ScriptSlider" id="Position2" value="0.0"/>
+            <Control type="ScriptSlider" id="Dense2" value="0.0"/>
+            <Control type="ScriptSlider" id="pitch2" value="0.0"/>
+            <Control type="ScriptSlider" id="grainsize2" value="0.0"/>
+            <Control type="ScriptSlider" id="spread2" value="0.0"/>
+            <Control type="ScriptSlider" id="detune2" value="0.0"/>
+            <Control type="ScriptComboBox" id="pos2modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="pos1lfo10" value="0.0"/>
+            <Control type="ScriptComboBox" id="grain2modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="grain1lfo6" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo7" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo8" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo9" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo10" value="0.0"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data="{PROJECT_FOLDER}Scrubs/usub.wav"
+                     rangeStart="0" rangeEnd="1326506"/>
+            <Control type="ScriptSlider" id="Knob13" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob14" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob15" value="0.0"/>
+            <Control type="ScriptButton" id="Button12" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo11" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo12" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo13" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo14" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo15" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo11" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo12" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo13" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo14" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo11" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo12" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo13" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo14" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo15" value="0.0"/>
+            <Control type="ScriptButton" id="cyclea2" value="0.0"/>
+            <Control type="ScriptSlider" id="Vol3" value="0.0"/>
+            <Control type="ScriptSlider" id="attack3" value="0.0"/>
+            <Control type="ScriptSlider" id="Release3" value="0.0"/>
+            <Control type="ScriptComboBox" id="vol3modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="cutoff3" value="0.0"/>
+            <Control type="ScriptSlider" id="res3" value="0.0"/>
+            <Control type="ScriptComboBox" id="cut3modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="pan3" value="0.0"/>
+            <Control type="ScriptSlider" id="Position3" value="0.0"/>
+            <Control type="ScriptSlider" id="Dense3" value="0.0"/>
+            <Control type="ScriptSlider" id="pitch3" value="0.0"/>
+            <Control type="ScriptSlider" id="grainsize3" value="0.0"/>
+            <Control type="ScriptSlider" id="spread3" value="0.0"/>
+            <Control type="ScriptSlider" id="detune3" value="0.0"/>
+            <Control type="ScriptComboBox" id="pos3modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="pos1lfo15" value="0.0"/>
+            <Control type="ScriptComboBox" id="grain3modsel" value="1.0"/>
+            <Control type="ScriptSlider" id="grain1lfo11" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo12" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo13" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo14" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo15" value="0.0"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform4" value="0.0" data="{PROJECT_FOLDER}Scrubs/usub.wav"
+                     rangeStart="0" rangeEnd="1326506"/>
+            <Control type="ScriptSlider" id="Knob16" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob17" value="0.0"/>
+            <Control type="ScriptSlider" id="Knob18" value="0.0"/>
+            <Control type="ScriptButton" id="Button13" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo16" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo17" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo18" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo19" value="0.0"/>
+            <Control type="ScriptSlider" id="vol1lfo20" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo16" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo17" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo18" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo19" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo16" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo17" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo18" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo19" value="0.0"/>
+            <Control type="ScriptSlider" id="cut1lfo20" value="0.0"/>
+            <Control type="ScriptButton" id="cyclea3" value="0.0"/>
+            <Control type="ScriptSlider" id="Vol4" value="0.0"/>
+            <Control type="ScriptSlider" id="attack4" value="0.0"/>
+            <Control type="ScriptSlider" id="Release4" value="0.0"/>
+            <Control type="ScriptComboBox" id="vol1modsel3" value="0.0"/>
+            <Control type="ScriptSlider" id="cutoff4" value="0.0"/>
+            <Control type="ScriptSlider" id="res4" value="0.0"/>
+            <Control type="ScriptComboBox" id="cut1modsel3" value="0.0"/>
+            <Control type="ScriptSlider" id="pan4" value="0.0"/>
+            <Control type="ScriptSlider" id="Position4" value="0.0"/>
+            <Control type="ScriptSlider" id="Dense4" value="0.0"/>
+            <Control type="ScriptSlider" id="pitch4" value="0.0"/>
+            <Control type="ScriptSlider" id="grainsize4" value="0.0"/>
+            <Control type="ScriptSlider" id="spread4" value="0.0"/>
+            <Control type="ScriptSlider" id="detune4" value="0.0"/>
+            <Control type="ScriptComboBox" id="pos1modsel3" value="0.0"/>
+            <Control type="ScriptSlider" id="pos1lfo20" value="0.0"/>
+            <Control type="ScriptComboBox" id="grain1modsel3" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo16" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo17" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo18" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo19" value="0.0"/>
+            <Control type="ScriptSlider" id="grain1lfo20" value="0.0"/>
+          </Content>
+          <UIData>
+            <ContentProperties DeviceType="Desktop">
+              <Component type="ScriptPanel" id="Panel1" x="0.0" y="0.0" width="930" height="800"
+                         bgColour="4868684" itemColour="4283058764" itemColour2="4283058764"
+                         enabled="0"/>
+              <Component type="ScriptButton" id="Hold1" x="860.0" y="730.0" text="Hold"
+                         width="120.0" height="20.0" processorId="hold" parameterId="Hold1"/>
+              <Component type="ScriptButton" id="Button1" x="772.0" y="460.0" processorId="GROUP1"
+                         parameterId="VoiceLimit" visible="0"/>
+              <Component type="ScriptButton" id="Button2" x="912.0" y="460.0" processorId="GROUP2"
+                         parameterId="VoiceLimit" visible="0"/>
+              <Component type="ScriptButton" id="Button3" x="1052.0" y="460.0" processorId="GROUP3"
+                         parameterId="VoiceLimit" visible="0"/>
+              <Component type="ScriptButton" id="Button4" x="1202.0" y="460.0" processorId="GROUP4"
+                         parameterId="VoiceLimit" visible="0"/>
+              <Component type="ScriptPanel" id="voice1" x="9" y="2.0" width="400.0" height="400.0"
+                         text="wave1" bgColour="4290326576" itemColour="12890912" itemColour2="12890880"
+                         borderSize="0.0" borderRadius="0.0">
+                <Component type="ScriptImage" id="Image1" x="-10.0" y="-8.0" parentComponent="voice1"
+                           fileName="{PROJECT_FOLDER}bg-str.png" width="400.0" height="400.0"
+                           enabled="0" text="*" locked="1"/>
+                <Component type="ScriptSlider" id="Knob7" x="281.0" y="220.0" middlePosition="64.0"
+                           width="30.0" height="30.0" macroControl="Macro 1" max="127.0"
+                           stepSize="1.0" mode="Discrete" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice1"/>
+                <Component type="ScriptSlider" id="Knob8" x="316.0" y="220.0" middlePosition="50.0"
+                           suffix="%" width="30.0" height="30.0" macroControl="Macro 2"
+                           mode="NormalizedPercentage" max="100.0" stepSize="1.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice1"/>
+                <Component type="ScriptSlider" id="Knob9" x="297.0" y="256.0" width="30.0"
+                           height="30.0" processorId="Delay1" parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice1"/>
+                <Component type="ScriptButton" id="Button10" x="275.0" y="278.0" width="30.0"
+                           height="30.0" processorId="Delay1" parameterId="TempoSync" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5" parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label1" x="62.0" y="248.0" text="1" textColour="4278190080"
+                           fontName="Avenir" fontSize="90.0" width="50.0" height="80.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label2" x="115.0" y="62.0" textColour="4278190080"
+                           fontName="Avenir" text="Vol" width="40.0" fontSize="15.0" parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label3" x="210.0" y="60.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label8" x="46.0" y="130.0" textColour="4278190080"
+                           fontName="Avenir" text="Cutoff" width="40.0" fontSize="15.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label9" x="24.0" y="180.0" textColour="4278190080"
+                           fontName="Avenir" text="Resonance" width="60.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label10" x="28.0" y="226.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label11" x="275.0" y="90.0" textColour="4278190080"
+                           fontName="Avenir" text="Pan" width="40.0" fontSize="15.0" parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label16" x="168.0" y="312.0" textColour="4278190080"
+                           fontName="Avenir" text="Cycle" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label17" x="271.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Sync" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label18" x="274.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Time" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label19" x="303.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Feed" width="50.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label20" x="291.0" y="277.0" textColour="4278190080"
+                           fontName="Avenir" text="Mix" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label21" x="279.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Attack" width="40.0" fontSize="15.0"
+                           parentComponent="voice1"/>
+                <Component type="ScriptLabel" id="Label22" x="312.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Decay" width="40.0" fontSize="15.0" parentComponent="voice1"/>
+                <Component type="ScriptSlider" id="vol1lfo1" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="volA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo2" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="volA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo3" x="230.0" y="37.0" width="30.0"
+                           height="30.0" parentComponent="voice1" processorId="volA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="vol1lfo4" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="volA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo5" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="volA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo1" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="cut1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo2" x="62.0" y="228.0" width="30.0"
+                           height="30.0" parentComponent="voice1" processorId="cut2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo3" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="cut3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo4" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="cut4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo5" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="cut5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptButton" id="cyclea" x="166.0" y="318.0" width="40"
+                           height="40" text="cycle" processorId="MidiMuter1" parameterId="Enabled"
+                           parentComponent="voice1" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.8"/>
+                <Component type="ScriptSlider" id="Vol1" x="110" y="33.0" stepSize="0.009999999776482582"
+                           width="49.0" height="35.0" processorId="Container1" parameterId="Gain"
+                           parentComponent="voice1" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="attack1" x="291.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice1"
+                           processorId="Simple Envelope1" parameterId="Attack" max="20000.0"
+                           mode="Time" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptSlider" id="Release1" x="321.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice1"
+                           processorId="Simple Envelope1" parameterId="Release" mode="Time"
+                           max="20000.0" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptComboBox" id="vol1modsel" x="162.0" y="42.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice1"/>
+                <Component type="ScriptSlider" id="cutoff1" x="48.0" y="100.0" width="49.0"
+                           height="35.0" parentComponent="voice1" processorId="Filter1"
+                           parameterId="Frequency" mode="Frequency" min="20.0" max="20000.0"
+                           stepSize="1.0" suffix=" Hz" middlePosition="1500.0" numStrips="128.0"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="res1" x="35.0" y="150.0" width="49.0"
+                           height="35.0" parentComponent="voice1" processorId="Filter1"
+                           parameterId="Q" max="8.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptComboBox" id="cut1modsel" x="26.0" y="203.0" max="5"
+                           width="60.0" height="20.0" parentComponent="voice1" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"/>
+                <Component type="ScriptSlider" id="pan1" x="279.0" y="61.0" width="40.0"
+                           height="40.0" parentComponent="voice1" processorId="Script FX1"
+                           parameterId="Pan" min="-1.0" stepSize="0.1000000014901161" suffix="L"
+                           middlePosition="0.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptPanel" id="Panel2" x="101.0" y="88.0" parentComponent="voice1"
+                           width="170" height="220" bgColour="16777215" itemColour2="0"
+                           itemColour="0" textColour="2684354560" borderSize="0.0" borderRadius="11.0">
+                  <Component type="ScriptLabel" id="Label4" x="9" y="116" textColour="4278190080"
+                             fontName="Avenir" text="Position" width="40.0" fontSize="15.0"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label5" x="113" y="115" textColour="4278190080"
+                             fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label6" x="113" y="158" textColour="4278190080"
+                             fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label7" x="9" y="166.0" textColour="4278190080"
+                             fontName="Avenir" text="Grain" width="40.0" fontSize="15.0" height="20.0"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label12" x="10" y="203.0" textColour="4278190080"
+                             fontName="Avenir" text="Pitch" width="40.0" fontSize="15.0" height="20.0"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label13" x="46" y="203.0" textColour="4278190080"
+                             fontName="Avenir" text="Dense" width="40.0" fontSize="15.0" height="20.0"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label14" x="84" y="203.0" textColour="4278190080"
+                             fontName="Avenir" text="Spread" width="40.0" fontSize="15.0"
+                             height="20.0" parentComponent="Panel2"/>
+                  <Component type="ScriptLabel" id="Label15" x="121" y="203.0" textColour="4278190080"
+                             fontName="Avenir" text="Detune" width="40.0" fontSize="15.0"
+                             height="20.0" parentComponent="Panel2"/>
+                  <Component type="ScriptSlider" id="pos1lfo2" x="139" y="92" width="30.0"
+                             height="30.0" parentComponent="Panel2" processorId="posA2" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                             dragDirection="Vertical"/>
+                  <Component type="ScriptSlider" id="pos1lfo3" x="139" y="92" width="30.0"
+                             height="30.0" parentComponent="Panel2" processorId="posA3" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                             dragDirection="Vertical"/>
+                  <Component type="ScriptSlider" id="pos1lfo4" x="139" y="92" width="30.0"
+                             height="30.0" parentComponent="Panel2" processorId="posA4" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                             dragDirection="Vertical"/>
+                  <Component type="ScriptSlider" id="pos1lfo5" x="139" y="92" width="30.0"
+                             height="30.0" parentComponent="Panel2" processorId="posA5" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.800000011920929"/>
+                  <Component type="ScriptSlider" id="Position1" x="9" y="132.0" width="40.0"
+                             height="40.0" processorId="GRAN1" parameterId="Position" parentComponent="Panel2"
+                             middlePosition="0.5" numStrips="128.0" dragDirection="Vertical"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                  <Component type="ScriptSlider" id="Dense1" x="50" y="181" width="30.0" height="30.0"
+                             processorId="GRAN1" parameterId="Density" max="0.699999988079071"
+                             parentComponent="Panel2" filmstripImage="{PROJECT_FOLDER}k2.png"
+                             numStrips="128.0" dragDirection="Vertical" scaleFactor="0.8"/>
+                  <Component type="ScriptSlider" id="pitch1" x="14" y="181" width="30.0" height="30.0"
+                             processorId="GRAN1" parameterId="Pitch" defaultValue="0.5" parentComponent="Panel2"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.8"/>
+                  <Component type="ScriptSlider" id="grainsize1" x="9" y="87" width="49.0"
+                             height="35.0" processorId="GRAN1" parameterId="GrainSize" parentComponent="Panel2"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="1.200000047683716"/>
+                  <Component type="ScriptSlider" id="spread1" x="87" y="181" width="30.0"
+                             height="30.0" processorId="GRAN1" parameterId="Spread" parentComponent="Panel2"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.8"/>
+                  <Component type="ScriptSlider" id="detune1" x="124" y="181" width="30.0"
+                             height="30.0" processorId="GRAN1" parameterId="Detune" parentComponent="Panel2"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.8"/>
+                  <Component type="ScriptComboBox" id="pos1modsel" x="63" y="139" max="5"
+                             width="60.0" height="20.0" text="" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptSlider" id="pos1lfo1" x="139" y="92" width="30.0"
+                             height="30.0" parentComponent="Panel2" processorId="posA1" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.800000011920929"/>
+                  <Component type="ScriptComboBox" id="grain1modsel" x="63" y="97" max="5"
+                             width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptSlider" id="grain1lfo1" x="140" y="138" width="30"
+                             height="30" parentComponent="Panel2" processorId="grainA1" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                             dragDirection="Vertical"/>
+                  <Component type="ScriptSlider" id="grain1lfo2" x="140" y="138" width="30"
+                             height="30" parentComponent="Panel2" processorId="grainA2" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.800000011920929"/>
+                  <Component type="ScriptSlider" id="grain1lfo3" x="140" y="138" width="30"
+                             height="30" parentComponent="Panel2" processorId="grainA3" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                             dragDirection="Vertical"/>
+                  <Component type="ScriptSlider" id="grain1lfo4" x="140" y="138" width="30"
+                             height="30" parentComponent="Panel2" processorId="grainA4" parameterId="Intensity"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                             scaleFactor="0.800000011920929"/>
+                  <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="5" y="6" processorId="GRAN1"
+                             sampleIndex="0" width="160" height="80" showFileName="0" bgColour="11568167"
+                             itemColour2="4282339447" opaque="0" textColour="4292285460" itemColour="4280753689"
+                             parentComponent="Panel2"/>
+                  <Component type="ScriptSlider" id="grain1lfo5" x="140" y="138" width="30.0"
+                             height="30.0" parentComponent="Panel2" processorId="grainA5"
+                             parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                             numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                </Component>
+              </Component>
+              <Component type="ScriptSlider" id="lfo1" x="830.0" y="80.0" middlePosition="10.05000019073486"
+                         stepSize="0.1000000014901161" min="0.05000000074505806" max="20.0"
+                         suffix=" Hz" width="60.0" height="60.0" processorId="LFO Modulator1"
+                         parameterId="Frequency" mode="Frequency" filmstripImage="{PROJECT_FOLDER}k100blue.png"
+                         numStrips="100.0" isVertical="0" scaleFactor="0.5"/>
+              <Component type="ScriptComboBox" id="lfoshape1" x="911.0" y="80.0" max="5"
+                         width="60.0" height="30.0" processorId="LFO Modulator1" parameterId="WaveFormType"
+                         items="Sine&#10;Triangle&#10;Saw&#10;Square&#10;Random"/>
+              <Component type="ScriptButton" id="sync1" x="910.0" y="120.0" width="60.0"
+                         height="30.0" processorId="LFO Modulator1" parameterId="TempoSync"/>
+              <Component type="ScriptSlider" id="lfo2" x="830.0" y="200.0" middlePosition="10.02499961853027"
+                         stepSize="0.1000000014901161" min="0.05000000074505806" max="20.0"
+                         suffix=" Hz" width="60.0" height="60.0" processorId="LFO Modulator2"
+                         parameterId="Frequency" mode="Frequency" filmstripImage="{PROJECT_FOLDER}k100blue.png"
+                         numStrips="100.0" isVertical="0" scaleFactor="0.5"/>
+              <Component type="ScriptButton" id="sync2" x="911.0" y="240.0" width="60.0"
+                         height="30.0" processorId="LFO Modulator2" parameterId="TempoSync"/>
+              <Component type="ScriptComboBox" id="lfoshape2" x="911.0" y="200.0" max="5"
+                         width="60.0" height="30.0" processorId="LFO Modulator2" parameterId="WaveFormType"
+                         items="Sine&#10;Triangle&#10;Saw&#10;Square&#10;Random"/>
+              <Component type="ScriptSlider" id="lfo3" x="830.0" y="310.0" middlePosition="10.02499961853027"
+                         stepSize="0.1000000014901161" min="0.05000000074505806" max="20.0"
+                         suffix=" Hz" width="60.0" height="60.0" processorId="LFO Modulator3"
+                         parameterId="Frequency" mode="Frequency" filmstripImage="{PROJECT_FOLDER}k100blue.png"
+                         numStrips="100.0" isVertical="0" scaleFactor="0.5"/>
+              <Component type="ScriptComboBox" id="lfoshape3" x="911.0" y="310.0" max="0"
+                         width="60.0" height="30.0" processorId="LFO Modulator3" parameterId="WaveFormType"/>
+              <Component type="ScriptButton" id="sync3" x="911.0" y="352.0" width="60.0"
+                         height="30.0" processorId="LFO Modulator3" parameterId="TempoSync"/>
+              <Component type="ScriptSlider" id="lfo4" x="840.0" y="420.0" middlePosition="10.02499961853027"
+                         stepSize="0.1000000014901161" min="0.05000000074505806" max="20.0"
+                         suffix=" Hz" width="60.0" height="60.0" processorId="LFO Modulator4"
+                         parameterId="Frequency" mode="Frequency" filmstripImage="{PROJECT_FOLDER}k100blue.png"
+                         numStrips="100.0" isVertical="0" scaleFactor="0.5"/>
+              <Component type="ScriptComboBox" id="lfoshape4" x="921.0" y="420.0" max="0"
+                         width="60.0" height="30.0" processorId="LFO Modulator4" parameterId="WaveFormType"
+                         text="ComboBox"/>
+              <Component type="ScriptButton" id="sync4" x="920.0" y="460.0" width="60.0"
+                         height="30.0" processorId="LFO Modulator4" parameterId="TempoSync"/>
+              <Component type="ScriptSlider" id="lfo5" x="840.0" y="520.0" middlePosition="10.02499961853027"
+                         stepSize="0.1000000014901161" min="0.05000000074505806" max="20.0"
+                         suffix=" Hz" width="60.0" height="60.0" processorId="LFO Modulator5"
+                         parameterId="Frequency" mode="Frequency" filmstripImage="{PROJECT_FOLDER}k100blue.png"
+                         numStrips="100.0" isVertical="0" scaleFactor="0.5"/>
+              <Component type="ScriptComboBox" id="lfoshape5" x="922.0" y="520.0" max="0"
+                         width="60.0" height="30.0" processorId="LFO Modulator5" parameterId="WaveFormType"/>
+              <Component type="ScriptButton" id="sync5" x="922.0" y="560.0" width="60.0"
+                         height="30.0" processorId="LFO Modulator5" parameterId="TempoSync"/>
+              <Component type="ScriptPanel" id="voice2" x="410.0" y="0.0" width="400.0"
+                         height="400.0" text="wave1" bgColour="4290326576" itemColour="12890912"
+                         itemColour2="12890880" borderSize="0.0" borderRadius="0.0">
+                <Component type="ScriptImage" id="Image2" x="-10.0" y="-8.0" parentComponent="voice2"
+                           fileName="{PROJECT_FOLDER}bg-str.png" width="400.0" height="400.0"
+                           enabled="0" text="*" locked="1"/>
+                <Component type="ScriptSlider" id="Knob10" x="281.0" y="220.0" middlePosition="64.0"
+                           width="30.0" height="30.0" macroControl="Macro 3" max="127.0"
+                           stepSize="1.0" mode="Discrete" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice2"/>
+                <Component type="ScriptSlider" id="Knob11" x="316.0" y="220.0" middlePosition="50.0"
+                           suffix="%" width="30.0" height="30.0" macroControl="Macro 4"
+                           mode="NormalizedPercentage" max="100.0" stepSize="1.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice2"/>
+                <Component type="ScriptSlider" id="Knob12" x="292.0" y="256.0" width="30.0"
+                           height="30.0" processorId="Delay2" parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice2"/>
+                <Component type="ScriptButton" id="Button11" x="265.0" y="275.0" width="30.0"
+                           height="30.0" processorId="Delay2" parameterId="TempoSync" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label23" x="65.0" y="248.0" text="2" textColour="4278190080"
+                           fontName="Avenir" fontSize="90.0" width="50.0" height="80.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label24" x="115.0" y="62.0" textColour="4278190080"
+                           fontName="Avenir" text="Vol" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label25" x="210.0" y="60.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label26" x="115.0" y="109.0" textColour="4278190080"
+                           fontName="Avenir" text="Position" width="40.0" fontSize="15.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label27" x="214.0" y="109.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label28" x="222.0" y="249.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label29" x="110.0" y="256.0" textColour="4278190080"
+                           fontName="Avenir" text="Grain" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label30" x="46.0" y="130.0" textColour="4278190080"
+                           fontName="Avenir" text="Cutoff" width="40.0" fontSize="15.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label31" x="24.0" y="180.0" textColour="4278190080"
+                           fontName="Avenir" text="Resonance" width="60.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label32" x="28.0" y="226.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label33" x="275.0" y="90.0" textColour="4278190080"
+                           fontName="Avenir" text="Pan" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label34" x="111.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Pitch" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label35" x="147.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Dense" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label36" x="185.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Spread" width="40.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label37" x="222.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Detune" width="40.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label38" x="180.0" y="326.0" textColour="4278190080"
+                           fontName="Avenir" text="Cycle" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label39" x="260.0" y="297.0" textColour="4278190080"
+                           fontName="Avenir" text="Sync" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label40" x="274.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Time" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label41" x="303.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Feed" width="50.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label42" x="285.0" y="277.0" textColour="4278190080"
+                           fontName="Avenir" text="Mix" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label43" x="279.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Attack" width="40.0" fontSize="15.0"
+                           parentComponent="voice2"/>
+                <Component type="ScriptLabel" id="Label44" x="312.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Decay" width="40.0" fontSize="15.0" parentComponent="voice2"/>
+                <Component type="ScriptSlider" id="vol1lfo6" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="volA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo7" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="volA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo8" x="230.0" y="37.0" width="30.0"
+                           height="30.0" parentComponent="voice2" processorId="volA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="vol1lfo9" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="volA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical" text="vol3lfo9"/>
+                <Component type="ScriptSlider" id="vol1lfo10" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="volA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="pos1lfo6" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice2" processorId="posA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo7" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice2" processorId="posA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo8" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice2" processorId="posA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo9" x="240.0" y="90.0" width="49.0"
+                           height="35.0" parentComponent="voice2" processorId="posA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo6" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="cut1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo7" x="62.0" y="228.0" width="30.0"
+                           height="30.0" parentComponent="voice2" processorId="cut2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo8" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="cut3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo9" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="cut4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo10" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="cut5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptButton" id="cyclea1" x="150.0" y="320.0" width="30.0"
+                           height="30.0" text="cycle" processorId="MidiMuter1" parameterId="Enabled"
+                           parentComponent="voice2" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5"/>
+                <Component type="ScriptSlider" id="Vol2" x="116.0" y="33.0" stepSize="0.009999999776482582"
+                           width="49.0" height="35.0" processorId="Container1" parameterId="Gain"
+                           parentComponent="voice2" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="attack2" x="291.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice2"
+                           processorId="Simple Envelope1" parameterId="Attack" max="20000.0"
+                           mode="Time" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptSlider" id="Release2" x="321.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice2"
+                           processorId="Simple Envelope1" parameterId="Release" mode="Time"
+                           max="20000.0" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptComboBox" id="vol2modsel" x="164.0" y="41.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice2"/>
+                <Component type="ScriptSlider" id="cutoff2" x="48.0" y="100.0" width="49.0"
+                           height="35.0" parentComponent="voice2" processorId="Filter1"
+                           parameterId="Frequency" mode="Frequency" min="20.0" max="20000.0"
+                           stepSize="1.0" suffix=" Hz" middlePosition="1500.0" numStrips="128.0"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="res2" x="35.0" y="150.0" width="49.0"
+                           height="35.0" parentComponent="voice2" processorId="Filter1"
+                           parameterId="Q" max="8.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptComboBox" id="cut2modsel1" x="26.0" y="203.0" max="5"
+                           width="60.0" height="20.0" parentComponent="voice2" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"/>
+                <Component type="ScriptSlider" id="pan2" x="279.0" y="61.0" width="40.0"
+                           height="40.0" parentComponent="voice2" processorId="Script FX1"
+                           parameterId="Pan" min="-1.0" stepSize="0.1000000014901161" suffix="L"
+                           middlePosition="0.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptAudioWaveform" id="AudioWaveform2" x="104.0" y="133.0"
+                           processorId="GRAN1" sampleIndex="0" width="170.0" height="90.0"
+                           showFileName="0" parentComponent="voice2" bgColour="11568167"
+                           itemColour2="4282339447" opaque="0" textColour="4292285460" itemColour="4280753689"/>
+                <Component type="ScriptSlider" id="Position2" x="110.0" y="223.0" width="40.0"
+                           height="40.0" processorId="GRAN1" parameterId="Position" parentComponent="voice2"
+                           middlePosition="0.5" numStrips="128.0" dragDirection="Vertical"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="Dense2" x="151.0" y="269.0" width="40.0"
+                           height="40.0" processorId="GRAN1" parameterId="Density" max="0.699999988079071"
+                           parentComponent="voice2" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pitch2" x="115.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Pitch" defaultValue="0.5"
+                           parentComponent="voice2" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grainsize2" x="116.0" y="81.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="GrainSize" parentComponent="voice2"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="spread2" x="188.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Spread" parentComponent="voice2"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="detune2" x="225.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Detune" parentComponent="voice2"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptComboBox" id="pos2modsel" x="164.0" y="234.0" max="5"
+                           width="60.0" height="20.0" text="" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice2"/>
+                <Component type="ScriptSlider" id="pos1lfo10" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice2" processorId="posA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptComboBox" id="grain2modsel" x="164.0" y="92.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice2"/>
+                <Component type="ScriptSlider" id="grain1lfo6" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice2" processorId="grainA1"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grain1lfo7" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice2" processorId="grainA2"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="grain1lfo8" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice2" processorId="grainA3"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grain1lfo9" x="231.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice2" processorId="grainA4"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="grain1lfo10" x="230.0" y="229.0" width="30.0"
+                           height="30.0" parentComponent="voice2" processorId="grainA5"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+              </Component>
+              <Component type="ScriptPanel" id="voice3" x="9" y="396.0" width="400.0"
+                         height="400.0" text="wave1" bgColour="4290326576" itemColour="12890912"
+                         itemColour2="12890880" borderSize="0.0" borderRadius="0.0">
+                <Component type="ScriptImage" id="Image3" x="-10.0" y="-8.0" parentComponent="voice3"
+                           fileName="{PROJECT_FOLDER}bg-str.png" width="400.0" height="400.0"
+                           enabled="0" text="*" locked="1"/>
+                <Component type="ScriptAudioWaveform" id="AudioWaveform3" x="103.0" y="131.0"
+                           processorId="GRAN1" sampleIndex="0" width="170.0" height="90.0"
+                           showFileName="0" bgColour="11568167" itemColour2="4282339447"
+                           opaque="0" textColour="4292285460" itemColour="4280753689" parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="Knob13" x="281.0" y="220.0" middlePosition="64.0"
+                           width="30.0" height="30.0" macroControl="Macro 1" max="127.0"
+                           stepSize="1.0" mode="Discrete" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="Knob14" x="316.0" y="220.0" middlePosition="50.0"
+                           suffix="%" width="30.0" height="30.0" macroControl="Macro 2"
+                           mode="NormalizedPercentage" max="100.0" stepSize="1.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="Knob15" x="292.0" y="256.0" width="30.0"
+                           height="30.0" processorId="Delay1" parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice3"/>
+                <Component type="ScriptButton" id="Button12" x="265.0" y="275.0" width="30.0"
+                           height="30.0" processorId="Delay1" parameterId="TempoSync" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label45" x="67.0" y="244.0" text="3" textColour="4278190080"
+                           fontName="Avenir" fontSize="90.0" width="50.0" height="80.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label46" x="115.0" y="62.0" textColour="4278190080"
+                           fontName="Avenir" text="Vol" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label47" x="210.0" y="60.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label48" x="115.0" y="109.0" textColour="4278190080"
+                           fontName="Avenir" text="Position" width="40.0" fontSize="15.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label49" x="214.0" y="109.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label50" x="222.0" y="249.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label51" x="110.0" y="256.0" textColour="4278190080"
+                           fontName="Avenir" text="Grain" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label52" x="46.0" y="130.0" textColour="4278190080"
+                           fontName="Avenir" text="Cutoff" width="40.0" fontSize="15.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label53" x="24.0" y="180.0" textColour="4278190080"
+                           fontName="Avenir" text="Resonance" width="60.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label54" x="28.0" y="226.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label55" x="275.0" y="90.0" textColour="4278190080"
+                           fontName="Avenir" text="Pan" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label56" x="111.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Pitch" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label57" x="147.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Dense" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label58" x="185.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Spread" width="40.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label59" x="222.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Detune" width="40.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label60" x="180.0" y="326.0" textColour="4278190080"
+                           fontName="Avenir" text="Cycle" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label61" x="260.0" y="297.0" textColour="4278190080"
+                           fontName="Avenir" text="Sync" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label62" x="274.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Time" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label63" x="303.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Feed" width="50.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label64" x="285.0" y="277.0" textColour="4278190080"
+                           fontName="Avenir" text="Mix" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label65" x="279.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Attack" width="40.0" fontSize="15.0"
+                           parentComponent="voice3"/>
+                <Component type="ScriptLabel" id="Label66" x="312.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Decay" width="40.0" fontSize="15.0" parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="vol1lfo11" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="volA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo12" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="volA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo13" x="230.0" y="37.0" width="30.0"
+                           height="30.0" parentComponent="voice3" processorId="volA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="vol1lfo14" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="volA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo15" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="volA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="pos1lfo11" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice3" processorId="posA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo12" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice3" processorId="posA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo13" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice3" processorId="posA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo14" x="240.0" y="90.0" width="49.0"
+                           height="35.0" parentComponent="voice3" processorId="posA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo11" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="cut1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo12" x="62.0" y="228.0" width="30.0"
+                           height="30.0" parentComponent="voice3" processorId="cut2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo13" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="cut3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo14" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="cut4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo15" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="cut5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptButton" id="cyclea2" x="150.0" y="320.0" width="30.0"
+                           height="30.0" text="cycle" processorId="MidiMuter1" parameterId="Enabled"
+                           parentComponent="voice3" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5"/>
+                <Component type="ScriptSlider" id="Vol3" x="116.0" y="33.0" stepSize="0.009999999776482582"
+                           width="49.0" height="35.0" processorId="Container1" parameterId="Gain"
+                           parentComponent="voice3" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="attack3" x="291.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice3"
+                           processorId="Simple Envelope1" parameterId="Attack" max="20000.0"
+                           mode="Time" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptSlider" id="Release3" x="321.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice3"
+                           processorId="Simple Envelope1" parameterId="Release" mode="Time"
+                           max="20000.0" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptComboBox" id="vol3modsel" x="164.0" y="41.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="cutoff3" x="48.0" y="100.0" width="49.0"
+                           height="35.0" parentComponent="voice3" processorId="Filter1"
+                           parameterId="Frequency" mode="Frequency" min="20.0" max="20000.0"
+                           stepSize="1.0" suffix=" Hz" middlePosition="1500.0" numStrips="128.0"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="res3" x="35.0" y="150.0" width="49.0"
+                           height="35.0" parentComponent="voice3" processorId="Filter1"
+                           parameterId="Q" max="8.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptComboBox" id="cut3modsel" x="26.0" y="203.0" max="5"
+                           width="60.0" height="20.0" parentComponent="voice3" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"/>
+                <Component type="ScriptSlider" id="pan3" x="279.0" y="61.0" width="40.0"
+                           height="40.0" parentComponent="voice3" processorId="Script FX1"
+                           parameterId="Pan" min="-1.0" stepSize="0.1000000014901161" suffix="L"
+                           middlePosition="0.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="Position3" x="110.0" y="223.0" width="40.0"
+                           height="40.0" processorId="GRAN1" parameterId="Position" parentComponent="voice3"
+                           middlePosition="0.5" numStrips="128.0" dragDirection="Vertical"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="Dense3" x="151.0" y="269.0" width="40.0"
+                           height="40.0" processorId="GRAN1" parameterId="Density" max="0.699999988079071"
+                           parentComponent="voice3" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pitch3" x="115.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Pitch" defaultValue="0.5"
+                           parentComponent="voice3" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grainsize3" x="116.0" y="81.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="GrainSize" parentComponent="voice3"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="spread3" x="188.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Spread" parentComponent="voice3"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="detune3" x="225.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Detune" parentComponent="voice3"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptComboBox" id="pos3modsel" x="164.0" y="234.0" max="5"
+                           width="60.0" height="20.0" text="" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="pos1lfo15" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice3" processorId="posA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptComboBox" id="grain3modsel" x="164.0" y="92.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice3"/>
+                <Component type="ScriptSlider" id="grain1lfo11" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice3" processorId="grainA1"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grain1lfo12" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice3" processorId="grainA2"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="grain1lfo13" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice3" processorId="grainA3"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grain1lfo14" x="231.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice3" processorId="grainA4"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="grain1lfo15" x="230.0" y="229.0" width="30.0"
+                           height="30.0" parentComponent="voice3" processorId="grainA5"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+              </Component>
+              <Component type="ScriptPanel" id="voice4" x="413" y="396.0" width="400.0"
+                         height="400.0" text="wave1" bgColour="4290326576" itemColour="12890912"
+                         itemColour2="12890880" borderSize="0.0" borderRadius="0.0">
+                <Component type="ScriptImage" id="Image4" x="-10.0" y="-8.0" parentComponent="voice4"
+                           fileName="{PROJECT_FOLDER}bg-str.png" width="400.0" height="400.0"
+                           enabled="0" text="*" locked="1"/>
+                <Component type="ScriptAudioWaveform" id="AudioWaveform4" x="107" y="134"
+                           processorId="GRAN1" sampleIndex="0" width="170.0" height="90.0"
+                           showFileName="0" bgColour="11568167" itemColour2="4282339447"
+                           opaque="0" textColour="4292285460" itemColour="4280753689" parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="Knob16" x="281.0" y="220.0" middlePosition="64.0"
+                           width="30.0" height="30.0" macroControl="Macro 1" max="127.0"
+                           stepSize="1.0" mode="Discrete" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="Knob17" x="316.0" y="220.0" middlePosition="50.0"
+                           suffix="%" width="30.0" height="30.0" macroControl="Macro 2"
+                           mode="NormalizedPercentage" max="100.0" stepSize="1.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="Knob18" x="292.0" y="256.0" width="30.0"
+                           height="30.0" processorId="Delay1" parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" parentComponent="voice4"/>
+                <Component type="ScriptButton" id="Button13" x="265.0" y="275.0" width="30.0"
+                           height="30.0" processorId="Delay1" parameterId="TempoSync" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label67" x="66.0" y="248.0" text="4" textColour="4278190080"
+                           fontName="Avenir" fontSize="90.0" width="50.0" height="80.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label68" x="115.0" y="62.0" textColour="4278190080"
+                           fontName="Avenir" text="Vol" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label69" x="210.0" y="60.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label70" x="115.0" y="109.0" textColour="4278190080"
+                           fontName="Avenir" text="Position" width="40.0" fontSize="15.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label71" x="214.0" y="109.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label72" x="222.0" y="249.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label73" x="110.0" y="256.0" textColour="4278190080"
+                           fontName="Avenir" text="Grain" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label74" x="46.0" y="130.0" textColour="4278190080"
+                           fontName="Avenir" text="Cutoff" width="40.0" fontSize="15.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label75" x="24.0" y="180.0" textColour="4278190080"
+                           fontName="Avenir" text="Resonance" width="60.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label76" x="28.0" y="226.0" textColour="4278190080"
+                           fontName="Avenir" text="Mod" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label77" x="275.0" y="90.0" textColour="4278190080"
+                           fontName="Avenir" text="Pan" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label78" x="111.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Pitch" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label79" x="147.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Dense" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label80" x="185.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Spread" width="40.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label81" x="222.0" y="298.0" textColour="4278190080"
+                           fontName="Avenir" text="Detune" width="40.0" fontSize="15.0"
+                           height="20.0" parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label82" x="180.0" y="326.0" textColour="4278190080"
+                           fontName="Avenir" text="Cycle" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label83" x="260.0" y="297.0" textColour="4278190080"
+                           fontName="Avenir" text="Sync" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label84" x="274.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Time" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label85" x="303.0" y="242.0" textColour="4278190080"
+                           fontName="Avenir" text="Feed" width="50.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label86" x="285.0" y="277.0" textColour="4278190080"
+                           fontName="Avenir" text="Mix" width="40.0" fontSize="15.0" height="20.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label87" x="279.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Attack" width="40.0" fontSize="15.0"
+                           parentComponent="voice4"/>
+                <Component type="ScriptLabel" id="Label88" x="312.0" y="192.0" textColour="4278190080"
+                           fontName="Avenir" text="Decay" width="40.0" fontSize="15.0" parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="vol1lfo16" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="volA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo17" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="volA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo18" x="230.0" y="37.0" width="30.0"
+                           height="30.0" parentComponent="voice4" processorId="volA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="vol1lfo19" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="volA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="vol1lfo20" x="230.0" y="37.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="volA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="pos1lfo16" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice4" processorId="posA2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo17" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice4" processorId="posA3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo18" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice4" processorId="posA4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pos1lfo19" x="240.0" y="90.0" width="49.0"
+                           height="35.0" parentComponent="voice4" processorId="posA5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo16" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="cut1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo17" x="62.0" y="228.0" width="30.0"
+                           height="30.0" parentComponent="voice4" processorId="cut2" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="cut1lfo18" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="cut3" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo19" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="cut4" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" scaleFactor="0.800000011920929"
+                           dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="cut1lfo20" x="62.0" y="228.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="cut5" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptButton" id="cyclea3" x="150.0" y="320.0" width="30.0"
+                           height="30.0" text="cycle" processorId="MidiMuter1" parameterId="Enabled"
+                           parentComponent="voice4" filmstripImage="{PROJECT_FOLDER}switch_toggle.png"
+                           scaleFactor="0.5"/>
+                <Component type="ScriptSlider" id="Vol4" x="116.0" y="33.0" stepSize="0.009999999776482582"
+                           width="49.0" height="35.0" processorId="Container1" parameterId="Gain"
+                           parentComponent="voice4" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="attack4" x="291.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice4"
+                           processorId="Simple Envelope1" parameterId="Attack" max="20000.0"
+                           mode="Time" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptSlider" id="Release4" x="321.0" y="124.0" style="Vertical"
+                           stepSize="1.0" width="20.0" height="70.0" parentComponent="voice4"
+                           processorId="Simple Envelope1" parameterId="Release" mode="Time"
+                           max="20000.0" suffix=" ms" middlePosition="1000.0"/>
+                <Component type="ScriptComboBox" id="vol1modsel3" x="164.0" y="41.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="cutoff4" x="48.0" y="100.0" width="49.0"
+                           height="35.0" parentComponent="voice4" processorId="Filter1"
+                           parameterId="Frequency" mode="Frequency" min="20.0" max="20000.0"
+                           stepSize="1.0" suffix=" Hz" middlePosition="1500.0" numStrips="128.0"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="res4" x="35.0" y="150.0" width="49.0"
+                           height="35.0" parentComponent="voice4" processorId="Filter1"
+                           parameterId="Q" max="8.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptComboBox" id="cut1modsel3" x="26.0" y="203.0" max="5"
+                           width="60.0" height="20.0" parentComponent="voice4" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"/>
+                <Component type="ScriptSlider" id="pan4" x="279.0" y="61.0" width="40.0"
+                           height="40.0" parentComponent="voice4" processorId="Script FX1"
+                           parameterId="Pan" min="-1.0" stepSize="0.1000000014901161" suffix="L"
+                           middlePosition="0.0" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="Position4" x="110.0" y="223.0" width="40.0"
+                           height="40.0" processorId="GRAN1" parameterId="Position" parentComponent="voice4"
+                           middlePosition="0.5" numStrips="128.0" dragDirection="Vertical"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="Dense4" x="151.0" y="269.0" width="40.0"
+                           height="40.0" processorId="GRAN1" parameterId="Density" max="0.699999988079071"
+                           parentComponent="voice4" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="pitch4" x="115.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Pitch" defaultValue="0.5"
+                           parentComponent="voice4" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grainsize4" x="116.0" y="81.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="GrainSize" parentComponent="voice4"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="1.200000047683716"/>
+                <Component type="ScriptSlider" id="spread4" x="188.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Spread" parentComponent="voice4"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="detune4" x="225.0" y="269.0" width="49.0"
+                           height="35.0" processorId="GRAN1" parameterId="Detune" parentComponent="voice4"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"/>
+                <Component type="ScriptComboBox" id="pos1modsel3" x="164.0" y="234.0" max="5"
+                           width="60.0" height="20.0" text="" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="pos1lfo20" x="240.0" y="90.0" width="45.0"
+                           height="45.0" parentComponent="voice4" processorId="posA1" parameterId="Intensity"
+                           filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="128.0" dragDirection="Vertical"
+                           scaleFactor="0.800000011920929"/>
+                <Component type="ScriptComboBox" id="grain1modsel3" x="164.0" y="92.0" max="5"
+                           width="60.0" height="20.0" items="LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5"
+                           parentComponent="voice4"/>
+                <Component type="ScriptSlider" id="grain1lfo16" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice4" processorId="grainA1"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grain1lfo17" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice4" processorId="grainA2"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="grain1lfo18" x="230.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice4" processorId="grainA3"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+                <Component type="ScriptSlider" id="grain1lfo19" x="231.0" y="229.0" width="40.0"
+                           height="30.0" parentComponent="voice4" processorId="grainA4"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" dragDirection="Vertical" scaleFactor="0.800000011920929"/>
+                <Component type="ScriptSlider" id="grain1lfo20" x="230.0" y="229.0" width="30.0"
+                           height="30.0" parentComponent="voice4" processorId="grainA5"
+                           parameterId="Intensity" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="128.0" scaleFactor="0.800000011920929" dragDirection="Vertical"/>
+              </Component>
+            </ContentProperties>
+          </UIData>
+        </Processor>
+        <Processor Type="ScriptProcessor" ID="rr" Bypassed="0">
+          <ChildProcessors/>
+          <Content/>
+          <UIData>
+            <ContentProperties DeviceType="Desktop"/>
+          </UIData>
+        </Processor>
+        <Processor Type="ScriptProcessor" ID="hold" Bypassed="0">
+          <ChildProcessors/>
+          <Content>
+            <Control type="ScriptButton" id="Hold1" value="1.0"/>
+          </Content>
+          <UIData Source="twUIData"/>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="EffectChain" ID="FX" Bypassed="0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="GlobalModulatorContainer" ID="Global Modulator Container1"
+               Bypassed="0" Gain="0.25" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
+               IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Global Modulators" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="LFO" ID="LFO Modulator1" Bypassed="0" Intensity="1.0" Bipolar="0"
+                       Frequency="13.0" FadeIn="0.0" WaveformType="5.0" Legato="1.0"
+                       TempoSync="1.0" SmoothingTime="0.0" LoopEnabled="0.0" PhaseOffset="0.0"
+                       CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="LFO Intensity Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="LFO Frequency Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="LFO" ID="LFO Modulator2" Bypassed="0" Intensity="0.0" Bipolar="1"
+                       Frequency="0.0" FadeIn="1000.0" WaveformType="1.0" Legato="1.0"
+                       TempoSync="0.0" SmoothingTime="5.0" LoopEnabled="1.0" PhaseOffset="0.0"
+                       CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="LFO Intensity Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="LFO Frequency Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="LFO" ID="LFO Modulator3" Bypassed="0" Intensity="1.0" Bipolar="1"
+                       Frequency="9.65000057220459" FadeIn="1000.0" WaveformType="1.0"
+                       Legato="1.0" TempoSync="0.0" SmoothingTime="5.0" LoopEnabled="1.0"
+                       PhaseOffset="0.0" CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="LFO Intensity Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="LFO Frequency Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="LFO" ID="LFO Modulator4" Bypassed="0" Intensity="1.0" Bipolar="1"
+                       Frequency="0.949999988079071" FadeIn="1000.0" WaveformType="1.0"
+                       Legato="1.0" TempoSync="0.0" SmoothingTime="5.0" LoopEnabled="1.0"
+                       PhaseOffset="0.0" CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="LFO Intensity Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="LFO Frequency Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="LFO" ID="LFO Modulator5" Bypassed="0" Intensity="0.0" Bipolar="1"
+                       Frequency="0.05000000074505806" FadeIn="1000.0" WaveformType="1.0"
+                       Legato="1.0" TempoSync="0.0" SmoothingTime="5.0" LoopEnabled="1.0"
+                       PhaseOffset="0.0" CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="LFO Intensity Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="LFO Frequency Mod" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ScriptTimeVariantModulator" ID="Script Time Variant Modulator1"
+                       Bypassed="0" Intensity="1.0" Bipolar="0">
+              <ChildProcessors/>
+              <Content/>
+              <Networks>
+                <Network ID="lfo"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container1" Bypassed="0" Gain="0.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter1" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+            <Processor Type="LegatoWithRetrigger" ID="Legato with Retrigger1" Bypassed="1">
+              <ChildProcessors/>
+              <Content/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="balancefx"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="0.0" DelayTimeRight="0.0"
+                       FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
+                       HiPassFreq="40.0" Mix="0.0" TempoSync="1.0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="SynthGroup" ID="GROUP1" Bypassed="0" Gain="1.0" Balance="0.0"
+                   VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0" EnableFM="0.0"
+                   CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+                   UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+          <ChildProcessors>
+            <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+              <ChildProcessors>
+                <Processor Type="LegatoWithRetrigger" ID="Legato with Retrigger2" Bypassed="1">
+                  <ChildProcessors/>
+                  <Content/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors>
+                <Processor Type="SimpleEnvelope" ID="Simple Envelope1" Bypassed="0" Monophonic="0.0"
+                           Retrigger="1.0" Intensity="1.0" Attack="0.0" Release="0.0" LinearMode="1.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="EffectChain" ID="FX" Bypassed="0">
+              <ChildProcessors>
+                <Processor Type="PolyphonicFilter" ID="Filter1" Bypassed="0" Gain="0.0"
+                           Frequency="0.0" Q="0.0" Mode="6.0" Quality="0.0" BipolarIntensity="0.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Frequency Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut1" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut2" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut3" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut4" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut5" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                          <ChildProcessors/>
+                        </Processor>
+                      </ChildProcessors>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Bipolar Freq Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Q Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ScriptSynth" ID="GRAN1" Bypassed="0" Gain="0.25" Balance="0.0"
+                       VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0" NumAudioFiles="1">
+              <ChildProcessors>
+                <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA1" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA2" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA3" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA4" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA5" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="EffectChain" ID="FX" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA1" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:Script Time Variant Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA2" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="1" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA3" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA4" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA5" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra2" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA1" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA2" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA3" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA4" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA5" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="gran2" AllowPolyphonic="1"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container2" Bypassed="0" Gain="0.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter2" Bypassed="1">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+            <Processor Type="LegatoWithRetrigger" ID="Legato with Retrigger2" Bypassed="0">
+              <ChildProcessors/>
+              <Content/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="balancefx"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+            <Processor Type="Delay" ID="Delay2" Bypassed="0" DelayTimeLeft="0.0" DelayTimeRight="0.0"
+                       FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
+                       HiPassFreq="40.0" Mix="0.5" TempoSync="0.0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="SynthGroup" ID="GROUP2" Bypassed="0" Gain="1.0" Balance="0.0"
+                   VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0" EnableFM="0.0"
+                   CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+                   UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+          <ChildProcessors>
+            <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors>
+                <Processor Type="SimpleEnvelope" ID="Simple Envelope2" Bypassed="0" Monophonic="0.0"
+                           Retrigger="1.0" Intensity="1.0" Attack="0.0" Release="1.0" LinearMode="1.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="EffectChain" ID="FX" Bypassed="0">
+              <ChildProcessors>
+                <Processor Type="PolyphonicFilter" ID="Filter2" Bypassed="0" Gain="0.0"
+                           Frequency="3651.0" Q="2.319999933242798" Mode="6.0" Quality="4.3845792e7"
+                           BipolarIntensity="0.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Frequency Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cutb1" Bypassed="0" Intensity="1.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cutb2" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cutb3" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cubc4" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cutb5" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                          <ChildProcessors/>
+                        </Processor>
+                      </ChildProcessors>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Bipolar Freq Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Q Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ScriptSynth" ID="GRAN2" Bypassed="0" Gain="0.3801894187927246"
+                       Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+                       NumAudioFiles="1">
+              <ChildProcessors>
+                <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA6" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA7" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA8" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA9" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA10" Bypassed="0" Intensity="0.009999999776482582"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="EffectChain" ID="FX" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA6" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA7" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA8" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA9" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA10" Bypassed="0" Intensity="0.6800000071525574"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra2" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA6" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA7" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA8" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA9" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA10" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="gran2" AllowPolyphonic="1"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container3" Bypassed="0" Gain="0.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter3" Bypassed="1">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+            <Processor Type="LegatoWithRetrigger" ID="Legato with Retrigger3" Bypassed="0">
+              <ChildProcessors/>
+              <Content/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX3" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="balancefx"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+            <Processor Type="Delay" ID="Delay3" Bypassed="0" DelayTimeLeft="0.0" DelayTimeRight="0.0"
+                       FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
+                       HiPassFreq="40.0" Mix="0.5" TempoSync="0.0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="SynthGroup" ID="GROUP3" Bypassed="0" Gain="1.0" Balance="0.0"
+                   VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0" EnableFM="0.0"
+                   CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+                   UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+          <ChildProcessors>
+            <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors>
+                <Processor Type="SimpleEnvelope" ID="Simple Envelope3" Bypassed="0" Monophonic="0.0"
+                           Retrigger="1.0" Intensity="1.0" Attack="0.0" Release="0.0" LinearMode="1.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="EffectChain" ID="FX" Bypassed="0">
+              <ChildProcessors>
+                <Processor Type="PolyphonicFilter" ID="Filter3" Bypassed="0" Gain="0.0"
+                           Frequency="20000.0" Q="0.0" Mode="6.0" Quality="4.3845792e7"
+                           BipolarIntensity="0.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Frequency Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut1c" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut2c" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut3c" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut4c" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut5c" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                          <ChildProcessors/>
+                        </Processor>
+                      </ChildProcessors>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Bipolar Freq Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Q Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ScriptSynth" ID="GRAN3" Bypassed="0" Gain="0.25" Balance="0.0"
+                       VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0" NumAudioFiles="1">
+              <ChildProcessors>
+                <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA11" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA12" Bypassed="0" Intensity="0.1000000014901161"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA13" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA14" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA15" Bypassed="0" Intensity="0.6700000166893005"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="EffectChain" ID="FX" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA11" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA12" Bypassed="1" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA13" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA14" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA15" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra2" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA11" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA12" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA13" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA14" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA15" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="gran2" AllowPolyphonic="1"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container4" Bypassed="0" Gain="0.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter4" Bypassed="1">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+            <Processor Type="LegatoWithRetrigger" ID="Legato with Retrigger4" Bypassed="0">
+              <ChildProcessors/>
+              <Content/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX4" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="balancefx"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+            <Processor Type="Delay" ID="Delay4" Bypassed="0" DelayTimeLeft="0.0" DelayTimeRight="0.0"
+                       FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
+                       HiPassFreq="40.0" Mix="0.5" TempoSync="1.0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="SynthGroup" ID="GROUP4" Bypassed="0" Gain="1.0" Balance="0.0"
+                   VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0" EnableFM="0.0"
+                   CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+                   UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+          <ChildProcessors>
+            <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors>
+                <Processor Type="SimpleEnvelope" ID="Simple Envelope4" Bypassed="0" Monophonic="0.0"
+                           Retrigger="1.0" Intensity="1.0" Attack="0.0" Release="0.0" LinearMode="1.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="EffectChain" ID="FX" Bypassed="0">
+              <ChildProcessors>
+                <Processor Type="PolyphonicFilter" ID="Filter4" Bypassed="0" Gain="0.0"
+                           Frequency="20000.0" Q="2.319999933242798" Mode="6.0" Quality="1.819113472e9"
+                           BipolarIntensity="0.0">
+                  <ChildProcessors>
+                    <Processor Type="ModulatorChain" ID="Frequency Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut1d" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut2d" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut3d" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut4d" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                          <ChildProcessors/>
+                        </Processor>
+                        <Processor Type="GlobalTimeVariantModulator" ID="cut5d" Bypassed="0" Intensity="0.0"
+                                   UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                          <ChildProcessors/>
+                        </Processor>
+                      </ChildProcessors>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Bipolar Freq Modulation" Bypassed="0"
+                               Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="ModulatorChain" ID="Q Modulation" Bypassed="0" Intensity="1.0">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ScriptSynth" ID="GRAN4" Bypassed="0" Gain="0.25" Balance="0.0"
+                       VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0" NumAudioFiles="1">
+              <ChildProcessors>
+                <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA16" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA17" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA18" Bypassed="0" Intensity="1.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA19" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="volA20" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="EffectChain" ID="FX" Bypassed="0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA16" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA17" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA18" Bypassed="0" Intensity="0.3100000023841858"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA19" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="posA20" Bypassed="0" Intensity="0.0"
+                               UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Extra2" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA16" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator1">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA17" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator2">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA18" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator3">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA19" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator4">
+                      <ChildProcessors/>
+                    </Processor>
+                    <Processor Type="GlobalTimeVariantModulator" ID="grainA20" Bypassed="0"
+                               Intensity="0.0" UseTable="0" Inverted="0" TableData="" Connection="Global Modulator Container1:LFO Modulator5">
+                      <ChildProcessors/>
+                    </Processor>
+                  </ChildProcessors>
+                </Processor>
+              </ChildProcessors>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="gran2" AllowPolyphonic="1"/>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container5" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter5" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container6" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter6" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container7" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter7" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container8" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter8" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+  </ChildProcessors>
+  <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+  <macro_controls>
+    <macro name="Macro 1" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay1" parameter="0" parameter_name="Left Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay1" parameter="1" parameter_name="Right Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 2" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay2" parameter="7" parameter_name="TempoSync" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay1" parameter="2" parameter_name="Left Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay1" parameter="3" parameter_name="Right Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 3" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay2" parameter="0" parameter_name="Left Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay2" parameter="2" parameter_name="Left Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 4" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay2" parameter="1" parameter_name="Right Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay2" parameter="3" parameter_name="Right Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 5" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay3" parameter="0" parameter_name="Left Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay3" parameter="2" parameter_name="Left Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 6" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay3" parameter="1" parameter_name="Right Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay3" parameter="3" parameter_name="Right Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay3" parameter="7" parameter_name="TempoSync" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 7" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay4" parameter="0" parameter_name="Left Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay4" parameter="2" parameter_name="Left Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 8" value="0.0" midi_cc="-1">
+      <controlled_parameter id="Delay4" parameter="1" parameter_name="Right Delay" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="Delay4" parameter="3" parameter_name="Right Feedback" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+  </macro_controls>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Processor>

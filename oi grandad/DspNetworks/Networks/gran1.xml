@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="gran1" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="gran1" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="gran2" FactoryPath="project.gran2" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+          <Parameter MinValue="0.5" MaxValue="2.0" ID="Pitch" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="GrainSize" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="follow" Value="0.7652431130409241"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="follow2" Value="0.4937968850135803"/>
+        </Parameters>
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="0" MinValue="0" MaxValue="11786727"/>
+          </AudioFiles>
+        </ComplexData>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="position" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="gran2" ParameterId="Position"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Pitch" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="gran2" ParameterId="Pitch"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="GrainSize" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="gran2" ParameterId="GrainSize"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Dense" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="gran2" ParameterId="Dense"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Spread" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="gran2" ParameterId="Spread"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Detune" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="gran2" ParameterId="Detune"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

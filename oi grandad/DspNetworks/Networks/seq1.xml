@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="seq1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="seq1" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="seq" FactoryPath="project.seq" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scale" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="gamma" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="tempo" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="mutl" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Smooth" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="sync" Value="1.0"/>
+        </Parameters>
+        <ComplexData>
+          <SliderPacks>
+            <SliderPack Index="0"/>
+          </SliderPacks>
+        </ComplexData>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="scale" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="seq" ParameterId="scale"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="gamma" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="seq" ParameterId="gamma"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="tempo" MinValue="0.0" MaxValue="1.0" Value="0.5825">
+        <Connections>
+          <Connection NodeId="seq" ParameterId="tempo"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="mult" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="seq" ParameterId="mutl"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="seq" ParameterId="Smooth"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

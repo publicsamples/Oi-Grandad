@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<samplemap ID="mod/ffm1-b" RRGroupAmount="1.0" MicPositions=";">
+  <sample Root="27" LoKey="0" HiKey="27" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-D#0-53-KCVJ.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="160050" LoopEnd="260377"
+          Volume="12"/>
+  <sample Root="39" LoKey="37" HiKey="39" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-D#1-53-0MPO.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="167375" LoopEnd="230287"
+          Volume="12"/>
+  <sample Root="51" LoKey="49" HiKey="51" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-D#2-53-I3OS.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="119519" LoopEnd="198468"
+          Volume="12"/>
+  <sample Root="63" LoKey="61" HiKey="63" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-D#3-53-6WWP.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="185345" LoopEnd="251534"
+          Volume="12"/>
+  <sample Root="30" LoKey="28" HiKey="36" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-F#0-53-TK83.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="229104" LoopEnd="361204"
+          Volume="12"/>
+  <sample Root="42" LoKey="40" HiKey="48" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-F#1-53-QGBJ.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="275873" LoopEnd="356361"
+          Volume="12"/>
+  <sample Root="54" LoKey="52" HiKey="60" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-F#2-53-DY6X.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="63600" LoopEnd="346586"
+          Volume="12"/>
+  <sample Root="66" LoKey="64" HiKey="127" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/sqr-Saw-lin+filterFM/Tri-Saw-lin+filterFM-F#3-53-6V2D.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="234988" LoopEnd="307388"
+          Volume="12"/>
+</samplemap>

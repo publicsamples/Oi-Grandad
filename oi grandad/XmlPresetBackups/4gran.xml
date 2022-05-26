@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Processor Type="SynthChain" ID="4gran" Bypassed="0" Gain="1.0" Balance="0.0"
+           VoiceLimit="64.0" KillFadeTime="20.0" IconColour="0" packageName=""
+           BuildVersion="650">
+  <ChildProcessors>
+    <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptProcessor" ID="Script Processor1" Bypassed="0">
+          <ChildProcessors/>
+          <Content/>
+          <UIData>
+            <ContentProperties DeviceType="Desktop"/>
+          </UIData>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="EffectChain" ID="FX" Bypassed="0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container1" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ChannelFilter" ID="Filter1" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptSlider" id="channelNumber" value="0.0"/>
+                <Control type="ScriptSlider" id="mpeStart" value="0.0"/>
+                <Control type="ScriptSlider" id="mpeEnd" value="16.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0" ShowParameters="1">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/vliddx.aif" MinValue="0"
+                                           MaxValue="8806835"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="517.3484375"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter ID="Position" MinValue="0.0" MaxValue="1.0" Value="0.181046875">
+                        <Connections>
+                          <Connection NodeId="granulator" ParameterId="Position" MinValue="0.0" MaxValue="1.0"/>
+                        </Connections>
+                      </Parameter>
+                    </Parameters>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container2" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ChannelFilter" ID="Filter2" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptSlider" id="channelNumber" value="2.0"/>
+                <Control type="ScriptSlider" id="mpeStart" value="0.0"/>
+                <Control type="ScriptSlider" id="mpeEnd" value="16.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0" ShowParameters="1">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/vliddx.aif" MinValue="0"
+                                           MaxValue="8806835"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="517.3484375"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter ID="Position" MinValue="0.0" MaxValue="1.0" Value="0.181046875">
+                        <Connections>
+                          <Connection NodeId="granulator" ParameterId="Position" MinValue="0.0" MaxValue="1.0"/>
+                        </Connections>
+                      </Parameter>
+                    </Parameters>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container3" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ChannelFilter" ID="Filter3" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptSlider" id="channelNumber" value="3.0"/>
+                <Control type="ScriptSlider" id="mpeStart" value="0.0"/>
+                <Control type="ScriptSlider" id="mpeEnd" value="16.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0" ShowParameters="1">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/vliddx.aif" MinValue="0"
+                                           MaxValue="8806835"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="517.3484375"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter ID="Position" MinValue="0.0" MaxValue="1.0" Value="0.181046875">
+                        <Connections>
+                          <Connection NodeId="granulator" ParameterId="Position" MinValue="0.0" MaxValue="1.0"/>
+                        </Connections>
+                      </Parameter>
+                    </Parameters>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthChain" ID="Container4" Bypassed="0" Gain="1.0" Balance="0.0"
+               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ChannelFilter" ID="Filter4" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptSlider" id="channelNumber" value="4.0"/>
+                <Control type="ScriptSlider" id="mpeStart" value="0.0"/>
+                <Control type="ScriptSlider" id="mpeEnd" value="16.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0" ShowParameters="1">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/vliddx.aif" MinValue="0"
+                                           MaxValue="8806835"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="517.3484375"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter ID="Position" MinValue="0.0" MaxValue="1.0" Value="0.181046875">
+                        <Connections>
+                          <Connection NodeId="granulator" ParameterId="Position" MinValue="0.0" MaxValue="1.0"/>
+                        </Connections>
+                      </Parameter>
+                    </Parameters>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+  </ChildProcessors>
+  <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+  <macro_controls>
+    <macro name="Macro 1" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 2" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 3" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 4" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 5" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 6" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 7" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 8" value="0.0" midi_cc="-1"/>
+  </macro_controls>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Processor>

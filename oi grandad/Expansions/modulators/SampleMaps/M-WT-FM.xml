@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<samplemap ID="M-WT-FM" RRGroupAmount="1.0" MicPositions=";">
+  <sample Root="34" LoKey="34" HiKey="34" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A#0-127-O5BI.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="260709" LoopEnd="341558"
+          Volume="12"/>
+  <sample Root="46" LoKey="46" HiKey="46" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A#1-127-JR1Q.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="223346" LoopEnd="357467"
+          Volume="12"/>
+  <sample Root="58" LoKey="58" HiKey="58" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A#2-127-8EZ3.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="210111" LoopEnd="272558"
+          Volume="12"/>
+  <sample Root="70" LoKey="70" HiKey="70" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A#3-127-IYD8.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="216214" LoopEnd="339082"
+          Volume="12"/>
+  <sample Root="33" LoKey="33" HiKey="33" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A0-127-SCHS.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="313533" LoopEnd="352321"
+          Volume="12"/>
+  <sample Root="45" LoKey="45" HiKey="45" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A1-127-IXT1.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="310217" LoopEnd="356242"
+          Volume="12"/>
+  <sample Root="57" LoKey="57" HiKey="57" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A2-127-5AOF.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="201686" LoopEnd="262198"
+          Volume="12"/>
+  <sample Root="69" LoKey="69" HiKey="69" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-A3-127-7KQK.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="235115" LoopEnd="314346"
+          Volume="12"/>
+  <sample Root="35" LoKey="35" HiKey="35" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-B0-127-6HYO.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="267211" LoopEnd="334884"
+          Volume="12"/>
+  <sample Root="47" LoKey="47" HiKey="47" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-B1-127-D9SG.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="286736" LoopEnd="325580"
+          Volume="12"/>
+  <sample Root="59" LoKey="59" HiKey="60" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-B2-127-IFAY.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="288959" LoopEnd="350393"
+          Volume="12"/>
+  <sample Root="71" LoKey="71" HiKey="71" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-B3-127-ECCE.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="274235" LoopEnd="312117"
+          Volume="12"/>
+  <sample Root="25" LoKey="25" HiKey="25" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C#0-127-DQU0.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="267207" LoopEnd="313408"
+          Volume="12"/>
+  <sample Root="37" LoKey="37" HiKey="37" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C#1-127-BE3L.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="258814" LoopEnd="354975"
+          Volume="12"/>
+  <sample Root="49" LoKey="49" HiKey="50" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C#2-127-WH1S.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="183124" LoopEnd="313163"
+          Volume="12"/>
+  <sample Root="61" LoKey="61" HiKey="62" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C#3-127-FXZB.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="254565" LoopEnd="310915"
+          Volume="12"/>
+  <sample Root="24" LoKey="0" HiKey="24" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C0-127-HHQR.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="208560" LoopEnd="320106"
+          Volume="12"/>
+  <sample Root="36" LoKey="36" HiKey="36" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C1-127-BSU4.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="187960" LoopEnd="349695"
+          Volume="12"/>
+  <sample Root="48" LoKey="48" HiKey="48" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C2-127-E8LD.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="281478" LoopEnd="347985"
+          Volume="12"/>
+  <sample Root="72" LoKey="72" HiKey="127" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-C4-127-4DPU.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="284499" LoopEnd="351099"
+          Volume="12"/>
+  <sample Root="27" LoKey="27" HiKey="27" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-D#0-127-DCNQ.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="176899" LoopEnd="284387"
+          Volume="12"/>
+  <sample Root="39" LoKey="39" HiKey="39" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-D#1-127-ITEC.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="249938" LoopEnd="348185"
+          Volume="12"/>
+  <sample Root="51" LoKey="51" HiKey="51" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-D#2-127-B5WR.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="217309" LoopEnd="316608"
+          Volume="12"/>
+  <sample Root="63" LoKey="63" HiKey="63" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-D#3-127-GI4J.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="226478" LoopEnd="264413"
+          Volume="12"/>
+  <sample Root="26" LoKey="26" HiKey="26" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-D0-127-IRKX.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="178021" LoopEnd="350052"
+          Volume="12"/>
+  <sample Root="38" LoKey="38" HiKey="38" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-D1-127-WT2A.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="277301" LoopEnd="323289"
+          Volume="12"/>
+  <sample Root="28" LoKey="28" HiKey="28" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-E0-127-MZM1.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="176451" LoopEnd="297302"
+          Volume="12"/>
+  <sample Root="40" LoKey="40" HiKey="40" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-E1-127-PHN6.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="216995" LoopEnd="297854"
+          Volume="12"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-E2-127-VEQI.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="286983" LoopEnd="345159"
+          Volume="12"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-E3-127-IUR1.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="192851" LoopEnd="241019"
+          Volume="12"/>
+  <sample Root="30" LoKey="30" HiKey="30" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F#0-127-Q5R0.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="186244" LoopEnd="265071"
+          Volume="12"/>
+  <sample Root="42" LoKey="42" HiKey="42" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F#1-127-JACM.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="227683" LoopEnd="273773"
+          Volume="12"/>
+  <sample Root="54" LoKey="54" HiKey="54" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F#2-127-HAU8.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="241022" LoopEnd="355674"
+          Volume="12"/>
+  <sample Root="66" LoKey="66" HiKey="66" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F#3-127-9JAG.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="191807" LoopEnd="357696"
+          Volume="12"/>
+  <sample Root="29" LoKey="29" HiKey="29" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F0-127-NTZ5.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="184387" LoopEnd="349380"
+          Volume="12"/>
+  <sample Root="41" LoKey="41" HiKey="41" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F1-127-WE96.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="187716" LoopEnd="355639"
+          Volume="12"/>
+  <sample Root="65" LoKey="65" HiKey="65" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-F3-127-IVCX.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="230446" LoopEnd="331793"
+          Volume="12"/>
+  <sample Root="32" LoKey="32" HiKey="32" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G#0-127-SVQ6.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="180009" LoopEnd="284458"
+          Volume="12"/>
+  <sample Root="44" LoKey="44" HiKey="44" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G#1-127-7V6H.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="212469" LoopEnd="285179"
+          Volume="12"/>
+  <sample Root="56" LoKey="56" HiKey="56" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G#2-127-84OY.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="211798" LoopEnd="279329"
+          Volume="12"/>
+  <sample Root="68" LoKey="68" HiKey="68" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G#3-127-ED82.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="214183" LoopEnd="349390"
+          Volume="12"/>
+  <sample Root="31" LoKey="31" HiKey="31" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G0-127-YV5F.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="215157" LoopEnd="278649"
+          Volume="12"/>
+  <sample Root="43" LoKey="43" HiKey="43" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G1-127-KULS.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="239862" LoopEnd="286991"
+          Volume="12"/>
+  <sample Root="55" LoKey="55" HiKey="55" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G2-127-OWIV.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="276688" LoopEnd="354569"
+          Volume="12"/>
+  <sample Root="67" LoKey="67" HiKey="67" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="/Users/rick/Music/Audio Music Apps/Samples/WFM-WT-FM/WFM-WT-FM-G3-127-AZSF.aif"
+          Duplicate="0" LoopEnabled="1" LoopStart="237805" LoopEnd="341217"
+          Volume="12"/>
+</samplemap>

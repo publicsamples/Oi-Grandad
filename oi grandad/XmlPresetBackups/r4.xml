@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Processor Type="SynthChain" ID="r4" Bypassed="0" Gain="1.0" Balance="0.0"
+           VoiceLimit="64.0" KillFadeTime="20.0" IconColour="0" packageName=""
+           BuildVersion="650">
+  <ChildProcessors>
+    <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptProcessor" ID="Script Processor1" Bypassed="0">
+          <ChildProcessors/>
+          <Content>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data="/Users/rick/Downloads/Drones-master/moonpluck-slow.aif"
+                     rangeStart="0" rangeEnd="283322"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform2" value="0.0" data="/Users/rick/Downloads/Drones-master/moonpluck-elab.aif"
+                     rangeStart="0" rangeEnd="283322"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data="/Users/rick/Downloads/Drones-master/moonpluck.aif"
+                     rangeStart="0" rangeEnd="283322"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform4" value="0.0" data="/Users/rick/Downloads/Drones-master/moonpad.aif"
+                     rangeStart="0" rangeEnd="283322"/>
+            <Control type="ScriptButton" id="Button1" value="1.0"/>
+          </Content>
+          <UIData Source="r4UIData"/>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="EffectChain" ID="FX" Bypassed="0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group1" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter1" Bypassed="1">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="0" NumAudioFiles="4">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="0" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0" MaxValue="283322"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group2" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter2" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx2" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="0" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0" MaxValue="283322"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group3" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter3" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX3" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx3" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="0" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0" MaxValue="283322"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group4" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter4" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX4" Bypassed="0" NumAudioFiles="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx4" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="0" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0" MaxValue="283322"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group5" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter5" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0"
+                                           MaxValue="0"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group6" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter6" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0"
+                                           MaxValue="0"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group7" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter7" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0"
+                                           MaxValue="0"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="SynthGroup" ID="Syntesizer Group8" Bypassed="0" Gain="1.0"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               EnableFM="0.0" CarrierIndex="-1.0" ModulatorIndex="-1.0" UnisonoVoiceAmount="1.0"
+               UnisonoDetune="0.0" UnisonoSpread="1.0" KillSecondVoices="1.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="MidiMuter" ID="MidiMuter8" Bypassed="0">
+              <ChildProcessors/>
+              <Content>
+                <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
+              </Content>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors>
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="1">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+              <Content/>
+              <Networks>
+                <Network ID="script_fx1">
+                  <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0">
+                    <Nodes>
+                      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+                            <ComplexData>
+                              <AudioFiles>
+                                <AudioFile Index="-1" EmbeddedData="{XYZ::SampleMap}FLUFF" MinValue="0"
+                                           MaxValue="0"/>
+                              </AudioFiles>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+                              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                         ID="Pitch" Value="1.0"/>
+                              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Network>
+              </Networks>
+              <UIData>
+                <ContentProperties DeviceType="Desktop"/>
+              </UIData>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Detune Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Spread Mod" Bypassed="1" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+  </ChildProcessors>
+  <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+  <macro_controls>
+    <macro name="Macro 1" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 2" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 3" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 4" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 5" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 6" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 7" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 8" value="0.0" midi_cc="-1"/>
+  </macro_controls>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Processor>

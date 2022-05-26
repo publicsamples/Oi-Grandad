@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="follow" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="follow" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="lfo" FactoryPath="project.lfo" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="tempo" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="multi" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="attack" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="rel" Automated="1"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="tempo" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="lfo" ParameterId="tempo"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="mult" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="lfo" ParameterId="multi"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="attack" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="lfo" ParameterId="attack"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="rel" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="lfo" ParameterId="rel"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>
