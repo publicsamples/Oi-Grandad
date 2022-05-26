@@ -16,6 +16,5 @@ It features:
  -   1GB sound library
  - Delay per voice
 
-Standalone and AU Mac OS builds will be available  soon, Windows and Linux less soon (currently without a working x86 machine, if you have an old one you'd like to donate get in touch!) . 
-
+Standalone and AU Mac OS builds will be available  soon, Windows and Linux less soon (currently without a working x86 machine).
 
