@@ -20,7 +20,7 @@ Standalone and Audio Unit Mac OS builds are avaialable here:
 
 https://github.com/publicsamples/Oi-Grandad/releases/tag/0.0.2
 
-Windows and Linux will happen when I can get my hands on an X86 machine. 
+Windows and Linux builds will happen when I get my hands on an X86 machine. 
 
 For a quick overview of the functionality see:
 

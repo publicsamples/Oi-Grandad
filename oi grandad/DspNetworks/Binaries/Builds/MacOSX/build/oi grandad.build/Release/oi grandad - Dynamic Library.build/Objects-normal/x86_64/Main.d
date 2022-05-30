@@ -650,5 +650,4 @@ dependencies: \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_tools/hi_tools.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/JUCE/modules/juce_dsp/juce_dsp.h \
   /Users/rick/Music/Audio\ Music\ Apps/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/includes.h \
-  /Users/rick/Music/Audio\ Music\ Apps/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/LOOPAR.h \
   /Users/rick/Music/Audio\ Music\ Apps/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/seq.h

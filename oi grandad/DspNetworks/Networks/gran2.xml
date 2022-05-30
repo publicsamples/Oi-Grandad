@@ -48,7 +48,7 @@
       <Node ID="granulator1" FactoryPath="core.granulator" Bypassed="0">
         <ComplexData>
           <AudioFiles>
-            <AudioFile Index="0" MinValue="0" MaxValue="165949"/>
+            <AudioFile Index="0" MinValue="0" MaxValue="0"/>
           </AudioFiles>
         </ComplexData>
         <Parameters>
