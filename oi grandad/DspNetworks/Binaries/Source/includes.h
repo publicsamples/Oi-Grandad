@@ -1,3 +1,3 @@
 /* Include file. */
-#include "loopenv.h"
+#include "LOOPAR.h"
 #include "seq.h"

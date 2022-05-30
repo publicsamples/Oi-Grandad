@@ -71,15 +71,30 @@ using gamma = parameter::from0To1<seq_impl::bipolar2_t<NV>,
                                   2, 
                                   gammaRange>;
 
-DECLARE_PARAMETER_RANGE_STEP(tempoRange, 
+DECLARE_PARAMETER_RANGE_STEP(tempo_0Range, 
                              0., 
                              18., 
                              1.);
 
 template <int NV>
-using tempo = parameter::from0To1<seq_impl::tempo_sync_t<NV>, 
-                                  0, 
-                                  tempoRange>;
+using tempo_0 = parameter::from0To1<seq_impl::tempo_sync_t<NV>, 
+                                    0, 
+                                    tempo_0Range>;
+
+DECLARE_PARAMETER_RANGE_STEP(tempo_1Range, 
+                             0., 
+                             1000., 
+                             0.1);
+
+template <int NV>
+using tempo_1 = parameter::from0To1<seq_impl::tempo_sync_t<NV>, 
+                                    3, 
+                                    tempo_1Range>;
+
+template <int NV>
+using tempo = parameter::chain<ranges::Identity, 
+                               tempo_0<NV>, 
+                               tempo_1<NV>>;
 
 DECLARE_PARAMETER_RANGE_STEP(mutlRange, 
                              1., 
@@ -102,11 +117,15 @@ using Smooth = parameter::from0To1<seq_impl::smoothed_parameter_t<NV>,
                                    SmoothRange>;
 
 template <int NV>
+using sync = parameter::plain<seq_impl::tempo_sync_t<NV>, 
+                              2>;
+template <int NV>
 using seq_t_plist = parameter::list<scale<NV>, 
                                     gamma<NV>, 
                                     tempo<NV>, 
                                     mutl<NV>, 
-                                    Smooth<NV>>;
+                                    Smooth<NV>, 
+                                    sync<NV>>;
 }
 
 template <int NV>
@@ -133,7 +152,7 @@ template <int NV> struct instance: public seq_impl::seq_t_<NV>
 		
 		SNEX_METADATA_ID(seq);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(78)
+		SNEX_METADATA_ENCODED_PARAMETERS(94)
 		{
 			0x005B, 0x0000, 0x7300, 0x6163, 0x656C, 0x0000, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5B00, 
@@ -144,7 +163,9 @@ template <int NV> struct instance: public seq_impl::seq_t_<NV>
             0x0000, 0x756D, 0x6C74, 0x0000, 0x0000, 0x0000, 0x8000, 0xA43F, 
             0xA870, 0x003E, 0x8000, 0x003F, 0x0000, 0x5B00, 0x0004, 0x0000, 
             0x6D53, 0x6F6F, 0x6874, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x0000
+            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5B00, 0x0005, 0x0000, 
+            0x7973, 0x636E, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x0000, 0x0000, 0x0000
 		};
 	};
 	
@@ -167,11 +188,15 @@ template <int NV> struct instance: public seq_impl::seq_t_<NV>
 		
 		this->getParameterT(1).connectT(0, bipolar2); // gamma -> bipolar2::Gamma
 		
-		this->getParameterT(2).connectT(0, tempo_sync); // tempo -> tempo_sync::Tempo
+		auto& tempo_p = this->getParameterT(2);
+		tempo_p.connectT(0, tempo_sync); // tempo -> tempo_sync::Tempo
+		tempo_p.connectT(1, tempo_sync); // tempo -> tempo_sync::UnsyncedTime
 		
 		this->getParameterT(3).connectT(0, tempo_sync); // mutl -> tempo_sync::Multiplier
 		
 		this->getParameterT(4).connectT(0, smoothed_parameter); // Smooth -> smoothed_parameter::SmoothingTime
+		
+		this->getParameterT(5).connectT(0, tempo_sync); // sync -> tempo_sync::Enabled
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -187,10 +212,10 @@ template <int NV> struct instance: public seq_impl::seq_t_<NV>
 		modchain1.setParameterT(0, 0.188781); // container::chain::Tempo
 		modchain1.setParameterT(1, 0.595375); // container::chain::Mutlplier
 		
-		;                                   // tempo_sync::Tempo is automated
-		;                                   // tempo_sync::Multiplier is automated
-		tempo_sync.setParameterT(2, 1.);    // control::tempo_sync::Enabled
-		tempo_sync.setParameterT(3, 137.4); // control::tempo_sync::UnsyncedTime
+		; // tempo_sync::Tempo is automated
+		; // tempo_sync::Multiplier is automated
+		; // tempo_sync::Enabled is automated
+		; // tempo_sync::UnsyncedTime is automated
 		
 		;                          // ramp::PeriodTime is automated
 		ramp.setParameterT(1, 0.); // core::ramp::LoopStart
@@ -217,6 +242,7 @@ template <int NV> struct instance: public seq_impl::seq_t_<NV>
 		this->setParameterT(2, 0.116859);
 		this->setParameterT(3, 0.328984);
 		this->setParameterT(4, 1.);
+		this->setParameterT(5, 1.);
 		this->setExternalData({}, -1);
 	}
 	

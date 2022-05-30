@@ -28,4 +28,5 @@
   <EncryptionKey value=""/>
   <LinkExpansionsToProject value="No"/>
   <ReadOnlyFactoryPresets value="No"/>
+  <ForceStereoOutput value="No"/>
 </ProjectSettings>

@@ -56,8 +56,7 @@
                      ID="Gamma" Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="cable_pack1" FactoryPath="control.cable_pack" Bypassed="0"
-            Folded="1">
+      <Node ID="cable_pack1" FactoryPath="control.cable_pack" Bypassed="0">
         <ModulationTargets>
           <Connection NodeId="bipolar" ParameterId="Value"/>
         </ModulationTargets>
@@ -70,7 +69,7 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="bipolar" FactoryPath="control.bipolar" Bypassed="1" Folded="1">
+      <Node ID="bipolar" FactoryPath="control.bipolar" Bypassed="0">
         <ModulationTargets>
           <Connection NodeId="smoothed_parameter" ParameterId="Value"/>
         </ModulationTargets>
