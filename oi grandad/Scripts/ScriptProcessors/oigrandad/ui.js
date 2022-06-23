@@ -1,4 +1,4 @@
-Content.makeFrontInterface(1000, 760);
+Content.makeFrontInterface(880, 740);
 
 
 const var Pbox = [];
@@ -402,8 +402,86 @@ inline function oncut4modselControl(component, value)
 
 Content.getComponent("cut4modsel").setControlCallback(oncut4modselControl);
 
+//Delay Links
 
-};function onNoteOn()
+const var Delay1 = Synth.getEffect("Delay1");
+
+inline function onDelayTime1Control(component, value)
+{
+    Delay1.setAttribute(Delay1.DelayTimeLeft, value);
+    Delay1.setAttribute(Delay1.DelayTimeRight, value);
+};
+
+Content.getComponent("DelayTime1").setControlCallback(onDelayTime1Control);
+
+inline function onFeed1Control(component, value)
+{
+    Delay1.setAttribute(Delay1.FeedbackLeft, value);
+    Delay1.setAttribute(Delay1.FeedbackRight, value);
+};
+
+Content.getComponent("Feed1").setControlCallback(onFeed1Control);
+
+
+const var Delay2 = Synth.getEffect("Delay2");
+
+inline function onDelayTime2Control(component, value)
+{
+    Delay2.setAttribute(Delay2.DelayTimeLeft, value);
+    Delay2.setAttribute(Delay2.DelayTimeRight, value);
+};
+
+Content.getComponent("DelayTime2").setControlCallback(onDelayTime2Control);
+
+inline function onFeed2Control(component, value)
+{
+    Delay2.setAttribute(Delay2.FeedbackLeft, value);
+    Delay2.setAttribute(Delay2.FeedbackRight, value);
+};
+
+Content.getComponent("Feed2").setControlCallback(onFeed2Control);
+
+
+
+const var Delay3 = Synth.getEffect("Delay3");
+
+inline function onDelayTime3Control(component, value)
+{
+    Delay3.setAttribute(Delay3.DelayTimeLeft, value);
+    Delay3.setAttribute(Delay3.DelayTimeRight, value);
+};
+
+Content.getComponent("DelayTime3").setControlCallback(onDelayTime3Control);
+
+inline function onFeed3Control(component, value)
+{
+    Delay3.setAttribute(Delay3.FeedbackLeft, value);
+    Delay3.setAttribute(Delay3.FeedbackRight, value);
+};
+
+Content.getComponent("Feed3").setControlCallback(onFeed3Control);
+
+
+
+const var Delay4 = Synth.getEffect("Delay4");
+
+inline function onDelayTime4Control(component, value)
+{
+    Delay4.setAttribute(Delay4.DelayTimeLeft, value);
+    Delay4.setAttribute(Delay4.DelayTimeRight, value);
+};
+
+Content.getComponent("DelayTime4").setControlCallback(onDelayTime4Control);
+
+inline function onFeed4Control(component, value)
+{
+    Delay4.setAttribute(Delay4.FeedbackLeft, value);
+    Delay4.setAttribute(Delay4.FeedbackRight, value);
+};
+
+Content.getComponent("Feed4").setControlCallback(onFeed4Control);
+
+function onNoteOn()
 {
 	
 }

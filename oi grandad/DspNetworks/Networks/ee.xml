@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="ee" Version="0.0.0" AllowPolyphonic="1">
+  <Node FactoryPath="container.chain" ID="ee" Bypassed="0">
+    <Nodes>
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+        <Nodes>
+          <Node ID="midi" FactoryPath="control.midi" Bypassed="0">
+            <Properties>
+              <Property ID="ClassId" Value="midi"/>
+              <Property ID="Mode" Value="Gate"/>
+            </Properties>
+            <ComplexData>
+              <Tables/>
+              <SliderPacks/>
+              <AudioFiles/>
+              <Filters/>
+              <DisplayBuffers/>
+            </ComplexData>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

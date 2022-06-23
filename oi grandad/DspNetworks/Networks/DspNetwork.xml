@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="DspNetwork" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="DspNetwork" Bypassed="0">
+    <Nodes>
+      <Node ID="tempo_sync1" FactoryPath="control.tempo_sync" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="oscillator" ParameterId="Frequency"/>
+        </ModulationTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="10.0" ID="Tempo" Value="9.991093749999999"/>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                     Value="4.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="10.0" ID="UnsyncedTime" Value="0.6909375"/>
+        </Parameters>
+      </Node>
+      <Node ID="oscillator" FactoryPath="core.oscillator" Bypassed="0">
+        <ComplexData>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1"/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="10.0" ID="Frequency" Automated="1"/>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Freq Ratio"
+                     Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Phase" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Gain" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="sig2mod" FactoryPath="math.sig2mod" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

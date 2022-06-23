@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="gran2" Version="0.0.0" AllowPolyphonic="1">
+<Network ID="gran2" Version="0.0.0" AllowCompilation="1" AllowPolyphonic="1">
   <Node FactoryPath="container.chain" ID="granx" Bypassed="0" ShowParameters="1">
     <Nodes>
       <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">

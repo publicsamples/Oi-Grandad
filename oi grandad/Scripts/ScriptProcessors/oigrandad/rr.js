@@ -1,8 +1,8 @@
 Content.makeFrontInterface(900, 800);
- const var muters = [[Synth.getMidiProcessor("MidiMuter1"), Synth.getMidiProcessor("MidiMuter5")],
-                     [Synth.getMidiProcessor("MidiMuter2"), Synth.getMidiProcessor("MidiMuter6")],
-                     [Synth.getMidiProcessor("MidiMuter3"), Synth.getMidiProcessor("MidiMuter7")],
-                     [Synth.getMidiProcessor("MidiMuter4"), Synth.getMidiProcessor("MidiMuter8")]]
+ const var muters = [[Synth.getMidiProcessor("MidiMuter1"), Synth.getMidiProcessor("MidiMuter8")],
+                     [Synth.getMidiProcessor("MidiMuter2"), Synth.getMidiProcessor("MidiMuter7")],
+                     [Synth.getMidiProcessor("MidiMuter3"), Synth.getMidiProcessor("MidiMuter6")],
+                     [Synth.getMidiProcessor("MidiMuter4"), Synth.getMidiProcessor("MidiMuter5")]]
                  
  reg rrIndex = 0;    
  
