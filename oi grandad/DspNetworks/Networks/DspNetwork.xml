@@ -1,42 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="DspNetwork" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="DspNetwork" Bypassed="0">
+<Network ID="DspNetwork" Version="0.0.0" AllowCompilation="1">
+  <Node FactoryPath="container.chain" ID="DspNetwork" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="tempo_sync1" FactoryPath="control.tempo_sync" Bypassed="0">
+      <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
+        <Nodes>
+          <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="ramp" ParameterId="PeriodTime"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         ID="UnsyncedTime" Value="200.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="ramp" FactoryPath="core.ramp" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="bipolar" ParameterId="Value"/>
+            </ModulationTargets>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         ID="PeriodTime" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Gate" Value="1.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="bipolar" FactoryPath="control.bipolar" Bypassed="0">
         <ModulationTargets>
-          <Connection NodeId="oscillator" ParameterId="Frequency"/>
+          <Connection NodeId="cable_pack" ParameterId="Value"/>
         </ModulationTargets>
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="10.0" ID="Tempo" Value="9.991093749999999"/>
-          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
-                     Value="4.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="10.0" ID="UnsyncedTime" Value="0.6909375"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Scale" Automated="1"/>
+          <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                     ID="Gamma" Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="oscillator" FactoryPath="core.oscillator" Bypassed="0">
+      <Node ID="cable_pack" FactoryPath="control.cable_pack" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="smoothed_parameter" ParameterId="Value"/>
+        </ModulationTargets>
         <ComplexData>
-          <DisplayBuffers>
-            <DisplayBuffer Index="-1"/>
-          </DisplayBuffers>
+          <SliderPacks>
+            <SliderPack Index="0"/>
+          </SliderPacks>
         </ComplexData>
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="10.0" ID="Frequency" Automated="1"/>
-          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Freq Ratio"
-                     Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Phase" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Gain" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="sig2mod" FactoryPath="math.sig2mod" Bypassed="0">
+      <Node ID="smoothed_parameter" FactoryPath="control.smoothed_parameter"
+            Bypassed="0">
+        <Properties>
+          <Property ID="Mode" Value="Linear Ramp"/>
+        </Properties>
+        <ModulationTargets>
+          <Connection NodeId="add" ParameterId="Value"/>
+        </ModulationTargets>
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+          <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     ID="SmoothingTime" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="add" FactoryPath="math.add" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
         </Parameters>
       </Node>
     </Nodes>
-    <Parameters/>
+    <Parameters>
+      <Parameter ID="tempo" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="multi" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="scale" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="bipolar" ParameterId="Scale"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="gamma" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="bipolar" ParameterId="Gamma"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="smoothed_parameter" ParameterId="SmoothingTime"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
   </Node>
 </Network>

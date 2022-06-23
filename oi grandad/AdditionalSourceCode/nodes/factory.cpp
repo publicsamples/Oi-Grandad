@@ -3,7 +3,7 @@
 #include <JuceHeader.h>
 #include "includes.h"
 
-// ==============================| Project Factory |==============================
+// =====================================| Project Factory |=====================================
 
 namespace project
 {
@@ -13,16 +13,13 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 	Factory()
 	{
 		TempoSyncer::initTempoData();
-		// Node registrations ---------------------------------------------------
+		// Node registrations -----------------------------------------------------------------
 		
-		registerPolyNode<project::seq<1>, wrap::illegal_poly<project::seq<1>>>();
+		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerDataNode<project::balancefx_networkdata>();
-		registerDataNode<project::gran1_networkdata>();
+		registerDataNode<project::delverb_networkdata>();
 		registerDataNode<project::gran2_networkdata>();
-		registerDataNode<project::gran3_networkdata>();
 		registerDataNode<project::LoopAR_networkdata>();
-		registerDataNode<project::seq1_networkdata>();
-		registerDataNode<project::seq2_networkdata>();
 	}
 };
 }

@@ -2,13 +2,13 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
 
+// Include compiled network files ------------------
+
 #include "balancefx_networkdata.h"
-#include "gran1_networkdata.h"
+#include "delverb_networkdata.h"
+#include "DspNetwork.h"
 #include "gran2_networkdata.h"
-#include "gran3_networkdata.h"
 #include "LoopAR_networkdata.h"
-#include "seq.h"
-#include "seq1_networkdata.h"
-#include "seq2_networkdata.h"
 
 #pragma clang diagnostic pop
+

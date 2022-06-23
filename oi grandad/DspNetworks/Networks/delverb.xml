@@ -271,7 +271,7 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="jdelay2" FactoryPath="jdsp.jdelay" Bypassed="0" Folded="1">
+              <Node ID="jdelay2" FactoryPath="jdsp.jdelay" Bypassed="0">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
                              ID="Limit" Value="234.7538880431153"/>
@@ -279,8 +279,7 @@
                              ID="DelayTime" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="intensity1" FactoryPath="control.intensity" Bypassed="0"
-                    Folded="1">
+              <Node ID="intensity1" FactoryPath="control.intensity" Bypassed="0">
                 <ModulationTargets>
                   <Connection NodeId="jdelay2" ParameterId="DelayTime"/>
                 </ModulationTargets>
@@ -387,7 +386,7 @@
           <Connection NodeId="filtermod" ParameterId="Intensity"/>
         </Connections>
       </Parameter>
-      <Parameter ID="delmod1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="delmod1" MinValue="0.0" MaxValue="1.0" Value="0.08731250000000002">
         <Connections>
           <Connection NodeId="delaymod" ParameterId="Intensity"/>
         </Connections>
