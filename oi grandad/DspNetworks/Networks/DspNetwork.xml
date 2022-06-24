@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="DspNetwork" Version="0.0.0" AllowCompilation="1">
+<Network ID="DspNetwork" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="DspNetwork" Bypassed="0" ShowParameters="1">
     <Nodes>
       <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">

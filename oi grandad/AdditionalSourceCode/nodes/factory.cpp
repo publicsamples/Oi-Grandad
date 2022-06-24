@@ -15,7 +15,6 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		TempoSyncer::initTempoData();
 		// Node registrations -----------------------------------------------------------------
 		
-		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerDataNode<project::balancefx_networkdata>();
 		registerDataNode<project::delverb_networkdata>();
 		registerDataNode<project::gran2_networkdata>();
