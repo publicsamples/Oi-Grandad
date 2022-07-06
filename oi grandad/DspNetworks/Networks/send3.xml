@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="send3" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="send3" Bypassed="0">
+    <Nodes>
+      <Node ID="peak" FactoryPath="core.peak" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="global_cable" ParameterId="Value"/>
+        </ModulationTargets>
+        <ComplexData>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1"/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters/>
+      </Node>
+      <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+            NodeColour="4282928306">
+        <Properties>
+          <Property ID="Connection" Value="a3"/>
+        </Properties>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

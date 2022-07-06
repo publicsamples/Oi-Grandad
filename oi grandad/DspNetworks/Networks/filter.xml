@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="filter" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="filter" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="filter" FactoryPath="container.chain" Bypassed="0">
+        <Nodes>
+          <Node ID="chain4" FactoryPath="container.chain" Bypassed="0">
+            <Nodes>
+              <Node ID="modchain4" FactoryPath="container.modchain" Bypassed="0"
+                    Folded="1">
+                <Nodes>
+                  <Node ID="global_mod4" FactoryPath="core.global_mod" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="pma4" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="pma4" FactoryPath="control.pma" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="svf" ParameterId="Frequency"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+              <Node ID="svf" FactoryPath="filters.svf" Bypassed="0">
+                <ComplexData>
+                  <Filters>
+                    <Filter Index="-1" EmbeddedData=""/>
+                  </Filters>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                             ID="Frequency" Automated="1"/>
+                  <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                             ID="Q" Automated="1"/>
+                  <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.2036249999999953"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                             ID="Smoothing" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="cut" MinValue="0.0" MaxValue="1.0" Value="0.1615624999999998">
+        <Connections>
+          <Connection NodeId="pma4" ParameterId="Add"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="res" MinValue="0.0" MaxValue="1.0" Value="0.7349062499999999">
+        <Connections>
+          <Connection NodeId="svf" ParameterId="Q"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="type" MinValue="0.0" MaxValue="5.0" StepSize="1" Value="0.0">
+        <Connections>
+          <Connection NodeId="svf" ParameterId="Mode"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="mix" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="cutmod" MinValue="0.0" MaxValue="1.0" Value="0.4960312499999999">
+        <Connections>
+          <Connection NodeId="pma4" ParameterId="Multiply"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="cutdets" MinValue="0.0" MaxValue="16.0" Value="3.9" StepSize="0.1">
+        <Connections>
+          <Connection NodeId="global_mod4" ParameterId="Index"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

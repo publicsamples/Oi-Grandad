@@ -3,7 +3,7 @@
 #include <JuceHeader.h>
 #include "includes.h"
 
-// =====================================| Project Factory |=====================================
+// ============================| Project Factory |============================
 
 namespace project
 {
@@ -13,12 +13,27 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 	Factory()
 	{
 		TempoSyncer::initTempoData();
-		// Node registrations -----------------------------------------------------------------
+		// Node registrations ------------------------------------------------
 		
+		registerDataNode<project::AR_networkdata>();
 		registerDataNode<project::balancefx_networkdata>();
+		registerDataNode<project::balancefx2_networkdata>();
+		registerDataNode<project::balancefx4_networkdata>();
 		registerDataNode<project::delverb_networkdata>();
-		registerDataNode<project::gran2_networkdata>();
-		registerDataNode<project::LoopAR_networkdata>();
+		registerDataNode<project::DspNetwork_networkdata>();
+		registerDataNode<project::ff_networkdata>();
+		registerDataNode<project::follow1_networkdata>();
+		registerDataNode<project::FollowIN1_networkdata>();
+		registerDataNode<project::FollowIN2_networkdata>();
+		registerDataNode<project::FollowIN3_networkdata>();
+		registerDataNode<project::FollowIN4_networkdata>();
+		registerDataNode<project::fout_networkdata>();
+		registerDataNode<project::fout2_networkdata>();
+		registerDataNode<project::fout3_networkdata>();
+		registerDataNode<project::fout4_networkdata>();
+		registerDataNode<project::grans4_networkdata>();
+		registerDataNode<project::mod_networkdata>();
+		registerDataNode<project::track_networkdata>();
 	}
 };
 }
