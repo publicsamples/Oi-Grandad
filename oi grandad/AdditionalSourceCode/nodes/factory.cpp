@@ -3,7 +3,7 @@
 #include <JuceHeader.h>
 #include "includes.h"
 
-// ============================| Project Factory |============================
+// =============================| Project Factory |=============================
 
 namespace project
 {
@@ -13,27 +13,29 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 	Factory()
 	{
 		TempoSyncer::initTempoData();
-		// Node registrations ------------------------------------------------
+		// Node registrations --------------------------------------------------
 		
 		registerDataNode<project::AR_networkdata>();
 		registerDataNode<project::balancefx_networkdata>();
-		registerDataNode<project::balancefx2_networkdata>();
-		registerDataNode<project::balancefx4_networkdata>();
+		registerDataNode<project::delay_networkdata>();
 		registerDataNode<project::delverb_networkdata>();
 		registerDataNode<project::DspNetwork_networkdata>();
 		registerDataNode<project::ff_networkdata>();
-		registerDataNode<project::follow1_networkdata>();
-		registerDataNode<project::FollowIN1_networkdata>();
-		registerDataNode<project::FollowIN2_networkdata>();
-		registerDataNode<project::FollowIN3_networkdata>();
-		registerDataNode<project::FollowIN4_networkdata>();
-		registerDataNode<project::fout_networkdata>();
-		registerDataNode<project::fout2_networkdata>();
-		registerDataNode<project::fout3_networkdata>();
-		registerDataNode<project::fout4_networkdata>();
+		registerDataNode<project::filter_networkdata>();
 		registerDataNode<project::grans4_networkdata>();
 		registerDataNode<project::mod_networkdata>();
+		registerDataNode<project::modtest_networkdata>();
+		registerDataNode<project::pan_networkdata>();
+		registerDataNode<project::script_time_variant_modulator2_networkdata>();
+		registerDataNode<project::send_networkdata>();
+		registerDataNode<project::send2_networkdata>();
+		registerDataNode<project::send3_networkdata>();
+		registerDataNode<project::send4_networkdata>();
 		registerDataNode<project::track_networkdata>();
+		registerDataNode<project::track2_networkdata>();
+		registerDataNode<project::track3_networkdata>();
+		registerDataNode<project::track4_networkdata>();
+		registerDataNode<project::vol_networkdata>();
 	}
 };
 }

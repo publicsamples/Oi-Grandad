@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptSliderPack" id="SliderPack1" x="169" y="40.0" processorId="Script Time Variant Modulator1"/>
+  <Component type="ScriptSliderPack" id="SliderPack2" x="169" y="161.0" processorId="Script Time Variant Modulator2"/>
+  <Component type="ScriptSlider" id="Knob1" x="380" y="40.0" text="tempo"
+             processorId="Script Time Variant Modulator1" parameterId="tempo"
+             max="18.0" middlePosition="9.0" stepSize="1.0" mode="TempoSync"/>
+  <Component type="ScriptSlider" id="Knob4" x="380" y="162.0" text="tempo"
+             processorId="Script Time Variant Modulator2" parameterId="tempo"
+             max="18.0" middlePosition="9.0" stepSize="1.0" mode="TempoSync"/>
+</ContentProperties>
