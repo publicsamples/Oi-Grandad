@@ -21,8 +21,6 @@ Standalone and Audio Unit Mac OS builds are avaialable here:
 
 https://github.com/publicsamples/Oi-Grandad/releases
 
-Windows and Linux builds will happen when I get my hands on an X86 machine. 
-
 For a quick overview of the functionality see:
 
 https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
