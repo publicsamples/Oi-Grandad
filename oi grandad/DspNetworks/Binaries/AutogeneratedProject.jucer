@@ -10,7 +10,7 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2017 targetFolder="Builds/VisualStudio2017" IPPLibrary="Sequential"
-            extraCompilerFlags="/W0">
+            extraCompilerFlags="/bigobj /W0">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" binaryPath="dll" targetName="oigrandad_debug"/>
         <CONFIGURATION isDebug="0" name="CI" targetName="oigrandad_ci" binaryPath="dll"

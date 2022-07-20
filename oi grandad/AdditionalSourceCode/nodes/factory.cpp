@@ -16,16 +16,22 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		// Node registrations --------------------------------------------------
 		
 		registerDataNode<project::AR_networkdata>();
+		registerDataNode<project::audio_networkdata>();
 		registerDataNode<project::balancefx_networkdata>();
 		registerDataNode<project::delay_networkdata>();
 		registerDataNode<project::delverb_networkdata>();
 		registerDataNode<project::DspNetwork_networkdata>();
+		registerDataNode<project::er_networkdata>();
 		registerDataNode<project::ff_networkdata>();
 		registerDataNode<project::filter_networkdata>();
+		registerDataNode<project::graintest_networkdata>();
 		registerDataNode<project::grans4_networkdata>();
 		registerDataNode<project::mod_networkdata>();
 		registerDataNode<project::modtest_networkdata>();
 		registerDataNode<project::pan_networkdata>();
+		registerDataNode<project::_networkdata>();
+		registerDataNode<project::rec_networkdata>();
+		registerDataNode<project::recorded_networkdata>();
 		registerDataNode<project::script_time_variant_modulator2_networkdata>();
 		registerDataNode<project::send_networkdata>();
 		registerDataNode<project::send2_networkdata>();

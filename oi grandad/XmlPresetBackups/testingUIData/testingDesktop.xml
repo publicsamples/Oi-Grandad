@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptSlider" id="Knob1" x="261" y="179" style="Knob" middlePosition="-1.0"
+             stepSize="0.01" min="0.0" max="1.0" suffix="" filmstripImage="Use default skin"
+             linkedTo=""/>
+  <Component type="ScriptSlider" id="Knob2" x="220.0" y="40.0" style="Knob"
+             middlePosition="-1.0" stepSize="0.01" min="0.0" max="1.0" suffix=""
+             filmstripImage="Use default skin" linkedTo=""/>
+</ContentProperties>

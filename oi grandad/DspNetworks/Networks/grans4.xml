@@ -1,178 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="grans4" Version="0.0.0">
+<Network ID="grans4" Version="0.0.0" AllowPolyphonic="1">
   <Node FactoryPath="container.chain" ID="grans4" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="pos" FactoryPath="container.chain" Bypassed="0" Folded="1">
+      <Node ID="fix32_block" FactoryPath="container.fix32_block" Bypassed="0">
         <Nodes>
-          <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="pma1" ParameterId="Value"/>
-            </ModulationTargets>
-            <ComplexData>
-              <DisplayBuffers>
-                <DisplayBuffer Index="-1"/>
-              </DisplayBuffers>
-            </ComplexData>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-            </Parameters>
+          <Node ID="pos" FactoryPath="container.chain" Bypassed="0" Folded="1">
+            <Nodes>
+              <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="pma1" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="pma1" FactoryPath="control.pma" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="chain2" ParameterId="position"/>
+                  <Connection NodeId="granulator" ParameterId="Position"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
           </Node>
-          <Node ID="pma1" FactoryPath="control.pma" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="chain2" ParameterId="position"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-            </Parameters>
+          <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0">
+            <Nodes>
+              <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="gunsync" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="gunsync" FactoryPath="control.pma" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                </Parameters>
+                <ModulationTargets>
+                  <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
+                  <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
+                </ModulationTargets>
+              </Node>
+              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="granulator" ParameterId="GrainSize"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                             Value="2.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="UnsyncedTime" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="dense" FactoryPath="container.chain" Bypassed="0" Folded="1">
+            <Nodes>
+              <Node ID="global_mod6" FactoryPath="core.global_mod" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="pma6" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="pma6" FactoryPath="control.pma" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="chain2" ParameterId="dense"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="spread" FactoryPath="container.chain" Bypassed="0" Folded="1">
+            <Nodes>
+              <Node ID="global_mod7" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="pma7" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="pma7" FactoryPath="control.pma" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="chain2" ParameterId="spread"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="detune" FactoryPath="container.chain" Bypassed="0" Folded="1">
+            <Nodes>
+              <Node ID="global_mod8" FactoryPath="core.global_mod" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="pma8" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="pma8" FactoryPath="control.pma" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="chain2" ParameterId="detune"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
           </Node>
         </Nodes>
         <Parameters/>
-      </Node>
-      <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0">
-        <Nodes>
-          <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
-            <ModulationTargets>
-              <Connection NodeId="gunsync" ParameterId="Value"/>
-            </ModulationTargets>
-            <ComplexData>
-              <DisplayBuffers>
-                <DisplayBuffer Index="-1"/>
-              </DisplayBuffers>
-            </ComplexData>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-            </Parameters>
-          </Node>
-          <Node ID="gunsync" FactoryPath="control.pma" Bypassed="0">
-            <ModulationTargets>
-              <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
-              <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-            </Parameters>
-          </Node>
-        </Nodes>
-        <Parameters/>
-      </Node>
-      <Node ID="dense" FactoryPath="container.chain" Bypassed="0" Folded="1">
-        <Nodes>
-          <Node ID="global_mod6" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="pma6" ParameterId="Value"/>
-            </ModulationTargets>
-            <ComplexData>
-              <DisplayBuffers>
-                <DisplayBuffer Index="-1"/>
-              </DisplayBuffers>
-            </ComplexData>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-            </Parameters>
-          </Node>
-          <Node ID="pma6" FactoryPath="control.pma" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="chain2" ParameterId="dense"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-            </Parameters>
-          </Node>
-        </Nodes>
-        <Parameters/>
-      </Node>
-      <Node ID="spread" FactoryPath="container.chain" Bypassed="0" Folded="1">
-        <Nodes>
-          <Node ID="global_mod7" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="pma7" ParameterId="Value"/>
-            </ModulationTargets>
-            <ComplexData>
-              <DisplayBuffers>
-                <DisplayBuffer Index="-1"/>
-              </DisplayBuffers>
-            </ComplexData>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-            </Parameters>
-          </Node>
-          <Node ID="pma7" FactoryPath="control.pma" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="chain2" ParameterId="spread"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-            </Parameters>
-          </Node>
-        </Nodes>
-        <Parameters/>
-      </Node>
-      <Node ID="detune" FactoryPath="container.chain" Bypassed="0" Folded="1">
-        <Nodes>
-          <Node ID="global_mod8" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="pma8" ParameterId="Value"/>
-            </ModulationTargets>
-            <ComplexData>
-              <DisplayBuffers>
-                <DisplayBuffer Index="-1"/>
-              </DisplayBuffers>
-            </ComplexData>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-            </Parameters>
-          </Node>
-          <Node ID="pma8" FactoryPath="control.pma" Bypassed="0" Folded="1">
-            <ModulationTargets>
-              <Connection NodeId="chain2" ParameterId="detune"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Automated="1"/>
-            </Parameters>
-          </Node>
-        </Nodes>
-        <Parameters/>
-      </Node>
-      <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
-        <ModulationTargets>
-          <Connection NodeId="granulator" ParameterId="GrainSize"/>
-        </ModulationTargets>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
-          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
-                     Automated="1"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
-          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                     ID="UnsyncedTime" Automated="1"/>
-        </Parameters>
       </Node>
       <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
         <Nodes>
-          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" ShowParameters="1">
+          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" ShowParameters="0">
             <Nodes>
               <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
                 <ComplexData>
                   <AudioFiles>
                     <AudioFile Index="0" EmbeddedData="/Users/rick/Music/oi audio/Loops/metasynth/long grace-[6].wav"
-                               MinValue="0" MaxValue="1326274"/>
+                               MinValue="0" MaxValue="0"/>
                   </AudioFiles>
                 </ComplexData>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
                   <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
                              ID="Pitch" Automated="1"/>
-                  <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Automated="1"/>
+                  <Parameter MinValue="20.0" MaxValue="15000.0" ID="GrainSize" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Automated="1"/>
@@ -181,9 +187,7 @@
             </Nodes>
             <Parameters>
               <Parameter ID="position" MinValue="0.0" MaxValue="1.0" Automated="1">
-                <Connections>
-                  <Connection NodeId="granulator" ParameterId="Position"/>
-                </Connections>
+                <Connections/>
               </Parameter>
               <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.4048208007812499">
                 <Connections/>
@@ -208,7 +212,7 @@
               </Parameter>
             </Parameters>
           </Node>
-          <Node ID="gain" FactoryPath="core.gain" Bypassed="0" Folded="1">
+          <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
             <Parameters>
               <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                          SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -218,7 +222,7 @@
                          SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
             </Parameters>
           </Node>
-          <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0" Folded="1">
+          <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
             </Properties>
@@ -263,7 +267,7 @@
           <Connection NodeId="pma1" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="position mod" MinValue="0.0" MaxValue="1.0" Value="0.0004853515625">
+      <Parameter ID="position mod" MinValue="0.0" MaxValue="1.0" Value="0.5015322265625">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Multiply"/>
         </Connections>
@@ -274,17 +278,17 @@
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.503625">
+      <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.5043593749999999">
         <Connections>
           <Connection NodeId="granulator" ParameterId="Pitch"/>
         </Connections>
       </Parameter>
-      <Parameter ID="grain" MinValue="0.0" MaxValue="1.0" Value="0.16659375">
+      <Parameter ID="grain" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="gunsync" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="grainmod" MinValue="0.0" MaxValue="1.0" Value="0.319140625">
+      <Parameter ID="grainmod" MinValue="0.0" MaxValue="1.0" Value="0.46725">
         <Connections>
           <Connection NodeId="gunsync" ParameterId="Multiply"/>
         </Connections>
@@ -294,12 +298,12 @@
           <Connection NodeId="global_mod5" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dense" MinValue="0.0" MaxValue="1.0" Value="0.6194531249999999">
+      <Parameter ID="dense" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="pma6" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="densemod" MinValue="0.0" MaxValue="16.0" Value="0.0" StepSize="0.1">
+      <Parameter ID="densemod" MinValue="0.0" MaxValue="1.0" Value="0.5" StepSize="0.1">
         <Connections>
           <Connection NodeId="pma6" ParameterId="Multiply"/>
         </Connections>
@@ -314,7 +318,7 @@
           <Connection NodeId="pma7" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="spreadmod" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="spreadmod" MinValue="0.0" MaxValue="1.0" Value="0.564515625">
         <Connections>
           <Connection NodeId="pma7" ParameterId="Multiply"/>
         </Connections>
@@ -368,9 +372,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="grainmult" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections>
-          <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
-        </Connections>
+        <Connections/>
       </Parameter>
       <Parameter ID="graintemposy" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections/>
