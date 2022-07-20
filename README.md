@@ -6,16 +6,12 @@ Oi, Grandad! is a 4 voice granular synthesiser built with [HISE](http://hise.aud
 
 It features:
 
- - 4 independant voices capable of being played all at once, or by
-   cycling between each round robin style
-
- - 4 LFOs with tempo sync
- -  2 Modulation Sequencers  
+ - 4 independant granular voices with extensive controls
+ - Tempo Synced Grain size
+ - 8 Modulation Sequencers  
  - 4 Looping AR envelopes 
- -  Drone button for sustained playback
- -  700mb sound library
+ - Drone button for sustained playback
  - Delay per voice
- - Master Reverb FX
 
 Standalone and Audio Unit Mac OS builds are avaialable here:
 
@@ -25,6 +21,14 @@ For a quick overview of the functionality see:
 
 https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
 
-Rough Demo:
+Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffer size below 512 samples. Not sure why, yet.. 
 
-https://www.youtube.com/watch?v=LdQMKahLQzI
+**Installation**
+
+Copy "oi grandad.component" to Users/USERNAME/Library/Audio/Components 
+
+Bypassing unidentified developer messages:
+
+https://support.apple.com/en-us/HT202491
+
+
