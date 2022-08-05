@@ -23,6 +23,12 @@
     <Filter Include="JUCE Modules\hi_dsp_library\dywapitchtrack">
       <UniqueIdentifier>{2C5FAC2C-DD9B-2701-9603-99AA6ABF69BD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\hi_dsp_library\fft_convolver\test">
+      <UniqueIdentifier>{2C0F30AC-32FA-A3FD-302E-98AC6E4FB9A4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\hi_dsp_library\fft_convolver">
+      <UniqueIdentifier>{96E5D74A-93CA-E2B3-9C05-23E2535A9F69}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\hi_dsp_library\node_api\helpers">
       <UniqueIdentifier>{0540344D-F0E3-1D9C-36C5-466D705544FB}</UniqueIdentifier>
     </Filter>
@@ -406,6 +412,9 @@
     <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\basic.cpp">
       <Filter>JUCE Modules\hi_dsp_library\dsp_basics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\ConvolutionBase.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\dsp_basics</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\DelayLine.cpp">
       <Filter>JUCE Modules\hi_dsp_library\dsp_basics</Filter>
     </ClCompile>
@@ -431,6 +440,9 @@
       <Filter>JUCE Modules\hi_dsp_library\dsp_nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_nodes\CableNodes.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\dsp_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_nodes\ConvolutionNode.cpp">
       <Filter>JUCE Modules\hi_dsp_library\dsp_nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_nodes\CoreNodes.cpp">
@@ -468,6 +480,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dywapitchtrack\PitchDetection.cpp">
       <Filter>JUCE Modules\hi_dsp_library\dywapitchtrack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\test\Test.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\AudioFFT.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\FFTConvolver.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\TwoStageFFTConvolver.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\Utilities.cpp">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\node_api\helpers\Error.cpp">
       <Filter>JUCE Modules\hi_dsp_library\node_api\helpers</Filter>
@@ -2406,6 +2433,9 @@
     <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\basic.h">
       <Filter>JUCE Modules\hi_dsp_library\dsp_basics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\ConvolutionBase.h">
+      <Filter>JUCE Modules\hi_dsp_library\dsp_basics</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\DelayLine.h">
       <Filter>JUCE Modules\hi_dsp_library\dsp_basics</Filter>
     </ClInclude>
@@ -2437,6 +2467,9 @@
       <Filter>JUCE Modules\hi_dsp_library\dsp_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_nodes\CableNodes.h">
+      <Filter>JUCE Modules\hi_dsp_library\dsp_nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_nodes\ConvolutionNode.h">
       <Filter>JUCE Modules\hi_dsp_library\dsp_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_nodes\CoreNodes.h">
@@ -2474,6 +2507,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dywapitchtrack\dywapitchtrack.h">
       <Filter>JUCE Modules\hi_dsp_library\dywapitchtrack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\AudioFFT.h">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\FFTConvolver.h">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\TwoStageFFTConvolver.h">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\Utilities.h">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\node_api\helpers\Error.h">
       <Filter>JUCE Modules\hi_dsp_library\node_api\helpers</Filter>
@@ -4618,6 +4663,12 @@
   <ItemGroup>
     <None Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\dsp_basics\chunkware_simple_dynamics\README.md">
       <Filter>JUCE Modules\hi_dsp_library\dsp_basics\chunkware_simple_dynamics</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\COPYING.txt">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\HISE-1\hi_dsp_library\fft_convolver\README.md">
+      <Filter>JUCE Modules\hi_dsp_library\fft_convolver</Filter>
     </None>
     <None Include="..\..\..\..\..\..\HISE-1\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>JUCE Modules\juce_audio_formats\codecs\flac</Filter>

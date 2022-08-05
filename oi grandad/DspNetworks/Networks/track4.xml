@@ -46,7 +46,7 @@
         </ComplexData>
         <Parameters>
           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                     SkewFactor="5.422270774841309" ID="Threshhold" Value="-36.59999905526639"/>
+                     SkewFactor="5.422270774841309" ID="Threshhold" Value="-15.59999874234201"/>
           <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
                      SkewFactor="0.4306765496730804" ID="Attack" Value="0.0"/>
           <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"

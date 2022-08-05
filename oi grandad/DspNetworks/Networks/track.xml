@@ -11,25 +11,15 @@
               <Property ID="Connection" Value="a1"/>
             </Properties>
             <ModulationTargets>
-              <Connection NodeId="add1" ParameterId="Value"/>
+              <Connection NodeId="add" ParameterId="Value"/>
             </ModulationTargets>
             <Parameters>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
             </Parameters>
           </Node>
-          <Node ID="add1" FactoryPath="math.add" Bypassed="0">
+          <Node ID="add" FactoryPath="math.add" Bypassed="0">
             <Parameters>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-            </Parameters>
-          </Node>
-          <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
-            <Parameters>
-              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="0.0"/>
-              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
             </Parameters>
           </Node>
         </Nodes>
@@ -37,7 +27,7 @@
       </Node>
       <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
         <ModulationTargets>
-          <Connection NodeId="pma" ParameterId="Value"/>
+          <Connection NodeId="smoothed_parameter_unscaled" ParameterId="Value"/>
         </ModulationTargets>
         <ComplexData>
           <DisplayBuffers>
@@ -46,7 +36,7 @@
         </ComplexData>
         <Parameters>
           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                     SkewFactor="5.422270774841309" ID="Threshhold" Value="-36.59999905526639"/>
+                     SkewFactor="5.422270774841309" ID="Threshhold" Value="-16.89999876171352"/>
           <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
                      SkewFactor="0.4306765496730804" ID="Attack" Value="0.0"/>
           <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
@@ -55,23 +45,13 @@
                      SkewFactor="0.2968033850193024" ID="Ratio" Value="32.0"/>
         </Parameters>
       </Node>
-      <Node ID="pma" FactoryPath="control.pma" Bypassed="0">
-        <ModulationTargets>
-          <Connection NodeId="smoothed_parameter" ParameterId="Value"/>
-        </ModulationTargets>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Value="0.0"/>
-        </Parameters>
-      </Node>
-      <Node ID="smoothed_parameter" FactoryPath="control.smoothed_parameter"
+      <Node ID="smoothed_parameter_unscaled" FactoryPath="control.smoothed_parameter_unscaled"
             Bypassed="0">
         <Properties>
-          <Property ID="Mode" Value="Low Pass"/>
+          <Property ID="Mode" Value="Linear Ramp"/>
         </Properties>
         <ModulationTargets>
-          <Connection NodeId="add" ParameterId="Value"/>
+          <Connection NodeId="add2" ParameterId="Value"/>
         </ModulationTargets>
         <Parameters>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
@@ -80,17 +60,15 @@
           <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
         </Parameters>
       </Node>
-      <Node ID="add" FactoryPath="math.add" Bypassed="0">
+      <Node ID="add2" FactoryPath="math.add" Bypassed="0">
         <Parameters>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
         </Parameters>
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="input1" MinValue="0.0" MaxValue="1.0" Value="0.8615781250000001">
-        <Connections>
-          <Connection NodeId="gain" ParameterId="Gain"/>
-        </Connections>
+      <Parameter ID="input1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
       </Parameter>
       <Parameter ID="input2" MinValue="0.0" MaxValue="1.0" Value="0.269109375">
         <Connections/>
@@ -101,9 +79,9 @@
       <Parameter ID="input4" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections/>
       </Parameter>
-      <Parameter ID="Smooth" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="Smooth" MinValue="0.0" MaxValue="1.0" Value="0.03078125000000001">
         <Connections>
-          <Connection NodeId="smoothed_parameter" ParameterId="SmoothingTime"/>
+          <Connection NodeId="smoothed_parameter_unscaled" ParameterId="SmoothingTime"/>
         </Connections>
       </Parameter>
     </Parameters>

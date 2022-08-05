@@ -612,6 +612,11 @@ dependencies: \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/DelayLine.cpp \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/Oscillators.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/MultiChannelFilters.h \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/Utilities.h \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/AudioFFT.h \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/FFTConvolver.h \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/TwoStageFFTConvolver.h \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/ConvolutionBase.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/node_api/helpers/Error.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/node_api/helpers/node_ids.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/node_api/helpers/ParameterData.h \
@@ -639,6 +644,7 @@ dependencies: \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/DelayNode.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/MathNodes.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/FXNodes.h \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/ConvolutionNode.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/FilterNode.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/EventNodes.h \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_nodes/EnvelopeNodes.h \
@@ -674,6 +680,11 @@ dependencies: \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/AllpassDelay.cpp \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/Oscillators.cpp \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/MultiChannelFilters.cpp \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/Utilities.cpp \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/AudioFFT.cpp \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/FFTConvolver.cpp \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/fft_convolver/TwoStageFFTConvolver.cpp \
+  /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/dsp_basics/ConvolutionBase.cpp \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/unit_test/wrapper_tests.cpp \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/unit_test/node_tests.cpp \
   /Users/rick/Music/Audio\ Music\ Apps/HISE-1/hi_dsp_library/unit_test/container_tests.cpp

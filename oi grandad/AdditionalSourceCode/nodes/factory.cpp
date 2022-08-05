@@ -26,12 +26,16 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::filter_networkdata>();
 		registerDataNode<project::graintest_networkdata>();
 		registerDataNode<project::grans4_networkdata>();
+		registerDataNode<project::loopar1_networkdata>();
+		registerDataNode<project::loopar2_networkdata>();
 		registerDataNode<project::mod_networkdata>();
 		registerDataNode<project::modtest_networkdata>();
 		registerDataNode<project::pan_networkdata>();
+		registerDataNode<project::pitchtimetest_networkdata>();
 		registerDataNode<project::_networkdata>();
 		registerDataNode<project::rec_networkdata>();
 		registerDataNode<project::recorded_networkdata>();
+		registerDataNode<project::s1_networkdata>();
 		registerDataNode<project::script_time_variant_modulator2_networkdata>();
 		registerDataNode<project::send_networkdata>();
 		registerDataNode<project::send2_networkdata>();
