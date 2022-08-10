@@ -1,4 +1,4 @@
-Content.makeFrontInterface(854, 690);
+Content.makeFrontInterface(854, 730);
 
 //presets
 const var Pbox = [];
