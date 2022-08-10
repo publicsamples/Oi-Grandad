@@ -34,7 +34,7 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="pos1" FactoryPath="container.chain" Bypassed="0" Folded="1">
+          <Node ID="pos1" FactoryPath="container.chain" Bypassed="0">
             <Nodes>
               <Node ID="global_mod2" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
                 <ModulationTargets>
@@ -56,23 +56,23 @@
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                   <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Value="0.0"/>
                 </Parameters>
               </Node>
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Folded="1">
+          <Node ID="pma" FactoryPath="control.pma" Bypassed="0">
             <ModulationTargets>
               <Connection NodeId="granulator" ParameterId="Position"/>
             </ModulationTargets>
             <Parameters>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="0.01015625000000009"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0">
+          <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0" Folded="1">
             <Nodes>
               <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
                 <ModulationTargets>
@@ -220,7 +220,8 @@
         <Nodes>
           <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" ShowParameters="0">
             <Nodes>
-              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
+              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+                    Folded="1">
                 <ModulationTargets>
                   <Connection NodeId="converter" ParameterId="Value"/>
                 </ModulationTargets>
@@ -233,7 +234,7 @@
                              ID="UnsyncedTime" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="converter" FactoryPath="control.converter" Bypassed="0">
+              <Node ID="converter" FactoryPath="control.converter" Bypassed="0" Folded="1">
                 <Properties>
                   <Property ID="Mode" Value="Ms2Freq"/>
                 </Properties>
@@ -248,7 +249,7 @@
                 <ComplexData>
                   <AudioFiles>
                     <AudioFile Index="0" EmbeddedData="/Users/rick/Music/oi audio/Loops/metasynth/long grace-[6].wav"
-                               MinValue="0" MaxValue="0"/>
+                               MinValue="0" MaxValue="704000"/>
                   </AudioFiles>
                 </ComplexData>
                 <Parameters>
@@ -360,7 +361,6 @@
       <Parameter ID="position" MinValue="0.0" MaxValue="1.0" Value="0.53778125">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Add"/>
-          <Connection NodeId="pma2" ParameterId="Add"/>
         </Connections>
       </Parameter>
       <Parameter ID="position mod" MinValue="0.0" MaxValue="1.0" Value="0.0">
