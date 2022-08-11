@@ -24,12 +24,24 @@ Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffe
 
 # Installation
 
-Copy "oi grandad.component" to Users/USERNAME/Library/Audio/Plug-ins/Components
+**Audio Unit**
 
-Copy ""oi grandad.vst3" to Users/USERNAME/Library/Audio/Plug-ins/VST3
+1. In the Finder choose Go > Go to Folder, enter "/Library/Audio/Plug-Ins/Components" into the Go to Folder field, then click Go.
 
-Copy "modularsamples" folder to Users/USERNAME/Library/Application Support
+2. Copy "oi grandad.component" into this folder
 
-On loading your DAW you may run into the message "“the developer cannot be verified”." to bypass this see this page:
+**VST**
+
+1. In the Finder choose Go > Go to Folder, enter "/Library/Audio/Plug-Ins/VST" into the Go to Folder field, then click Go.
+
+2. Copy "oi grandad.VST3" to into this folder
+
+**Samples and Presets**
+
+1. In the Finder choose Go > Go to Folder, enter "~/Library/Application Support" into the Go to Folder field, then click Go.
+
+2. Copy "modularsamples" folder into this folder
+
+On loading your DAW you may see a message saying “the developer cannot be verified” to fix this open System Preferences → Security and Privacy. On the general tab click ‘Open anyway’.
 
 https://support.apple.com/en-us/HT202491
