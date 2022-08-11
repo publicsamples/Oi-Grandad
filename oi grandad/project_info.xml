@@ -12,10 +12,10 @@
   <AdditionalDspLibraries value=""/>
   <OSXStaticLibs value=""/>
   <WindowsStaticLibFolder value=""/>
-  <ExtraDefinitionsWindows value=""/>
-  <ExtraDefinitionsOSX value=""/>
-  <ExtraDefinitionsIOS value=""/>
-  <ExtraDefinitionsLinux value=""/>
+  <ExtraDefinitionsWindows value="HISE_NUM_PLUGIN_CHANNELS=16"/>
+  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=16"/>
+  <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=16&#10;"/>
+  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=16&#10;"/>
   <AppGroupID value=""/>
   <RedirectSampleFolder value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>

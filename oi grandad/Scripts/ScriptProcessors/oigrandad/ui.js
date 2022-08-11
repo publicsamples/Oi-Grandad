@@ -1,4 +1,186 @@
 Content.makeFrontInterface(854, 730);
+const var laf = Engine.createGlobalScriptLookAndFeel();
+laf.registerFunction("drawComboBox", function(g, obj)
+{
+    g.setColour(obj.bgColour);
+    g.fillRoundedRectangle(obj.area, 16.0);
+    g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
+    g.setFont("Avenir", 14.0);
+   
+    var a = obj.area;
+    g.drawAlignedText(obj.text, [a[0] + 0, a[0], a[2]-1, a[3]], "centred");
+
+
+});
+// Get a reference to the master container
+const var MultiChannelTest = Synth.getChildSynth("oi grandad");
+
+// Get a reference to its routing matrix
+const var matrix = MultiChannelTest.getRoutingMatrix();
+
+const var SucessLabel = Content.getComponent("SucessLabel");
+const var SucessLabel1 = Content.getComponent("SucessLabel1");
+const var SucessLabel2 = Content.getComponent("SucessLabel2");
+const var SucessLabel3 = Content.getComponent("SucessLabel3");
+
+
+inline function onOutputSelectorControl(component, value)
+{
+	
+	// this variable checks if the output channel exists.
+	local success = true;
+	
+	switch(value)
+    {
+        case 1: // Routes the first two input channels (= sine wave);
+                // to the first to output channels
+            matrix.addConnection(0, 0);
+            matrix.addConnection(1, 1);
+            break;
+        case 2: // Routes the first two input channels
+                // to the second stereo output
+            matrix.addConnection(0, 2);
+            
+            // addConnection returns true if the connection could be added
+            // if the host doesn't support multichannels, this returns false
+            // and you can reset the connections to default later (see below)
+            success = matrix.addConnection(1, 3);
+            break;
+        case 3:
+            matrix.addConnection(0, 4);
+            success = matrix.addConnection(1, 5);
+            break;
+        case 4:
+            matrix.addConnection(0, 6);
+            success = matrix.addConnection(1, 7);
+            break;
+    }
+    
+    if(!success)
+    {
+        // Reset to Channel 1+2 in case of an error
+        matrix.addConnection(0, 0);
+        matrix.addConnection(1, 1);
+    }
+    
+    SucessLabel.set("text", success ? "OK" : "Error");
+};
+
+Content.getComponent("OutputSelector").setControlCallback(onOutputSelectorControl);
+
+
+inline function onOutputSelector1Control(component, value)
+{
+	// this variable checks if the output channel exists.
+	local success = true;
+	
+	switch(value)
+    {
+        case 1:
+            matrix.addConnection(2, 0);
+            matrix.addConnection(3, 1);
+            break;
+        case 2:
+            matrix.addConnection(2, 2);
+            success = matrix.addConnection(3, 3);
+            break;
+        case 3:
+            matrix.addConnection(2, 4);
+            success = matrix.addConnection(3, 5);
+            break;
+        case 4:
+            matrix.addConnection(2, 6);
+            success = matrix.addConnection(3, 7);
+            break;
+    }
+    
+    if(!success)
+    {
+        matrix.addConnection(2, 0);
+        matrix.addConnection(3, 1);
+    }
+    
+    SucessLabel1.set("text", success ? "OK" : "Error");
+};
+
+Content.getComponent("OutputSelector1").setControlCallback(onOutputSelector1Control);
+
+
+
+inline function onOutputSelector2Control(component, value)
+{
+	// this variable checks if the output channel exists.
+	local success = true;
+	
+	switch(value)
+    {
+        case 1:
+            matrix.addConnection(4, 0);
+            matrix.addConnection(5, 1);
+            break;
+        case 2:
+            matrix.addConnection(4, 2);
+            success = matrix.addConnection(5, 3);
+            break;
+        case 3:
+            matrix.addConnection(4, 4);
+            success = matrix.addConnection(5, 5);
+            break;
+        case 4:
+            matrix.addConnection(4, 6);
+            success = matrix.addConnection(5, 7);
+            break;
+    }
+    
+    if(!success)
+    {
+        matrix.addConnection(4, 0);
+        matrix.addConnection(5, 1);
+    }
+    
+    SucessLabel2.set("text", success ? "OK" : "Error");
+};
+
+Content.getComponent("OutputSelector2").setControlCallback(onOutputSelector2Control);
+
+
+
+inline function onOutputSelector3Control(component, value)
+{
+	// this variable checks if the output channel exists.
+	local success = true;
+	
+	switch(value)
+    {
+        case 1:
+            matrix.addConnection(6, 0);
+            matrix.addConnection(7, 1);
+            break;
+        case 2:
+            matrix.addConnection(6, 2);
+            success = matrix.addConnection(7, 3);
+            break;
+        case 3:
+            matrix.addConnection(6, 4);
+            success = matrix.addConnection(7, 5);
+            break;
+        case 4:
+            matrix.addConnection(6, 6);
+            success = matrix.addConnection(7, 7);
+            break;
+    }
+    
+    if(!success)
+    {
+        matrix.addConnection(6, 0);
+        matrix.addConnection(7, 1);
+    }
+    
+    SucessLabel3.set("text", success ? "OK" : "Error");
+};
+
+Content.getComponent("OutputSelector3").setControlCallback(onOutputSelector3Control);
+
 
 //presets
 const var Pbox = [];

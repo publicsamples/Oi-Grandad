@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="grans4" Version="0.0.0" AllowPolyphonic="1">
+<Network ID="grans4" Version="0.0.0" AllowPolyphonic="1" CompileChannelAmount="8">
   <Node FactoryPath="container.chain" ID="grans4" Bypassed="0" ShowParameters="1">
     <Nodes>
       <Node ID="fix32_block" FactoryPath="container.fix32_block" Bypassed="0">
@@ -249,7 +249,7 @@
                 <ComplexData>
                   <AudioFiles>
                     <AudioFile Index="0" EmbeddedData="/Users/rick/Music/oi audio/Loops/metasynth/long grace-[6].wav"
-                               MinValue="0" MaxValue="704000"/>
+                               MinValue="0" MaxValue="0"/>
                   </AudioFiles>
                 </ComplexData>
                 <Parameters>
