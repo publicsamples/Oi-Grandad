@@ -12,7 +12,7 @@ It features:
  - Drone button for sustained playback
  - Delay per voice
 
-Standalone and Audio Unit Mac OS builds are avaialable here:
+VST and Audio Unit Mac OS builds are avaialable here:
 
 https://github.com/publicsamples/Oi-Grandad/releases
 
@@ -22,12 +22,14 @@ https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Basic-Guide
 
 Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffer size below 512 samples.
 
-**Installation**
+# Installation
 
-Copy "oi grandad.component" to Users/USERNAME/Library/Audio/Components 
+Copy "oi grandad.component" to Users/USERNAME/Library/Audio/Plug-ins/Components
 
-Bypassing unidentified developer messages:
+Copy ""oi grandad.vst3" to Users/USERNAME/Library/Audio/Plug-ins/VST3
+
+Copy "modularsamples" folder to Users/USERNAME/Library/Application Support
+
+On loading your DAW you may run into the message "“the developer cannot be verified”." to bypass this see this page:
 
 https://support.apple.com/en-us/HT202491
-
-
