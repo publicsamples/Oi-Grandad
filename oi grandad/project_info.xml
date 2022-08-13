@@ -6,8 +6,8 @@
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Abcd"/>
-  <EmbedAudioFiles value="Yes"/>
-  <EmbedImageFiles value="Yes"/>
+  <EmbedAudioFiles value="1"/>
+  <EmbedImageFiles value="0"/>
   <SupportFullDynamicsHLAC value="No"/>
   <AdditionalDspLibraries value=""/>
   <OSXStaticLibs value=""/>

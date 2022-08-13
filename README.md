@@ -16,6 +16,8 @@ VST and Audio Unit Mac OS builds are avaialable here:
 
 https://github.com/publicsamples/Oi-Grandad/releases
 
+Windows and Linux versions will be available when I get my hands on a suitable computer. Right now I only have a M1 Macbook to build and test on. 
+
 For a quick overview of the functionality see:
 
 https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Basic-Guide
