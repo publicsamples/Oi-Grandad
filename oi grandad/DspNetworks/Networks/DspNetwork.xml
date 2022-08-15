@@ -5,18 +5,44 @@
     <Nodes>
       <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
         <Nodes>
+          <Node ID="global_mod" FactoryPath="core.global_mod" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="ahdsr" ParameterId="Gate"/>
+            </ModulationTargets>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="17.0" StepSize="1.0" ID="Index" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="cable_table1" FactoryPath="control.cable_table" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="global_mod" ParameterId="Index"/>
+            </ModulationTargets>
+            <ComplexData>
+              <Tables>
+                <Table Index="-1" EmbeddedData="108..........9C...vO....6....9C...vO...48....9C...vO...58.TDJzC...vO...68....9C...vO..f.9.........vO...I9.........vO...b+....9C...vO...f+....9C...vO"/>
+              </Tables>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+            </Parameters>
+          </Node>
           <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
             </Properties>
             <SwitchTargets>
               <SwitchTarget>
-                <Connections/>
+                <Connections>
+                  <Connection NodeId="input_toggle1" ParameterId="Value2"/>
+                </Connections>
               </SwitchTarget>
               <SwitchTarget>
-                <Connections>
-                  <Connection NodeId="input_toggle1" ParameterId="Value1"/>
-                </Connections>
+                <Connections/>
               </SwitchTarget>
             </SwitchTargets>
             <ComplexData>
@@ -29,15 +55,28 @@
                          SkewFactor="0.1976716816425323" ID="Attack" Value="0.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="AttackLevel" Value="1.0"/>
               <Parameter MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                         SkewFactor="0.1976716816425323" ID="Hold" Value="0.0"/>
+                         SkewFactor="0.1976716816425323" ID="Hold" Value="10000.0"/>
               <Parameter MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                         SkewFactor="0.1976716816425323" ID="Decay" Value="300.0"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Sustain" Value="1.0"/>
+                         SkewFactor="0.1976716816425323" ID="Decay" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Sustain" Value="0.0"/>
               <Parameter MinValue="10000.0" MaxValue="0.0" StepSize="0.1000000014901161"
                          SkewFactor="0.1976716816425323" ID="Release" Value="0.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="AttackCurve" Value="0.5"/>
               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Retrigger" Value="0.0"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="cable_table2" FactoryPath="control.cable_table" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="input_toggle1" ParameterId="Input"/>
+            </ModulationTargets>
+            <ComplexData>
+              <Tables>
+                <Table Index="-1" EmbeddedData="48..........9C...vO...z7.........vO...h8....9C...vO...f+....9C...vO"/>
+              </Tables>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
             </Parameters>
           </Node>
           <Node ID="input_toggle1" FactoryPath="control.input_toggle" Bypassed="0">
@@ -45,9 +84,10 @@
               <Connection NodeId="resetter" ParameterId="Value"/>
             </ModulationTargets>
             <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" ID="Input" Automated="1"
+                         SkewFactor="-"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
             </Parameters>
           </Node>
         </Nodes>
@@ -184,7 +224,7 @@
       <Node ID="smoothed_parameter" FactoryPath="control.smoothed_parameter"
             Bypassed="0">
         <Properties>
-          <Property ID="Mode" Value="Linear Ramp"/>
+          <Property ID="Mode" Value="Low Pass"/>
         </Properties>
         <ModulationTargets>
           <Connection NodeId="add" ParameterId="Value"/>
@@ -223,7 +263,8 @@
       <Parameter ID="gamma" MinValue="0.0" MaxValue="1.0" Value="0.497578125">
         <Connections/>
       </Parameter>
-      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.05053125">
+      <Parameter ID="smooth" MinValue="0.1000000014901161" MaxValue="1000.0" Value="0.05053125"
+                 StepSize="0.1000000014901161">
         <Connections>
           <Connection NodeId="smoothed_parameter" ParameterId="SmoothingTime"/>
         </Connections>
@@ -246,9 +287,11 @@
       <Parameter ID="dir" MinValue="0.0" MaxValue="4.0" StepSize="1" Value="1.0">
         <Connections/>
       </Parameter>
-      <Parameter ID="keysync" MinValue="1.0" MaxValue="0.0" Value="1.0">
+      <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="6.0" StepSize="1"
+                 SkewFactor="1">
         <Connections>
-          <Connection NodeId="input_toggle1" ParameterId="Input"/>
+          <Connection NodeId="cable_table1" ParameterId="Value"/>
+          <Connection NodeId="cable_table2" ParameterId="Value"/>
         </Connections>
       </Parameter>
     </Parameters>
