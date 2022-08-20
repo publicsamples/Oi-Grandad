@@ -3,7 +3,7 @@ const var laf = Engine.createGlobalScriptLookAndFeel();
 laf.registerFunction("drawComboBox", function(g, obj)
 {
     g.setColour(obj.bgColour);
-    g.fillRoundedRectangle(obj.area, 16.0);
+    g.fillRoundedRectangle(obj.area, 3.0);
     g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
     g.setFont("Avenir", 14.0);
    
@@ -457,37 +457,6 @@ ulp.setMouseCallback(function(event)
   }
 });
 
-const var meta = Content.getComponent("METAbox");
-
-
-meta.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://github.com/publicsamples/Metasynth-Loops");
-  } 
-  else 
-  {
-    link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-const var modloops = Content.getComponent("MLbox");
-
-
-modloops.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://github.com/publicsamples/Modular-Loops/releases/tag/1.0");
-  } 
-  else 
-  {
-    link_hover = event.hover;
-    this.repaint();
-  }
-});
 function onNoteOn()
 {
 	
