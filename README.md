@@ -20,7 +20,7 @@ Windows and Linux versions will be available when I get my hands on a suitable c
 
 For a quick overview of the functionality see:
 
-https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Basic-Guide
+https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
 
 Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffer size below 512 samples.
 
