@@ -258,8 +258,8 @@
               <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
                 <ComplexData>
                   <AudioFiles>
-                    <AudioFile Index="0" EmbeddedData="/Users/rick/Music/oi audio/Loops/metasynth/long grace-[6].wav"
-                               MinValue="0" MaxValue="0"/>
+                    <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
+                               MaxValue="0"/>
                   </AudioFiles>
                 </ComplexData>
                 <Parameters>

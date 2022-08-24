@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptComboBox" id="ComboBox1" x="131.0" y="104.0" max="3"
+             items="leadMap&#10;melodyMap&#10;testMap"/>
+</ContentProperties>
