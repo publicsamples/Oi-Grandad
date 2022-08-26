@@ -103,11 +103,11 @@
                   <Connection NodeId="granulator" ParameterId="GrainSize"/>
                 </ModulationTargets>
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                  <Parameter MinValue="18.0" MaxValue="0.0" StepSize="1.0" ID="Tempo" Automated="1"/>
                   <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
                              Value="1.0"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
-                  <Parameter MinValue="800.0" MaxValue="20.0" StepSize="0.1000000014901161"
+                  <Parameter MinValue="20.0" MaxValue="800.0" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" Automated="1"/>
                 </Parameters>
               </Node>
