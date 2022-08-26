@@ -94,8 +94,22 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
                 </Parameters>
                 <ModulationTargets>
+                  <Connection NodeId="tempo_sync2" ParameterId="Tempo"/>
+                  <Connection NodeId="tempo_sync2" ParameterId="UnsyncedTime"/>
+                </ModulationTargets>
+              </Node>
+              <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0">
+                <ModulationTargets>
                   <Connection NodeId="granulator" ParameterId="GrainSize"/>
                 </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
+                  <Parameter MinValue="800.0" MaxValue="20.0" StepSize="0.1000000014901161"
+                             ID="UnsyncedTime" Automated="1"/>
+                </Parameters>
               </Node>
             </Nodes>
             <Parameters/>
@@ -184,7 +198,7 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+          <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Folded="1">
             <Nodes>
               <Node ID="global_mod" FactoryPath="core.global_mod" Bypassed="0">
                 <ComplexData>
@@ -201,7 +215,6 @@
               </Node>
               <Node ID="pma3" FactoryPath="control.pma" Bypassed="0">
                 <ModulationTargets>
-                  <Connection NodeId="input_toggle" ParameterId="Value1"/>
                   <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
                 </ModulationTargets>
                 <Parameters>
@@ -228,9 +241,9 @@
                   <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
                   <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
                              Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
                   <Parameter MinValue="1000.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                             ID="UnsyncedTime"/>
+                             ID="UnsyncedTime" Automated="1"/>
                 </Parameters>
               </Node>
               <Node ID="converter" FactoryPath="control.converter" Bypassed="0">
@@ -238,35 +251,24 @@
                   <Property ID="Mode" Value="Ms2Freq"/>
                 </Properties>
                 <ModulationTargets>
-                  <Connection NodeId="input_toggle" ParameterId="Value2"/>
-                </ModulationTargets>
-                <Parameters>
-                  <Parameter MinValue="0.5" MaxValue="2.0" ID="Value" Automated="1" SkewFactor="0.6309297680854797"/>
-                </Parameters>
-              </Node>
-              <Node ID="input_toggle" FactoryPath="control.input_toggle" Bypassed="0">
-                <ModulationTargets>
                   <Connection NodeId="granulator" ParameterId="Pitch"/>
                 </ModulationTargets>
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Automated="1"/>
-                  <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297535714574"
-                             ID="Value1" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
+                  <Parameter MinValue="0.5" MaxValue="2.0" ID="Value" Automated="1" SkewFactor="0.6309297680854797"/>
                 </Parameters>
               </Node>
               <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
                 <ComplexData>
                   <AudioFiles>
                     <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                               MaxValue="0"/>
+                               MaxValue="1502163"/>
                   </AudioFiles>
                 </ComplexData>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
                   <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297535714574"
                              ID="Pitch" Automated="1"/>
-                  <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" StepSize="1"
+                  <Parameter MinValue="20.0" MaxValue="7500.0" ID="GrainSize" StepSize="1"
                              Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Automated="1"/>
@@ -311,7 +313,7 @@
                          SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
             </Parameters>
           </Node>
-          <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0" Folded="1">
+          <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
             </Properties>
@@ -384,9 +386,10 @@
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.5529561767578125">
+      <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.50775">
         <Connections>
           <Connection NodeId="pma3" ParameterId="Add"/>
+          <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
         </Connections>
       </Parameter>
       <Parameter ID="grain" MinValue="0.0" MaxValue="1.0" Value="0.0">
@@ -487,7 +490,8 @@
       </Parameter>
       <Parameter ID="psync" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
-          <Connection NodeId="input_toggle" ParameterId="Input"/>
+          <Connection NodeId="tempo_sync" ParameterId="Enabled"/>
+          <Connection NodeId="tempo_sync2" ParameterId="Enabled"/>
         </Connections>
       </Parameter>
       <Parameter ID="pmulti" MinValue="1.0" MaxValue="16.0" StepSize="1" Value="1.0">
