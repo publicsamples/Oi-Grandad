@@ -26,9 +26,13 @@ Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffe
 
 # Installation
 
-There are two ways you can install Oi, Grandad! Using the largely untested package installer, or manually. The installer package can be found here:
+There are two ways you can install Oi, Grandad! Using the largely untested package installer, or manually. 
 
-https://github.com/publicsamples/Oi-Grandad/releases/download/0.7.2/Oi.Grandad.dmg
+The installer package can be found here:
+
+https://github.com/publicsamples/Oi-Grandad/releases/download/0.7.5/Oi.Grandad.0.7.5.dmg
+
+Simply open the DMG file and then open the file "Oi Grandad.mkpg". If you get a messaage saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
 
 **Manual installation**
 
