@@ -1,4 +1,5 @@
 Content.makeFrontInterface(854, 730);
+Engine.loadAudioFilesIntoPool();
 const var laf = Engine.createGlobalScriptLookAndFeel();
 laf.registerFunction("drawComboBox", function(g, obj)
 {

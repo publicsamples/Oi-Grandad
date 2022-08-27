@@ -6,7 +6,7 @@
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
-  <EmbedAudioFiles value="1"/>
+  <EmbedAudioFiles value="0"/>
   <EmbedImageFiles value="1"/>
   <SupportFullDynamicsHLAC value="No"/>
   <AdditionalDspLibraries value=""/>
