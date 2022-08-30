@@ -12,11 +12,9 @@ It features:
  - Drone button for sustained playback
  - Delay per voice
 
-VST and Audio Unit Mac OS builds are avaialable here:
+VST and Audio Unit plugins for Mac OS are avaialable here:
 
 https://github.com/publicsamples/Oi-Grandad/releases
-
-Windows and Linux versions will be available when I get my hands on a suitable computer. 
 
 For a quick overview of the functionality see:
 

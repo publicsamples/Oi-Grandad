@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="0.7.2"/>
+  <Version value="0.8.0"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -24,7 +24,7 @@
   <EnableSoundGeneratorsFX value="No"/>
   <VST3Support value="1"/>
   <UseRawFrontend value="No"/>
-  <ExpansionType value="Disabled"/>
+  <ExpansionType value="FilesOnly"/>
   <EncryptionKey value=""/>
   <LinkExpansionsToProject value="No"/>
   <ReadOnlyFactoryPresets value="No"/>

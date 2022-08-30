@@ -30,81 +30,86 @@
             <Nodes>
               <Node ID="chain2" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
-                  <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0">
+                  <Node ID="fix8_block1" FactoryPath="container.fix8_block" Bypassed="0">
                     <Nodes>
-                      <Node ID="global_mod2" FactoryPath="core.global_mod" Bypassed="0">
-                        <ModulationTargets>
-                          <Connection NodeId="pma2" ParameterId="Value"/>
-                        </ModulationTargets>
-                        <ComplexData>
-                          <DisplayBuffers>
-                            <DisplayBuffer Index="-1"/>
-                          </DisplayBuffers>
-                        </ComplexData>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-                        </Parameters>
+                      <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="global_mod2" FactoryPath="core.global_mod" Bypassed="0">
+                            <ModulationTargets>
+                              <Connection NodeId="pma2" ParameterId="Value"/>
+                            </ModulationTargets>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="pma2" FactoryPath="control.pma" Bypassed="0">
+                            <ModulationTargets>
+                              <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
+                              <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
                       </Node>
-                      <Node ID="pma2" FactoryPath="control.pma" Bypassed="0">
+                      <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
                         <ModulationTargets>
-                          <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
-                          <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
+                          <Connection NodeId="fix_delay" ParameterId="DelayTime"/>
                         </ModulationTargets>
                         <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
-                    <ModulationTargets>
-                      <Connection NodeId="fix_delay" ParameterId="DelayTime"/>
-                    </ModulationTargets>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
-                      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
-                                 Value="1.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                 ID="UnsyncedTime" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                  <Node ID="receive" FactoryPath="routing.receive" Bypassed="0">
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                  <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
-                    <Nodes>
-                      <Node ID="fix_delay" FactoryPath="core.fix_delay" Bypassed="0">
-                        <Parameters>
+                          <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                                     Value="1.0"/>
+                          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="0.0"/>
                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                     SkewFactor="0.3010300099849701" ID="DelayTime" Automated="1"/>
-                          <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
-                                     Value="512.0"/>
+                                     ID="UnsyncedTime" Automated="1"/>
+                        </Parameters>
+                      </Node>
+                      <Node ID="receive" FactoryPath="routing.receive" Bypassed="0">
+                        <Parameters>
+                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+                        </Parameters>
+                      </Node>
+                      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+                        <Nodes>
+                          <Node ID="fix_delay" FactoryPath="core.fix_delay" Bypassed="0">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.3010300099849701" ID="DelayTime" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
+                                         Value="512.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="send" FactoryPath="routing.send" Bypassed="0">
+                        <Properties>
+                          <Property ID="Connection" Value="receive"/>
+                        </Properties>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="gain1" FactoryPath="core.gain" Bypassed="0">
+                        <Parameters>
+                          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                     SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                     SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                     SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
                         </Parameters>
                       </Node>
                     </Nodes>
                     <Parameters/>
-                  </Node>
-                  <Node ID="send" FactoryPath="routing.send" Bypassed="0">
-                    <Properties>
-                      <Property ID="Connection" Value="receive"/>
-                    </Properties>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="gain1" FactoryPath="core.gain" Bypassed="0">
-                    <Parameters>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
-                    </Parameters>
                   </Node>
                 </Nodes>
                 <Parameters/>

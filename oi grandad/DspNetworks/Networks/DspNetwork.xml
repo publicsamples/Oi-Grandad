@@ -282,13 +282,14 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="add" FactoryPath="math.add" Bypassed="0">
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-        </Parameters>
-      </Node>
-      <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
-        <Nodes/>
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+        <Nodes>
+          <Node ID="add" FactoryPath="math.add" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+            </Parameters>
+          </Node>
+        </Nodes>
         <Parameters/>
       </Node>
     </Nodes>

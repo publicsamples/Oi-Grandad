@@ -5,30 +5,35 @@
     <Nodes>
       <Node ID="vol" FactoryPath="container.chain" Bypassed="0">
         <Nodes>
-          <Node ID="modchain5" FactoryPath="container.modchain" Bypassed="0">
+          <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
             <Nodes>
-              <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
-                <ModulationTargets>
-                  <Connection NodeId="pma5" ParameterId="Value"/>
-                </ModulationTargets>
-                <ComplexData>
-                  <DisplayBuffers>
-                    <DisplayBuffer Index="-1"/>
-                  </DisplayBuffers>
-                </ComplexData>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-                </Parameters>
-              </Node>
-              <Node ID="pma5" FactoryPath="control.pma" Bypassed="0">
-                <ModulationTargets>
-                  <Connection NodeId="gain6" ParameterId="Gain"/>
-                </ModulationTargets>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                </Parameters>
+              <Node ID="modchain5" FactoryPath="container.modchain" Bypassed="0">
+                <Nodes>
+                  <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="pma5" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="pma5" FactoryPath="control.pma" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="gain6" ParameterId="Gain"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
               </Node>
             </Nodes>
             <Parameters/>
