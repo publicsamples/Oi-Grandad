@@ -1,7 +1,7 @@
 Content.makeFrontInterface(854, 730);
 
 const var laf = Engine.createGlobalScriptLookAndFeel();
-laf.registerFunction("drawComboBox", function(g, obj)n("drawComboBox", function(g, obj)
+laf.registerFunction("drawComboBox", function(g, obj)
 {
     g.setColour(obj.bgColour);
     g.fillRoundedRectangle(obj.area, 3.0);
