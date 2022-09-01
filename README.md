@@ -31,17 +31,12 @@ Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
 Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
  **Mac**
+ 
+There are two ways you can install Oi, Grandad! Using the package installer, or manually. The installer package can be found here:
+
+ https://github.com/publicsamples/Oi-Grandad/releases
 
 Simply open the DMG file and then open the file "Oi Grandad.mkpg". If you get a message saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
-
-On loading your DAW you may see a message saying “the developer cannot be verified” to fix this open System Preferences → Security and Privacy. On the general tab click ‘Open anyway’.
-
-https://support.apple.com/en-us/HT202491
- Installation
-
- There are two ways you can install Oi, Grandad! Using the largely untested package installer, or manually. The installer package can be found here:
-
- https://github.com/publicsamples/Oi-Grandad/releases/download/0.7.2/Oi.Grandad.dmg
 
  **Manual installation**
 
