@@ -24,13 +24,13 @@ Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffe
 
 # Installation
 
-##Windows
+ **Windows**
 
 Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
 
 Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
-##Mac
+ **Mac**
 
 Simply open the DMG file and then open the file "Oi Grandad.mkpg". If you get a message saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
 
