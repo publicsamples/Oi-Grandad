@@ -8,7 +8,7 @@
           <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
-              <Property ID="Mode" Value="RMS"/>
+              <Property ID="Mode" Value="Linear"/>
             </Properties>
             <SwitchTargets>
               <SwitchTarget>
@@ -63,7 +63,7 @@
                     </Nodes>
                     <Parameters/>
                   </Node>
-                  <Node ID="svf" FactoryPath="filters.svf" Bypassed="0" Folded="1">
+                  <Node ID="svf" FactoryPath="filters.svf" Bypassed="0">
                     <ComplexData>
                       <Filters>
                         <Filter Index="-1" EmbeddedData=""/>
@@ -74,7 +74,7 @@
                                  ID="Frequency" Automated="1"/>
                       <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
                                  ID="Q" Automated="1"/>
-                      <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.2036249999999953"/>
+                      <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.3628124999999969"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
                                  ID="Smoothing" Value="0.0"/>
                       <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" Automated="1"/>
@@ -117,7 +117,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="cut" MinValue="0.0" MaxValue="1.0" Value="0.3564062499999998">
+      <Parameter ID="cut" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="pma4" ParameterId="Add"/>
         </Connections>
@@ -127,7 +127,7 @@
           <Connection NodeId="svf" ParameterId="Q"/>
         </Connections>
       </Parameter>
-      <Parameter ID="type" MinValue="0.0" MaxValue="5.0" StepSize="1" Value="2.0">
+      <Parameter ID="type" MinValue="0.0" MaxValue="5.0" StepSize="1" Value="4.0">
         <Connections>
           <Connection NodeId="svf" ParameterId="Mode"/>
         </Connections>
@@ -135,7 +135,7 @@
       <Parameter ID="mix" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections/>
       </Parameter>
-      <Parameter ID="cutmod" MinValue="0.0" MaxValue="1.0" Value="0.4960312499999999">
+      <Parameter ID="cutmod" MinValue="0.0" MaxValue="1.0" Value="0.4944999999999999">
         <Connections>
           <Connection NodeId="pma4" ParameterId="Multiply"/>
         </Connections>
@@ -145,7 +145,7 @@
           <Connection NodeId="global_mod4" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="Mix" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="Mix" MinValue="0.0" MaxValue="1.0" Value="0.491484375">
         <Connections>
           <Connection NodeId="xfader" ParameterId="Value"/>
         </Connections>

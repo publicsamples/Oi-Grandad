@@ -3,67 +3,32 @@
 <Network ID="track2" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="track2" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="a2" FactoryPath="container.chain" Bypassed="0">
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
         <Nodes>
-          <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                NodeColour="4282862770">
-            <Properties>
-              <Property ID="Connection" Value="a2"/>
-            </Properties>
-            <ModulationTargets>
-              <Connection NodeId="add1" ParameterId="Value"/>
-            </ModulationTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
-            </Parameters>
-          </Node>
-          <Node ID="add1" FactoryPath="math.add" Bypassed="0">
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-            </Parameters>
+          <Node ID="a2" FactoryPath="container.chain" Bypassed="0">
+            <Nodes>
+              <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+                    NodeColour="4282862770">
+                <Properties>
+                  <Property ID="Connection" Value="a2"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="add1" ParameterId="Value"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
+                </Parameters>
+              </Node>
+              <Node ID="add1" FactoryPath="math.add" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
           </Node>
         </Nodes>
         <Parameters/>
-      </Node>
-      <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
-        <ModulationTargets>
-          <Connection NodeId="smoothed_parameter" ParameterId="Value"/>
-        </ModulationTargets>
-        <ComplexData>
-          <DisplayBuffers>
-            <DisplayBuffer Index="-1"/>
-          </DisplayBuffers>
-        </ComplexData>
-        <Parameters>
-          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                     SkewFactor="5.422270774841309" ID="Threshhold" Value="-14.19999872148038"/>
-          <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                     SkewFactor="0.4306765496730804" ID="Attack" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                     SkewFactor="0.4306765496730804" ID="Release" Value="0.0"/>
-          <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
-                     SkewFactor="0.2968033850193024" ID="Ratio" Value="32.0"/>
-        </Parameters>
-      </Node>
-      <Node ID="smoothed_parameter" FactoryPath="control.smoothed_parameter"
-            Bypassed="0">
-        <Properties>
-          <Property ID="Mode" Value="Low Pass"/>
-        </Properties>
-        <ModulationTargets>
-          <Connection NodeId="add" ParameterId="Value"/>
-        </ModulationTargets>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-          <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                     ID="SmoothingTime" Automated="1"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-        </Parameters>
-      </Node>
-      <Node ID="add" FactoryPath="math.add" Bypassed="0">
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-        </Parameters>
       </Node>
     </Nodes>
     <Parameters>
@@ -80,9 +45,10 @@
         <Connections/>
       </Parameter>
       <Parameter ID="Smooth" MinValue="0.0" MaxValue="1.0" Value="0.0">
-        <Connections>
-          <Connection NodeId="smoothed_parameter" ParameterId="SmoothingTime"/>
-        </Connections>
+        <Connections/>
+      </Parameter>
+      <Parameter ID="Thresh" MinValue="0.0" MaxValue="1.0" Value="0.304734375">
+        <Connections/>
       </Parameter>
     </Parameters>
   </Node>

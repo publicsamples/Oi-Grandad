@@ -1,4 +1,81 @@
 Content.makeFrontInterface(854, 730);
+Engine.loadAudioFilesIntoPool();
+
+const var psync1 = Content.getComponent("psync1");
+const var pmodblank1 = Content.getComponent("pmodblank1");
+const var pitchmodcont1 = Content.getComponent("pitchmodcont1");
+const var ps1 = Synth.getEffect("gran");
+
+inline function onpsync1Control(number, value)
+{
+		pitchmodcont1.showControl(value); 
+        pmodblank1.showControl(1-value);
+      
+       ps1.setAttribute(ps1.psync, 0);
+       ps1.setAttribute(ps1.psync, 1-value);
+}
+
+
+psync1.setControlCallback(onpsync1Control);
+
+const var psync2 = Content.getComponent("psync2");
+const var pmodblank2 = Content.getComponent("pmodblank2");
+const var pitchmodcont2 = Content.getComponent("pitchmodcont2");
+
+
+const var ps2 = Synth.getEffect("gran2");
+
+inline function onpsync2Control(number, value)
+{
+		pitchmodcont2.showControl(value); 
+        pmodblank2.showControl(1-value);
+      
+       ps2.setAttribute(ps2.psync, 0);
+       ps2.setAttribute(ps2.psync, 1-value);
+}
+
+
+psync2.setControlCallback(onpsync2Control);
+
+const var psync3 = Content.getComponent("psync3");
+const var pmodblank3 = Content.getComponent("pmodblank3");
+const var pitchmodcont3 = Content.getComponent("pitchmodcont3");
+
+
+const var ps3 = Synth.getEffect("gran3");
+
+inline function onpsync3Control(number, value)
+{
+		pitchmodcont3.showControl(value); 
+        pmodblank3.showControl(1-value);
+      
+       ps3.setAttribute(ps3.psync, 0);
+       ps3.setAttribute(ps3.psync, 1-value);
+}
+
+
+psync3.setControlCallback(onpsync3Control);
+
+const var psync4 = Content.getComponent("psync4");
+const var pmodblank4 = Content.getComponent("pmodblank4");
+const var pitchmodcont4 = Content.getComponent("pitchmodcont4");
+
+
+const var ps4 = Synth.getEffect("gran4");
+
+inline function onpsync4Control(number, value)
+{
+		pitchmodcont4.showControl(value); 
+        pmodblank4.showControl(1-value);
+      
+       ps4.setAttribute(ps4.psync, 0);
+       ps4.setAttribute(ps4.psync, 1-value);
+}
+
+
+psync4.setControlCallback(onpsync4Control);
+
+
 
 const var laf = Engine.createGlobalScriptLookAndFeel();
 laf.registerFunction("drawComboBox", function(g, obj)
@@ -242,6 +319,7 @@ inline function onseq1typeControl(number, value)
 
 
 button1.setControlCallback(onseq1typeControl);
+
 
 
 
@@ -509,10 +587,10 @@ const samples = ["Chords/AIR.wav",
 "Chords/mover5.wav",
 "Chords/shiv01.wav",
 "Chords/shiv2.wav",
-"Chords/shiv3.wav",
-"Chords/sto_maj5911.wav",
-"Chords/water_HalfDim.wav",
-"Chords/wobbldrone01.wav",
+"Chords/shiv3.wav"
+];
+
+const chains = ["Chains/basschain-0.wav",
 "Chains/basschain-0.wav",
 "Chains/basschain-_1.wav",
 "Chains/basschain-_2.wav",
@@ -530,7 +608,12 @@ const samples = ["Chords/AIR.wav",
 "Chains/ps2orchestra.wav",
 "Chains/random13001.wav",
 "Chains/simple.wav",
-"Chains/snare.wav",
+"Chains/snare.wav"
+];
+
+
+
+const sweeps = ["Sweeps/1012n.wav",
 "Sweeps/1012n.wav",
 "Sweeps/4tri.wav",
 "Sweeps/60-EHUC.aif",
@@ -564,6 +647,9 @@ const samples = ["Chords/AIR.wav",
 "Sweeps/triresr.wav",
 "Sweeps/usub.wav",
 "Sweeps/vowel.wav",
+];
+
+const loops = ["Loops/1bnce=01.wav",
 "Loops/1bnce=01.wav",
 "Loops/1bnce=02.wav",
 "Loops/1bnce=03.wav",
@@ -674,7 +760,9 @@ const samples = ["Chords/AIR.wav",
 "Loops/swing70.wav",
 "Loops/tortoiseshell.wav",
 "Loops/waltz110.wav",
-"Loops/weaver.wav",
+"Loops/weaver.wav"
+];
+const stems= ["Stems/4sel84-01.wav",
 "Stems/4sel84-01.wav",
 "Stems/4sel84-02.wav",
 "Stems/4sel84-03.wav",
@@ -821,13 +909,40 @@ const samples = ["Chords/AIR.wav",
 ];
 
 
-
 const var wavesel1 = Content.getComponent("wavesel1");
 inline function onwavesel1Control(component, value)
 {
     Synth.getAudioSampleProcessor("gran").setFile("{PROJECT_FOLDER}"+samples[value]);
 };
 Content.getComponent("wavesel1").setControlCallback(onwavesel1Control);
+
+const var chains1 = Content.getComponent("chains1");
+inline function onchains1Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran").setFile("{PROJECT_FOLDER}"+chains[value]);
+};
+Content.getComponent("chains1").setControlCallback(onchains1Control);
+
+const var sweeps1 = Content.getComponent("sweeps1");
+inline function onsweeps1Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran").setFile("{PROJECT_FOLDER}"+sweeps[value]);
+};
+Content.getComponent("sweeps1").setControlCallback(onsweeps1Control);
+
+const var loops1 = Content.getComponent("loops1");
+inline function onloops1Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran").setFile("{PROJECT_FOLDER}"+loops[value]);
+};
+Content.getComponent("loops1").setControlCallback(onloops1Control);
+
+const var stems1 = Content.getComponent("stems1");
+inline function onstems1Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran").setFile("{PROJECT_FOLDER}"+stems[value]);
+};
+Content.getComponent("stems1").setControlCallback(onstems1Control);
 
 const var wavesel2 = Content.getComponent("wavesel2");
 inline function onwavesel2Control(component, value)
@@ -836,6 +951,33 @@ inline function onwavesel2Control(component, value)
 };
 Content.getComponent("wavesel2").setControlCallback(onwavesel2Control);
 
+const var chains2 = Content.getComponent("chains2");
+inline function onchains2Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran2").setFile("{PROJECT_FOLDER}"+chains[value]);
+};
+Content.getComponent("chains2").setControlCallback(onchains2Control);
+
+const var sweeps2 = Content.getComponent("sweeps2");
+inline function onsweeps2Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran2").setFile("{PROJECT_FOLDER}"+sweeps[value]);
+};
+Content.getComponent("sweeps2").setControlCallback(onsweeps2Control);
+
+const var loops2 = Content.getComponent("loops2");
+inline function onloops2Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran2").setFile("{PROJECT_FOLDER}"+loops[value]);
+};
+Content.getComponent("loops2").setControlCallback(onloops2Control);
+
+const var stems2 = Content.getComponent("stems2");
+inline function onstems2Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran2").setFile("{PROJECT_FOLDER}"+stems[value]);
+};
+Content.getComponent("stems2").setControlCallback(onstems2Control);
 
 const var wavesel3 = Content.getComponent("wavesel3");
 inline function onwavesel3Control(component, value)
@@ -844,6 +986,33 @@ inline function onwavesel3Control(component, value)
 };
 Content.getComponent("wavesel3").setControlCallback(onwavesel3Control);
 
+const var chains3 = Content.getComponent("chains3");
+inline function onchains3Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran3").setFile("{PROJECT_FOLDER}"+chains[value]);
+};
+Content.getComponent("chains3").setControlCallback(onchains3Control);
+
+const var sweeps3 = Content.getComponent("sweeps3");
+inline function onsweeps3Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran3").setFile("{PROJECT_FOLDER}"+sweeps[value]);
+};
+Content.getComponent("sweeps3").setControlCallback(onsweeps3Control);
+
+const var loops3 = Content.getComponent("loops3");
+inline function onloops3Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran3").setFile("{PROJECT_FOLDER}"+loops[value]);
+};
+Content.getComponent("loops3").setControlCallback(onloops3Control);
+
+const var stems3 = Content.getComponent("stems3");
+inline function onstems3Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran3").setFile("{PROJECT_FOLDER}"+stems[value]);
+};
+Content.getComponent("stems3").setControlCallback(onstems3Control);
 
 const var wavesel4 = Content.getComponent("wavesel4");
 inline function onwavesel4Control(component, value)
@@ -851,6 +1020,36 @@ inline function onwavesel4Control(component, value)
     Synth.getAudioSampleProcessor("gran4").setFile("{PROJECT_FOLDER}"+samples[value]);
 };
 Content.getComponent("wavesel4").setControlCallback(onwavesel4Control);
+
+const var chains4 = Content.getComponent("chains4");
+inline function onchains4Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran4").setFile("{PROJECT_FOLDER}"+chains[value]);
+};
+Content.getComponent("chains4").setControlCallback(onchains4Control);
+
+const var sweeps4 = Content.getComponent("sweeps4");
+inline function onsweeps4Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran4").setFile("{PROJECT_FOLDER}"+sweeps[value]);
+};
+Content.getComponent("sweeps4").setControlCallback(onsweeps4Control);
+
+const var loops4 = Content.getComponent("loops4");
+inline function onloops4Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran4").setFile("{PROJECT_FOLDER}"+loops[value]);
+};
+Content.getComponent("loops4").setControlCallback(onloops4Control);
+
+const var stems4 = Content.getComponent("stems4");
+inline function onstems4Control(component, value)
+{
+    Synth.getAudioSampleProcessor("gran4").setFile("{PROJECT_FOLDER}"+stems[value]);
+};
+Content.getComponent("stems4").setControlCallback(onstems4Control);
+
+
 function onNoteOn()
 {
 	

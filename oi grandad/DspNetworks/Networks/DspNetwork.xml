@@ -3,7 +3,8 @@
 <Network ID="DspNetwork" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="DspNetwork" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            Folded="1">
         <Nodes>
           <Node ID="ahdsr1" FactoryPath="envelope.ahdsr" Bypassed="0">
             <Properties>
@@ -183,7 +184,8 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
+      <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+            Folded="1">
         <ModulationTargets>
           <Connection NodeId="ramp" ParameterId="PeriodTime"/>
         </ModulationTargets>
@@ -210,8 +212,7 @@
               </Node>
               <Node ID="ramp" FactoryPath="core.ramp" Bypassed="0">
                 <ModulationTargets>
-                  <Connection NodeId="cable_table" ParameterId="Value"/>
-                  <Connection NodeId="cable_pack" ParameterId="Value"/>
+                  <Connection NodeId="minmax" ParameterId="Value"/>
                 </ModulationTargets>
                 <ComplexData>
                   <DisplayBuffers>
@@ -221,8 +222,23 @@
                 <Parameters>
                   <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
                              ID="PeriodTime" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Gate" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="cable_table" ParameterId="Value"/>
+                  <Connection NodeId="cable_pack" ParameterId="Value"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="1.0"/>
+                  <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                             ID="Skew" Value="0.9924335928129965"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Automated="1"/>
                 </Parameters>
               </Node>
               <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
@@ -329,8 +345,10 @@
           <Connection NodeId="input_toggle" ParameterId="Input"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dir" MinValue="0.0" MaxValue="4.0" StepSize="1" Value="0.0">
-        <Connections/>
+      <Parameter ID="dir" MinValue="0.0" MaxValue="1.0" StepSize="1" Value="0.0">
+        <Connections>
+          <Connection NodeId="minmax" ParameterId="Polarity"/>
+        </Connections>
       </Parameter>
       <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="0.0" StepSize="1"
                  SkewFactor="1">
@@ -342,6 +360,11 @@
       </Parameter>
       <Parameter ID="" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections/>
+      </Parameter>
+      <Parameter ID="onshot" MinValue="0.0" MaxValue="1.0" StepSize="1" Value="0.0">
+        <Connections>
+          <Connection NodeId="ramp" ParameterId="LoopStart"/>
+        </Connections>
       </Parameter>
     </Parameters>
   </Node>
