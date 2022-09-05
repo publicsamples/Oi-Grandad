@@ -21,7 +21,7 @@
           <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0">
             <Parameters>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
             </Parameters>
             <ModulationTargets>
@@ -63,7 +63,7 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="ChanelSplit" FactoryPath="container.multi" Bypassed="0">
+      <Node ID="ChanelSplit" FactoryPath="container.multi" Bypassed="1">
         <Nodes>
           <Node ID="LEFT" FactoryPath="core.gain" Bypassed="0">
             <Parameters>
@@ -90,12 +90,12 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Pan" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="Pan" MinValue="0.0" MaxValue="1.0" Value="0.49875">
         <Connections>
           <Connection NodeId="pma_unscaled" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="panmod" MinValue="0.0" MaxValue="1.0" Value="0.881796875">
+      <Parameter ID="panmod" MinValue="-1.0" MaxValue="1.0" Value="0.004124999999999934">
         <Connections>
           <Connection NodeId="pma_unscaled" ParameterId="Multiply"/>
         </Connections>
