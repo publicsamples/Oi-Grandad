@@ -25,8 +25,19 @@
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
             </Parameters>
             <ModulationTargets>
+              <Connection NodeId="bipolar" ParameterId="Value"/>
+            </ModulationTargets>
+          </Node>
+          <Node ID="bipolar" FactoryPath="control.bipolar" Bypassed="0">
+            <ModulationTargets>
               <Connection NodeId="xfader" ParameterId="Value"/>
             </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Scale" Value="1.0"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Gamma" Value="1.0"/>
+            </Parameters>
           </Node>
         </Nodes>
         <Parameters/>
@@ -79,18 +90,17 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Pan" MinValue="0.0" MaxValue="1.0" Value="0.532953125">
+      <Parameter ID="Pan" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="pma_unscaled" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="panmod" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="panmod" MinValue="0.0" MaxValue="1.0" Value="0.881796875">
         <Connections>
           <Connection NodeId="pma_unscaled" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pandest" MinValue="0.0" MaxValue="16.0" Value="4.100000000000001"
-                 StepSize="0.1">
+      <Parameter ID="pandest" MinValue="0.0" MaxValue="16.0" Value="1.1" StepSize="0.1">
         <Connections>
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
