@@ -259,7 +259,7 @@
                     <ComplexData>
                       <AudioFiles>
                         <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                                   MaxValue="475685"/>
+                                   MaxValue="1303277"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
@@ -348,6 +348,23 @@
               </Node>
             </Nodes>
             <Parameters/>
+          </Node>
+          <Node ID="limiter" FactoryPath="dynamics.limiter" Bypassed="0">
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                         SkewFactor="5.422270774841309" ID="Threshhold" Value="-1.999998539686217"/>
+              <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.4306765496730804" ID="Attack" Value="41.80000062286853"/>
+              <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.4306765496730804" ID="Release" Value="51.10000076144933"/>
+              <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2968033850193024" ID="Ratio" Value="1.100000001490116"/>
+            </Parameters>
           </Node>
         </Nodes>
         <Parameters/>
