@@ -137,15 +137,15 @@
             <Control type="ScriptSlider" id="feed" value="0.5299999713897705"/>
             <Control type="ScriptButton" id="delaysync1" value="0.0"/>
             <Control type="ScriptSlider" id="Vol" value="0.3199999928474426"/>
-            <Control type="ScriptSlider" id="cutoff" value="0.5999999642372131"/>
+            <Control type="ScriptSlider" id="cutoff" value="0.5669291615486145"/>
             <Control type="ScriptSlider" id="res" value="0.0"/>
             <Control type="ScriptSlider" id="pan" value="0.5000014901161194"/>
-            <Control type="ScriptSlider" id="Dense" value="0.1599999964237213"/>
+            <Control type="ScriptSlider" id="Dense" value="0.8976377844810486"/>
             <Control type="ScriptSlider" id="det" value="0.01999999955296516"/>
-            <Control type="ScriptSlider" id="grainsize1" value="0.75"/>
+            <Control type="ScriptSlider" id="grainsize1" value="0.3149606287479401"/>
             <Control type="ScriptSlider" id="spread" value="0.0"/>
-            <Control type="ScriptSlider" id="pitch" value="1.25"/>
-            <Control type="ScriptSlider" id="attack" value="0.5099999904632568"/>
+            <Control type="ScriptSlider" id="pitch" value="0.5"/>
+            <Control type="ScriptSlider" id="attack" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel" value="14.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data="{PROJECT_FOLDER}Loops/bells1.wav"
                      rangeStart="0" rangeEnd="1303277"/>
@@ -159,7 +159,7 @@
             <Control type="ScriptSlider" id="sustain" value="1.0"/>
             <Control type="ScriptSlider" id="delmod" value="0.2199999988079071"/>
             <Control type="ScriptSlider" id="volmod" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix" value="0.0"/>
+            <Control type="ScriptSlider" id="delmix" value="0.4330708682537079"/>
             <Control type="ScriptComboBox" id="pos1modsel" value="8.0"/>
             <Control type="ScriptComboBox" id="densemodsel" value="3.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel" value="3.0"/>
@@ -181,7 +181,7 @@
             <Control type="ScriptComboBox" id="detmodsel5" value="10.0"/>
             <Control type="ScriptSlider" id="pmod1" value="0.5"/>
             <Control type="ScriptSlider" id="pan4" value="16.0"/>
-            <Control type="ScriptSlider" id="grainsizesync1" value="0.5"/>
+            <Control type="ScriptSlider" id="grainsizesync1" value="5.669291496276855"/>
             <Control type="ScriptSlider" id="gmulti1" value="1.0"/>
             <Control type="ScriptSlider" id="pan5" value="16.0"/>
             <Control type="ScriptSlider" id="detmod6" value="0.5"/>
@@ -191,15 +191,15 @@
             <Control type="ScriptSlider" id="feed1" value="0.4600000083446503"/>
             <Control type="ScriptButton" id="delaysync2" value="0.0"/>
             <Control type="ScriptSlider" id="Vol1" value="0.3100000023841858"/>
-            <Control type="ScriptSlider" id="cutoff1" value="0.699999988079071"/>
-            <Control type="ScriptSlider" id="res1" value="0.2599999904632568"/>
+            <Control type="ScriptSlider" id="cutoff1" value="0.5669291615486145"/>
+            <Control type="ScriptSlider" id="res1" value="0.0"/>
             <Control type="ScriptSlider" id="pan1" value="0.5"/>
-            <Control type="ScriptSlider" id="Dense1" value="0.199999988079071"/>
+            <Control type="ScriptSlider" id="Dense1" value="0.8976377844810486"/>
             <Control type="ScriptSlider" id="det1" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsize2" value="0.5099999904632568"/>
+            <Control type="ScriptSlider" id="grainsize2" value="0.3149606287479401"/>
             <Control type="ScriptSlider" id="spread1" value="0.4399999976158142"/>
-            <Control type="ScriptSlider" id="pitch1" value="1.25"/>
-            <Control type="ScriptSlider" id="attack1" value="0.7200000286102295"/>
+            <Control type="ScriptSlider" id="pitch1" value="0.5"/>
+            <Control type="ScriptSlider" id="attack1" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel1" value="7.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data="{PROJECT_FOLDER}Loops/bells2.wav"
                      rangeStart="0" rangeEnd="1303277"/>
@@ -213,7 +213,7 @@
             <Control type="ScriptSlider" id="sustain1" value="1.0"/>
             <Control type="ScriptSlider" id="delmod1" value="0.4799999892711639"/>
             <Control type="ScriptSlider" id="volmod1" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix1" value="0.9900000095367432"/>
+            <Control type="ScriptSlider" id="delmix1" value="0.4330708682537079"/>
             <Control type="ScriptComboBox" id="pos1modsel1" value="2.0"/>
             <Control type="ScriptComboBox" id="densemodsel1" value="13.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel1" value="8.0"/>
@@ -230,7 +230,7 @@
             <Control type="ScriptComboBox" id="OutputSelector1" value="1.0"/>
             <Control type="ScriptButton" id="gsync2" value="1.0"/>
             <Control type="ScriptSlider" id="mix2" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsizesync2" value="4.0"/>
+            <Control type="ScriptSlider" id="grainsizesync2" value="5.669291496276855"/>
             <Control type="ScriptSlider" id="gmulti2" value="4.0"/>
             <Control type="ScriptSlider" id="pan6" value="16.0"/>
             <Control type="ScriptSlider" id="detmod7" value="0.5"/>
@@ -240,14 +240,14 @@
             <Control type="ScriptSlider" id="feed2" value="0.5299999713897705"/>
             <Control type="ScriptButton" id="delaysync3" value="0.0"/>
             <Control type="ScriptSlider" id="Vol2" value="0.449999988079071"/>
-            <Control type="ScriptSlider" id="cutoff2" value="0.550000011920929"/>
+            <Control type="ScriptSlider" id="cutoff2" value="0.5669291615486145"/>
             <Control type="ScriptSlider" id="res2" value="0.5999999642372131"/>
             <Control type="ScriptSlider" id="pan2" value="0.5"/>
-            <Control type="ScriptSlider" id="Dense2" value="0.0"/>
+            <Control type="ScriptSlider" id="Dense2" value="0.8976377844810486"/>
             <Control type="ScriptSlider" id="det2" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsize3" value="0.5799999833106995"/>
+            <Control type="ScriptSlider" id="grainsize3" value="0.3149606287479401"/>
             <Control type="ScriptSlider" id="spread2" value="0.0"/>
-            <Control type="ScriptSlider" id="pitch2" value="1.25"/>
+            <Control type="ScriptSlider" id="pitch2" value="0.5"/>
             <Control type="ScriptSlider" id="attack2" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel2" value="13.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform2" value="0.0" data="{PROJECT_FOLDER}Loops/bells3.wav"
@@ -262,7 +262,7 @@
             <Control type="ScriptSlider" id="sustain2" value="1.0"/>
             <Control type="ScriptSlider" id="delmod2" value="0.5"/>
             <Control type="ScriptSlider" id="volmod2" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix2" value="0.0"/>
+            <Control type="ScriptSlider" id="delmix2" value="0.4330708682537079"/>
             <Control type="ScriptComboBox" id="pos1modsel2" value="8.0"/>
             <Control type="ScriptComboBox" id="densemodsel2" value="12.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel2" value="2.0"/>
@@ -277,10 +277,10 @@
             <Control type="ScriptComboBox" id="ampmodsel7" value="6.0"/>
             <Control type="ScriptSlider" id="volmod7" value="1.0"/>
             <Control type="ScriptComboBox" id="OutputSelector2" value="1.0"/>
-            <Control type="ScriptSlider" id="res3" value="0.3799999952316284"/>
+            <Control type="ScriptSlider" id="res3" value="0.0"/>
             <Control type="ScriptSlider" id="mix3" value="1.0"/>
             <Control type="ScriptButton" id="gsync3" value="1.0"/>
-            <Control type="ScriptSlider" id="grainsizesync3" value="4.0"/>
+            <Control type="ScriptSlider" id="grainsizesync3" value="5.669291496276855"/>
             <Control type="ScriptSlider" id="gmulti3" value="1.0"/>
             <Control type="ScriptSlider" id="pan7" value="16.0"/>
             <Control type="ScriptSlider" id="detmod8" value="0.5"/>
@@ -290,15 +290,15 @@
             <Control type="ScriptSlider" id="feed3" value="0.4000000059604645"/>
             <Control type="ScriptButton" id="delaysync4" value="0.0"/>
             <Control type="ScriptSlider" id="Vol3" value="0.7599999904632568"/>
-            <Control type="ScriptSlider" id="cutoff3" value="1.0"/>
-            <Control type="ScriptSlider" id="res4" value="1.0"/>
+            <Control type="ScriptSlider" id="cutoff3" value="0.5669291615486145"/>
+            <Control type="ScriptSlider" id="res4" value="0.0"/>
             <Control type="ScriptSlider" id="pan3" value="0.5"/>
-            <Control type="ScriptSlider" id="Dense3" value="0.02999999932944775"/>
+            <Control type="ScriptSlider" id="Dense3" value="0.8976377844810486"/>
             <Control type="ScriptSlider" id="det3" value="0.01999999955296516"/>
-            <Control type="ScriptSlider" id="grainsize4" value="0.5"/>
+            <Control type="ScriptSlider" id="grainsize4" value="0.3149606287479401"/>
             <Control type="ScriptSlider" id="spread3" value="0.4599999785423279"/>
-            <Control type="ScriptSlider" id="pitch3" value="1.25"/>
-            <Control type="ScriptSlider" id="attack3" value="0.949999988079071"/>
+            <Control type="ScriptSlider" id="pitch3" value="0.5"/>
+            <Control type="ScriptSlider" id="attack3" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel3" value="14.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data="{PROJECT_FOLDER}Loops/bells2.wav"
                      rangeStart="0" rangeEnd="1303277"/>
@@ -312,7 +312,7 @@
             <Control type="ScriptSlider" id="sustain3" value="1.0"/>
             <Control type="ScriptSlider" id="delmod3" value="0.5"/>
             <Control type="ScriptSlider" id="volmod3" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix3" value="0.6299999952316284"/>
+            <Control type="ScriptSlider" id="delmix3" value="0.4330708682537079"/>
             <Control type="ScriptComboBox" id="pos1modsel3" value="7.0"/>
             <Control type="ScriptComboBox" id="densemodsel3" value="9.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel3" value="11.0"/>
@@ -329,10 +329,10 @@
             <Control type="ScriptComboBox" id="OutputSelector3" value="1.0"/>
             <Control type="ScriptSlider" id="mix4" value="0.0"/>
             <Control type="ScriptButton" id="gsync4" value="1.0"/>
-            <Control type="ScriptSlider" id="grainsizesync4" value="4.0"/>
+            <Control type="ScriptSlider" id="grainsizesync4" value="5.669291496276855"/>
             <Control type="ScriptSlider" id="gmulti4" value="1.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
-            <Control type="ScriptButton" id="Hold" value="0.0"/>
+            <Control type="ScriptButton" id="Hold" value="1.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
           </Content>
           <UIData>
@@ -3351,7 +3351,7 @@
         <Processor Type="ScriptProcessor" ID="hold" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptButton" id="Hold" value="0.0"/>
+            <Control type="ScriptButton" id="Hold" value="1.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
         </Processor>
