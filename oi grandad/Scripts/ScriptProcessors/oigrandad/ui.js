@@ -1,5 +1,6 @@
-Content.makeFrontInterface(854, 730);
+Content.makeFrontInterface(865, 737);
 Engine.loadAudioFilesIntoPool();
+// Hide or show pitch mod options
 
 const var psync1 = Content.getComponent("psync1");
 const var pmodblank1 = Content.getComponent("pmodblank1");
@@ -75,13 +76,171 @@ inline function onpsync4Control(number, value)
 
 psync4.setControlCallback(onpsync4Control);
 
+// Switch grain slider
 
+const var gsync1 = Content.getComponent("gsync1");
+const var grainsize1 = Content.getComponent("grainsize1");
+const var grainsizesync1 = Content.getComponent("grainsizesync1");
+const var gmulti1 = Content.getComponent("gmulti1");
+const var grs1 = Synth.getEffect("gran");
+
+inline function ongsync1Control(number, value)
+{
+		grainsizesync1.showControl(value); 
+		gmulti1.showControl(value); 
+        grainsize1.showControl(1-value);
+      
+       grs1.setAttribute(grs1.gsync, 0);
+       grs1.setAttribute(grs1.gsync, 1-value);
+}
+
+
+gsync1.setControlCallback(ongsync1Control);
+
+const var gsync2 = Content.getComponent("gsync2");
+const var grainsize2 = Content.getComponent("grainsize2");
+const var grainsizesync2 = Content.getComponent("grainsizesync2");
+const var gmulti2 = Content.getComponent("gmulti2");
+const var grs2 = Synth.getEffect("gran2");
+
+inline function ongsync2Control(number, value)
+{
+		grainsizesync2.showControl(value); 
+		gmulti2.showControl(value); 
+        grainsize2.showControl(1-value);
+        
+      
+       grs2.setAttribute(grs2.gsync, 0);
+       grs2.setAttribute(grs2.gsync, 1-value);
+}
+
+
+gsync2.setControlCallback(ongsync2Control);
+
+const var gsync3 = Content.getComponent("gsync3");
+const var grainsize3 = Content.getComponent("grainsize3");
+const var grainsizesync3 = Content.getComponent("grainsizesync3");
+const var gmulti3 = Content.getComponent("gmulti3");
+const var grs3 = Synth.getEffect("gran3");
+
+inline function ongsync3Control(number, value)
+{
+		grainsizesync3.showControl(value); 
+		gmulti3.showControl(value); 
+        grainsize3.showControl(1-value);
+      
+       grs3.setAttribute(grs3.gsync, 0);
+       grs3.setAttribute(grs3.gsync, 1-value);
+}
+
+
+gsync3.setControlCallback(ongsync3Control);
+
+const var gsync4 = Content.getComponent("gsync4");
+const var grainsize4 = Content.getComponent("grainsize4");
+const var grainsizesync4 = Content.getComponent("grainsizesync4");
+const var gmulti4 = Content.getComponent("gmulti4");
+
+const var grs4 = Synth.getEffect("gran4");
+
+inline function ongsync4Control(number, value)
+{
+		grainsizesync4.showControl(value); 
+		gmulti4.showControl(value); 
+        grainsize4.showControl(1-value);
+      
+       grs4.setAttribute(grs4.gsync, 0);
+       grs4.setAttribute(grs4.gsync, 1-value);
+}
+
+
+gsync4.setControlCallback(ongsync4Control);
+
+// Switch delay slider
+
+const var delaysync1 = Content.getComponent("delaysync1");
+const var DelayTime1 = Content.getComponent("DelayTime1");
+const var DelayTimesync1 = Content.getComponent("DelayTimesync1");
+const var dt1 = Synth.getEffect("del1");
+
+inline function ondelaysync1Control(number, value)
+{
+		DelayTimesync1.showControl(value); 
+        DelayTime1.showControl(1-value);
+      
+       dt1.setAttribute(dt1.delaysync, 0);
+       dt1.setAttribute(dt1.delaysync, 1-value);
+}
+
+
+delaysync1.setControlCallback(ondelaysync1Control);
+
+const var delaysync2 = Content.getComponent("delaysync2");
+const var DelayTime2 = Content.getComponent("DelayTime2");
+const var DelayTimesync2 = Content.getComponent("DelayTimesync2");
+
+
+const var dt2 = Synth.getEffect("del2");
+
+inline function ondelaysync2Control(number, value)
+{
+		DelayTimesync2.showControl(value); 
+        DelayTime2.showControl(1-value);
+      
+      dt2.setAttribute(dt2.delaysync, 0);
+       dt2.setAttribute(dt2.delaysync, 1-value);
+    
+}
+
+
+delaysync2.setControlCallback(ondelaysync2Control);
+
+const var delaysync3 = Content.getComponent("delaysync3");
+const var DelayTime3 = Content.getComponent("DelayTime3");
+const var DelayTimesync3 = Content.getComponent("DelayTimesync3");
+
+
+const var dt3 = Synth.getEffect("del3");
+
+inline function ondelaysync3Control(number, value)
+{
+		DelayTimesync3.showControl(value); 
+        DelayTime3.showControl(1-value);
+      
+       dt3.setAttribute(dt3.delaysync, 0);
+       dt3.setAttribute(dt3.delaysync, 1-value);
+}
+
+
+delaysync3.setControlCallback(ondelaysync3Control);
+
+const var delaysync4 = Content.getComponent("delaysync4");
+const var DelayTime4 = Content.getComponent("DelayTime4");
+const var DelayTimesync4 = Content.getComponent("DelayTimesync4");
+
+
+const var dt4 = Synth.getEffect("del4");
+
+inline function ondelaysync4Control(number, value)
+{
+		DelayTimesync4.showControl(value); 
+        DelayTime4.showControl(1-value);
+      
+       dt4.setAttribute(dt4.delaysync, 0);
+       dt4.setAttribute(dt4.delaysync, 1-value);
+}
+
+
+delaysync4.setControlCallback(ondelaysync4Control);
+
+
+//Draw Combobox
 
 const var laf = Engine.createGlobalScriptLookAndFeel();
 laf.registerFunction("drawComboBox", function(g, obj)
 {
     g.setColour(obj.bgColour);
-    g.fillRoundedRectangle(obj.area, 3.0);
+    g.drawRoundedRectangle(obj.area, 3.0, 3.0);
     g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
     g.setFont("Avenir", 16.0);
    
@@ -90,10 +249,26 @@ laf.registerFunction("drawComboBox", function(g, obj)
 
 
 });
-// Get a reference to the master container
+
+laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
+{
+    if(obj.selected)
+    {
+        g.setColour(0x22FFFFFF);
+        g.fillRoundedRectangle(obj.area, 5.0);
+        
+       g.setFont("Avenir", 16.0);
+    }
+   
+    g.setColour(obj.textColour);
+    g.setFont("Avenir", 16.0);
+    g.drawAlignedText(obj.text, obj.area, "centred");
+});
+
+// Multichannel menus
 const var MultiChannelTest = Synth.getChildSynth("oi grandad");
 
-// Get a reference to its routing matrix
+
 const var matrix = MultiChannelTest.getRoutingMatrix();
 
 const var SucessLabel = Content.getComponent("SucessLabel");
@@ -105,23 +280,18 @@ const var SucessLabel3 = Content.getComponent("SucessLabel3");
 inline function onOutputSelectorControl(component, value)
 {
 	
-	// this variable checks if the output channel exists.
 	local success = true;
 	
 	switch(value)
     {
-        case 1: // Routes the first two input channels (= sine wave);
-                // to the first to output channels
+        case 1: 
             matrix.addConnection(0, 0);
             matrix.addConnection(1, 1);
             break;
-        case 2: // Routes the first two input channels
-                // to the second stereo output
+        case 2: 
             matrix.addConnection(0, 2);
             
-            // addConnection returns true if the connection could be added
-            // if the host doesn't support multichannels, this returns false
-            // and you can reset the connections to default later (see below)
+          
             success = matrix.addConnection(1, 3);
             break;
         case 3:
@@ -136,7 +306,6 @@ inline function onOutputSelectorControl(component, value)
     
     if(!success)
     {
-        // Reset to Channel 1+2 in case of an error
         matrix.addConnection(0, 0);
         matrix.addConnection(1, 1);
     }
@@ -149,7 +318,7 @@ Content.getComponent("OutputSelector").setControlCallback(onOutputSelectorContro
 
 inline function onOutputSelector1Control(component, value)
 {
-	// this variable checks if the output channel exists.
+
 	local success = true;
 	
 	switch(value)
@@ -187,7 +356,7 @@ Content.getComponent("OutputSelector1").setControlCallback(onOutputSelector1Cont
 
 inline function onOutputSelector2Control(component, value)
 {
-	// this variable checks if the output channel exists.
+
 	local success = true;
 	
 	switch(value)
@@ -225,7 +394,7 @@ Content.getComponent("OutputSelector2").setControlCallback(onOutputSelector2Cont
 
 inline function onOutputSelector3Control(component, value)
 {
-	// this variable checks if the output channel exists.
+
 	local success = true;
 	
 	switch(value)
@@ -289,7 +458,7 @@ function onControl(number, value)
         Module2.setAttribute(Module2.Parameter, value);
     }
 }
-
+//show hide env params
 const var envbutton = Content.getComponent("envelopes1");
 const var table = Content.getComponent("MOD1");
 const var step = Content.getComponent("MOD2");
@@ -520,7 +689,7 @@ inline function onstype6Control(number, value)
 
 button12.setControlCallback(onstype6Control);
 
-
+//links
 
 const var ulp = Content.getComponent("ULPbox");
 
@@ -554,7 +723,7 @@ yop.setMouseCallback(function(event)
   }
 });
 
-
+//sample loadi
 
 const var Granular1 = Synth.getAudioSampleProcessor("gran");
 const var Granular2 = Synth.getAudioSampleProcessor("gran2");
@@ -669,33 +838,16 @@ const loops = ["Loops/1bnce=01.wav",
 "Loops/Gbellls.wav",
 "Loops/GigaMoth.wav",
 "Loops/Grumbler-1.wav",
-"Loops/Grumbler-2.wav",
 "Loops/Harpy.wav",
 "Loops/Hey Consumer-3.wav",
-"Loops/Hey Consumer-4.wav",
 "Loops/Leaf Blower Stack.wav",
 "Loops/Little Chord-1.wav",
-"Loops/Little Chord-4.wav",
 "Loops/MEMEME-1.wav",
-"Loops/MEMEME-2.wav",
-"Loops/MEMEME-3.wav",
-"Loops/MEMEME-4.wav",
-"Loops/MEMEME-5.wav",
-"Loops/MEMEME-6.wav",
-"Loops/MEMEME-7.3.wav",
 "Loops/Multi-1.wav",
-"Loops/Multi-2.wav",
-"Loops/Multi-3.wav",
-"Loops/Multi-4.wav",
-"Loops/Multi-5.wav",
-"Loops/Multi-6.wav",
 "Loops/NoiseBeat135.wav",
 "Loops/SubKick125_2.wav",
 "Loops/TF82-01.wav",
 "Loops/TF82-02.wav",
-"Loops/Trex 2.wav",
-"Loops/Trex 3.wav",
-"Loops/Trex 4.wav",
 "Loops/Trex.wav",
 "Loops/TuneMe90.wav",
 "Loops/UniSqr - mod.wav",
@@ -712,7 +864,6 @@ const loops = ["Loops/1bnce=01.wav",
 "Loops/break.wav",
 "Loops/bytemod.wav",
 "Loops/daft-1.wav",
-"Loops/daft-2.wav",
 "Loops/deepbeeps.wav",
 "Loops/df-quant.wav",
 "Loops/dile-1.wav",
@@ -728,14 +879,8 @@ const loops = ["Loops/1bnce=01.wav",
 "Loops/hp-bass.wav",
 "Loops/hp-perc.wav",
 "Loops/latin90.wav",
-"Loops/make-2.wav",
-"Loops/make-3.wav",
-"Loops/make-4.wav",
 "Loops/make.wav",
 "Loops/melbrass.wav",
-"Loops/micro-2.wav",
-"Loops/micro-3.wav",
-"Loops/micro-4.wav",
 "Loops/micro.wav",
 "Loops/minor fireworks-1.wav",
 "Loops/organ.wav",
@@ -751,8 +896,6 @@ const loops = ["Loops/1bnce=01.wav",
 "Loops/slightchords135.wav",
 "Loops/slowbrain.wav",
 "Loops/snakey-1.wav",
-"Loops/snakey-2.wav",
-"Loops/snakey-3.wav",
 "Loops/spacedancer.wav",
 "Loops/sqrdance.wav",
 "Loops/squeakdroid.wav",
@@ -801,13 +944,6 @@ const stems= ["Stems/4sel84-01.wav",
 "Stems/MidCreeper-02.wav",
 "Stems/MidCreeper-03.wav",
 "Stems/MidCreeper-04.wav",
-"Stems/MiniTaurCKDemo-01.wav",
-"Stems/MiniTaurCKDemo-02.wav",
-"Stems/MiniTaurCKDemo-03.wav",
-"Stems/MiniTaurCKDemo-04.wav",
-"Stems/MiniTaurCKDemo-05.wav",
-"Stems/MiniTaurCKDemo-06.wav",
-"Stems/MiniTaurCKDemo-07.wav",
 "Stems/PercT130-01.wav",
 "Stems/PercT130-02.wav",
 "Stems/PercT130-03.wav",
@@ -849,35 +985,6 @@ const stems= ["Stems/4sel84-01.wav",
 "Stems/TempoMucker-16.wav",
 "Stems/Tree126-01.wav",
 "Stems/Tree126-04.wav",
-"Stems/dxd-1.wav",
-"Stems/dxd-10.wav",
-"Stems/dxd-11.wav",
-"Stems/dxd-12.wav",
-"Stems/dxd-13.wav",
-"Stems/dxd-14.wav",
-"Stems/dxd-15.wav",
-"Stems/dxd-16.wav",
-"Stems/dxd-17.wav",
-"Stems/dxd-19.wav",
-"Stems/dxd-2.wav",
-"Stems/dxd-20.wav",
-"Stems/dxd-21.wav",
-"Stems/dxd-22.wav",
-"Stems/dxd-23.wav",
-"Stems/dxd-24.wav",
-"Stems/dxd-25.wav",
-"Stems/dxd-26.wav",
-"Stems/dxd-27.wav",
-"Stems/dxd-28.wav",
-"Stems/dxd-29.wav",
-"Stems/dxd-3.wav",
-"Stems/dxd-30.wav",
-"Stems/dxd-4.wav",
-"Stems/dxd-5.wav",
-"Stems/dxd-6.wav",
-"Stems/dxd-7.wav",
-"Stems/dxd-8.wav",
-"Stems/dxd-9.wav",
 "Stems/grilla-02.wav",
 "Stems/grilla-15.wav",
 "Stems/grilla-16.wav",
@@ -898,14 +1005,6 @@ const stems= ["Stems/4sel84-01.wav",
 "Stems/maribass175-06.wav",
 "Stems/maribass175-07.wav",
 "Stems/maribass175-08.wav",
-"Stems/vlid89-01.wav",
-"Stems/vlid89-02.wav",
-"Stems/vlid89-03.wav",
-"Stems/vlid89-04.wav",
-"Stems/vlid89-05.wav",
-"Stems/vlid89-06.wav",
-"Stems/vlid89-07.wav",
-"Stems/vlid89-08.wav", 
 ];
 
 
