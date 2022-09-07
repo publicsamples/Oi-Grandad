@@ -185,10 +185,11 @@
       <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
         <Parameters>
           <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
-          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"/>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                     Automated="1"/>
           <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                     ID="UnsyncedTime" Value="200.0"/>
+                     ID="UnsyncedTime" Value="0.0"/>
         </Parameters>
         <ModulationTargets>
           <Connection NodeId="ramp" ParameterId="PeriodTime"/>
@@ -307,7 +308,9 @@
         </Connections>
       </Parameter>
       <Parameter ID="multi" MinValue="1.0" MaxValue="16.0" Value="1.0" StepSize="0.1">
-        <Connections/>
+        <Connections>
+          <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
+        </Connections>
       </Parameter>
       <Parameter ID="scale" MinValue="0.0" MaxValue="1.0" Value="0.987625">
         <Connections/>

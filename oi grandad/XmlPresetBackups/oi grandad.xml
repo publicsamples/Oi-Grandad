@@ -115,7 +115,7 @@
             <Control type="ScriptButton" id="seqtype4" value="1.0"/>
             <Control type="ScriptButton" id="stype27" value="0.0"/>
             <Control type="ScriptButton" id="stype28" value="0.0"/>
-            <Control type="ScriptComboBox" id="ComboBox18" value="0.0"/>
+            <Control type="ScriptComboBox" id="ComboBox18" value="1.0"/>
             <Control type="ScriptSliderPack" id="SliderPackE" value="0.0" data="64.....+ziBW8SOJb0O8nvU+PgqG8yLyLyO6QgK+nv0i7SOJbwOov0C+v0iB7yGEttOEtdz9zLyL6SyLyrO......"/>
             <Control type="ScriptComboBox" id="ComboBox6" value="0.0"/>
             <Control type="ScriptTable" id="ScriptTable5" value="0.0" data=""/>
@@ -125,7 +125,7 @@
             <Control type="ScriptButton" id="seqtype5" value="0.0"/>
             <Control type="ScriptButton" id="stype29" value="0.0"/>
             <Control type="ScriptButton" id="stype30" value="0.0"/>
-            <Control type="ScriptComboBox" id="ComboBox19" value="0.0"/>
+            <Control type="ScriptComboBox" id="ComboBox19" value="1.0"/>
             <Control type="ScriptSliderPack" id="SliderPackF" value="0.0" data="64.b8nv9vdT37SJb8vOb8nv97nv02CWOJrOJb8H+PJb87SgqG0O8nvU+PgqG8ilYlwO35QA+ziBW6ilYloOT35Q+."/>
             <Control type="ScriptComboBox" id="ComboBox7" value="2.0"/>
             <Control type="ScriptTable" id="ScriptTable6" value="0.0" data="108...............vOJb8n6.........vOOJbc8.........vOw0iB9.........vOWOJ79.........vOrGE99.........vOtdT.+....9C...vOw0iJ+vLyL4C...vO...f+.........vO"/>
@@ -332,7 +332,7 @@
             <Control type="ScriptSlider" id="grainsizesync4" value="5.669291496276855"/>
             <Control type="ScriptSlider" id="gmulti4" value="1.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
-            <Control type="ScriptButton" id="Hold" value="1.0"/>
+            <Control type="ScriptButton" id="Hold" value="0.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
           </Content>
           <UIData>
@@ -3351,7 +3351,7 @@
         <Processor Type="ScriptProcessor" ID="hold" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptButton" id="Hold" value="1.0"/>
+            <Control type="ScriptButton" id="Hold" value="0.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
         </Processor>
