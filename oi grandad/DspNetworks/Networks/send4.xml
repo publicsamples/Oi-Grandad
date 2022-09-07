@@ -3,58 +3,53 @@
 <Network ID="send4" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="send4" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+      <Node ID="split" FactoryPath="container.split" Bypassed="0">
         <Nodes>
-          <Node ID="split" FactoryPath="container.split" Bypassed="0">
+          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
             <Nodes>
-              <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
-                <Nodes>
-                  <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                        NodeColour="4282862770">
-                    <Properties>
-                      <Property ID="Connection" Value="a4"/>
-                    </Properties>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                </Nodes>
-                <Parameters/>
+              <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+                    NodeColour="4282862770">
+                <Properties>
+                  <Property ID="Connection" Value="a4"/>
+                </Properties>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                </Parameters>
               </Node>
-              <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
-                <Nodes>
-                  <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
-                    <ModulationTargets>
-                      <Connection NodeId="global_cable" ParameterId="Value"/>
-                    </ModulationTargets>
-                    <ComplexData>
-                      <DisplayBuffers>
-                        <DisplayBuffer Index="-1"/>
-                      </DisplayBuffers>
-                    </ComplexData>
-                    <Parameters>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-31.79999898374081"/>
-                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Attack" Value="50.0"/>
-                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Release" Value="50.0"/>
-                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.2968033850193024" ID="Ratio" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                  <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
-                    <Parameters>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Gain" Value="-100.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
-                    </Parameters>
-                  </Node>
-                </Nodes>
-                <Parameters/>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+            <Nodes>
+              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="global_cable" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="Threshhold" Value="-31.79999898374081"/>
+                  <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.4306765496730804" ID="Attack" Value="50.0"/>
+                  <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.4306765496730804" ID="Release" Value="50.0"/>
+                  <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.2968033850193024" ID="Ratio" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="Gain" Value="-100.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                </Parameters>
               </Node>
             </Nodes>
             <Parameters/>
@@ -64,7 +59,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="ratio" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="ratio" MinValue="0.0" MaxValue="1.0" Value="0.27546875">
         <Connections>
           <Connection NodeId="comp" ParameterId="Ratio"/>
         </Connections>
