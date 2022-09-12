@@ -290,7 +290,7 @@
                     <ComplexData>
                       <AudioFiles>
                         <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                                   MaxValue="800111"/>
+                                   MaxValue="0"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
