@@ -5,7 +5,7 @@
     <Nodes>
       <Node ID="vol" FactoryPath="container.chain" Bypassed="0">
         <Nodes>
-          <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+          <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
             <Nodes>
               <Node ID="modchain5" FactoryPath="container.modchain" Bypassed="0">
                 <Nodes>
@@ -35,18 +35,18 @@
                 </Nodes>
                 <Parameters/>
               </Node>
+              <Node ID="gain6" FactoryPath="core.gain" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                </Parameters>
+              </Node>
             </Nodes>
             <Parameters/>
-          </Node>
-          <Node ID="gain6" FactoryPath="core.gain" Bypassed="0">
-            <Parameters>
-              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
-              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
-            </Parameters>
           </Node>
         </Nodes>
         <Parameters/>

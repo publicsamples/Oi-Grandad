@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="0.8.2"/>
+  <Version value="1.0.0"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -12,10 +12,10 @@
   <AdditionalDspLibraries value=""/>
   <OSXStaticLibs value=""/>
   <WindowsStaticLibFolder value=""/>
-  <ExtraDefinitionsWindows value="HISE_NUM_PLUGIN_CHANNELS=16"/>
-  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=16"/>
-  <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=16&#10;"/>
-  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=16&#10;"/>
+  <ExtraDefinitionsWindows value="HISE_NUM_PLUGIN_CHANNELS=10"/>
+  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=10"/>
+  <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
+  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
   <AppGroupID value=""/>
   <RedirectSampleFolder value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>
@@ -24,7 +24,7 @@
   <EnableSoundGeneratorsFX value="No"/>
   <VST3Support value="1"/>
   <UseRawFrontend value="No"/>
-  <ExpansionType value="FilesOnly"/>
+  <ExpansionType value="Disabled"/>
   <EncryptionKey value=""/>
   <LinkExpansionsToProject value="No"/>
   <ReadOnlyFactoryPresets value="No"/>

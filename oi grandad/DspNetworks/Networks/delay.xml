@@ -30,7 +30,7 @@
             <Nodes>
               <Node ID="chain2" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
-                  <Node ID="fix8_block1" FactoryPath="container.fix8_block" Bypassed="0">
+                  <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
                     <Nodes>
                       <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0">
                         <Nodes>
@@ -101,13 +101,13 @@
                                      ID="UnsyncedTime" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="receive" FactoryPath="routing.receive" Bypassed="0">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+                      <Node ID="fix8_block1" FactoryPath="container.fix8_block" Bypassed="0">
                         <Nodes>
+                          <Node ID="receive" FactoryPath="routing.receive" Bypassed="0">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+                            </Parameters>
+                          </Node>
                           <Node ID="fix_delay" FactoryPath="core.fix_delay" Bypassed="0">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
@@ -116,13 +116,13 @@
                                          Value="512.0"/>
                             </Parameters>
                           </Node>
+                          <Node ID="send" FactoryPath="routing.send" Bypassed="0">
+                            <Properties>
+                              <Property ID="Connection" Value="receive"/>
+                            </Properties>
+                            <Parameters/>
+                          </Node>
                         </Nodes>
-                        <Parameters/>
-                      </Node>
-                      <Node ID="send" FactoryPath="routing.send" Bypassed="0">
-                        <Properties>
-                          <Property ID="Connection" Value="receive"/>
-                        </Properties>
                         <Parameters/>
                       </Node>
                       <Node ID="gain1" FactoryPath="core.gain" Bypassed="0">

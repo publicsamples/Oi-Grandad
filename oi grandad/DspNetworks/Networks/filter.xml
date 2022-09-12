@@ -30,38 +30,28 @@
             <Nodes>
               <Node ID="chain4" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
-                  <Node ID="modchain4" FactoryPath="container.modchain" Bypassed="0">
-                    <Nodes>
-                      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
-                        <Nodes>
-                          <Node ID="global_mod4" FactoryPath="core.global_mod" Bypassed="0">
-                            <ModulationTargets>
-                              <Connection NodeId="pma4" ParameterId="Value"/>
-                            </ModulationTargets>
-                            <ComplexData>
-                              <DisplayBuffers>
-                                <DisplayBuffer Index="-1"/>
-                              </DisplayBuffers>
-                            </ComplexData>
-                            <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-                            </Parameters>
-                          </Node>
-                          <Node ID="pma4" FactoryPath="control.pma" Bypassed="0">
-                            <ModulationTargets>
-                              <Connection NodeId="svf" ParameterId="Frequency"/>
-                            </ModulationTargets>
-                            <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                            </Parameters>
-                          </Node>
-                        </Nodes>
-                        <Parameters/>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
+                  <Node ID="global_mod4" FactoryPath="core.global_mod" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="pma4" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="pma4" FactoryPath="control.pma" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="svf" ParameterId="Frequency"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                    </Parameters>
                   </Node>
                   <Node ID="svf" FactoryPath="filters.svf" Bypassed="0">
                     <ComplexData>
@@ -101,7 +91,7 @@
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="0.0"/>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
                     </Parameters>
@@ -117,7 +107,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="cut" MinValue="0.0" MaxValue="1.0" Value="0.0">
+      <Parameter ID="cut" MinValue="0.0" MaxValue="1.0" Value="0.275265625">
         <Connections>
           <Connection NodeId="pma4" ParameterId="Add"/>
         </Connections>

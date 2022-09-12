@@ -5,7 +5,7 @@
     <Nodes>
       <Node ID="a1" FactoryPath="container.chain" Bypassed="0">
         <Nodes>
-          <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+          <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
             <Nodes>
               <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
                     NodeColour="4282863026">
