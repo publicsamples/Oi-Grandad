@@ -290,7 +290,7 @@
                     <ComplexData>
                       <AudioFiles>
                         <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                                   MaxValue="0"/>
+                                   MaxValue="449996"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
@@ -383,7 +383,7 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="limiter" FactoryPath="dynamics.limiter" Bypassed="0" Folded="1">
+      <Node ID="limiter" FactoryPath="dynamics.limiter" Bypassed="0">
         <ComplexData>
           <DisplayBuffers>
             <DisplayBuffer Index="-1"/>

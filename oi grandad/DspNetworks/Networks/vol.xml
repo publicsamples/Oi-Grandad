@@ -53,7 +53,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="vol" MinValue="0.0" MaxValue="1.0" Value="0.49384375">
+      <Parameter ID="vol" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="pma5" ParameterId="Add"/>
         </Connections>

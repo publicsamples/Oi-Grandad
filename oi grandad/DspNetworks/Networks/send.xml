@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="send" Version="0.0.0">
+<Network ID="send" Version="0.0.0" AllowPolyphonic="1">
   <Node FactoryPath="container.chain" ID="send" Bypassed="0" ShowParameters="1">
     <Nodes>
       <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
@@ -23,7 +23,7 @@
               </Node>
               <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
-                  <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
+                  <Node ID="peak" FactoryPath="core.peak" Bypassed="0">
                     <ModulationTargets>
                       <Connection NodeId="global_cable" ParameterId="Value"/>
                     </ModulationTargets>
@@ -32,16 +32,7 @@
                         <DisplayBuffer Index="-1"/>
                       </DisplayBuffers>
                     </ComplexData>
-                    <Parameters>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-31.19999897480011"/>
-                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Attack" Value="50.0"/>
-                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Release" Value="50.0"/>
-                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.2968033850193024" ID="Ratio" Automated="1"/>
-                    </Parameters>
+                    <Parameters/>
                   </Node>
                   <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
                     <Parameters>
@@ -66,9 +57,7 @@
     <Parameters>
       <Parameter ID="ratio" MinValue="1.000000014901161" MaxValue="32.0" StepSize="0.1000000014901161"
                  SkewFactor="0.2968033850193024" Value="1.0">
-        <Connections>
-          <Connection NodeId="comp" ParameterId="Ratio"/>
-        </Connections>
+        <Connections/>
       </Parameter>
     </Parameters>
   </Node>
