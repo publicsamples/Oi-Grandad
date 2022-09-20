@@ -67,7 +67,7 @@
             <Control type="ScriptComboBox" id="ComboBox25" value="8.0"/>
             <Control type="ScriptSliderPack" id="SliderPackF1" value="-1.0" data="64......................................................................................."/>
             <Control type="ScriptComboBox" id="ComboBox13" value="0.0"/>
-            <Control type="ScriptTable" id="ScriptTable12" value="0.0" data=""/>
+            <Control type="ScriptTable" id="ScriptTable12" value="0.0" data="36...............vOJ8Ic9vdT37C...vO...f+....9C...vO"/>
             <Control type="ScriptSlider" id="Knob110" value="0.5"/>
             <Control type="ScriptSlider" id="Knob111" value="1.0"/>
             <Control type="ScriptSlider" id="Knob112" value="4.0"/>
@@ -336,7 +336,7 @@
               <Component type="ScriptPanel" id="bg" x="0.0" y="-30.0" width="1070.0" height="890.0"
                          bgColour="4279698179" itemColour="4280578951" itemColour2="4281449431"
                          enabled="0" locked="1">
-                <Component type="ScriptImage" id="Image3" x="653.0" y="696.0" fileName="/Users/rick/Downloads/gslanted3.png"
+                <Component type="ScriptImage" id="Image3" x="653.0" y="696.0" fileName="{PROJECT_FOLDER}gslanted3.png"
                            width="190" height="30" parentComponent="bg" scale="0.9"/>
               </Component>
               <Component type="ScriptSlider" id="pitch10" x="41.0" y="688.0" width="40.0"
