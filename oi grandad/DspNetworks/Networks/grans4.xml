@@ -233,8 +233,7 @@
                 </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
-                  <Parameter MinValue="1.0" MaxValue="18.0" StepSize="1.0" ID="Multiplier"
-                             Automated="1"/>
+                  <Parameter MinValue="1.0" MaxValue="18.0" StepSize="1.0" ID="Multiplier"/>
                   <Parameter MinValue="1.0" MaxValue="0.0" StepSize="1.0" ID="Enabled" Automated="1"/>
                   <Parameter MinValue="20.0" MaxValue="1600.0" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" Automated="1"/>
@@ -552,9 +551,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="gmulti" MinValue="1.0" MaxValue="4.0" StepSize="1.0" Value="2.0">
-        <Connections>
-          <Connection NodeId="tempo_sync2" ParameterId="Multiplier"/>
-        </Connections>
+        <Connections/>
       </Parameter>
     </Parameters>
   </Node>
