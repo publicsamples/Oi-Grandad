@@ -3,7 +3,7 @@
 <Network ID="send3" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="send3" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
+      <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="1">
         <Nodes>
           <Node ID="split" FactoryPath="container.split" Bypassed="0">
             <Nodes>
