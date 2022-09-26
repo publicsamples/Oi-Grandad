@@ -149,7 +149,7 @@
             <Control type="ScriptComboBox" id="cut1modsel" value="13.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
-            <Control type="ScriptSlider" id="pos" value="0.6614173054695129"/>
+            <Control type="ScriptSlider" id="pos" value="0.7244094610214233"/>
             <Control type="ScriptSlider" id="posmod" value="1.0"/>
             <Control type="ScriptSlider" id="densemod" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.5"/>
@@ -202,7 +202,7 @@
             <Control type="ScriptSlider" id="pitch1" value="1.255905508995056"/>
             <Control type="ScriptSlider" id="attack1" value="0.4699999988079071"/>
             <Control type="ScriptComboBox" id="cut1modsel1" value="7.0"/>
-            <Control type="ScriptSlider" id="pos1" value="0.6614173054695129"/>
+            <Control type="ScriptSlider" id="pos1" value="0.7244094610214233"/>
             <Control type="ScriptSlider" id="posmod1" value="0.6499999761581421"/>
             <Control type="ScriptSlider" id="densemod1" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod1" value="0.5"/>
@@ -250,7 +250,7 @@
             <Control type="ScriptSlider" id="pitch2" value="1.255905508995056"/>
             <Control type="ScriptSlider" id="attack2" value="1.0"/>
             <Control type="ScriptComboBox" id="cut1modsel2" value="8.0"/>
-            <Control type="ScriptSlider" id="pos2" value="0.6614173054695129"/>
+            <Control type="ScriptSlider" id="pos2" value="0.7244094610214233"/>
             <Control type="ScriptSlider" id="posmod2" value="0.0"/>
             <Control type="ScriptSlider" id="densemod2" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod2" value="0.5"/>
@@ -299,7 +299,7 @@
             <Control type="ScriptSlider" id="pitch3" value="1.255905508995056"/>
             <Control type="ScriptSlider" id="attack3" value="0.6700000166893005"/>
             <Control type="ScriptComboBox" id="cut1modsel3" value="14.0"/>
-            <Control type="ScriptSlider" id="pos3" value="0.6614173054695129"/>
+            <Control type="ScriptSlider" id="pos3" value="0.7244094610214233"/>
             <Control type="ScriptSlider" id="posmod3" value="0.0"/>
             <Control type="ScriptSlider" id="densemod3" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod3" value="0.5"/>
@@ -3007,14 +3007,94 @@
                  Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
                  Send7="-1"/>
   <macro_controls>
-    <macro name="Macro 1" value="0.0" midi_cc="-1"/>
-    <macro name="Macro 2" value="93.0" midi_cc="-1"/>
-    <macro name="Macro 3" value="52.0" midi_cc="-1"/>
-    <macro name="Macro 4" value="64.0" midi_cc="-1"/>
-    <macro name="Macro 5" value="40.0" midi_cc="-1"/>
-    <macro name="Macro 6" value="99.0" midi_cc="-1"/>
-    <macro name="Macro 7" value="0.0" midi_cc="-1"/>
-    <macro name="Macro 8" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 1" value="92.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="408" parameter_name="ScriptSlider1" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="409" parameter_name="ScriptSlider2" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="410" parameter_name="ScriptSlider3" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="411" parameter_name="ScriptSlider4" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 2" value="93.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="412" parameter_name="ScriptSlider5" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="413" parameter_name="ScriptSlider6" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="414" parameter_name="ScriptSlider7" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="415" parameter_name="ScriptSlider8" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="443" parameter_name="ScriptSlider36" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="442" parameter_name="ScriptSlider35" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="441" parameter_name="ScriptSlider34" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="440" parameter_name="ScriptSlider33" min="0.0"
+                            max="18.0" low="0.0" high="18.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 3" value="52.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="416" parameter_name="ScriptSlider9" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="417" parameter_name="ScriptSlider10" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="418" parameter_name="ScriptSlider11" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="419" parameter_name="ScriptSlider12" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 4" value="64.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="420" parameter_name="ScriptSlider13" min="0.5"
+                            max="2.0" low="0.5" high="2.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="421" parameter_name="ScriptSlider14" min="0.5"
+                            max="2.0" low="0.5" high="2.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="422" parameter_name="ScriptSlider15" min="0.5"
+                            max="2.0" low="0.5" high="2.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="423" parameter_name="ScriptSlider16" min="0.5"
+                            max="2.0" low="0.5" high="2.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 5" value="40.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="424" parameter_name="ScriptSlider17" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="426" parameter_name="ScriptSlider19" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="427" parameter_name="ScriptSlider20" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="428" parameter_name="ScriptSlider21" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 6" value="99.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="429" parameter_name="ScriptSlider22" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="430" parameter_name="ScriptSlider23" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="431" parameter_name="ScriptSlider24" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="432" parameter_name="ScriptSlider25" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 7" value="0.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="433" parameter_name="ScriptSlider26" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="434" parameter_name="ScriptSlider27" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="435" parameter_name="ScriptSlider28" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="436" parameter_name="ScriptSlider29" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
+    <macro name="Macro 8" value="0.0" midi_cc="-1">
+      <controlled_parameter id="ui" parameter="437" parameter_name="ScriptSlider30" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="438" parameter_name="ScriptSlider31" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="439" parameter_name="ScriptSlider32" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+      <controlled_parameter id="ui" parameter="425" parameter_name="ScriptSlider18" min="0.0"
+                            max="1.0" low="0.0" high="1.0" inverted="0" readonly="1"/>
+    </macro>
   </macro_controls>
   <MidiAutomation/>
   <MPEData Enabled="0"/>
