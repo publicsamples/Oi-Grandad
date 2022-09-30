@@ -20,7 +20,12 @@ For a quick overview of the functionality see:
 
 https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
 
-Logic users please note: It seems Oi, Grandad! will "glitch out" using any buffer size below 512 samples.
+# Known issues
+
+When using Logic Pro it is necessary to use a buffer size of 512 or higher, a lower buffer will cause the position modulation to behave incorrectly 
+
+It is reccomended to use samples of 1mb or larger, shorter files may cause crashes or audio dropouts.
+ 
 
 # Installation
 
