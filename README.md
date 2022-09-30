@@ -25,19 +25,21 @@ https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
 When using Logic Pro it is necessary to use a buffer size of 512 or higher, a lower buffer will cause the position modulation to behave incorrectly 
 
 It is reccomended to use samples of 1mb or larger, shorter files may cause crashes or audio dropouts.
- 
+
 
 # Installation
 
  **Linux**
  
  Copy oi grandad.vst3 to User/Home/vst3
+ 
  copy modularsamples to User/Home/.config
 
 
  **Windows**
 
 Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
+
 Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
  **Mac**
@@ -47,6 +49,19 @@ Oen the DMG file and then open the file "Oi Grandad.mkpg". If you get a message 
 On loading your DAW you may see a message saying “the developer cannot be verified” to fix this open System Preferences → Security and Privacy. On the general tab click ‘Open anyway’.
 
  https://support.apple.com/en-us/HT202491
+ 
+ # Other 
+ 
+If you have any questions, comments or suggestions feel free to create a post here:
+ 
+https://github.com/publicsamples/Oi-Grandad/discussions
+
+I've started a list of free sounds that I feel work well with with Oi, Grandad! here:
+
+https://github.com/publicsamples/Oi-Grandad/discussions
+ 
+https://github.com/publicsamples/Oi-Grandad/discussions/6
+ 
  
 # Preset Competition
 
