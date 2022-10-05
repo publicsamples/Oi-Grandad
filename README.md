@@ -22,7 +22,7 @@ https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
 
 # Known issues
 
-When using Logic Pro it is necessary to use a buffer size of 512 or higher, a lower buffer will cause the position modulation to behave incorrectly 
+When using Logic Pro 10.7.x it is necessary to use a buffer size of 512 or higher, a lower buffer will cause the position modulation to behave incorrectly. 10.6.3 should work with any buffer size.
 
 It is reccomended to use samples of 1mb or larger, shorter files may cause crashes or audio dropouts.
 
@@ -44,7 +44,7 @@ Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
  **Mac**
  
-Oen the DMG file and then open the file "Oi Grandad.mkpg". If you get a message saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
+Open the DMG file and then open the file "Oi Grandad.mkpg". If you get a message saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
 
 On loading your DAW you may see a message saying “the developer cannot be verified” to fix this open System Preferences → Security and Privacy. On the general tab click ‘Open anyway’.
 
