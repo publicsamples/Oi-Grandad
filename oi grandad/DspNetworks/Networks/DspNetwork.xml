@@ -30,13 +30,13 @@
               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
                          ID="AttackLevel" Value="1.0"/>
               <Parameter MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                         SkewFactor="0.1976716816425323" ID="Decay" Value="0.0"/>
+                         SkewFactor="0.1976716816425323" ID="Decay" Value="27.3000004068017"/>
               <Parameter MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
                          SkewFactor="0.1976716816425323" ID="Hold" Value="0.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
-                         ID="Sustain" Value="1.0"/>
+                         ID="Sustain" Value="0.0"/>
               <Parameter MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                         SkewFactor="0.1976716816425323" ID="Release" Value="20.0"/>
+                         SkewFactor="0.1976716816425323" ID="Release" Value="0.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.009999999776482582"
                          ID="AttackCurve" Value="0.5"/>
               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Retrigger" Value="0.0"/>
