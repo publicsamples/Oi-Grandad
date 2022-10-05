@@ -328,7 +328,7 @@
             <Control type="ScriptButton" id="gsync4" value="0.0"/>
             <Control type="ScriptSlider" id="grainsizesync4" value="0.5"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
-            <Control type="ScriptButton" id="Hold" value="1.0"/>
+            <Control type="ScriptButton" id="Hold" value="0.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
           </Content>
           <UIData>
@@ -2363,7 +2363,7 @@
         <Processor Type="ScriptProcessor" ID="hold" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptButton" id="Hold" value="1.0"/>
+            <Control type="ScriptButton" id="Hold" value="0.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
         </Processor>
