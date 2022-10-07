@@ -82,7 +82,7 @@
             <Control type="ScriptSlider" id="Knob73" value="1.0"/>
             <Control type="ScriptSlider" id="Knob79" value="0.0"/>
             <Control type="ScriptButton" id="seq1type1" value="0.0"/>
-            <Control type="ScriptComboBox" id="ComboBox14" value="2.0"/>
+            <Control type="ScriptComboBox" id="ComboBox14" value="1.0"/>
             <Control type="ScriptButton" id="stype21" value="0.0"/>
             <Control type="ScriptButton" id="stype22" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackB" value="0.0" data="64......ziBW6Sb8nvOJb8H+zLyL8i8nv0OWOJL+...........Jb8H8rGEt5C...vORgqG+LyLy7CWOJzOMyLS+."/>
@@ -328,7 +328,7 @@
             <Control type="ScriptButton" id="gsync4" value="0.0"/>
             <Control type="ScriptSlider" id="grainsizesync4" value="0.5"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
-            <Control type="ScriptButton" id="Hold" value="0.0"/>
+            <Control type="ScriptButton" id="Hold" value="1.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
           </Content>
           <UIData>
@@ -2363,7 +2363,7 @@
         <Processor Type="ScriptProcessor" ID="hold" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptButton" id="Hold" value="0.0"/>
+            <Control type="ScriptButton" id="Hold" value="1.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
         </Processor>

@@ -34,7 +34,7 @@
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-44.79999917745591"/>
+                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-47.59999921917916"/>
                       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
                                  SkewFactor="0.4306765496730804" ID="Attack" Value="0.0"/>
                       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
@@ -59,7 +59,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="ratio" MinValue="0.0" MaxValue="1.0" Value="0.252109375">
+      <Parameter ID="ratio" MinValue="0.0" MaxValue="1.0" Value="0.558109375">
         <Connections>
           <Connection NodeId="comp" ParameterId="Ratio"/>
         </Connections>

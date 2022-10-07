@@ -60,7 +60,7 @@
     </Nodes>
     <Parameters>
       <Parameter ID="ratio" MinValue="1.000000014901161" MaxValue="32.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.2968033850193024" Value="2.900000043213367">
+                 SkewFactor="0.2968033850193024" Value="18.80000028014183">
         <Connections>
           <Connection NodeId="comp" ParameterId="Ratio"/>
         </Connections>

@@ -3,7 +3,8 @@
 <Network ID="send3" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="send3" Bypassed="0" ShowParameters="1">
     <Nodes>
-      <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="1">
+      <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="1"
+            ShowParameters="0">
         <Nodes>
           <Node ID="split" FactoryPath="container.split" Bypassed="0">
             <Nodes>
@@ -34,11 +35,11 @@
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-33.39999900758266"/>
+                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-42.8999991491437"/>
                       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Attack" Value="50.0"/>
+                                 SkewFactor="0.4306765496730804" ID="Attack" Value="0.0"/>
                       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Release" Value="50.0"/>
+                                 SkewFactor="0.4306765496730804" ID="Release" Value="0.0"/>
                       <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
                                  SkewFactor="0.2968033850193024" ID="Ratio" Automated="1"/>
                     </Parameters>
@@ -64,7 +65,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="ratio" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="ratio" MinValue="0.0" MaxValue="1.0" Value="0.3418906249999999">
         <Connections>
           <Connection NodeId="comp" ParameterId="Ratio"/>
         </Connections>
