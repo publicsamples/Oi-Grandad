@@ -1,4 +1,4 @@
-Content.makeFrontInterface(865, 737);
+Content.makeFrontInterface(865, 746);
 
 // Hide or show pitch mod options
 
