@@ -330,6 +330,7 @@
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="Hold" value="1.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
+            <Control type="ScriptSlider" id="mastervol" value="6.900000095367432"/>
           </Content>
           <UIData>
             <ContentProperties DeviceType="Desktop">
@@ -1001,7 +1002,7 @@
                   <Component type="ScriptButton" id="delaysync1" x="205.0" y="297.0" width="30.0"
                              height="30.0" scaleFactor="0.5" parentComponent="voice1" itemColour="4292689201"
                              filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
-                  <Component type="ScriptSlider" id="Vol" x="204.0" y="115.0" stepSize="0.009999999776482582"
+                  <Component type="ScriptSlider" id="Vol" x="204.0" y="113.0" stepSize="0.009999999776482582"
                              width="30.0" height="30.0" processorId="vol1" parameterId="vol"
                              parentComponent="voice1" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" dragDirection="Vertical" scaleFactor="0.8500000238418579"
@@ -1018,7 +1019,7 @@
                              scaleFactor="0.75" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="resonance1"/>
-                  <Component type="ScriptSlider" id="pan" x="266.0" y="115.0" width="30.0"
+                  <Component type="ScriptSlider" id="pan" x="266.0" y="113.0" width="30.0"
                              height="30.0" parentComponent="voice1" processorId="pan1" parameterId="Pan"
                              stepSize="0.1000000014901161" suffix="L" middlePosition="0.5"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
@@ -1262,7 +1263,7 @@
                                numStrips="200.0" dragDirection="Vertical" scaleFactor="0.6000000238418579"
                                middlePosition="0.5" defaultValue="0.5" showValuePopup="Below"/>
                   </Component>
-                  <Component type="ScriptSlider" id="pan4" x="255.0" y="181.0" width="20.0"
+                  <Component type="ScriptSlider" id="pan4" x="254.0" y="183.0" width="20.0"
                              height="20.0" parentComponent="voice1" processorId="Script FX1"
                              parameterId="ratio" stepSize="1.0" middlePosition="16.0" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" dragDirection="Vertical" scaleFactor="0.699999988079071"
@@ -1271,9 +1272,9 @@
                   <Component type="ScriptSlider" id="grainsizesync1" x="102.0" y="111.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="grain" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
-                             middlePosition="9.0" defaultValue="0.5" showValuePopup="Below"
+                             middlePosition="9.0" defaultValue="5.0" showValuePopup="Below"
                              isPluginParameter="1" pluginParameterName="Grain1" mode="TempoSync"
-                             max="18.0" stepSize="1.0" visible="0"/>
+                             max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync1" x="205.0" y="263.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.75" parentComponent="voice1" saveInPreset="0"
@@ -1297,7 +1298,7 @@
                                height="97.0" parentComponent="ScriptPanel2" fileName="{PROJECT_FOLDER}screen.png"
                                enabled="0" locked="1"/>
                   </Component>
-                  <Component type="ScriptSlider" id="pan5" x="254.0" y="184.0" width="20.0"
+                  <Component type="ScriptSlider" id="pan5" x="254.0" y="186.0" width="20.0"
                              height="20.0" parentComponent="voice2" processorId="Script FX2"
                              parameterId="ratio" stepSize="1.0" middlePosition="16.0" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" dragDirection="Vertical" scaleFactor="0.699999988079071"
@@ -1564,7 +1565,7 @@
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="9.0" defaultValue="18.0" showValuePopup="Below"
                              isPluginParameter="1" pluginParameterName="Grain2" mode="TempoSync"
-                             max="18.0" stepSize="1.0" visible="0"/>
+                             max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync2" x="206.0" y="264.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.75" parentComponent="voice2" saveInPreset="0"
@@ -1587,7 +1588,7 @@
                                height="97.0" parentComponent="ScriptPanel3" fileName="{PROJECT_FOLDER}screen.png"
                                enabled="0"/>
                   </Component>
-                  <Component type="ScriptSlider" id="pan6" x="255.0" y="182.0" width="20.0"
+                  <Component type="ScriptSlider" id="pan6" x="254.0" y="182.0" width="20.0"
                              height="20.0" parentComponent="voice3" processorId="Script FX3"
                              parameterId="ratio" stepSize="1.0" middlePosition="16.0" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" dragDirection="Vertical" scaleFactor="0.699999988079071"
@@ -1840,9 +1841,9 @@
                   <Component type="ScriptSlider" id="grainsizesync3" x="101.0" y="110.0" width="40.0"
                              height="40.0" processorId="gran3" parameterId="grain" parentComponent="voice3"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
-                             middlePosition="9.0" defaultValue="0.5" showValuePopup="Below"
+                             middlePosition="9.0" defaultValue="5.0" showValuePopup="Below"
                              isPluginParameter="1" pluginParameterName="Grain3" mode="TempoSync"
-                             max="18.0" stepSize="1.0" visible="0"/>
+                             max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync3" x="207.0" y="264.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.75" parentComponent="voice3" saveInPreset="0"
@@ -1865,7 +1866,7 @@
                                height="97.0" parentComponent="ScriptPanel4" fileName="{PROJECT_FOLDER}screen.png"
                                enabled="0"/>
                   </Component>
-                  <Component type="ScriptSlider" id="pan7" x="254.0" y="181.0" width="20.0"
+                  <Component type="ScriptSlider" id="pan7" x="253.0" y="184.0" width="20.0"
                              height="20.0" parentComponent="voice4" processorId="Script FX4"
                              parameterId="ratio" stepSize="1.0" middlePosition="16.0" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" dragDirection="Vertical" scaleFactor="0.699999988079071"
@@ -2130,9 +2131,9 @@
                   <Component type="ScriptSlider" id="grainsizesync4" x="101.0" y="110.0" width="40.0"
                              height="40.0" processorId="gran4" parameterId="grain" parentComponent="voice4"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
-                             middlePosition="9.0" defaultValue="0.5" showValuePopup="Below"
+                             middlePosition="9.0" defaultValue="5.0" showValuePopup="Below"
                              isPluginParameter="1" pluginParameterName="Grain4" mode="TempoSync"
-                             max="18.0" stepSize="1.0" visible="0"/>
+                             max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync4" x="206.0" y="264.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.75" parentComponent="voice4" saveInPreset="0"
@@ -2205,6 +2206,11 @@
                          isPopupPanel="1" holdIsRightClick="0" popupOnRightClick="0" allowCallbacks="All Callbacks"/>
               <Component type="ScriptImage" id="Image12" x="-230.0" y="-2.0" fileName="{PROJECT_FOLDER}bf6.png"
                          width="1390.0" height="800.0" enabled="0" visible="0"/>
+              <Component type="ScriptSlider" id="mastervol" x="570.0" y="710.0" width="30.0"
+                         height="30.0" processorId="Simple Gain1" parameterId="Gain" filmstripImage="{PROJECT_FOLDER}k2.png"
+                         numStrips="200.0" showValuePopup="Left" macroControl="No MacroControl"
+                         middlePosition="0.0" min="-100.0" max="24.0" stepSize="0.1" isPluginParameter="1"
+                         pluginParameterName="mastervol" showTextBox="0"/>
             </ContentProperties>
           </UIData>
         </Processor>
@@ -2224,7 +2230,29 @@
       <ChildProcessors/>
     </Processor>
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
-      <ChildProcessors/>
+      <ChildProcessors>
+        <Processor Type="SimpleGain" ID="Simple Gain1" Bypassed="0" Gain="6.900000095367432"
+                   Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
+          <ChildProcessors>
+            <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Delay Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Width Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+            <Processor Type="ModulatorChain" ID="Pan Modulation" Bypassed="0" Intensity="1.0">
+              <ChildProcessors/>
+            </Processor>
+          </ChildProcessors>
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+                         Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
+                         Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
+                         Channel7="-1" Send7="-1"/>
+        </Processor>
+      </ChildProcessors>
     </Processor>
     <Processor Type="GlobalModulatorContainer" ID="Global Modulator Container1"
                Bypassed="0" Gain="0.25" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
