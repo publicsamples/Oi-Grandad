@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="0.9.3"/>
+  <Version value="0.9.5"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -29,4 +29,6 @@
   <LinkExpansionsToProject value="No"/>
   <ReadOnlyFactoryPresets value="No"/>
   <ForceStereoOutput value="No"/>
+  <EnableMidiOut value="No"/>
+  <AdminPermissions value="No"/>
 </ProjectSettings>

@@ -174,7 +174,7 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0" Folded="1">
+          <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0">
             <Nodes>
               <Node ID="chain1" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
@@ -204,7 +204,7 @@
                 </Nodes>
                 <Parameters/>
               </Node>
-              <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
+              <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
                 <ModulationTargets>
                   <Connection NodeId="gunsync" ParameterId="Value"/>
                 </ModulationTargets>
@@ -232,8 +232,9 @@
                   <Connection NodeId="granulator" ParameterId="GrainSize"/>
                 </ModulationTargets>
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
-                  <Parameter MinValue="1.0" MaxValue="18.0" StepSize="1.0" ID="Multiplier"/>
+                  <Parameter MinValue="5.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                  <Parameter MinValue="1.0" MaxValue="18.0" StepSize="1.0" ID="Multiplier"
+                             Value="1.0"/>
                   <Parameter MinValue="1.0" MaxValue="0.0" StepSize="1.0" ID="Enabled" Automated="1"/>
                   <Parameter MinValue="20.0" MaxValue="1600.0" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" Automated="1"/>
@@ -423,7 +424,7 @@
           <Connection NodeId="input_toggle" ParameterId="Value1"/>
         </Connections>
       </Parameter>
-      <Parameter ID="grain" MinValue="0.0" MaxValue="18.0" Value="0.0">
+      <Parameter ID="grain" MinValue="5.0" MaxValue="18.0" Value="6.13221875">
         <Connections>
           <Connection NodeId="gunsync" ParameterId="Add"/>
         </Connections>
