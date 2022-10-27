@@ -64,12 +64,4 @@ https://github.com/publicsamples/Oi-Grandad/discussions
  
 https://github.com/publicsamples/Oi-Grandad/discussions/6
  
- 
-# Preset Competition
-
-I'm inviting people to submit presets for Oi, Grandad!, the Wavetables for RetroSynth collection or The Modular, Oberheim Xpander and Roland System 101 Construction Kits. The best three entries will win a USB drive containing the entire Modularsamples public domain catalogue and all the commercial libraries and instruments.
-
-All entrants will be given their choice of one of my fine commercial, digital products.
-
-For more info see this post:
-https://modularsamples.gumroad.com/p/win-a-256gb-sample-library
+![Yo! pensioner! ](https://github.com/publicsamples/Oi-Grandad/blob/main/oi%20grandad/Images/YoPensioner.png?raw=true)
