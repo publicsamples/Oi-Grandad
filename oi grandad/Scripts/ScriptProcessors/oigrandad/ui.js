@@ -3,20 +3,10 @@ Content.makeFrontInterface(865, 746);
 // Create a transport handler
 const var transportHandler = Engine.createTransportHandler();
 
-// The grid callback needs to be enabled for the LFO
-// to sync itself to the clock.
 transportHandler.setEnableGrid(true, 8);
 
-// The clock will now prefer the external clock source. This
-// means that as long as the external clock isn't running
-// (the DAW playback is stopped) it will use the internal clock
-// and as soon as the DAW playback is started it will resync
-// itself to match the DAW position
 transportHandler.setSyncMode(transportHandler.PreferExternal);
 
-// Start the internal clock. This will cause the LFO to run
-// even if the DAW playback is stopped. (if you omit this line
-// the LFO will not move unless the DAW playback is started).
 transportHandler.startInternalClock(0);
 
 // Hide or show pitch mod options
@@ -106,6 +96,8 @@ inline function ongsync1Control(number, value)
 {
 		grainsizesync1.showControl(value); 
         grainsize1.showControl(1-value);
+        mastergrain1.showControl(value); 
+                mastergrain.showControl(1-value);
       
        grs1.setAttribute(grs1.gsync, 0);
        grs1.setAttribute(grs1.gsync, 1-value);
@@ -118,12 +110,16 @@ const var gsync2 = Content.getComponent("gsync2");
 const var grainsize2 = Content.getComponent("grainsize2");
 const var grainsizesync2 = Content.getComponent("grainsizesync2");
 const var grs2 = Synth.getEffect("gran2");
+const var mastergrain1 = Content.getComponent("mastergrain1");
+
+
 
 inline function ongsync2Control(number, value)
 {
 		grainsizesync2.showControl(value); 
         grainsize2.showControl(1-value);
-        
+        mastergrain1.showControl(value); 
+        mastergrain.showControl(1-value);
       
        grs2.setAttribute(grs2.gsync, 0);
        grs2.setAttribute(grs2.gsync, 1-value);
@@ -141,6 +137,8 @@ inline function ongsync3Control(number, value)
 {
 		grainsizesync3.showControl(value); 
         grainsize3.showControl(1-value);
+        mastergrain1.showControl(value); 
+                       mastergrain.showControl(1-value);
       
        grs3.setAttribute(grs3.gsync, 0);
        grs3.setAttribute(grs3.gsync, 1-value);
@@ -159,7 +157,8 @@ inline function ongsync4Control(number, value)
 {
 		grainsizesync4.showControl(value); 
         grainsize4.showControl(1-value);
-      
+      mastergrain1.showControl(value); 
+                     mastergrain.showControl(1-value);
        grs4.setAttribute(grs4.gsync, 0);
        grs4.setAttribute(grs4.gsync, 1-value);
 }
@@ -168,6 +167,11 @@ inline function ongsync4Control(number, value)
 gsync4.setControlCallback(ongsync4Control);
 
 // Switch delay slider
+const var mastertime1 = Content.getComponent("mastertime1");
+
+const var mastertime = Content.getComponent("mastertime");
+
+
 
 const var delaysync1 = Content.getComponent("delaysync1");
 const var DelayTime1 = Content.getComponent("DelayTime1");
@@ -178,7 +182,8 @@ inline function ondelaysync1Control(number, value)
 {
 		DelayTimesync1.showControl(value); 
         DelayTime1.showControl(1-value);
-      
+      mastertime1.showControl(value); 
+                     mastertime.showControl(1-value);
        dt1.setAttribute(dt1.delaysync, 0);
        dt1.setAttribute(dt1.delaysync, 1-value);
 }
@@ -197,7 +202,8 @@ inline function ondelaysync2Control(number, value)
 {
 		DelayTimesync2.showControl(value); 
         DelayTime2.showControl(1-value);
-      
+      mastertime1.showControl(value); 
+                     mastertime.showControl(1-value);
       dt2.setAttribute(dt2.delaysync, 0);
        dt2.setAttribute(dt2.delaysync, 1-value);
     
@@ -217,7 +223,8 @@ inline function ondelaysync3Control(number, value)
 {
 		DelayTimesync3.showControl(value); 
         DelayTime3.showControl(1-value);
-      
+      mastertime1.showControl(value); 
+                     mastertime.showControl(1-value);
        dt3.setAttribute(dt3.delaysync, 0);
        dt3.setAttribute(dt3.delaysync, 1-value);
 }
@@ -236,7 +243,8 @@ inline function ondelaysync4Control(number, value)
 {
 		DelayTimesync4.showControl(value); 
         DelayTime4.showControl(1-value);
-      
+      mastertime1.showControl(value); 
+      mastertime.showControl(1-value);
        dt4.setAttribute(dt4.delaysync, 0);
        dt4.setAttribute(dt4.delaysync, 1-value);
 }
@@ -793,20 +801,31 @@ const var mastergrain = Content.getComponent("mastergrain");
 inline function onmastergrainControl(component, value)
 {
 	grainsize1.setValue(value);
-	gran.setAttribute(gran.grain, value);
 	gran.setAttribute(gran.grain2, value);
 	grainsize2.setValue(value);
-	gran2.setAttribute(gran2.grain, value);
 	gran2.setAttribute(gran2.grain2, value);
 	grainsize3.setValue(value);
-	gran3.setAttribute(gran3.grain, value);
 	gran3.setAttribute(gran3.grain2, value);
 	grainsize4.setValue(value);
-	gran4.setAttribute(gran4.grain, value);
 	gran4.setAttribute(gran4.grain2, value);
 };
 
 Content.getComponent("mastergrain").setControlCallback(onmastergrainControl);
+
+inline function onmastergrain1Control(component, value)
+{
+	grainsizesync1.setValue(value);
+	gran.setAttribute(gran.grain, value);
+	grainsizesync2.setValue(value);
+	gran2.setAttribute(gran2.grain, value);
+	grainsizesync3.setValue(value);
+	gran3.setAttribute(gran3.grain, value);
+	grainsizesync4.setValue(value);
+	gran4.setAttribute(gran4.grain, value);
+
+};
+
+Content.getComponent("mastergrain1").setControlCallback(onmastergrain1Control);
 
 const var masterdense = Content.getComponent("masterdense");
 const var Dense = Content.getComponent("Dense");
@@ -959,7 +978,6 @@ inline function onmastermixControl(component, value)
 
 Content.getComponent("mastermix").setControlCallback(onmastermixControl);
 
-const var mastertime = Content.getComponent("mastertime");
 
 const var del1 = Synth.getEffect("del1");
 const var del2 = Synth.getEffect("del2");
@@ -969,21 +987,30 @@ const var del4 = Synth.getEffect("del4");
 inline function onmastertimeControl(component, value)
 {
 	DelayTime1.setValue(value);
-	del1.setAttribute(del1.delytime, value);
 	del1.setAttribute(del1.timenosync, value);
 	DelayTime2.setValue(value);
-	del2.setAttribute(del2.delytime, value);
 	del2.setAttribute(del2.timenosync, value);
 	DelayTime3.setValue(value);
-	del3.setAttribute(del3.delytime, value);
 	del3.setAttribute(del3.timenosync, value);
 	DelayTime4.setValue(value);
-	del4.setAttribute(del4.delytime, value);
 	del4.setAttribute(del4.timenosync, value);
 };
 
 Content.getComponent("mastertime").setControlCallback(onmastertimeControl);
 
+inline function onmastertime1Control(component, value)
+{
+	DelayTimesync1.setValue(value);
+	del1.setAttribute(del1.delytime, value);
+	DelayTimesync2.setValue(value);
+	del2.setAttribute(del2.delytime, value);
+	DelayTimesync3.setValue(value);
+	del3.setAttribute(del3.delytime, value);
+	DelayTimesync4.setValue(value);
+	del4.setAttribute(del4.delytime, value);
+};
+
+Content.getComponent("mastertime1").setControlCallback(onmastertime1Control);
 
 const var masterfeed = Content.getComponent("masterfeed");
 const var feed = Content.getComponent("feed");
