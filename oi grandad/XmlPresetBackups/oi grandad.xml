@@ -330,11 +330,10 @@
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="Hold" value="1.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
-            <Control type="ScriptSlider" id="mastervol" value="6.900000095367432"/>
           </Content>
           <UIData>
             <ContentProperties DeviceType="Desktop">
-              <Component type="ScriptImage" id="Image4" x="-3.0" y="-1.0" fileName="{PROJECT_FOLDER}background.png"
+              <Component type="ScriptImage" id="Image4" x="-3.0" y="-1.0" fileName="{PROJECT_FOLDER}ogbackground3.png"
                          width="870.0" height="770.0" locked="1"/>
               <Component type="ScriptPanel" id="bg" x="0.0" y="-30.0" width="1070.0" height="890.0"
                          bgColour="4279698179" itemColour="4280578951" itemColour2="4281449431"
@@ -2206,11 +2205,71 @@
                          isPopupPanel="1" holdIsRightClick="0" popupOnRightClick="0" allowCallbacks="All Callbacks"/>
               <Component type="ScriptImage" id="Image12" x="-230.0" y="-2.0" fileName="{PROJECT_FOLDER}bf6.png"
                          width="1390.0" height="800.0" enabled="0" visible="0"/>
-              <Component type="ScriptSlider" id="mastervol" x="570.0" y="710.0" width="30.0"
-                         height="30.0" processorId="Simple Gain1" parameterId="Gain" filmstripImage="{PROJECT_FOLDER}k2.png"
-                         numStrips="200.0" showValuePopup="Left" macroControl="No MacroControl"
-                         middlePosition="0.0" min="-100.0" max="24.0" stepSize="0.1" isPluginParameter="1"
-                         pluginParameterName="mastervol" showTextBox="0"/>
+              <Component type="ScriptSlider" id="mastervol" x="589.0" y="710.0" width="30.0"
+                         height="25.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterpos" x="61.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="mastergrain" x="105.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterdense" x="149.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterpitch" x="193.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="1.25"
+                         showTextBox="0" defaultValue="1.25" scaleFactor="0.75" min="0.5"
+                         max="2.0" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterres" x="369.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="mastercut" x="325.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterdetune" x="281.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterspread" x="237.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="mastermix" x="413.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="mastertime" x="457.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterfeed" x="501.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
+              <Component type="ScriptSlider" id="masterdmix" x="545.0" y="710.0" width="30.0"
+                         height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                         showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
+                         stepSize="0.1000000014901161" showTextBox="0" defaultValue="0.5"
+                         scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"/>
             </ContentProperties>
           </UIData>
         </Processor>

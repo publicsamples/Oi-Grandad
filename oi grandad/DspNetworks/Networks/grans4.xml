@@ -290,7 +290,7 @@
                     <ComplexData>
                       <AudioFiles>
                         <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                                   MaxValue="9481970"/>
+                                   MaxValue="0"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
@@ -398,6 +398,7 @@
                      SkewFactor="0.4306765496730804" ID="Release" Value="61.00000090897083"/>
           <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
                      SkewFactor="0.2968033850193024" ID="Ratio" Value="1.100000001490116"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
         </Parameters>
       </Node>
     </Nodes>

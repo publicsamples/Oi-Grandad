@@ -1,5 +1,24 @@
 Content.makeFrontInterface(865, 746);
 
+// Create a transport handler
+const var transportHandler = Engine.createTransportHandler();
+
+// The grid callback needs to be enabled for the LFO
+// to sync itself to the clock.
+transportHandler.setEnableGrid(true, 8);
+
+// The clock will now prefer the external clock source. This
+// means that as long as the external clock isn't running
+// (the DAW playback is stopped) it will use the internal clock
+// and as soon as the DAW playback is started it will resync
+// itself to match the DAW position
+transportHandler.setSyncMode(transportHandler.PreferExternal);
+
+// Start the internal clock. This will cause the LFO to run
+// even if the DAW playback is stopped. (if you omit this line
+// the LFO will not move unless the DAW playback is started).
+transportHandler.startInternalClock(0);
+
 // Hide or show pitch mod options
 
 const var psync1 = Content.getComponent("psync1");
@@ -714,6 +733,302 @@ yop.setMouseCallback(function(event)
     this.repaint();
   }
 });
+
+const var mastervol = Content.getComponent("mastervol");
+const var Vol = Content.getComponent("Vol");
+const var Vol1 = Content.getComponent("Vol1");
+const var Vol2 = Content.getComponent("Vol2");
+const var Vol3 = Content.getComponent("Vol3");
+const var vol1 = Synth.getEffect("vol1");
+const var vol2 = Synth.getEffect("vol2");
+const var vol3 = Synth.getEffect("vol3");
+const var vol4 = Synth.getEffect("vol4");
+
+
+
+inline function onmastervolControl(component, value)
+{
+	Vol.setValue(value);
+	vol1.setAttribute(vol1.vol, value);
+	Vol1.setValue(value);
+	vol2.setAttribute(vol2.vol, value);
+	Vol2.setValue(value);
+	vol3.setAttribute(vol3.vol, value);
+	Vol3.setValue(value);
+	vol4.setAttribute(vol4.vol, value);
+};
+
+Content.getComponent("mastervol").setControlCallback(onmastervolControl);
+
+
+const var masterpos = Content.getComponent("masterpos");
+const var pos = Content.getComponent("pos");
+const var pos1 = Content.getComponent("pos1");
+const var pos2 = Content.getComponent("pos2");
+const var pos3 = Content.getComponent("pos3");
+const var gran = Synth.getEffect("gran");
+const var gran2 = Synth.getEffect("gran2");
+const var gran3 = Synth.getEffect("gran3");
+const var gran4 = Synth.getEffect("gran4");
+
+
+
+inline function onmasterposControl(component, value)
+{
+	pos.setValue(value);
+	gran.setAttribute(gran.position, value);
+	pos1.setValue(value);
+	gran2.setAttribute(gran2.position, value);
+	pos2.setValue(value);
+	gran3.setAttribute(gran3.position, value);
+	pos3.setValue(value);
+	gran4.setAttribute(gran4.position, value);
+};
+
+Content.getComponent("masterpos").setControlCallback(onmasterposControl);
+
+const var mastergrain = Content.getComponent("mastergrain");
+
+
+inline function onmastergrainControl(component, value)
+{
+	grainsize1.setValue(value);
+	gran.setAttribute(gran.grain, value);
+	gran.setAttribute(gran.grain2, value);
+	grainsize2.setValue(value);
+	gran2.setAttribute(gran2.grain, value);
+	gran2.setAttribute(gran2.grain2, value);
+	grainsize3.setValue(value);
+	gran3.setAttribute(gran3.grain, value);
+	gran3.setAttribute(gran3.grain2, value);
+	grainsize4.setValue(value);
+	gran4.setAttribute(gran4.grain, value);
+	gran4.setAttribute(gran4.grain2, value);
+};
+
+Content.getComponent("mastergrain").setControlCallback(onmastergrainControl);
+
+const var masterdense = Content.getComponent("masterdense");
+const var Dense = Content.getComponent("Dense");
+const var Dense1 = Content.getComponent("Dense1");
+const var Dense2 = Content.getComponent("Dense2");
+const var Dense3 = Content.getComponent("Dense");
+
+
+inline function onmasterdenseControl(component, value)
+{
+	Dense.setValue(value);
+	gran.setAttribute(gran.dense, value);
+	Dense1.setValue(value);
+	gran2.setAttribute(gran2.dense, value);
+	Dense2.setValue(value);
+	gran3.setAttribute(gran3.dense, value);
+	Dense3.setValue(value);
+	gran4.setAttribute(gran4.dense, value);
+};
+
+Content.getComponent("masterdense").setControlCallback(onmasterdenseControl);
+
+const var masterpitch = Content.getComponent("masterpitch");
+const var pitch = Content.getComponent("pitch");
+const var pitch1 = Content.getComponent("pitch1");
+const var pitch2 = Content.getComponent("pitch2");
+const var pitch3 = Content.getComponent("pitch");
+
+
+inline function onmasterpitchControl(component, value)
+{
+	pitch.setValue(value);
+	gran.setAttribute(gran.pitch, value);
+	pitch1.setValue(value);
+	gran2.setAttribute(gran2.pitch, value);
+	pitch2.setValue(value);
+	gran3.setAttribute(gran3.pitch, value);
+	pitch3.setValue(value);
+	gran4.setAttribute(gran4.pitch, value);
+};
+
+Content.getComponent("masterpitch").setControlCallback(onmasterpitchControl);
+
+const var masterspread = Content.getComponent("masterspread");
+const var spread = Content.getComponent("spread");
+const var spread1 = Content.getComponent("spread1");
+const var spread2 = Content.getComponent("spread2");
+const var spread3 = Content.getComponent("spread");
+
+
+inline function onmasterspreadControl(component, value)
+{
+	spread.setValue(value);
+	gran.setAttribute(gran.spread, value);
+	spread1.setValue(value);
+	gran2.setAttribute(gran2.spread, value);
+	spread2.setValue(value);
+	gran3.setAttribute(gran3.spread, value);
+	spread3.setValue(value);
+	gran4.setAttribute(gran4.spread, value);
+};
+
+Content.getComponent("masterspread").setControlCallback(onmasterspreadControl);
+
+const var masterdetune = Content.getComponent("masterdetune");
+const var det = Content.getComponent("det");
+const var det1 = Content.getComponent("det1");
+const var det2 = Content.getComponent("det2");
+const var det3 = Content.getComponent("det3");
+
+
+inline function onmasterdetuneControl(component, value)
+{
+	det.setValue(value);
+	gran.setAttribute(gran.detune, value);
+	det1.setValue(value);
+	gran2.setAttribute(gran2.detune, value);
+	det2.setValue(value);
+	gran3.setAttribute(gran3.detune, value);
+	det3.setValue(value);
+	gran4.setAttribute(gran4.detune, value);
+};
+
+Content.getComponent("masterdetune").setControlCallback(onmasterdetuneControl);
+
+const var mastercut = Content.getComponent("mastercut");
+const var cutoff = Content.getComponent("cutoff");
+const var cutoff1 = Content.getComponent("cutoff1");
+const var cutoff2 = Content.getComponent("cutoff2");
+const var cutoff3 = Content.getComponent("cutoff3");
+const var filter1 = Synth.getEffect("filter1");
+const var filter2 = Synth.getEffect("filter2");
+const var filter3 = Synth.getEffect("filter3");
+const var filter4 = Synth.getEffect("filter4");
+
+inline function onmastercutControl(component, value)
+{
+	cutoff.setValue(value);
+	filter1.setAttribute(filter1.cut, value);
+	cutoff1.setValue(value);
+	filter2.setAttribute(filter2.cut, value);
+	cutoff2.setValue(value);
+	filter3.setAttribute(filter3.cut, value);
+	cutoff3.setValue(value);
+	filter4.setAttribute(filter4.cut, value);
+};
+
+Content.getComponent("mastercut").setControlCallback(onmastercutControl);
+
+const var masterres = Content.getComponent("masterres");
+const var res = Content.getComponent("res");
+const var res1 = Content.getComponent("res1");
+const var res2 = Content.getComponent("res2");
+const var res3 = Content.getComponent("res3");
+
+
+inline function onmasterresControl(component, value)
+{
+	res.setValue(value);
+	filter1.setAttribute(filter1.res, value);
+	res1.setValue(value);
+	filter2.setAttribute(filter2.res, value);
+	res2.setValue(value);
+	filter3.setAttribute(filter3.res, value);
+	res3.setValue(value);
+	filter4.setAttribute(filter4.res, value);
+};
+
+Content.getComponent("masterres").setControlCallback(onmasterresControl);
+
+
+const var mastermix = Content.getComponent("mastermix");
+const var mix1 = Content.getComponent("mix1");
+const var mix2 = Content.getComponent("mix2");
+const var mix3 = Content.getComponent("mix3");
+const var mix4 = Content.getComponent("mix4");
+
+
+inline function onmastermixControl(component, value)
+{
+	mix1.setValue(value);
+	filter1.setAttribute(filter1.Mix, value);
+	mix2.setValue(value);
+	filter2.setAttribute(filter2.Mix, value);
+	mix3.setValue(value);
+	filter3.setAttribute(filter3.Mix, value);
+	mix4.setValue(value);
+	filter4.setAttribute(filter4.Mix, value);
+};
+
+Content.getComponent("mastermix").setControlCallback(onmastermixControl);
+
+const var mastertime = Content.getComponent("mastertime");
+
+const var del1 = Synth.getEffect("del1");
+const var del2 = Synth.getEffect("del2");
+const var del3 = Synth.getEffect("del3");
+const var del4 = Synth.getEffect("del4");
+
+inline function onmastertimeControl(component, value)
+{
+	DelayTime1.setValue(value);
+	del1.setAttribute(del1.delytime, value);
+	del1.setAttribute(del1.timenosync, value);
+	DelayTime2.setValue(value);
+	del2.setAttribute(del2.delytime, value);
+	del2.setAttribute(del2.timenosync, value);
+	DelayTime3.setValue(value);
+	del3.setAttribute(del3.delytime, value);
+	del3.setAttribute(del3.timenosync, value);
+	DelayTime4.setValue(value);
+	del4.setAttribute(del4.delytime, value);
+	del4.setAttribute(del4.timenosync, value);
+};
+
+Content.getComponent("mastertime").setControlCallback(onmastertimeControl);
+
+
+const var masterfeed = Content.getComponent("masterfeed");
+const var feed = Content.getComponent("feed");
+const var feed1 = Content.getComponent("feed1");
+const var feed2 = Content.getComponent("feed2");
+const var feed3 = Content.getComponent("feed3");
+
+
+inline function onmasterfeedControl(component, value)
+{
+	feed.setValue(value);
+	del1.setAttribute(del1.dfeed, value);
+	feed1.setValue(value);
+	del2.setAttribute(del2.dfeed, value);
+	feed2.setValue(value);
+	del3.setAttribute(del3.dfeed, value);
+	feed3.setValue(value);
+	del4.setAttribute(del4.dfeed, value);
+};
+
+Content.getComponent("masterfeed").setControlCallback(onmasterfeedControl);
+
+const var masterdmix = Content.getComponent("masterdmix");
+const var delmix = Content.getComponent("delmix");
+const var delmix1 = Content.getComponent("delmix1");
+const var delmix2 = Content.getComponent("delmix2");
+const var delmix3 = Content.getComponent("delmix3");
+
+
+inline function onmasterdmixControl(component, value)
+{
+	delmix.setValue(value);
+	del1.setAttribute(del1.dmix, value);
+	delmix1.setValue(value);
+	del2.setAttribute(del2.dmix, value);
+	delmix2.setValue(value);
+	del3.setAttribute(del3.dmix, value);
+	delmix3.setValue(value);
+	del4.setAttribute(del4.dmix, value);
+};
+
+Content.getComponent("masterdmix").setControlCallback(onmasterdmixControl);
+
+
+
 
 
 
