@@ -159,7 +159,7 @@
             <Control type="ScriptSlider" id="sustain" value="1.0"/>
             <Control type="ScriptSlider" id="delmod" value="1.0"/>
             <Control type="ScriptSlider" id="volmod" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix" value="0.0"/>
+            <Control type="ScriptSlider" id="delmix" value="0.6600000262260437"/>
             <Control type="ScriptComboBox" id="pos1modsel" value="1.0"/>
             <Control type="ScriptComboBox" id="densemodsel" value="1.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel" value="1.0"/>
@@ -212,7 +212,7 @@
             <Control type="ScriptSlider" id="sustain1" value="1.0"/>
             <Control type="ScriptSlider" id="delmod1" value="0.4399999976158142"/>
             <Control type="ScriptSlider" id="volmod1" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix1" value="0.0"/>
+            <Control type="ScriptSlider" id="delmix1" value="0.6600000262260437"/>
             <Control type="ScriptComboBox" id="pos1modsel1" value="10.0"/>
             <Control type="ScriptComboBox" id="densemodsel1" value="13.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel1" value="8.0"/>
@@ -229,7 +229,7 @@
             <Control type="ScriptComboBox" id="OutputSelector1" value="1.0"/>
             <Control type="ScriptButton" id="gsync2" value="0.0"/>
             <Control type="ScriptSlider" id="mix2" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsizesync2" value="18.0"/>
+            <Control type="ScriptSlider" id="grainsizesync2" value="5.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform2" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="pan6" value="16.0"/>
@@ -260,7 +260,7 @@
             <Control type="ScriptSlider" id="sustain2" value="1.0"/>
             <Control type="ScriptSlider" id="delmod2" value="0.5"/>
             <Control type="ScriptSlider" id="volmod2" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix2" value="0.0"/>
+            <Control type="ScriptSlider" id="delmix2" value="0.6600000262260437"/>
             <Control type="ScriptComboBox" id="pos1modsel2" value="1.0"/>
             <Control type="ScriptComboBox" id="densemodsel2" value="12.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel2" value="2.0"/>
@@ -278,7 +278,7 @@
             <Control type="ScriptSlider" id="res3" value="0.0"/>
             <Control type="ScriptSlider" id="mix3" value="1.0"/>
             <Control type="ScriptButton" id="gsync3" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsizesync3" value="0.5"/>
+            <Control type="ScriptSlider" id="grainsizesync3" value="5.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="pan7" value="16.0"/>
@@ -287,7 +287,7 @@
             <Control type="ScriptSlider" id="pitch15" value="1.0"/>
             <Control type="ScriptButton" id="psync4" value="0.0"/>
             <Control type="ScriptSlider" id="feed3" value="0.5099999904632568"/>
-            <Control type="ScriptButton" id="delaysync4" value="0.0"/>
+            <Control type="ScriptButton" id="delaysync4" value="1.0"/>
             <Control type="ScriptSlider" id="Vol3" value="0.0"/>
             <Control type="ScriptSlider" id="cutoff3" value="1.0"/>
             <Control type="ScriptSlider" id="res4" value="0.0"/>
@@ -309,7 +309,7 @@
             <Control type="ScriptSlider" id="sustain3" value="1.0"/>
             <Control type="ScriptSlider" id="delmod3" value="0.5"/>
             <Control type="ScriptSlider" id="volmod3" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix3" value="0.0"/>
+            <Control type="ScriptSlider" id="delmix3" value="0.6600000262260437"/>
             <Control type="ScriptComboBox" id="pos1modsel3" value="9.0"/>
             <Control type="ScriptComboBox" id="densemodsel3" value="9.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel3" value="11.0"/>
@@ -326,7 +326,7 @@
             <Control type="ScriptComboBox" id="OutputSelector3" value="1.0"/>
             <Control type="ScriptSlider" id="mix4" value="1.0"/>
             <Control type="ScriptButton" id="gsync4" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsizesync4" value="0.5"/>
+            <Control type="ScriptSlider" id="grainsizesync4" value="5.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="Hold" value="1.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
@@ -1992,7 +1992,7 @@
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.75" parentComponent="voice4" saveInPreset="0"
                              text="Left Delay" isMetaParameter="1" middlePosition="0.5" processorId="del4"
-                             parameterId="timenosync" showValuePopup="Below"/>
+                             parameterId="timenosync" showValuePopup="Below" visible="0"/>
                   <Component type="ScriptSlider" id="posmod3" x="66.0" y="102.0" width="30.0"
                              height="30.0" processorId="gran4" parameterId="position mod"
                              parentComponent="voice4" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -2138,7 +2138,7 @@
                              scaleFactor="0.75" parentComponent="voice4" saveInPreset="0"
                              text="Left Delay" isMetaParameter="1" middlePosition="9.0" processorId="del4"
                              parameterId="delytime" showValuePopup="Below" mode="TempoSync"
-                             max="18.0" stepSize="1.0" visible="0"/>
+                             max="18.0" stepSize="1.0"/>
                 </Component>
               </Component>
               <Component type="ScriptSlider" id="Knob7" x="823.0" y="663.0" filmstripImage="{PROJECT_FOLDER}k2.png"
@@ -2219,7 +2219,7 @@
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
                          stepSize="1.0" showTextBox="0" defaultValue="0.5" scaleFactor="0.75"
-                         saveInPreset="0" isPluginParameter="1" max="127.0" visible="0"/>
+                         saveInPreset="0" isPluginParameter="1" max="127.0" isMetaParameter="1"/>
               <Component type="ScriptSlider" id="masterdense" x="149.0" y="710.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
@@ -2259,7 +2259,7 @@
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
                          showTextBox="0" defaultValue="0.5" scaleFactor="0.75" saveInPreset="0"
-                         isPluginParameter="1" isMetaParameter="1"/>
+                         isPluginParameter="1" isMetaParameter="1" visible="0"/>
               <Component type="ScriptSlider" id="masterfeed" x="501.0" y="710.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
@@ -2274,12 +2274,13 @@
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="11.5"
                          showTextBox="0" defaultValue="5.0" scaleFactor="0.75" saveInPreset="0"
-                         isPluginParameter="1" max="18.0" min="5.0" mode="TempoSync" isMetaParameter="1"/>
+                         isPluginParameter="1" max="18.0" min="5.0" mode="TempoSync" isMetaParameter="1"
+                         visible="0"/>
               <Component type="ScriptSlider" id="mastertime1" x="457" y="710" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="9.0"
                          stepSize="1.0" showTextBox="0" scaleFactor="0.75" saveInPreset="0"
-                         isPluginParameter="1" mode="TempoSync" max="18.0" visible="0"/>
+                         isPluginParameter="1" mode="TempoSync" max="18.0" isMetaParameter="1"/>
             </ContentProperties>
           </UIData>
         </Processor>
