@@ -831,7 +831,7 @@ const var masterdense = Content.getComponent("masterdense");
 const var Dense = Content.getComponent("Dense");
 const var Dense1 = Content.getComponent("Dense1");
 const var Dense2 = Content.getComponent("Dense2");
-const var Dense3 = Content.getComponent("Dense");
+const var Dense3 = Content.getComponent("Dense3");
 
 
 inline function onmasterdenseControl(component, value)
@@ -852,7 +852,7 @@ const var masterpitch = Content.getComponent("masterpitch");
 const var pitch = Content.getComponent("pitch");
 const var pitch1 = Content.getComponent("pitch1");
 const var pitch2 = Content.getComponent("pitch2");
-const var pitch3 = Content.getComponent("pitch");
+const var pitch3 = Content.getComponent("pitch3");
 
 
 inline function onmasterpitchControl(component, value)
@@ -873,7 +873,7 @@ const var masterspread = Content.getComponent("masterspread");
 const var spread = Content.getComponent("spread");
 const var spread1 = Content.getComponent("spread1");
 const var spread2 = Content.getComponent("spread2");
-const var spread3 = Content.getComponent("spread");
+const var spread3 = Content.getComponent("spread3");
 
 
 inline function onmasterspreadControl(component, value)
