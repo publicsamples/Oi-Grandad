@@ -1,13 +1,5 @@
 Content.makeFrontInterface(865, 746);
 
-// Create a transport handler
-const var transportHandler = Engine.createTransportHandler();
-
-transportHandler.setEnableGrid(true, 8);
-
-transportHandler.setSyncMode(transportHandler.PreferExternal);
-
-transportHandler.startInternalClock(0);
 
 // Hide or show pitch mod options
 

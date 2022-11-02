@@ -997,7 +997,7 @@
                            parentComponent="VOICE">
                   <Component type="ScriptSlider" id="feed" x="234.0" y="268.0" width="30.0"
                              height="30.0" processorId="del1" parameterId="dfeed" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             numStrips="200.0" scaleFactor="0.8" parentComponent="voice1"
+                             numStrips="200.0" scaleFactor="0.800000011920929" parentComponent="voice1"
                              showValuePopup="Below" macroControl="No MacroControl"/>
                   <Component type="ScriptButton" id="delaysync1" x="204.0" y="301.0" width="30.0"
                              height="30.0" scaleFactor="0.5" parentComponent="voice1" itemColour="4292689201"
@@ -1011,12 +1011,12 @@
                   <Component type="ScriptSlider" id="cutoff" x="104.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice1" processorId="filter1"
                              parameterId="cut" middlePosition="0.5" numStrips="200.0" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             scaleFactor="0.8" defaultValue="1.0" showValuePopup="Below" isPluginParameter="1"
-                             pluginParameterName="cutoff1"/>
+                             scaleFactor="0.800000011920929" defaultValue="1.0" showValuePopup="Below"
+                             isPluginParameter="1" pluginParameterName="cutoff1"/>
                   <Component type="ScriptSlider" id="res" x="133.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice1" processorId="filter1"
                              parameterId="res" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" middlePosition="0.5" bgColour="4291810961"
+                             scaleFactor="0.800000011920929" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="resonance1"/>
                   <Component type="ScriptSlider" id="pan" x="257.0" y="116.0" width="30.0"
@@ -1044,7 +1044,7 @@
                              height="30.0" processorId="gran" parameterId="spread" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="0.5" isPluginParameter="1" pluginParameterName="spread1"/>
-                  <Component type="ScriptSlider" id="pitch" x="101" y="172.0" width="30.0"
+                  <Component type="ScriptSlider" id="pitch" x="101.0" y="172.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="pitch" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="1.25" showValuePopup="Below" isPluginParameter="1"
@@ -1059,13 +1059,14 @@
                              itemColour="5166303" processorId="filter1" parameterId="cutdets"
                              defaultValue="0.0" bgColour="4278190080" itemColour2="3816794416"
                              max="16" fontName="Arial" fontSize="15.0" textColour="4278190080"/>
-                  <Component type="ScriptPanel" id="ScriptPanel1" x="7.0" y="1.0" width="290"
-                             height="90" parentComponent="voice1" itemColour="4288304899"
+                  <Component type="ScriptPanel" id="ScriptPanel1" x="7.0" y="1.0" width="290.0"
+                             height="90.0" parentComponent="voice1" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform" x="5.0" y="4.0"
-                               processorId="gran" sampleIndex="0" width="280" height="80" itemColour2="4289344298"
-                               itemColour="0" parentComponent="ScriptPanel1" bgColour="4278190080"
-                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran" sampleIndex="0" width="280.0" height="80.0"
+                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel1"
+                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
+                               opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pos" x="14.0" y="109.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="position" parentComponent="voice1"
@@ -1090,10 +1091,10 @@
                              enabled="0" locked="1"/>
                   <Component type="ScriptSlider" id="DelayTime1" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice1" saveInPreset="0" text="Left Delay"
-                             middlePosition="0.5" processorId="del1" parameterId="timenosync"
+                             scaleFactor="0.800000011920929" parentComponent="voice1" saveInPreset="0"
+                             text="Left Delay" middlePosition="0.5" processorId="del1" parameterId="timenosync"
                              showValuePopup="Below" macroControl="No MacroControl"/>
-                  <Component type="ScriptSlider" id="posmod" x="70.0" y="99" width="30.0"
+                  <Component type="ScriptSlider" id="posmod" x="70.0" y="99.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="position mod" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}K7.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="0.5" scaleFactor="0.6000000238418579" defaultValue="0.5"
@@ -1142,7 +1143,7 @@
                              middlePosition="0.5" defaultValue="0.5" showValuePopup="Below"/>
                   <Component type="ScriptSlider" id="delmix" x="266.0" y="268.0" middlePosition="0.5"
                              suffix="%" width="30.0" height="30.0" macroControl="No MacroControl"
-                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.8"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.800000011920929"
                              parentComponent="voice1" processorId="del1" parameterId="dmix"
                              showValuePopup="Below"/>
                   <Component type="ScriptComboBox" id="pos1modsel" x="46.0" y="102.0" width="20.0"
@@ -1223,7 +1224,7 @@
                   <Component type="ScriptSlider" id="mix1" x="160.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice1" processorId="filter1"
                              parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" middlePosition="0.5" bgColour="4291810961"
+                             scaleFactor="0.800000011920929" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="mix1"/>
                   <Component type="ScriptButton" id="gsync1" x="133.0" y="138.0" width="20.0"
@@ -1266,7 +1267,7 @@
                              numStrips="200.0" dragDirection="Vertical" scaleFactor="0.699999988079071"
                              defaultValue="16.0" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="Pan1" max="32.0"/>
-                  <Component type="ScriptSlider" id="grainsizesync1" x="101" y="109.0" width="30.0"
+                  <Component type="ScriptSlider" id="grainsizesync1" x="101.0" y="109.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="grain" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="9.0" defaultValue="5.0" showValuePopup="Below"
@@ -1274,8 +1275,8 @@
                              max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync1" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice1" saveInPreset="0" text="Left Delay"
-                             middlePosition="9.0" processorId="del1" parameterId="delytime"
+                             scaleFactor="0.800000011920929" parentComponent="voice1" saveInPreset="0"
+                             text="Left Delay" middlePosition="9.0" processorId="del1" parameterId="delytime"
                              showValuePopup="Below" macroControl="No MacroControl" mode="TempoSync"
                              max="18.0" stepSize="1.0" visible="0"/>
                 </Component>
@@ -1283,13 +1284,14 @@
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
                            itemColour2="13023914" borderSize="0.0" borderRadius="0.0" locked="1"
                            parentComponent="VOICE">
-                  <Component type="ScriptPanel" id="ScriptPanel2" x="7.0" y="1.0" width="290"
-                             height="90" parentComponent="voice2" itemColour="4288304899"
+                  <Component type="ScriptPanel" id="ScriptPanel2" x="7.0" y="1.0" width="290.0"
+                             height="90.0" parentComponent="voice2" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="5.0" y="4.0"
-                               processorId="gran2" sampleIndex="0" width="280" height="80" itemColour2="4289344298"
-                               itemColour="0" parentComponent="ScriptPanel2" bgColour="4278190080"
-                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran2" sampleIndex="0" width="280.0" height="80.0"
+                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel2"
+                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
+                               opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pan5" x="256.0" y="187.0" width="20.0"
                              height="20.0" parentComponent="voice2" processorId="Script FX2"
@@ -1298,7 +1300,7 @@
                              defaultValue="16.0" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="Pan1" max="32.0"/>
                   <Component type="ScriptPanel" id="pitchmodcont2" x="119.0" y="169.0" width="80.0"
-                             height="50" parentComponent="voice2" bgColour="16777215" itemColour="0"
+                             height="50.0" parentComponent="voice2" bgColour="16777215" itemColour="0"
                              itemColour2="0" textColour="16777215" visible="0">
                     <Component type="ScriptSlider" id="detmod6" x="42.0" y="5.0" stepSize="0.009999999776482582"
                                width="30.0" height="30.0" processorId="gran2" parameterId="pmod"
@@ -1330,7 +1332,7 @@
                              itemColour="4292689201" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptSlider" id="feed1" x="234.0" y="268.0" width="30.0"
                              height="30.0" processorId="del2" parameterId="dfeed" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             numStrips="200.0" scaleFactor="0.8" parentComponent="voice2"
+                             numStrips="200.0" scaleFactor="0.800000011920929" parentComponent="voice2"
                              showValuePopup="Below"/>
                   <Component type="ScriptButton" id="delaysync2" x="203.0" y="301.0" width="30.0"
                              height="30.0" scaleFactor="0.5" parentComponent="voice2" itemColour="4292689201"
@@ -1344,12 +1346,12 @@
                   <Component type="ScriptSlider" id="cutoff1" x="104.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice2" processorId="filter2"
                              parameterId="cut" middlePosition="0.5" numStrips="200.0" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             scaleFactor="0.8" defaultValue="1.0" showValuePopup="Below" isPluginParameter="1"
-                             pluginParameterName="cutoff2"/>
+                             scaleFactor="0.800000011920929" defaultValue="1.0" showValuePopup="Below"
+                             isPluginParameter="1" pluginParameterName="cutoff2"/>
                   <Component type="ScriptSlider" id="res1" x="130.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice2" processorId="filter2"
                              parameterId="res" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" middlePosition="0.5" bgColour="4291810961"
+                             scaleFactor="0.800000011920929" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="resonance2"/>
                   <Component type="ScriptSlider" id="pan1" x="257.0" y="116.0" width="30.0"
@@ -1416,10 +1418,10 @@
                              enabled="0" locked="1"/>
                   <Component type="ScriptSlider" id="DelayTime2" x="202.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice2" saveInPreset="0" text="Left Delay"
-                             isMetaParameter="1" middlePosition="0.5" processorId="del2" parameterId="timenosync"
-                             showValuePopup="Below" stepSize="0.1000000014901161"/>
-                  <Component type="ScriptSlider" id="posmod1" x="70.0" y="99" width="30.0"
+                             scaleFactor="0.800000011920929" parentComponent="voice2" saveInPreset="0"
+                             text="Left Delay" isMetaParameter="1" middlePosition="0.5" processorId="del2"
+                             parameterId="timenosync" showValuePopup="Below" stepSize="0.1000000014901161"/>
+                  <Component type="ScriptSlider" id="posmod1" x="70.0" y="99.0" width="30.0"
                              height="30.0" processorId="gran2" parameterId="position mod"
                              parentComponent="voice2" filmstripImage="{PROJECT_FOLDER}K7.png"
                              numStrips="200.0" dragDirection="Vertical" middlePosition="0.5"
@@ -1466,7 +1468,7 @@
                              middlePosition="0.5" defaultValue="0.5" showValuePopup="Below"/>
                   <Component type="ScriptSlider" id="delmix1" x="266.0" y="268.0" middlePosition="0.5"
                              suffix="%" width="30.0" height="30.0" macroControl="No MacroControl"
-                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.8"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.800000011920929"
                              parentComponent="voice2" processorId="del2" parameterId="dmix"
                              showValuePopup="Below"/>
                   <Component type="ScriptComboBox" id="pos1modsel1" x="46.0" y="102.0" width="20.0"
@@ -1550,7 +1552,7 @@
                   <Component type="ScriptSlider" id="mix2" x="158.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice2" processorId="filter2"
                              parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" middlePosition="0.5" bgColour="4291810961"
+                             scaleFactor="0.800000011920929" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="mix2"/>
                   <Component type="ScriptSlider" id="grainsizesync2" x="101.0" y="109.0" width="40.0"
@@ -1561,21 +1563,23 @@
                              max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync2" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice2" saveInPreset="0" text="Left Delay"
-                             isMetaParameter="1" middlePosition="9.0" processorId="del2" parameterId="delytime"
-                             showValuePopup="Below" mode="TempoSync" max="18.0" visible="0"/>
+                             scaleFactor="0.800000011920929" parentComponent="voice2" saveInPreset="0"
+                             text="Left Delay" isMetaParameter="1" middlePosition="9.0" processorId="del2"
+                             parameterId="delytime" showValuePopup="Below" mode="TempoSync"
+                             max="18.0" visible="0"/>
                 </Component>
                 <Component type="ScriptPanel" id="voice3" x="4.0" y="360.0" width="310.0"
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
                            itemColour2="13023914" borderSize="0.0" borderRadius="0.0" locked="1"
                            parentComponent="VOICE">
-                  <Component type="ScriptPanel" id="ScriptPanel5" x="6.0" y="-1.0" width="290"
-                             height="90" parentComponent="voice3" itemColour="4288304899"
+                  <Component type="ScriptPanel" id="ScriptPanel5" x="6.0" y="-1.0" width="290.0"
+                             height="90.0" parentComponent="voice3" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform2" x="5.0" y="4.0"
-                               processorId="gran3" sampleIndex="0" width="280" height="80" itemColour2="4289344298"
-                               itemColour="0" parentComponent="ScriptPanel5" bgColour="4278190080"
-                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran3" sampleIndex="0" width="280.0" height="80.0"
+                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel5"
+                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
+                               opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pan6" x="256.0" y="187.0" width="20.0"
                              height="20.0" parentComponent="voice3" processorId="Script FX3"
@@ -1615,7 +1619,7 @@
                              itemColour="4292689201" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptSlider" id="feed2" x="234.0" y="268.0" width="30.0"
                              height="30.0" processorId="del3" parameterId="dfeed" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             numStrips="200.0" scaleFactor="0.8" parentComponent="voice3"
+                             numStrips="200.0" scaleFactor="0.800000011920929" parentComponent="voice3"
                              showValuePopup="Below"/>
                   <Component type="ScriptButton" id="delaysync3" x="203.0" y="301.0" width="30.0"
                              height="30.0" scaleFactor="0.5" parentComponent="voice3" itemColour="4292689201"
@@ -1629,8 +1633,8 @@
                   <Component type="ScriptSlider" id="cutoff2" x="103.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice3" processorId="filter3"
                              parameterId="cut" middlePosition="0.5" numStrips="200.0" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             scaleFactor="0.8" defaultValue="1.0" showValuePopup="Below" isPluginParameter="1"
-                             pluginParameterName="cutoff3"/>
+                             scaleFactor="0.800000011920929" defaultValue="1.0" showValuePopup="Below"
+                             isPluginParameter="1" pluginParameterName="cutoff3"/>
                   <Component type="ScriptSlider" id="res2" x="-200.0" y="642.0" width="30.0"
                              height="30.0" parentComponent="voice3" processorId="filter3"
                              parameterId="res" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
@@ -1684,9 +1688,9 @@
                              isPluginParameter="1" pluginParameterName="position3"/>
                   <Component type="ScriptSlider" id="DelayTime3" x="203.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice3" saveInPreset="0" text="Left Delay"
-                             isMetaParameter="1" middlePosition="0.5" processorId="del3" parameterId="timenosync"
-                             showValuePopup="Below"/>
+                             scaleFactor="0.800000011920929" parentComponent="voice3" saveInPreset="0"
+                             text="Left Delay" isMetaParameter="1" middlePosition="0.5" processorId="del3"
+                             parameterId="timenosync" showValuePopup="Below"/>
                   <Component type="ScriptSlider" id="posmod2" x="70.0" y="99.0" width="30.0"
                              height="30.0" processorId="gran3" parameterId="position mod"
                              parentComponent="voice3" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1736,7 +1740,7 @@
                              middlePosition="0.5" defaultValue="0.5" showValuePopup="Below"/>
                   <Component type="ScriptSlider" id="delmix2" x="266.0" y="268.0" middlePosition="0.5"
                              suffix="%" width="30.0" height="30.0" macroControl="No MacroControl"
-                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.8"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.800000011920929"
                              parentComponent="voice3" processorId="del3" parameterId="dmix"
                              showValuePopup="Below"/>
                   <Component type="ScriptComboBox" id="pos1modsel2" x="46.0" y="102.0" width="20.0"
@@ -1817,15 +1821,15 @@
                   <Component type="ScriptSlider" id="res3" x="134.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice3" processorId="filter3"
                              parameterId="res" middlePosition="0.5" numStrips="200.0" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             scaleFactor="0.8" defaultValue="1.0" showValuePopup="Below" isPluginParameter="1"
-                             pluginParameterName="res3"/>
+                             scaleFactor="0.800000011920929" defaultValue="1.0" showValuePopup="Below"
+                             isPluginParameter="1" pluginParameterName="res3"/>
                   <Component type="ScriptSlider" id="mix3" x="160.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice3" processorId="filter3"
                              parameterId="Mix" middlePosition="0.5" numStrips="200.0" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             scaleFactor="0.8" defaultValue="1.0" showValuePopup="Below" isPluginParameter="1"
-                             pluginParameterName="mix3"/>
-                  <Component type="ScriptButton" id="gsync3" x="133.0" y="137.0" width="20"
-                             height="20" scaleFactor="0.4000000059604645" parentComponent="voice3"
+                             scaleFactor="0.800000011920929" defaultValue="1.0" showValuePopup="Below"
+                             isPluginParameter="1" pluginParameterName="mix3"/>
+                  <Component type="ScriptButton" id="gsync3" x="133.0" y="137.0" width="20.0"
+                             height="20.0" scaleFactor="0.4000000059604645" parentComponent="voice3"
                              itemColour="4292689201" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptSlider" id="grainsizesync3" x="101.0" y="109.0" width="40.0"
                              height="40.0" processorId="gran3" parameterId="grain" parentComponent="voice3"
@@ -1835,22 +1839,23 @@
                              max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync3" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice3" saveInPreset="0" text="Left Delay"
-                             isMetaParameter="1" middlePosition="9.0" processorId="del3" parameterId="delytime"
-                             showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
-                             visible="0"/>
+                             scaleFactor="0.800000011920929" parentComponent="voice3" saveInPreset="0"
+                             text="Left Delay" isMetaParameter="1" middlePosition="9.0" processorId="del3"
+                             parameterId="delytime" showValuePopup="Below" mode="TempoSync"
+                             max="18.0" stepSize="1.0" visible="0"/>
                 </Component>
                 <Component type="ScriptPanel" id="voice4" x="318.0" y="360.0" width="310.0"
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
                            itemColour2="13023914" borderSize="0.0" borderRadius="0.0" locked="1"
                            parentComponent="VOICE">
-                  <Component type="ScriptPanel" id="ScriptPanel6" x="7" y="-1.0" width="290"
-                             height="90" parentComponent="voice4" itemColour="4288304899"
+                  <Component type="ScriptPanel" id="ScriptPanel6" x="7.0" y="-1.0" width="290.0"
+                             height="90.0" parentComponent="voice4" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform3" x="5.0" y="4.0"
-                               processorId="gran4" sampleIndex="0" width="280" height="80" itemColour2="4289344298"
-                               itemColour="0" parentComponent="ScriptPanel6" bgColour="4278190080"
-                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran4" sampleIndex="0" width="280.0" height="80.0"
+                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel6"
+                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
+                               opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pan7" x="256.0" y="187.0" width="20.0"
                              height="20.0" parentComponent="voice4" processorId="Script FX4"
@@ -1890,7 +1895,7 @@
                              itemColour="4292689201" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptSlider" id="feed3" x="234.0" y="268.0" width="30.0"
                              height="30.0" processorId="del4" parameterId="dfeed" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             numStrips="200.0" scaleFactor="0.8" parentComponent="voice4"
+                             numStrips="200.0" scaleFactor="0.800000011920929" parentComponent="voice4"
                              showValuePopup="Below"/>
                   <Component type="ScriptButton" id="delaysync4" x="203.0" y="301.0" width="30.0"
                              height="30.0" scaleFactor="0.5" parentComponent="voice4" itemColour="4292689201"
@@ -1905,12 +1910,12 @@
                   <Component type="ScriptSlider" id="cutoff3" x="102.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice4" processorId="filter4"
                              parameterId="cut" middlePosition="0.5" numStrips="200.0" filmstripImage="{PROJECT_FOLDER}k2.png"
-                             scaleFactor="0.8" defaultValue="1.0" showValuePopup="Below" isPluginParameter="1"
-                             pluginParameterName="cutoff4"/>
+                             scaleFactor="0.800000011920929" defaultValue="1.0" showValuePopup="Below"
+                             isPluginParameter="1" pluginParameterName="cutoff4"/>
                   <Component type="ScriptSlider" id="res4" x="133.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice4" processorId="filter4"
                              parameterId="res" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" middlePosition="0.5" bgColour="4291810961"
+                             scaleFactor="0.800000011920929" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="resonance4"/>
                   <Component type="ScriptSlider" id="pan3" x="257.0" y="116.0" width="30.0"
@@ -2027,7 +2032,7 @@
                              middlePosition="0.5" defaultValue="0.5" showValuePopup="Below"/>
                   <Component type="ScriptSlider" id="delmix3" x="266.0" y="268.0" middlePosition="0.5"
                              suffix="%" width="30.0" height="30.0" macroControl="No MacroControl"
-                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.8"
+                             filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.800000011920929"
                              parentComponent="voice4" processorId="del4" parameterId="dmix"
                              showValuePopup="Below"/>
                   <Component type="ScriptComboBox" id="pos1modsel3" x="46.0" y="102.0" width="20.0"
@@ -2108,7 +2113,7 @@
                   <Component type="ScriptSlider" id="mix4" x="160.0" y="268.0" width="30.0"
                              height="30.0" parentComponent="voice4" processorId="filter4"
                              parameterId="Mix" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" middlePosition="0.5" bgColour="4291810961"
+                             scaleFactor="0.800000011920929" middlePosition="0.5" bgColour="4291810961"
                              itemColour="4291810961" showValuePopup="Below" isPluginParameter="1"
                              pluginParameterName="mix4"/>
                   <Component type="ScriptButton" id="gsync4" x="133.0" y="138.0" width="30.0"
@@ -2122,10 +2127,10 @@
                              max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync4" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
-                             scaleFactor="0.8" parentComponent="voice4" saveInPreset="0" text="Left Delay"
-                             isMetaParameter="1" middlePosition="9.0" processorId="del4" parameterId="delytime"
-                             showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
-                             visible="0"/>
+                             scaleFactor="0.800000011920929" parentComponent="voice4" saveInPreset="0"
+                             text="Left Delay" isMetaParameter="1" middlePosition="9.0" processorId="del4"
+                             parameterId="delytime" showValuePopup="Below" mode="TempoSync"
+                             max="18.0" stepSize="1.0" visible="0"/>
                 </Component>
               </Component>
               <Component type="ScriptSlider" id="Knob7" x="823.0" y="663.0" filmstripImage="{PROJECT_FOLDER}k2.png"
