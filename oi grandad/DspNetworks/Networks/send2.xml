@@ -34,11 +34,11 @@
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-36.09999904781581"/>
+                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-27.49999891966583"/>
                       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Attack" Value="50.0"/>
+                                 SkewFactor="0.4306765496730804" ID="Attack" Value="0.0"/>
                       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Release" Value="50.0"/>
+                                 SkewFactor="0.4306765496730804" ID="Release" Value="0.0"/>
                       <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
                                  SkewFactor="0.2968033850193024" ID="Ratio" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
@@ -49,9 +49,9 @@
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="Gain" Value="-100.0"/>
                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="0.0"/>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="-46.19999919831753"/>
                     </Parameters>
                   </Node>
                 </Nodes>
@@ -66,7 +66,7 @@
     </Nodes>
     <Parameters>
       <Parameter ID="ratio" MinValue="1.000000014901161" MaxValue="32.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.2968033850193024" Value="2.400000035762787">
+                 SkewFactor="0.2968033850193024" Value="1.400000020861625">
         <Connections>
           <Connection NodeId="comp" ParameterId="Ratio"/>
         </Connections>

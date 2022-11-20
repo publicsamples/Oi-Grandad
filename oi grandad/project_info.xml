@@ -2,11 +2,11 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="0.9.7"/>
+  <Version value="0.9.8"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
-  <EmbedAudioFiles value="0"/>
+  <EmbedAudioFiles value="1"/>
   <EmbedImageFiles value="1"/>
   <SupportFullDynamicsHLAC value="No"/>
   <AdditionalDspLibraries value=""/>

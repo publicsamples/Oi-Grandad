@@ -1,5 +1,111 @@
 Content.makeFrontInterface(865, 746);
 
+//RR
+
+// This button will control the behaviour:
+// - ON: the sine generators will be cycled
+// - OFF: all will be played each time
+const var Enable = Content.getComponent("Enable");
+
+// Grab a reference to the MIDI filters
+const var filters = [Synth.getMidiProcessor("Filter1"),
+                     Synth.getMidiProcessor("Filter2"),
+                     Synth.getMidiProcessor("Filter3"),
+                     Synth.getMidiProcessor("Filter4")];
+
+inline function bCallback(control, value)
+{
+    // Bypass all filters if its off
+    for(f in filters)
+        f.setBypassed(!value);
+}
+
+Enable.setControlCallback(bCallback);
+
+/** This is a data structure that can be used for
+    storing any kind of information with the event
+    ID as hash key.
+    
+    In order to use it, pass an array into the 
+    init() function, then use the functions 
+    
+    push() and pop() to add or return values
+    using the event ID as hash key.
+    
+    For performance reasons, it will not sort entries
+    but just pick the first idle slot when you push new
+    data.
+*/
+namespace EventIdStack
+{
+    // Should be enough, but you can add more if you want...
+    const var MAX_SIZE = 128;
+    
+    /** Call this function to initialise the data
+        array with the internal data structure.
+    */
+    inline function init(data)
+    {
+        data.reserve(MAX_SIZE);
+        
+        for(i = 0; i < MAX_SIZE; i++)
+        {
+            data[i] = [-1, undefined];
+        }
+    }
+    
+    /** This adds the given value to the data array
+        using the event ID as hash key.
+    */
+    inline function push(data, eventId, value)
+    {
+        for(d in data)
+        {
+            if(d[0] == -1)
+            {
+                d[0] = eventId;
+                d[1] = value;
+                return;
+            }
+        }
+        
+        // Full...
+        Console.assertTrue(false);
+    }
+    
+    /** Returns the value for the given eventID and
+        removes the data from the slot. 
+    */
+    inline function pop(data, eventId)
+    {
+        for(d in data)
+        {
+            if(d[0] == eventId)
+            {
+                d[0] = -1;
+                return d[1];
+            }
+        }
+        
+        // Can't find it...
+        Console.assertTrue(false);
+    }
+}
+
+
+// We need to store the MIDI channels for each note number
+const var noteOnChannels = [];
+
+// Let's use that fancy data structure for our problem...
+EventIdStack.init(noteOnChannels);
+
+
+
+// the RR counter
+reg rrIndex = 0;
+
+
+
 
 // Hide or show pitch mod options
 
@@ -930,8 +1036,8 @@ Content.getComponent("mastercut").setControlCallback(onmastercutControl);
 const var masterres = Content.getComponent("masterres");
 const var res = Content.getComponent("res");
 const var res1 = Content.getComponent("res1");
-const var res2 = Content.getComponent("res2");
 const var res3 = Content.getComponent("res3");
+const var res4 = Content.getComponent("res4");
 
 
 inline function onmasterresControl(component, value)
@@ -940,9 +1046,9 @@ inline function onmasterresControl(component, value)
 	filter1.setAttribute(filter1.res, value);
 	res1.setValue(value);
 	filter2.setAttribute(filter2.res, value);
-	res2.setValue(value);
-	filter3.setAttribute(filter3.res, value);
 	res3.setValue(value);
+	filter3.setAttribute(filter3.res, value);
+	res4.setValue(value);
 	filter4.setAttribute(filter4.res, value);
 };
 
@@ -1053,11 +1159,26 @@ Content.getComponent("masterdmix").setControlCallback(onmasterdmixControl);
 
 function onNoteOn()
 {
+	// the index is zero based like everything else in good
+	// programming, so we need to add one to get the actual
+	// channel number
+	local d = rrIndex+1;
 	
+	// Store the value in the MIDIList for the note on
+	EventIdStack.push(noteOnChannels, Message.getEventId(), d);
+	Console.print(d);
+	Message.setChannel(d);
+	
+	// Cycle through the round robin amount
+	if(rrIndex++ >= 4)
+	    rrIndex = 1;
 }
- function onNoteOff()
+ 
+function onNoteOff()
 {
-	
+    local c = EventIdStack.pop(noteOnChannels, Message.getEventId());
+	Message.setChannel(c);
+    
 }
  function onController()
 {

@@ -1,1 +1,26 @@
-<empty/>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="testG" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="testG" Bypassed="0">
+    <Nodes>
+      <Node ID="clock_ramp" FactoryPath="core.clock_ramp" Bypassed="0">
+        <ComplexData>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1"/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                     Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="AddToSignal"
+                     Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="UpdateMode"
+                     Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Inactive" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>
