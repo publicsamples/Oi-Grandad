@@ -115,4 +115,4 @@ https://github.com/publicsamples/Oi-Grandad/discussions
 
 https://github.com/publicsamples/Oi-Grandad/discussions/6
 
-[![Yo! pensioner! ](https://github.com/publicsamples/Oi-Grandad/blob/main/oi%20grandad/Images/YoPensioner.png?raw=true)](https://modularsamples.gumroad.com/l/gyckl)
+[![Yo! pensioner! ](https://github.com/publicsamples/Oi-Grandad/blob/main/oi%20grandad/Images/pack2.png?raw=true)](https://modularsamples.gumroad.com/l/gyckl)
