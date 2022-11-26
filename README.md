@@ -33,19 +33,17 @@ It features:
 
 Plugins are available for Mac OS (VST, AU), Windows & Linux (VST):
 
-  
-
-https://github.com/publicsamples/Oi-Grandad/releases
+ https://github.com/publicsamples/Oi-Grandad/releases
 
   
 
-For a quick overview of the functionality see:
+For a quick overview of see:
 
+  https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
+
+Some Tutorials:
   
-
-https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
-
-  
+https://www.youtube.com/playlist?list=PL8Rp79UJ5uBArd83oVDdT4ohNJL7Xw4zU
 
 # Known issues
 
