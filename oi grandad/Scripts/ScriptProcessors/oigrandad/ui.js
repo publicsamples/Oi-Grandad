@@ -113,6 +113,8 @@ const var psync1 = Content.getComponent("psync1");
 const var pmodblank1 = Content.getComponent("pmodblank1");
 const var pitchmodcont1 = Content.getComponent("pitchmodcont1");
 const var ps1 = Synth.getEffect("gran");
+const var st1 = Content.getComponent("st1");
+
 
 inline function onpsync1Control(number, value)
 {

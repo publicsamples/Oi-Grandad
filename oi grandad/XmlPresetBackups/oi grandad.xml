@@ -137,20 +137,20 @@
             <Control type="ScriptSlider" id="feed" value="0.6600000262260437"/>
             <Control type="ScriptButton" id="delaysync1" value="0.0"/>
             <Control type="ScriptSlider" id="Vol" value="0.6899999976158142"/>
-            <Control type="ScriptSlider" id="cutoff" value="1.0"/>
-            <Control type="ScriptSlider" id="res" value="0.0"/>
+            <Control type="ScriptSlider" id="cutoff" value="0.4900000095367432"/>
+            <Control type="ScriptSlider" id="res" value="1.0"/>
             <Control type="ScriptSlider" id="pan" value="0.5000014901161194"/>
             <Control type="ScriptSlider" id="Dense" value="0.0"/>
             <Control type="ScriptSlider" id="det" value="0.0"/>
             <Control type="ScriptSlider" id="grainsize1" value="1.0"/>
             <Control type="ScriptSlider" id="spread" value="0.0"/>
-            <Control type="ScriptSlider" id="pitch" value="1.25"/>
+            <Control type="ScriptSlider" id="pitch" value="1.220000028610229"/>
             <Control type="ScriptSlider" id="attack" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
-            <Control type="ScriptSlider" id="pos" value="0.0"/>
-            <Control type="ScriptSlider" id="posmod" value="1.0"/>
+            <Control type="ScriptSlider" id="pos" value="0.5600000023841858"/>
+            <Control type="ScriptSlider" id="posmod" value="0.5"/>
             <Control type="ScriptSlider" id="densemod" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.5"/>
             <Control type="ScriptSlider" id="detmod" value="0.5"/>
@@ -159,7 +159,7 @@
             <Control type="ScriptSlider" id="sustain" value="1.0"/>
             <Control type="ScriptSlider" id="delmod" value="0.5"/>
             <Control type="ScriptSlider" id="volmod" value="0.5"/>
-            <Control type="ScriptSlider" id="delmix" value="0.6700000166893005"/>
+            <Control type="ScriptSlider" id="delmix" value="0.0"/>
             <Control type="ScriptComboBox" id="pos1modsel" value="1.0"/>
             <Control type="ScriptComboBox" id="densemodsel" value="1.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel" value="1.0"/>
@@ -174,21 +174,23 @@
             <Control type="ScriptComboBox" id="ampmodsel5" value="1.0"/>
             <Control type="ScriptSlider" id="volmod5" value="1.490116119384766e-8"/>
             <Control type="ScriptComboBox" id="OutputSelector" value="1.0"/>
-            <Control type="ScriptSlider" id="mix1" value="0.0"/>
+            <Control type="ScriptSlider" id="mix1" value="1.0"/>
             <Control type="ScriptButton" id="gsync1" value="1.0"/>
-            <Control type="ScriptButton" id="psync1" value="1.0"/>
+            <Control type="ScriptButton" id="psync1" value="0.0"/>
+            <Control type="ScriptSlider" id="st1" value="0.0"/>
             <Control type="ScriptSlider" id="pitch8" value="3.0"/>
             <Control type="ScriptComboBox" id="detmodsel5" value="1.0"/>
             <Control type="ScriptSlider" id="pmod1" value="0.5"/>
             <Control type="ScriptSlider" id="pan4" value="16.0"/>
-            <Control type="ScriptSlider" id="grainsizesync1" value="18.0"/>
+            <Control type="ScriptSlider" id="grainsizesync1" value="6.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="pan5" value="16.0"/>
             <Control type="ScriptSlider" id="detmod6" value="0.5"/>
             <Control type="ScriptComboBox" id="detmodsel6" value="6.0"/>
             <Control type="ScriptSlider" id="pitch11" value="3.0"/>
-            <Control type="ScriptButton" id="psync2" value="1.0"/>
+            <Control type="ScriptSlider" id="semi2" value="0.0"/>
+            <Control type="ScriptButton" id="psync2" value="0.0"/>
             <Control type="ScriptSlider" id="feed1" value="0.4900000095367432"/>
             <Control type="ScriptButton" id="delaysync2" value="0.0"/>
             <Control type="ScriptSlider" id="Vol1" value="0.5"/>
@@ -236,7 +238,8 @@
             <Control type="ScriptSlider" id="detmod7" value="0.6899999976158142"/>
             <Control type="ScriptComboBox" id="detmodsel7" value="6.0"/>
             <Control type="ScriptSlider" id="pitch13" value="5.0"/>
-            <Control type="ScriptButton" id="psync3" value="1.0"/>
+            <Control type="ScriptSlider" id="semi3" value="0.0"/>
+            <Control type="ScriptButton" id="psync3" value="0.0"/>
             <Control type="ScriptSlider" id="feed2" value="0.5299999713897705"/>
             <Control type="ScriptButton" id="delaysync3" value="0.0"/>
             <Control type="ScriptSlider" id="Vol2" value="0.0"/>
@@ -285,7 +288,8 @@
             <Control type="ScriptSlider" id="detmod8" value="0.6299999952316284"/>
             <Control type="ScriptComboBox" id="detmodsel8" value="4.0"/>
             <Control type="ScriptSlider" id="pitch15" value="4.0"/>
-            <Control type="ScriptButton" id="psync4" value="1.0"/>
+            <Control type="ScriptSlider" id="smei4" value="0.0"/>
+            <Control type="ScriptButton" id="psync4" value="0.0"/>
             <Control type="ScriptSlider" id="feed3" value="0.5099999904632568"/>
             <Control type="ScriptButton" id="delaysync4" value="0.0"/>
             <Control type="ScriptSlider" id="Vol3" value="0.3599999845027924"/>
@@ -1233,17 +1237,21 @@
                   <Component type="ScriptButton" id="psync1" x="102.0" y="216.0" width="20.0"
                              height="25.0" scaleFactor="0.4000000059604645" parentComponent="voice1"
                              itemColour="4292689201" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
-                  <Component type="ScriptPanel" id="pmodblank1" x="136.0" y="172.0" width="50.0"
+                  <Component type="ScriptPanel" id="pmodblank1" x="132.0" y="171.0" width="50.0"
                              height="70.0" parentComponent="voice1" itemColour="0" itemColour2="0"
-                             bgColour="16777215" textColour="16777215" visible="0">
-                    <Component type="ScriptLabel" id="Label3" x="9.0" y="-11.0" width="50.0"
-                               height="80.0" text="1" fontSize="75.0" textColour="1243687483"
-                               parentComponent="pmodblank1" fontName="Avenir" fontStyle="Regular"
-                               editable="0"/>
+                             bgColour="16777215" textColour="16777215">
+                    <Component type="ScriptLabel" id="semi" x="1" y="30" textColour="4280884766"
+                               width="50" height="20" fontName="Avenir" fontSize="18.0" editable="0"
+                               parentComponent="pmodblank1"/>
+                    <Component type="ScriptSlider" id="st1" x="11.0" y="1.0" width="30.0" height="30.0"
+                               processorId="gran" parameterId="smei" parentComponent="pmodblank1"
+                               filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
+                               middlePosition="0.0" showValuePopup="Below" isPluginParameter="1"
+                               pluginParameterName="Pitch1" min="-12.0" max="12.0" stepSize="1.0"/>
                   </Component>
                   <Component type="ScriptPanel" id="pitchmodcont1" x="119.0" y="169.0" width="80.0"
                              height="50.0" parentComponent="voice1" bgColour="16777215" itemColour="0"
-                             itemColour2="0" textColour="16777215">
+                             itemColour2="0" textColour="16777215" visible="0">
                     <Component type="ScriptSlider" id="pitch8" x="31.0" y="35.0" width="20.0"
                                height="20.0" processorId="gran" parameterId="pmulti" parentComponent="pitchmodcont1"
                                filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
@@ -1301,7 +1309,7 @@
                              pluginParameterName="Pan1" max="32.0"/>
                   <Component type="ScriptPanel" id="pitchmodcont2" x="119.0" y="169.0" width="80.0"
                              height="50.0" parentComponent="voice2" bgColour="16777215" itemColour="0"
-                             itemColour2="0" textColour="16777215">
+                             itemColour2="0" textColour="16777215" visible="0">
                     <Component type="ScriptSlider" id="detmod6" x="42.0" y="5.0" stepSize="0.009999999776482582"
                                width="30.0" height="30.0" processorId="gran2" parameterId="pmod"
                                parentComponent="pitchmodcont2" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1319,13 +1327,17 @@
                                middlePosition="8.5" defaultValue="1.0" scaleFactor="0.5" max="16.0"
                                min="1.0" stepSize="1.0" showValuePopup="Below"/>
                   </Component>
-                  <Component type="ScriptPanel" id="pmodblank2" x="137.0" y="176.0" width="50.0"
+                  <Component type="ScriptPanel" id="pmodblank2" x="137.0" y="166.0" width="50.0"
                              height="70.0" parentComponent="voice2" itemColour="0" itemColour2="0"
-                             bgColour="16777215" textColour="16777215" visible="0">
-                    <Component type="ScriptLabel" id="ScriptLabel1" x="9.0" y="-12.0" width="50.0"
-                               height="80.0" parentComponent="pmodblank2" text="2" itemColour2="16731904"
-                               textColour="1243687483" fontSize="75.0" fontName="Avenir" fontStyle="Regular"
-                               editable="0"/>
+                             bgColour="16777215" textColour="16777215">
+                    <Component type="ScriptLabel" id="semi1" x="1.0" y="36.0" textColour="4280884766"
+                               width="50" height="20" fontName="Avenir" fontSize="18.0" text="semi"
+                               editable="0" parentComponent="pmodblank2"/>
+                    <Component type="ScriptSlider" id="semi2" x="11" y="4.0" width="30.0" height="30.0"
+                               processorId="gran2" parameterId="smei" parentComponent="pmodblank2"
+                               filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
+                               middlePosition="0.0" showValuePopup="Below" isPluginParameter="1"
+                               pluginParameterName="Pitch2" min="-12.0" max="12.0" stepSize="1.0"/>
                   </Component>
                   <Component type="ScriptButton" id="psync2" x="102.0" y="215.0" width="20.0"
                              height="25.0" scaleFactor="0.4000000059604645" parentComponent="voice2"
@@ -1589,7 +1601,7 @@
                              pluginParameterName="Pan1" max="32.0"/>
                   <Component type="ScriptPanel" id="pitchmodcont3" x="119.0" y="169.0" width="80.0"
                              height="60.0" parentComponent="voice3" bgColour="16777215" itemColour="0"
-                             itemColour2="0" textColour="16777215">
+                             itemColour2="0" textColour="16777215" visible="0">
                     <Component type="ScriptSlider" id="detmod7" x="42.0" y="5.0" stepSize="0.009999999776482582"
                                width="30.0" height="30.0" processorId="gran3" parameterId="pmod"
                                parentComponent="pitchmodcont3" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1609,10 +1621,15 @@
                   </Component>
                   <Component type="ScriptPanel" id="pmodblank3" x="136.0" y="171.0" width="50.0"
                              height="70.0" parentComponent="voice3" itemColour="0" itemColour2="0"
-                             bgColour="16777215" textColour="16777215" visible="0">
-                    <Component type="ScriptLabel" id="ScriptLabel2" x="9.0" y="-11.0" width="50.0"
-                               height="80.0" parentComponent="pmodblank3" text="3" textColour="1243687483"
-                               fontName="Avenir" fontSize="75.0" fontStyle="Regular" editable="0"/>
+                             bgColour="16777215" textColour="16777215">
+                    <Component type="ScriptLabel" id="semi4" x="-5.675048828125" y="30.0" textColour="4280884766"
+                               width="50" height="20" fontName="Avenir" fontSize="18.0" text="semi"
+                               editable="0" parentComponent="pmodblank3"/>
+                    <Component type="ScriptSlider" id="semi3" x="6" y="-1" width="30.0" height="30.0"
+                               processorId="gran3" parameterId="smei" parentComponent="pmodblank3"
+                               filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
+                               middlePosition="0.0" showValuePopup="Below" isPluginParameter="1"
+                               pluginParameterName="Pitch3" min="-12.0" max="12.0" stepSize="1.0"/>
                   </Component>
                   <Component type="ScriptButton" id="psync3" x="102.0" y="216.0" width="20.0"
                              height="25.0" scaleFactor="0.4000000059604645" parentComponent="voice3"
@@ -1865,7 +1882,7 @@
                              pluginParameterName="Pan1" max="32.0"/>
                   <Component type="ScriptPanel" id="pitchmodcont4" x="119.0" y="169.0" width="80.0"
                              height="60.0" parentComponent="voice4" bgColour="16777215" itemColour="0"
-                             itemColour2="0" textColour="16777215">
+                             itemColour2="0" textColour="16777215" visible="0">
                     <Component type="ScriptSlider" id="detmod8" x="42.0" y="5.0" stepSize="0.009999999776482582"
                                width="30.0" height="30.0" processorId="gran4" parameterId="pmod"
                                parentComponent="pitchmodcont4" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1885,10 +1902,15 @@
                   </Component>
                   <Component type="ScriptPanel" id="pmodblank4" x="132.0" y="163.0" width="60.0"
                              height="80.0" parentComponent="voice4" itemColour="0" itemColour2="0"
-                             bgColour="16777215" textColour="16777215" visible="0">
-                    <Component type="ScriptLabel" id="ScriptLabel3" x="9.0" y="-11.0" width="50.0"
-                               height="80.0" parentComponent="pmodblank4" text="4" textColour="1243687483"
-                               fontName="Avenir" fontSize="75.0" fontStyle="Regular" editable="0"/>
+                             bgColour="16777215" textColour="16777215">
+                    <Component type="ScriptLabel" id="semi5" x="5.0712890625" y="39.0" textColour="4280884766"
+                               width="50" height="20" fontName="Avenir" fontSize="18.0" text="semi"
+                               editable="0" parentComponent="pmodblank4"/>
+                    <Component type="ScriptSlider" id="smei4" x="16" y="8" width="30.0" height="30.0"
+                               processorId="gran4" parameterId="smei" parentComponent="pmodblank4"
+                               filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
+                               middlePosition="0.0" showValuePopup="Below" isPluginParameter="1"
+                               pluginParameterName="Pitch4" min="-12.0" max="12.0" stepSize="1.0"/>
                   </Component>
                   <Component type="ScriptButton" id="psync4" x="102.0" y="215.0" width="20.0"
                              height="25.0" scaleFactor="0.4000000059604645" parentComponent="voice4"
@@ -2328,7 +2350,7 @@
         <Processor Type="ModulatorChain" ID="Global Modulators" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
             <Processor Type="ScriptTimeVariantModulator" ID="s1" Bypassed="0" Intensity="1.0"
-                       Bipolar="0" NumTables="2" NumSliderPacks="3" NumAudioFiles="1">
+                       Bipolar="0" NumTables="2" NumSliderPacks="4" NumAudioFiles="1">
               <ChildProcessors/>
               <Content/>
               <Networks>
