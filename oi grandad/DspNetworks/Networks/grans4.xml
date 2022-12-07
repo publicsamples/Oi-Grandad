@@ -276,6 +276,17 @@
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                     </Parameters>
                   </Node>
+                  <Node ID="converter" FactoryPath="control.converter" Bypassed="0">
+                    <Properties>
+                      <Property ID="Mode" Value="St2Pitch"/>
+                    </Properties>
+                    <ModulationTargets>
+                      <Connection NodeId="input_toggle" ParameterId="Value1"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="Value" Automated="1"/>
+                    </Parameters>
+                  </Node>
                   <Node ID="input_toggle" FactoryPath="control.input_toggle" Bypassed="0">
                     <Parameters>
                       <Parameter MinValue="1.0" MaxValue="0.0" StepSize="1.0" ID="Input" Automated="1"/>
@@ -290,7 +301,7 @@
                     <ComplexData>
                       <AudioFiles>
                         <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                                   MaxValue="0"/>
+                                   MaxValue="1326762"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
@@ -419,7 +430,7 @@
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pitch" MinValue="0.5" MaxValue="2.0" Value="2.0">
+      <Parameter ID="pitch" MinValue="0.5" MaxValue="2.0" Value="1.2328203125">
         <Connections>
           <Connection NodeId="pma3" ParameterId="Add"/>
           <Connection NodeId="input_toggle" ParameterId="Value1"/>
@@ -553,6 +564,11 @@
       </Parameter>
       <Parameter ID="gmulti" MinValue="1.0" MaxValue="4.0" StepSize="1.0" Value="2.0">
         <Connections/>
+      </Parameter>
+      <Parameter ID="smei" MinValue="-12.0" MaxValue="12.0" StepSize="1" Value="0.0">
+        <Connections>
+          <Connection NodeId="converter" ParameterId="Value"/>
+        </Connections>
       </Parameter>
     </Parameters>
   </Node>

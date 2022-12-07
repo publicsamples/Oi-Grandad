@@ -31,4 +31,6 @@
   <ForceStereoOutput value="No"/>
   <EnableMidiOut value="No"/>
   <AdminPermissions value="No"/>
+  <EmbedUserPresets value="Yes"/>
+  <EnableGlobalPreprocessor value="No"/>
 </ProjectSettings>
