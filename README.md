@@ -50,7 +50,6 @@ https://www.youtube.com/playlist?list=PL8Rp79UJ5uBArd83oVDdT4ohNJL7Xw4zU
   
 
 When using Logic Pro 10.7.x it is necessary to use a buffer size of 512 or higher, a lower buffer will cause the position modulation to behave incorrectly. 10.6.3 should work with any buffer size.
-
   
 
 It is reccomended to use samples of 3 seconds or larger, shorter files may cause crashes or audio dropouts.
@@ -103,14 +102,13 @@ If you have any questions, comments or suggestions feel free to create a post he
 
 https://github.com/publicsamples/Oi-Grandad/discussions
 
-  
-
 I've started a list of free sounds that I feel work well with with Oi, Grandad! here:
-
-  
-
-https://github.com/publicsamples/Oi-Grandad/discussions
 
 https://github.com/publicsamples/Oi-Grandad/discussions/6
 
+If you like Oi, Grandad! you might also dig my lastest synth, Quetzalcoatl:
+
+https://github.com/publicsamples/Quetzalcoatl 
+
 [![Yo! pensioner! ](https://github.com/publicsamples/Oi-Grandad/blob/main/oi%20grandad/Images/pack2.png?raw=true)](https://modularsamples.gumroad.com/l/gyckl)
+
