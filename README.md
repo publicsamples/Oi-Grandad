@@ -33,34 +33,24 @@ It features:
 
 Plugins are available for Mac OS (VST, AU), Windows & Linux (VST):
 
- https://github.com/publicsamples/Oi-Grandad/releases
+https://github.com/publicsamples/Oi-Grandad/releases
 
   
 
-For a quick overview of see:
+A quick overview:
 
-  https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
+https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide
 
-Some Tutorials:
+Tutorials:
   
 https://www.youtube.com/playlist?list=PL8Rp79UJ5uBArd83oVDdT4ohNJL7Xw4zU
 
 # Known issues
 
-  
-
-When using Logic Pro 10.7.x it is necessary to use a buffer size of 512 or higher, a lower buffer will cause the position modulation to behave incorrectly. 10.6.3 should work with any buffer size.
-  
-
 It is reccomended to use samples of 3 seconds or larger, shorter files may cause crashes or audio dropouts.
 
   
-
-  
-
 # Installation
-
-  
 
 ****Linux****
 
@@ -68,31 +58,19 @@ Copy oi grandad.vst3 to User/Home/vst3
 
 copy modularsamples to User/Home/.config
 
-  
-
-  
-
 ****Windows****
 
-  
 
 Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
 
-  
-
 Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
-  
 
 ****Mac****
 
 Open the DMG file and then open the file "Oi Grandad.mkpg". If you get a message saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
 
-  
-
 On loading your DAW you may see a message saying “the developer cannot be verified” to fix this open System Preferences → Security and Privacy. On the general tab click ‘Open anyway’.
-
-  
 
 https://support.apple.com/en-us/HT202491
 
