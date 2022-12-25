@@ -1,5 +1,8 @@
 Content.makeFrontInterface(865, 746);
 
+Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
+
+
 //RR
 
 // This button will control the behaviour:
@@ -361,7 +364,7 @@ laf.registerFunction("drawComboBox", function(g, obj)
     g.setColour(obj.bgColour);
     g.drawRoundedRectangle(obj.area, 3.0, 3.0);
     g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
-    g.setFont("Avenir", 16.0);
+    g.setFont("Montserrat", 16.0);
    
     var a = obj.area;
     g.drawAlignedText(obj.text, [a[0] + 0, a[0], a[2]-1, a[3]], "centred");
@@ -376,11 +379,11 @@ laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
         g.setColour(0x22FFFFFF);
         g.fillRoundedRectangle(obj.area, 5.0);
         
-       g.setFont("Avenir", 16.0);
+       g.setFont("Montserrat", 16.0);
     }
    
     g.setColour(obj.textColour);
-    g.setFont("Avenir", 16.0);
+    g.setFont("Montserrat", 16.0);
     g.drawAlignedText(obj.text, obj.area, "centred");
 });
 
@@ -1153,6 +1156,32 @@ inline function onmasterdmixControl(component, value)
 };
 
 Content.getComponent("masterdmix").setControlCallback(onmasterdmixControl);
+
+
+//xfade
+
+const var XF = Content.getComponent("xfade");
+const var xfade = Synth.getModulator("xfade");
+const var xf1 = Synth.getEffect("xf1");
+const var xf2 = Synth.getEffect("xf2");
+const var xf3 = Synth.getEffect("xf3");
+const var xf4 = Synth.getEffect("xf4");
+const var XFcont = Content.getComponent("XFcont");
+
+
+inline function onxfadeControl(component, value)
+{
+	XFcont.showControl(1-value); 
+	XFcont.showControl(value);
+
+	xf1.setBypassed(1 -value);
+	xf2.setBypassed(1 -value);
+	xf3.setBypassed(1 -value);
+	xf4.setBypassed(1 -value);
+	xfade.setBypassed(1 -value);
+};
+
+Content.getComponent("xfade").setControlCallback(onxfadeControl);
 
 
 
