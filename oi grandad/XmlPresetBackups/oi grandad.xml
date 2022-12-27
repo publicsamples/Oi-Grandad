@@ -98,7 +98,7 @@
             <Control type="ScriptSliderPack" id="SliderPackC" value="8.0" data="64.MyLy835Qg4C..............9C...............vdT3pO..............3O..........vv0ixO......"/>
             <Control type="ScriptComboBox" id="ComboBox4" value="4.0"/>
             <Control type="ScriptTable" id="ScriptTable3" value="0.0" data=""/>
-            <Control type="ScriptSlider" id="Knob76" value="0.5"/>
+            <Control type="ScriptSlider" id="Knob76" value="0.7899999618530273"/>
             <Control type="ScriptSlider" id="Knob77" value="3.0"/>
             <Control type="ScriptSlider" id="Knob81" value="10.0"/>
             <Control type="ScriptButton" id="seqtype3" value="0.0"/>
@@ -192,7 +192,7 @@
             <Control type="ScriptSlider" id="semi2" value="0.0"/>
             <Control type="ScriptButton" id="psync2" value="0.0"/>
             <Control type="ScriptSlider" id="feed1" value="0.4900000095367432"/>
-            <Control type="ScriptButton" id="delaysync2" value="0.0"/>
+            <Control type="ScriptButton" id="delaysync2" value="1.0"/>
             <Control type="ScriptSlider" id="Vol1" value="0.8700000047683716"/>
             <Control type="ScriptSlider" id="cutoff1" value="0.6499999761581421"/>
             <Control type="ScriptSlider" id="res1" value="0.0"/>
@@ -274,7 +274,7 @@
             <Control type="ScriptComboBox" id="pos1modsel13" value="5.0"/>
             <Control type="ScriptSlider" id="posmod13" value="0.5"/>
             <Control type="ScriptComboBox" id="pos1modsel14" value="4.0"/>
-            <Control type="ScriptSlider" id="posmod14" value="0.5"/>
+            <Control type="ScriptSlider" id="posmod14" value="0.5899999737739563"/>
             <Control type="ScriptComboBox" id="ampmodsel7" value="3.0"/>
             <Control type="ScriptSlider" id="volmod7" value="1.0"/>
             <Control type="ScriptComboBox" id="OutputSelector2" value="1.0"/>
@@ -312,7 +312,7 @@
             <Control type="ScriptSlider" id="decay3" value="1.0"/>
             <Control type="ScriptSlider" id="sustain3" value="1.0"/>
             <Control type="ScriptSlider" id="delmod3" value="0.5"/>
-            <Control type="ScriptSlider" id="volmod3" value="0.5"/>
+            <Control type="ScriptSlider" id="volmod3" value="0.300000011920929"/>
             <Control type="ScriptSlider" id="delmix3" value="0.0"/>
             <Control type="ScriptComboBox" id="pos1modsel3" value="5.0"/>
             <Control type="ScriptComboBox" id="densemodsel3" value="9.0"/>
@@ -359,134 +359,134 @@
                          max="2.0" defaultValue="1.0"/>
               <Component type="ScriptPanel" id="blank1" x="568.0" y="-39.0" visible="0"/>
               <Component type="ScriptPanel" id="blank2" x="613.0" y="-30.0" visible="0"/>
-              <Component type="ScriptPanel" id="MOD2" x="640.0" y="9.0" width="220" height="680"
-                         itemColour="16777215" itemColour2="16777215" textColour="16777215"
+              <Component type="ScriptPanel" id="MOD2" x="640.0" y="9.0" width="220.0"
+                         height="680.0" itemColour="16777215" itemColour2="16777215" textColour="16777215"
                          saveInPreset="1" bgColour="16777215" locked="1" visible="0">
-                <Component type="ScriptLabel" id="ScriptLabel58" x="-4.0" y="118.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel58" x="-4.0" y="118.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel59" x="26.0" y="118.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel59" x="26.0" y="118.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel60" x="60.0" y="118.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel60" x="60.0" y="118.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel61" x="102.0" y="118.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel61" x="102.0" y="118.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel62" x="135.0" y="118.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel62" x="135.0" y="118.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel63" x="156.0" y="118.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel63" x="156.0" y="118.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel64" x="180.0" y="118.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel64" x="180.0" y="118.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel65" x="-4.0" y="227.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel65" x="-4.0" y="227.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel66" x="27.0" y="227.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel66" x="27.0" y="227.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel67" x="61.0" y="227.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel67" x="61.0" y="227.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel68" x="103.0" y="227.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel68" x="103.0" y="227.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel69" x="157.0" y="227.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel69" x="157.0" y="227.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel70" x="136.0" y="227.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel70" x="136.0" y="227.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel71" x="181.0" y="227.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel71" x="181.0" y="227.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel72" x="-6.0" y="336.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel72" x="-6.0" y="336.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel73" x="25.0" y="336.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel73" x="25.0" y="336.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel74" x="59.0" y="336.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel74" x="59.0" y="336.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel75" x="101.0" y="336.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel75" x="101.0" y="336.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel76" x="155.0" y="336.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel76" x="155.0" y="336.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel77" x="134.0" y="336.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel77" x="134.0" y="336.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel78" x="179.0" y="336.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel78" x="179.0" y="336.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel79" x="-3.0" y="441.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel79" x="-3.0" y="441.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel80" x="28.0" y="441.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel80" x="28.0" y="441.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel81" x="62.0" y="441.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel81" x="62.0" y="441.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel82" x="104.0" y="441.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel82" x="104.0" y="441.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel83" x="158.0" y="441.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel83" x="158.0" y="441.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel84" x="137.0" y="441.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel84" x="137.0" y="441.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel85" x="182.0" y="441.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel85" x="182.0" y="441.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel86" x="-5.0" y="552.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel86" x="-5.0" y="552.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel87" x="26.0" y="552.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel87" x="26.0" y="552.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel88" x="60.0" y="552.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel88" x="60.0" y="552.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel89" x="102.0" y="552.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel89" x="102.0" y="552.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel90" x="156.0" y="552.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel90" x="156.0" y="552.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel91" x="135.0" y="552.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel91" x="135.0" y="552.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel92" x="180.0" y="552.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel92" x="180.0" y="552.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel93" x="-2.0" y="657.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel93" x="-2.0" y="657.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel94" x="29.0" y="657.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel94" x="29.0" y="657.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel95" x="63.0" y="657.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel95" x="63.0" y="657.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel96" x="105.0" y="657.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel96" x="105.0" y="657.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel97" x="159.0" y="657.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel97" x="159.0" y="657.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel98" x="138.0" y="657.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel98" x="138.0" y="657.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel99" x="183.0" y="657.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD2"
+                <Component type="ScriptLabel" id="ScriptLabel99" x="183.0" y="657.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD2"
                            fontName="Montserrat" editable="0"/>
                 <Component type="ScriptLabel" id="ScriptLabel10" x="-6.0" y="30.0" width="30.0"
                            height="20.0" text="7" textColour="4278190080" fontName="Arial Black"
@@ -804,8 +804,8 @@
                              itemColour2="3816794416" textColour="4278190080" max="18"/>
                 </Component>
               </Component>
-              <Component type="ScriptPanel" id="MOD1" x="640.0" y="9.0" width="220" height="680"
-                         itemColour="16777215" itemColour2="16777215" textColour="16777215"
+              <Component type="ScriptPanel" id="MOD1" x="640.0" y="9.0" width="220.0"
+                         height="680.0" itemColour="16777215" itemColour2="16777215" textColour="16777215"
                          saveInPreset="1" bgColour="16777215">
                 <Component type="ScriptPanel" id="seq1" x="4.0" y="35.0" width="220.0" height="100.0"
                            itemColour="13023744" itemColour2="13620881" bgColour="13023914"
@@ -1053,8 +1053,8 @@
                              defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                              itemColour2="3816794416" textColour="4278190080" max="18"/>
                 </Component>
-                <Component type="ScriptPanel" id="seq6" x="4.0" y="575.0" width="220" height="90"
-                           itemColour="13023744" itemColour2="13620881" bgColour="13023914"
+                <Component type="ScriptPanel" id="seq6" x="4.0" y="575.0" width="220.0"
+                           height="90.0" itemColour="13023744" itemColour2="13620881" bgColour="13023914"
                            textColour="16711680" text="*" borderRadius="4.0" parentComponent="MOD1">
                   <Component type="ScriptButton" id="stype29" x="165.0" y="65.0" width="30.0"
                              height="20.0" parentComponent="seq6" isMetaParameter="1" itemColour="2279005464"
@@ -1108,8 +1108,8 @@
                 <Component type="ScriptLabel" id="ScriptLabel5" x="-6.0" y="140.0" width="30.0"
                            height="20.0" text="2" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel6" x="-6.0" y="246.0" width="30"
-                           height="20" text="3" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel6" x="-6.0" y="246.0" width="30.0"
+                           height="20.0" text="3" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
                 <Component type="ScriptLabel" id="ScriptLabel7" x="-7.0" y="356.0" width="30.0"
                            height="20.0" text="4" textColour="4278190080" parentComponent="MOD1"
@@ -1120,138 +1120,138 @@
                 <Component type="ScriptLabel" id="ScriptLabel9" x="-7.0" y="571.0" width="30.0"
                            height="20.0" text="6" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel16" x="-2.0" y="117" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel16" x="-2.0" y="117.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel17" x="29.0" y="117" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel17" x="29.0" y="117.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel18" x="63.0" y="117" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel18" x="63.0" y="117.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel19" x="105.0" y="117" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel19" x="105.0" y="117.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel20" x="138.0" y="117" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel20" x="138.0" y="117.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel21" x="159.0" y="117" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel21" x="159.0" y="117.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel22" x="183.0" y="117" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel22" x="183.0" y="117.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel23" x="-1.0" y="226.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel23" x="-1.0" y="226.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel24" x="30.0" y="226.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel24" x="30.0" y="226.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel25" x="64.0" y="226.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel25" x="64.0" y="226.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel26" x="106.0" y="226.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel26" x="106.0" y="226.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel27" x="160.0" y="226.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel27" x="160.0" y="226.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel28" x="139.0" y="226.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel28" x="139.0" y="226.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel29" x="184.0" y="226.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel29" x="184.0" y="226.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel30" x="-3.0" y="335.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel30" x="-3.0" y="335.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel31" x="28.0" y="335.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel31" x="28.0" y="335.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel32" x="62.0" y="335.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel32" x="62.0" y="335.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel33" x="104.0" y="335.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel33" x="104.0" y="335.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel34" x="158.0" y="335.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel34" x="158.0" y="335.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel35" x="137.0" y="335.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel35" x="137.0" y="335.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel36" x="182.0" y="335.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel36" x="182.0" y="335.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel37" x="0.0" y="440.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel37" x="0.0" y="440.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel38" x="31.0" y="440.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel38" x="31.0" y="440.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel39" x="65.0" y="440.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel39" x="65.0" y="440.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel40" x="107.0" y="440.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel40" x="107.0" y="440.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel41" x="161.0" y="440.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel41" x="161.0" y="440.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel42" x="140.0" y="440.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel42" x="140.0" y="440.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel43" x="185.0" y="440.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel43" x="185.0" y="440.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel44" x="-2.0" y="551.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel44" x="-2.0" y="551.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel45" x="29.0" y="551.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel45" x="29.0" y="551.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel46" x="63.0" y="551.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel46" x="63.0" y="551.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel47" x="105.0" y="551.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel47" x="105.0" y="551.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel48" x="159.0" y="551.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel48" x="159.0" y="551.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel49" x="138.0" y="551.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel49" x="138.0" y="551.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel50" x="183.0" y="551.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel50" x="183.0" y="551.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel51" x="1.0" y="656.0" width="40"
-                           height="20" text="tempo" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel51" x="1.0" y="656.0" width="40.0"
+                           height="20.0" text="tempo" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel52" x="32.0" y="656.0" width="40"
-                           height="20" text="div" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel52" x="32.0" y="656.0" width="40.0"
+                           height="20.0" text="div" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel53" x="66.0" y="656.0" width="40"
-                           height="20" text="mod" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel53" x="66.0" y="656.0" width="40.0"
+                           height="20.0" text="mod" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel54" x="108.0" y="656.0" width="40"
-                           height="20" text="trig" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel54" x="108.0" y="656.0" width="40.0"
+                           height="20.0" text="trig" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel55" x="162.0" y="656.0" width="40"
-                           height="20" text="one" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel55" x="162.0" y="656.0" width="40.0"
+                           height="20.0" text="one" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel56" x="141.0" y="656.0" width="40"
-                           height="20" text="dir" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel56" x="141.0" y="656.0" width="40.0"
+                           height="20.0" text="dir" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
-                <Component type="ScriptLabel" id="ScriptLabel57" x="186.0" y="656.0" width="40"
-                           height="20" text="type" textColour="4278190080" parentComponent="MOD1"
+                <Component type="ScriptLabel" id="ScriptLabel57" x="186.0" y="656.0" width="40.0"
+                           height="20.0" text="type" textColour="4278190080" parentComponent="MOD1"
                            fontName="Montserrat" editable="0"/>
               </Component>
               <Component type="ScriptButton" id="envelopes1" x="787.0" y="-5.0" width="40.0"
                          height="40.0" itemColour="935770794" itemColour2="4227792896"
                          bgColour="4289922240" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"
                          scaleFactor="0.699999988079071"/>
-              <Component type="ScriptPanel" id="VOICE" x="4.0" y="6.0" width="630" height="700"
+              <Component type="ScriptPanel" id="VOICE" x="4.0" y="6.0" width="630.0" height="700.0"
                          itemColour="16449536" itemColour2="0" bgColour="13023914" textColour="16777215">
                 <Component type="ScriptPanel" id="voice1" x="4.0" y="3.0" width="310.0"
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
@@ -1496,8 +1496,9 @@
                              height="25.0" scaleFactor="0.4000000059604645" parentComponent="voice1"
                              itemColour="4292689201" filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptLabel" id="semi6" x="14.0" y="151.0" textColour="4280884766"
-                             width="80" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="position"/>
+                             width="80.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="position"/>
                   <Component type="ScriptPanel" id="pmodblank1" x="132.0" y="171.0" width="50.0"
                              height="70.0" parentComponent="voice1" itemColour="0" itemColour2="0"
                              bgColour="16777215" textColour="16777215">
@@ -1549,154 +1550,196 @@
                              showValuePopup="Below" macroControl="No MacroControl" mode="TempoSync"
                              max="18.0" stepSize="1.0" visible="0"/>
                   <Component type="ScriptLabel" id="semi7" x="28.0" y="203.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="density"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="density"/>
                   <Component type="ScriptLabel" id="semi8" x="31.0" y="259.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="spread"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="spread"/>
                   <Component type="ScriptLabel" id="semi9" x="29.0" y="313.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="detune"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="detune"/>
                   <Component type="ScriptLabel" id="semi10" x="94.0" y="129.0" textColour="4280884766"
-                             width="40" height="50" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="grain size"/>
+                             width="40.0" height="50.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="grain size"/>
                   <Component type="ScriptLabel" id="semi11" x="144.0" y="140.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
                   <Component type="ScriptLabel" id="semi12" x="92.0" y="230.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
                   <Component type="ScriptLabel" id="semi13" x="91.0" y="201.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="pitch"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="pitch"/>
                   <Component type="ScriptLabel" id="semi14" x="192.0" y="137.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="volume"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="volume"/>
                   <Component type="ScriptLabel" id="semi15" x="241.0" y="137.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="pan"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="pan"/>
                   <Component type="ScriptLabel" id="semi16" x="91.0" y="288.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="cut"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="cut"/>
                   <Component type="ScriptLabel" id="semi17" x="119.0" y="288.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="res"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="res"/>
                   <Component type="ScriptLabel" id="semi18" x="145.0" y="288.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
                   <Component type="ScriptLabel" id="semi19" x="188.0" y="227.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="a"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="a"/>
                   <Component type="ScriptLabel" id="semi20" x="204.0" y="227.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="d"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="d"/>
                   <Component type="ScriptLabel" id="semi21" x="221.0" y="227.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="s"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="s"/>
                   <Component type="ScriptLabel" id="semi22" x="249.0" y="230.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="output"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="output"/>
                   <Component type="ScriptLabel" id="semi23" x="271.0" y="182.0" textColour="4280884766"
-                             width="30" height="30" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="11.0" text="mod gain"/>
+                             width="30.0" height="30.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="11.0"
+                             text="mod gain"/>
                   <Component type="ScriptLabel" id="semi24" x="186.0" y="287.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="time"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="time"/>
                   <Component type="ScriptLabel" id="semi25" x="219.0" y="287.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="feed"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="feed"/>
                   <Component type="ScriptLabel" id="semi26" x="252.0" y="287.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
                   <Component type="ScriptLabel" id="semi27" x="193.0" y="318.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
                   <Component type="ScriptLabel" id="semi28" x="122.0" y="246.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Bold" fontSize="18.0" text="FILTER"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Bold" fontSize="18.0" text="FILTER"/>
                   <Component type="ScriptLabel" id="semi29" x="221.0" y="247.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Bold" fontSize="18.0" text="DELAY"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Bold" fontSize="18.0" text="DELAY"/>
                   <Component type="ScriptLabel" id="semi30" x="218.0" y="96.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice1"
-                             fontStyle="Bold" fontSize="18.0" text="AMP"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice1" fontStyle="Bold" fontSize="18.0" text="AMP"/>
                 </Component>
                 <Component type="ScriptPanel" id="voice2" x="318.0" y="3.0" width="310.0"
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
                            itemColour2="13023914" borderSize="0.0" borderRadius="0.0" locked="1"
                            parentComponent="VOICE">
                   <Component type="ScriptLabel" id="semi31" x="28.0" y="204.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="density"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="density"/>
                   <Component type="ScriptLabel" id="semi32" x="31.0" y="260.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="spread"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="spread"/>
                   <Component type="ScriptLabel" id="semi33" x="29.0" y="314.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="detune"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="detune"/>
                   <Component type="ScriptLabel" id="semi34" x="94.0" y="130.0" textColour="4280884766"
-                             width="40" height="50" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="grain size"/>
+                             width="40.0" height="50.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="grain size"/>
                   <Component type="ScriptLabel" id="semi35" x="144.0" y="141.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
                   <Component type="ScriptLabel" id="semi36" x="92.0" y="231.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
                   <Component type="ScriptLabel" id="semi37" x="91.0" y="202.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="pitch"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="pitch"/>
                   <Component type="ScriptLabel" id="semi38" x="192.0" y="138.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="volume"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="volume"/>
                   <Component type="ScriptLabel" id="semi39" x="241.0" y="138.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="pan"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="pan"/>
                   <Component type="ScriptLabel" id="semi40" x="91.0" y="289.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="cut"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="cut"/>
                   <Component type="ScriptLabel" id="semi41" x="119.0" y="289.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="res"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="res"/>
                   <Component type="ScriptLabel" id="semi42" x="145.0" y="289.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
                   <Component type="ScriptLabel" id="semi43" x="188.0" y="228.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="a"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="a"/>
                   <Component type="ScriptLabel" id="semi44" x="204.0" y="228.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="d"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="d"/>
                   <Component type="ScriptLabel" id="semi45" x="221.0" y="228.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="s"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="s"/>
                   <Component type="ScriptLabel" id="semi46" x="249.0" y="229.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="output"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="output"/>
                   <Component type="ScriptLabel" id="semi47" x="271.0" y="183.0" textColour="4280884766"
-                             width="30" height="30" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="11.0" text="mod gain"/>
+                             width="30.0" height="30.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="11.0"
+                             text="mod gain"/>
                   <Component type="ScriptLabel" id="semi48" x="186.0" y="288.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="time"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="time"/>
                   <Component type="ScriptLabel" id="semi49" x="219.0" y="288.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="feed"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="feed"/>
                   <Component type="ScriptLabel" id="semi50" x="252.0" y="288.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
                   <Component type="ScriptLabel" id="semi51" x="193.0" y="319.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
                   <Component type="ScriptLabel" id="semi52" x="122.0" y="247.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Bold" fontSize="18.0" text="FILTER"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Bold" fontSize="18.0" text="FILTER"/>
                   <Component type="ScriptLabel" id="semi53" x="221.0" y="248.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Bold" fontSize="18.0" text="DELAY"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Bold" fontSize="18.0" text="DELAY"/>
                   <Component type="ScriptLabel" id="semi54" x="218.0" y="97.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Bold" fontSize="18.0" text="AMP"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Bold" fontSize="18.0" text="AMP"/>
                   <Component type="ScriptPanel" id="ScriptPanel2" x="7.0" y="1.0" width="290.0"
                              height="90.0" parentComponent="voice2" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
@@ -1837,7 +1880,8 @@
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.800000011920929" parentComponent="voice2" saveInPreset="0"
                              text="Left Delay" isMetaParameter="1" middlePosition="0.5" processorId="del2"
-                             parameterId="timenosync" showValuePopup="Below" stepSize="0.1000000014901161"/>
+                             parameterId="timenosync" showValuePopup="Below" stepSize="0.1000000014901161"
+                             visible="0"/>
                   <Component type="ScriptSlider" id="posmod1" x="70.0" y="99.0" width="30.0"
                              height="30.0" processorId="gran2" parameterId="position mod"
                              parentComponent="voice2" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1983,90 +2027,113 @@
                              scaleFactor="0.800000011920929" parentComponent="voice2" saveInPreset="0"
                              text="Left Delay" isMetaParameter="1" middlePosition="9.0" processorId="del2"
                              parameterId="delytime" showValuePopup="Below" mode="TempoSync"
-                             max="18.0" visible="0"/>
+                             max="18.0"/>
                   <Component type="ScriptLabel" id="semi55" x="27.0" y="150.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice2"
-                             fontStyle="Regular" fontSize="15.0" text="position"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice2" fontStyle="Regular" fontSize="15.0"
+                             text="position"/>
                 </Component>
                 <Component type="ScriptPanel" id="voice3" x="4.0" y="360.0" width="310.0"
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
                            itemColour2="13023914" borderSize="0.0" borderRadius="0.0" locked="1"
                            parentComponent="VOICE">
-                  <Component type="ScriptLabel" id="semi56" x="25" y="149" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="position"/>
-                  <Component type="ScriptLabel" id="semi57" x="216" y="96" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Bold" fontSize="18.0" text="AMP"/>
-                  <Component type="ScriptLabel" id="semi58" x="26" y="203" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="density"/>
-                  <Component type="ScriptLabel" id="semi59" x="29" y="259" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="spread"/>
-                  <Component type="ScriptLabel" id="semi60" x="27" y="313" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="detune"/>
-                  <Component type="ScriptLabel" id="semi61" x="92" y="129" textColour="4280884766"
-                             width="40" height="50" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="grain size"/>
-                  <Component type="ScriptLabel" id="semi62" x="146.0" y="140" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
-                  <Component type="ScriptLabel" id="semi63" x="94.0" y="230" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
-                  <Component type="ScriptLabel" id="semi64" x="93.0" y="201" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="pitch"/>
-                  <Component type="ScriptLabel" id="semi65" x="190" y="137" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="volume"/>
-                  <Component type="ScriptLabel" id="semi66" x="248.0" y="137" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="pan"/>
-                  <Component type="ScriptLabel" id="semi67" x="93.0" y="288" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="cut"/>
-                  <Component type="ScriptLabel" id="semi68" x="121.0" y="288" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="res"/>
-                  <Component type="ScriptLabel" id="semi69" x="147.0" y="288" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
-                  <Component type="ScriptLabel" id="semi70" x="190.0" y="227" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="a"/>
-                  <Component type="ScriptLabel" id="semi71" x="206.0" y="227" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="d"/>
-                  <Component type="ScriptLabel" id="semi72" x="223.0" y="227" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="s"/>
+                  <Component type="ScriptLabel" id="semi56" x="25.0" y="149.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="position"/>
+                  <Component type="ScriptLabel" id="semi57" x="216.0" y="96.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Bold" fontSize="18.0" text="AMP"/>
+                  <Component type="ScriptLabel" id="semi58" x="26.0" y="203.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="density"/>
+                  <Component type="ScriptLabel" id="semi59" x="29.0" y="259.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="spread"/>
+                  <Component type="ScriptLabel" id="semi60" x="27.0" y="313.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="detune"/>
+                  <Component type="ScriptLabel" id="semi61" x="92.0" y="129.0" textColour="4280884766"
+                             width="40.0" height="50.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="grain size"/>
+                  <Component type="ScriptLabel" id="semi62" x="146.0" y="140.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
+                  <Component type="ScriptLabel" id="semi63" x="94.0" y="230.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
+                  <Component type="ScriptLabel" id="semi64" x="93.0" y="201.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="pitch"/>
+                  <Component type="ScriptLabel" id="semi65" x="190.0" y="137.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="volume"/>
+                  <Component type="ScriptLabel" id="semi66" x="248.0" y="137.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="pan"/>
+                  <Component type="ScriptLabel" id="semi67" x="93.0" y="288.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="cut"/>
+                  <Component type="ScriptLabel" id="semi68" x="121.0" y="288.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="res"/>
+                  <Component type="ScriptLabel" id="semi69" x="147.0" y="288.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
+                  <Component type="ScriptLabel" id="semi70" x="190.0" y="227.0" textColour="4280884766"
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="a"/>
+                  <Component type="ScriptLabel" id="semi71" x="206.0" y="227.0" textColour="4280884766"
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="d"/>
+                  <Component type="ScriptLabel" id="semi72" x="223.0" y="227.0" textColour="4280884766"
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="s"/>
                   <Component type="ScriptLabel" id="semi73" x="251.0" y="229.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="output"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="output"/>
                   <Component type="ScriptLabel" id="semi74" x="273.0" y="185.0" textColour="4280884766"
-                             width="30" height="30" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="11.0" text="mod gain"/>
-                  <Component type="ScriptLabel" id="semi75" x="188.0" y="287" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="time"/>
-                  <Component type="ScriptLabel" id="semi76" x="221.0" y="287" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="feed"/>
-                  <Component type="ScriptLabel" id="semi77" x="254.0" y="287" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
+                             width="30.0" height="30.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="11.0"
+                             text="mod gain"/>
+                  <Component type="ScriptLabel" id="semi75" x="188.0" y="287.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="time"/>
+                  <Component type="ScriptLabel" id="semi76" x="221.0" y="287.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="feed"/>
+                  <Component type="ScriptLabel" id="semi77" x="254.0" y="287.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
                   <Component type="ScriptLabel" id="semi78" x="193.0" y="314.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
-                  <Component type="ScriptLabel" id="semi79" x="120" y="246" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Bold" fontSize="18.0" text="FILTER"/>
-                  <Component type="ScriptLabel" id="semi80" x="219" y="247" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice3"
-                             fontStyle="Bold" fontSize="18.0" text="DELAY"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
+                  <Component type="ScriptLabel" id="semi79" x="120.0" y="246.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Bold" fontSize="18.0" text="FILTER"/>
+                  <Component type="ScriptLabel" id="semi80" x="219.0" y="247.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice3" fontStyle="Bold" fontSize="18.0" text="DELAY"/>
                   <Component type="ScriptPanel" id="ScriptPanel5" x="6.0" y="-1.0" width="290.0"
                              height="90.0" parentComponent="voice3" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
@@ -2121,8 +2188,8 @@
                              height="30.0" processorId="del3" parameterId="dfeed" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" scaleFactor="0.800000011920929" parentComponent="voice3"
                              showValuePopup="Below"/>
-                  <Component type="ScriptButton" id="delaysync3" x="203.0" y="296.0" width="30"
-                             height="30" scaleFactor="0.5" parentComponent="voice3" itemColour="4292689201"
+                  <Component type="ScriptButton" id="delaysync3" x="203.0" y="296.0" width="30.0"
+                             height="30.0" scaleFactor="0.5" parentComponent="voice3" itemColour="4292689201"
                              filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptSlider" id="Vol2" x="204.0" y="116.0" stepSize="0.009999999776482582"
                              width="30.0" height="30.0" processorId="vol3" parameterId="vol"
@@ -2348,81 +2415,103 @@
                            height="340.0" text="wave1" bgColour="4205612" itemColour="13620881"
                            itemColour2="13023914" borderSize="0.0" borderRadius="0.0" locked="1"
                            parentComponent="VOICE">
-                  <Component type="ScriptLabel" id="semi81" x="221" y="250.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Bold" fontSize="18.0" text="DELAY"/>
-                  <Component type="ScriptLabel" id="semi82" x="27" y="152.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="position"/>
-                  <Component type="ScriptLabel" id="semi83" x="218" y="99.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Bold" fontSize="18.0" text="AMP"/>
-                  <Component type="ScriptLabel" id="semi84" x="28" y="206.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="density"/>
-                  <Component type="ScriptLabel" id="semi85" x="31" y="262.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="spread"/>
-                  <Component type="ScriptLabel" id="semi86" x="29" y="316.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="detune"/>
-                  <Component type="ScriptLabel" id="semi87" x="94" y="130.0" textColour="4280884766"
-                             width="40" height="50" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="grain size"/>
-                  <Component type="ScriptLabel" id="semi88" x="144" y="143.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
-                  <Component type="ScriptLabel" id="semi89" x="92" y="233.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
-                  <Component type="ScriptLabel" id="semi90" x="91" y="202.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="pitch"/>
-                  <Component type="ScriptLabel" id="semi91" x="192" y="140.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="volume"/>
-                  <Component type="ScriptLabel" id="semi92" x="241" y="140.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="pan"/>
-                  <Component type="ScriptLabel" id="semi93" x="91" y="291.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="cut"/>
-                  <Component type="ScriptLabel" id="semi94" x="119" y="291.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="res"/>
-                  <Component type="ScriptLabel" id="semi95" x="145" y="291.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
+                  <Component type="ScriptLabel" id="semi81" x="221.0" y="250.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Bold" fontSize="18.0" text="DELAY"/>
+                  <Component type="ScriptLabel" id="semi82" x="27.0" y="152.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="position"/>
+                  <Component type="ScriptLabel" id="semi83" x="218.0" y="99.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Bold" fontSize="18.0" text="AMP"/>
+                  <Component type="ScriptLabel" id="semi84" x="28.0" y="206.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="density"/>
+                  <Component type="ScriptLabel" id="semi85" x="31.0" y="262.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="spread"/>
+                  <Component type="ScriptLabel" id="semi86" x="29.0" y="316.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="detune"/>
+                  <Component type="ScriptLabel" id="semi87" x="94.0" y="130.0" textColour="4280884766"
+                             width="40.0" height="50.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="grain size"/>
+                  <Component type="ScriptLabel" id="semi88" x="144.0" y="143.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
+                  <Component type="ScriptLabel" id="semi89" x="92.0" y="233.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
+                  <Component type="ScriptLabel" id="semi90" x="91.0" y="202.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="pitch"/>
+                  <Component type="ScriptLabel" id="semi91" x="192.0" y="140.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="volume"/>
+                  <Component type="ScriptLabel" id="semi92" x="241.0" y="140.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="pan"/>
+                  <Component type="ScriptLabel" id="semi93" x="91.0" y="291.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="cut"/>
+                  <Component type="ScriptLabel" id="semi94" x="119.0" y="291.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="res"/>
+                  <Component type="ScriptLabel" id="semi95" x="145.0" y="291.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
                   <Component type="ScriptLabel" id="semi96" x="190.0" y="230.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="a"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="a"/>
                   <Component type="ScriptLabel" id="semi97" x="206.0" y="230.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="d"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="d"/>
                   <Component type="ScriptLabel" id="semi98" x="223.0" y="230.0" textColour="4280884766"
-                             width="30" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="s"/>
-                  <Component type="ScriptLabel" id="semi99" x="249" y="231.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="output"/>
-                  <Component type="ScriptLabel" id="semi100" x="271" y="185.0" textColour="4280884766"
-                             width="30" height="30" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="11.0" text="mod gain"/>
-                  <Component type="ScriptLabel" id="semi101" x="186" y="290.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="time"/>
+                             width="30.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="s"/>
+                  <Component type="ScriptLabel" id="semi99" x="249.0" y="231.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="output"/>
+                  <Component type="ScriptLabel" id="semi100" x="271.0" y="185.0" textColour="4280884766"
+                             width="30.0" height="30.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="11.0"
+                             text="mod gain"/>
+                  <Component type="ScriptLabel" id="semi101" x="186.0" y="290.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="time"/>
                   <Component type="ScriptLabel" id="semi102" x="220.0" y="290.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="feed"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="feed"/>
                   <Component type="ScriptLabel" id="semi103" x="254.0" y="290.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="mix"/>
-                  <Component type="ScriptLabel" id="semi104" x="193" y="315.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Regular" fontSize="15.0" text="sync"/>
-                  <Component type="ScriptLabel" id="semi105" x="122" y="249.0" textColour="4280884766"
-                             width="50" height="20" fontName="Montserrat" editable="0" parentComponent="voice4"
-                             fontStyle="Bold" fontSize="18.0" text="FILTER"/>
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="mix"/>
+                  <Component type="ScriptLabel" id="semi104" x="193.0" y="315.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Regular" fontSize="15.0"
+                             text="sync"/>
+                  <Component type="ScriptLabel" id="semi105" x="122.0" y="249.0" textColour="4280884766"
+                             width="50.0" height="20.0" fontName="Montserrat" editable="0"
+                             parentComponent="voice4" fontStyle="Bold" fontSize="18.0" text="FILTER"/>
                   <Component type="ScriptPanel" id="ScriptPanel6" x="7.0" y="-1.0" width="290.0"
                              height="90.0" parentComponent="voice4" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
@@ -2477,8 +2566,8 @@
                              height="30.0" processorId="del4" parameterId="dfeed" filmstripImage="{PROJECT_FOLDER}k2.png"
                              numStrips="200.0" scaleFactor="0.800000011920929" parentComponent="voice4"
                              showValuePopup="Below"/>
-                  <Component type="ScriptButton" id="delaysync4" x="203.0" y="298.0" width="30"
-                             height="30" scaleFactor="0.5" parentComponent="voice4" itemColour="4292689201"
+                  <Component type="ScriptButton" id="delaysync4" x="203.0" y="298.0" width="30.0"
+                             height="30.0" scaleFactor="0.5" parentComponent="voice4" itemColour="4292689201"
                              filmstripImage="{PROJECT_FOLDER}switch_toggle2.png"/>
                   <Component type="ScriptSlider" id="Vol3" x="204.0" y="116.0" stepSize="0.009999999776482582"
                              width="30.0" height="30.0" processorId="vol4" parameterId="vol"
@@ -2726,11 +2815,11 @@
                 <Component type="ScriptPanel" id="Panel1" x="-6.0" y="-1.0" width="637.0"
                            height="690.0" itemColour="13620881" itemColour2="13023914" bgColour="4290326576"
                            parentComponent="settings">
-                  <Component type="ScriptFloatingTile" id="ScriptFloatingTile1" x="22.0" y="43.0"
-                             width="590.0" height="390.0" parentComponent="Panel1" ContentType="PresetBrowser"
+                  <Component type="ScriptFloatingTile" id="ScriptFloatingTile1" x="13.0" y="43.0"
+                             width="410" height="390" parentComponent="Panel1" ContentType="PresetBrowser"
                              bgColour="13442333" itemColour="4291184969" itemColour2="4293047560"
                              Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: false,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: false,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowFavoriteIcon&quot;: true,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 2,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"
-                             textColour="4283575597" Font="Avenir" FontSize="18.0"/>
+                             textColour="4283575597" Font="Montserrat" FontSize="18.0"/>
                   <Component type="ScriptImage" id="Image1" x="32.0" y="439.0" parentComponent="Panel1"
                              fileName="{PROJECT_FOLDER}ULPAD22.png" width="280.0" height="226.0"/>
                   <Component type="ScriptPanel" id="ULPbox" x="21.0" y="429.0" width="300.0"
@@ -2743,6 +2832,11 @@
                              height="240.0" parentComponent="Panel1" allowCallbacks="Clicks Only"
                              bgColour="15342877" itemColour="15082532" itemColour2="15663104"
                              textColour="16713479"/>
+                  <Component type="ScriptFloatingTile" id="ScriptFloatingTile2" x="425.0"
+                             y="25.0" width="200" height="380" parentComponent="Panel1" ContentType="CustomSettings"
+                             bgColour="4278190080" itemColour="4278190080" itemColour2="3487776005"
+                             Data="{&#10;  &quot;Driver&quot;: true,&#10;  &quot;Device&quot;: true,&#10;  &quot;Output&quot;: true,&#10;  &quot;BufferSize&quot;: true,&#10;  &quot;SampleRate&quot;: true,&#10;  &quot;GlobalBPM&quot;: true,&#10;  &quot;StreamingMode&quot;: true,&#10;  &quot;ScaleFactor&quot;: true,&#10;  &quot;VoiceAmountMultiplier&quot;: false,&#10;  &quot;ClearMidiCC&quot;: true,&#10;  &quot;SampleLocation&quot;: false,&#10;  &quot;DebugMode&quot;: false,&#10;  &quot;UseOpenGL&quot;: false,&#10;  &quot;ScaleFactorList&quot;: [&#10;    0.5,&#10;    0.6,&#10;    0.75,&#10;    0.8,&#10;    0.9,&#10;    1.0,&#10;    1.25,&#10;    1.5&#10;  ]&#10;}"
+                             Font="Montserrat" FontSize="12.0" textColour="4278190080" itemColour3="4278190080"/>
                 </Component>
                 <Component type="ScriptFloatingTile" id="FloatingTile2" x="392.0" y="661.0"
                            width="30.0" height="10.0" parentComponent="settings" visible="0"/>
@@ -2847,114 +2941,115 @@
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="11.5"
                          showTextBox="0" defaultValue="5.0" scaleFactor="0.75" saveInPreset="0"
                          isPluginParameter="1" max="18.0" min="5.0" mode="TempoSync" isMetaParameter="1"/>
-              <Component type="ScriptSlider" id="mastertime1" x="457.0" y="710.0" width="30.0"
+              <Component type="ScriptSlider" id="mastertime1" x="352.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="9.0" stepSize="1.0"
                          showTextBox="0" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
                          mode="TempoSync" max="18.0" isMetaParameter="1" visible="0"/>
-              <Component type="ScriptButton" id="Enable" x="510.0" y="706.0" width="30"
-                         height="30" itemColour2="4289344298" itemColour="4289344298"
+              <Component type="ScriptButton" id="Enable" x="510.0" y="706.0" width="30.0"
+                         height="30.0" itemColour2="4289344298" itemColour="4289344298"
                          text="Config/Enable" bgColour="4289344298" textColour="4289344298"
                          filmstripImage="{PROJECT_FOLDER}switch_toggle2.png" scaleFactor="0.5"/>
-              <Component type="ScriptLabel" id="Label1" x="-2.0" y="730.0" width="50"
+              <Component type="ScriptLabel" id="Label1" x="-2.0" y="730.0" width="50.0"
                          height="15.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="position" editable="0"/>
-              <Component type="ScriptLabel" id="Label2" x="35.0" y="730.0" width="50"
+              <Component type="ScriptLabel" id="Label2" x="35.0" y="730.0" width="50.0"
                          height="15.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="grain" editable="0"/>
-              <Component type="ScriptLabel" id="Label3" x="18" y="842" width="50" height="15.0"
-                         fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label3" x="18.0" y="842.0" width="50.0"
+                         height="15.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="grain"/>
-              <Component type="ScriptLabel" id="Label4" x="75.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label4" x="75.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="density" editable="0"/>
-              <Component type="ScriptLabel" id="Label5" x="113.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label5" x="113.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="pitch" editable="0"/>
-              <Component type="ScriptLabel" id="Label6" x="150.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label6" x="150.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="spread" editable="0"/>
-              <Component type="ScriptLabel" id="Label7" x="192.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label7" x="192.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="detune" editable="0"/>
-              <Component type="ScriptLabel" id="Label8" x="228.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label8" x="228.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="cutoff" editable="0"/>
-              <Component type="ScriptLabel" id="Label9" x="269.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label9" x="269.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="resonance" editable="0"/>
-              <Component type="ScriptLabel" id="Label10" x="306.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label10" x="306.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="f.mix" editable="0"/>
-              <Component type="ScriptLabel" id="Label12" x="338.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label12" x="338.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="time" editable="0"/>
-              <Component type="ScriptLabel" id="Label13" x="378.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label13" x="378.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="feedback" editable="0"/>
-              <Component type="ScriptLabel" id="Label14" x="417.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label14" x="417.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="d.mix" editable="0"/>
-              <Component type="ScriptLabel" id="Label15" x="454.0" y="731.0" width="50"
-                         height="12" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label15" x="454.0" y="731.0" width="50.0"
+                         height="12.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="vol" editable="0"/>
-              <Component type="ScriptLabel" id="Label17" x="489.0" y="732.0" width="70"
-                         height="10" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label17" x="489.0" y="732.0" width="70.0"
+                         height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="round robin" editable="0"/>
-              <Component type="ScriptLabel" id="Label18" x="548.0" y="732.0" width="70"
-                         height="10" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
-                         text="xfade on/off"/>
-              <Component type="ScriptButton" id="xfade" x="567.0" y="707.0" width="30"
-                         height="30" itemColour2="4289344298" itemColour="4289344298"
+              <Component type="ScriptLabel" id="Label18" x="548.0" y="732.0" width="70.0"
+                         height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+                         text="xfade on/off" editable="0"/>
+              <Component type="ScriptButton" id="xfade" x="567.0" y="707.0" width="30.0"
+                         height="30.0" itemColour2="4289344298" itemColour="4289344298"
                          text="Config/Enable" bgColour="4289344298" textColour="4289344298"
                          filmstripImage="{PROJECT_FOLDER}switch_toggle2.png" scaleFactor="0.5"/>
-              <Component type="ScriptPanel" id="XFcont" x="613.0" y="710.0" width="120"
-                         height="38" itemColour="0" itemColour2="16777215" bgColour="0"
+              <Component type="ScriptPanel" id="XFcont" x="613.0" y="710.0" width="120.0"
+                         height="38.0" itemColour="0" itemColour2="16777215" bgColour="0"
                          textColour="0" processorId="xfade" parameterId="scan" visible="0">
-                <Component type="ScriptLabel" id="Label19" x="-7.0" y="22.0" width="40"
-                           height="10" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+                <Component type="ScriptLabel" id="Label19" x="-7.0" y="22.0" width="40.0"
+                           height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                            text="xfade" parentComponent="XFcont" editable="0"/>
                 <Component type="ScriptComboBox" id="ComboBox1" x="75.0" y="0.0" max="16"
-                           parentComponent="XFcont" width="20" height="20" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;"
+                           parentComponent="XFcont" width="20.0" height="20.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;"
                            textColour="4292455944" bgColour="1426063360" processorId="xfade"
                            parameterId="moddest"/>
-                <Component type="ScriptSlider" id="ScriptSlider1" x="2.0" y="-1.0" width="30"
-                           height="30" parentComponent="XFcont" filmstripImage="{PROJECT_FOLDER}k2.png"
-                           numStrips="200" scaleFactor="0.75" processorId="xfade" parameterId="scan"/>
-                <Component type="ScriptSlider" id="ScriptSlider2" x="95.0" y="-2.0" width="30"
-                           height="30" parentComponent="XFcont" filmstripImage="{PROJECT_FOLDER}K7.png"
-                           numStrips="200" scaleFactor="0.55" processorId="xfade" parameterId="modamount"/>
-                <Component type="ScriptLabel" id="Label20" x="75.0" y="23.0" width="40"
-                           height="10" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+                <Component type="ScriptSlider" id="ScriptSlider1" x="2.0" y="-1.0" width="30.0"
+                           height="30.0" parentComponent="XFcont" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="200.0" scaleFactor="0.75" processorId="xfade" parameterId="scan"/>
+                <Component type="ScriptSlider" id="ScriptSlider2" x="95.0" y="-2.0" width="30.0"
+                           height="30.0" parentComponent="XFcont" filmstripImage="{PROJECT_FOLDER}K7.png"
+                           numStrips="200.0" scaleFactor="0.550000011920929" processorId="xfade"
+                           parameterId="modamount"/>
+                <Component type="ScriptLabel" id="Label20" x="75.0" y="23.0" width="40.0"
+                           height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                            text="mod" parentComponent="XFcont" editable="0"/>
                 <Component type="ScriptComboBox" id="ComboBox26" x="29.0" y="-1.0" max="4"
-                           parentComponent="XFcont" width="20" height="20" items="Switch&#10;Linear&#10;RMS&#10;Threshold&#10;&#10;"
+                           parentComponent="XFcont" width="20.0" height="20.0" items="Switch&#10;Linear&#10;RMS&#10;Threshold&#10;&#10;"
                            textColour="4292455944" bgColour="1426063360"/>
-                <Component type="ScriptSlider" id="ScriptSlider3" x="52.0" y="-1.0" width="20"
-                           height="20" parentComponent="XFcont" filmstripImage="{PROJECT_FOLDER}k2.png"
-                           numStrips="200" scaleFactor="0.75" processorId="xfade" parameterId="smooth"/>
-                <Component type="ScriptLabel" id="Label26" x="19.0" y="22.0" width="40"
-                           height="10" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+                <Component type="ScriptSlider" id="ScriptSlider3" x="52.0" y="-1.0" width="20.0"
+                           height="20.0" parentComponent="XFcont" filmstripImage="{PROJECT_FOLDER}k2.png"
+                           numStrips="200.0" scaleFactor="0.75" processorId="xfade" parameterId="smooth"/>
+                <Component type="ScriptLabel" id="Label26" x="19.0" y="22.0" width="40.0"
+                           height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                            text="type" parentComponent="XFcont" editable="0"/>
-                <Component type="ScriptLabel" id="Label27" x="44.0" y="23.0" width="40"
-                           height="10" fontName="Montserrat" fontSize="10.0" textColour="3907643801"
+                <Component type="ScriptLabel" id="Label27" x="44.0" y="23.0" width="40.0"
+                           height="10.0" fontName="Montserrat" fontSize="10.0" textColour="3907643801"
                            text="SMTH" parentComponent="XFcont" editable="0"/>
               </Component>
-              <Component type="ScriptLabel" id="Label21" x="734.0" y="701.0" width="129"
-                         height="30" fontName="Montserrat" fontSize="26.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label21" x="734.0" y="701.0" width="129.0"
+                         height="30.0" fontName="Montserrat" fontSize="26.0" textColour="3907643801"
                          text="Oi, Grandad!" editable="0"/>
-              <Component type="ScriptLabel" id="Label22" x="812.0" y="730.0" width="70"
-                         height="10" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
+              <Component type="ScriptLabel" id="Label22" x="812.0" y="730.0" width="70.0"
+                         height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                          text="v1.0" editable="0"/>
-              <Component type="ScriptLabel" id="Label23" x="667.0" y="0.0" width="60"
-                         height="30" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
-                         text="PRESETS" alignment="left" locked="1"/>
-              <Component type="ScriptLabel" id="Label24" x="747.0" y="0.0" width="50"
-                         height="30" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
-                         text="DRONE" alignment="left"/>
-              <Component type="ScriptLabel" id="Label25" x="820.0" y="0.0" width="40"
-                         height="30" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
-                         text="MOD PAGE" alignment="left"/>
+              <Component type="ScriptLabel" id="Label23" x="667.0" y="0.0" width="60.0"
+                         height="30.0" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
+                         text="PRESETS &amp; SETTINGS" alignment="left" locked="1" editable="0"/>
+              <Component type="ScriptLabel" id="Label24" x="747.0" y="0.0" width="50.0"
+                         height="30.0" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
+                         text="DRONE" alignment="left" editable="0"/>
+              <Component type="ScriptLabel" id="Label25" x="820.0" y="0.0" width="40.0"
+                         height="30.0" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
+                         text="MOD PAGE" alignment="left" editable="0"/>
             </ContentProperties>
           </UIData>
         </Processor>
