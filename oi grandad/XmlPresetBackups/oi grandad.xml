@@ -100,7 +100,7 @@
             <Control type="ScriptTable" id="ScriptTable3" value="0.0" data=""/>
             <Control type="ScriptSlider" id="Knob76" value="0.7899999618530273"/>
             <Control type="ScriptSlider" id="Knob77" value="3.0"/>
-            <Control type="ScriptSlider" id="Knob81" value="10.0"/>
+            <Control type="ScriptSlider" id="Knob81" value="3.0"/>
             <Control type="ScriptButton" id="seqtype3" value="0.0"/>
             <Control type="ScriptComboBox" id="ComboBox16" value="2.0"/>
             <Control type="ScriptButton" id="stype25" value="0.0"/>
@@ -2835,7 +2835,7 @@
                   <Component type="ScriptFloatingTile" id="ScriptFloatingTile2" x="425.0"
                              y="25.0" width="200" height="380" parentComponent="Panel1" ContentType="CustomSettings"
                              bgColour="4278190080" itemColour="4278190080" itemColour2="3487776005"
-                             Data="{&#10;  &quot;Driver&quot;: true,&#10;  &quot;Device&quot;: true,&#10;  &quot;Output&quot;: true,&#10;  &quot;BufferSize&quot;: true,&#10;  &quot;SampleRate&quot;: true,&#10;  &quot;GlobalBPM&quot;: true,&#10;  &quot;StreamingMode&quot;: true,&#10;  &quot;ScaleFactor&quot;: true,&#10;  &quot;VoiceAmountMultiplier&quot;: false,&#10;  &quot;ClearMidiCC&quot;: true,&#10;  &quot;SampleLocation&quot;: false,&#10;  &quot;DebugMode&quot;: false,&#10;  &quot;UseOpenGL&quot;: false,&#10;  &quot;ScaleFactorList&quot;: [&#10;    0.5,&#10;    0.6,&#10;    0.75,&#10;    0.8,&#10;    0.9,&#10;    1.0,&#10;    1.25,&#10;    1.5&#10;  ]&#10;}"
+                             Data="{&#10;  &quot;Driver&quot;: true,&#10;  &quot;Device&quot;: true,&#10;  &quot;Output&quot;: true,&#10;  &quot;BufferSize&quot;: true,&#10;  &quot;SampleRate&quot;: true,&#10;  &quot;GlobalBPM&quot;: true,&#10;  &quot;StreamingMode&quot;: true,&#10;  &quot;ScaleFactor&quot;: true,&#10;  &quot;VoiceAmountMultiplier&quot;: false,&#10;  &quot;ClearMidiCC&quot;: true,&#10;  &quot;SampleLocation&quot;: false,&#10;  &quot;DebugMode&quot;: false,&#10;  &quot;UseOpenGL&quot;: false,&#10;  &quot;ScaleFactorList&quot;: [&#10;    0.5,&#10;    0.6,&#10;    0.75,&#10;    0.8,&#10;    0.9,&#10;    1.0,&#10;    1.25,&#10;    1.5,&#10;    2.0,&#10;    2.5&#10;  ]&#10;}"
                              Font="Montserrat" FontSize="12.0" textColour="4278190080" itemColour3="4278190080"/>
                 </Component>
                 <Component type="ScriptFloatingTile" id="FloatingTile2" x="392.0" y="661.0"
@@ -3040,7 +3040,7 @@
                          text="Oi, Grandad!" editable="0"/>
               <Component type="ScriptLabel" id="Label22" x="812.0" y="730.0" width="70.0"
                          height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
-                         text="v1.0" editable="0"/>
+                         text="v1.1" editable="0"/>
               <Component type="ScriptLabel" id="Label23" x="667.0" y="0.0" width="60.0"
                          height="30.0" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
                          text="PRESETS &amp; SETTINGS" alignment="left" locked="1" editable="0"/>
