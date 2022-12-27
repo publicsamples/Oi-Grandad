@@ -117,7 +117,7 @@
             <Control type="ScriptButton" id="stype28" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackE" value="11.0" data="64...........................PyLyzO.....................Lb8n7CEtdzO......................"/>
             <Control type="ScriptComboBox" id="ComboBox6" value="11.0"/>
-            <Control type="ScriptTable" id="ScriptTable5" value="0.0" data=""/>
+            <Control type="ScriptTable" id="ScriptTable5" value="0.0" data="84...............vOcibi9....5C...vOffe.+nppp7C...vOBoAI+.u6t4C...vOf0eU+f2c26C...vOD7Cb+7t6t7C...vO...f+....9C...vO"/>
             <Control type="ScriptSlider" id="Knob84" value="0.5"/>
             <Control type="ScriptSlider" id="Knob85" value="1.0"/>
             <Control type="ScriptSlider" id="Knob86" value="0.0"/>
@@ -333,7 +333,7 @@
             <Control type="ScriptSlider" id="grainsizesync4" value="5.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="Hold" value="1.0"/>
-            <Control type="ScriptButton" id="presets" value="0.0"/>
+            <Control type="ScriptButton" id="presets" value="1.0"/>
             <Control type="ScriptButton" id="Enable" value="0.0"/>
             <Control type="ScriptButton" id="xfade" value="0.0"/>
             <Control type="ScriptComboBox" id="ComboBox1" value="5.0"/>
@@ -2808,8 +2808,7 @@
                          max="64.0" middlePosition="63.5" visible="0" enabled="0"/>
               <Component type="ScriptPanel" id="settings" x="8.0" y="-3.0" width="637.0"
                          height="721.0" bgColour="857404" itemColour="15915463" itemColour2="16114836"
-                         locked="1" textColour="16713736" borderRadius="0.0" borderSize="0.0"
-                         visible="0">
+                         locked="1" textColour="16713736" borderRadius="0.0" borderSize="0.0">
                 <Component type="ScriptImage" id="ScriptImage5" x="-5.0" y="-8.0" width="634.0"
                            height="721.0" parentComponent="settings" fileName="{PROJECT_FOLDER}preserB.png"/>
                 <Component type="ScriptPanel" id="Panel1" x="-6.0" y="-1.0" width="637.0"
