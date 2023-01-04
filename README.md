@@ -35,44 +35,18 @@ It is reccomended to use samples of 3 seconds or larger, shorter files may cause
   
 
 Copy oi grandad.vst3 to User/Home/vst3
-
-  
-
 copy modularsamples to User/Home/.config
-
-  
 
 ********Windows********
 
-  
-
-  
-
 Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
-
-  
-
 Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
-  
-
-  
-
 ********Mac********
-
   
+Download the DMG file and open the OiGrandad.pkg file to install the plugins and standalone app. Selecting customize allows you select which versions of the app you want to install. Open the AddionalContent.pkg file to install the factory presets and samples.
 
-Open the DMG file and then open the file "Oi Grandad.mkpg". If you get a message saying "“Oi Grandad.mpkg” cannot be opened because it is from an unidentified developer." Right click on the package and select "open" instead.
 
-  
-
-On loading your DAW you may see a message saying “the developer cannot be verified” to fix this open System Preferences → Security and Privacy. On the general tab click ‘Open anyway’.
-
-  
-
-https://support.apple.com/en-us/HT202491
-
-  
 
 # Other
 

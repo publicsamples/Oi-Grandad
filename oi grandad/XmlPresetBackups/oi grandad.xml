@@ -136,7 +136,7 @@
             <Control type="ScriptButton" id="envelopes1" value="1.0"/>
             <Control type="ScriptSlider" id="feed" value="0.6600000262260437"/>
             <Control type="ScriptButton" id="delaysync1" value="0.0"/>
-            <Control type="ScriptSlider" id="Vol" value="0.8700000047683716"/>
+            <Control type="ScriptSlider" id="Vol" value="1.0"/>
             <Control type="ScriptSlider" id="cutoff" value="0.6499999761581421"/>
             <Control type="ScriptSlider" id="res" value="0.0"/>
             <Control type="ScriptSlider" id="pan" value="0.5000014901161194"/>
@@ -145,18 +145,18 @@
             <Control type="ScriptSlider" id="grainsize1" value="1.0"/>
             <Control type="ScriptSlider" id="spread" value="0.0"/>
             <Control type="ScriptSlider" id="pitch" value="1.220000028610229"/>
-            <Control type="ScriptSlider" id="attack" value="0.0"/>
+            <Control type="ScriptSlider" id="attack" value="0.1800000071525574"/>
             <Control type="ScriptComboBox" id="cut1modsel" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
-            <Control type="ScriptSlider" id="pos" value="0.0"/>
+            <Control type="ScriptSlider" id="pos" value="0.2899999916553497"/>
             <Control type="ScriptSlider" id="posmod" value="0.5"/>
             <Control type="ScriptSlider" id="densemod" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.5"/>
             <Control type="ScriptSlider" id="detmod" value="0.5"/>
             <Control type="ScriptSlider" id="filtermod" value="0.75"/>
-            <Control type="ScriptSlider" id="decay" value="1.0"/>
-            <Control type="ScriptSlider" id="sustain" value="1.0"/>
+            <Control type="ScriptSlider" id="decay" value="0.699999988079071"/>
+            <Control type="ScriptSlider" id="sustain" value="0.1000000014901161"/>
             <Control type="ScriptSlider" id="delmod" value="0.5"/>
             <Control type="ScriptSlider" id="volmod" value="0.5"/>
             <Control type="ScriptSlider" id="delmix" value="0.0"/>
@@ -333,7 +333,7 @@
             <Control type="ScriptSlider" id="grainsizesync4" value="5.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="Hold" value="1.0"/>
-            <Control type="ScriptButton" id="presets" value="1.0"/>
+            <Control type="ScriptButton" id="presets" value="0.0"/>
             <Control type="ScriptButton" id="Enable" value="0.0"/>
             <Control type="ScriptButton" id="xfade" value="0.0"/>
             <Control type="ScriptComboBox" id="ComboBox1" value="5.0"/>
@@ -2808,14 +2808,15 @@
                          max="64.0" middlePosition="63.5" visible="0" enabled="0"/>
               <Component type="ScriptPanel" id="settings" x="8.0" y="-3.0" width="637.0"
                          height="721.0" bgColour="857404" itemColour="15915463" itemColour2="16114836"
-                         locked="1" textColour="16713736" borderRadius="0.0" borderSize="0.0">
+                         locked="1" textColour="16713736" borderRadius="0.0" borderSize="0.0"
+                         visible="0">
                 <Component type="ScriptImage" id="ScriptImage5" x="-5.0" y="-8.0" width="634.0"
                            height="721.0" parentComponent="settings" fileName="{PROJECT_FOLDER}preserB.png"/>
                 <Component type="ScriptPanel" id="Panel1" x="-6.0" y="-1.0" width="637.0"
                            height="690.0" itemColour="13620881" itemColour2="13023914" bgColour="4290326576"
                            parentComponent="settings">
                   <Component type="ScriptFloatingTile" id="ScriptFloatingTile1" x="13.0" y="43.0"
-                             width="410" height="390" parentComponent="Panel1" ContentType="PresetBrowser"
+                             width="410.0" height="390.0" parentComponent="Panel1" ContentType="PresetBrowser"
                              bgColour="13442333" itemColour="4291184969" itemColour2="4293047560"
                              Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: false,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: false,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowFavoriteIcon&quot;: true,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 2,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"
                              textColour="4283575597" Font="Montserrat" FontSize="18.0"/>
@@ -2832,9 +2833,9 @@
                              bgColour="15342877" itemColour="15082532" itemColour2="15663104"
                              textColour="16713479"/>
                   <Component type="ScriptFloatingTile" id="ScriptFloatingTile2" x="425.0"
-                             y="25.0" width="200" height="380" parentComponent="Panel1" ContentType="CustomSettings"
-                             bgColour="4278190080" itemColour="4278190080" itemColour2="3487776005"
-                             Data="{&#10;  &quot;Driver&quot;: true,&#10;  &quot;Device&quot;: true,&#10;  &quot;Output&quot;: true,&#10;  &quot;BufferSize&quot;: true,&#10;  &quot;SampleRate&quot;: true,&#10;  &quot;GlobalBPM&quot;: true,&#10;  &quot;StreamingMode&quot;: true,&#10;  &quot;ScaleFactor&quot;: true,&#10;  &quot;VoiceAmountMultiplier&quot;: false,&#10;  &quot;ClearMidiCC&quot;: true,&#10;  &quot;SampleLocation&quot;: false,&#10;  &quot;DebugMode&quot;: false,&#10;  &quot;UseOpenGL&quot;: false,&#10;  &quot;ScaleFactorList&quot;: [&#10;    0.5,&#10;    0.6,&#10;    0.75,&#10;    0.8,&#10;    0.9,&#10;    1.0,&#10;    1.25,&#10;    1.5,&#10;    2.0,&#10;    2.5&#10;  ]&#10;}"
+                             y="25.0" width="200.0" height="380.0" parentComponent="Panel1"
+                             ContentType="CustomSettings" bgColour="4278190080" itemColour="4278190080"
+                             itemColour2="3487776005" Data="{&#10;  &quot;Driver&quot;: true,&#10;  &quot;Device&quot;: true,&#10;  &quot;Output&quot;: true,&#10;  &quot;BufferSize&quot;: true,&#10;  &quot;SampleRate&quot;: true,&#10;  &quot;GlobalBPM&quot;: true,&#10;  &quot;StreamingMode&quot;: true,&#10;  &quot;ScaleFactor&quot;: true,&#10;  &quot;VoiceAmountMultiplier&quot;: false,&#10;  &quot;ClearMidiCC&quot;: true,&#10;  &quot;SampleLocation&quot;: false,&#10;  &quot;DebugMode&quot;: false,&#10;  &quot;UseOpenGL&quot;: false,&#10;  &quot;ScaleFactorList&quot;: [&#10;    0.5,&#10;    0.6,&#10;    0.75,&#10;    0.8,&#10;    0.9,&#10;    1.0,&#10;    1.25,&#10;    1.5,&#10;    2.0,&#10;    2.5&#10;  ]&#10;}"
                              Font="Montserrat" FontSize="12.0" textColour="4278190080" itemColour3="4278190080"/>
                 </Component>
                 <Component type="ScriptFloatingTile" id="FloatingTile2" x="392.0" y="661.0"
