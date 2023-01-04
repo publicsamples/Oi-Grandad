@@ -35,11 +35,13 @@ It is reccomended to use samples of 3 seconds or larger, shorter files may cause
   
 
 Copy oi grandad.vst3 to User/Home/vst3
+
 copy modularsamples to User/Home/.config
 
 ********Windows********
 
 Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
+
 Copy the modularsamples folder to C:\Users/YOURNAME/AppData/Roaming/
 
 ********Mac********
