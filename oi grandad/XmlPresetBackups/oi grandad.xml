@@ -23,7 +23,7 @@
             <Control type="ScriptComboBox" id="ComboBox20" value="1.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA8" value="-1.0" data="64..........9C..............9SOJb0OHEtN+XOJb7C...vOb8nv9................................."/>
             <Control type="ScriptButton" id="st555" value="0.0"/>
-            <Control type="ScriptButton" id="dir2" value="0.0"/>
+            <Control type="ScriptButton" id="dir2" value="1.0"/>
             <Control type="ScriptSliderPack" id="SliderPackB1" value="14.0" data="64.6QgK+...........6QgK+.....vv0ixO..........vv0ixO..........vv0ixO..........vv0ixO......"/>
             <Control type="ScriptComboBox" id="ComboBox9" value="2.0"/>
             <Control type="ScriptTable" id="ScriptTable8" value="0.0" data=""/>
@@ -2870,67 +2870,67 @@
                          height="25.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global vol"/>
               <Component type="ScriptSlider" id="masterpos" x="12.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global Position"/>
               <Component type="ScriptSlider" id="mastergrain" x="50.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" stepSize="1.0"
                          showTextBox="0" defaultValue="0.5" scaleFactor="0.75" saveInPreset="0"
-                         isPluginParameter="1" max="127.0" isMetaParameter="1"/>
+                         isPluginParameter="1" max="127.0" isMetaParameter="1" pluginParameterName="Global Grain Size"/>
               <Component type="ScriptSlider" id="masterdense" x="89.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global density"/>
               <Component type="ScriptSlider" id="masterpitch" x="128.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="1.25" showTextBox="0"
                          defaultValue="1.25" scaleFactor="0.75" min="0.5" max="2.0" saveInPreset="0"
-                         isPluginParameter="1" isMetaParameter="1"/>
+                         isPluginParameter="1" isMetaParameter="1" pluginParameterName="Global Pitch"/>
               <Component type="ScriptSlider" id="masterres" x="284.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global resonance"/>
               <Component type="ScriptSlider" id="mastercut" x="244.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1" text="cutoff"/>
+                         isMetaParameter="1" text="cutoff" pluginParameterName="Global cutoff"/>
               <Component type="ScriptSlider" id="masterdetune" x="206.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global detune"/>
               <Component type="ScriptSlider" id="masterspread" x="167.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global spread"/>
               <Component type="ScriptSlider" id="mastermix" x="320.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global filter mix"/>
               <Component type="ScriptSlider" id="mastertime" x="353.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="0.5"
                          showTextBox="0" defaultValue="0.5" scaleFactor="0.75" saveInPreset="0"
-                         isPluginParameter="1" isMetaParameter="1"/>
+                         isPluginParameter="1" isMetaParameter="1" pluginParameterName="Global delay time"/>
               <Component type="ScriptSlider" id="masterfeed" x="392.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global feedback"/>
               <Component type="ScriptSlider" id="masterdmix" x="431.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
-                         isMetaParameter="1"/>
+                         isMetaParameter="1" pluginParameterName="Global delay mix"/>
               <Component type="ScriptSlider" id="mastergrain1" x="50.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          showValuePopup="Left" macroControl="No MacroControl" middlePosition="11.5"
