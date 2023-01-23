@@ -175,7 +175,7 @@
             <Control type="ScriptSlider" id="volmod5" value="1.490116119384766e-8"/>
             <Control type="ScriptComboBox" id="OutputSelector" value="1.0"/>
             <Control type="ScriptSlider" id="mix1" value="1.0"/>
-            <Control type="ScriptButton" id="gsync1" value="1.0"/>
+            <Control type="ScriptButton" id="gsync1" value="0.0"/>
             <Control type="ScriptButton" id="psync1" value="0.0"/>
             <Control type="ScriptSlider" id="st1" value="0.0"/>
             <Control type="ScriptSlider" id="pitch8" value="3.0"/>
@@ -280,7 +280,7 @@
             <Control type="ScriptComboBox" id="OutputSelector2" value="1.0"/>
             <Control type="ScriptSlider" id="res3" value="0.0"/>
             <Control type="ScriptSlider" id="mix3" value="1.0"/>
-            <Control type="ScriptButton" id="gsync3" value="0.0"/>
+            <Control type="ScriptButton" id="gsync3" value="1.0"/>
             <Control type="ScriptSlider" id="grainsizesync3" value="5.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
@@ -1301,7 +1301,7 @@
                              height="30.0" processorId="gran" parameterId="grain2" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="0.5" defaultValue="1.0" showValuePopup="Below"
-                             isPluginParameter="1" pluginParameterName="Grain1" visible="0"/>
+                             isPluginParameter="1" pluginParameterName="Grain1"/>
                   <Component type="ScriptSlider" id="spread" x="14.0" y="228.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="spread" parentComponent="voice1"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
@@ -1325,10 +1325,9 @@
                              height="90.0" parentComponent="voice1" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform" x="5.0" y="4.0"
-                               processorId="gran" sampleIndex="0" width="280.0" height="80.0"
-                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel1"
-                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
-                               opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran" width="280.0" height="80.0" itemColour2="4289344298"
+                               itemColour="0" parentComponent="ScriptPanel1" bgColour="4278190080"
+                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pos" x="14.0" y="109.0" width="30.0"
                              height="30.0" processorId="gran" parameterId="position" parentComponent="voice1"
@@ -1542,7 +1541,7 @@
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="9.0" defaultValue="5.0" showValuePopup="Below"
                              isPluginParameter="1" pluginParameterName="Grain1" mode="TempoSync"
-                             max="18.0" stepSize="1.0" min="5.0"/>
+                             max="18.0" stepSize="1.0" min="5.0" visible="0"/>
                   <Component type="ScriptSlider" id="DelayTimesync1" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.800000011920929" parentComponent="voice1" saveInPreset="0"
@@ -1744,10 +1743,9 @@
                              height="90.0" parentComponent="voice2" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="5.0" y="4.0"
-                               processorId="gran2" sampleIndex="0" width="280.0" height="80.0"
-                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel2"
-                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
-                               opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran2" width="280.0" height="80.0" itemColour2="4289344298"
+                               itemColour="0" parentComponent="ScriptPanel2" bgColour="4278190080"
+                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pan5" x="256.0" y="192.0" width="20.0"
                              height="20.0" parentComponent="voice2" processorId="Script FX2"
@@ -2138,10 +2136,9 @@
                              height="90.0" parentComponent="voice3" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform2" x="5.0" y="4.0"
-                               processorId="gran3" sampleIndex="0" width="280.0" height="80.0"
-                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel5"
-                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
-                               opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran3" width="280.0" height="80.0" itemColour2="4289344298"
+                               itemColour="0" parentComponent="ScriptPanel5" bgColour="4278190080"
+                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pan6" x="256.0" y="192.0" width="20.0"
                              height="20.0" parentComponent="voice3" processorId="Script FX3"
@@ -2228,7 +2225,7 @@
                              height="40.0" processorId="gran3" parameterId="grain2" parentComponent="voice3"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="0.5" defaultValue="0.5" showValuePopup="Below"
-                             isPluginParameter="1" pluginParameterName="Grain3"/>
+                             isPluginParameter="1" pluginParameterName="Grain3" visible="0"/>
                   <Component type="ScriptSlider" id="spread2" x="14.0" y="231.0" width="30.0"
                              height="30.0" processorId="gran3" parameterId="spread" parentComponent="voice3"
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
@@ -2403,7 +2400,7 @@
                              filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" dragDirection="Vertical"
                              middlePosition="9.0" defaultValue="5.0" showValuePopup="Below"
                              isPluginParameter="1" pluginParameterName="Grain3" mode="TempoSync"
-                             max="18.0" stepSize="1.0" min="5.0" visible="0"/>
+                             max="18.0" stepSize="1.0" min="5.0"/>
                   <Component type="ScriptSlider" id="DelayTimesync3" x="201.0" y="268.0" width="30.0"
                              height="30.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                              scaleFactor="0.800000011920929" parentComponent="voice3" saveInPreset="0"
@@ -2516,10 +2513,9 @@
                              height="90.0" parentComponent="voice4" itemColour="4288304899"
                              itemColour2="4282787842" textColour="4280686081">
                     <Component type="ScriptAudioWaveform" id="AudioWaveform3" x="5.0" y="4.0"
-                               processorId="gran4" sampleIndex="0" width="280.0" height="80.0"
-                               itemColour2="4289344298" itemColour="0" parentComponent="ScriptPanel6"
-                               bgColour="4278190080" enableRange="0" itemColour3="16777215"
-                               opaque="0" tooltip="Load files 1mb and larger"/>
+                               processorId="gran4" width="280.0" height="80.0" itemColour2="4289344298"
+                               itemColour="0" parentComponent="ScriptPanel6" bgColour="4278190080"
+                               enableRange="0" itemColour3="16777215" opaque="0" tooltip="Load files 1mb and larger"/>
                   </Component>
                   <Component type="ScriptSlider" id="pan7" x="256.0" y="192.0" width="20.0"
                              height="20.0" parentComponent="voice4" processorId="Script FX4"
@@ -2881,7 +2877,7 @@
                          macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
                          defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
                          isMetaParameter="1"/>
-              <Component type="ScriptSlider" id="mastergrain" x="99.0" y="710.0" width="30.0"
+              <Component type="ScriptSlider" id="mastergrain" x="50.0" y="708.0" width="30.0"
                          height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
                          macroControl="No MacroControl" middlePosition="0.5" stepSize="1.0"
                          showTextBox="0" defaultValue="0.5" scaleFactor="0.75" saveInPreset="0"
@@ -3040,7 +3036,7 @@
                          text="Oi, Grandad!" editable="0"/>
               <Component type="ScriptLabel" id="Label22" x="812.0" y="730.0" width="70.0"
                          height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
-                         text="v1.1" editable="0"/>
+                         text="v1.2" editable="0"/>
               <Component type="ScriptLabel" id="Label23" x="667.0" y="0.0" width="60.0"
                          height="30.0" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
                          text="PRESETS &amp; SETTINGS" alignment="left" locked="1" editable="0"/>
