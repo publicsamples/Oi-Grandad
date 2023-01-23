@@ -8,7 +8,7 @@
           <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
-              <Property ID="Mode" Value="Linear"/>
+              <Property ID="Mode" Value="Overlap"/>
             </Properties>
             <SwitchTargets>
               <SwitchTarget>

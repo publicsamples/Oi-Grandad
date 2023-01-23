@@ -47,7 +47,7 @@
           <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
-              <Property ID="Mode" Value="RMS"/>
+              <Property ID="Mode" Value="Overlap"/>
             </Properties>
             <SwitchTargets>
               <SwitchTarget>
@@ -95,7 +95,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Pan" MinValue="0.0" MaxValue="1.0" Value="0.49875">
+      <Parameter ID="Pan" MinValue="0.0" MaxValue="1.0" Value="0.496375">
         <Connections>
           <Connection NodeId="pma_unscaled" ParameterId="Add"/>
         </Connections>
