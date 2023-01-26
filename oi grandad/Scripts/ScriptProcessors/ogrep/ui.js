@@ -388,10 +388,10 @@ laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
 });
 
 // Multichannel menus
-const var MultiChannelTest = Synth.getChildSynth("oi grandad");
+const var MultiChannelTest = Synth.getChildSynth("ogrep");
 
 
-const var matrix = MultiChannelTest.getRoutingMatrix();
+var matrix = MultiChannelTest.getRoutingMatrix();
 
 const var SucessLabel = Content.getComponent("SucessLabel");
 const var SucessLabel1 = Content.getComponent("SucessLabel1");

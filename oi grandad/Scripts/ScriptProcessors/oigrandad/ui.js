@@ -1,13 +1,25 @@
-Content.makeFrontInterface(865, 746);
+Content.makeFrontInterface(875, 756);
 
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
 
+  
+  
+ //
+ const var gran = Synth.getEffect("gran");
+ const var gran2 = Synth.getEffect("gran2");
+ const var gran3 = Synth.getEffect("gran3");
+ const var gran4 = Synth.getEffect("gran4");
+ 
+ 
 
+ 
+  
 //RR
 
 // This button will control the behaviour:
 // - ON: the sine generators will be cycled
 // - OFF: all will be played each time
+
 const var Enable = Content.getComponent("Enable");
 
 // Grab a reference to the MIDI filters
@@ -102,13 +114,8 @@ const var noteOnChannels = [];
 // Let's use that fancy data structure for our problem...
 EventIdStack.init(noteOnChannels);
 
-
-
 // the RR counter
 reg rrIndex = 0;
-
-
-
 
 // Hide or show pitch mod options
 
@@ -231,24 +238,7 @@ inline function ongsync2Control(number, value)
 
 gsync2.setControlCallback(ongsync2Control);
 
-const var gsync3 = Content.getComponent("gsync3");
-const var grainsize3 = Content.getComponent("grainsize3");
-const var grainsizesync3 = Content.getComponent("grainsizesync3");
-const var grs3 = Synth.getEffect("gran3");
 
-inline function ongsync3Control(number, value)
-{
-		grainsizesync3.showControl(value); 
-        grainsize3.showControl(1-value);
-        mastergrain1.showControl(value); 
-                       mastergrain.showControl(1-value);
-      
-       grs3.setAttribute(grs3.gsync, 0);
-       grs3.setAttribute(grs3.gsync, 1-value);
-}
-
-
-gsync3.setControlCallback(ongsync3Control);
 
 const var gsync4 = Content.getComponent("gsync4");
 const var grainsize4 = Content.getComponent("grainsize4");
@@ -366,8 +356,18 @@ laf.registerFunction("drawComboBox", function(g, obj)
     g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
     g.setFont("Montserrat", 16.0);
    
+  
     var a = obj.area;
     g.drawAlignedText(obj.text, [a[0] + 0, a[0], a[2]-1, a[3]], "centred");
+
+
+});
+
+laf.registerFunction("drawSliderPack", function(g, obj)
+{
+    g.fillRoundedRectangle(obj.area, 8.0);
+        g.rotate(90, 90);
+       g.setFont("Montserrat", 16.0);
 
 
 });
@@ -388,10 +388,10 @@ laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
 });
 
 // Multichannel menus
-const var MultiChannelTest = Synth.getChildSynth("oi grandad");
+const var MultiChannelTest = Synth.getChildSynth("ogrep");
 
 
-const var matrix = MultiChannelTest.getRoutingMatrix();
+var matrix = MultiChannelTest.getRoutingMatrix();
 
 const var SucessLabel = Content.getComponent("SucessLabel");
 const var SucessLabel1 = Content.getComponent("SucessLabel1");
@@ -874,13 +874,6 @@ Content.getComponent("mastervol").setControlCallback(onmastervolControl);
 
 const var masterpos = Content.getComponent("masterpos");
 const var pos = Content.getComponent("pos");
-const var pos1 = Content.getComponent("pos1");
-const var pos2 = Content.getComponent("pos2");
-const var pos3 = Content.getComponent("pos3");
-const var gran = Synth.getEffect("gran");
-const var gran2 = Synth.getEffect("gran2");
-const var gran3 = Synth.getEffect("gran3");
-const var gran4 = Synth.getEffect("gran4");
 
 
 

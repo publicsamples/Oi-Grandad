@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<ContentProperties DeviceType="Desktop">
-  <Component type="ScriptButton" id="Hold" x="387.0" y="398.0"/>
-  <Component type="ScriptLabel" id="Label1" x="381.0" y="164.0"/>
-  <Component type="ScriptComboBox" id="cmbSound" x="340.0" y="260.0" max="0"/>
-</ContentProperties>
