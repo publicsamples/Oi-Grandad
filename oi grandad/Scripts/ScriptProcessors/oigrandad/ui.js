@@ -388,7 +388,7 @@ laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
 });
 
 // Multichannel menus
-const var MultiChannelTest = Synth.getChildSynth("ogrep");
+const var MultiChannelTest = Synth.getChildSynth("oi grandad");
 
 
 var matrix = MultiChannelTest.getRoutingMatrix();
