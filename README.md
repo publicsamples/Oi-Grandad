@@ -27,6 +27,8 @@ Oi, Grandad! is built with [HISE](http://hise.audio).
 
 It is reccomended to use samples of 3 seconds or larger, shorter files may cause crashes or audio dropouts.
 
+The buffer size bug effecting later version of Logic Pro seems to be back. Buffer sizes lower than 512 will cause glitchy playback.
+
 # Installation
 
 
