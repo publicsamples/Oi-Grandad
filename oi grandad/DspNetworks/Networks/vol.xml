@@ -5,7 +5,7 @@
     <Nodes>
       <Node ID="vol" FactoryPath="container.chain" Bypassed="0">
         <Nodes>
-          <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
+          <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="1">
             <Nodes>
               <Node ID="modchain5" FactoryPath="container.modchain" Bypassed="0">
                 <Nodes>
@@ -32,6 +32,11 @@
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
                     </Parameters>
                   </Node>
+                  <Node ID="clear" FactoryPath="math.clear" Bypassed="0">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
                 </Nodes>
                 <Parameters/>
               </Node>
@@ -40,9 +45,9 @@
                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                             SkewFactor="0.3010300099849701" ID="Smoothing" Value="0.900000013411045"/>
+                             SkewFactor="0.3010300099849701" ID="Smoothing" Value="78.70000117272137"/>
                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                             SkewFactor="5.422270774841309" ID="ResetValue" Value="-100.0"/>
+                             SkewFactor="5.422270774841309" ID="ResetValue" Value="-11.09999867528678"/>
                 </Parameters>
               </Node>
             </Nodes>

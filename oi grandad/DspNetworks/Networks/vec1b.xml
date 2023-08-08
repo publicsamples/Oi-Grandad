@@ -3,7 +3,7 @@
 <Network ID="vec1b" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="vec1b" Bypassed="0">
     <Nodes>
-      <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="1"
+      <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
             NodeColour="4282954323">
         <Properties>
           <Property ID="Connection" Value="v99"/>
@@ -15,7 +15,7 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
         </Parameters>
       </Node>
-      <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+      <Node ID="gain" FactoryPath="core.gain" Bypassed="1">
         <Parameters>
           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                      SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>

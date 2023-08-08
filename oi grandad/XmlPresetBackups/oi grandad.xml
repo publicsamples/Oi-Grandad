@@ -137,23 +137,23 @@
             <Control type="ScriptSlider" id="feed" value="0.4900000095367432"/>
             <Control type="ScriptButton" id="delaysync1" value="0.0"/>
             <Control type="ScriptSlider" id="Vol" value="1.0"/>
-            <Control type="ScriptSlider" id="cutoff" value="1.0"/>
-            <Control type="ScriptSlider" id="res" value="0.0"/>
+            <Control type="ScriptSlider" id="cutoff" value="0.9900000095367432"/>
+            <Control type="ScriptSlider" id="res" value="0.6800000071525574"/>
             <Control type="ScriptSlider" id="pan" value="0.5000014901161194"/>
             <Control type="ScriptSlider" id="Dense" value="0.0"/>
-            <Control type="ScriptSlider" id="grainsize1" value="0.5"/>
+            <Control type="ScriptSlider" id="grainsize1" value="0.5299999713897705"/>
             <Control type="ScriptSlider" id="spread" value="0.0"/>
-            <Control type="ScriptSlider" id="pitch" value="1.25"/>
+            <Control type="ScriptSlider" id="pitch" value="1.659999966621399"/>
             <Control type="ScriptSlider" id="attack" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
-            <Control type="ScriptSlider" id="pos" value="0.0"/>
-            <Control type="ScriptSlider" id="posmod" value="0.7599999904632568"/>
+            <Control type="ScriptSlider" id="pos" value="0.6200000047683716"/>
+            <Control type="ScriptSlider" id="posmod" value="0.5"/>
             <Control type="ScriptSlider" id="densemod" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.5"/>
             <Control type="ScriptSlider" id="detmod" value="0.5"/>
-            <Control type="ScriptSlider" id="filtermod" value="0.75"/>
+            <Control type="ScriptSlider" id="filtermod" value="0.5"/>
             <Control type="ScriptSlider" id="decay" value="1.0"/>
             <Control type="ScriptSlider" id="sustain" value="1.0"/>
             <Control type="ScriptSlider" id="delmod" value="0.5"/>
@@ -173,7 +173,7 @@
             <Control type="ScriptComboBox" id="ampmodsel5" value="1.0"/>
             <Control type="ScriptSlider" id="volmod5" value="1.490116119384766e-8"/>
             <Control type="ScriptComboBox" id="OutputSelector" value="1.0"/>
-            <Control type="ScriptSlider" id="mix1" value="0.0"/>
+            <Control type="ScriptSlider" id="mix1" value="0.9900000095367432"/>
             <Control type="ScriptButton" id="gsync1" value="0.0"/>
             <Control type="ScriptButton" id="psync1" value="0.0"/>
             <Control type="ScriptSlider" id="st1" value="0.0"/>
@@ -182,7 +182,7 @@
             <Control type="ScriptSlider" id="pmod1" value="0.5"/>
             <Control type="ScriptSlider" id="pan4" value="16.0"/>
             <Control type="ScriptSlider" id="grainsizesync1" value="0.5"/>
-            <Control type="ScriptSlider" id="det" value="0.1926250010728836"/>
+            <Control type="ScriptSlider" id="det" value="0.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="pan5" value="16.0"/>
@@ -334,7 +334,7 @@
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
             <Control type="ScriptButton" id="Enable" value="0.0"/>
-            <Control type="ScriptButton" id="xfade" value="1.0"/>
+            <Control type="ScriptButton" id="xfade" value="0.0"/>
             <Control type="ScriptComboBox" id="ComboBox1" value="1.0"/>
             <Control type="ScriptSlider" id="ScriptSlider1" value="0.0"/>
             <Control type="ScriptSlider" id="ScriptSlider2" value="0.0"/>
@@ -3034,7 +3034,7 @@
                          filmstripImage="{PROJECT_FOLDER}switch_toggle2.png" scaleFactor="0.5"/>
               <Component type="ScriptPanel" id="XFcont" x="536.0" y="720.0" width="120.0"
                          height="36.0" itemColour="0" itemColour2="16777215" bgColour="0"
-                         textColour="0" processorId="xfade" parameterId="scan">
+                         textColour="0" processorId="xfade" parameterId="scan" visible="0">
                 <Component type="ScriptLabel" id="Label19" x="-7.0" y="20.0" width="40.0"
                            height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                            text="xfade" parentComponent="XFcont" editable="0"/>
@@ -3104,29 +3104,7 @@
       <ChildProcessors/>
     </Processor>
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
-      <ChildProcessors>
-        <Processor Type="SimpleGain" ID="Simple Gain1" Bypassed="0" Gain="6.900000095367432"
-                   Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
-          <ChildProcessors>
-            <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
-              <ChildProcessors/>
-            </Processor>
-            <Processor Type="ModulatorChain" ID="Delay Modulation" Bypassed="0" Intensity="1.0">
-              <ChildProcessors/>
-            </Processor>
-            <Processor Type="ModulatorChain" ID="Width Modulation" Bypassed="0" Intensity="1.0">
-              <ChildProcessors/>
-            </Processor>
-            <Processor Type="ModulatorChain" ID="Pan Modulation" Bypassed="0" Intensity="1.0">
-              <ChildProcessors/>
-            </Processor>
-          </ChildProcessors>
-          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
-                         Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
-                         Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1"/>
-        </Processor>
-      </ChildProcessors>
+      <ChildProcessors/>
     </Processor>
     <Processor Type="GlobalModulatorContainer" ID="Global Modulator Container1"
                Bypassed="0" Gain="0.25" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
@@ -3315,7 +3293,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptTimeVariantModulator" ID="xfade" Bypassed="0" Intensity="1.0"
+            <Processor Type="ScriptTimeVariantModulator" ID="xfade" Bypassed="1" Intensity="1.0"
                        Bipolar="0" NumSliderPacks="2">
               <ChildProcessors/>
               <Content/>
@@ -3337,8 +3315,8 @@
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
     </Processor>
-    <Processor Type="SynthChain" ID="Container1" Bypassed="0" Gain="1.0" Balance="0.0"
-               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+    <Processor Type="SynthChain" ID="Container1" Bypassed="0" Gain="0.5011872053146362"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -3445,7 +3423,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf1" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf1" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3467,8 +3445,8 @@
                      Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
                      Channel7="-1" Send7="-1"/>
     </Processor>
-    <Processor Type="SynthChain" ID="Container2" Bypassed="0" Gain="1.0" Balance="0.0"
-               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+    <Processor Type="SynthChain" ID="Container2" Bypassed="0" Gain="0.5011872053146362"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -3575,7 +3553,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf2" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf2" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3597,8 +3575,8 @@
                      Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
                      Channel7="-1" Send7="-1"/>
     </Processor>
-    <Processor Type="SynthChain" ID="Container3" Bypassed="0" Gain="1.0" Balance="0.0"
-               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+    <Processor Type="SynthChain" ID="Container3" Bypassed="0" Gain="0.5011872053146362"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -3705,7 +3683,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf3" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf3" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3727,8 +3705,8 @@
                      Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
                      Channel7="-1" Send7="-1"/>
     </Processor>
-    <Processor Type="SynthChain" ID="Container4" Bypassed="0" Gain="1.0" Balance="0.0"
-               VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
+    <Processor Type="SynthChain" ID="Container4" Bypassed="0" Gain="0.5011872053146362"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -3821,7 +3799,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="pan4" Bypassed="1">
+            <Processor Type="ScriptFX" ID="pan4" Bypassed="0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3835,7 +3813,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf4" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf4" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"

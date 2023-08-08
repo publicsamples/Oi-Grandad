@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="1.1.4"/>
+  <Version value="1.1.5"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -33,4 +33,9 @@
   <AdminPermissions value="No"/>
   <EmbedUserPresets value="Yes"/>
   <EnableGlobalPreprocessor value="No"/>
+  <VST3Category value=""/>
+  <OverwriteOldUserPresets value="No"/>
+  <UseGlobalAppDataFolderWindows value="No"/>
+  <UseGlobalAppDataFolderMacOS value="No"/>
+  <DefaultUserPreset value=""/>
 </ProjectSettings>
