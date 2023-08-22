@@ -148,7 +148,7 @@
             <Control type="ScriptComboBox" id="cut1modsel" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
-            <Control type="ScriptSlider" id="pos" value="0.6200000047683716"/>
+            <Control type="ScriptSlider" id="pos" value="0.5"/>
             <Control type="ScriptSlider" id="posmod" value="0.5"/>
             <Control type="ScriptSlider" id="densemod" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.5"/>
@@ -253,7 +253,7 @@
             <Control type="ScriptSlider" id="pitch2" value="0.5"/>
             <Control type="ScriptSlider" id="attack2" value="0.0"/>
             <Control type="ScriptComboBox" id="cut1modsel2" value="15.0"/>
-            <Control type="ScriptSlider" id="pos2" value="0.0"/>
+            <Control type="ScriptSlider" id="pos2" value="0.7300000190734863"/>
             <Control type="ScriptSlider" id="posmod2" value="1.0"/>
             <Control type="ScriptSlider" id="densemod2" value="0.4999999701976776"/>
             <Control type="ScriptSlider" id="spreadmod2" value="0.5"/>
@@ -3078,7 +3078,7 @@
                          height="30.0" fontName="Montserrat" fontSize="12.0" textColour="3907643801"
                          text="MOD PAGE" alignment="left" editable="0"/>
               <Component type="ScriptLabel" id="Label22" x="808.0" y="709.0" width="60.0"
-                         height="60.0" fontName="Montserrat" textColour="3907643801" text="V1.1.4"
+                         height="60.0" fontName="Montserrat" textColour="3907643801" text="V1.1.5"
                          editable="0" alignment="right" fontSize="20.0"/>
               <Component type="ScriptComboBox" id="ExpansionSelector" x="727.0" y="730.0"
                          max="3" items="Factory&#10;UltraPackPro&#10;UntitledLoopProject"
@@ -3090,7 +3090,7 @@
         <Processor Type="ScriptProcessor" ID="hold" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptButton" id="Hold" value="1.0"/>
+            <Control type="ScriptButton" id="Hold" value="0.0"/>
             <Control type="ScriptComboBox" id="cmbSound" value="1.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
