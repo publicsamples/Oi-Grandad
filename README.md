@@ -43,3 +43,14 @@ Copy oi grandad.vst3 to C:\Program Files\Common Files\VST3
   
 Download the zip and run the installer
 
+********Samples and presets********
+
+Before installation be sure to backup any presets you have created for Oi, Grandad!
+
+Extract the zip file and the copy the oigrandad folder to:
+
+Linux User/Home/.config/modularsamples/
+
+Windows C:\Users/YOURNAME/AppData/Roaming/modularsamples/
+
+Mac /Users/YOURNAME/Library/Application Support/modularsamples/
