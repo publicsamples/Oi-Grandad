@@ -1,18 +1,6 @@
 
-*.wav
-oi grandad/AudioFiles/Loops/
-*.aif
-oi grandad/Presets/Autosave_1.hip
-oi grandad/Presets/Autosave_2.hip
-oi grandad/Presets/Autosave_3.hip
-oi grandad/Presets/Autosave_4.hip
-oi grandad/Presets/Autosave_5.hip
-oi grandad/Presets/Autosave_4.hip
-oi grandad/Presets/Autosave_3.hip
-oi grandad/Presets/Autosave_2.hip
-oi grandad/Presets/Autosave_1.hip
+*.hip
 *.mp3
-*.preset
 oi grandad/AudioFiles/Yo Pensioner/Loops/
 Yo Pensioner/Loops/
 oi grandad.vst3.WIN.x64.zip
@@ -29,3 +17,4 @@ oi grandad/AudioFiles/AudioFiles/Loops/
 *.aiff
 *.zip
 *.ndx
+.DS_Store
