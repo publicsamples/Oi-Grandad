@@ -31,12 +31,12 @@
   <ForceStereoOutput value="No"/>
   <EnableMidiOut value="No"/>
   <AdminPermissions value="No"/>
-  <EmbedUserPresets value="1"/>
+  <EmbedUserPresets value="0"/>
   <EnableGlobalPreprocessor value="No"/>
   <VST3Category value=""/>
   <OverwriteOldUserPresets value="No"/>
-  <UseGlobalAppDataFolderWindows value="No"/>
-  <UseGlobalAppDataFolderMacOS value="No"/>
+  <UseGlobalAppDataFolderWindows value="1"/>
+  <UseGlobalAppDataFolderMacOS value="1"/>
   <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
