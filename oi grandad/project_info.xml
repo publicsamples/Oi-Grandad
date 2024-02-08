@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="1.1.5"/>
+  <Version value="1.1.6"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -31,11 +31,13 @@
   <ForceStereoOutput value="No"/>
   <EnableMidiOut value="No"/>
   <AdminPermissions value="No"/>
-  <EmbedUserPresets value="0"/>
+  <EmbedUserPresets value="1"/>
   <EnableGlobalPreprocessor value="No"/>
   <VST3Category value=""/>
   <OverwriteOldUserPresets value="No"/>
   <UseGlobalAppDataFolderWindows value="No"/>
   <UseGlobalAppDataFolderMacOS value="No"/>
   <DefaultUserPreset value=""/>
+  <CompileWithPerfetto value="No"/>
+  <CompileWithDebugSymbols value="No"/>
 </ProjectSettings>
