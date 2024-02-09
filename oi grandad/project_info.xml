@@ -35,8 +35,8 @@
   <EnableGlobalPreprocessor value="No"/>
   <VST3Category value=""/>
   <OverwriteOldUserPresets value="No"/>
-  <UseGlobalAppDataFolderWindows value="1"/>
-  <UseGlobalAppDataFolderMacOS value="1"/>
+  <UseGlobalAppDataFolderWindows value="0"/>
+  <UseGlobalAppDataFolderMacOS value="0"/>
   <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
