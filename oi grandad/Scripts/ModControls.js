@@ -4,16 +4,26 @@ const var button1 = Content.getComponent("ModType1");
 const var table1 = Content.getComponent("Table1");
 const var step1 = Content.getComponent("Step1");
 const var s1 = Synth.getModulator("s1");
-inline function onModType1Control(number, value)
+
+
+inline function onModType1Control(component, value)
 {
-        step1.showControl(value);
+	   step1.showControl(value);
         table1.showControl(1-value); 
-        s1.setAttribute(s1.type, value);
- 
-}
+          
+            if(value == 0)
+        	{
+              s1.setAttribute(s1.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s1.setAttribute(s1.type, 0);
+            }
+};
 
+Content.getComponent("ModType1").setControlCallback(onModType1Control);
 
-button1.setControlCallback(onModType1Control);
 
 const var mod1tables = []
 
@@ -57,12 +67,23 @@ inline function onModType2Control(number, value)
 {
         step2.showControl(value);
         table2.showControl(1-value); 
-        s2.setAttribute(s2.type, 1-value);
-        s2.setAttribute(s2.type, 0);
+
+  
+        
+        if(value == 0)
+        	{
+              s2.setAttribute(s2.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s2.setAttribute(s2.type, 0);
+            }
 }
 
 
-button2.setControlCallback(onModType2Control);
+
+Content.getComponent("ModType2").setControlCallback(onModType2Control);
 
 const var mod2tables = []
 
@@ -106,12 +127,20 @@ inline function onModType3Control(number, value)
 {
         step3.showControl(value);
         table3.showControl(1-value); 
-        s3.setAttribute(s3.type, 1-value);
-        s3.setAttribute(s3.type, 0);
+            if(value == 0)
+        	{
+              s3.setAttribute(s3.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s3.setAttribute(s3.type, 0);
+            }
+
 }
 
 
-button3.setControlCallback(onModType3Control);
+Content.getComponent("ModType3").setControlCallback(onModType3Control);
 
 const var mod3tables = []
 
@@ -154,12 +183,20 @@ inline function onModType4Control(number, value)
 {
         Step4.showControl(value);
         Table4.showControl(1-value); 
-        s4.setAttribute(s4.type, 1-value);
-        s4.setAttribute(s4.type, 0);
+           
+           if(value == 0)
+        	{
+              s4.setAttribute(s4.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s4.setAttribute(s4.type, 0);
+            }
 }
 
 
-ModType4.setControlCallback(onModType4Control);
+Content.getComponent("ModType4").setControlCallback(onModType4Control);
 
 const var mod4tables = []
 
@@ -202,12 +239,19 @@ inline function onModType5Control(number, value)
 {
         Step5.showControl(value);
         Table5.showControl(1-value); 
-        s5.setAttribute(s5.type, 1-value);
-        s5.setAttribute(s5.type, 0);
+          if(value == 0)
+        	{
+              s5.setAttribute(s5.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s5.setAttribute(s5.type, 0);
+            }
 }
 
 
-ModType5.setControlCallback(onModType5Control);
+Content.getComponent("ModType5").setControlCallback(onModType5Control);
 
 const var mod5tables = []
 
@@ -250,12 +294,19 @@ inline function onModType6Control(number, value)
 {
         Step6.showControl(value);
         Table6.showControl(1-value); 
-        s6.setAttribute(s6.type, 1-value);
-        s6.setAttribute(s6.type, 0);
+           if(value == 0)
+        	{
+              s6.setAttribute(s6.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s6.setAttribute(s6.type, 0);
+            }
 }
 
 
-ModType6.setControlCallback(onModType6Control);
+Content.getComponent("ModType6").setControlCallback(onModType6Control);
 
 const var mod6tables = []
 
@@ -298,12 +349,19 @@ inline function onModType7Control(number, value)
 {
         Step7.showControl(value);
         Table7.showControl(1-value); 
-        s7.setAttribute(s7.type, 1-value);
-        s7.setAttribute(s7.type, 0);
+           if(value == 0)
+        	{
+              s7.setAttribute(s7.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s7.setAttribute(s7.type, 0);
+            }
 }
 
 
-ModType7.setControlCallback(onModType7Control);
+Content.getComponent("ModType7").setControlCallback(onModType7Control);
 
 const var mod7tables = []
 
@@ -346,12 +404,19 @@ inline function onModType8Control(number, value)
 {
         Step8.showControl(value);
         Table8.showControl(1-value); 
-        s8.setAttribute(s8.type, 1-value);
-        s8.setAttribute(s8.type, 0);
+       if(value == 0)
+           	{
+                 s8.setAttribute(s8.type, 1);
+          }
+          
+          if(value == 1)
+                	{
+                      s8.setAttribute(s8.type, 0);
+               }
 }
 
 
-ModType8.setControlCallback(onModType8Control);
+Content.getComponent("ModType8").setControlCallback(onModType8Control);
 
 const var mod8tables = []
 
@@ -393,12 +458,19 @@ inline function onModType9Control(number, value)
 {
         Step9.showControl(value);
         Table9.showControl(1-value); 
-        s9.setAttribute(s9.type, 1-value);
-        s9.setAttribute(s9.type, 0);
+          if(value == 0)
+        	{
+              s9.setAttribute(s9.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s9.setAttribute(s9.type, 0);
+            }
 }
 
 
-ModType9.setControlCallback(onModType9Control);
+Content.getComponent("ModType9").setControlCallback(onModType9Control);
 
 const var mod9tables = []
 
@@ -441,12 +513,19 @@ inline function onModType10Control(number, value)
 {
         Step10.showControl(value);
         Table10.showControl(1-value); 
-        s10.setAttribute(s10.type, 1-value);
-        s10.setAttribute(s10.type, 0);
+            if(value == 0)
+        	{
+              s10.setAttribute(s10.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s10.setAttribute(s10.type, 0);
+            }
 }
 
 
-ModType10.setControlCallback(onModType10Control);
+Content.getComponent("ModType10").setControlCallback(onModType10Control);
 
 const var mod10tables = []
 
@@ -489,12 +568,19 @@ inline function onModType11Control(number, value)
 {
         Step11.showControl(value);
         Table11.showControl(1-value); 
-        s11.setAttribute(s11.type, 1-value);
-        s11.setAttribute(s11.type, 0);
+       if(value == 0)
+        	{
+              s11.setAttribute(s11.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s11.setAttribute(s11.type, 0);
+            }
 }
 
 
-ModType11.setControlCallback(onModType11Control);
+Content.getComponent("ModType11").setControlCallback(onModType11Control);
 
 const var mod11tables = []
 
@@ -536,12 +622,19 @@ inline function onModType12Control(number, value)
 {
         Step12.showControl(value);
         Table12.showControl(1-value); 
-        s12.setAttribute(s12.type, 1-value);
-        s12.setAttribute(s12.type, 0);
+          if(value == 0)
+        	{
+              s12.setAttribute(s12.type, 1);
+       }
+       
+       if(value == 1)
+             	{
+                   s12.setAttribute(s12.type, 0);
+            }
 }
 
 
-ModType12.setControlCallback(onModType12Control);
+Content.getComponent("ModType12").setControlCallback(onModType12Control);
 
 const var mod12tables = []
 
