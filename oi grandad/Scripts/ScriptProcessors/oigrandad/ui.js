@@ -848,7 +848,9 @@ Content.getComponent("mastervol").setControlCallback(onmastervolControl);
 
 const var masterpos = Content.getComponent("masterpos");
 const var pos = Content.getComponent("pos");
-
+const var pos1 = Content.getComponent("pos1");
+const var pos2 = Content.getComponent("pos2");
+const var pos3 = Content.getComponent("pos3");
 
 
 inline function onmasterposControl(component, value)
