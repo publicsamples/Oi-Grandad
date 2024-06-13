@@ -15,7 +15,7 @@
   <ExtraDefinitionsWindows value="HISE_NUM_PLUGIN_CHANNELS=10"/>
   <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=10"/>
   <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
-  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
+  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;"/>
   <AppGroupID value=""/>
   <RedirectSampleFolder value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>
@@ -40,4 +40,5 @@
   <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
+  <IncludeLorisInFrontend value="No"/>
 </ProjectSettings>

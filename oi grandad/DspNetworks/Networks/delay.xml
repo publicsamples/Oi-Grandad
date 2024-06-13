@@ -88,6 +88,34 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
+                      <Node ID="modchain1" FactoryPath="container.modchain" Bypassed="0">
+                        <Nodes>
+                          <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0">
+                            <ModulationTargets>
+                              <Connection NodeId="pma1" ParameterId="Value"/>
+                            </ModulationTargets>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="pma1" FactoryPath="control.pma" Bypassed="0">
+                            <ModulationTargets>
+                              <Connection NodeId="one_pole" ParameterId="Frequency"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
                       <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
                         <ModulationTargets>
                           <Connection NodeId="fix_delay" ParameterId="DelayTime"/>
@@ -121,6 +149,24 @@
                               <Property ID="Connection" Value="receive"/>
                             </Properties>
                             <Parameters/>
+                          </Node>
+                          <Node ID="one_pole" FactoryPath="filters.one_pole" Bypassed="0">
+                            <ComplexData>
+                              <Filters>
+                                <Filter Index="-1"/>
+                              </Filters>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                                         ID="Frequency" Automated="1"/>
+                              <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                                         ID="Q" Value="1.0"/>
+                              <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                                         ID="Smoothing" Value="0.009999999776482582"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                            </Parameters>
                           </Node>
                         </Nodes>
                         <Parameters/>
@@ -159,13 +205,12 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="delytime" MinValue="0.0" MaxValue="18.0" Value="0.009203124999999961"
-                 StepSize="1">
+      <Parameter ID="delytime" MinValue="0.0" MaxValue="1.0" Value="0.2394305419921875">
         <Connections>
           <Connection NodeId="pma2" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dmix" MinValue="1.0" MaxValue="0.0" Value="0.5152998962402344">
+      <Parameter ID="dmix" MinValue="1.0" MaxValue="0.0" Value="0.0">
         <Connections>
           <Connection NodeId="xfader1" ParameterId="Value"/>
         </Connections>
@@ -178,13 +223,13 @@
       <Parameter ID="dlimit" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections/>
       </Parameter>
-      <Parameter ID="dmod" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="dmod" MinValue="-1.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="pma2" ParameterId="Multiply"/>
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter ID="ddest" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="ddest" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="1.0">
         <Connections>
           <Connection NodeId="global_mod2" ParameterId="Index"/>
           <Connection NodeId="global_mod" ParameterId="Index"/>
@@ -198,6 +243,21 @@
       <Parameter ID="timenosync" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Add"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="dcut" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="pma1" ParameterId="Add"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="dcutmod" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="pma1" ParameterId="Multiply"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="dcutmodsrc" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
       </Parameter>
     </Parameters>

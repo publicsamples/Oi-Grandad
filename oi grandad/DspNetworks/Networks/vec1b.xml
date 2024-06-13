@@ -15,7 +15,7 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
         </Parameters>
       </Node>
-      <Node ID="gain" FactoryPath="core.gain" Bypassed="1">
+      <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
         <Parameters>
           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                      SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>

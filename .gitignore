@@ -18,3 +18,5 @@ oi grandad/AudioFiles/AudioFiles/Loops/
 *.zip
 *.ndx
 .DS_Store
+*.wav
+*.aif
