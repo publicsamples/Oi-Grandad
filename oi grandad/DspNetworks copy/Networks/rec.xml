@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="rec" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="rec" Bypassed="0">
+    <Nodes>
+      <Node ID="global_receive" FactoryPath="routing.global_receive" Bypassed="0"
+            NodeColour="4289873796">
+        <Properties>
+          <Property ID="Connection" Value="master"/>
+        </Properties>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="recorder" FactoryPath="core.recorder" Bypassed="0">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="0" EmbeddedData="{INTERNAL}" MinValue="0" MaxValue="88200"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="State" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="2000.0" StepSize="0.1000000014901161"
+                     ID="RecordingLength" Value="2000.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+        <Parameters>
+          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                     SkewFactor="5.422270774841309" ID="Gain" Value="-100.0"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                     SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

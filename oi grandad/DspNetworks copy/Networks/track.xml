@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="track" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="track" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="a1" FactoryPath="container.chain" Bypassed="0">
+        <Nodes>
+          <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="1">
+            <Nodes>
+              <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+                    NodeColour="4282863026">
+                <Properties>
+                  <Property ID="Connection" Value="a1"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="add" ParameterId="Value"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
+                </Parameters>
+              </Node>
+              <Node ID="add" FactoryPath="math.add" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="input1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="input2" MinValue="0.0" MaxValue="1.0" Value="0.269109375">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="input3" MinValue="0.0" MaxValue="1.0" Value="0.3755156249999999">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="input4" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="Smooth" MinValue="0.0" MaxValue="1.0" Value="0.03078125000000001">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="thresh" MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                 SkewFactor="5.422270774841309" Value="-30.09999895840885">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

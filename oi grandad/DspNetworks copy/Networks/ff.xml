@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="ff" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="ff" Bypassed="0">
+    <Nodes/>
+    <Parameters/>
+  </Node>
+</Network>

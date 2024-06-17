@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="audio" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="audio" Bypassed="0">
+    <Nodes>
+      <Node ID="file_player" FactoryPath="core.file_player" Bypassed="0">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="0" MinValue="0" MaxValue="0"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="PlaybackMode"
+                     Value="2.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
+          <Parameter MinValue="20.0" MaxValue="2000.0" ID="RootFrequency" Value="504.906875"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="0.009999999776482582"
+                     ID="FreqRatio"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

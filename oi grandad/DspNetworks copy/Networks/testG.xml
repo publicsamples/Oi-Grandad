@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="testG" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="testG" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            ShowParameters="1">
+        <Nodes>
+          <Node ID="ramp" FactoryPath="core.ramp" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="maj" ParameterId="Value"/>
+            </ModulationTargets>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         ID="PeriodTime" Value="1000.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Gate" Value="1.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="pack_resizer" FactoryPath="control.pack_resizer" Bypassed="0">
+            <ComplexData>
+              <SliderPacks>
+                <SliderPack Index="0" EmbeddedData="28.35QA9....9C...3O...f+....9C...3O...f+."/>
+              </SliderPacks>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="128.0" StepSize="1.0" ID="NumSliders"
+                         Value="14.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="maj" FactoryPath="control.cable_pack" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="intensity" ParameterId="Value"/>
+            </ModulationTargets>
+            <ComplexData>
+              <SliderPacks>
+                <SliderPack Index="0" EmbeddedData="64.35QA+fqGE7CtdTvOOJb8935Qg6yv0ipOZlYl9DWOJ5CtdTnO35Qg9nYlY5ydT3pO......................"/>
+              </SliderPacks>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Folded="1">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="intensity" FactoryPath="control.intensity" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="converter" ParameterId="Value"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="-12.0" MaxValue="12.0" ID="Value" Automated="1" StepSize="1"/>
+              <Parameter MinValue="-12.0" MaxValue="12.0" ID="Intensity" Value="12.0"
+                         StepSize="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="converter" FactoryPath="control.converter" Bypassed="0">
+            <Properties>
+              <Property ID="Mode" Value="St2Pitch"/>
+            </Properties>
+            <ModulationTargets>
+              <Connection NodeId="granulator" ParameterId="Pitch"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="Value" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="-1" EmbeddedData="{PROJECT_FOLDER}Sweeps/rmfilt.wav" MinValue="0"
+                           MaxValue="555624"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.3680020751953125"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Automated="1"/>
+              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="162.5217529296874"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0919686279296875"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters>
+          <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.6279845581054687">
+            <Connections/>
+          </Parameter>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="p" MinValue="-12.0" MaxValue="12.0" StepSize="1" Value="1.0">
+        <Connections>
+          <Connection NodeId="midichain" ParameterId="pitch"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Parameter" MinValue="0.0" MaxValue="1.0" Value="0.5902349548339845">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

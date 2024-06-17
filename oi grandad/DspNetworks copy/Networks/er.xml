@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="er" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="er" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/oi audio/modfmb-merge.aif"
+                       MinValue="0" MaxValue="32481931"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.31546875"/>
+          <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                     ID="Pitch" Value="1.0"/>
+          <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="80.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

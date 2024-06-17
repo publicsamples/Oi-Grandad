@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="track3" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="track3" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="a3" FactoryPath="container.chain" Bypassed="0">
+        <Nodes>
+          <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="1">
+            <Nodes>
+              <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+                    NodeColour="4282928306">
+                <Properties>
+                  <Property ID="Connection" Value="a3"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="add1" ParameterId="Value"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
+                </Parameters>
+              </Node>
+              <Node ID="add1" FactoryPath="math.add" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="input1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="input2" MinValue="0.0" MaxValue="1.0" Value="0.269109375">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="input3" MinValue="0.0" MaxValue="1.0" Value="0.3755156249999999">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="input4" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="Smooth" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="threst" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>
