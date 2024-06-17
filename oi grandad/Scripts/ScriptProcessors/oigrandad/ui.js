@@ -332,6 +332,38 @@ inline function onPlaybackControl(component, value)
 
 Content.getComponent("Playback").setControlCallback(onPlaybackControl);
 
+const var settings = Content.getComponent("settings");
+
+
+inline function onClosePresetControl(component, value)
+{
+	settings.showControl(0);
+};
+
+Content.getComponent("ClosePreset").setControlCallback(onClosePresetControl);
+
+
+//presets
+const var Pbox = [];
+
+Pbox[0] = Content.getComponent("settings");
+Pbox[1] = Content.getComponent("blank1");
+Pbox[2] = Content.getComponent("blank2");
+
+const var pre= Content.getComponent("presets");
+
+inline function onpresetsControl(component, value)
+{
+    if(value == 1)
+    {
+	settings.showControl(1);
+	}
+
+	
+};
+
+Content.getComponent("presets").setControlCallback(onpresetsControl);
+
 
 
 
