@@ -7,7 +7,7 @@ Oi, Grandad! is a 4 voice granular synthesiser inspired by modular synthesis and
 
 Oi, Grandad! is built with [HISE](http://hise.audio).
 
-[Oi, Grandad! 2 beta](https://github.com/publicsamples/Oi-Grandad-2) -[Download plugins](https://github.com/publicsamples/Oi-Grandad/releases) - [Guide](https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide) - [Demos](https://www.youtube.com/playlist?list=PL8Rp79UJ5uBC-SntUW93i3953yPq0DeSF)
+[v1.7](https://github.com/publicsamples/Oi-Grandad/releases/tag/1.1.7) -[Download plugins](https://github.com/publicsamples/Oi-Grandad/releases) - [Expansion](https://modularsamples.gumroad.com/l/gyckl) [Guide](https://github.com/publicsamples/Oi-Grandad/wiki/Oi,-Grandad!-Quick-Guide) - [Demos](https://www.youtube.com/playlist?list=PL8Rp79UJ5uBC-SntUW93i3953yPq0DeSF)
 
 ![Oi, Grandad! ](https://github.com/publicsamples/Oi-Grandad/blob/main/oi%20grandad/oigrandad.png?raw=true)
 
@@ -19,13 +19,15 @@ Oi, Grandad! is built with [HISE](http://hise.audio).
 - Drone button for sustained playback
 - Delay per voice
 - Round Robin mode
-- Crossdfade mode
+- Crossfade mode
 
-# Known issues
+New in v2.0
 
-It is reccomended to use samples of 3 seconds or larger, shorter files may cause crashes or audio dropouts.
+- Per Voice Waveguide Resonator
+- 4 "Playheads" per voice
+- Multistage modulators 
+- Multiple signal path routings 
 
-The buffer size bug effecting later version of Logic Pro seems to be back. Buffer sizes lower than 512 will cause glitchy playback.
 
 # Installation
 

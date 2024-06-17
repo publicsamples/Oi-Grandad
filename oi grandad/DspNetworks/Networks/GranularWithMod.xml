@@ -238,7 +238,7 @@
                 <SliderPack Index="-1"/>
               </SliderPacks>
               <AudioFiles>
-                <AudioFile Index="0" MinValue="0" MaxValue="1303277"/>
+                <AudioFile Index="0" MinValue="0" MaxValue="0"/>
               </AudioFiles>
             </ComplexData>
           </Node>
