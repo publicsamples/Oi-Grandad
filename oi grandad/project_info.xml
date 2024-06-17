@@ -37,7 +37,7 @@
   <OverwriteOldUserPresets value="No"/>
   <UseGlobalAppDataFolderWindows value="1"/>
   <UseGlobalAppDataFolderMacOS value="1"/>
-  <DefaultUserPreset value=""/>
+  <DefaultUserPreset value="v2/Factory/MessagePad.preset"/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
   <IncludeLorisInFrontend value="No"/>

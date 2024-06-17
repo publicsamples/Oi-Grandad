@@ -342,16 +342,6 @@ inline function onClosePresetControl(component, value)
 
 Content.getComponent("ClosePreset").setControlCallback(onClosePresetControl);
 
-
-//presets
-const var Pbox = [];
-
-Pbox[0] = Content.getComponent("settings");
-Pbox[1] = Content.getComponent("blank1");
-Pbox[2] = Content.getComponent("blank2");
-
-const var pre= Content.getComponent("presets");
-
 inline function onpresetsControl(component, value)
 {
     if(value == 1)
@@ -364,9 +354,28 @@ inline function onpresetsControl(component, value)
 
 Content.getComponent("presets").setControlCallback(onpresetsControl);
 
+const var granWav1 = Synth.getAudioSampleProcessor("gran");
+
+const var AudioWaveform = Content.getComponent("AudioWaveform");
 
 
 
+
+inline function onAudioWaveformControl(component, value)
+{
+
+if (granWav1.getSampleLength() < 352800){
+   //change soft bypass here to 1
+   Console.print('bad');
+}
+if (granWav1.getSampleLength() >= 352800){
+   //change soft bypass here 0
+   Console.print('ok');
+
+}
+};
+
+Content.getComponent("AudioWaveform").setControlCallback(onAudioWaveformControl);
 
 
 function onNoteOn()

@@ -211,7 +211,7 @@
                   <Property ID="Mode" Value="Fixed"/>
                 </Properties>
                 <ModulationTargets>
-                  <Connection NodeId="granulator" ParameterId="GrainSize"/>
+                  <Connection NodeId="minmax" ParameterId="Value"/>
                 </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1.0" ID="NumClones" Value="4.0"/>
@@ -940,6 +940,34 @@
                     </Nodes>
                     <Parameters/>
                   </Node>
+                  <Node ID="file_analyser" FactoryPath="control.file_analyser" Bypassed="0">
+                    <Properties>
+                      <Property ID="Mode" Value="Length"/>
+                    </Properties>
+                    <ModulationTargets>
+                      <Connection NodeId="minmax" ParameterId="Maximum"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <AudioFiles>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
+                      </AudioFiles>
+                    </ComplexData>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="granulator" ParameterId="GrainSize"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="10000.0" ID="Maximum" Automated="1"/>
+                      <Parameter MinValue="0.1" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                 ID="Skew" Value="0.250634911729865"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.50001708984375"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+                    </Parameters>
+                  </Node>
                   <Node ID="pma2" FactoryPath="control.pma" Bypassed="0">
                     <ModulationTargets>
                       <Connection NodeId="granulator" ParameterId="Position"/>
@@ -953,7 +981,7 @@
                   <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
                     <ComplexData>
                       <AudioFiles>
-                        <AudioFile Index="0" MinValue="0" MaxValue="449996"/>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
@@ -1133,8 +1161,8 @@
                                   <Connection NodeId="input_toggle29" ParameterId="Value1"/>
                                   <Connection NodeId="input_toggle30" ParameterId="Value1"/>
                                   <Connection NodeId="input_toggle31" ParameterId="Value1"/>
-                                  <Connection NodeId="minmax8" ParameterId="Value"/>
-                                  <Connection NodeId="minmax9" ParameterId="Value"/>
+                                  <Connection NodeId="minmax19" ParameterId="Value"/>
+                                  <Connection NodeId="minmax20" ParameterId="Value"/>
                                 </ModulationTargets>
                               </Node>
                               <Node ID="input_toggle129" FactoryPath="control.input_toggle" Bypassed="0">
@@ -1374,7 +1402,7 @@
                             <Nodes>
                               <Node ID="chain43" FactoryPath="container.chain" Bypassed="0">
                                 <Nodes>
-                                  <Node ID="minmax8" FactoryPath="control.minmax" Bypassed="0">
+                                  <Node ID="minmax19" FactoryPath="control.minmax" Bypassed="0">
                                     <ModulationTargets>
                                       <Connection NodeId="pma_unscaled6" ParameterId="Add"/>
                                     </ModulationTargets>
@@ -1406,7 +1434,7 @@
                               </Node>
                               <Node ID="chain44" FactoryPath="container.chain" Bypassed="0">
                                 <Nodes>
-                                  <Node ID="minmax9" FactoryPath="control.minmax" Bypassed="0">
+                                  <Node ID="minmax20" FactoryPath="control.minmax" Bypassed="0">
                                     <ModulationTargets>
                                       <Connection NodeId="pma_unscaled7" ParameterId="Add"/>
                                     </ModulationTargets>
@@ -1422,7 +1450,7 @@
                                   </Node>
                                   <Node ID="pma_unscaled7" FactoryPath="control.pma_unscaled" Bypassed="0">
                                     <ModulationTargets>
-                                      <Connection NodeId="tempo_sync3" ParameterId="Tempo"/>
+                                      <Connection NodeId="tempo_sync7" ParameterId="Tempo"/>
                                     </ModulationTargets>
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
@@ -1436,7 +1464,7 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="tempo_sync3" FactoryPath="control.tempo_sync" Bypassed="0">
+                          <Node ID="tempo_sync7" FactoryPath="control.tempo_sync" Bypassed="0">
                             <ModulationTargets>
                               <Connection NodeId="converter3" ParameterId="Value"/>
                             </ModulationTargets>
@@ -1464,7 +1492,7 @@
                               <Connection NodeId="granulator3" ParameterId="Pitch"/>
                             </ModulationTargets>
                             <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
                             </Parameters>
@@ -1474,6 +1502,34 @@
                       </Node>
                     </Nodes>
                     <Parameters/>
+                  </Node>
+                  <Node ID="file_analyser6" FactoryPath="control.file_analyser" Bypassed="0">
+                    <Properties>
+                      <Property ID="Mode" Value="Length"/>
+                    </Properties>
+                    <ModulationTargets>
+                      <Connection NodeId="minmax21" ParameterId="Maximum"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <AudioFiles>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
+                      </AudioFiles>
+                    </ComplexData>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="minmax21" FactoryPath="control.minmax" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="granulator3" ParameterId="GrainSize"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="10000.0" ID="Maximum" Automated="1"/>
+                      <Parameter MinValue="0.1" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                 ID="Skew" Value="0.250634911729865"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.50001708984375"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+                    </Parameters>
                   </Node>
                   <Node ID="pma5" FactoryPath="control.pma" Bypassed="0">
                     <ModulationTargets>
@@ -1488,14 +1544,14 @@
                   <Node ID="granulator3" FactoryPath="core.granulator" Bypassed="0">
                     <ComplexData>
                       <AudioFiles>
-                        <AudioFile Index="0" MinValue="0" MaxValue="449996"/>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
                       <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
                                  ID="Pitch" Automated="1"/>
-                      <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize"/>
+                      <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Density"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune"/>
@@ -1668,8 +1724,8 @@
                                   <Connection NodeId="input_toggle25" ParameterId="Value1"/>
                                   <Connection NodeId="input_toggle26" ParameterId="Value1"/>
                                   <Connection NodeId="input_toggle27" ParameterId="Value1"/>
-                                  <Connection NodeId="minmax6" ParameterId="Value"/>
-                                  <Connection NodeId="minmax7" ParameterId="Value"/>
+                                  <Connection NodeId="minmax8" ParameterId="Value"/>
+                                  <Connection NodeId="minmax9" ParameterId="Value"/>
                                 </ModulationTargets>
                               </Node>
                               <Node ID="input_toggle123" FactoryPath="control.input_toggle" Bypassed="0">
@@ -1909,7 +1965,7 @@
                             <Nodes>
                               <Node ID="chain18" FactoryPath="container.chain" Bypassed="0">
                                 <Nodes>
-                                  <Node ID="minmax6" FactoryPath="control.minmax" Bypassed="0">
+                                  <Node ID="minmax8" FactoryPath="control.minmax" Bypassed="0">
                                     <ModulationTargets>
                                       <Connection NodeId="pma_unscaled4" ParameterId="Add"/>
                                     </ModulationTargets>
@@ -1941,7 +1997,7 @@
                               </Node>
                               <Node ID="chain36" FactoryPath="container.chain" Bypassed="0">
                                 <Nodes>
-                                  <Node ID="minmax7" FactoryPath="control.minmax" Bypassed="0">
+                                  <Node ID="minmax9" FactoryPath="control.minmax" Bypassed="0">
                                     <ModulationTargets>
                                       <Connection NodeId="pma_unscaled5" ParameterId="Add"/>
                                     </ModulationTargets>
@@ -1957,7 +2013,7 @@
                                   </Node>
                                   <Node ID="pma_unscaled5" FactoryPath="control.pma_unscaled" Bypassed="0">
                                     <ModulationTargets>
-                                      <Connection NodeId="tempo_sync2" ParameterId="Tempo"/>
+                                      <Connection NodeId="tempo_sync3" ParameterId="Tempo"/>
                                     </ModulationTargets>
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
@@ -1971,7 +2027,7 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0">
+                          <Node ID="tempo_sync3" FactoryPath="control.tempo_sync" Bypassed="0">
                             <ModulationTargets>
                               <Connection NodeId="converter2" ParameterId="Value"/>
                             </ModulationTargets>
@@ -1999,7 +2055,7 @@
                               <Connection NodeId="granulator2" ParameterId="Pitch"/>
                             </ModulationTargets>
                             <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
                             </Parameters>
@@ -2009,6 +2065,34 @@
                       </Node>
                     </Nodes>
                     <Parameters/>
+                  </Node>
+                  <Node ID="file_analyser5" FactoryPath="control.file_analyser" Bypassed="0">
+                    <Properties>
+                      <Property ID="Mode" Value="Length"/>
+                    </Properties>
+                    <ModulationTargets>
+                      <Connection NodeId="minmax18" ParameterId="Maximum"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <AudioFiles>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
+                      </AudioFiles>
+                    </ComplexData>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="minmax18" FactoryPath="control.minmax" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="granulator2" ParameterId="GrainSize"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="10000.0" ID="Maximum" Automated="1"/>
+                      <Parameter MinValue="0.1" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                 ID="Skew" Value="0.250634911729865"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.50001708984375"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+                    </Parameters>
                   </Node>
                   <Node ID="pma4" FactoryPath="control.pma" Bypassed="0">
                     <ModulationTargets>
@@ -2023,14 +2107,14 @@
                   <Node ID="granulator2" FactoryPath="core.granulator" Bypassed="0">
                     <ComplexData>
                       <AudioFiles>
-                        <AudioFile Index="0" MinValue="0" MaxValue="449996"/>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
                       <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
                                  ID="Pitch" Automated="1"/>
-                      <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize"/>
+                      <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Density"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune"/>
@@ -2203,8 +2287,8 @@
                                   <Connection NodeId="input_toggle21" ParameterId="Value1"/>
                                   <Connection NodeId="input_toggle22" ParameterId="Value1"/>
                                   <Connection NodeId="input_toggle23" ParameterId="Value1"/>
-                                  <Connection NodeId="minmax4" ParameterId="Value"/>
                                   <Connection NodeId="minmax5" ParameterId="Value"/>
+                                  <Connection NodeId="minmax6" ParameterId="Value"/>
                                 </ModulationTargets>
                               </Node>
                               <Node ID="input_toggle117" FactoryPath="control.input_toggle" Bypassed="0">
@@ -2444,7 +2528,7 @@
                             <Nodes>
                               <Node ID="chain12" FactoryPath="container.chain" Bypassed="0">
                                 <Nodes>
-                                  <Node ID="minmax4" FactoryPath="control.minmax" Bypassed="0">
+                                  <Node ID="minmax5" FactoryPath="control.minmax" Bypassed="0">
                                     <ModulationTargets>
                                       <Connection NodeId="pma_unscaled2" ParameterId="Add"/>
                                     </ModulationTargets>
@@ -2476,7 +2560,7 @@
                               </Node>
                               <Node ID="chain23" FactoryPath="container.chain" Bypassed="0">
                                 <Nodes>
-                                  <Node ID="minmax5" FactoryPath="control.minmax" Bypassed="0">
+                                  <Node ID="minmax6" FactoryPath="control.minmax" Bypassed="0">
                                     <ModulationTargets>
                                       <Connection NodeId="pma_unscaled3" ParameterId="Add"/>
                                     </ModulationTargets>
@@ -2492,7 +2576,7 @@
                                   </Node>
                                   <Node ID="pma_unscaled3" FactoryPath="control.pma_unscaled" Bypassed="0">
                                     <ModulationTargets>
-                                      <Connection NodeId="tempo_sync1" ParameterId="Tempo"/>
+                                      <Connection NodeId="tempo_sync2" ParameterId="Tempo"/>
                                     </ModulationTargets>
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
@@ -2506,7 +2590,7 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="tempo_sync1" FactoryPath="control.tempo_sync" Bypassed="0">
+                          <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0">
                             <ModulationTargets>
                               <Connection NodeId="converter1" ParameterId="Value"/>
                             </ModulationTargets>
@@ -2534,7 +2618,7 @@
                               <Connection NodeId="granulator1" ParameterId="Pitch"/>
                             </ModulationTargets>
                             <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
                             </Parameters>
@@ -2544,6 +2628,34 @@
                       </Node>
                     </Nodes>
                     <Parameters/>
+                  </Node>
+                  <Node ID="file_analyser4" FactoryPath="control.file_analyser" Bypassed="0">
+                    <Properties>
+                      <Property ID="Mode" Value="Length"/>
+                    </Properties>
+                    <ModulationTargets>
+                      <Connection NodeId="minmax7" ParameterId="Maximum"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <AudioFiles>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
+                      </AudioFiles>
+                    </ComplexData>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="minmax7" FactoryPath="control.minmax" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="granulator1" ParameterId="GrainSize"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="10000.0" ID="Maximum" Automated="1"/>
+                      <Parameter MinValue="0.1" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                 ID="Skew" Value="0.250634911729865"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.50001708984375"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+                    </Parameters>
                   </Node>
                   <Node ID="pma3" FactoryPath="control.pma" Bypassed="0">
                     <ModulationTargets>
@@ -2558,14 +2670,14 @@
                   <Node ID="granulator1" FactoryPath="core.granulator" Bypassed="0">
                     <ComplexData>
                       <AudioFiles>
-                        <AudioFile Index="0" MinValue="0" MaxValue="449996"/>
+                        <AudioFile Index="0" MinValue="0" MaxValue="10492368"/>
                       </AudioFiles>
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
                       <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
                                  ID="Pitch" Automated="1"/>
-                      <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize"/>
+                      <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Density"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune"/>

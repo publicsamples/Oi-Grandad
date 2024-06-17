@@ -19,38 +19,38 @@
                textColour="4278190080" text="*" parentComponent="MOD1">
       <Component type="ScriptPanel" id="Step1" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq1" itemColour="0" itemColour2="0"
-                 textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackA" x="8.0" y="0.0" processorId="s1"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+                 textColour="16777215" bgColour="16777215">
+        <Component type="ScriptSliderPack" id="SliderPackA" x="18.0" y="0.0" processorId="s1"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step1"/>
-        <Component type="ScriptSliderPack" id="SliderPackA1" x="8.0" y="0.0" processorId="s1"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackA1" x="16.0" y="0.0" processorId="s1"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step1" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackA2" x="8.0" y="0.0" processorId="s1"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackA2" x="16.0" y="0.0" processorId="s1"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step1" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackA3" x="8.0" y="0.0" processorId="s1"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackA3" x="16.0" y="0.0" processorId="s1"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step1" SliderPackIndex="3"
                    visible="0"/>
       </Component>
       <Component type="ScriptPanel" id="Table1" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq1" itemColour="0" itemColour2="0"
-                 textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable1" x="8.0" y="0.0" width="192.0"
+                 textColour="16777215" bgColour="16777215" visible="0">
+        <Component type="ScriptTable" id="ScriptTable1" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table1" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s1" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableA2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableA2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table1" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s1" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableA3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableA3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table1" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s1" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableA4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableA4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table1" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s1" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -79,7 +79,7 @@
       <Component type="ScriptLabel" id="ScriptLabel22" x="120.0" y="5.0" width="40.0"
                  height="20.0" text="type" textColour="4278190080" parentComponent="seq1"
                  fontName="Montserrat" editable="0"/>
-      <Component type="ScriptButton" id="OneShot1" x="63.0" y="5.0" width="30.0"
+      <Component type="ScriptButton" id="OneShot1" x="60.0" y="5.0" width="30.0"
                  height="20.0" parentComponent="seq1" isMetaParameter="1" itemColour="2279005464"
                  itemColour2="2279005464" textColour="4278190080" bgColour="4278190080"
                  filmstripImage="{PROJECT_FOLDER}switch_toggle2.png" scaleFactor="0.4000000059604645"
@@ -186,18 +186,18 @@
       <Component type="ScriptPanel" id="Table2" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq2" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table2" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s2" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableB2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableB2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table2" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s2" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableB3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableB3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table2" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s2" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableB4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableB4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table2" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s2" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -205,19 +205,19 @@
       <Component type="ScriptPanel" id="Step2" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq2" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackB" x="8.0" y="0.0" processorId="s2"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackB" x="18.0" y="0.0" processorId="s2"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step2"/>
-        <Component type="ScriptSliderPack" id="SliderPackB1" x="8.0" y="0.0" processorId="s2"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackB1" x="18.0" y="0.0" processorId="s2"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step2" SliderPackIndex="1"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackB2" x="8.0" y="0.0" processorId="s2"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackB2" x="18.0" y="0.0" processorId="s2"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step2" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackB3" x="8.0" y="0.0" processorId="s2"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackB3" x="18.0" y="0.0" processorId="s2"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step2" SliderPackIndex="3"
                    visible="0"/>
       </Component>
@@ -327,37 +327,37 @@
       <Component type="ScriptPanel" id="Step3" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq3" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackC" x="8.0" y="0.0" processorId="s3"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackC" x="18.0" y="0.0" processorId="s3"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step3"/>
-        <Component type="ScriptSliderPack" id="SliderPackC1" x="8.0" y="0.0" processorId="s3"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackC1" x="18.0" y="0.0" processorId="s3"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step3" SliderPackIndex="1"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackC2" x="8.0" y="0.0" processorId="s3"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackC2" x="18.0" y="0.0" processorId="s3"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step3" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackC3" x="8.0" y="0.0" processorId="s3"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackC3" x="18.0" y="0.0" processorId="s3"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step3" SliderPackIndex="3"
                    visible="0"/>
       </Component>
       <Component type="ScriptPanel" id="Table3" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq3" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table3" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s3" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableC2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableC2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table3" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s3" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableC3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableC3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table3" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s3" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableC4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableC4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table3" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s3" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -468,37 +468,37 @@
       <Component type="ScriptPanel" id="Step4" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq4" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackD" x="8.0" y="0.0" processorId="s4"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackD" x="18.0" y="0.0" processorId="s4"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step4"/>
-        <Component type="ScriptSliderPack" id="SliderPackD1" x="8.0" y="0.0" processorId="s4"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackD1" x="18.0" y="0.0" processorId="s4"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step4" SliderPackIndex="1"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackD2" x="8.0" y="0.0" processorId="s4"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackD2" x="18.0" y="0.0" processorId="s4"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step4" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackD3" x="8.0" y="0.0" processorId="s4"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackD3" x="18.0" y="0.0" processorId="s4"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step4" SliderPackIndex="3"
                    visible="0"/>
       </Component>
       <Component type="ScriptPanel" id="Table4" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq4" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table4" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s4" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableD1" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableD1" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table4" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s4" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableD2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableD2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table4" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s4" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableD3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableD3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table4" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s4" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -613,37 +613,37 @@
       <Component type="ScriptPanel" id="Step5" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq5" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackE" x="8.0" y="0.0" processorId="s5"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackE" x="18.0" y="0.0" processorId="s5"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step5"/>
-        <Component type="ScriptSliderPack" id="SliderPackE1" x="8.0" y="0.0" processorId="s5"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackE1" x="18.0" y="0.0" processorId="s5"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step5" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackE2" x="8.0" y="0.0" processorId="s5"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackE2" x="18.0" y="0.0" processorId="s5"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step5" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackE3" x="8.0" y="0.0" processorId="s5"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackE3" x="18.0" y="0.0" processorId="s5"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step5" SliderPackIndex="3"
                    visible="0"/>
       </Component>
       <Component type="ScriptPanel" id="Table5" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq5" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable5" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable5" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table5" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s5" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableE2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableE2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table5" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s5" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableE3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableE3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table5" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s5" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableE4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableE4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table5" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s5" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -751,18 +751,18 @@
       <Component type="ScriptPanel" id="Table6" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq6" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable6" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable6" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table6" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s6" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableF2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableF2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table6" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s6" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableF3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableF3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table6" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s6" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableF4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableF4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table6" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s6" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -770,19 +770,19 @@
       <Component type="ScriptPanel" id="Step6" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq6" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackF" x="8.0" y="0.0" processorId="s6"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackF" x="18.0" y="0.0" processorId="s6"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step6"/>
-        <Component type="ScriptSliderPack" id="SliderPackF1" x="8.0" y="0.0" processorId="s6"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackF1" x="18.0" y="0.0" processorId="s6"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step6" SliderPackIndex="1"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackF2" x="8.0" y="0.0" processorId="s6"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackF2" x="18.0" y="0.0" processorId="s6"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step6" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackF3" x="8.0" y="0.0" processorId="s6"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackF3" x="18.0" y="0.0" processorId="s6"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step6" SliderPackIndex="3"
                    visible="0"/>
       </Component>
@@ -892,34 +892,34 @@
       <Component type="ScriptPanel" id="Step7" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq7" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackG" x="8.0" y="0.0" processorId="s7"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackG" x="18.0" y="0.0" processorId="s7"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step7"/>
-        <Component type="ScriptSliderPack" id="SliderPackG1" x="8.0" y="0.0" processorId="s7"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackG1" x="18.0" y="0.0" processorId="s7"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step7" visible="0" SliderPackIndex="1"/>
-        <Component type="ScriptSliderPack" id="SliderPackG2" x="8.0" y="0.0" processorId="s7"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackG2" x="18.0" y="0.0" processorId="s7"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step7" visible="0" SliderPackIndex="2"/>
-        <Component type="ScriptSliderPack" id="SliderPackG3" x="8.0" y="0.0" processorId="s7"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackG3" x="18.0" y="0.0" processorId="s7"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step7" visible="0" SliderPackIndex="3"/>
       </Component>
       <Component type="ScriptPanel" id="Table7" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq7" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable7" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable7" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table7" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s7" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableG2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableG2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table7" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s7" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableG3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableG3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table7" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s7" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableG4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableG4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table7" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s7" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -1031,34 +1031,34 @@
       <Component type="ScriptPanel" id="Step8" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq8" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackH" x="8.0" y="0.0" processorId="s8"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackH" x="18.0" y="0.0" processorId="s8"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step8"/>
-        <Component type="ScriptSliderPack" id="SliderPackH1" x="8.0" y="0.0" processorId="s8"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackH1" x="18.0" y="0.0" processorId="s8"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step8" visible="0" SliderPackIndex="1"/>
-        <Component type="ScriptSliderPack" id="SliderPackH2" x="8.0" y="0.0" processorId="s8"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackH2" x="18.0" y="0.0" processorId="s8"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step8" visible="0" SliderPackIndex="2"/>
-        <Component type="ScriptSliderPack" id="SliderPackH3" x="8.0" y="0.0" processorId="s8"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackH3" x="18.0" y="0.0" processorId="s8"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step8" visible="0" SliderPackIndex="3"/>
       </Component>
       <Component type="ScriptPanel" id="Table8" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq8" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable8" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable8" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table8" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s8" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableH2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableH2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table8" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s8" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableH3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableH3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table8" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s8" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableH4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableH4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table8" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s8" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -1174,34 +1174,34 @@
       <Component type="ScriptPanel" id="Step9" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq9" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackI" x="8.0" y="0.0" processorId="s9"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackI" x="18.0" y="0.0" processorId="s9"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step9"/>
-        <Component type="ScriptSliderPack" id="SliderPackI1" x="8.0" y="0.0" processorId="s9"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackI1" x="18.0" y="0.0" processorId="s9"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step9" visible="0" SliderPackIndex="2"/>
-        <Component type="ScriptSliderPack" id="SliderPackI2" x="8.0" y="0.0" processorId="s9"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackI2" x="18.0" y="0.0" processorId="s9"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step9" visible="0" SliderPackIndex="2"/>
-        <Component type="ScriptSliderPack" id="SliderPackI3" x="8.0" y="0.0" processorId="s9"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackI3" x="18.0" y="0.0" processorId="s9"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step9" visible="0" SliderPackIndex="3"/>
       </Component>
       <Component type="ScriptPanel" id="Table9" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq9" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable9" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable9" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table9" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s9" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableI2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableI2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table9" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s9" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableI3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableI3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table9" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s9" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableI4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableI4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table9" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s9" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -1312,18 +1312,18 @@
       <Component type="ScriptPanel" id="Table10" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq10" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable10" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable10" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table10" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s10" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableJ2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableJ2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table10" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s10" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableJ3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableJ3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table10" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s10" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableJ4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableJ4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table10" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s10" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -1331,26 +1331,26 @@
       <Component type="ScriptPanel" id="Step10" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq10" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackJ" x="8.0" y="0.0" processorId="s10"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackJ" x="18.0" y="0.0" processorId="s10"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step10"/>
-        <Component type="ScriptSliderPack" id="SliderPackJ1" x="8.0" y="0.0" processorId="s10"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackJ1" x="18.0" y="0.0" processorId="s10"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step10" SliderPackIndex="1"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackJ2" x="8.0" y="0.0" processorId="s10"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackJ2" x="18.0" y="0.0" processorId="s10"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step10" SliderPackIndex="2"
                    visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackJ3" x="8.0" y="0.0" processorId="s10"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackJ3" x="18.0" y="0.0" processorId="s10"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step10" SliderPackIndex="3"
                    visible="0"/>
       </Component>
       <Component type="ScriptLabel" id="ScriptLabel13" x="-3.0" y="3.0" width="30.0"
                  height="20.0" text="10" textColour="4278190080" parentComponent="seq10"
                  fontName="Montserrat" editable="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel97" x="-1.0" y="119.0" width="40.0"
+      <Component type="ScriptLabel" id="ScriptLabel97" x="-1.0" y="119.0" width="170.0"
                  height="15.0" text="tempo" textColour="4278190080" parentComponent="seq10"
                  fontName="Montserrat" editable="0"/>
       <Component type="ScriptLabel" id="ScriptLabel98" x="26.0" y="119.0" width="40.0"
@@ -1453,34 +1453,34 @@
       <Component type="ScriptPanel" id="Step11" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq11" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackK" x="8.0" y="0.0" processorId="s11"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackK" x="18.0" y="0.0" processorId="s11"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step11"/>
-        <Component type="ScriptSliderPack" id="SliderPackK1" x="8.0" y="0.0" processorId="s11"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackK1" x="18.0" y="0.0" processorId="s11"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step11" visible="0" SliderPackIndex="1"/>
-        <Component type="ScriptSliderPack" id="SliderPackK2" x="8.0" y="0.0" processorId="s11"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackK2" x="18.0" y="0.0" processorId="s11"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step11" visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackK3" x="8.0" y="0.0" processorId="s11"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackK3" x="18.0" y="0.0" processorId="s11"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step11" visible="0" SliderPackIndex="3"/>
       </Component>
       <Component type="ScriptPanel" id="Table11" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq11" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable11" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable11" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table11" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s11" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableK2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableK2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table11" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s11" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableK3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableK3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table11" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s11" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableK4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableK4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table11" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s11" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -1592,34 +1592,34 @@
       <Component type="ScriptPanel" id="Step12" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq12" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215" visible="0">
-        <Component type="ScriptSliderPack" id="SliderPackL" x="8.0" y="0.0" processorId="s12"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackL" x="18.0" y="0.0" processorId="s12"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step12"/>
-        <Component type="ScriptSliderPack" id="SliderPackL1" x="8.0" y="0.0" processorId="s12"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackL1" x="18.0" y="0.0" processorId="s12"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step12" visible="0" SliderPackIndex="1"/>
-        <Component type="ScriptSliderPack" id="SliderPackL2" x="8.0" y="0.0" processorId="s12"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackL2" x="18.0" y="0.0" processorId="s12"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step12" visible="0"/>
-        <Component type="ScriptSliderPack" id="SliderPackL3" x="8.0" y="0.0" processorId="s12"
-                   width="190.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
+        <Component type="ScriptSliderPack" id="SliderPackL3" x="18.0" y="0.0" processorId="s12"
+                   width="170.0" height="60.0" itemColour="4282291135" itemColour2="16777215"
                    textColour="16777215" parentComponent="Step12" visible="0" SliderPackIndex="3"/>
       </Component>
       <Component type="ScriptPanel" id="Table12" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq12" itemColour="0" itemColour2="0"
                  textColour="16777215" bgColour="16777215">
-        <Component type="ScriptTable" id="ScriptTable12" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTable12" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table12" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s12" customColours="1"/>
-        <Component type="ScriptTable" id="ScriptTableL2" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableL2" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table12" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s12" tableIndex="1"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableL3" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableL3" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table12" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s12" tableIndex="2"
                    customColours="1" visible="0"/>
-        <Component type="ScriptTable" id="ScriptTableL4" x="8.0" y="0.0" width="192.0"
+        <Component type="ScriptTable" id="ScriptTableL4" x="18.0" y="0.0" width="170.0"
                    height="60.0" parentComponent="Table12" itemColour="4282291135"
                    bgColour="15002" itemColour2="4289344298" processorId="s12" tableIndex="3"
                    customColours="1" visible="0"/>
@@ -1843,12 +1843,12 @@
                    processorId="gran" parameterId="pitchmodsrc" defaultValue="0.0"
                    itemColour2="3816794416" max="16" fontName="Montserrat" fontSize="12.0"
                    textColour="4278190080"/>
-        <Component type="ScriptSlider" id="pmod1" x="177.0" y="31.0" width="30"
-                   height="40" processorId="gran" parameterId="pitchmod" parentComponent="granular"
+        <Component type="ScriptSlider" id="pmod1" x="177.0" y="31.0" width="30.0"
+                   height="40.0" processorId="gran" parameterId="pitchmod" parentComponent="granular"
                    filmstripImage="{PROJECT_FOLDER}K7.png" numStrips="200.0" dragDirection="Vertical"
                    scaleFactor="0.6000000238418579" middlePosition="0.5" showValuePopup="Below"
                    defaultValue="0.5">
-          <Component type="ScriptLabel" id="semi52" x="-4" y="22" textColour="4280884766"
+          <Component type="ScriptLabel" id="semi52" x="-4.0" y="22.0" textColour="4280884766"
                      width="30.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="pmod1" fontStyle="Regular" fontSize="12.0" text="mod"
                      alignment="left"/>
@@ -2367,12 +2367,12 @@
                    processorId="gran2" parameterId="pitchmodsrc" defaultValue="0.0"
                    itemColour2="3816794416" max="16" fontName="Montserrat" fontSize="12.0"
                    textColour="4278190080"/>
-        <Component type="ScriptSlider" id="pmod2" x="177.0" y="31.0" width="30"
-                   height="40" processorId="gran2" parameterId="pitchmod" parentComponent="granular1"
+        <Component type="ScriptSlider" id="pmod2" x="177.0" y="31.0" width="30.0"
+                   height="40.0" processorId="gran2" parameterId="pitchmod" parentComponent="granular1"
                    filmstripImage="{PROJECT_FOLDER}K7.png" numStrips="200.0" dragDirection="Vertical"
                    scaleFactor="0.6000000238418579" middlePosition="0.5" showValuePopup="Below"
                    defaultValue="0.5">
-          <Component type="ScriptLabel" id="semi84" x="-4" y="22" textColour="4280884766"
+          <Component type="ScriptLabel" id="semi84" x="-4.0" y="22.0" textColour="4280884766"
                      width="30.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="pmod2" fontStyle="Regular" fontSize="12.0" text="mod"
                      alignment="left" processorId="gran2"/>
@@ -2891,12 +2891,12 @@
                    processorId="gran3" parameterId="pitchmodsrc" defaultValue="0.0"
                    itemColour2="3816794416" max="16" fontName="Montserrat" fontSize="12.0"
                    textColour="4278190080"/>
-        <Component type="ScriptSlider" id="pmod3" x="177.0" y="31.0" width="30"
-                   height="40" processorId="gran3" parameterId="pitchmod" parentComponent="granular2"
+        <Component type="ScriptSlider" id="pmod3" x="177.0" y="31.0" width="30.0"
+                   height="40.0" processorId="gran3" parameterId="pitchmod" parentComponent="granular2"
                    filmstripImage="{PROJECT_FOLDER}K7.png" numStrips="200.0" dragDirection="Vertical"
                    scaleFactor="0.6000000238418579" middlePosition="0.5" showValuePopup="Below"
                    defaultValue="0.5">
-          <Component type="ScriptLabel" id="semi135" x="-4" y="22" textColour="4280884766"
+          <Component type="ScriptLabel" id="semi135" x="-4.0" y="22.0" textColour="4280884766"
                      width="30.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="pmod3" fontStyle="Regular" fontSize="12.0" text="mod"
                      alignment="left" processorId="gran3"/>
@@ -3415,12 +3415,12 @@
                    processorId="gran4" parameterId="pitchmodsrc" defaultValue="0.0"
                    itemColour2="3816794416" max="16" fontName="Montserrat" fontSize="12.0"
                    textColour="4278190080"/>
-        <Component type="ScriptSlider" id="pmod4" x="177.0" y="31.0" width="30"
-                   height="40" processorId="gran4" parameterId="pitchmod" parentComponent="granular3"
+        <Component type="ScriptSlider" id="pmod4" x="177.0" y="31.0" width="30.0"
+                   height="40.0" processorId="gran4" parameterId="pitchmod" parentComponent="granular3"
                    filmstripImage="{PROJECT_FOLDER}K7.png" numStrips="200.0" dragDirection="Vertical"
                    scaleFactor="0.6000000238418579" middlePosition="0.5" showValuePopup="Below"
                    defaultValue="0.5">
-          <Component type="ScriptLabel" id="semi188" x="-4" y="22" textColour="4280884766"
+          <Component type="ScriptLabel" id="semi188" x="-4.0" y="22.0" textColour="4280884766"
                      width="30.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="pmod4" fontStyle="Regular" fontSize="12.0" text="mod"
                      alignment="left" processorId="gran4"/>
@@ -3810,9 +3810,9 @@
              height="730.0" bgColour="4291870893" itemColour="4291870893"
              itemColour2="4291870893" locked="1" textColour="4278190080" borderSize="3.0"
              borderRadius="20.0" visible="0">
-    <Component type="ScriptButton" id="ClosePreset" x="7.0" y="6.0" width="30"
-               height="30" parentComponent="settings" filmstripImage="{PROJECT_FOLDER}closebutton.png"
-               isVertical="0" scaleFactor="0.24"/>
+    <Component type="ScriptButton" id="ClosePreset" x="7.0" y="6.0" width="30.0"
+               height="30.0" parentComponent="settings" filmstripImage="{PROJECT_FOLDER}closebutton.png"
+               isVertical="0" scaleFactor="0.239999994635582" saveInPreset="0"/>
     <Component type="ScriptFloatingTile" id="ScriptFloatingTile1" x="23.0" y="10.0"
                width="580.0" height="390.0" parentComponent="settings" ContentType="PresetBrowser"
                bgColour="13442333" itemColour="4291184969" itemColour2="4293047560"
@@ -3935,7 +3935,7 @@
              macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
              defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
              isMetaParameter="1" pluginParameterName="Global Position"/>
-  <Component type="ScriptSlider" id="mastergrain" x="85.0" y="740" width="30.0"
+  <Component type="ScriptSlider" id="mastergrain" x="85.0" y="740.0" width="30.0"
              height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
              macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
              defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
@@ -3945,7 +3945,7 @@
              macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
              defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
              isMetaParameter="1" pluginParameterName="Global density"/>
-  <Component type="ScriptSlider" id="masterpitch" x="121.0" y="740" width="30.0"
+  <Component type="ScriptSlider" id="masterpitch" x="121.0" y="740.0" width="30.0"
              height="24.0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
              macroControl="No MacroControl" middlePosition="0.5" showTextBox="0"
              defaultValue="0.5" scaleFactor="0.75" saveInPreset="0" isPluginParameter="1"
