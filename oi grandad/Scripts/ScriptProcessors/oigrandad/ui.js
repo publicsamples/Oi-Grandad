@@ -1,4 +1,4 @@
-Content.makeFrontInterface(892, 785);
+Content.makeFrontInterface(910, 790);
 
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
 
@@ -74,35 +74,46 @@ include("MasterControls.js");
  
  
 
-
-
-
-
-
- 
-  
-
 const var psync1 = Content.getComponent("psync1");
 const var pitch8 = Content.getComponent("pitch8");
 const var ps1 = Synth.getEffect("gran");
 const var pmod1 = Content.getComponent("pmod1");
 const var PmodSel1 = Content.getComponent("PmodSel1");
 
-
-
-
-
 inline function onpsync1Control(number, value)
+
 {
-		pitch8.showControl(1-value); 
-		pitch8.showControl(value); 
-		pmod1.showControl(1-value); 
-		pmod1.showControl(value); 
-		PmodSel1.showControl(1-value); 
-		PmodSel1.showControl(value); 
-  gran.setAttribute(ps1.gsync, value);  
+	if(value == 1)
+		{
+
+		pitch8.showControl(0); 
+		 gran.setAttribute(gran.max, 0);   
+		 gran.setAttribute(gran.step, 1);   
+    }
     
+    	if(value == 2)
+    		{
+    
+    		pitch8.showControl(1); 
+    		gran.setAttribute(gran.max, 1);  
+    		gran.setAttribute(gran.step, 0);      
+        }
+        
+        if(value == 3)
+            		{
+            
+            		pitch8.showControl(0); 
+            		gran.setAttribute(gran.max, 2); 
+            		gran.setAttribute(gran.step, 1);               
+                }
        
+       if(value == 4)
+               		{
+               
+               		pitch8.showControl(0); 
+               		gran.setAttribute(gran.max, 3);  
+                 	gran.setAttribute(gran.step, 1); 
+                   }
 }
 
 
@@ -113,25 +124,46 @@ const var pitch11 = Content.getComponent("pitch11");
 const var pmod2 = Content.getComponent("pmod2");
 const var PmodSel2 = Content.getComponent("PmodSel2");
 
-
-
-
-const var ps2 = Synth.getEffect("gran2");
-
 inline function onpsync2Control(number, value)
+
 {
-		pitch11.showControl(1-value);
-		pitch11.showControl(value); 
-        ps2.setAttribute(ps2.gsync, value);   
-        pmod2.showControl(1-value); 
-        	pmod2.showControl(value); 
-        	PmodSel2.showControl(1-value); 
-        	PmodSel2.showControl(value); 
+	if(value == 1)
+		{
+
+		pitch11.showControl(0); 
+		 gran2.setAttribute(gran2.max, 0);    
+		 gran2.setAttribute(gran2.step, 1); 
+    }
+    
+    	if(value == 2)
+    		{
+    
+    		pitch11.showControl(1); 
+    		gran2.setAttribute(gran2.max, 1);
+    		gran2.setAttribute(gran2.step, 0);         
+        }
+        
+        if(value == 3)
+            		{
+            
+            		pitch11.showControl(0); 
+            		gran2.setAttribute(gran2.max, 2); 
+            		gran2.setAttribute(gran2.step, 1);                
+                }
        
+       if(value == 4)
+               		{
+               
+               		pitch11.showControl(0); 
+               		 gran2.setAttribute(gran2.max, 3);  
+               		 gran2.setAttribute(gran2.step, 1); 
+                 
+                   }
 }
 
 
 psync2.setControlCallback(onpsync2Control);
+
 
 const var psync3 = Content.getComponent("psync3");
 const var pitch13 = Content.getComponent("pitch13");
@@ -143,15 +175,40 @@ const var PmodSel3 = Content.getComponent("PmodSel3");
 const var ps3 = Synth.getEffect("gran3");
 
 inline function onpsync3Control(number, value)
+
 {
-		pitch13.showControl(1-value);    
-		pitch13.showControl(value); 
-        ps3.setAttribute(ps3.gsync, value);
-   		pmod3.showControl(1-value); 
-       	pmod3.showControl(value); 
-       	PmodSel3.showControl(1-value); 
-       	PmodSel3.showControl(value); 
+	if(value == 1)
+		{
+
+		pitch13.showControl(0); 
+		 gran3.setAttribute(gran3.max, 0);
+		 gran3.setAttribute(gran3.step, 1);     
+    }
+    
+    	if(value == 2)
+    		{
+    
+    		pitch13.showControl(1); 
+    		gran3.setAttribute(gran3.max, 1);      
+    		gran3.setAttribute(gran3.step, 0);     
+        }
+        
+        if(value == 3)
+            		{
+            
+            		pitch13.showControl(0); 
+            		gran3.setAttribute(gran3.max, 2); 
+            		gran3.setAttribute(gran3.step, 1);                  
+                }
        
+       if(value == 4)
+               		{
+               
+               		pitch13.showControl(0); 
+               		 gran3.setAttribute(gran3.max, 3); 
+               		 gran3.setAttribute(gran3.step, 1);    
+                 
+                   }
 }
 
 
@@ -168,20 +225,44 @@ const var PmodSel4 = Content.getComponent("PmodSel4");
 const var ps4 = Synth.getEffect("gran4");
 
 inline function onpsync4Control(number, value)
+
 {
-		pitch15.showControl(1-value);
-		pitch15.showControl(value); 
-        ps4.setAttribute(ps4.gsync, value); 
-		pmod4.showControl(1-value); 
-        pmod4.showControl(value); 
-        PmodSel4.showControl(1-value); 
-        PmodSel4.showControl(value); 
+	if(value == 1)
+		{
+
+		pitch15.showControl(0); 
+		 gran4.setAttribute(gran4.max, 0);  
+		 gran4.setAttribute(gran4.step, 1);     
+    }
+    
+    	if(value == 2)
+    		{
+    
+    		pitch15.showControl(1); 
+    		gran4.setAttribute(gran4.max, 1);   
+    		gran4.setAttribute(gran4.step, 0);      
+        }
+        
+        if(value == 3)
+            		{
+            
+            		pitch15.showControl(0); 
+            		gran4.setAttribute(gran4.max, 2); 
+            		gran4.setAttribute(gran4.step, 1);                
+                }
+       
+       if(value == 4)
+               		{
+               
+               		pitch15.showControl(0); 
+               		 gran4.setAttribute(gran4.max, 3);  
+               		 gran4.setAttribute(gran4.step, 1); 
+                 
+                   }
 }
 
 
 psync4.setControlCallback(onpsync4Control);
-
-
 //Draw Combobox
 
 const var laf = Engine.createGlobalScriptLookAndFeel();
@@ -223,7 +304,16 @@ laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
     g.drawAlignedText(obj.text, obj.area, "centred");
 });
 
-
+laf.registerFunction("drawTableRuler", function(g, obj)
+{
+    g.setColour(Colours.withAlpha(obj.bgColour, 0.1));
+    
+    var x = obj.position * obj.area[2];
+    
+    g.drawLine(x, x, 0, obj.area[3], 10.0);
+    g.setColour(obj.bgColour);
+    g.drawLine(x, x, 0, obj.area[3], 1);
+});
 
 //links
 
@@ -274,7 +364,12 @@ const var LedPanel = Content.getComponent("LedPanel");
 
 const var Playback = Content.getComponent("Playback");
 
-
+const var XFcont = Content.getComponent("XFcont");
+const var xf1 = Synth.getEffect("xf1");
+const var xf2 = Synth.getEffect("xf2");
+const var xf3 = Synth.getEffect("xf3");
+const var xf4 = Synth.getEffect("xf4");
+const var xfade = Synth.getModulator("xfade");
 
 inline function onPlaybackControl(component, value)
 {
@@ -338,21 +433,72 @@ const var settings = Content.getComponent("settings");
 inline function onClosePresetControl(component, value)
 {
 	settings.showControl(0);
+	presets.setValue(0);
+	presets.changed();
 };
 
 Content.getComponent("ClosePreset").setControlCallback(onClosePresetControl);
 
+const var voice5 = Content.getComponent("voice5");
+const var presets = Content.getComponent("presets");
+
+const var Master = Content.getComponent("Master");
+
+
+inline function onClosePreset1Control(component, value)
+{
+	voice5.showControl(0);
+	Master.setValue(0);
+	Master.changed();
+};
+
+Content.getComponent("ClosePreset1").setControlCallback(onClosePreset1Control);
+
+
 inline function onpresetsControl(component, value)
 {
-    if(value == 1)
+ if(value == 0)
+     {
+	settings.showControl(0);
+
+
+}
+
+if(value == 1)
     {
 	settings.showControl(1);
-	}
+	voice5.showControl(0);
+	Master.setValue(0);
+	Master.changed();
 
+}
 	
 };
 
 Content.getComponent("presets").setControlCallback(onpresetsControl);
+
+
+inline function onMasterControl(component, value)
+{
+    if(value == 0)
+    {
+
+	voice5.showControl(0);
+
+	
+	}
+	if(value == 1)
+{
+	settings.showControl(0);
+	voice5.showControl(1);
+	presets.setValue(0);
+	presets.changed();
+	
+	}	
+};
+
+Content.getComponent("Master").setControlCallback(onMasterControl);
+
 
 const var granWav1 = Synth.getAudioSampleProcessor("gran");
 
@@ -376,6 +522,462 @@ if (granWav1.getSampleLength() >= 352800){
 };
 
 Content.getComponent("AudioWaveform").setControlCallback(onAudioWaveformControl);
+
+
+const var Stages1 = Content.getComponent("Stages1");
+const var Stages2 = Content.getComponent("Stages2");
+const var Stages3 = Content.getComponent("Stages3");
+const var Stages4 = Content.getComponent("Stages4");
+
+const var Stages5 = Content.getComponent("Stages5");
+const var Stages6 = Content.getComponent("Stages6");
+const var Stages7 = Content.getComponent("Stages7");
+const var Stages8 = Content.getComponent("Stages8");
+
+
+const var Pos1 = Content.getComponent("ScriptTable13");
+const var Pos2 = Content.getComponent("ScriptTable14");
+const var Pos3 = Content.getComponent("ScriptTable15");
+const var Pos4 = Content.getComponent("ScriptTable16");                            
+
+const var Pos5 = Content.getComponent("ScriptTable17");
+const var Pos6 = Content.getComponent("ScriptTable18");
+const var Pos7 = Content.getComponent("ScriptTable19");
+const var Pos8 = Content.getComponent("ScriptTable20");
+
+const var Pos9 = Content.getComponent("ScriptTable21");
+const var Pos10 = Content.getComponent("ScriptTable22");
+const var Pos11 = Content.getComponent("ScriptTable23");
+const var Pos12 = Content.getComponent("ScriptTable24");
+
+const var Pos13 = Content.getComponent("ScriptTable25");
+const var Pos14 = Content.getComponent("ScriptTable26");
+const var Pos15 = Content.getComponent("ScriptTable27");
+const var Pos16 = Content.getComponent("ScriptTable28");
+
+const var PosB1 = Content.getComponent("ScriptTable29");
+const var PosB2 = Content.getComponent("ScriptTable30");
+const var PosB3 = Content.getComponent("ScriptTable31");
+const var PosB4 = Content.getComponent("ScriptTable32");                            
+
+const var PosB5 = Content.getComponent("ScriptTable33");
+const var PosB6 = Content.getComponent("ScriptTable34");
+const var PosB7 = Content.getComponent("ScriptTable35");
+const var PosB8 = Content.getComponent("ScriptTable36");
+
+const var PosB9 = Content.getComponent("ScriptTable37");
+const var PosB10 = Content.getComponent("ScriptTable38");
+const var PosB11 = Content.getComponent("ScriptTable39");
+const var PosB12 = Content.getComponent("ScriptTable40");
+
+const var PosB13 = Content.getComponent("ScriptTable41");
+const var PosB14 = Content.getComponent("ScriptTable42");
+const var PosB15 = Content.getComponent("ScriptTable43");
+const var PosB16 = Content.getComponent("ScriptTable44");
+
+
+inline function onStgSel1Control(component, value)
+{
+
+if(value == 1)
+  {
+
+        Pos1.showControl(1);
+        Pos2.showControl(0);
+        Pos3.showControl(0);
+        Pos4.showControl(0);
+        PosB1.showControl(1);
+        PosB2.showControl(0);
+        PosB3.showControl(0);
+        PosB4.showControl(0);
+        gran.setAttribute(gran.min, 0.20);    
+	}
+if(value == 2)
+  {
+
+      Pos1.showControl(1);
+        Pos2.showControl(1);
+        Pos3.showControl(0);
+        Pos4.showControl(0);
+        PosB1.showControl(1);
+              PosB2.showControl(1);
+              PosB3.showControl(0);
+              PosB4.showControl(0);
+        gran.setAttribute(gran.min, 0.40);   
+	}
+	
+if(value == 3)
+  {
+
+    Pos1.showControl(1);
+        Pos2.showControl(1);
+        Pos3.showControl(1);
+        Pos4.showControl(0);
+        PosB1.showControl(1);
+              PosB2.showControl(1);
+              PosB3.showControl(1);
+              PosB4.showControl(0);
+        gran.setAttribute(gran.min, 0.80);   
+	}
+	if(value == 4)
+	  {
+	
+ Pos1.showControl(1);
+        Pos2.showControl(1);
+        Pos3.showControl(1);
+        Pos4.showControl(1);
+        gran.setAttribute(gran.min, 1);
+        PosB1.showControl(1);
+              PosB2.showControl(1);
+              PosB3.showControl(1);
+              PosB4.showControl(1);   
+		}
+};
+
+Content.getComponent("StgSel1").setControlCallback(onStgSel1Control);
+
+inline function onStgSel2Control(component, value)
+{
+
+if(value == 1)
+  {
+
+        Pos5.showControl(1);
+        Pos6.showControl(0);
+        Pos7.showControl(0);
+        Pos8.showControl(0);
+        PosB5.showControl(1);
+        PosB6.showControl(0);
+        PosB7.showControl(0);
+        PosB8.showControl(0);  
+        gran2.setAttribute(gran2.min, 0.20);    
+	}
+if(value == 2)
+  {
+
+      Pos5.showControl(1);
+        Pos6.showControl(1);
+        Pos7.showControl(0);
+        Pos8.showControl(0);
+        PosB5.showControl(1);
+        PosB6.showControl(1);
+        PosB7.showControl(0);
+        PosB8.showControl(0);
+        gran2.setAttribute(gran2.min, 0.40);   
+	}
+	
+if(value == 3)
+  {
+
+    Pos5.showControl(1);
+        Pos6.showControl(1);
+        Pos7.showControl(1);
+        Pos8.showControl(0);
+        PosB5.showControl(1);
+        PosB6.showControl(1);
+        PosB7.showControl(1);
+        PosB8.showControl(0);
+        gran2.setAttribute(gran2.min, 0.80);   
+	}
+	if(value == 4)
+	  {
+	
+ Pos5.showControl(1);
+        Pos6.showControl(1);
+        Pos7.showControl(1);
+        Pos8.showControl(1);
+        PosB5.showControl(1);
+        PosB6.showControl(1);
+        PosB7.showControl(1);
+        PosB8.showControl(1);
+        gran2.setAttribute(gran2.min, 1);   
+		}
+};
+
+Content.getComponent("StgSel2").setControlCallback(onStgSel2Control);
+
+
+inline function onStgSel3Control(component, value)
+{
+
+if(value == 1)
+  {
+
+        Pos9.showControl(1);
+        Pos10.showControl(0);
+        Pos11.showControl(0);
+        Pos12.showControl(0);
+		PosB9.showControl(1);
+        PosB10.showControl(0);
+        PosB11.showControl(0);
+        PosB12.showControl(0);
+        gran3.setAttribute(gran3.min, 0.20);    
+	}
+if(value == 2)
+  {
+
+      Pos9.showControl(1);
+        Pos10.showControl(1);
+        Pos11.showControl(0);
+        Pos12.showControl(0);
+		PosB9.showControl(1);
+        PosB10.showControl(1);
+        PosB11.showControl(0);
+        PosB12.showControl(0);
+        gran3.setAttribute(gran3.min, 0.40);   
+	}
+	
+if(value == 3)
+  {
+
+    Pos9.showControl(1);
+        Pos10.showControl(1);
+        Pos11.showControl(1);
+        Pos12.showControl(0);
+		PosB9.showControl(1);
+        PosB10.showControl(1);
+        PosB11.showControl(1);
+        PosB12.showControl(0); 
+        gran3.setAttribute(gran3.min, 0.80);   
+	}
+	if(value == 4)
+	  {
+	
+ Pos9.showControl(1);
+        Pos10.showControl(1);
+        Pos11.showControl(1);
+        Pos12.showControl(1);
+		PosB9.showControl(1);
+        PosB10.showControl(1);
+        PosB11.showControl(1);
+        PosB12.showControl(1); 
+        gran3.setAttribute(gran3.min, 1);   
+		}
+};
+
+Content.getComponent("StgSel3").setControlCallback(onStgSel3Control);
+
+
+
+inline function onStgSel4Control(component, value)
+{
+
+if(value == 1)
+  {
+
+        Pos13.showControl(1);
+        Pos14.showControl(0);
+        Pos15.showControl(0);
+        Pos16.showControl(0);
+        PosB13.showControl(1);
+        PosB14.showControl(0);
+        PosB15.showControl(0);
+        PosB16.showControl(0);
+        gran4.setAttribute(gran4.min, 0.20);    
+	}
+if(value == 2)
+  {
+
+      Pos13.showControl(1);
+        Pos14.showControl(1);
+        Pos15.showControl(0);
+        Pos16.showControl(0);
+        PosB13.showControl(1);
+        PosB14.showControl(1);
+        PosB15.showControl(0);
+        PosB16.showControl(0);
+        gran4.setAttribute(gran4.min, 0.40);   
+	}
+	
+if(value == 3)
+  {
+
+    Pos13.showControl(1);
+        Pos14.showControl(1);
+        Pos15.showControl(1);
+        Pos16.showControl(0);
+        PosB13.showControl(1);
+        PosB14.showControl(1);
+        PosB15.showControl(1);
+        PosB16.showControl(0);
+        gran4.setAttribute(gran4.min, 0.80);   
+	}
+	if(value == 4)
+	  {
+	
+ Pos13.showControl(1);
+        Pos14.showControl(1);
+        Pos15.showControl(1);
+        Pos16.showControl(1);
+        PosB13.showControl(1);
+        PosB14.showControl(1);
+        PosB15.showControl(1);
+        PosB16.showControl(1);
+        gran4.setAttribute(gran4.min, 1);   
+		}
+};
+
+Content.getComponent("StgSel4").setControlCallback(onStgSel4Control);
+
+
+inline function onposmode1Control(component, value)
+{
+	gran.setAttribute(gran.posmode, value);
+	
+	if(value == 1)
+	  {
+	
+	 Stages1.showControl(0);
+	 Stages5.showControl(0);
+	
+		}
+	
+	if(value == 2)
+	  {
+	
+	 Stages1.showControl(0);
+	 Stages5.showControl(0);
+	
+		}
+		
+	if(value == 3)
+	  {
+	
+	 Stages1.showControl(0);
+	 Stages5.showControl(0);
+	
+		}
+	if(value == 4)
+	  {
+	
+	 Stages1.showControl(1);
+	 Stages5.showControl(1);
+	
+		}	
+													
+};
+
+Content.getComponent("posmode1").setControlCallback(onposmode1Control);
+
+
+inline function onposmode2Control(component, value)
+{
+	gran2.setAttribute(gran2.posmode, value);
+	
+	if(value == 1)
+	  {
+	
+	 Stages2.showControl(0);
+	 Stages6.showControl(0);
+	
+		}
+	
+	if(value == 2)
+	  {
+	
+	 Stages2.showControl(0);
+	 Stages6.showControl(0);
+	
+		}
+		
+	if(value == 3)
+	  {
+	
+	 Stages2.showControl(0);
+	 Stages6.showControl(0);
+	
+		}
+	if(value == 4)
+	  {
+	
+	 Stages2.showControl(1);
+	 Stages6.showControl(1);
+	
+		}	
+													
+};
+
+Content.getComponent("posmode2").setControlCallback(onposmode2Control);
+
+
+inline function onposmode3Control(component, value)
+{
+	gran3.setAttribute(gran3.posmode, value);
+	
+	if(value == 1)
+	  {
+	
+	 Stages3.showControl(0);
+	 Stages7.showControl(0);
+	
+		}
+	
+	if(value == 2)
+	  {
+	
+	 Stages3.showControl(0);
+	 Stages7.showControl(0);
+	
+		}
+		
+	if(value == 3)
+	  {
+	
+	 Stages3.showControl(0);
+	 Stages7.showControl(0);
+	
+		}
+	if(value == 4)
+	  {
+	
+	 Stages3.showControl(1);
+	 Stages7.showControl(1);
+	
+		}	
+													
+};
+
+Content.getComponent("posmode3").setControlCallback(onposmode3Control);
+
+
+inline function onposmode4Control(component, value)
+{
+	gran4.setAttribute(gran4.posmode, value);
+	
+	if(value == 1)
+	  {
+	
+	 Stages4.showControl(0);
+	 Stages8.showControl(0);
+	
+		}
+	
+	if(value == 2)
+	  {
+	
+	 Stages4.showControl(0);
+	 Stages8.showControl(0);
+	
+		}
+		
+	if(value == 3)
+	  {
+	
+	 Stages4.showControl(0);
+	 Stages8.showControl(0);
+	
+		}
+	if(value == 4)
+	  {
+	
+	 Stages4.showControl(1);
+	 Stages8.showControl(1);
+	
+		}	
+													
+};
+
+Content.getComponent("posmode4").setControlCallback(onposmode4Control);
 
 
 function onNoteOn()

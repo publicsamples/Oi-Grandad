@@ -6,7 +6,7 @@
     <Nodes>
       <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
         <Nodes>
-          <Node ID="split" FactoryPath="container.split" Bypassed="0" Folded="1">
+          <Node ID="split" FactoryPath="container.split" Bypassed="0">
             <Nodes>
               <Node ID="pos" FactoryPath="container.chain" Bypassed="0">
                 <Nodes>
@@ -43,6 +43,7 @@
                       <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0">
                         <ModulationTargets>
                           <Connection NodeId="input_toggle" ParameterId="Value1"/>
+                          <Connection NodeId="input_toggle" ParameterId="Value2"/>
                         </ModulationTargets>
                         <ComplexData>
                           <DisplayBuffers>
@@ -63,7 +64,7 @@
                     <Parameters>
                       <Parameter MinValue="1.0" MaxValue="0.0" StepSize="1.0" ID="Input" Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Value="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
                     </Parameters>
                   </Node>
                   <Node ID="pma1" FactoryPath="control.pma" Bypassed="0">
@@ -233,7 +234,7 @@
                 <SliderPack Index="-1" EmbeddedData="16....f+.........3O...f+."/>
                 <SliderPack Index="-1" EmbeddedData="16....f+....9C........f+."/>
                 <SliderPack Index="-1" EmbeddedData="16....f+....9C...3O......"/>
-                <SliderPack Index="-1"/>
+                <SliderPack Index="4"/>
                 <SliderPack Index="-1"/>
                 <SliderPack Index="-1"/>
               </SliderPacks>
@@ -263,7 +264,7 @@
                   </SwitchTarget>
                 </SwitchTargets>
                 <Parameters>
-                  <Parameter MinValue="1.0" MaxValue="0.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
               <Node ID="sb_container" FactoryPath="container.chain" NodeColour="4288253543"
@@ -342,7 +343,7 @@
           <Connection NodeId="global_mod" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.5163092041015624">
+      <Parameter ID="pitch" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Add"/>
         </Connections>
@@ -352,7 +353,7 @@
           <Connection NodeId="NewGran1" ParameterId="PitchMode"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pitchmul" MinValue="0.0" MaxValue="16.0" Value="0.998807861328125">
+      <Parameter ID="pitchmul" MinValue="0.0" MaxValue="16.0" Value="0.0">
         <Connections>
           <Connection NodeId="NewGran1" ParameterId="PitchMul"/>
         </Connections>
@@ -362,7 +363,7 @@
           <Connection NodeId="pma1" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pitchmodsrc" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="0.1">
+      <Parameter ID="pitchmodsrc" MinValue="0.0" MaxValue="16.0" Value="1.3" StepSize="0.1">
         <Connections>
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
@@ -374,7 +375,6 @@
       </Parameter>
       <Parameter ID="gsync" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
-          <Connection NodeId="switcher" ParameterId="Value"/>
           <Connection NodeId="NewGran1" ParameterId="SyNc"/>
           <Connection NodeId="input_toggle" ParameterId="Input"/>
         </Connections>
@@ -448,13 +448,15 @@
           <Connection NodeId="NewGran1" ParameterId="max"/>
         </Connections>
       </Parameter>
-      <Parameter ID="skew" MinValue="0.0" MaxValue="1.0" SkewFactor="1" Value="1.0">
+      <Parameter ID="skew" MinValue="0.0" MaxValue="1.0" SkewFactor="1" Value="0.0">
         <Connections>
           <Connection NodeId="NewGran1" ParameterId="step"/>
         </Connections>
       </Parameter>
       <Parameter ID="step" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections/>
+        <Connections>
+          <Connection NodeId="switcher" ParameterId="Value"/>
+        </Connections>
       </Parameter>
     </Parameters>
   </Node>
