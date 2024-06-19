@@ -28,7 +28,7 @@
             <Control type="ScriptButton" id="ModType1" value="0.0"/>
             <Control type="ScriptComboBox" id="TrigSel1" value="1.0"/>
             <Control type="ScriptSlider" id="Stage1" value="1.0"/>
-            <Control type="ScriptComboBox" id="MorphModSel1" value="0.0"/>
+            <Control type="ScriptComboBox" id="MorphModSel1" value="4.0"/>
             <Control type="ScriptSlider" id="MorphMod1" value="0.5"/>
             <Control type="ScriptSliderPack" id="TableVis1" value="-1.0" data="16....f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="TableVis2" value="-1.0" data="16....f+....9C...3O...f+."/>
@@ -37,7 +37,7 @@
             <Control type="ScriptTable" id="ScriptTableB2" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableB3" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableB4" value="0.0" data=""/>
-            <Control type="ScriptSliderPack" id="SliderPackB" value="14" data="64....f+7Qgq8SOJb0Ob8nP+rGEt7ilYlwO35QA+35Qg6C6QgqOov0i9zLyL4yiBWeOrGEt87nv00yiBWOO......"/>
+            <Control type="ScriptSliderPack" id="SliderPackB" value="14.0" data="64....f+7Qgq8SOJb0Ob8nP+rGEt7ilYlwO35QA+35Qg6C6QgqOov0i9zLyL4yiBWeOrGEt87nv00yiBWOO......"/>
             <Control type="ScriptSliderPack" id="SliderPackB1" value="-1.0" data="64......................................................................................."/>
             <Control type="ScriptSliderPack" id="SliderPackB2" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackB3" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -49,7 +49,7 @@
             <Control type="ScriptSlider" id="tempo2" value="0.0"/>
             <Control type="ScriptButton" id="ModType2" value="1.0"/>
             <Control type="ScriptSlider" id="Stage2" value="1.0"/>
-            <Control type="ScriptComboBox" id="MorphModSel2" value="0.0"/>
+            <Control type="ScriptComboBox" id="MorphModSel2" value="3.0"/>
             <Control type="ScriptSlider" id="MorphMod2" value="0.5"/>
             <Control type="ScriptComboBox" id="TrigSel3" value="0.0"/>
             <Control type="ScriptSliderPack" id="TableVis3" value="-1.0" data="16....f+....9C...3O...f+."/>
@@ -69,7 +69,7 @@
             <Control type="ScriptSlider" id="tempo3" value="0.0"/>
             <Control type="ScriptButton" id="ModType3" value="0.0"/>
             <Control type="ScriptSlider" id="Stage3" value="1.0"/>
-            <Control type="ScriptComboBox" id="MorphModSel3" value="0.0"/>
+            <Control type="ScriptComboBox" id="MorphModSel3" value="2.0"/>
             <Control type="ScriptSlider" id="MorphMod3" value="0.5"/>
             <Control type="ScriptSliderPack" id="TableVis4" value="-1.0" data="16....f+....9C...3O...f+."/>
             <Control type="ScriptComboBox" id="TrigSel4" value="1.0"/>
@@ -89,7 +89,7 @@
             <Control type="ScriptSlider" id="tempo4" value="0.0"/>
             <Control type="ScriptButton" id="ModType4" value="1.0"/>
             <Control type="ScriptSlider" id="Stage4" value="1.0"/>
-            <Control type="ScriptComboBox" id="MorphModSel4" value="0.0"/>
+            <Control type="ScriptComboBox" id="MorphModSel4" value="1.0"/>
             <Control type="ScriptSlider" id="MorphMod4" value="0.5"/>
             <Control type="ScriptPanel" id="MOD2" value="0.0"/>
             <Control type="ScriptComboBox" id="TrigSel5" value="0.0"/>
@@ -466,7 +466,7 @@
             <Control type="ScriptComboBox" id="route4" value="1.0"/>
             <Control type="ScriptComboBox" id="PanModSel4" value="4.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
-            <Control type="ScriptButton" id="ClosePreset1" value="1.0"/>
+            <Control type="ScriptButton" id="ClosePreset1" value="0.0"/>
             <Control type="ScriptSliderPack" id="ScriptSliderPack5" value="-1.0" data="16.35QA9LyLy5SgqGwO35QQ+."/>
             <Control type="ScriptSliderPack" id="ScriptSliderPack6" value="-1.0" data="16.35QA9LyLy5SgqGwO35QQ+."/>
             <Control type="ScriptSliderPack" id="ScriptSliderPack7" value="-1.0" data="16.35QA9LyLy5SgqGwO35QQ+."/>

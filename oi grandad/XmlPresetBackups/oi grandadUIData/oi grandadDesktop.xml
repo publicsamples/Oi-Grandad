@@ -11,7 +11,7 @@
              max="2.0" defaultValue="1.0"/>
   <Component type="ScriptPanel" id="blank1" x="572.0" y="-31.0" visible="0"/>
   <Component type="ScriptPanel" id="blank2" x="617.0" y="-22.0" visible="0"/>
-  <Component type="ScriptPanel" id="MOD1" x="686.0" y="36.0" width="220.0"
+  <Component type="ScriptPanel" id="MOD1" x="686.0" y="41.0" width="220.0"
              height="676.0" itemColour="16777215" itemColour2="16777215" textColour="16777215"
              saveInPreset="1" bgColour="16777215">
     <Component type="ScriptPanel" id="seq1" x="0.0" y="3.0" width="215.0" height="160.0"
@@ -140,20 +140,20 @@
                  defaultValue="0.5"/>
       <Component type="ScriptSliderPack" id="TableVis1" x="118.0" y="139.0" width="90.0"
                  height="15.0" parentComponent="seq1" processorId="s1" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel128" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis1" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis1" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel129" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis1" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis1" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel130" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis1" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis1" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel131" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis1" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis1" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
     </Component>
     <Component type="ScriptPanel" id="seq2" x="0.0" y="171.0" width="215.0"
@@ -161,20 +161,20 @@
                bgColour="4291280033" textColour="4278190080" text="*" parentComponent="MOD1">
       <Component type="ScriptSliderPack" id="TableVis2" x="118.0" y="135.0" width="90.0"
                  height="15.0" parentComponent="seq2" processorId="s2" SliderPackIndex="5"
-                 itemColour="4289344298" enabled="0" itemColour2="16777215" textColour="16777215"
+                 itemColour="4289172087" enabled="0" itemColour2="16777215" textColour="16777215"
                  sliderAmount="4.0">
         <Component type="ScriptLabel" id="ScriptLabel132" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis2" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis2" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel133" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis2" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis2" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel134" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis2" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis2" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel135" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis2" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis2" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptComboBox" id="TrigSel2" x="66.0" y="135.0" width="40.0"
                  height="15.0" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
@@ -311,20 +311,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis3" x="118.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq3" processorId="s3" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel136" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis3" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis3" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel137" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis3" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis3" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel138" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis3" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis3" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel139" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis3" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis3" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Step3" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq3" itemColour="0" itemColour2="0"
@@ -445,20 +445,20 @@
                bgColour="4291280033" textColour="4278190080" text="*" parentComponent="MOD1">
       <Component type="ScriptSliderPack" id="TableVis4" x="118.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq4" processorId="s4" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel140" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis4" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis4" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel141" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis4" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis4" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel142" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis4" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis4" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel143" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis4" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis4" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptComboBox" id="TrigSel4" x="67.0" y="135.0" width="40.0"
                  height="15.0" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
@@ -583,7 +583,7 @@
                  defaultValue="0.5"/>
     </Component>
   </Component>
-  <Component type="ScriptPanel" id="MOD2" x="689.0" y="40.0" width="220.0"
+  <Component type="ScriptPanel" id="MOD2" x="689.0" y="45.0" width="220.0"
              height="676.0" itemColour="16777215" itemColour2="16777215" textColour="16777215"
              saveInPreset="1" bgColour="16777215" visible="0">
     <Component type="ScriptPanel" id="seq5" x="0.0" y="3.0" width="215.0" height="160.0"
@@ -599,20 +599,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis6" x="118.0" y="135.0" width="90.0"
                  height="15.0" parentComponent="seq5" processorId="s5" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel144" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis6" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis6" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel145" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis6" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis6" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel146" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis6" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis6" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel147" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis6" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis6" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Step5" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq5" itemColour="0" itemColour2="0"
@@ -738,20 +738,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis7" x="117.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq6" processorId="s5" SliderPackIndex="5"
-                 itemColour="4289344298" enabled="0" itemColour2="16777215" textColour="16777215"
+                 itemColour="4289172087" enabled="0" itemColour2="16777215" textColour="16777215"
                  sliderAmount="4.0">
         <Component type="ScriptLabel" id="ScriptLabel148" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis7" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis7" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel149" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis7" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis7" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel150" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis7" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis7" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel151" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis7" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis7" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Table6" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq6" itemColour="0" itemColour2="0"
@@ -880,20 +880,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis8" x="118.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq7" processorId="s7" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel152" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis8" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis8" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel153" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis8" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis8" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel154" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis8" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis8" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel155" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis8" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis8" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Step7" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq7" itemColour="0" itemColour2="0"
@@ -1015,20 +1015,20 @@
                bgColour="4291280033" textColour="4278190080" text="*" parentComponent="MOD2">
       <Component type="ScriptSliderPack" id="TableVis13" x="118.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq8" processorId="s8" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel156" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis13" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis13" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel157" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis13" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis13" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel158" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis13" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis13" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel159" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis13" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis13" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptComboBox" id="TrigSel8" x="67.0" y="135.0" width="40.0"
                  height="15.0" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
@@ -1154,7 +1154,7 @@
                  defaultValue="0.5"/>
     </Component>
   </Component>
-  <Component type="ScriptPanel" id="MOD3" x="686.0" y="36.0" width="220.0"
+  <Component type="ScriptPanel" id="MOD3" x="686.0" y="41.0" width="220.0"
              height="676.0" itemColour="16777215" itemColour2="16777215" textColour="16777215"
              saveInPreset="1" bgColour="16777215" visible="0">
     <Component type="ScriptPanel" id="seq9" x="0.0" y="3.0" width="215.0" height="160.0"
@@ -1170,20 +1170,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis9" x="118.0" y="135.0" width="90.0"
                  height="15.0" parentComponent="seq9" processorId="s9" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel160" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis9" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis9" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel161" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis9" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis9" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel162" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis9" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis9" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel163" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis9" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis9" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Step9" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq9" itemColour="0" itemColour2="0"
@@ -1312,20 +1312,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis10" x="117.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq10" processorId="s10" SliderPackIndex="5"
-                 itemColour="4289344298" enabled="0" itemColour2="16777215" textColour="16777215"
+                 itemColour="4289172087" enabled="0" itemColour2="16777215" textColour="16777215"
                  sliderAmount="4.0">
         <Component type="ScriptLabel" id="ScriptLabel164" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis10" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis10" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel165" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis10" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis10" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel166" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis10" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis10" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel167" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis10" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis10" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Table10" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq10" itemColour="0" itemColour2="0"
@@ -1454,20 +1454,20 @@
                  itemColour2="3816794416" textColour="4278190080" max="19"/>
       <Component type="ScriptSliderPack" id="TableVis11" x="118.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq11" processorId="s11" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel168" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis11" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis11" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel169" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis11" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis11" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel170" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis11" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis11" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel171" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis11" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis11" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptPanel" id="Step11" x="5.0" y="30.0" width="200.0"
                  height="60.0" parentComponent="seq11" itemColour="0" itemColour2="0"
@@ -1588,20 +1588,20 @@
                bgColour="4291280033" textColour="4278190080" text="*" parentComponent="MOD3">
       <Component type="ScriptSliderPack" id="TableVis14" x="118.0" y="136.0" width="90.0"
                  height="15.0" parentComponent="seq12" processorId="s12" SliderPackIndex="5"
-                 sliderAmount="4.0" itemColour="4289344298" enabled="0" itemColour2="16777215"
+                 sliderAmount="4.0" itemColour="4289172087" enabled="0" itemColour2="16777215"
                  textColour="16777215">
         <Component type="ScriptLabel" id="ScriptLabel172" x="0.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis14" text="1" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis14" text="1" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel173" x="23.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis14" text="2" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis14" text="2" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel174" x="44.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis14" text="3" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis14" text="3" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
         <Component type="ScriptLabel" id="ScriptLabel175" x="67.0" y="0.0" width="22.0"
-                   height="15.0" parentComponent="TableVis14" text="4" textColour="4293787392"
-                   editable="0"/>
+                   height="15.0" parentComponent="TableVis14" text="4" textColour="4294963183"
+                   editable="0" itemColour2="4294963183"/>
       </Component>
       <Component type="ScriptComboBox" id="TrigSel12" x="67.0" y="135.0" width="40.0"
                  height="15.0" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
@@ -1726,9 +1726,8 @@
                  defaultValue="0.5"/>
     </Component>
   </Component>
-  <Component type="ScriptPanel" id="VOICE" x="4.0" y="34.0" width="670.0"
-             height="740.0" itemColour="16449536" itemColour2="0" bgColour="13023914"
-             textColour="16777215">
+  <Component type="ScriptPanel" id="VOICE" x="4.0" y="0.0" width="670.0" height="740.0"
+             itemColour="16449536" itemColour2="0" bgColour="13023914" textColour="16777215">
     <Component type="ScriptPanel" id="voice1" x="3.0" y="9.0" width="330.0"
                height="360.0" text="wave1" bgColour="4294038451" itemColour="4291280033"
                itemColour2="4291280033" borderSize="5.0" locked="1" parentComponent="VOICE"
@@ -3869,10 +3868,10 @@
              numStrips="200.0" scaleFactor="0.699999988079071" width="20.0"
              height="20.0" macroControl="Macro 1" stepSize="1.0" min="63.0"
              max="64.0" middlePosition="63.5" visible="0" enabled="0"/>
-  <Component type="ScriptPanel" id="voice5" x="6.0" y="45.0" width="670.0"
-             height="730.0" text="wave1" bgColour="4294038451" itemColour="4291280033"
-             itemColour2="4291280033" borderSize="5.0" locked="1" textColour="4278190080"
-             borderRadius="17.0" visible="0">
+  <Component type="ScriptPanel" id="voice5" x="6.0" y="12" width="670.0" height="730.0"
+             text="wave1" bgColour="4294038451" itemColour="4291280033" itemColour2="4291280033"
+             borderSize="5.0" locked="1" textColour="4278190080" borderRadius="17.0"
+             visible="0">
     <Component type="ScriptButton" id="ClosePreset1" x="13.0" y="10.0" width="30.0"
                height="30.0" parentComponent="voice5" filmstripImage="{PROJECT_FOLDER}closebutton.png"
                isVertical="0" scaleFactor="0.239999994635582"/>
@@ -4526,7 +4525,7 @@
                parentComponent="voice5" fontStyle="Regular" fontSize="20.0"
                text="GRANULAR" alignment="left"/>
   </Component>
-  <Component type="ScriptPanel" id="settings" x="6.0" y="45.0" width="670.0"
+  <Component type="ScriptPanel" id="settings" x="6.0" y="12" width="670.0"
              height="730.0" bgColour="4291870893" itemColour="4291870893"
              itemColour2="4291870893" locked="1" textColour="4278190080" borderSize="3.0"
              borderRadius="20.0" visible="0">
@@ -4619,14 +4618,14 @@
                  textColour="3907643801" text="scale" alignment="left" editable="0"/>
     </Component>
   </Component>
-  <Component type="ScriptButton" id="Hold" x="816.0" y="5.0" text="" width="40.0"
+  <Component type="ScriptButton" id="Hold" x="816.0" y="10.0" text="" width="40.0"
              height="40.0" processorId="hold" parameterId="Hold" bgColour="15908403"
              itemColour="4292689201" itemColour2="4292689201" textColour="2293630727"
              filmstripImage="{PROJECT_FOLDER}switch_toggle2.png" scaleFactor="0.699999988079071"
              saveInPreset="0"/>
-  <Component type="ScriptButton" id="presets" x="107.0" y="8.0" width="30.0"
-             height="26.0" itemColour2="4289344298" itemColour="4289344298"
-             text="Config/Presets" bgColour="4289344298" textColour="4289344298"
+  <Component type="ScriptButton" id="presets" x="105.0" y="755.0" width="30.0"
+             height="26.0" itemColour2="4289230454" itemColour="4289230454"
+             text="Config/Presets" bgColour="4289230454" textColour="4294941595"
              saveInPreset="0"/>
   <Component type="ScriptLabel" id="SucessLabel" x="154.0" y="308.0" bgColour="4294901760"
              width="50.0" height="40.0" text="OK" visible="0" fontName="Avenir"
@@ -4653,11 +4652,11 @@
   <Component type="ScriptLabel" id="Label3" x="22.0" y="850.0" width="50.0"
              height="15.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
              text="grain"/>
-  <Component type="ScriptLabel" id="Label17" x="291.0" y="-5.0" width="90.0"
+  <Component type="ScriptLabel" id="Label17" x="289.0" y="742.0" width="90.0"
              height="51.0" fontName="Montserrat" fontSize="18.0" textColour="4294038451"
              text="PLAYBACK MODE" editable="0" itemColour2="4294038451" itemColour="15848371"
              alignment="left"/>
-  <Component type="ScriptPanel" id="XFcont" x="505.0" y="-1.0" width="150.0"
+  <Component type="ScriptPanel" id="XFcont" x="500.0" y="746.0" width="150.0"
              height="40.0" itemColour="0" itemColour2="16777215" bgColour="0"
              textColour="0" processorId="xfade" parameterId="scan" visible="0">
     <Component type="ScriptLabel" id="Label19" x="-7.0" y="27.0" width="40.0"
@@ -4690,19 +4689,19 @@
                height="10.0" fontName="Montserrat" fontSize="10.0" textColour="3907643801"
                text="SMTH" parentComponent="XFcont" editable="0"/>
   </Component>
-  <Component type="ScriptLabel" id="Label21" x="686.0" y="710.0" width="220.0"
+  <Component type="ScriptLabel" id="Label21" x="686.0" y="716.0" width="220.0"
              height="50.0" fontName="Montserrat" fontSize="40.0" textColour="4294038451"
              text="Oi, Grandad!" editable="0" alignment="left" itemColour2="4294038451"
              itemColour="15848371"/>
-  <Component type="ScriptLabel" id="Label23" x="10.0" y="0.0" width="90.0"
+  <Component type="ScriptLabel" id="Label23" x="8.0" y="747.0" width="90.0"
              height="41.0" fontName="Montserrat" fontSize="18.0" textColour="4294038451"
              text="PRESETS &amp; SETTINGS" alignment="left" editable="0" itemColour2="4294038451"
              itemColour="15848371"/>
-  <Component type="ScriptLabel" id="Label24" x="856.0" y="12.0" width="50.0"
+  <Component type="ScriptLabel" id="Label24" x="856.0" y="17.0" width="50.0"
              height="20.0" fontName="Montserrat" fontSize="12.0" textColour="4294038451"
              text="DRONE" alignment="left" editable="0" itemColour2="4294038451"
              itemColour="15848371"/>
-  <Component type="ScriptLabel" id="Label25" x="742.0" y="12.0" width="70.0"
+  <Component type="ScriptLabel" id="Label25" x="742.0" y="17.0" width="70.0"
              height="20.0" fontName="Montserrat" fontSize="12.0" textColour="4294038451"
              text="MOD PAGE" alignment="left" editable="0" itemColour2="4294038451"
              itemColour="15848371"/>
@@ -4714,14 +4713,14 @@
              max="3" items="Factory&#10;UltraPackPro&#10;UntitledLoopProject"
              width="80.0" height="20.0" bgColour="4294938664" textColour="4292331977"
              visible="0"/>
-  <Component type="ScriptComboBox" id="ModPage" x="700.0" y="12.0" max="3"
+  <Component type="ScriptComboBox" id="ModPage" x="700.0" y="17.0" max="3"
              width="30.0" height="20.0" items="1-4&#10;5-8&#10;9-12" textColour="4294038451"
              itemColour2="4294038451" bgColour="4294038451" itemColour="4294038451"/>
-  <Component type="ScriptComboBox" id="Playback" x="391.0" y="5.0" max="3"
+  <Component type="ScriptComboBox" id="Playback" x="389.0" y="752.0" max="3"
              width="90.0" height="30.0" items="All&#10;Round Robin &#10;Crossfade"
              bgColour="4294038451" itemColour="4294038451" itemColour2="4294038451"
              textColour="4294038451"/>
-  <Component type="ScriptPanel" id="LedPanel" x="500.0" y="-6.0" width="140.0"
+  <Component type="ScriptPanel" id="LedPanel" x="495.0" y="741.0" width="140.0"
              height="50.0" itemColour="0" textColour="16777215" bgColour="16777215"
              itemColour2="0" visible="0">
     <Component type="ScriptLabel" id="Label18" x="13.0" y="26.0" width="20.0"
@@ -4753,12 +4752,12 @@
                itemColour2="1118481" textColour="16777215" itemColour="3355443"
                enableMidiLearn="0" enabled="0" saveInPreset="0"/>
   </Component>
-  <Component type="ScriptLabel" id="Label31" x="148.0" y="1.0" width="90.0"
+  <Component type="ScriptLabel" id="Label31" x="146.0" y="748.0" width="90.0"
              height="41.0" fontName="Montserrat" fontSize="18.0" textColour="4294038451"
              text="MASTER CONTROLS" alignment="left" editable="0" itemColour2="4294038451"
              itemColour="15848371"/>
-  <Component type="ScriptButton" id="Master" x="245.0" y="9.0" width="30.0"
-             height="26.0" itemColour2="4289344298" itemColour="4289344298"
-             text="Config/Presets" bgColour="4289344298" textColour="4289344298"
+  <Component type="ScriptButton" id="Master" x="243.0" y="756.0" width="30.0"
+             height="26.0" itemColour2="4289230454" itemColour="4289230454"
+             text="Config/Presets" bgColour="4289230454" textColour="4294941595"
              saveInPreset="0"/>
 </ContentProperties>
