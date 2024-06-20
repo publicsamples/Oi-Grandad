@@ -19,6 +19,8 @@ include("MasterControls.js");
  const var Proc2 = Synth.getEffect("Proc2");
  const var Proc3 = Synth.getEffect("Proc3");
  const var Proc4 = Synth.getEffect("Proc4");
+ const var pitch1 = Content.getComponent("pitch1");
+ 
  
  inline function onHoldControl(component, value)
  

@@ -1,9 +1,5 @@
 //RR
 
-
-const var Enable = Content.getComponent("Enable");
-
-
 const var filters = [Synth.getMidiProcessor("Filter1"),
                      Synth.getMidiProcessor("Filter2"),
                      Synth.getMidiProcessor("Filter3"),

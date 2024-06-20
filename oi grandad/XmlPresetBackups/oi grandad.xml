@@ -478,7 +478,7 @@
             <Control type="ScriptComboBox" id="ComboBox26" value="1.0"/>
             <Control type="ScriptSlider" id="ScriptSlider3" value="0.4300000071525574"/>
             <Control type="ScriptComboBox" id="ExpansionSelector" value="1.0"/>
-            <Control type="ScriptComboBox" id="ModPage" value="1.0"/>
+            <Control type="ScriptComboBox" id="ModPage" value="3.0"/>
             <Control type="ScriptComboBox" id="Playback" value="1.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
