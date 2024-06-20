@@ -1,0 +1,79 @@
+// Foreign functions and constants for output buttons and parameters
+
+owl_button = ffunction(int owl_button(int, int), <owl.h>,"");
+owl_parameter = ffunction(int owl_parameter(int, float), <owl.h>,"");
+
+OWL_B1 = fconstant(int BUTTON_A, <owl.h>);
+OWL_B2 = fconstant(int BUTTON_B, <owl.h>);
+OWL_B3 = fconstant(int BUTTON_C, <owl.h>);
+OWL_B4 = fconstant(int BUTTON_D, <owl.h>);
+OWL_B5 = fconstant(int BUTTON_E, <owl.h>);
+OWL_B6 = fconstant(int BUTTON_F, <owl.h>);
+OWL_B7 = fconstant(int BUTTON_G, <owl.h>);
+OWL_B8 = fconstant(int BUTTON_H, <owl.h>);
+OWL_A = fconstant(int PARAMETER_A, <owl.h>);
+OWL_B = fconstant(int PARAMETER_B, <owl.h>);
+OWL_C = fconstant(int PARAMETER_C, <owl.h>);
+OWL_D = fconstant(int PARAMETER_D, <owl.h>);
+OWL_E = fconstant(int PARAMETER_E, <owl.h>);
+OWL_F = fconstant(int PARAMETER_F, <owl.h>);
+OWL_G = fconstant(int PARAMETER_G, <owl.h>);
+OWL_H = fconstant(int PARAMETER_H, <owl.h>);
+
+//------------------------ pushbutton ----------------
+// Send a gate signal to push button
+//
+// ### Usage:
+//    `_:pushbutton`
+//
+pushbutton = ffunction(int owl_pushbutton(int), <owl.h>, "");
+
+//------------------------ Voltage convertion ----------------
+
+//------------------------ sample2hertz ----------------------
+// Convert input sample to frequency in Hertz
+//
+// ### Usage:
+//    `_:sample2hertz(tune):_`
+//
+sample2hertz = ffunction(float sample2hertz(float, float), <owl.h>, "");
+
+//------------------------ hertz2sample ----------------------
+// Convert frequency in Hertz to output sample
+//
+// ### Usage:
+//    `_:hertz2sample(tune):_`
+//
+hertz2sample = ffunction(float hertz2sample(float, float), <owl.h>, "");
+
+//------------------------ sample2volts ----------------------
+// Convert input sample to Volts
+//
+// ### Usage:
+//    `_:sample2volts:_`
+//
+sample2volts = ffunction(float sample2volts(float), <owl.h>, "");
+
+//------------------------ volts2hertz -----------------------
+// Convert Volts into Hertz
+//
+// ### Usage:
+//    `_:volts2hertz:_`
+//
+volts2hertz = ffunction(float volts2hertz(float), <owl.h>, "");
+
+//------------------------ volts2sample ----------------------
+// Convert Volts into output sample
+//
+// ### Usage:
+//    `_:volts2sample:_`
+//
+volts2sample = ffunction(float volts2sample(float), <owl.h>, "");
+
+//------------------------ hertz2volts ----------------------
+// Convert Hertz into Volts
+//
+// ### Usage:
+//    `_:hertz2volts:_`
+//
+hertz2volts = ffunction(float hertz2volts(float), <owl.h>, "");

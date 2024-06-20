@@ -87,32 +87,44 @@ inline function onpsync1Control(number, value)
 		{
 
 		pitch8.showControl(0); 
+		pmod1.showControl(0);
+		PmodSel1.showControl(0);
 		 gran.setAttribute(gran.max, 0);   
-		 gran.setAttribute(gran.step, 1);   
+		 gran.setAttribute(gran.step, 1);  
+		 gran.setAttribute(gran.gsync, 1);   
     }
     
     	if(value == 2)
     		{
     
     		pitch8.showControl(1); 
+    		pmod1.showControl(1);
+    		PmodSel1.showControl(1);
     		gran.setAttribute(gran.max, 1);  
     		gran.setAttribute(gran.step, 0);      
+    		gran.setAttribute(gran.gsync, 0);  
         }
         
         if(value == 3)
             		{
             
             		pitch8.showControl(0); 
+            		pmod1.showControl(0);
+            		PmodSel1.showControl(0);
             		gran.setAttribute(gran.max, 2); 
-            		gran.setAttribute(gran.step, 1);               
+            		gran.setAttribute(gran.step, 1);  
+            		gran.setAttribute(gran.gsync, 1);               
                 }
        
        if(value == 4)
                		{
                
                		pitch8.showControl(0); 
+               		pmod1.showControl(0);
+               		PmodSel1.showControl(0);
                		gran.setAttribute(gran.max, 3);  
                  	gran.setAttribute(gran.step, 1); 
+                 	gran.setAttribute(gran.gsync, 1);  
                    }
 }
 
@@ -131,32 +143,44 @@ inline function onpsync2Control(number, value)
 		{
 
 		pitch11.showControl(0); 
+		pmod2.showControl(0);
+		PmodSel2.showControl(0);
 		 gran2.setAttribute(gran2.max, 0);    
 		 gran2.setAttribute(gran2.step, 1); 
+		 gran2.setAttribute(gran2.gsync, 1);  
     }
     
     	if(value == 2)
     		{
     
     		pitch11.showControl(1); 
+    		pmod2.showControl(1);
+    		PmodSel2.showControl(1);
     		gran2.setAttribute(gran2.max, 1);
-    		gran2.setAttribute(gran2.step, 0);         
+    		gran2.setAttribute(gran2.step, 0);     
+    		gran2.setAttribute(gran2.gsync, 0);      
         }
         
         if(value == 3)
             		{
             
             		pitch11.showControl(0); 
+            		pmod2.showControl(0);
+            		PmodSel2.showControl(0);
             		gran2.setAttribute(gran2.max, 2); 
-            		gran2.setAttribute(gran2.step, 1);                
+            		gran2.setAttribute(gran2.step, 1);  
+            		gran2.setAttribute(gran2.gsync, 1);               
                 }
        
        if(value == 4)
                		{
                
                		pitch11.showControl(0); 
+               		pmod2.showControl(0);
+               		PmodSel2.showControl(0);
                		 gran2.setAttribute(gran2.max, 3);  
                		 gran2.setAttribute(gran2.step, 1); 
+               		 gran2.setAttribute(gran2.gsync, 1); 
                  
                    }
 }
@@ -181,32 +205,44 @@ inline function onpsync3Control(number, value)
 		{
 
 		pitch13.showControl(0); 
+		pmod3.showControl(0);
+		PmodSel3.showControl(0);
 		 gran3.setAttribute(gran3.max, 0);
-		 gran3.setAttribute(gran3.step, 1);     
+		 gran3.setAttribute(gran3.step, 1);  
+		 gran3.setAttribute(gran3.gsync, 1);    
     }
     
     	if(value == 2)
     		{
     
     		pitch13.showControl(1); 
+    		pmod3.showControl(1);
+    			PmodSel3.showControl(1);
     		gran3.setAttribute(gran3.max, 1);      
-    		gran3.setAttribute(gran3.step, 0);     
+    		gran3.setAttribute(gran3.step, 0);  
+    		gran3.setAttribute(gran3.gsync, 0);    
         }
         
         if(value == 3)
             		{
             
             		pitch13.showControl(0); 
+            		pmod3.showControl(0);
+            			PmodSel3.showControl(0);
             		gran3.setAttribute(gran3.max, 2); 
-            		gran3.setAttribute(gran3.step, 1);                  
+            		gran3.setAttribute(gran3.step, 1);
+            		gran3.setAttribute(gran3.gsync, 1);                   
                 }
        
        if(value == 4)
                		{
                
                		pitch13.showControl(0); 
+               		pmod3.showControl(0);
+               			PmodSel3.showControl(0);
                		 gran3.setAttribute(gran3.max, 3); 
-               		 gran3.setAttribute(gran3.step, 1);    
+               		 gran3.setAttribute(gran3.step, 1); 
+               		 gran3.setAttribute(gran3.gsync, 1);    
                  
                    }
 }
@@ -231,32 +267,45 @@ inline function onpsync4Control(number, value)
 		{
 
 		pitch15.showControl(0); 
+		pmod4.showControl(0);
+		PmodSel4.showControl(0);
 		 gran4.setAttribute(gran4.max, 0);  
-		 gran4.setAttribute(gran4.step, 1);     
+		 gran4.setAttribute(gran4.step, 1);    
+		 gran4.setAttribute(gran4.gsync, 1);  
     }
     
     	if(value == 2)
     		{
     
     		pitch15.showControl(1); 
+    		pmod4.showControl(1);
+    		PmodSel4.showControl(1);
     		gran4.setAttribute(gran4.max, 1);   
-    		gran4.setAttribute(gran4.step, 0);      
+    		gran4.setAttribute(gran4.step, 0);
+    		
+    		gran4.setAttribute(gran4.gsync, 0);        
         }
         
         if(value == 3)
             		{
             
             		pitch15.showControl(0); 
+            		pmod4.showControl(0);
+            		PmodSel4.showControl(0);
             		gran4.setAttribute(gran4.max, 2); 
-            		gran4.setAttribute(gran4.step, 1);                
+            		gran4.setAttribute(gran4.step, 1); 
+            		gran4.setAttribute(gran4.gsync, 1);                 
                 }
        
        if(value == 4)
                		{
                
                		pitch15.showControl(0); 
+               		pmod4.showControl(0);
+               		PmodSel4.showControl(0);
                		 gran4.setAttribute(gran4.max, 3);  
                		 gran4.setAttribute(gran4.step, 1); 
+               		 gran4.setAttribute(gran4.gsync, 1);  
                  
                    }
 }

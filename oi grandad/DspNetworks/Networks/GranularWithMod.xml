@@ -42,7 +42,6 @@
                     <Nodes>
                       <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0">
                         <ModulationTargets>
-                          <Connection NodeId="input_toggle" ParameterId="Value1"/>
                           <Connection NodeId="input_toggle" ParameterId="Value2"/>
                         </ModulationTargets>
                         <ComplexData>
@@ -63,7 +62,7 @@
                     </ModulationTargets>
                     <Parameters>
                       <Parameter MinValue="1.0" MaxValue="0.0" StepSize="1.0" ID="Input" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Value="0.0"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
                     </Parameters>
                   </Node>
@@ -239,7 +238,7 @@
                 <SliderPack Index="-1"/>
               </SliderPacks>
               <AudioFiles>
-                <AudioFile Index="0" MinValue="0" MaxValue="0"/>
+                <AudioFile Index="0" MinValue="0" MaxValue="698234"/>
               </AudioFiles>
             </ComplexData>
           </Node>
