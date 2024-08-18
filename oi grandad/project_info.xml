@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="2.0.0"/>
+  <Version value="1.1.6"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -15,7 +15,7 @@
   <ExtraDefinitionsWindows value="HISE_NUM_PLUGIN_CHANNELS=10"/>
   <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=10"/>
   <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
-  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;"/>
+  <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1"/>
   <AppGroupID value=""/>
   <RedirectSampleFolder value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>
@@ -35,9 +35,9 @@
   <EnableGlobalPreprocessor value="No"/>
   <VST3Category value=""/>
   <OverwriteOldUserPresets value="No"/>
-  <UseGlobalAppDataFolderWindows value="1"/>
-  <UseGlobalAppDataFolderMacOS value="1"/>
-  <DefaultUserPreset value="v2/Factory/MessagePad.preset"/>
+  <UseGlobalAppDataFolderWindows value="0"/>
+  <UseGlobalAppDataFolderMacOS value="0"/>
+  <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
   <IncludeLorisInFrontend value="No"/>

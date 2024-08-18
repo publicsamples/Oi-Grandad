@@ -43,7 +43,7 @@
                   <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
                              SkewFactor="0.4306765496730804" ID="Release" Value="0.0"/>
                   <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
-                             SkewFactor="0.2968033850193024" ID="Ratio"/>
+                             SkewFactor="0.2968033850193024" ID="Ratio" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                 </Parameters>
               </Node>
@@ -62,7 +62,9 @@
     <Parameters>
       <Parameter ID="ratio" MinValue="1.000000014901161" MaxValue="32.0" StepSize="0.1000000014901161"
                  SkewFactor="0.2968033850193024" Value="1.200000017881393">
-        <Connections/>
+        <Connections>
+          <Connection NodeId="comp" ParameterId="Ratio"/>
+        </Connections>
       </Parameter>
       <Parameter ID="" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections/>
