@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="pan" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="pan" Bypassed="0" ShowParameters="1">
+  <Node FactoryPath="container.chain" ID="pan" Bypassed="0" ShowParameters="1"
+        Name="pan">
     <Nodes>
-      <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0">
+      <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="0"
+            Name="fix64_block">
         <Nodes>
-          <Node ID="modchain1" FactoryPath="container.modchain" Bypassed="0">
+          <Node ID="modchain1" FactoryPath="container.modchain" Bypassed="0"
+                Name="modchain1">
             <Nodes>
-              <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0">
+              <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod1">
                 <ComplexData>
                   <DisplayBuffers>
                     <DisplayBuffer Index="-1"/>
@@ -20,7 +23,8 @@
                   <Connection NodeId="pma_unscaled" ParameterId="Value"/>
                 </ModulationTargets>
               </Node>
-              <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0">
+              <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0"
+                    Name="pma_unscaled">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                   <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
@@ -30,7 +34,7 @@
                   <Connection NodeId="bipolar" ParameterId="Value"/>
                 </ModulationTargets>
               </Node>
-              <Node ID="bipolar" FactoryPath="control.bipolar" Bypassed="0">
+              <Node ID="bipolar" FactoryPath="control.bipolar" Bypassed="0" Name="bipolar">
                 <ModulationTargets>
                   <Connection NodeId="xfader" ParameterId="Value"/>
                 </ModulationTargets>
@@ -44,7 +48,7 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0">
+          <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0" Name="xfader">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
               <Property ID="Mode" Value="Overlap"/>
@@ -65,9 +69,9 @@
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="ChanelSplit" FactoryPath="container.multi" Bypassed="1">
+          <Node ID="ChanelSplit" FactoryPath="container.multi" Bypassed="1" Name="ChanelSplit">
             <Nodes>
-              <Node ID="LEFT" FactoryPath="core.gain" Bypassed="0">
+              <Node ID="LEFT" FactoryPath="core.gain" Bypassed="0" Name="LEFT">
                 <Parameters>
                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -77,7 +81,7 @@
                              SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
                 </Parameters>
               </Node>
-              <Node ID="RIGHT" FactoryPath="core.gain" Bypassed="0">
+              <Node ID="RIGHT" FactoryPath="core.gain" Bypassed="0" Name="RIGHT">
                 <Parameters>
                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>

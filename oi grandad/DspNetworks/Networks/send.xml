@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="send" Version="0.0.0" AllowPolyphonic="1">
-  <Node FactoryPath="container.chain" ID="send" Bypassed="0" ShowParameters="1">
+  <Node FactoryPath="container.chain" ID="send" Bypassed="0" ShowParameters="1"
+        Name="send">
     <Nodes>
-      <Node ID="split" FactoryPath="container.split" Bypassed="0">
+      <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
         <Nodes>
-          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
+          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
             <Nodes>
               <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                    NodeColour="4282863026">
+                    NodeColour="4282863026" Name="global_cable">
                 <Properties>
                   <Property ID="Connection" Value="a1"/>
                 </Properties>
@@ -16,7 +17,7 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="clear1" FactoryPath="math.clear" Bypassed="0">
+              <Node ID="clear1" FactoryPath="math.clear" Bypassed="0" Name="clear1">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                 </Parameters>
@@ -24,9 +25,9 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+          <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
             <Nodes>
-              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
+              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
                 <ModulationTargets>
                   <Connection NodeId="global_cable" ParameterId="Value"/>
                 </ModulationTargets>
@@ -47,7 +48,7 @@
                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                 </Parameters>
               </Node>
-              <Node ID="clear" FactoryPath="math.clear" Bypassed="0">
+              <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                 </Parameters>

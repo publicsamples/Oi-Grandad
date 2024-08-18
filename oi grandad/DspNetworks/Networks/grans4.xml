@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="grans4" Version="0.0.0" AllowPolyphonic="1" CompileChannelAmount="8">
-  <Node FactoryPath="container.chain" ID="grans4" Bypassed="0" ShowParameters="1">
+  <Node FactoryPath="container.chain" ID="grans4" Bypassed="0" ShowParameters="1"
+        Name="grans4">
     <Nodes>
       <Node ID="pos" FactoryPath="container.chain" Bypassed="0" ShowParameters="0"
-            Folded="1">
+            Folded="1" Name="pos">
         <Nodes>
-          <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0">
+          <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod1">
             <ModulationTargets>
               <Connection NodeId="pma1" ParameterId="Value"/>
             </ModulationTargets>
@@ -19,7 +20,7 @@
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="pma1" FactoryPath="control.pma" Bypassed="0">
+          <Node ID="pma1" FactoryPath="control.pma" Bypassed="0" Name="pma1">
             <ModulationTargets>
               <Connection NodeId="pma2" ParameterId="Add"/>
             </ModulationTargets>
@@ -32,9 +33,10 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="pos1" FactoryPath="container.chain" Bypassed="0" Folded="1">
+      <Node ID="pos1" FactoryPath="container.chain" Bypassed="0" Folded="1"
+            Name="pos1">
         <Nodes>
-          <Node ID="global_mod2" FactoryPath="core.global_mod" Bypassed="0">
+          <Node ID="global_mod2" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod2">
             <ModulationTargets>
               <Connection NodeId="pma2" ParameterId="Value"/>
             </ModulationTargets>
@@ -47,7 +49,7 @@
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="pma2" FactoryPath="control.pma" Bypassed="0">
+          <Node ID="pma2" FactoryPath="control.pma" Bypassed="0" Name="pma2">
             <ModulationTargets>
               <Connection NodeId="granulator" ParameterId="Position"/>
             </ModulationTargets>
@@ -60,9 +62,10 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="dense" FactoryPath="container.chain" Bypassed="0" Folded="1">
+      <Node ID="dense" FactoryPath="container.chain" Bypassed="0" Folded="1"
+            Name="dense">
         <Nodes>
-          <Node ID="global_mod6" FactoryPath="core.global_mod" Bypassed="0">
+          <Node ID="global_mod6" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod6">
             <ModulationTargets>
               <Connection NodeId="pma6" ParameterId="Value"/>
             </ModulationTargets>
@@ -75,7 +78,7 @@
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="pma6" FactoryPath="control.pma" Bypassed="0">
+          <Node ID="pma6" FactoryPath="control.pma" Bypassed="0" Name="pma6">
             <ModulationTargets>
               <Connection NodeId="chain2" ParameterId="dense"/>
             </ModulationTargets>
@@ -88,9 +91,11 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="spread" FactoryPath="container.chain" Bypassed="0" Folded="1">
+      <Node ID="spread" FactoryPath="container.chain" Bypassed="0" Folded="1"
+            Name="spread">
         <Nodes>
-          <Node ID="global_mod7" FactoryPath="core.global_mod" Bypassed="0" Folded="1">
+          <Node ID="global_mod7" FactoryPath="core.global_mod" Bypassed="0" Folded="1"
+                Name="global_mod7">
             <ModulationTargets>
               <Connection NodeId="pma7" ParameterId="Value"/>
             </ModulationTargets>
@@ -103,7 +108,7 @@
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="pma7" FactoryPath="control.pma" Bypassed="0" Folded="1">
+          <Node ID="pma7" FactoryPath="control.pma" Bypassed="0" Folded="1" Name="pma7">
             <ModulationTargets>
               <Connection NodeId="chain2" ParameterId="spread"/>
             </ModulationTargets>
@@ -116,9 +121,10 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="detune" FactoryPath="container.chain" Bypassed="0" Folded="1">
+      <Node ID="detune" FactoryPath="container.chain" Bypassed="0" Folded="1"
+            Name="detune">
         <Nodes>
-          <Node ID="global_mod8" FactoryPath="core.global_mod" Bypassed="0">
+          <Node ID="global_mod8" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod8">
             <ModulationTargets>
               <Connection NodeId="pma8" ParameterId="Value"/>
             </ModulationTargets>
@@ -131,7 +137,7 @@
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="pma8" FactoryPath="control.pma" Bypassed="0">
+          <Node ID="pma8" FactoryPath="control.pma" Bypassed="0" Name="pma8">
             <ModulationTargets>
               <Connection NodeId="chain2" ParameterId="detune"/>
             </ModulationTargets>
@@ -144,9 +150,10 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Folded="1">
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Folded="1"
+            Name="chain">
         <Nodes>
-          <Node ID="global_mod" FactoryPath="core.global_mod" Bypassed="0">
+          <Node ID="global_mod" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod">
             <ComplexData>
               <DisplayBuffers>
                 <DisplayBuffer Index="-1"/>
@@ -159,7 +166,7 @@
               <Connection NodeId="pma3" ParameterId="Value"/>
             </ModulationTargets>
           </Node>
-          <Node ID="pma3" FactoryPath="control.pma" Bypassed="0">
+          <Node ID="pma3" FactoryPath="control.pma" Bypassed="0" Name="pma3">
             <ModulationTargets>
               <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
             </ModulationTargets>
@@ -172,11 +179,11 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0">
+      <Node ID="grain-sync" FactoryPath="container.chain" Bypassed="0" Name="grain-sync">
         <Nodes>
-          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0">
+          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain1">
             <Nodes>
-              <Node ID="global_mod3" FactoryPath="core.global_mod" Bypassed="0">
+              <Node ID="global_mod3" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod3">
                 <ModulationTargets>
                   <Connection NodeId="pma4" ParameterId="Value"/>
                 </ModulationTargets>
@@ -189,20 +196,20 @@
                   <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="pma4" FactoryPath="control.pma" Bypassed="0">
+              <Node ID="pma4" FactoryPath="control.pma" Bypassed="0" Name="pma4">
                 <ModulationTargets>
                   <Connection NodeId="tempo_sync2" ParameterId="UnsyncedTime"/>
                 </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="0.003468750000000131"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
                 </Parameters>
               </Node>
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0">
+          <Node ID="global_mod5" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod5">
             <ModulationTargets>
               <Connection NodeId="gunsync" ParameterId="Value"/>
             </ModulationTargets>
@@ -215,7 +222,7 @@
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="gunsync" FactoryPath="control.pma" Bypassed="0">
+          <Node ID="gunsync" FactoryPath="control.pma" Bypassed="0" Name="gunsync">
             <Parameters>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
               <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
@@ -225,7 +232,8 @@
               <Connection NodeId="tempo_sync2" ParameterId="Tempo"/>
             </ModulationTargets>
           </Node>
-          <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0">
+          <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0"
+                Name="tempo_sync2">
             <ModulationTargets>
               <Connection NodeId="granulator" ParameterId="GrainSize"/>
             </ModulationTargets>
@@ -241,11 +249,14 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            Name="midichain">
         <Nodes>
-          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" ShowParameters="0">
+          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" ShowParameters="0"
+                Name="chain2">
             <Nodes>
-              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
+              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+                    Name="tempo_sync">
                 <ModulationTargets>
                   <Connection NodeId="converter1" ParameterId="Value"/>
                 </ModulationTargets>
@@ -258,7 +269,8 @@
                              ID="UnsyncedTime"/>
                 </Parameters>
               </Node>
-              <Node ID="converter1" FactoryPath="control.converter" Bypassed="0">
+              <Node ID="converter1" FactoryPath="control.converter" Bypassed="0"
+                    Name="converter1">
                 <Properties>
                   <Property ID="Mode" Value="Ms2Freq"/>
                 </Properties>
@@ -269,43 +281,19 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="converter" FactoryPath="control.converter" Bypassed="0">
+              <Node ID="converter" FactoryPath="control.converter" Bypassed="0" Name="converter">
                 <Properties>
                   <Property ID="Mode" Value="St2Pitch"/>
                 </Properties>
                 <ModulationTargets>
-                  <Connection NodeId="pma_unscaled" ParameterId="Value"/>
+                  <Connection NodeId="input_toggle" ParameterId="Value1"/>
                 </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="split" FactoryPath="container.split" Bypassed="0">
-                <Nodes>
-                  <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0">
-                    <ModulationTargets>
-                      <Connection NodeId="input_toggle" ParameterId="Value1"/>
-                    </ModulationTargets>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
-                      <Parameter MinValue="0.5" MaxValue="2.0" ID="Add" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                  <Node ID="pma_unscaled1" FactoryPath="control.pma_unscaled" Bypassed="0">
-                    <ModulationTargets>
-                      <Connection NodeId="pma_unscaled" ParameterId="Add"/>
-                    </ModulationTargets>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
-                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
-                      <Parameter MinValue="0.5" MaxValue="2.0" ID="Add" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                </Nodes>
-                <Parameters/>
-              </Node>
-              <Node ID="input_toggle" FactoryPath="control.input_toggle" Bypassed="0">
+              <Node ID="input_toggle" FactoryPath="control.input_toggle" Bypassed="0"
+                    Name="input_toggle">
                 <Parameters>
                   <Parameter MinValue="1.0" MaxValue="0.0" StepSize="1.0" ID="Input" Automated="1"/>
                   <Parameter MinValue="0.5" MaxValue="2.0" ID="Value1" Automated="1"/>
@@ -315,16 +303,16 @@
                   <Connection NodeId="granulator" ParameterId="Pitch"/>
                 </ModulationTargets>
               </Node>
-              <Node ID="clear" FactoryPath="math.clear" Bypassed="0">
+              <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                 </Parameters>
               </Node>
-              <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+              <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
                 <ComplexData>
                   <AudioFiles>
                     <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}simple.wav" MinValue="0"
-                               MaxValue="0"/>
+                               MaxValue="57346"/>
                   </AudioFiles>
                 </ComplexData>
                 <Parameters>
@@ -366,7 +354,7 @@
               </Parameter>
             </Parameters>
           </Node>
-          <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0">
+          <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
             </Properties>
@@ -423,7 +411,7 @@
       <Parameter ID="pitch" MinValue="0.5" MaxValue="2.0" Value="1.2328203125">
         <Connections>
           <Connection NodeId="pma3" ParameterId="Add"/>
-          <Connection NodeId="pma_unscaled1" ParameterId="Add"/>
+          <Connection NodeId="input_toggle" ParameterId="Value1"/>
         </Connections>
       </Parameter>
       <Parameter ID="grain" MinValue="5.0" MaxValue="18.0" Value="6.13221875">
@@ -434,6 +422,7 @@
       <Parameter ID="grainmod" MinValue="0.0" MaxValue="1.0" Value="0.887375">
         <Connections>
           <Connection NodeId="gunsync" ParameterId="Multiply"/>
+          <Connection NodeId="pma4" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
       <Parameter ID="graindest" MinValue="0.0" MaxValue="16.0" Value="3.4" StepSize="0.1">

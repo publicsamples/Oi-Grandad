@@ -227,6 +227,23 @@ inline function ongsync2Control(number, value)
 
 gsync2.setControlCallback(ongsync2Control);
 
+const var gsync3 = Content.getComponent("gsync3");
+const var grainsize3 = Content.getComponent("grainsize3");
+const var grainsizesync3 = Content.getComponent("grainsizesync3");
+const var grs3 = Synth.getEffect("gran3");
+
+
+
+inline function ongsync3Control(number, value)
+{
+		grainsizesync3.showControl(value); 
+        grainsize3.showControl(1-value);
+       grs3.setAttribute(grs3.gsync, 0);
+       grs3.setAttribute(grs3.gsync, 1-value);
+}
+
+
+gsync3.setControlCallback(ongsync3Control);
 
 
 const var gsync4 = Content.getComponent("gsync4");

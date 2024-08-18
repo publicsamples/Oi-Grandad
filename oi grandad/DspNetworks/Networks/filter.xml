@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="filter" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="filter" Bypassed="0" ShowParameters="1">
+  <Node FactoryPath="container.chain" ID="filter" Bypassed="0" ShowParameters="1"
+        Name="filter">
     <Nodes>
-      <Node ID="filter" FactoryPath="container.chain" Bypassed="0">
+      <Node ID="filter" FactoryPath="container.chain" Bypassed="0" Name="filter">
         <Nodes>
-          <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0">
+          <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0" Name="xfader">
             <Properties>
               <Property ID="NumParameters" Value="2"/>
               <Property ID="Mode" Value="Overlap"/>
@@ -26,11 +27,11 @@
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="split" FactoryPath="container.split" Bypassed="0">
+          <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
             <Nodes>
-              <Node ID="chain4" FactoryPath="container.chain" Bypassed="0">
+              <Node ID="chain4" FactoryPath="container.chain" Bypassed="0" Name="chain4">
                 <Nodes>
-                  <Node ID="global_mod4" FactoryPath="core.global_mod" Bypassed="0">
+                  <Node ID="global_mod4" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod4">
                     <ModulationTargets>
                       <Connection NodeId="pma4" ParameterId="Value"/>
                     </ModulationTargets>
@@ -43,7 +44,7 @@
                       <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
                     </Parameters>
                   </Node>
-                  <Node ID="pma4" FactoryPath="control.pma" Bypassed="0">
+                  <Node ID="pma4" FactoryPath="control.pma" Bypassed="0" Name="pma4">
                     <ModulationTargets>
                       <Connection NodeId="svf" ParameterId="Frequency"/>
                     </ModulationTargets>
@@ -53,7 +54,7 @@
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
                     </Parameters>
                   </Node>
-                  <Node ID="svf" FactoryPath="filters.svf" Bypassed="0">
+                  <Node ID="svf" FactoryPath="filters.svf" Bypassed="0" Name="svf">
                     <ComplexData>
                       <Filters>
                         <Filter Index="-1" EmbeddedData=""/>
@@ -71,7 +72,7 @@
                       <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
                     </Parameters>
                   </Node>
-                  <Node ID="gain1" FactoryPath="core.gain" Bypassed="0">
+                  <Node ID="gain1" FactoryPath="core.gain" Bypassed="0" Name="gain1">
                     <Parameters>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -84,9 +85,9 @@
                 </Nodes>
                 <Parameters/>
               </Node>
-              <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+              <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
                 <Nodes>
-                  <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+                  <Node ID="gain" FactoryPath="core.gain" Bypassed="0" Name="gain">
                     <Parameters>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>

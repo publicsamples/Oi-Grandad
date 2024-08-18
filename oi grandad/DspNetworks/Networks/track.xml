@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="track" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="track" Bypassed="0" ShowParameters="1">
+  <Node FactoryPath="container.chain" ID="track" Bypassed="0" ShowParameters="1"
+        Name="track">
     <Nodes>
-      <Node ID="a1" FactoryPath="container.chain" Bypassed="0">
+      <Node ID="a1" FactoryPath="container.chain" Bypassed="0" Name="a1">
         <Nodes>
-          <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="0">
+          <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="0"
+                Name="frame2_block">
             <Nodes>
               <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                    NodeColour="4282863026">
+                    NodeColour="4282863026" Name="global_cable">
                 <Properties>
                   <Property ID="Connection" Value="a1"/>
                 </Properties>
@@ -19,7 +21,7 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
                 </Parameters>
               </Node>
-              <Node ID="add" FactoryPath="math.add" Bypassed="0">
+              <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>

@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="oi grandad"/>
-  <Version value="1.1.6"/>
+  <Version value="1.1.8"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -35,10 +35,11 @@
   <EnableGlobalPreprocessor value="No"/>
   <VST3Category value=""/>
   <OverwriteOldUserPresets value="No"/>
-  <UseGlobalAppDataFolderWindows value="0"/>
-  <UseGlobalAppDataFolderMacOS value="0"/>
+  <UseGlobalAppDataFolderWindows value="1"/>
+  <UseGlobalAppDataFolderMacOS value="1"/>
   <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
   <IncludeLorisInFrontend value="No"/>
+  <ExtraDefinitionsNetworkDll value=""/>
 </ProjectSettings>
