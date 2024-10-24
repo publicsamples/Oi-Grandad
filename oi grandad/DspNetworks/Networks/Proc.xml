@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="Proc" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="Proc" Bypassed="0" ShowParameters="1">
+  <Node FactoryPath="container.chain" ID="Proc" Bypassed="0" ShowParameters="1"
+        Name="Proc">
     <Nodes>
-      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0"
+            Name="fix8_block">
         <Nodes>
           <Node ID="softbypass_switch6" FactoryPath="container.chain" ShowParameters="1"
-                Bypassed="0" Folded="1">
+                Bypassed="0" Name="softbypass_switch6">
             <Nodes>
-              <Node ID="switcher" FactoryPath="control.xfader" Bypassed="0" NodeColour="4287273319">
+              <Node ID="switcher" FactoryPath="control.xfader" Bypassed="0" NodeColour="4287273319"
+                    Name="switcher">
                 <Properties>
                   <Property ID="NumParameters" Value="6"/>
                   <Property ID="Mode" Value="Switch"/>
@@ -50,20 +53,20 @@
                 </Parameters>
               </Node>
               <Node ID="sb_container" FactoryPath="container.chain" NodeColour="4287273319"
-                    Bypassed="0">
+                    Bypassed="0" Name="sb_container">
                 <Properties>
                   <Property ID="IsVertical" Value="0"/>
                 </Properties>
                 <Nodes>
                   <Node ID="sb1" FactoryPath="container.soft_bypass" NodeColour="4287273319"
-                        Bypassed="0">
+                        Bypassed="0" Name="sb1">
                     <Nodes>
-                      <Node ID="split" FactoryPath="container.split" Bypassed="0">
+                      <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
                         <Nodes>
-                          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0">
+                          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
                             <Nodes>
                               <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                                    NodeColour="4282863026">
+                                    NodeColour="4282863026" Name="global_cable">
                                 <Properties>
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
@@ -71,7 +74,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear1" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear1" FactoryPath="math.clear" Bypassed="0" Name="clear1">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -79,9 +82,9 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain2">
                             <Nodes>
-                              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0">
+                              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
                                 <ModulationTargets>
                                   <Connection NodeId="global_cable" ParameterId="Value"/>
                                 </ModulationTargets>
@@ -102,7 +105,7 @@
                                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -110,14 +113,14 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain17" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain17" FactoryPath="container.chain" Bypassed="0" Name="chain17">
                             <Nodes/>
                             <Parameters/>
                           </Node>
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="filter" FactoryPath="project.filter" Bypassed="0">
+                      <Node ID="filter" FactoryPath="project.filter" Bypassed="0" Name="filter">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="cut" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="res" Automated="1"/>
@@ -129,7 +132,8 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Mix" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="script_fx3" FactoryPath="project.script_fx2" Bypassed="0">
+                      <Node ID="script_fx3" FactoryPath="project.script_fx2" Bypassed="0"
+                            Name="script_fx3">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="feed" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="mix" Automated="1"/>
@@ -143,9 +147,9 @@
                                      ID="cutdest" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+                      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
                         <Nodes>
-                          <Node ID="vol6" FactoryPath="project.vol" Bypassed="0">
+                          <Node ID="vol6" FactoryPath="project.vol" Bypassed="0" Name="vol6">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="vol" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="volmod" Automated="1"/>
@@ -153,9 +157,10 @@
                                          ID="voldest" Automated="1"/>
                             </Parameters>
                           </Node>
-                          <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+                          <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+                                Name="midichain">
                             <Nodes>
-                              <Node ID="ahdsr6" FactoryPath="envelope.ahdsr" Bypassed="0">
+                              <Node ID="ahdsr6" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr6">
                                 <Properties>
                                   <Property ID="NumParameters" Value="2"/>
                                 </Properties>
@@ -188,7 +193,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+                              <Node ID="gain" FactoryPath="core.gain" Bypassed="0" Name="gain">
                                 <Parameters>
                                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                              SkewFactor="5.422270774841309" ID="Gain"/>
@@ -204,7 +209,7 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="pan6" FactoryPath="project.pan" Bypassed="0">
+                      <Node ID="pan6" FactoryPath="project.pan" Bypassed="0" Name="pan6">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Pan" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="panmod" Automated="1"/>
@@ -219,14 +224,15 @@
                     <Parameters/>
                   </Node>
                   <Node ID="sb4" FactoryPath="container.soft_bypass" NodeColour="4287273319"
-                        Bypassed="0">
+                        Bypassed="0" Name="sb4">
                     <Nodes>
-                      <Node ID="split2" FactoryPath="container.split" Bypassed="0">
+                      <Node ID="split2" FactoryPath="container.split" Bypassed="0" Name="split2">
                         <Nodes>
-                          <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0">
+                          <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0"
+                                Name="modchain2">
                             <Nodes>
                               <Node ID="global_cable2" FactoryPath="routing.global_cable" Bypassed="0"
-                                    NodeColour="4282863026">
+                                    NodeColour="4282863026" Name="global_cable2">
                                 <Properties>
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
@@ -234,7 +240,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear4" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear4" FactoryPath="math.clear" Bypassed="0" Name="clear4">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -242,9 +248,9 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain5" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain5" FactoryPath="container.chain" Bypassed="0" Name="chain5">
                             <Nodes>
-                              <Node ID="comp2" FactoryPath="dynamics.comp" Bypassed="0">
+                              <Node ID="comp2" FactoryPath="dynamics.comp" Bypassed="0" Name="comp2">
                                 <ModulationTargets>
                                   <Connection NodeId="global_cable2" ParameterId="Value"/>
                                 </ModulationTargets>
@@ -265,7 +271,7 @@
                                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear5" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear5" FactoryPath="math.clear" Bypassed="0" Name="clear5">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -273,14 +279,15 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain16" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain16" FactoryPath="container.chain" Bypassed="0" Name="chain16">
                             <Nodes/>
                             <Parameters/>
                           </Node>
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="script_fx6" FactoryPath="project.script_fx2" Bypassed="0">
+                      <Node ID="script_fx6" FactoryPath="project.script_fx2" Bypassed="0"
+                            Name="script_fx6">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="feed" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="mix" Automated="1"/>
@@ -294,7 +301,7 @@
                                      ID="cutdest" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="filter3" FactoryPath="project.filter" Bypassed="0">
+                      <Node ID="filter3" FactoryPath="project.filter" Bypassed="0" Name="filter3">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="cut" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="res" Automated="1"/>
@@ -306,9 +313,9 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Mix" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="chain6" FactoryPath="container.chain" Bypassed="0">
+                      <Node ID="chain6" FactoryPath="container.chain" Bypassed="0" Name="chain6">
                         <Nodes>
-                          <Node ID="vol9" FactoryPath="project.vol" Bypassed="0">
+                          <Node ID="vol9" FactoryPath="project.vol" Bypassed="0" Name="vol9">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="vol" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="volmod" Automated="1"/>
@@ -316,9 +323,10 @@
                                          ID="voldest" Automated="1"/>
                             </Parameters>
                           </Node>
-                          <Node ID="midichain1" FactoryPath="container.midichain" Bypassed="0">
+                          <Node ID="midichain1" FactoryPath="container.midichain" Bypassed="0"
+                                Name="midichain1">
                             <Nodes>
-                              <Node ID="ahdsr7" FactoryPath="envelope.ahdsr" Bypassed="0">
+                              <Node ID="ahdsr7" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr7">
                                 <Properties>
                                   <Property ID="NumParameters" Value="2"/>
                                 </Properties>
@@ -353,7 +361,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="gain1" FactoryPath="core.gain" Bypassed="0">
+                              <Node ID="gain1" FactoryPath="core.gain" Bypassed="0" Name="gain1">
                                 <Parameters>
                                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -369,7 +377,7 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="pan9" FactoryPath="project.pan" Bypassed="0">
+                      <Node ID="pan9" FactoryPath="project.pan" Bypassed="0" Name="pan9">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Pan" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="panmod" Automated="1"/>
@@ -384,9 +392,9 @@
                     <Parameters/>
                   </Node>
                   <Node ID="sb3" FactoryPath="container.soft_bypass" NodeColour="4287273319"
-                        Bypassed="0">
+                        Bypassed="0" Name="sb3">
                     <Nodes>
-                      <Node ID="filter2" FactoryPath="project.filter" Bypassed="0">
+                      <Node ID="filter2" FactoryPath="project.filter" Bypassed="0" Name="filter2">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="cut" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="res" Automated="1"/>
@@ -398,7 +406,8 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Mix" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="script_fx5" FactoryPath="project.script_fx2" Bypassed="0">
+                      <Node ID="script_fx5" FactoryPath="project.script_fx2" Bypassed="0"
+                            Name="script_fx5">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="feed" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="mix" Automated="1"/>
@@ -412,12 +421,13 @@
                                      ID="cutdest" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="split1" FactoryPath="container.split" Bypassed="0">
+                      <Node ID="split1" FactoryPath="container.split" Bypassed="0" Name="split1">
                         <Nodes>
-                          <Node ID="modchain1" FactoryPath="container.modchain" Bypassed="0">
+                          <Node ID="modchain1" FactoryPath="container.modchain" Bypassed="0"
+                                Name="modchain1">
                             <Nodes>
                               <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
-                                    NodeColour="4282863026">
+                                    NodeColour="4282863026" Name="global_cable1">
                                 <Properties>
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
@@ -425,7 +435,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear2" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear2" FactoryPath="math.clear" Bypassed="0" Name="clear2">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -433,9 +443,9 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain3" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain3" FactoryPath="container.chain" Bypassed="0" Name="chain3">
                             <Nodes>
-                              <Node ID="comp1" FactoryPath="dynamics.comp" Bypassed="0">
+                              <Node ID="comp1" FactoryPath="dynamics.comp" Bypassed="0" Name="comp1">
                                 <ModulationTargets>
                                   <Connection NodeId="global_cable1" ParameterId="Value"/>
                                 </ModulationTargets>
@@ -456,7 +466,7 @@
                                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear3" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear3" FactoryPath="math.clear" Bypassed="0" Name="clear3">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -464,16 +474,16 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain15" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain15" FactoryPath="container.chain" Bypassed="0" Name="chain15">
                             <Nodes/>
                             <Parameters/>
                           </Node>
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="chain4" FactoryPath="container.chain" Bypassed="0">
+                      <Node ID="chain4" FactoryPath="container.chain" Bypassed="0" Name="chain4">
                         <Nodes>
-                          <Node ID="vol8" FactoryPath="project.vol" Bypassed="0">
+                          <Node ID="vol8" FactoryPath="project.vol" Bypassed="0" Name="vol8">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="vol" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="volmod" Automated="1"/>
@@ -481,9 +491,10 @@
                                          ID="voldest" Automated="1"/>
                             </Parameters>
                           </Node>
-                          <Node ID="midichain3" FactoryPath="container.midichain" Bypassed="0">
+                          <Node ID="midichain3" FactoryPath="container.midichain" Bypassed="0"
+                                Name="midichain3">
                             <Nodes>
-                              <Node ID="ahdsr14" FactoryPath="envelope.ahdsr" Bypassed="0">
+                              <Node ID="ahdsr14" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr14">
                                 <Properties>
                                   <Property ID="NumParameters" Value="2"/>
                                 </Properties>
@@ -518,7 +529,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="gain3" FactoryPath="core.gain" Bypassed="0">
+                              <Node ID="gain3" FactoryPath="core.gain" Bypassed="0" Name="gain3">
                                 <Parameters>
                                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -534,7 +545,7 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="pan8" FactoryPath="project.pan" Bypassed="0">
+                      <Node ID="pan8" FactoryPath="project.pan" Bypassed="0" Name="pan8">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Pan" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="panmod" Automated="1"/>
@@ -549,14 +560,15 @@
                     <Parameters/>
                   </Node>
                   <Node ID="sb5" FactoryPath="container.soft_bypass" NodeColour="4287273319"
-                        Bypassed="0">
+                        Bypassed="0" Name="sb5">
                     <Nodes>
-                      <Node ID="split3" FactoryPath="container.split" Bypassed="0">
+                      <Node ID="split3" FactoryPath="container.split" Bypassed="0" Name="split3">
                         <Nodes>
-                          <Node ID="modchain3" FactoryPath="container.modchain" Bypassed="0">
+                          <Node ID="modchain3" FactoryPath="container.modchain" Bypassed="0"
+                                Name="modchain3">
                             <Nodes>
                               <Node ID="global_cable3" FactoryPath="routing.global_cable" Bypassed="0"
-                                    NodeColour="4282863026">
+                                    NodeColour="4282863026" Name="global_cable3">
                                 <Properties>
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
@@ -564,7 +576,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear6" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear6" FactoryPath="math.clear" Bypassed="0" Name="clear6">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -572,9 +584,9 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain7" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain7" FactoryPath="container.chain" Bypassed="0" Name="chain7">
                             <Nodes>
-                              <Node ID="comp3" FactoryPath="dynamics.comp" Bypassed="0">
+                              <Node ID="comp3" FactoryPath="dynamics.comp" Bypassed="0" Name="comp3">
                                 <ModulationTargets>
                                   <Connection NodeId="global_cable3" ParameterId="Value"/>
                                 </ModulationTargets>
@@ -595,7 +607,7 @@
                                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear7" FactoryPath="math.clear" Bypassed="1">
+                              <Node ID="clear7" FactoryPath="math.clear" Bypassed="1" Name="clear7">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -603,14 +615,14 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain14" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain14" FactoryPath="container.chain" Bypassed="0" Name="chain14">
                             <Nodes/>
                             <Parameters/>
                           </Node>
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="filter4" FactoryPath="project.filter" Bypassed="0">
+                      <Node ID="filter4" FactoryPath="project.filter" Bypassed="0" Name="filter4">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="cut" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="res" Automated="1"/>
@@ -622,9 +634,9 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Mix" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="chain8" FactoryPath="container.chain" Bypassed="0">
+                      <Node ID="chain8" FactoryPath="container.chain" Bypassed="0" Name="chain8">
                         <Nodes>
-                          <Node ID="vol10" FactoryPath="project.vol" Bypassed="0">
+                          <Node ID="vol10" FactoryPath="project.vol" Bypassed="0" Name="vol10">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="vol" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="volmod" Automated="1"/>
@@ -632,9 +644,10 @@
                                          ID="voldest" Automated="1"/>
                             </Parameters>
                           </Node>
-                          <Node ID="midichain2" FactoryPath="container.midichain" Bypassed="0">
+                          <Node ID="midichain2" FactoryPath="container.midichain" Bypassed="0"
+                                Name="midichain2">
                             <Nodes>
-                              <Node ID="ahdsr13" FactoryPath="envelope.ahdsr" Bypassed="0">
+                              <Node ID="ahdsr13" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr13">
                                 <Properties>
                                   <Property ID="NumParameters" Value="2"/>
                                 </Properties>
@@ -669,7 +682,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="gain2" FactoryPath="core.gain" Bypassed="0">
+                              <Node ID="gain2" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                 <Parameters>
                                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -685,7 +698,7 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="pan10" FactoryPath="project.pan" Bypassed="0">
+                      <Node ID="pan10" FactoryPath="project.pan" Bypassed="0" Name="pan10">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Pan" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="panmod" Automated="1"/>
@@ -693,7 +706,7 @@
                                      ID="pandest" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="delay" FactoryPath="project.delay" Bypassed="0">
+                      <Node ID="delay" FactoryPath="project.delay" Bypassed="0" Name="delay">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="delytime" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="dmix" Automated="1"/>
@@ -715,14 +728,15 @@
                     <Parameters/>
                   </Node>
                   <Node ID="sb6" FactoryPath="container.soft_bypass" NodeColour="4287273319"
-                        Bypassed="0">
+                        Bypassed="0" Name="sb6">
                     <Nodes>
-                      <Node ID="split4" FactoryPath="container.split" Bypassed="0">
+                      <Node ID="split4" FactoryPath="container.split" Bypassed="0" Name="split4">
                         <Nodes>
-                          <Node ID="modchain4" FactoryPath="container.modchain" Bypassed="0">
+                          <Node ID="modchain4" FactoryPath="container.modchain" Bypassed="0"
+                                Name="modchain4">
                             <Nodes>
                               <Node ID="global_cable4" FactoryPath="routing.global_cable" Bypassed="0"
-                                    NodeColour="4282863026">
+                                    NodeColour="4282863026" Name="global_cable4">
                                 <Properties>
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
@@ -730,7 +744,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear8" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear8" FactoryPath="math.clear" Bypassed="0" Name="clear8">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -738,9 +752,9 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain9" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain9" FactoryPath="container.chain" Bypassed="0" Name="chain9">
                             <Nodes>
-                              <Node ID="comp4" FactoryPath="dynamics.comp" Bypassed="0">
+                              <Node ID="comp4" FactoryPath="dynamics.comp" Bypassed="0" Name="comp4">
                                 <ModulationTargets>
                                   <Connection NodeId="global_cable4" ParameterId="Value"/>
                                 </ModulationTargets>
@@ -761,7 +775,7 @@
                                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear9" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear9" FactoryPath="math.clear" Bypassed="0" Name="clear9">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -769,14 +783,14 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain13" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain13" FactoryPath="container.chain" Bypassed="0" Name="chain13">
                             <Nodes/>
                             <Parameters/>
                           </Node>
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="delay1" FactoryPath="project.delay" Bypassed="0">
+                      <Node ID="delay1" FactoryPath="project.delay" Bypassed="0" Name="delay1">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="delytime" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="dmix" Automated="1"/>
@@ -791,7 +805,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="dcutmodsrc" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="filter5" FactoryPath="project.filter" Bypassed="0">
+                      <Node ID="filter5" FactoryPath="project.filter" Bypassed="0" Name="filter5">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="cut" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="res" Automated="1"/>
@@ -803,9 +817,9 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Mix" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="chain10" FactoryPath="container.chain" Bypassed="0">
+                      <Node ID="chain10" FactoryPath="container.chain" Bypassed="0" Name="chain10">
                         <Nodes>
-                          <Node ID="vol11" FactoryPath="project.vol" Bypassed="0">
+                          <Node ID="vol11" FactoryPath="project.vol" Bypassed="0" Name="vol11">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="vol" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="volmod" Automated="1"/>
@@ -813,9 +827,10 @@
                                          ID="voldest" Automated="1"/>
                             </Parameters>
                           </Node>
-                          <Node ID="midichain5" FactoryPath="container.midichain" Bypassed="0">
+                          <Node ID="midichain5" FactoryPath="container.midichain" Bypassed="0"
+                                Name="midichain5">
                             <Nodes>
-                              <Node ID="ahdsr16" FactoryPath="envelope.ahdsr" Bypassed="0">
+                              <Node ID="ahdsr16" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr16">
                                 <Properties>
                                   <Property ID="NumParameters" Value="2"/>
                                 </Properties>
@@ -850,7 +865,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="gain5" FactoryPath="core.gain" Bypassed="0">
+                              <Node ID="gain5" FactoryPath="core.gain" Bypassed="0" Name="gain5">
                                 <Parameters>
                                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -866,7 +881,7 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="pan11" FactoryPath="project.pan" Bypassed="0">
+                      <Node ID="pan11" FactoryPath="project.pan" Bypassed="0" Name="pan11">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Pan" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="panmod" Automated="1"/>
@@ -881,9 +896,9 @@
                     <Parameters/>
                   </Node>
                   <Node ID="sb7" FactoryPath="container.soft_bypass" NodeColour="4287273319"
-                        Bypassed="0">
+                        Bypassed="0" Name="sb7">
                     <Nodes>
-                      <Node ID="filter6" FactoryPath="project.filter" Bypassed="0">
+                      <Node ID="filter6" FactoryPath="project.filter" Bypassed="0" Name="filter6">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="cut" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="res" Automated="1"/>
@@ -895,7 +910,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Mix" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="delay2" FactoryPath="project.delay" Bypassed="0">
+                      <Node ID="delay2" FactoryPath="project.delay" Bypassed="0" Name="delay2">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="delytime" Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="dmix" Automated="1"/>
@@ -910,12 +925,13 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="dcutmodsrc" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="split5" FactoryPath="container.split" Bypassed="0">
+                      <Node ID="split5" FactoryPath="container.split" Bypassed="0" Name="split5">
                         <Nodes>
-                          <Node ID="modchain5" FactoryPath="container.modchain" Bypassed="0">
+                          <Node ID="modchain5" FactoryPath="container.modchain" Bypassed="0"
+                                Name="modchain5">
                             <Nodes>
                               <Node ID="global_cable5" FactoryPath="routing.global_cable" Bypassed="0"
-                                    NodeColour="4282863026">
+                                    NodeColour="4282863026" Name="global_cable5">
                                 <Properties>
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
@@ -923,7 +939,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear10" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear10" FactoryPath="math.clear" Bypassed="0" Name="clear10">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -931,9 +947,9 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain11" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain11" FactoryPath="container.chain" Bypassed="0" Name="chain11">
                             <Nodes>
-                              <Node ID="comp5" FactoryPath="dynamics.comp" Bypassed="0">
+                              <Node ID="comp5" FactoryPath="dynamics.comp" Bypassed="0" Name="comp5">
                                 <ModulationTargets>
                                   <Connection NodeId="global_cable5" ParameterId="Value"/>
                                 </ModulationTargets>
@@ -954,7 +970,7 @@
                                   <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="clear11" FactoryPath="math.clear" Bypassed="0">
+                              <Node ID="clear11" FactoryPath="math.clear" Bypassed="0" Name="clear11">
                                 <Parameters>
                                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
                                 </Parameters>
@@ -962,16 +978,16 @@
                             </Nodes>
                             <Parameters/>
                           </Node>
-                          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0">
+                          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain1">
                             <Nodes/>
                             <Parameters/>
                           </Node>
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="chain12" FactoryPath="container.chain" Bypassed="0">
+                      <Node ID="chain12" FactoryPath="container.chain" Bypassed="0" Name="chain12">
                         <Nodes>
-                          <Node ID="vol12" FactoryPath="project.vol" Bypassed="0">
+                          <Node ID="vol12" FactoryPath="project.vol" Bypassed="0" Name="vol12">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="vol" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="volmod" Automated="1"/>
@@ -979,9 +995,10 @@
                                          ID="voldest" Automated="1"/>
                             </Parameters>
                           </Node>
-                          <Node ID="midichain4" FactoryPath="container.midichain" Bypassed="0">
+                          <Node ID="midichain4" FactoryPath="container.midichain" Bypassed="0"
+                                Name="midichain4">
                             <Nodes>
-                              <Node ID="ahdsr15" FactoryPath="envelope.ahdsr" Bypassed="0">
+                              <Node ID="ahdsr15" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr15">
                                 <Properties>
                                   <Property ID="NumParameters" Value="2"/>
                                 </Properties>
@@ -1016,7 +1033,7 @@
                                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="0.0"/>
                                 </Parameters>
                               </Node>
-                              <Node ID="gain4" FactoryPath="core.gain" Bypassed="0">
+                              <Node ID="gain4" FactoryPath="core.gain" Bypassed="0" Name="gain4">
                                 <Parameters>
                                   <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                              SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
@@ -1032,7 +1049,7 @@
                         </Nodes>
                         <Parameters/>
                       </Node>
-                      <Node ID="pan12" FactoryPath="project.pan" Bypassed="0">
+                      <Node ID="pan12" FactoryPath="project.pan" Bypassed="0" Name="pan12">
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Pan" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="panmod" Automated="1"/>
