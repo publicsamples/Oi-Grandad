@@ -1,0 +1,46 @@
+dependencies: \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/Binaries/JuceLibraryCode/include_hi_rlottie_26.cpp \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/Binaries/JuceLibraryCode/AppConfig.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/hi_rlottie_26.cpp \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/surpress_warnings_begin.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/lottieparser.cpp \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/lottiemodel.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/varenaalloc.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vbezier.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vpoint.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vglobal.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vdebug.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/../config.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vbrush.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vmatrix.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vrect.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vbitmap.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vsharedptr.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vinterpolator.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vpath.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/../vector/vcowptr.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/document.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/reader.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/allocators.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/rapidjson.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/stream.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/encodings.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/encodedstream.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/memorystream.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/clzll.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/../rapidjson.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/meta.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/stack.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/../allocators.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/swap.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/strtod.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/ieee754.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/biginteger.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/diyfp.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/pow10.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/error/error.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/error/../rapidjson.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/strfunc.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/rapidjson/internal/../stream.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/lottie/zip/zip.h \
+  /Users/rick/Downloads/HISE-develop-2/hi_rlottie/src/surpress_warnings_end.h
