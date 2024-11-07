@@ -20,9 +20,9 @@ scriptnode::dll::FactoryBase* scriptnode::DspNetwork::createStaticFactory() { re
 #if USE_COPY_PROTECTION
 RSAKey hise::Unlocker::getPublicKey() { return RSAKey(""); };
 #endif
-AudioProcessor* JUCE_CALLTYPE createPluginFilter() { CREATE_PLUGIN(nullptr, nullptr); }
+AudioProcessor* hise::StandaloneProcessor::createProcessor() { CREATE_PLUGIN(deviceManager, callback); }
 
-AudioProcessor* hise::StandaloneProcessor::createProcessor() { return nullptr; }
+START_JUCE_APPLICATION(hise::FrontendStandaloneApplication)
 String hise::FrontendHandler::getProjectName() { return "oi grandad"; };
 String hise::FrontendHandler::getCompanyName() { return "modularsamples"; };
 String hise::FrontendHandler::getCompanyWebsiteName() { return "http://modularsamples.com"; };
@@ -31,5 +31,5 @@ String hise::FrontendHandler::getVersionString() { return "1.1.8"; };
 String hise::FrontendHandler::getAppGroupId() { return ""; };
 String hise::FrontendHandler::getExpansionKey() { return ""; };
 String hise::FrontendHandler::getExpansionType() { return "Disabled"; };
-String hise::FrontendHandler::getHiseVersion() { return "4.0.0"; };
+String hise::FrontendHandler::getHiseVersion() { return "4.1.0"; };
 String hise::FrontendHandler::getDefaultUserPreset() const { return ""; };

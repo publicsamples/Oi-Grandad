@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="1.1.8"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="1.1.8"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
-              buildVST="0" buildVST3="1" buildAU="1" buildAUv3="0" buildStandalone="0"
-              buildRTAS="0" buildAAX="0" pluginName="oi grandad" pluginDesc="oi grandad"
-              pluginManufacturer="modularsamples" pluginManufacturerCode="Msms"
-              pluginCode="Msog" pluginChannelConfigs="" pluginIsSynth="1" pluginWantsMidiIn="1%"
-              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="1"
-              pluginAUExportPrefix="DemoProjectAU" pluginRTASCategory="" aaxIdentifier=""
-              pluginAAXCategory="2048" pluginVST3Category="Instrument" companyName="modularsamples"
-              companyWebsite="http://modularsamples.com" companyCopyright="2022 MS"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              enableIAA="1" cppLanguageStandard="17" pluginFormats="buildVST3,buildAU,enableIAA"
-              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn,pluginEditorRequiresKeys"
-              jucerFormatVersion="1">
+              companyName="modularsamples" companyWebsite="http://modularsamples.com"
+              companyCopyright="2022 MS" displaySplashScreen="0" reportAppUsage="0"
+              cppLanguageStandard="17" jucerFormatVersion="1">
   <MAINGROUP id="SLR7uY" name="oi grandad">
     <GROUP id="{122C85F1-8B09-257A-B636-113E3EAC258A}" name="Source">
       <FILE id="KmyOlv" name="infoError.png" compile="0" resource="1" file="Source/Images/infoError.png"/>
@@ -21,198 +12,141 @@
       <FILE id="MjbOy3" name="infoQuestion.png" compile="0" resource="1"
             file="Source/Images/infoQuestion.png"/>
       <FILE id="zsTpOz" name="infoWarning.png" compile="0" resource="1" file="Source/Images/infoWarning.png"/>
+      <FILE id="AOT2K8" name="Plugin.cpp" compile="1" resource="0" file="Source/Plugin.cpp"/>
       <FILE id="jJzDA2" name="CopyProtection.cpp" compile="1" resource="0"
             file="Source/CopyProtection.cpp"/>
-      <FILE id="AOT2K8" name="Plugin.cpp" compile="1" resource="0" file="Source/Plugin.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2017 targetFolder="Builds/VisualStudio2017" vstLegacyFolder="/Users/rick/Downloads/HISE-develop-2/tools/SDK/VST3 SDK"
-            vst3Folder="/Users/rick/Downloads/HISE-develop-2/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
-            IPP1ALibrary="" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;"
-            extraCompilerFlags="/bigobj /cgthreads8  /wd&quot;4100&quot; /wd&quot;4127&quot; /wd&quot;4244&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4459&quot; ">
+    <VS2017 targetFolder="Builds/VisualStudio2017/" IPP1ALibrary="" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;"
+            extraLinkerFlags="" extraCompilerFlags="/bigobj /cgthreads8  /wd&quot;4100&quot; /wd&quot;4127&quot; /wd&quot;4244&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4459&quot; ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="1" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="oi grandad Debug" headerPath=""
-                       libraryPath=";%WIN_STATIC_LIB_FOLDER_D64%" binaryPath="Compiled/"
+                       libraryPath="%WIN_STATIC_LIB_FOLDER_D64%" isDebug="1" optimisation="1"
+                       targetName="oi grandad Debug" binaryPath="Compiled/" headerPath=";"
                        useRuntimeLibDLL="0" prebuildCommand="%PREBUILD_COMMAND%"/>
         <CONFIGURATION name="Release" winWarningLevel="1" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="oi grandad" headerPath=""
-                       libraryPath=";%WIN_STATIC_LIB_FOLDER_R64%" binaryPath="Compiled/"
+                       libraryPath="%WIN_STATIC_LIB_FOLDER_R64%" isDebug="0" optimisation="3"
+                       targetName="oi grandad" binaryPath="Compiled/" headerPath=";"
                        linkTimeOptimisation="1" useRuntimeLibDLL="0" prebuildCommand="%PREBUILD_COMMAND%"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_snex" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-2"/>
+        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_snex" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-3"/>
       </MODULEPATHS>
     </VS2017>
-    <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="/Users/rick/Downloads/HISE-develop-2/tools/SDK/VST3 SDK"
-               vst3Folder="/Users/rick/Downloads/HISE-develop-2/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
-               extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -fno-aligned-allocation"
-               extraLinkerFlags=" " extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;"
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="%VSTSDK_FOLDER%" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation"
+               extraLinkerFlags=" " extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;"
                hardenedRuntime="0" hardenedRuntimeOptions="com.apple.security.cs.allow-jit,com.apple.security.cs.allow-unsigned-executable-memory,com.apple.security.device.audio-input"
                xcodeValidArchs="arm64,arm64e,x86_64" externalLibraries="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="10.9 SDK" osxArchitecture="64BitIntel"
-                       isDebug="1" optimisation="1" enablePluginBinaryCopyStep="0" targetName="oi grandad Debug"
-                       headerPath=";" libraryPath=";;" cppLibType="libc++"/>
+                       isDebug="1" optimisation="1" targetName="oi grandad Debug" headerPath=";"
+                       libraryPath=";" cppLibType="libc++" binaryPath="Compiled/"/>
         <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="10.9 SDK" osxArchitecture="64BitIntel"
-                       isDebug="0" optimisation="3" enablePluginBinaryCopyStep="0" targetName="oi grandad"
-                       headerPath=";" libraryPath=";;" cppLibType="libc++" linkTimeOptimisation="1"
-                       stripLocalSymbols="1"/>
+                       isDebug="0" optimisation="3" targetName="oi grandad" headerPath=";"
+                       libraryPath=";" cppLibType="libc++" linkTimeOptimisation="1"
+                       binaryPath="Compiled/" stripLocalSymbols="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_snex" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-2"/>
+        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_snex" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-3"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight"
-                  extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation"
-                  extraLinkerFlags="" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;&#10;USE_IPP=0&#10;HISE_IOS=1&#10;JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=1&#10;USE_VDSP_FFT=1"
-                  UIStatusBarHidden="1" iosBackgroundAudio="1" iosBackgroundBle="0"
-                  customXcodeResourceFolders="../Samples\n../Images\nEmbeddedResources\n../UserPresets"
-                  iosAppGroups="%USE_APP_GROUPS%" iosAppGroupsId="%APP_GROUP_ID%"
-                  iosAppExtensionDuplicateResourcesFolder="0" iosDevelopmentTeamID="%DEVELOPMENT_TEAM_ID%"
-                  iosDeviceFamily="%TARGET_FAMILY%">
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" linuxExtraPkgConfig="" extraLinkerFlags="-no-pie&#10;"
+                extraCompilerFlags="-fpermissive" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" iosCompatibility="9.0" isDebug="1" optimisation="1"
-                       targetName="oi grandad_Debug" headerPath="" cppLanguageStandard="c++11"
-                       cppLibType="libc++"/>
-        <CONFIGURATION name="Release" iosCompatibility="9.0" isDebug="0" optimisation="3"
-                       targetName="oi grandad" headerPath="" cppLanguageStandard="c++11"
-                       cppLibType="libc++" linkTimeOptimisation="1"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="oi grandad"
+                       headerPath=";" libraryPath=""/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="oi grandad"
+                       headerPath=";" libraryPath="" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_snex" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-2"/>
-      </MODULEPATHS>
-    </XCODE_IPHONE>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="/Users/rick/Downloads/HISE-develop-2/tools/SDK/VST3 SDK"
-                extraLinkerFlags="" extraCompilerFlags="-fpermissive" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1"
-                linuxExtraPkgConfig="">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" linkTimeOptimisation="0"
-                       targetName="oi grandad Debug" headerPath=";" libraryPath=""/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" linkTimeOptimisation="1"
-                       targetName="oi grandad" headerPath=";" libraryPath=""/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-2/JUCE/modules"/>
-        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="hnode_jit" path="/Users/rick/Downloads/HISE-develop-2"/>
-        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-2"/>
+        <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="juce_gui_extra" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="/Users/rick/Downloads/HISE-develop-3/JUCE/modules"/>
+        <MODULEPATH id="hi_scripting" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_lac" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_frontend" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_faust" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_faust_types" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_rlottie" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_zstd" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_streaming" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_core" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_tools" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="hi_snex" path="/Users/rick/Downloads/HISE-develop-3"/>
+        <MODULEPATH id="melatonin_blur" path="/Users/rick/Downloads/HISE-develop-3"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -232,7 +166,6 @@
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
@@ -249,18 +182,16 @@
     <MODULE id="melatonin_blur" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled" USE_BACKEND="0" USE_FRONTEND="1" USE_RAW_FRONTEND="0"
-               HI_EXPORT_DSP_LIBRARY="0" HISE_ENABLE_MIDI_INPUT_FOR_FX="0" PROCESS_SOUND_GENERATORS_IN_FX_PLUGIN="0"
-               HISE_MIDIFX_PLUGIN="0" USE_COPY_PROTECTION="0" IS_STANDALONE_APP="0"
+               HI_EXPORT_DSP_LIBRARY="0" USE_COPY_PROTECTION="0" IS_STANDALONE_APP="1"
                USE_IPP="0" FRONTEND_IS_PLUGIN="0" USE_CUSTOM_FRONTEND_TOOLBAR="%USE_CUSTOM_FRONTEND_TOOLBAR%"
-               IS_STANDALONE_FRONTEND="0" USE_GLITCH_DETECTION="1" ENABLE_PLOTTER="0"
-               ENABLE_SCRIPTING_SAFE_CHECKS="0" ENABLE_ALL_PEAK_METERS="0" USE_SPLASH_SCREEN="0"
-               HISE_OVERWRITE_OLD_USER_PRESETS="0" HI_SUPPORT_MONO_CHANNEL_LAYOUT="0"
-               HI_SUPPORT_FULL_DYNAMICS_HLAC="0" ENABLE_CONSOLE_OUTPUT="0" HI_ENABLE_LEGACY_CPU_SUPPORT="0"
-               HISE_INCLUDE_FAUST="0" HISE_USE_SYSTEM_APP_DATA_FOLDER="1" HISE_INCLUDE_RLOTTIE="1"
-               HLAC_MEASURE_DECODING_PERFORMANCE="0" HLAC_DEBUG_LOG="0" HLAC_INCLUDE_TEST_SUITE="0"
-               STANDALONE_STREAMING="0" JUCE_ASSERTION_FIRFILTER="0" JUCE_WEB_BROWSER="0"
-               JUCE_USE_CURL="0" JUCE_DSP_USE_INTEL_MKL="0" JUCE_DSP_USE_SHARED_FFTW="0"
-               JUCE_DSP_USE_STATIC_FFTW="0" HISE_USE_CUSTOM_EXPANSION_TYPE="0"
-               READ_ONLY_FACTORY_PRESETS="0" JUCE_HEADLESS_PLUGIN_CLIENT="disabled"
+               HI_SUPPORT_FULL_DYNAMICS_HLAC="0" READ_ONLY_FACTORY_PRESETS="0"
+               IS_STANDALONE_FRONTEND="1" USE_GLITCH_DETECTION="1" ENABLE_PLOTTER="0"
+               ENABLE_SCRIPTING_SAFE_CHECKS="0" ENABLE_ALL_PEAK_METERS="0" ENABLE_CONSOLE_OUTPUT="0"
+               JUCE_ASIO="0" JUCE_JACK="0" USE_SPLASH_SCREEN="0" HISE_OVERWRITE_OLD_USER_PRESETS="0"
+               HI_ENABLE_LEGACY_CPU_SUPPORT="0" HISE_INCLUDE_RLOTTIE="1" HISE_INCLUDE_FAUST="0"
+               HISE_USE_SYSTEM_APP_DATA_FOLDER="1" HLAC_MEASURE_DECODING_PERFORMANCE="0"
+               HLAC_DEBUG_LOG="0" HLAC_INCLUDE_TEST_SUITE="0" STANDALONE_STREAMING="0"
+               JUCE_DSP_USE_INTEL_MKL="0" JUCE_WEB_BROWSER="0" JUCE_USE_CURL="0"
+               JUCE_DSP_USE_SHARED_FFTW="0" JUCE_DSP_USE_STATIC_FFTW="0" HISE_USE_CUSTOM_EXPANSION_TYPE="0"
                HISE_INCLUDE_LORIS="0"/>
 </JUCERPROJECT>
