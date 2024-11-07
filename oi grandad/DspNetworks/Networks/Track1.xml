@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="Track2" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="Track2" Bypassed="0" Name="Track2">
+<Network ID="Track1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="Track1" Bypassed="0" Name="Track1">
     <Nodes>
-      <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain">
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
         <Nodes>
           <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak">
             <ModulationTargets>
@@ -19,9 +19,9 @@
           <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
             <Nodes>
               <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable" NodeColour="4282862770">
+                    Name="global_cable" NodeColour="4282863026">
                 <Properties>
-                  <Property ID="Connection" Value="a2"/>
+                  <Property ID="Connection" Value="a1"/>
                 </Properties>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
