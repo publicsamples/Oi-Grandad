@@ -375,7 +375,7 @@ ulp.setMouseCallback(function(event)
 {
   if (event.clicked)
   {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/TdDvx");
+    Engine.openWebsite("https://payhip.com/b/6JGsa");
   } 
   else 
   {
@@ -391,7 +391,7 @@ yop.setMouseCallback(function(event)
 {
   if (event.clicked)
   {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/gyckl");
+    Engine.openWebsite("https://payhip.com/b/0VfRF");
   } 
   else 
   {
