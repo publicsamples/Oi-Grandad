@@ -31,7 +31,7 @@
   <ForceStereoOutput value="No"/>
   <EnableMidiOut value="No"/>
   <AdminPermissions value="No"/>
-  <EmbedUserPresets value="1"/>
+  <EmbedUserPresets value="0"/>
   <EnableGlobalPreprocessor value="No"/>
   <VST3Category value=""/>
   <OverwriteOldUserPresets value="No"/>

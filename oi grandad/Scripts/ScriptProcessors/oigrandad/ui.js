@@ -811,7 +811,7 @@ ulp.setMouseCallback(function(event)
 {
   if (event.clicked)
   {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/TdDvx");
+    Engine.openWebsite("https://www.patreon.com/posts/oi-grandad-ultra-77464851?source=storefront");
   } 
   else 
   {
@@ -827,7 +827,7 @@ yop.setMouseCallback(function(event)
 {
   if (event.clicked)
   {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/gyckl");
+    Engine.openWebsite("https://payhip.com/b/0VfRF");
   } 
   else 
   {
