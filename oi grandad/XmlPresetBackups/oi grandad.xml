@@ -11,7 +11,7 @@
           <ChildProcessors/>
           <Content>
             <Control type="ScriptPanel" id="MOD1" value="0.0"/>
-            <Control type="ScriptSliderPack" id="SliderPackA" value="15.0" data="64.Usev77NBf1SR1nfOUfFQ93cl94y0kwoO95Wt9P5kV6CK5IuOZ4xA+zrtU7SPGQxOzNsL+bBXA8ilr+zO...f+."/>
+            <Control type="ScriptSliderPack" id="SliderPackA" value="13.0" data="64.35QA+....9C..............9SOJb0OHEtN+XOJb7C...vOb8nv9................XlYl8C..........."/>
             <Control type="ScriptSliderPack" id="SliderPackA1" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA2" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA3" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -25,7 +25,7 @@
             <Control type="ScriptSlider" id="TempoMod1" value="0.5"/>
             <Control type="ScriptSlider" id="Div1" value="1.0"/>
             <Control type="ScriptSlider" id="tempo1" value="0.0"/>
-            <Control type="ScriptButton" id="ModType1" value="1.0"/>
+            <Control type="ScriptButton" id="ModType1" value="0.0"/>
             <Control type="ScriptComboBox" id="TrigSel1" value="1.0"/>
             <Control type="ScriptSlider" id="Stage1" value="1.0"/>
             <Control type="ScriptComboBox" id="MorphModSel1" value="4.0"/>
@@ -253,16 +253,16 @@
             <Control type="ScriptSlider" id="Stage12" value="1.0"/>
             <Control type="ScriptComboBox" id="MorphModSel12" value="0.0"/>
             <Control type="ScriptSlider" id="MorphMod12" value="0.5"/>
-            <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
-                     rangeStart="0" rangeEnd="0"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Loops/Tappers-01.wav"
+                     rangeStart="0" rangeEnd="1536000"/>
             <Control type="ScriptSliderPack" id="ScriptSliderPack1" value="-1.0" data="16.35QA9LyLy5SgqGwO35QQ+."/>
             <Control type="ScriptSlider" id="det" value="0.0"/>
             <Control type="ScriptSlider" id="Dense" value="0.4600000083446503"/>
-            <Control type="ScriptSlider" id="grainsize1" value="0.0"/>
+            <Control type="ScriptSlider" id="grainsize1" value="0.3199999928474426"/>
             <Control type="ScriptSlider" id="spread" value="0.9399999976158142"/>
             <Control type="ScriptSlider" id="pitch" value="0.0"/>
-            <Control type="ScriptSlider" id="pos" value="0.0"/>
-            <Control type="ScriptSlider" id="posmod" value="1.0"/>
+            <Control type="ScriptSlider" id="pos" value="0.119999997317791"/>
+            <Control type="ScriptSlider" id="posmod" value="0.5"/>
             <Control type="ScriptSlider" id="densemod" value="0.7699999809265137"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.5"/>
             <Control type="ScriptSlider" id="detmod" value="0.5"/>
@@ -275,17 +275,17 @@
             <Control type="ScriptSlider" id="pitch8" value="1.0"/>
             <Control type="ScriptComboBox" id="PmodSel1" value="1.0"/>
             <Control type="ScriptSlider" id="pmod1" value="0.8500000238418579"/>
-            <Control type="ScriptComboBox" id="posmode1" value="1.0"/>
+            <Control type="ScriptComboBox" id="posmode1" value="3.0"/>
             <Control type="ScriptComboBox" id="pitchmode1" value="1.0"/>
             <Control type="ScriptSlider" id="grainsizesync1" value="1.0"/>
             <Control type="ScriptSlider" id="StgSel1" value="4.0"/>
             <Control type="ScriptComboBox" id="PmodSel6" value="1.0"/>
             <Control type="ScriptComboBox" id="pitchmode5" value="1.0"/>
             <Control type="ScriptComboBox" id="psync1" value="2.0"/>
-            <Control type="ScriptSlider" id="cutoff" value="0.0"/>
-            <Control type="ScriptSlider" id="res" value="1.0"/>
-            <Control type="ScriptComboBox" id="cut1modsel" value="13.0"/>
-            <Control type="ScriptSlider" id="filtermod" value="1.0"/>
+            <Control type="ScriptSlider" id="cutoff" value="1.0"/>
+            <Control type="ScriptSlider" id="res" value="0.0"/>
+            <Control type="ScriptComboBox" id="cut1modsel" value="4.0"/>
+            <Control type="ScriptSlider" id="filtermod" value="0.5"/>
             <Control type="ScriptComboBox" id="type" value="1.0"/>
             <Control type="ScriptSlider" id="mix1" value="1.0"/>
             <Control type="ScriptSlider" id="Vol" value="1.0"/>
@@ -305,7 +305,7 @@
             <Control type="ScriptSlider" id="delcut1" value="0.6299999952316284"/>
             <Control type="ScriptComboBox" id="redmodsel1" value="0.0"/>
             <Control type="ScriptSlider" id="delcutmod1" value="0.5"/>
-            <Control type="ScriptComboBox" id="route" value="4.0"/>
+            <Control type="ScriptComboBox" id="route" value="3.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSliderPack" id="ScriptSliderPack2" value="-1.0" data="16....f+b8nv7CWOJrO......"/>
@@ -478,7 +478,7 @@
             <Control type="ScriptComboBox" id="ComboBox26" value="1.0"/>
             <Control type="ScriptSlider" id="ScriptSlider3" value="0.4300000071525574"/>
             <Control type="ScriptComboBox" id="ExpansionSelector" value="1.0"/>
-            <Control type="ScriptComboBox" id="ModPage" value="1.0"/>
+            <Control type="ScriptComboBox" id="ModPage" value="3.0"/>
             <Control type="ScriptComboBox" id="Playback" value="1.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
@@ -756,7 +756,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="Track1" Bypassed="0">
+            <Processor Type="ScriptFX" ID="Script FX1" Bypassed="0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -764,7 +764,7 @@
                              Channel7="-1" Send7="-1"/>
               <Content/>
               <Networks>
-                <Network ID="Track1" Version="0.0.0"/>
+                <Network ID="TrkIn1" Version="0.0.0"/>
               </Networks>
               <UIData>
                 <ContentProperties DeviceType="Desktop"/>
@@ -844,7 +844,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="Track2" Bypassed="0">
+            <Processor Type="ScriptFX" ID="Script FX2" Bypassed="0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -852,7 +852,7 @@
                              Channel7="-1" Send7="-1"/>
               <Content/>
               <Networks>
-                <Network ID="Track2" Version="0.0.0"/>
+                <Network ID="TrackIn2" Version="0.0.0"/>
               </Networks>
               <UIData>
                 <ContentProperties DeviceType="Desktop"/>
@@ -932,7 +932,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="Track3" Bypassed="0">
+            <Processor Type="ScriptFX" ID="Script FX3" Bypassed="0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -940,7 +940,7 @@
                              Channel7="-1" Send7="-1"/>
               <Content/>
               <Networks>
-                <Network ID="Track3" Version="0.0.0"/>
+                <Network ID="trkin3" Version="0.0.0"/>
               </Networks>
               <UIData>
                 <ContentProperties DeviceType="Desktop"/>
@@ -1020,7 +1020,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="Track4" Bypassed="0">
+            <Processor Type="ScriptFX" ID="Script FX4" Bypassed="0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -1028,7 +1028,7 @@
                              Channel7="-1" Send7="-1"/>
               <Content/>
               <Networks>
-                <Network ID="Track4" Version="0.0.0"/>
+                <Network ID="Trkin4" Version="0.0.0"/>
               </Networks>
               <UIData>
                 <ContentProperties DeviceType="Desktop"/>

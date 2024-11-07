@@ -1,11 +1,11 @@
+declare name "korg35LPF";
+declare description "Demonstration of the Korg 35 LPF";
+declare author "Eric Tarr";
+
 import("stdfaust.lib");
-import("misceffects.lib");
 
-nChans = 2;
+Q = hslider("Q",1,0.5,10,0.01);
+normFreq = hslider("freq",0.5,0,1,0.001):si.smoo;
 
-process = dm.reverse_echo_demo(nChans);
 
-reverse_echo_demo(nChans) =  ef.reverseEchoN(nChans,delMax) : ef.reverseEchoN(nChans) 
-with {
-    delMax = 2^int(nentry("Log2(Delay)",15,12,16,1)); // delay line length
-};
+process = ve.korg35LPF(normFreq,Q), ve.korg35LPF(normFreq,Q);

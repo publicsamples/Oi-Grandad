@@ -71,7 +71,7 @@
                                   <Property ID="Connection" Value="a1"/>
                                 </Properties>
                                 <Parameters>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value"/>
                                 </Parameters>
                               </Node>
                               <Node ID="clear1" FactoryPath="math.clear" Bypassed="0" Name="clear1">
@@ -85,9 +85,6 @@
                           <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain2">
                             <Nodes>
                               <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
-                                <ModulationTargets>
-                                  <Connection NodeId="global_cable" ParameterId="Value"/>
-                                </ModulationTargets>
                                 <ComplexData>
                                   <DisplayBuffers>
                                     <DisplayBuffer Index="-1"/>
@@ -1078,7 +1075,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Routing" MinValue="0.0" MaxValue="7.0" Value="4.0" DefaultValue="0.0">
+      <Parameter ID="Routing" MinValue="0.0" MaxValue="7.0" Value="3.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="switcher" ParameterId="Value"/>
         </Connections>

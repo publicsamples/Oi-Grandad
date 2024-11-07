@@ -550,12 +550,25 @@
                             <Parameters/>
                           </Node>
                           <Node ID="peak3" FactoryPath="core.peak" Bypassed="0" Name="peak3">
+                            <ModulationTargets>
+                              <Connection NodeId="add3" ParameterId="Value"/>
+                            </ModulationTargets>
                             <ComplexData>
                               <DisplayBuffers>
                                 <DisplayBuffer Index="-1"/>
                               </DisplayBuffers>
                             </ComplexData>
                             <Parameters/>
+                          </Node>
+                          <Node ID="clear3" FactoryPath="math.clear" Bypassed="0" Name="clear3">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="add3" FactoryPath="math.add" Bypassed="0" Name="add3">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                            </Parameters>
                           </Node>
                         </Nodes>
                         <Parameters>
@@ -636,7 +649,7 @@
                                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                  SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="-100.0"/>
+                                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
                                     </Parameters>
                                   </Node>
                                 </Nodes>
@@ -748,12 +761,25 @@
                             <Parameters/>
                           </Node>
                           <Node ID="peak1" FactoryPath="core.peak" Bypassed="0" Name="peak1">
+                            <ModulationTargets>
+                              <Connection NodeId="add2" ParameterId="Value"/>
+                            </ModulationTargets>
                             <ComplexData>
                               <DisplayBuffers>
                                 <DisplayBuffer Index="-1"/>
                               </DisplayBuffers>
                             </ComplexData>
                             <Parameters/>
+                          </Node>
+                          <Node ID="clear1" FactoryPath="math.clear" Bypassed="0" Name="clear1">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="add2" FactoryPath="math.add" Bypassed="0" Name="add2">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                            </Parameters>
                           </Node>
                         </Nodes>
                         <Parameters/>
@@ -781,7 +807,8 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="2.0" StepSize="1">
+      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="0.0" StepSize="1"
+                 DefaultValue="2.0">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Add"/>
         </Connections>
@@ -793,7 +820,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="tempomod" MinValue="5.551115123125783e-17" MaxValue="1.0"
-                 Value="0.49846875">
+                 Value="0.5" DefaultValue="0.49846875">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Multiply"/>
         </Connections>
@@ -813,8 +840,8 @@
           <Connection NodeId="minmax" ParameterId="Polarity"/>
         </Connections>
       </Parameter>
-      <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="0.0" StepSize="0.1"
-                 SkewFactor="1">
+      <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="1.0" StepSize="0.1"
+                 SkewFactor="1" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="cable_table1" ParameterId="Value"/>
           <Connection NodeId="cable_table2" ParameterId="Value"/>
@@ -827,19 +854,19 @@
           <Connection NodeId="ramp" ParameterId="LoopStart"/>
         </Connections>
       </Parameter>
-      <Parameter ID="morph" MinValue="1.0" MaxValue="4.0" Value="2.033986145019531">
+      <Parameter ID="morph" MinValue="1.0" MaxValue="4.0" Value="1.0" DefaultValue="2.033986145019531">
         <Connections>
           <Connection NodeId="pma" ParameterId="Add"/>
         </Connections>
       </Parameter>
       <Parameter ID="morphmod" MinValue="5.551115123125783e-17" MaxValue="1.0"
-                 Value="1.0">
+                 Value="0.5" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter ID="morphmodest" MinValue="0.0" MaxValue="16.0" Value="5.800000000000001"
-                 StepSize="0.1">
+      <Parameter ID="morphmodest" MinValue="0.0" MaxValue="16.0" Value="4.0" StepSize="0.1"
+                 DefaultValue="5.800000000000001">
         <Connections>
           <Connection NodeId="global_mod3" ParameterId="Index"/>
         </Connections>

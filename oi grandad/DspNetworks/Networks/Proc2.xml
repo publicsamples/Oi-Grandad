@@ -1074,13 +1074,12 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Routing" MinValue="0.0" MaxValue="7.0" Value="1.0" DefaultValue="0.0">
+      <Parameter ID="Routing" MinValue="0.0" MaxValue="7.0" Value="0.0">
         <Connections>
           <Connection NodeId="switcher" ParameterId="Value"/>
         </Connections>
       </Parameter>
-      <Parameter ID="ccut" MinValue="0.0" MaxValue="1.0" Value="0.4900000095367432"
-                 DefaultValue="1.0">
+      <Parameter ID="ccut" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="filter" ParameterId="cut"/>
           <Connection NodeId="filter3" ParameterId="cut"/>
@@ -1110,7 +1109,7 @@
           <Connection NodeId="filter6" ParameterId="type"/>
         </Connections>
       </Parameter>
-      <Parameter ID="fmix" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="1.0">
+      <Parameter ID="fmix" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="filter" ParameterId="mix"/>
           <Connection NodeId="filter3" ParameterId="mix"/>
@@ -1126,7 +1125,7 @@
           <Connection NodeId="filter6" ParameterId="Mix"/>
         </Connections>
       </Parameter>
-      <Parameter ID="cutmod" MinValue="0.0" MaxValue="1.0" Value="0.5" DefaultValue="-0.4328247070312501">
+      <Parameter ID="cutmod" MinValue="0.0" MaxValue="1.0" Value="-0.4328247070312501">
         <Connections>
           <Connection NodeId="filter" ParameterId="cutmod"/>
           <Connection NodeId="filter3" ParameterId="cutmod"/>
@@ -1136,8 +1135,7 @@
           <Connection NodeId="filter6" ParameterId="cutmod"/>
         </Connections>
       </Parameter>
-      <Parameter ID="cutdest" MinValue="0.0" MaxValue="16.0" Value="4.000000059604644"
-                 StepSize="0.1000000014901161" DefaultValue="1.0">
+      <Parameter ID="cutdest" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="0.1000000014901161">
         <Connections>
           <Connection NodeId="filter" ParameterId="cutdets"/>
           <Connection NodeId="filter3" ParameterId="cutdets"/>
@@ -1147,8 +1145,7 @@
           <Connection NodeId="filter6" ParameterId="cutdets"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dfeed" MinValue="0.0" MaxValue="1.0" Value="0.949999988079071"
-                 DefaultValue="1.0">
+      <Parameter ID="dfeed" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="feed"/>
           <Connection NodeId="script_fx6" ParameterId="feed"/>
@@ -1158,7 +1155,7 @@
           <Connection NodeId="delay2" ParameterId="dfeed"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dmix" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="1.0">
+      <Parameter ID="dmix" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="mix"/>
           <Connection NodeId="script_fx6" ParameterId="mix"/>
@@ -1178,8 +1175,7 @@
           <Connection NodeId="delay2" ParameterId="delytime"/>
         </Connections>
       </Parameter>
-      <Parameter ID="ddmoddsrc" MinValue="0.0" MaxValue="16.0" Value="1.000000014901161"
-                 StepSize="0.1000000014901161" DefaultValue="1.0">
+      <Parameter ID="ddmoddsrc" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="0.1000000014901161">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="pitchdest"/>
           <Connection NodeId="script_fx6" ParameterId="pitchdest"/>
@@ -1199,7 +1195,7 @@
           <Connection NodeId="vol12" ParameterId="vol"/>
         </Connections>
       </Parameter>
-      <Parameter ID="volmod" MinValue="0.0" MaxValue="1.0" Value="0.5" DefaultValue="0.02828540039062499">
+      <Parameter ID="volmod" MinValue="0.0" MaxValue="1.0" Value="0.02828540039062499">
         <Connections>
           <Connection NodeId="vol6" ParameterId="volmod"/>
           <Connection NodeId="vol9" ParameterId="volmod"/>
@@ -1209,8 +1205,7 @@
           <Connection NodeId="vol12" ParameterId="volmod"/>
         </Connections>
       </Parameter>
-      <Parameter ID="volmodsrc" MinValue="0.0" MaxValue="16.0" Value="8.000000119209288"
-                 StepSize="0.1000000014901161" DefaultValue="1.0">
+      <Parameter ID="volmodsrc" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="0.1000000014901161">
         <Connections>
           <Connection NodeId="vol6" ParameterId="voldest"/>
           <Connection NodeId="vol9" ParameterId="voldest"/>
@@ -1231,9 +1226,8 @@
           <Connection NodeId="ahdsr15" ParameterId="Attack"/>
         </Connections>
       </Parameter>
-      <Parameter ID="d" MinValue="0.0" MaxValue="10000.0" Value="1.000000014901161"
-                 StepSize="0.1000000014901161" SkewFactor="0.1976716816425323"
-                 DefaultValue="10000.0">
+      <Parameter ID="d" MinValue="0.0" MaxValue="10000.0" Value="10000.0" StepSize="0.1000000014901161"
+                 SkewFactor="0.1976716816425323">
         <Connections>
           <Connection NodeId="ahdsr6" ParameterId="Decay"/>
           <Connection NodeId="ahdsr7" ParameterId="Decay"/>
@@ -1259,7 +1253,7 @@
           <Connection NodeId="ahdsr15" ParameterId="Release"/>
         </Connections>
       </Parameter>
-      <Parameter ID="pan" MinValue="0.0" MaxValue="1.0" Value="0.5" DefaultValue="0.4456364746093749">
+      <Parameter ID="pan" MinValue="0.0" MaxValue="1.0" Value="0.4456364746093749">
         <Connections>
           <Connection NodeId="pan6" ParameterId="Pan"/>
           <Connection NodeId="pan9" ParameterId="Pan"/>
@@ -1269,8 +1263,7 @@
           <Connection NodeId="pan12" ParameterId="Pan"/>
         </Connections>
       </Parameter>
-      <Parameter ID="panmod" MinValue="5.551115123125783e-17" MaxValue="1.0" Value="0.5"
-                 DefaultValue="-0.007167480468750154">
+      <Parameter ID="panmod" MinValue="5.551115123125783e-17" MaxValue="1.0" Value="-0.007167480468750154">
         <Connections>
           <Connection NodeId="pan6" ParameterId="panmod"/>
           <Connection NodeId="pan9" ParameterId="panmod"/>
@@ -1280,8 +1273,7 @@
           <Connection NodeId="pan12" ParameterId="panmod"/>
         </Connections>
       </Parameter>
-      <Parameter ID="panmodsrc" MinValue="0.0" MaxValue="16.0" Value="4.000000059604644"
-                 StepSize="0.1000000014901161" DefaultValue="0.0">
+      <Parameter ID="panmodsrc" MinValue="0.0" MaxValue="16.0" Value="0.0" StepSize="0.1000000014901161">
         <Connections>
           <Connection NodeId="pan6" ParameterId="pandest"/>
           <Connection NodeId="pan12" ParameterId="pandest"/>
@@ -1291,8 +1283,7 @@
           <Connection NodeId="pan9" ParameterId="pandest"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dcut" MinValue="0.0" MaxValue="1.0" Value="0.6299999952316284"
-                 DefaultValue="1.0">
+      <Parameter ID="dcut" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="cut"/>
           <Connection NodeId="script_fx6" ParameterId="cut"/>
@@ -1302,7 +1293,7 @@
           <Connection NodeId="delay2" ParameterId="dcut"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dcutmod" MinValue="0.0" MaxValue="1.0" Value="0.5" DefaultValue="1.0">
+      <Parameter ID="dcutmod" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="cutmod"/>
           <Connection NodeId="script_fx6" ParameterId="cutmod"/>
@@ -1312,7 +1303,7 @@
           <Connection NodeId="delay2" ParameterId="dcutmod"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dcutmodsrc" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="1.0">
+      <Parameter ID="dcutmodsrc" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="cutdest"/>
           <Connection NodeId="script_fx6" ParameterId="cutdest"/>
@@ -1323,7 +1314,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="send" MinValue="1.000000014901161" MaxValue="32.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.2968033850193024" Value="1.000000014901161" DefaultValue="1.0">
+                 SkewFactor="0.2968033850193024" Value="1.0">
         <Connections>
           <Connection NodeId="comp" ParameterId="Ratio"/>
           <Connection NodeId="comp2" ParameterId="Ratio"/>
@@ -1333,7 +1324,7 @@
           <Connection NodeId="comp5" ParameterId="Ratio"/>
         </Connections>
       </Parameter>
-      <Parameter ID="dmod" MinValue="0.0" MaxValue="1.0" Value="0.5" DefaultValue="0.0">
+      <Parameter ID="dmod" MinValue="0.0" MaxValue="1.0" Value="0.0">
         <Connections>
           <Connection NodeId="script_fx3" ParameterId="pitchmod"/>
           <Connection NodeId="script_fx6" ParameterId="pitchmod"/>
