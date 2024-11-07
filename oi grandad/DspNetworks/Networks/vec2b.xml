@@ -3,33 +3,6 @@
 <Network ID="vec2b" Version="0.0.0" AllowPolyphonic="1">
   <Node FactoryPath="container.chain" ID="vec2b" Bypassed="0" Name="vec2b">
     <Nodes>
-      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
-        <Nodes>
-          <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak">
-            <ComplexData>
-              <DisplayBuffers>
-                <DisplayBuffer Index="-1"/>
-              </DisplayBuffers>
-            </ComplexData>
-            <Parameters/>
-          </Node>
-          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
-            <Nodes>
-              <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable" NodeColour="4282862770">
-                <Properties>
-                  <Property ID="Connection" Value="a2"/>
-                </Properties>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
-                </Parameters>
-              </Node>
-            </Nodes>
-            <Parameters/>
-          </Node>
-        </Nodes>
-        <Parameters/>
-      </Node>
       <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
             NodeColour="4282930098" Name="global_cable">
         <Properties>
