@@ -334,7 +334,7 @@
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
             <Control type="ScriptButton" id="presets" value="0.0"/>
             <Control type="ScriptButton" id="Enable" value="0.0"/>
-            <Control type="ScriptButton" id="xfade" value="1.0"/>
+            <Control type="ScriptButton" id="xfade" value="0.0"/>
             <Control type="ScriptComboBox" id="ComboBox1" value="1.0"/>
             <Control type="ScriptSlider" id="ScriptSlider1" value="0.0"/>
             <Control type="ScriptSlider" id="ScriptSlider2" value="0.0"/>
@@ -3091,7 +3091,7 @@
                          filmstripImage="{PROJECT_FOLDER}switch_toggle2.png" scaleFactor="0.5"/>
               <Component type="ScriptPanel" id="XFcont" x="536.0" y="720.0" width="120.0"
                          height="36.0" itemColour="0" itemColour2="16777215" bgColour="0"
-                         textColour="0" processorId="xfade" parameterId="scan">
+                         textColour="0" processorId="xfade" parameterId="scan" visible="0">
                 <Component type="ScriptLabel" id="Label19" x="-7.0" y="20.0" width="40.0"
                            height="10.0" fontName="Montserrat" fontSize="11.0" textColour="3907643801"
                            text="xfade" parentComponent="XFcont" editable="0"/>
@@ -3352,7 +3352,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptTimeVariantModulator" ID="xfade" Bypassed="0" Intensity="1.0"
+            <Processor Type="ScriptTimeVariantModulator" ID="xfade" Bypassed="1" Intensity="1.0"
                        Bipolar="0" NumSliderPacks="2">
               <ChildProcessors/>
               <Content/>
@@ -3482,7 +3482,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf1" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf1" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3612,7 +3612,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf2" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf2" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3742,7 +3742,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf3" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf3" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -3872,7 +3872,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="ScriptFX" ID="xf4" Bypassed="0">
+            <Processor Type="ScriptFX" ID="xf4" Bypassed="1">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                              Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
