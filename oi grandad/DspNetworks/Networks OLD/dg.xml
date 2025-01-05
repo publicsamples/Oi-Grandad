@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="dg">
+  <Node FactoryPath="container.chain" ID="dg" Bypassed="0">
+    <Nodes>
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+        <Nodes>
+          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/wt monday/fm1aInst 1.wav"
+                           MinValue="0" MaxValue="45753"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.4355"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Value="1.0"/>
+              <Parameter MinValue="0.009999999776482582" MaxValue="7500.0" ID="GrainSize"
+                         Value="1413.640927656069"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

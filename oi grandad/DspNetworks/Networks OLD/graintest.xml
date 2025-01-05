@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="graintest" Version="0.0.0" HasTail="0" AllowPolyphonic="1">
+  <Node FactoryPath="container.chain" ID="graintest" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="clone_pack1" FactoryPath="control.clone_pack" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="global_mod16" ParameterId="Index"/>
+        </ModulationTargets>
+        <ComplexData>
+          <SliderPacks>
+            <SliderPack Index="-1" EmbeddedData="12...............3O"/>
+          </SliderPacks>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="NumClones"
+                     Value="16.0"/>
+          <Parameter MinValue="0.0" MaxValue="16.0" StepSize="0.1" SkewFactor="1"
+                     ID="Value" Value="16.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="clone_pack" FactoryPath="control.clone_pack" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="pma17" ParameterId="Multiply"/>
+        </ModulationTargets>
+        <ComplexData>
+          <SliderPacks>
+            <SliderPack Index="-1" EmbeddedData="12....f+T35Q7SyLyvO"/>
+          </SliderPacks>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="NumClones"
+                     Value="16.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+        <Nodes>
+          <Node ID="clone" FactoryPath="container.clone" Bypassed="0" ShowClones="1"
+                DisplayedClones="1-3,5,8">
+            <Properties>
+              <Property ID="IsVertical" Value="0"/>
+            </Properties>
+            <Nodes>
+              <Node ID="clone_child" FactoryPath="container.chain" Bypassed="0" NodeColour="4287927444"
+                    ShowParameters="1">
+                <Nodes>
+                  <Node ID="global_mod16" FactoryPath="core.global_mod" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="pma17" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="pma17" FactoryPath="control.pma" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="intensity1" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+              <Node ID="clone_child1" FactoryPath="container.chain" Bypassed="0"
+                    NodeColour="4287927444" ShowParameters="1">
+                <Nodes>
+                  <Node ID="global_mod17" FactoryPath="core.global_mod" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="pma18" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="pma18" FactoryPath="control.pma" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="intensity1" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+              <Node ID="clone_child2" FactoryPath="container.chain" Bypassed="0"
+                    NodeColour="4287927444" ShowParameters="1">
+                <Nodes>
+                  <Node ID="global_mod18" FactoryPath="core.global_mod" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="pma19" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="pma19" FactoryPath="control.pma" Bypassed="0">
+                    <ModulationTargets>
+                      <Connection NodeId="intensity1" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="3" StepSize="1.0" ID="NumClones" Value="3.0"/>
+              <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="SplitSignal"
+                         Value="2.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="intensity1" FactoryPath="control.intensity" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="midichain" ParameterId="pos"/>
+        </ModulationTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            ShowParameters="1">
+        <Nodes>
+          <Node ID="granulator1" FactoryPath="core.granulator" Bypassed="0">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}vlid89-03.wav" MinValue="0"
+                           MaxValue="348206"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" StepSize="0.01" Automated="1"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Value="1.0"/>
+              <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="800.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.543484375"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.73865625"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters>
+          <Parameter ID="pos" MinValue="0.0" MaxValue="1.0" Automated="1">
+            <Connections>
+              <Connection NodeId="granulator1" ParameterId="Position"/>
+            </Connections>
+          </Parameter>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="pos" MinValue="0.0" MaxValue="1.0" Value="0.22" StepSize="0.01">
+        <Connections>
+          <Connection NodeId="pma17" ParameterId="Add"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="moddepth" MinValue="0.0" MaxValue="1.0" Value="0.8048367614746094">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="Parameter" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

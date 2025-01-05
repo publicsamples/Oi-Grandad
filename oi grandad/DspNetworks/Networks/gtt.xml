@@ -1,24 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="gtt" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="gtt" Bypassed="0">
+  <Node FactoryPath="container.chain" ID="gtt" Bypassed="0" Name="gtt">
     <Nodes>
-      <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
-        <ComplexData>
-          <AudioFiles>
-            <AudioFile Index="-1" EmbeddedData="{PROJECT_FOLDER}Stick in the Mud.wav"
-                       MinValue="0" MaxValue="1702932"/>
-          </AudioFiles>
-        </ComplexData>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
-          <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
-                     ID="Pitch" Value="1.0"/>
-          <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="569.6175781249999"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
-        </Parameters>
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0"
+            Name="fix8_block">
+        <Nodes>
+          <Node ID="gt2244" FactoryPath="project.gt2244" Bypassed="0" Name="gt2244">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="-1" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Quetzalcoatl/Q-chum.wav"
+                           MinValue="0" MaxValue="1339535"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.5696718783378601"
+                         DefaultValue="0.2824375033378601"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Value="1.0"/>
+              <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" Value="8946.60546875"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.2488281279802322"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="spread" Value="0.2431718707084656"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="repitch" FactoryPath="container.repitch" Bypassed="0" Name="repitch"
+                ShowParameters="1">
+            <Nodes>
+              <Node ID="feedback_delay1" FactoryPath="container.fix32_block" Bypassed="0"
+                    Name="feedback_delay">
+                <Nodes>
+                  <Node ID="fb_out" FactoryPath="routing.receive" Bypassed="0" Name="fb_out">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Value="0.818625"
+                                 DefaultValue="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="delay" FactoryPath="core.fix_delay" Bypassed="0" Name="delay">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.3010300099849701" ID="DelayTime" Value="22.90000034123659"
+                                 DefaultValue="100.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
+                                 Value="91.0" DefaultValue="512.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="fb_in" FactoryPath="routing.send" Bypassed="0" Name="fb_in">
+                    <Properties>
+                      <Property ID="Connection" Value="fb_out"/>
+                    </Properties>
+                    <Parameters/>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="RepitchFactor" Value="0.5" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Interpolation"
+                         Value="1.0" DefaultValue="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
       </Node>
     </Nodes>
     <Parameters/>

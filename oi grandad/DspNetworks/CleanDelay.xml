@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="CleanDelay" AllowCompilation="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="CleanDelay" Bypassed="0" Name="CleanDelay"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0"
+            Name="fix8_block">
+        <Nodes>
+          <Node ID="receive" FactoryPath="routing.receive" Bypassed="0" Name="receive">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="fix_delay" FactoryPath="core.fix_delay" Bypassed="0" Name="fix_delay">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.3010300099849701" ID="DelayTime" DefaultValue="100.0"
+                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
+                         Value="512.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="send" FactoryPath="routing.send" Bypassed="0" Name="send">
+            <Properties>
+              <Property ID="Connection" Value="receive"/>
+            </Properties>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="DelayTime" MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                 SkewFactor="0.3010300099849701" Value="1.000000014901161" DefaultValue="1.0">
+        <Connections>
+          <Connection NodeId="fix_delay" ParameterId="DelayTime"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="FeedBack" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="receive" ParameterId="Feedback"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

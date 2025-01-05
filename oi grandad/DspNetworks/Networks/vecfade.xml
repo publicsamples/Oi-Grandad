@@ -808,7 +808,8 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.7700781250000001">
+      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.4300000071525574"
+                 DefaultValue="0.7700781250000001">
         <Connections>
           <Connection NodeId="smoothed_parameter41" ParameterId="SmoothingTime"/>
           <Connection NodeId="smoothed_parameter42" ParameterId="SmoothingTime"/>
@@ -828,7 +829,7 @@
           <Connection NodeId="smoothed_parameter28" ParameterId="SmoothingTime"/>
         </Connections>
       </Parameter>
-      <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.7056249999999999">
+      <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="0.7056249999999999">
         <Connections>
           <Connection NodeId="pma5" ParameterId="Add"/>
           <Connection NodeId="pma10" ParameterId="Add"/>
@@ -836,7 +837,8 @@
           <Connection NodeId="pma12" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="moddest" MinValue="0.0" MaxValue="16.0" Value="1.5" StepSize="0.1">
+      <Parameter ID="moddest" MinValue="0.0" MaxValue="16.0" Value="4.0" StepSize="0.1"
+                 DefaultValue="1.5">
         <Connections>
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
@@ -854,12 +856,12 @@
           <Connection NodeId="switcher1" ParameterId="Value"/>
         </Connections>
       </Parameter>
-      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="0.4949346923828125"
-                 StepSize="1.0">
+      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="0.0" StepSize="1.0"
+                 DefaultValue="0.4949346923828125">
         <Connections/>
       </Parameter>
-      <Parameter ID="multi" MinValue="1.000000014901161" MaxValue="32.0" Value="0.2634045410156249"
-                 StepSize="0.1000000014901161">
+      <Parameter ID="multi" MinValue="1.000000014901161" MaxValue="32.0" Value="1.000000014901161"
+                 StepSize="0.1000000014901161" DefaultValue="0.2634045410156249">
         <Connections/>
       </Parameter>
       <Parameter ID="scale" MinValue="0.0" MaxValue="1.0" Value="1.0">
@@ -871,8 +873,8 @@
       <Parameter ID="tempomod" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections/>
       </Parameter>
-      <Parameter ID="tempomoddest" MinValue="0.0" MaxValue="16.0" Value="1.0"
-                 StepSize="0.1000000014901161">
+      <Parameter ID="tempomoddest" MinValue="0.0" MaxValue="16.0" Value="1.000000014901161"
+                 StepSize="0.1000000014901161" DefaultValue="1.0">
         <Connections/>
       </Parameter>
       <Parameter ID="type" MinValue="0.0" MaxValue="1.0" Value="0.0" StepSize="1.0">
@@ -887,8 +889,9 @@
       <Parameter ID="onshot" MinValue="0.0" MaxValue="1.0" Value="1.0" StepSize="1.0">
         <Connections/>
       </Parameter>
-      <Parameter ID="trigdecay" MinValue="3.0" MaxValue="10000.0" Value="1.0"
-                 StepSize="0.1000000014901161" SkewFactor="0.1976716816425323">
+      <Parameter ID="trigdecay" MinValue="3.0" MaxValue="10000.0" Value="3.0"
+                 StepSize="0.1000000014901161" SkewFactor="0.1976716816425323"
+                 DefaultValue="1.0">
         <Connections/>
       </Parameter>
       <Parameter ID="temp" MinValue="0.0" MaxValue="18.0" StepSize="1.0" Value="1.0">
@@ -902,7 +905,7 @@
         <Connections/>
       </Parameter>
       <Parameter ID="mdest" MinValue="0.0" MaxValue="16.0" StepSize="0.1000000014901161"
-                 Value="1.0">
+                 Value="1.000000014901161" DefaultValue="1.0">
         <Connections/>
       </Parameter>
       <Parameter ID="direction" MinValue="0.0" MaxValue="1.0" StepSize="1.0" Value="0.0">

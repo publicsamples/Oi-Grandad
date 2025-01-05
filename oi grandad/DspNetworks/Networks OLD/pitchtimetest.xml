@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="pitchtimetest" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="pitchtimetest" Bypassed="0"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="timer" FactoryPath="control.timer" Bypassed="0">
+        <Properties>
+          <Property ID="ClassId" Value=""/>
+          <Property ID="Mode" Value="Ping"/>
+        </Properties>
+        <ComplexData>
+          <Tables/>
+          <SliderPacks/>
+          <AudioFiles/>
+          <Filters/>
+          <DisplayBuffers/>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Active" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="2000.0" StepSize="0.1000000014901161"
+                     ID="Interval" Value="500.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0">
+        <ModulationTargets>
+          <Connection NodeId="converter" ParameterId="Value"/>
+        </ModulationTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="15.0"/>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                     Value="12.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     ID="UnsyncedTime" Value="200.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="converter" FactoryPath="control.converter" Bypassed="0">
+        <Properties>
+          <Property ID="Mode" Value="Ms2Samples"/>
+        </Properties>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="-1" EmbeddedData="/Users/rick/Music/oi audio/Stems/vlid89-04.wav"
+                       MinValue="0" MaxValue="475685"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0"/>
+          <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                     ID="Pitch" Value="1.0"/>
+          <Parameter MinValue="20.0" MaxValue="120000.0" ID="GrainSize" Value="800.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="split" FactoryPath="container.split" Bypassed="0">
+        <Nodes>
+          <Node ID="phase_delay" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="3763.200055778027"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay5" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="11441.30017019063"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay4" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="10456.90015552193"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay9" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="5262.300078116357"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay8" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="20.30000000447035"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay7" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="20.30000000447035"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay6" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="20000.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay3" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="19006.90028292686"/>
+            </Parameters>
+          </Node>
+          <Node ID="phase_delay2" FactoryPath="fx.phase_delay" Bypassed="0">
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.2299045622348785" ID="Frequency" Value="66.90000069886446"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="Parameter" MinValue="20.0" MaxValue="800.0" Value="484.4290625">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

@@ -7,7 +7,10 @@ declare license "GNU General Public License v3 or later";
 import("stdfaust.lib");
 
 // In order to test this program, please uncomment the following line by removing the initial //
-process = Granola(5, 15).demo;
+ //  process = Granola(5, 15).ui(0), Granola(5, 15).ui(0);
+process = Granola(5, 15).ui(0), Granola(5, 15).ui(0);
+
+
 // It will create a Granola with a 5 seconds buffer and 15 grains at most.
 // Feel free to test other parameter values (w/r to your computer's power).
 // A short documentation is available below.

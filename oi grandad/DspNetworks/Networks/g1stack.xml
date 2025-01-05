@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="g1stack" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="g1stack" Bypassed="0" Name="g1stack">
+    <Nodes>
+      <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
+        <Nodes>
+          <Node ID="pack_resizer" FactoryPath="control.pack_resizer" Bypassed="0"
+                Name="pack_resizer">
+            <ComplexData>
+              <SliderPacks>
+                <SliderPack Index="0" EmbeddedData="4....f+."/>
+              </SliderPacks>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="128.0" StepSize="1.0" ID="NumSliders"
+                         Value="4.0" DefaultValue="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="clone_pack" FactoryPath="control.clone_pack" Bypassed="0"
+                Name="clone_pack">
+            <ModulationTargets>
+              <Connection NodeId="input_toggle4" ParameterId="Value2"/>
+            </ModulationTargets>
+            <ComplexData>
+              <SliderPacks>
+                <SliderPack Index="0"/>
+              </SliderPacks>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="NumClones"
+                         Value="4.0" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="clone_pack1" FactoryPath="control.clone_pack" Bypassed="0"
+                Name="clone_pack">
+            <ModulationTargets>
+              <Connection NodeId="gt2245" ParameterId="Pitch"/>
+            </ModulationTargets>
+            <ComplexData>
+              <SliderPacks>
+                <SliderPack Index="1"/>
+              </SliderPacks>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="NumClones"
+                         Value="4.0" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="clone_cable" FactoryPath="control.clone_cable" Bypassed="0"
+                Name="clone_cable">
+            <Properties>
+              <Property ID="Mode" Value="Fixed"/>
+            </Properties>
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="NumClones"
+                         Value="4.0" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Gamma" Value="0.0"/>
+            </Parameters>
+            <ModulationTargets>
+              <Connection NodeId="input_toggle4" ParameterId="Value1"/>
+            </ModulationTargets>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="clone1" FactoryPath="container.clone" Bypassed="0" Name="clone1"
+            ShowClones="0" ShowParameters="1">
+        <Properties>
+          <Property ID="IsVertical" Value="0"/>
+        </Properties>
+        <Nodes>
+          <Node ID="clone1_child" FactoryPath="container.chain" Bypassed="0"
+                Name="clone1_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="input_toggle4" FactoryPath="control.input_toggle" Bypassed="0"
+                    Name="input_toggle4">
+                <ModulationTargets>
+                  <Connection NodeId="gt2245" ParameterId="Position"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="gt2245" FactoryPath="project.gt2244" Bypassed="0" Name="gt2245">
+                <ComplexData>
+                  <AudioFiles>
+                    <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Untitled Loop Project/Original/70-92 bpm/Returner-70-1.aif"
+                               MinValue="0" MaxValue="2025494"/>
+                  </AudioFiles>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" DefaultValue="0.7297656536102295"
+                             Automated="1"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="0.1000000014901161"
+                             ID="Pitch" DefaultValue="-0.2999998331069946" Automated="1"/>
+                  <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" Value="151.1045117187488"
+                             DefaultValue="8822.9716796875"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.9991630859375"
+                             DefaultValue="0.8017207980155945"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="spread" Value="0.4675" DefaultValue="0.8700156807899475"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchWinSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PitchWinTempo"
+                             Value="13.0" DefaultValue="2.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchWinDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchWinTime" Value="467.9000069722533" DefaultValue="63.90000152587891"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchXXfSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PichXfTempo"
+                             Value="14.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchXfDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchXfTime" Value="1000.0" DefaultValue="56.90000152587891"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMin"
+                             Value="0.0" DefaultValue="-12.0"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMax"
+                             Value="12.0"/>
+                  <Parameter MinValue="0.0" MaxValue="12.0" ID="PitchStep" Value="4.3515087890625"
+                             DefaultValue="0.9943593740463257"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone1_child1" FactoryPath="container.chain" Bypassed="0"
+                Name="clone1_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="input_toggle5" FactoryPath="control.input_toggle" Bypassed="0"
+                    Name="input_toggle4">
+                <ModulationTargets>
+                  <Connection NodeId="gt2252" ParameterId="Position"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Value="0.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="gt2252" FactoryPath="project.gt2244" Bypassed="0" Name="gt2245">
+                <ComplexData>
+                  <AudioFiles>
+                    <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Untitled Loop Project/Original/70-92 bpm/Returner-70-1.aif"
+                               MinValue="0" MaxValue="2025494"/>
+                  </AudioFiles>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" DefaultValue="0.7297656536102295"
+                             Automated="1"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="0.1000000014901161"
+                             ID="Pitch" Value="1.788139343261719e-7" DefaultValue="-0.2999998331069946"/>
+                  <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" Value="151.1045117187488"
+                             DefaultValue="8822.9716796875"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.9991630859375"
+                             DefaultValue="0.8017207980155945"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="spread" Value="0.4675" DefaultValue="0.8700156807899475"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchWinSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PitchWinTempo"
+                             Value="13.0" DefaultValue="2.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchWinDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchWinTime" Value="467.9000069722533" DefaultValue="63.90000152587891"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchXXfSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PichXfTempo"
+                             Value="14.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchXfDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchXfTime" Value="1000.0" DefaultValue="56.90000152587891"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMin"
+                             Value="0.0" DefaultValue="-12.0"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMax"
+                             Value="12.0"/>
+                  <Parameter MinValue="0.0" MaxValue="12.0" ID="PitchStep" Value="4.3515087890625"
+                             DefaultValue="0.9943593740463257"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone1_child2" FactoryPath="container.chain" Bypassed="0"
+                Name="clone1_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="input_toggle6" FactoryPath="control.input_toggle" Bypassed="0"
+                    Name="input_toggle4">
+                <ModulationTargets>
+                  <Connection NodeId="gt2253" ParameterId="Position"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Value="0.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="gt2253" FactoryPath="project.gt2244" Bypassed="0" Name="gt2245">
+                <ComplexData>
+                  <AudioFiles>
+                    <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Untitled Loop Project/Original/70-92 bpm/Returner-70-1.aif"
+                               MinValue="0" MaxValue="2025494"/>
+                  </AudioFiles>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" DefaultValue="0.7297656536102295"
+                             Automated="1"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="0.1000000014901161"
+                             ID="Pitch" Value="1.788139343261719e-7" DefaultValue="-0.2999998331069946"/>
+                  <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" Value="151.1045117187488"
+                             DefaultValue="8822.9716796875"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.9991630859375"
+                             DefaultValue="0.8017207980155945"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="spread" Value="0.4675" DefaultValue="0.8700156807899475"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchWinSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PitchWinTempo"
+                             Value="13.0" DefaultValue="2.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchWinDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchWinTime" Value="467.9000069722533" DefaultValue="63.90000152587891"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchXXfSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PichXfTempo"
+                             Value="14.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchXfDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchXfTime" Value="1000.0" DefaultValue="56.90000152587891"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMin"
+                             Value="0.0" DefaultValue="-12.0"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMax"
+                             Value="12.0"/>
+                  <Parameter MinValue="0.0" MaxValue="12.0" ID="PitchStep" Value="4.3515087890625"
+                             DefaultValue="0.9943593740463257"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone1_child3" FactoryPath="container.chain" Bypassed="0"
+                Name="clone1_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="input_toggle7" FactoryPath="control.input_toggle" Bypassed="0"
+                    Name="input_toggle4">
+                <ModulationTargets>
+                  <Connection NodeId="gt2254" ParameterId="Position"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Value="0.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="gt2254" FactoryPath="project.gt2244" Bypassed="0" Name="gt2245">
+                <ComplexData>
+                  <AudioFiles>
+                    <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Untitled Loop Project/Original/70-92 bpm/Returner-70-1.aif"
+                               MinValue="0" MaxValue="2025494"/>
+                  </AudioFiles>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" DefaultValue="0.7297656536102295"
+                             Automated="1"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="0.1000000014901161"
+                             ID="Pitch" Value="1.788139343261719e-7" DefaultValue="-0.2999998331069946"/>
+                  <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" Value="151.1045117187488"
+                             DefaultValue="8822.9716796875"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.9991630859375"
+                             DefaultValue="0.8017207980155945"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="spread" Value="0.4675" DefaultValue="0.8700156807899475"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchWinSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PitchWinTempo"
+                             Value="13.0" DefaultValue="2.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchWinDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchWinTime" Value="467.9000069722533" DefaultValue="63.90000152587891"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchXXfSync"
+                             Value="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PichXfTempo"
+                             Value="14.0"/>
+                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchXfDiv"
+                             Value="1.0" DefaultValue="8.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             ID="PitchXfTime" Value="1000.0" DefaultValue="56.90000152587891"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMin"
+                             Value="0.0" DefaultValue="-12.0"/>
+                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMax"
+                             Value="12.0"/>
+                  <Parameter MinValue="0.0" MaxValue="12.0" ID="PitchStep" Value="4.3515087890625"
+                             DefaultValue="0.9943593740463257"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters>
+          <Parameter MinValue="1.0" MaxValue="4" StepSize="1.0" ID="NumClones" Value="4.0"
+                     DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="SplitSignal"
+                     Value="2.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

@@ -6,12 +6,6 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// ANALOG IN:
-// ANALOG 0	: Population: 0 = almost nothing. 1 = Full grain
-// ANALOG 1	: Depth of each grain, in ms.
-// ANALOG 2	: Position in the table = delay 
-// ANALOG 3	: Speed = pitch change of the grains
-// ANALOG 4	: Feedback
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -20,13 +14,13 @@ import("all.lib");
 // FOR 4 grains - MONO
 
 // UI //////////////////////////////////////////
-popul = 1 - hslider("population[BELA: ANALOG_0]", 1, 0, 1, 0.001);	// Coef 1 = maximum; 0 = almost nothing (0.95)
-taille = hslider("taille[BELA: ANALOG_1]", 10, 4, 12000, 0.001 );	// Size in milliseconds
-decal = 1 - hslider("decal[BELA: ANALOG_2]",0,0,1,0.001);			// Read position compared to table write position
+popul = 1 - hslider("population", 1, 0, 1, 0.001);	// Coef 1 = maximum; 0 = almost nothing (0.95)
+taille = hslider("taille", 10, 4, 128000., 0.001 );	// Size in milliseconds
+decal = 1 - hslider("decal",0,0,1,0.001);			// Read position compared to table write position
 
-speed = hslider("speed[BELA: ANALOG_3]", 1, 0.125, 4, 0.001);
+speed = hslider("speed", 1, 0.125, 4, 0.001);
 
-feedback = hslider("feedback[BELA: ANALOG_4]",0,0,2,0.001);	
+feedback = hslider("feedback",0,0,1.5,0.001);	
 
 freq = 1000/taille;
 tmpTaille = taille*ma.SR/ 1000;

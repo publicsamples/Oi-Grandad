@@ -40,7 +40,8 @@
       <Parameter ID="input2" MinValue="0.0" MaxValue="1.0" Value="0.269109375">
         <Connections/>
       </Parameter>
-      <Parameter ID="input3" MinValue="0.0" MaxValue="1.0" Value="0.3755156249999999">
+      <Parameter ID="input3" MinValue="0.0" MaxValue="1.0" Value="0.4621249999999999"
+                 DefaultValue="0.3755156249999999">
         <Connections/>
       </Parameter>
       <Parameter ID="input4" MinValue="0.0" MaxValue="1.0" Value="0.0">
