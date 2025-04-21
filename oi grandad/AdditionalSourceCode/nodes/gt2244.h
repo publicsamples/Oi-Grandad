@@ -102,6 +102,21 @@ using Dense = parameter::chain<ranges::Identity,
                                parameter::plain<gt2244_impl::granulator_t, 3>, 
                                parameter::plain<project::granular<NV>, 2>>;
 
+DECLARE_PARAMETER_RANGE(InputGain_InputRange, 
+                        0., 
+                        0.08);
+DECLARE_PARAMETER_RANGE(InputGain_0Range, 
+                        0., 
+                        0.25);
+
+template <int NV>
+using InputGain_0 = parameter::from0To1<gt2244_impl::oscillator_t<NV>, 
+                                        5, 
+                                        InputGain_0Range>;
+
+template <int NV>
+using InputGain = parameter::chain<InputGain_InputRange, InputGain_0<NV>>;
+
 DECLARE_PARAMETER_RANGE_STEP(Feed_1Range, 
                              0., 
                              1.5, 
@@ -142,9 +157,6 @@ using InputShape = parameter::plain<gt2244_impl::oscillator_t<NV>,
 template <int NV>
 using InputRatio = parameter::plain<gt2244_impl::oscillator_t<NV>, 
                                     2>;
-template <int NV>
-using InputGain = parameter::plain<gt2244_impl::oscillator_t<NV>, 
-                                   5>;
 template <int NV>
 using Damp = parameter::plain<project::greyhole<NV>, 1>;
 template <int NV>
@@ -243,9 +255,9 @@ template <int NV> struct instance: public gt2244_impl::gt2244_t_<NV>
             0x7061, 0x0065, 0x0000, 0x0000, 0x0000, 0x4080, 0x0000, 0x4000, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x135B, 0x0000, 0x4900, 0x706E, 
             0x7475, 0x6152, 0x6974, 0x006F, 0x0000, 0x0000, 0x0000, 0x4180, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x145B, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x145B, 0x0000, 
             0x4900, 0x706E, 0x7475, 0x6147, 0x6E69, 0x0000, 0x0000, 0x0A00, 
-            0xA3D7, 0xC03D, 0xA678, 0x0039, 0x8000, 0x003F, 0x0000, 0x5B00, 
+            0xA3D7, 0x603D, 0x0FB0, 0x003B, 0x8000, 0x003F, 0x0000, 0x5B00, 
             0x0015, 0x0000, 0x6546, 0x6465, 0x0000, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x0000, 0x8000, 0x0A3F, 0x23D7, 0x5B3C, 0x0016, 
             0x0000, 0x6144, 0x706D, 0x0000, 0x0000, 0xA400, 0x7D70, 0x003F, 
@@ -375,8 +387,8 @@ template <int NV> struct instance: public gt2244_impl::gt2244_t_<NV>
 		this->setParameterT(16, 0.994359);
 		this->setParameterT(17, 0.);
 		this->setParameterT(18, 2.);
-		this->setParameterT(19, 1.);
-		this->setParameterT(20, 0.00031752);
+		this->setParameterT(19, 0.);
+		this->setParameterT(20, 0.00219252);
 		this->setParameterT(21, 0.);
 		this->setParameterT(22, 0.);
 		this->setParameterT(23, 0.5);

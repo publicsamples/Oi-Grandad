@@ -53,7 +53,7 @@
                       <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Phase" Value="0.49782275390625"
                                  DefaultValue="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="0.08" ID="Gain" DefaultValue="1.0" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="0.25" ID="Gain" DefaultValue="1.0" Automated="1"/>
                     </Parameters>
                   </Node>
                 </Nodes>
@@ -254,12 +254,12 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="InputRatio"
-                 Value="1.0" DefaultValue="0.0">
+                 Value="0.0">
         <Connections>
           <Connection NodeId="oscillator" ParameterId="Freq Ratio"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="0.08" ID="InputGain" Value="0.0003175195312499981"
+      <Parameter MinValue="0.0" MaxValue="0.08" ID="InputGain" Value="0.002192519531249999"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="oscillator" ParameterId="Gain"/>

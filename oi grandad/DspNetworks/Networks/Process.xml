@@ -433,7 +433,7 @@
                                 </Parameters>
                               </Node>
                               <Node ID="branch22" FactoryPath="container.branch" Bypassed="0" Name="branch"
-                                    ShowParameters="1" Folded="1">
+                                    ShowParameters="1">
                                 <Nodes>
                                   <Node ID="chain353" FactoryPath="container.chain" Bypassed="0" Name="chain5">
                                     <Nodes>
@@ -813,6 +813,7 @@
                                 </Parameters>
                                 <ModulationTargets>
                                   <Connection NodeId="tempo_sync1" ParameterId="Tempo"/>
+                                  <Connection NodeId="pma" ParameterId="Add"/>
                                 </ModulationTargets>
                               </Node>
                               <Node ID="clear40" FactoryPath="math.clear" Bypassed="0" Name="clear2">
@@ -1218,10 +1219,6 @@
                                   <Parameter MinValue="-36.0" MaxValue="36.0" ID="Add" DefaultValue="0.0"
                                              Automated="1"/>
                                 </Parameters>
-                                <ModulationTargets>
-                                  <Connection NodeId="smoothed_parameter_unscaled" ParameterId="Value"/>
-                                  <Connection NodeId="smoothed_parameter_unscaled2" ParameterId="Value"/>
-                                </ModulationTargets>
                               </Node>
                               <Node ID="clear38" FactoryPath="math.clear" Bypassed="0" Name="clear2">
                                 <Parameters>
@@ -2485,8 +2482,7 @@
                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
                     </Parameters>
                   </Node>
-                  <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split"
-                        Folded="1">
+                  <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
                     <Nodes>
                       <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain2">
                         <Nodes>
@@ -2610,8 +2606,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
                         </Parameters>
                       </Node>
-                      <Node ID="split1" FactoryPath="container.split" Bypassed="0" Name="split"
-                            Folded="1">
+                      <Node ID="split1" FactoryPath="container.split" Bypassed="0" Name="split">
                         <Nodes>
                           <Node ID="chain5" FactoryPath="container.chain" Bypassed="0" Name="chain2">
                             <Nodes>
@@ -2641,7 +2636,7 @@
                                           <Property ID="Mode" Value="NoteNumber"/>
                                         </Properties>
                                         <ModulationTargets>
-                                          <Connection NodeId="converter2" ParameterId="Value"/>
+                                          <Connection NodeId="pma" ParameterId="Value"/>
                                         </ModulationTargets>
                                         <Parameters/>
                                       </Node>
@@ -2651,6 +2646,16 @@
                                   <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0"
                                         Name="modchain">
                                     <Nodes>
+                                      <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Name="pma">
+                                        <ModulationTargets>
+                                          <Connection NodeId="converter2" ParameterId="Value"/>
+                                        </ModulationTargets>
+                                        <Parameters>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                                          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
+                                          <Parameter MinValue="5.551115123125783e-17" MaxValue="1.0" ID="Add" Automated="1"/>
+                                        </Parameters>
+                                      </Node>
                                       <Node ID="converter2" FactoryPath="control.converter" Bypassed="0"
                                             Name="converter">
                                         <Properties>
@@ -2698,6 +2703,9 @@
                                               <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                          ID="UnsyncedTime" Value="200.0"/>
                                             </Parameters>
+                                            <ModulationTargets>
+                                              <Connection NodeId="smoothed_parameter_unscaled1" ParameterId="Value"/>
+                                            </ModulationTargets>
                                           </Node>
                                           <Node ID="receive1" FactoryPath="routing.receive" Bypassed="0" Name="receive1">
                                             <Parameters>
@@ -2714,8 +2722,8 @@
                                               <Connection NodeId="fix_delay1" ParameterId="DelayTime"/>
                                             </ModulationTargets>
                                             <Parameters>
-                                              <Parameter MinValue="0.0" MaxValue="1000.0" ID="Value" Value="195.12646484375"
-                                                         DefaultValue="0.0"/>
+                                              <Parameter MinValue="0.0" MaxValue="1000.0" ID="Value" DefaultValue="0.0"
+                                                         Automated="1"/>
                                               <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                          ID="SmoothingTime" DefaultValue="100.0" Automated="1"/>
                                               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
@@ -2821,36 +2829,6 @@
                                             </Nodes>
                                             <Parameters/>
                                           </Node>
-                                          <Node ID="smoothed_parameter_unscaled" FactoryPath="control.smoothed_parameter_unscaled"
-                                                Bypassed="0" Name="smoothed_parameter_unscaled">
-                                            <Properties>
-                                              <Property ID="Mode" Value="Linear Ramp"/>
-                                            </Properties>
-                                            <Parameters>
-                                              <Parameter MinValue="24.0" MaxValue="24.0" ID="Value" Automated="1"/>
-                                              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                                         ID="SmoothingTime" DefaultValue="100.0"/>
-                                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-                                            </Parameters>
-                                            <ModulationTargets>
-                                              <Connection NodeId="faust" ParameterId="shift (semitones)"/>
-                                            </ModulationTargets>
-                                          </Node>
-                                          <Node ID="faust" FactoryPath="core.faust" Bypassed="0" Name="faust">
-                                            <Properties>
-                                              <Property ID="ClassId" Value="PitchShifter"/>
-                                              <Property ID="NumParameters" Value="0"/>
-                                            </Properties>
-                                            <Parameters>
-                                              <Parameter MinValue="-24.0" MaxValue="24.0" StepSize="0.1000000014901161"
-                                                         ID="shift (semitones)" Automated="1"/>
-                                              <Parameter MinValue="50.0" MaxValue="10000.0" StepSize="1.0" ID="window (samples)"
-                                                         Value="10000.0" DefaultValue="1000.0"/>
-                                              <Parameter MinValue="1.0" MaxValue="10000.0" StepSize="1.0" ID="xfade (samples)"
-                                                         Value="10000.0" DefaultValue="10.0"/>
-                                            </Parameters>
-                                            <SwitchTargets/>
-                                          </Node>
                                           <Node ID="one_pole4" FactoryPath="filters.one_pole" Bypassed="0" Name="one_pole">
                                             <ComplexData>
                                               <Filters>
@@ -2910,36 +2888,6 @@
                                               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
                                               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
                                             </Parameters>
-                                          </Node>
-                                          <Node ID="smoothed_parameter_unscaled2" FactoryPath="control.smoothed_parameter_unscaled"
-                                                Bypassed="0" Name="smoothed_parameter_unscaled2">
-                                            <Properties>
-                                              <Property ID="Mode" Value="Linear Ramp"/>
-                                            </Properties>
-                                            <ModulationTargets>
-                                              <Connection NodeId="faust1" ParameterId="shift (semitones)"/>
-                                            </ModulationTargets>
-                                            <Parameters>
-                                              <Parameter MinValue="-24.0" MaxValue="24.0" ID="Value" Automated="1"/>
-                                              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                                         ID="SmoothingTime" DefaultValue="100.0" Automated="1"/>
-                                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-                                            </Parameters>
-                                          </Node>
-                                          <Node ID="faust1" FactoryPath="core.faust" Bypassed="0" Name="faust1">
-                                            <Properties>
-                                              <Property ID="ClassId" Value="PitchShifter"/>
-                                              <Property ID="NumParameters" Value="0"/>
-                                            </Properties>
-                                            <Parameters>
-                                              <Parameter MinValue="-24.0" MaxValue="24.0" StepSize="0.1000000014901161"
-                                                         ID="shift (semitones)" Automated="1"/>
-                                              <Parameter MinValue="50.0" MaxValue="10000.0" StepSize="1.0" ID="window (samples)"
-                                                         Value="9749.0" DefaultValue="1000.0"/>
-                                              <Parameter MinValue="1.0" MaxValue="10000.0" StepSize="1.0" ID="xfade (samples)"
-                                                         Value="10000.0" DefaultValue="10.0"/>
-                                            </Parameters>
-                                            <SwitchTargets/>
                                           </Node>
                                         </Nodes>
                                         <Parameters/>
@@ -3141,7 +3089,6 @@
                  ID="smooth" Value="572.800008535385" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="smoothed_parameter_unscaled1" ParameterId="SmoothingTime"/>
-          <Connection NodeId="smoothed_parameter_unscaled2" ParameterId="SmoothingTime"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="feed" Value="1.0" DefaultValue="0.0">

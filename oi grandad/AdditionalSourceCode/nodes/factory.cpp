@@ -44,6 +44,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::BasicTest_networkdata>();
 		registerDataNode<project::bgg_networkdata>();
 		registerDataNode<project::delay_networkdata>();
+		registerDataNode<project::DelayCableTest_networkdata>();
 		registerDataNode<project::delverb_networkdata>();
 		registerDataNode<project::dg_networkdata>();
 		registerDataNode<project::er_networkdata>();
@@ -54,6 +55,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::_networkdata>();
 		registerDataNode<project::_networkdata>();
 		registerDataNode<project::filter_networkdata>();
+		registerDataNode<project::FilterForRes_networkdata>();
 		registerDataNode<project::flipterty_networkdata>();
 		registerDataNode<project::Ftedst_networkdata>();
 		registerDataNode<project::g_networkdata>();
