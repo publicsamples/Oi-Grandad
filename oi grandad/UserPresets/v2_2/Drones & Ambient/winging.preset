@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Preset Version="2.0.0">
+<Preset Version="2.2.0">
   <Content Processor="ui">
     <Control type="ScriptComboBox" id="type" value="1.0"/>
     <Control type="ScriptSlider" id="cutmod1" value="0.0"/>

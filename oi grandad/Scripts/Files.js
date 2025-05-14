@@ -3,6 +3,11 @@ const var File2 = Synth.getAudioSampleProcessor("gran2");
 const var File3 = Synth.getAudioSampleProcessor("gran3");
 const var File4 = Synth.getAudioSampleProcessor("gran4");
 
+const slot1 = File1.getAudioFile(0);
+const slot2 = File2.getAudioFile(0);
+const slot3 = File3.getAudioFile(0);
+const slot4 = File4.getAudioFile(0);
+
 const var FileSelect1 = Content.getComponent("FileSelect1");
 const var FileSelect2 = Content.getComponent("FileSelect2");
 const var FileSelect3 = Content.getComponent("FileSelect3");
@@ -22,6 +27,11 @@ const var Analysis1 = Synth.getAudioSampleProcessor("Analysis1");
 const var Analysis2 = Synth.getAudioSampleProcessor("Analysis2");
 const var Analysis3 = Synth.getAudioSampleProcessor("Analysis3");
 const var Analysis4 = Synth.getAudioSampleProcessor("Analysis4");
+
+const slotA1 = Analysis1.getAudioFile(0);
+const slotA2 = Analysis2.getAudioFile(0);
+const slotA3 = Analysis3.getAudioFile(0);
+const slotA4 = Analysis4.getAudioFile(0);
 
 const var FileSelectMac1 = Content.getComponent("FileSelectMac1");
 const var FileSelectMac2 = Content.getComponent("FileSelectMac2");
@@ -122,8 +132,8 @@ Content.getComponent("FileSelectMac1").setControlCallback(onFileSelectMac1Contro
 
 inline function onFileSelect1Control(component, value) {
 
-    File1.setFile(FileSelect1.get("items").split("\n")[value - 1]);
-    Analysis1.setFile(FileSelect1.get("items").split("\n")[value - 1]);
+    slot1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
+    slotA1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect1").setControlCallback(onFileSelect1Control);
@@ -209,8 +219,8 @@ Content.getComponent("FileSelectMac2").setControlCallback(onFileSelectMac2Contro
 
 inline function onFileSelect2Control(component, value) {
 
-    File2.setFile(FileSelect2.get("items").split("\n")[value - 1]);
-    Analysis2.setFile(FileSelect2.get("items").split("\n")[value - 1]);
+    slot2.loadFile(FileSelect2.get("items").split("\n")[value - 1]);
+    slotA2.loadFile(FileSelect2.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect2").setControlCallback(onFileSelect2Control);
@@ -282,8 +292,8 @@ Content.getComponent("FileSelectFront3").setControlCallback(onFileSelectFront3Co
 
 inline function onFileSelect3Control(component, value) {
 
-    File3.setFile(FileSelect3.get("items").split("\n")[value - 1]);
-    Analysis3.setFile(FileSelect3.get("items").split("\n")[value - 1]);
+    slot3.loadFile(FileSelect3.get("items").split("\n")[value - 1]);
+    slotA3.loadFile(FileSelect3.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect3").setControlCallback(onFileSelect3Control);
@@ -353,6 +363,15 @@ Content.getComponent("FolderSelect3").setControlCallback(onFolderSelect3Control)
 //Loads the samples
 
 
+inline function onFileSelect4Control(component, value) {
+
+    slot4.loadFile(FileSelect4.get("items").split("\n")[value - 1]);
+    slotA4.loadFile(FileSelect4.get("items").split("\n")[value - 1]);
+};
+
+Content.getComponent("FileSelect4").setControlCallback(onFileSelect4Control);
+
+
 inline function onFileSelectFront4Control(component, value)
 {
 	Engine.allNotesOff();
@@ -385,12 +404,4 @@ inline function onFileSelectMac4Control(component, value)
 Content.getComponent("FileSelectMac4").setControlCallback(onFileSelectMac4Control);
 
 
-
-inline function onFileSelect4Control(component, value) {
-
-    File4.setFile(FileSelect4.get("items").split("\n")[value - 1]);
-    Analysis4.setFile(FileSelect4.get("items").split("\n")[value - 1]);
-};
-
-Content.getComponent("FileSelect4").setControlCallback(onFileSelect4Control);
 

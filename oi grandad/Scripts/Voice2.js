@@ -3,9 +3,9 @@ const var pitch1 = Content.getComponent("pitch1");
 const var XfModControls2 = Content.getComponent("XfModControls2");
 const var XfMode2 = Content.getComponent("XfMode2");
 
-const var StackItem2 = [Content.getComponent("PosIndicator5"),
-                        Content.getComponent("PosIndicator6"),
+const var StackItem2 = [Content.getComponent("PosIndicator6"),
                         Content.getComponent("PosIndicator7"),
+                        Content.getComponent("PosIndicator8"),
                         Content.getComponent("StagesPos2"),
                         Content.getComponent("PosOffsetLabel2"),
                         Content.getComponent("posoffset2"),

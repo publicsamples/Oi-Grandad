@@ -11,7 +11,7 @@
         </Properties>
         <ComplexData>
           <AudioFiles>
-            <AudioFile Index="0" MinValue="0" MaxValue="1119461"/>
+            <AudioFile Index="0" MinValue="0" MaxValue="720000"/>
           </AudioFiles>
         </ComplexData>
         <Parameters/>

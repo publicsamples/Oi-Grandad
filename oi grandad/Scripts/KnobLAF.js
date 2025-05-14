@@ -208,7 +208,7 @@ for (i = 0; i < 4; i++)
 
 const var WinFadeTempo =[];
 
-for (i = 0; i < 3; i++)
+for (i = 0; i < 4; i++)
 {
     WinFadeTempo[i] = Content.getComponent("WinFadeTempo"+(i+1)).setLocalLookAndFeel(KnobLaf);
 
