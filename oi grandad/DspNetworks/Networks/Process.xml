@@ -2058,7 +2058,7 @@
                                 </Parameters>
                               </Node>
                               <Node ID="branch24" FactoryPath="container.branch" Bypassed="0" Name="branch"
-                                    ShowParameters="1" Folded="1">
+                                    ShowParameters="1">
                                 <Nodes>
                                   <Node ID="chain387" FactoryPath="container.chain" Bypassed="0" Name="chain5">
                                     <Nodes>

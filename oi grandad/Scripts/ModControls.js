@@ -87,18 +87,18 @@ Content.getComponent("ModType2").setControlCallback(onModType2Control);
 
 const var mod2tables = []
 
-mod2tables[0] = Content.getComponent("SliderPackB");
-mod2tables[1] = Content.getComponent("SliderPackB1");
-mod2tables[2] = Content.getComponent("SliderPackB2");
-mod2tables[3] = Content.getComponent("SliderPackB3");
+mod2tables[0] = Content.getComponent("SliderPackA4");
+mod2tables[1] = Content.getComponent("SliderPackA5");
+mod2tables[2] = Content.getComponent("SliderPackA6");
+mod2tables[3] = Content.getComponent("SliderPackA7");
 
 
 const var Mod2SPs = []
 
 Mod2SPs[0] = Content.getComponent("ScriptTable2");
-Mod2SPs[1] = Content.getComponent("ScriptTableB2");
-Mod2SPs[2] = Content.getComponent("ScriptTableB3");
-Mod2SPs[3] = Content.getComponent("ScriptTableB4");
+Mod2SPs[1] = Content.getComponent("ScriptTableA5");
+Mod2SPs[2] = Content.getComponent("ScriptTableA6");
+Mod2SPs[3] = Content.getComponent("ScriptTableA7");
 
 const var Stage2 = Content.getComponent("Stage2");
 
@@ -144,18 +144,18 @@ Content.getComponent("ModType3").setControlCallback(onModType3Control);
 
 const var mod3tables = []
 
-mod3tables[0] = Content.getComponent("SliderPackC");
-mod3tables[1] = Content.getComponent("SliderPackC1");
-mod3tables[2] = Content.getComponent("SliderPackC2");
-mod3tables[3] = Content.getComponent("SliderPackC3");
+mod3tables[0] = Content.getComponent("SliderPackA8");
+mod3tables[1] = Content.getComponent("SliderPackA9");
+mod3tables[2] = Content.getComponent("SliderPackA10");
+mod3tables[3] = Content.getComponent("SliderPackA11");
 
 
 const var Mod32SPs = []
 
 Mod32SPs[0] = Content.getComponent("ScriptTable3");
-Mod32SPs[1] = Content.getComponent("ScriptTableC2");
-Mod32SPs[2] = Content.getComponent("ScriptTableC3");
-Mod32SPs[3] = Content.getComponent("ScriptTableC4");
+Mod32SPs[1] = Content.getComponent("ScriptTableA8");
+Mod32SPs[2] = Content.getComponent("ScriptTableA9");
+Mod32SPs[3] = Content.getComponent("ScriptTableA10");
 
 const var Stage3 = Content.getComponent("Stage3");
 
@@ -200,18 +200,18 @@ Content.getComponent("ModType4").setControlCallback(onModType4Control);
 
 const var mod4tables = []
 
-mod4tables[0] = Content.getComponent("SliderPackD");
-mod4tables[1] = Content.getComponent("SliderPackD1");
-mod4tables[2] = Content.getComponent("SliderPackD2");
-mod4tables[3] = Content.getComponent("SliderPackD3");
+mod4tables[0] = Content.getComponent("ScriptTableA12");
+mod4tables[1] = Content.getComponent("ScriptTableA13");
+mod4tables[2] = Content.getComponent("ScriptTableA14");
+mod4tables[3] = Content.getComponent("ScriptTableA15");
 
 
 const var Mod4SPs = []
 
 Mod4SPs[0] = Content.getComponent("ScriptTable4");
-Mod4SPs[1] = Content.getComponent("ScriptTableD1");
-Mod4SPs[2] = Content.getComponent("ScriptTableD2");
-Mod4SPs[3] = Content.getComponent("ScriptTableD3");
+Mod4SPs[1] = Content.getComponent("ScriptTableA11");
+Mod4SPs[2] = Content.getComponent("ScriptTableA12");
+Mod4SPs[3] = Content.getComponent("ScriptTableA13");
 
 const var Stage4 = Content.getComponent("Stage4");
 
@@ -255,18 +255,18 @@ Content.getComponent("ModType5").setControlCallback(onModType5Control);
 
 const var mod5tables = []
 
-mod5tables[0] = Content.getComponent("SliderPackE");
-mod5tables[1] = Content.getComponent("SliderPackE1");
-mod5tables[2] = Content.getComponent("SliderPackE2");
-mod5tables[3] = Content.getComponent("SliderPackE3");
+mod5tables[0] = Content.getComponent("ScriptTableA16");
+mod5tables[1] = Content.getComponent("ScriptTableA17");
+mod5tables[2] = Content.getComponent("ScriptTableA18");
+mod5tables[3] = Content.getComponent("ScriptTableA19");
 
 
 const var Mod5SPs = []
 
 Mod5SPs[0] = Content.getComponent("ScriptTable5");
-Mod5SPs[1] = Content.getComponent("ScriptTableE2");
-Mod5SPs[2] = Content.getComponent("ScriptTableE3");
-Mod5SPs[3] = Content.getComponent("ScriptTableE4");
+Mod5SPs[1] = Content.getComponent("ScriptTableA14");
+Mod5SPs[2] = Content.getComponent("ScriptTableA15");
+Mod5SPs[3] = Content.getComponent("ScriptTableA16");
 
 const var Stage5 = Content.getComponent("Stage5");
 
@@ -310,18 +310,18 @@ Content.getComponent("ModType6").setControlCallback(onModType6Control);
 
 const var mod6tables = []
 
-mod6tables[0] = Content.getComponent("SliderPackF");
-mod6tables[1] = Content.getComponent("SliderPackF1");
-mod6tables[2] = Content.getComponent("SliderPackF2");
-mod6tables[3] = Content.getComponent("SliderPackF3");
+mod6tables[0] = Content.getComponent("ScriptTableA20");
+mod6tables[1] = Content.getComponent("ScriptTableA21");
+mod6tables[2] = Content.getComponent("ScriptTableA22");
+mod6tables[3] = Content.getComponent("ScriptTableA23");
 
 
 const var Mod6SPs = []
 
 Mod6SPs[0] = Content.getComponent("ScriptTable6");
-Mod6SPs[1] = Content.getComponent("ScriptTableF2");
-Mod6SPs[2] = Content.getComponent("ScriptTableF3");
-Mod6SPs[3] = Content.getComponent("ScriptTableF4");
+Mod6SPs[1] = Content.getComponent("ScriptTableA17");
+Mod6SPs[2] = Content.getComponent("ScriptTableA18");
+Mod6SPs[3] = Content.getComponent("ScriptTableA19");
 
 const var Stage6 = Content.getComponent("Stage6");
 
@@ -365,18 +365,18 @@ Content.getComponent("ModType7").setControlCallback(onModType7Control);
 
 const var mod7tables = []
 
-mod7tables[0] = Content.getComponent("SliderPackG");
-mod7tables[1] = Content.getComponent("SliderPackG1");
-mod7tables[2] = Content.getComponent("SliderPackG2");
-mod7tables[3] = Content.getComponent("SliderPackG3");
+mod7tables[0] = Content.getComponent("ScriptTableA24");
+mod7tables[1] = Content.getComponent("ScriptTableA25");
+mod7tables[2] = Content.getComponent("ScriptTableA26");
+mod7tables[3] = Content.getComponent("ScriptTableA27");
 
 
 const var Mod7SPs = []
 
 Mod7SPs[0] = Content.getComponent("ScriptTable7");
-Mod7SPs[1] = Content.getComponent("ScriptTableG2");
-Mod7SPs[2] = Content.getComponent("ScriptTableG3");
-Mod7SPs[3] = Content.getComponent("ScriptTableG4");
+Mod7SPs[1] = Content.getComponent("ScriptTableA20");
+Mod7SPs[2] = Content.getComponent("ScriptTableA21");
+Mod7SPs[3] = Content.getComponent("ScriptTableA22");
 
 const var Stage7 = Content.getComponent("Stage7");
 
@@ -420,18 +420,18 @@ Content.getComponent("ModType8").setControlCallback(onModType8Control);
 
 const var mod8tables = []
 
-mod8tables[0] = Content.getComponent("SliderPackH");
-mod8tables[1] = Content.getComponent("SliderPackH1");
-mod8tables[2] = Content.getComponent("SliderPackH2");
-mod8tables[3] = Content.getComponent("SliderPackH3");
+mod8tables[0] = Content.getComponent("SliderPackA28");
+mod8tables[1] = Content.getComponent("SliderPackA29");
+mod8tables[2] = Content.getComponent("SliderPackA30");
+mod8tables[3] = Content.getComponent("SliderPackA31");
 
 
 const var Mod8SPs = []
 
 Mod8SPs[0] = Content.getComponent("ScriptTable8");
-Mod8SPs[1] = Content.getComponent("ScriptTableH2");
-Mod8SPs[2] = Content.getComponent("ScriptTableH3");
-Mod8SPs[3] = Content.getComponent("ScriptTableH4");
+Mod8SPs[1] = Content.getComponent("ScriptTableA23");
+Mod8SPs[2] = Content.getComponent("ScriptTableA24");
+Mod8SPs[3] = Content.getComponent("ScriptTableA25");
 
 const var Stage8 = Content.getComponent("Stage8");
 
@@ -474,18 +474,18 @@ Content.getComponent("ModType9").setControlCallback(onModType9Control);
 
 const var mod9tables = []
 
-mod9tables[0] = Content.getComponent("SliderPackI");
-mod9tables[1] = Content.getComponent("SliderPackI1");
-mod9tables[2] = Content.getComponent("SliderPackI2");
-mod9tables[3] = Content.getComponent("SliderPackI3");
+mod9tables[0] = Content.getComponent("SliderPackA32");
+mod9tables[1] = Content.getComponent("SliderPackA33");
+mod9tables[2] = Content.getComponent("SliderPackA34");
+mod9tables[3] = Content.getComponent("SliderPackA35");
 
 
 const var Mod9SPs = []
 
 Mod9SPs[0] = Content.getComponent("ScriptTable9");
-Mod9SPs[1] = Content.getComponent("ScriptTableI2");
-Mod9SPs[2] = Content.getComponent("ScriptTableI3");
-Mod9SPs[3] = Content.getComponent("ScriptTableI4");
+Mod9SPs[1] = Content.getComponent("ScriptTableA26");
+Mod9SPs[2] = Content.getComponent("ScriptTableA27");
+Mod9SPs[3] = Content.getComponent("ScriptTableA28");
 
 const var Stage9 = Content.getComponent("Stage9");
 
@@ -529,18 +529,18 @@ Content.getComponent("ModType10").setControlCallback(onModType10Control);
 
 const var mod10tables = []
 
-mod10tables[0] = Content.getComponent("SliderPackJ");
-mod10tables[1] = Content.getComponent("SliderPackJ1");
-mod10tables[2] = Content.getComponent("SliderPackJ2");
-mod10tables[3] = Content.getComponent("SliderPackJ3");
+mod10tables[0] = Content.getComponent("SliderPackA36");
+mod10tables[1] = Content.getComponent("SliderPackA37");
+mod10tables[2] = Content.getComponent("SliderPackA38");
+mod10tables[3] = Content.getComponent("SliderPackA39");
 
 
 const var Mod10SPs = []
 
 Mod10SPs[0] = Content.getComponent("ScriptTable10");
-Mod10SPs[1] = Content.getComponent("ScriptTableJ2");
-Mod10SPs[2] = Content.getComponent("ScriptTableJ3");
-Mod10SPs[3] = Content.getComponent("ScriptTableJ4");
+Mod10SPs[1] = Content.getComponent("ScriptTableA29");
+Mod10SPs[2] = Content.getComponent("ScriptTableA30");
+Mod10SPs[3] = Content.getComponent("ScriptTableA31");
 
 const var Stage10 = Content.getComponent("Stage10");
 
@@ -584,18 +584,18 @@ Content.getComponent("ModType11").setControlCallback(onModType11Control);
 
 const var mod11tables = []
 
-mod11tables[0] = Content.getComponent("SliderPackK");
-mod11tables[1] = Content.getComponent("SliderPackK1");
-mod11tables[2] = Content.getComponent("SliderPackK2");
-mod11tables[3] = Content.getComponent("SliderPackK3");
+mod11tables[0] = Content.getComponent("SliderPackA40");
+mod11tables[1] = Content.getComponent("SliderPackA41");
+mod11tables[2] = Content.getComponent("SliderPackA42");
+mod11tables[3] = Content.getComponent("SliderPackA43");
 
 
 const var Mod11SPs = []
 
 Mod11SPs[0] = Content.getComponent("ScriptTable11");
-Mod11SPs[1] = Content.getComponent("ScriptTableK2");
-Mod11SPs[2] = Content.getComponent("ScriptTableK3");
-Mod11SPs[3] = Content.getComponent("ScriptTableK4");
+Mod11SPs[1] = Content.getComponent("ScriptTableA32");
+Mod11SPs[2] = Content.getComponent("ScriptTableA33");
+Mod11SPs[3] = Content.getComponent("ScriptTableA34");
 
 const var Stage11 = Content.getComponent("Stage11");
 
@@ -638,18 +638,18 @@ Content.getComponent("ModType12").setControlCallback(onModType12Control);
 
 const var mod12tables = []
 
-mod12tables[0] = Content.getComponent("SliderPackL");
-mod12tables[1] = Content.getComponent("SliderPackL1");
-mod12tables[2] = Content.getComponent("SliderPackL2");
-mod12tables[3] = Content.getComponent("SliderPackL3");
+mod12tables[0] = Content.getComponent("SliderPackA44");
+mod12tables[1] = Content.getComponent("SliderPackA45");
+mod12tables[2] = Content.getComponent("SliderPackA46");
+mod12tables[3] = Content.getComponent("SliderPackA47");
 
 
 const var Mod12SPs = []
 
 Mod12SPs[0] = Content.getComponent("ScriptTable12");
-Mod12SPs[1] = Content.getComponent("ScriptTableL2");
-Mod12SPs[2] = Content.getComponent("ScriptTableL3");
-Mod12SPs[3] = Content.getComponent("ScriptTableL4");
+Mod12SPs[1] = Content.getComponent("ScriptTableA35");
+Mod12SPs[2] = Content.getComponent("ScriptTableA36");
+Mod12SPs[3] = Content.getComponent("ScriptTableA37");
 
 const var Stage12 = Content.getComponent("Stage12");
 
@@ -673,6 +673,9 @@ const var ModPages = []
 ModPages[0] = Content.getComponent("MOD1");
 ModPages[1] = Content.getComponent("MOD2");
 ModPages[2] = Content.getComponent("MOD3");
+ModPages[3] = Content.getComponent("MOD4");
+ModPages[4] = Content.getComponent("MOD5");
+ModPages[5] = Content.getComponent("MOD6");
 
 
 inline function onModPageControl(component, value)

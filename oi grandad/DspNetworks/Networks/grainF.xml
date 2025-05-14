@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="grainF" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0">
+<Network ID="grainF" AllowPolyphonic="1" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="grainF" Bypassed="0" Name="grainF"
         ShowParameters="1">
     <Nodes>

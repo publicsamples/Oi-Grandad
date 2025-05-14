@@ -411,6 +411,13 @@ using branch22_t = container::branch<parameter::empty,
                                      chain368_t<NV>>;
 
 template <int NV>
+using smoothed_parameter_unscaled1_t = wrap::mod<parameter::plain<core::fix_delay, 0>, 
+                                                 control::smoothed_parameter_unscaled<NV, smoothers::linear_ramp<NV>>>;
+template <int NV>
+using tempo_sync1_t = wrap::mod<parameter::plain<smoothed_parameter_unscaled1_t<NV>, 0>, 
+                                control::tempo_sync<NV>>;
+
+template <int NV>
 using converter3_mod = parameter::chain<ranges::Identity, 
                                         parameter::plain<wrap::no_process<core::fix_delay>, 0>, 
                                         parameter::plain<wrap::no_process<jdsp::jdelay<NV>>, 1>, 
@@ -437,7 +444,7 @@ DECLARE_PARAMETER_RANGE_STEP(pma31_mod_0Range,
                              1.);
 
 template <int NV>
-using pma31_mod_0 = parameter::from0To1<control::tempo_sync<NV>, 
+using pma31_mod_0 = parameter::from0To1<tempo_sync1_t<NV>, 
                                         0, 
                                         pma31_mod_0Range>;
 
@@ -1371,12 +1378,8 @@ using modchain2_t = wrap::control_rate<modchain2_t_<NV>>;
 using stereo_cable = cable::block<2>;
 
 template <int NV>
-using smoothed_parameter_unscaled1_t = wrap::mod<parameter::plain<core::fix_delay, 0>, 
-                                                 control::smoothed_parameter_unscaled<NV, smoothers::linear_ramp<NV>>>;
-
-template <int NV>
 using chain1_t = container::chain<parameter::empty, 
-                                  wrap::fix<2, control::tempo_sync<NV>>, 
+                                  wrap::fix<2, tempo_sync1_t<NV>>, 
                                   routing::receive<stereo_cable>, 
                                   smoothed_parameter_unscaled1_t<NV>, 
                                   core::fix_delay, 
@@ -1507,7 +1510,7 @@ DECLARE_PARAMETER_RANGE_STEP(deldivRange,
                              1.);
 
 template <int NV>
-using deldiv = parameter::from0To1<control::tempo_sync<NV>, 
+using deldiv = parameter::from0To1<Process_impl::tempo_sync1_t<NV>, 
                                    1, 
                                    deldivRange>;
 
@@ -2658,7 +2661,7 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		auto& chain1 = this->getT(0).getT(0).getT(0).getT(3).                                // Process_impl::chain1_t<NV>
                        getT(1).getT(1).getT(0).getT(2).
                        getT(0);
-		auto& tempo_sync1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                   // control::tempo_sync<NV>
+		auto& tempo_sync1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                   // Process_impl::tempo_sync1_t<NV>
                             getT(1).getT(0).getT(2).getT(0).getT(0);
 		auto& receive1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                      // routing::receive<stereo_cable>
                          getT(1).getT(0).getT(2).getT(0).getT(1);
@@ -2823,6 +2826,8 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		global_cable333.getWrappedObject().getParameter().connectT(0, add327);   // global_cable333 -> add327::Value
 		global_cable334.getWrappedObject().getParameter().connectT(0, add328);   // global_cable334 -> add328::Value
 		global_cable335.getWrappedObject().getParameter().connectT(0, add329);   // global_cable335 -> add329::Value
+		smoothed_parameter_unscaled1.getParameter().connectT(0, fix_delay1);     // smoothed_parameter_unscaled1 -> fix_delay1::DelayTime
+		tempo_sync1.getParameter().connectT(0, smoothed_parameter_unscaled1);    // tempo_sync1 -> smoothed_parameter_unscaled1::Value
 		converter3.getWrappedObject().getParameter().connectT(0, fix_delay3);    // converter3 -> fix_delay3::DelayTime
 		converter3.getWrappedObject().getParameter().connectT(1, jdelay);        // converter3 -> jdelay::DelayTime
 		converter3.getWrappedObject().getParameter().connectT(2, jdelay_thiran); // converter3 -> jdelay_thiran::DelayTime
@@ -2909,10 +2914,9 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		xfader_p.getParameterT(0).connectT(0, gain);  // xfader -> gain::Gain
 		xfader_p.getParameterT(1).connectT(0, gain1); // xfader -> gain1::Gain
 		auto& xfader1_p = xfader1.getWrappedObject().getParameter();
-		xfader1_p.getParameterT(0).connectT(0, gain2);                       // xfader1 -> gain2::Gain
-		xfader1_p.getParameterT(1).connectT(0, gain3);                       // xfader1 -> gain3::Gain
-		midi2.getParameter().connectT(0, pma);                               // midi2 -> pma::Value
-		smoothed_parameter_unscaled1.getParameter().connectT(0, fix_delay1); // smoothed_parameter_unscaled1 -> fix_delay1::DelayTime
+		xfader1_p.getParameterT(0).connectT(0, gain2); // xfader1 -> gain2::Gain
+		xfader1_p.getParameterT(1).connectT(0, gain3); // xfader1 -> gain3::Gain
+		midi2.getParameter().connectT(0, pma);         // midi2 -> pma::Value
 		auto& ahdsr_p = ahdsr.getWrappedObject().getParameter();
 		
 		// Send Connections ------------------------------------------------------------------------
@@ -3434,9 +3438,9 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		
 		; // receive1::Feedback is automated
 		
-		smoothed_parameter_unscaled1.setParameterT(0, 195.126); // control::smoothed_parameter_unscaled::Value
-		;                                                       // smoothed_parameter_unscaled1::SmoothingTime is automated
-		smoothed_parameter_unscaled1.setParameterT(2, 1.);      // control::smoothed_parameter_unscaled::Enabled
+		;                                                  // smoothed_parameter_unscaled1::Value is automated
+		;                                                  // smoothed_parameter_unscaled1::SmoothingTime is automated
+		smoothed_parameter_unscaled1.setParameterT(2, 1.); // control::smoothed_parameter_unscaled::Enabled
 		
 		;                                  // fix_delay1::DelayTime is automated
 		fix_delay1.setParameterT(1, 512.); // core::fix_delay::FadeTime

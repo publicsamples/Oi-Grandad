@@ -4,27 +4,57 @@
   <Node FactoryPath="container.chain" ID="track2" Bypassed="0" ShowParameters="1"
         Name="track2">
     <Nodes>
-      <Node ID="a2" FactoryPath="container.chain" Bypassed="0" Name="a2">
+      <Node ID="a1" FactoryPath="container.chain" Bypassed="0" Name="a1">
         <Nodes>
-          <Node ID="fix64_block" FactoryPath="container.fix64_block" Bypassed="1"
-                Name="fix64_block">
+          <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
             <Nodes>
-              <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                    NodeColour="4282862770" Name="global_cable">
-                <Properties>
-                  <Property ID="Connection" Value="a2"/>
-                </Properties>
-                <ModulationTargets>
-                  <Connection NodeId="add1" ParameterId="Value"/>
-                </ModulationTargets>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.52159375"/>
-                </Parameters>
+              <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
+                <Nodes/>
+                <Parameters/>
               </Node>
-              <Node ID="add1" FactoryPath="math.add" Bypassed="0" Name="add1">
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                </Parameters>
+              <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain">
+                <Nodes>
+                  <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+                    <ModulationTargets>
+                      <Connection NodeId="global_cable1" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-61.59999942779541"
+                                 DefaultValue="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.4306765496730804" ID="Attack" Value="0.2000000029802322"
+                                 DefaultValue="50.0"/>
+                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.4306765496730804" ID="Release" Value="0.0" DefaultValue="50.0"/>
+                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.2968033850193024" ID="Ratio" Value="4.400000050663948"
+                                 DefaultValue="1.0"/>
+                      <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
+                        NodeColour="4289049160" Name="global_cable">
+                    <Properties>
+                      <Property ID="Connection" Value="Modulator14"/>
+                    </Properties>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.52159375"
+                                 Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
               </Node>
             </Nodes>
             <Parameters/>

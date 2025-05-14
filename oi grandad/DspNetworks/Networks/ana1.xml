@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="ana1" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="ana1" Bypassed="0" Name="ana1">
+  <Node FactoryPath="container.chain" ID="ana1" Bypassed="0" Name="ana1"
+        ShowParameters="1">
     <Nodes>
+      <Node ID="file_analyser" FactoryPath="control.file_analyser" Bypassed="0"
+            Name="file_analyser">
+        <Properties>
+          <Property ID="Mode" Value="Length"/>
+        </Properties>
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="0" MinValue="0" MaxValue="1119461"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters/>
+        <ModulationTargets>
+          <Connection NodeId="event_data_writer" ParameterId="Value"/>
+        </ModulationTargets>
+      </Node>
       <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
             Name="midichain">
         <Nodes>
-          <Node ID="file_analyser" FactoryPath="control.file_analyser" Bypassed="0"
-                Name="file_analyser">
-            <Properties>
-              <Property ID="Mode" Value="Length"/>
-            </Properties>
-            <ComplexData>
-              <AudioFiles>
-                <AudioFile Index="0" MinValue="0" MaxValue="653617"/>
-              </AudioFiles>
-            </ComplexData>
-            <Parameters/>
-            <ModulationTargets>
-              <Connection NodeId="event_data_writer" ParameterId="Value"/>
-            </ModulationTargets>
-          </Node>
           <Node ID="event_data_writer" FactoryPath="routing.event_data_writer"
                 Bypassed="0" Name="event_data_writer">
             <Parameters>
@@ -33,6 +34,29 @@
         <Parameters/>
       </Node>
     </Nodes>
-    <Parameters/>
+    <Parameters>
+      <Parameter ID="Grain" MinValue="6.661338147750939e-16" MaxValue="1.0" Value="0.2000000029802322"
+                 DefaultValue="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="gtempo" Value="1.0" DefaultValue="0.0">
+        <Connections/>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="div" Value="0.0">
+        <Connections/>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="sync" Value="1.0" DefaultValue="0.0"
+                 StepSize="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Mod" Value="0.0009752197265625"
+                 DefaultValue="0.0">
+        <Connections/>
+      </Parameter>
+      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="ModSrc" Value="1.0"
+                 DefaultValue="0.0">
+        <Connections/>
+      </Parameter>
+    </Parameters>
   </Node>
 </Network>

@@ -87,13 +87,50 @@ KnobLaf4.registerFunction("drawRotarySlider", function(g, obj)
 });
 
 
+const var windowdiv =[];
+
+for (i = 0; i < 4; i++)
+{
+    windowdiv[i] = Content.getComponent("windowdiv"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
+
+const var posoffset =[];
+
+for (i = 0; i < 4; i++)
+{
+    posoffset[i] = Content.getComponent("posoffset"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
+
+const var graindiv =[];
+
+for (i = 0; i < 4; i++)
+{
+    graindiv[i] = Content.getComponent("graindiv"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
+
+const var pitchoffset =[];
+
+for (i = 0; i < 4; i++)
+{
+    pitchoffset[i] = Content.getComponent("pitchoffset"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
+
+const var PitchStep =[];
+
+for (i = 0; i < 4; i++)
+{
+    PitchStep[i] = Content.getComponent("PitchStep"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
+
+const var MasterXf = Content.getComponent("MasterXf").setLocalLookAndFeel(KnobLaf4);
+const var Smooth = Content.getComponent("Smooth").setLocalLookAndFeel(KnobLaf4);
+const var XfModMaster = Content.getComponent("XfModMaster").setLocalLookAndFeel(KnobLaf4);
 
 
 
-Content.getComponent("windowdiv1").setLocalLookAndFeel(KnobLaf4);
-Content.getComponent("posoffset1").setLocalLookAndFeel(KnobLaf4);
-Content.getComponent("pitchoffset1").setLocalLookAndFeel(KnobLaf4);
-Content.getComponent("Mode2Feed1").setLocalLookAndFeel(KnobLaf4);
-Content.getComponent("Size1").setLocalLookAndFeel(KnobLaf4);
-Content.getComponent("diff1").setLocalLookAndFeel(KnobLaf4);
-Content.getComponent("graindiv1").setLocalLookAndFeel(KnobLaf4);
+

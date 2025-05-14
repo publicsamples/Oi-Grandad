@@ -86,60 +86,168 @@ KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
 });
 
 
+const var res =[];
+
+for (i = 0; i < 4; i++)
+{
+    res[i] = Content.getComponent("res"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var mix =[];
+
+for (i = 0; i < 4; i++)
+{
+    mix[i] = Content.getComponent("mix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var feed =[];
+
+for (i = 0; i < 4; i++)
+{
+    feed[i] = Content.getComponent("feed"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var delmix =[];
+
+for (i = 0; i < 4; i++)
+{
+    delmix[i] = Content.getComponent("delmix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var delsmth =[];
+
+for (i = 0; i < 4; i++)
+{
+    delsmth[i] = Content.getComponent("delsmth"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var delcut =[];
+
+for (i = 0; i < 4; i++)
+{
+    delcut[i] = Content.getComponent("delcut"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var Vol =[];
+
+for (i = 0; i < 4; i++)
+{
+    Vol[i] = Content.getComponent("Vol"+(i)).setLocalLookAndFeel(KnobLaf2);
+
+} 
 
 
-Content.getComponent("WinFadeTempo1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Winfade1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("InputGain1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Ratio1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("res1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("mix1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("feed1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("delmix1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("delcut1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("delsmth1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("deldiv1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Vol").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("pan").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("attack").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("decay").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("sustain").setLocalLookAndFeel(KnobLaf2);
+const var pan =[];
+
+for (i = 0; i < 4; i++)
+{
+    pan[i] = Content.getComponent("pan"+(i)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var attack =[];
+
+for (i = 0; i < 4; i++)
+{
+    attack[i] = Content.getComponent("attack"+(i)).setLocalLookAndFeel(KnobLaf2);
+
+} 
 
 
-Content.getComponent("tempo1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage1").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo2").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div2").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage2").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo3").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div3").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage3").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo4").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div4").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage4").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo5").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div5").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage5").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo6").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div6").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage6").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo7").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div7").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage7").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo8").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div8").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage8").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo9").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div9").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage9").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo10").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div10").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage10").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo11").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div11").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage11").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("tempo12").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Div12").setLocalLookAndFeel(KnobLaf2);
-Content.getComponent("Stage12").setLocalLookAndFeel(KnobLaf2);
+const var decay =[];
 
+for (i = 0; i < 4; i++)
+{
+    decay[i] = Content.getComponent("decay"+(i)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var sustain =[];
+
+for (i = 0; i < 4; i++)
+{
+    sustain[i] = Content.getComponent("sustain"+(i)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var tempo =[];
+
+for (i = 0; i < 12; i++)
+{
+    tempo[i] = Content.getComponent("tempo"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var Div =[];
+
+for (i = 0; i < 12; i++)
+{
+    Div[i] = Content.getComponent("Div"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var deldiv =[];
+
+for (i = 0; i < 4; i++)
+{
+    deldiv[i] = Content.getComponent("deldiv"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var Stage =[];
+
+for (i = 0; i < 12; i++)
+{
+    Stage[i] = Content.getComponent("Stage"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var DelayPitches =[];
+
+for (i = 0; i < 4; i++)
+{
+    DelayPitches[i] = Content.getComponent("DelayPitch"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var DelayTimes =[];
+
+for (i = 0; i < 4; i++)
+{
+    DelayTimes[i] = Content.getComponent("DelayTime"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+
+const var MacroSliders = [Content.getComponent("MacroPos1"),
+                          Content.getComponent("Macro1"),
+                          Content.getComponent("Macro3"),
+                          Content.getComponent("MacroPos2"),
+                          Content.getComponent("MacroPitch2"),
+                          Content.getComponent("MacroGain1"),
+                          Content.getComponent("Macro4"),
+                          Content.getComponent("Macro5"),
+                          Content.getComponent("Macro6"),
+                          Content.getComponent("MacroPitch1"),
+                          Content.getComponent("MacroGain"),
+                          Content.getComponent("Macro2"),
+                          Content.getComponent("MacroPitch3"),
+                          Content.getComponent("MacroPos3"),
+                          Content.getComponent("MacroGain2"),
+                          Content.getComponent("MacroGain3"),
+                          Content.getComponent("MacroPitch4"),
+                          Content.getComponent("Macro8"),
+                          Content.getComponent("Macro7"),
+                          Content.getComponent("MacroPos4")];
+                
+
+for(s in MacroSliders)
+      s.setLocalLookAndFeel(KnobLaf2);
+      
+      

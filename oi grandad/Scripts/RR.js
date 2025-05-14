@@ -1,14 +1,6 @@
 //RR
 
-const var filters = [Synth.getMidiProcessor("Filter1"),
-                     Synth.getMidiProcessor("Filter2"),
-                     Synth.getMidiProcessor("Filter3"),
-                     Synth.getMidiProcessor("Filter4")];
-                     
-const var RrLed = [Content.getComponent("RrLed1"),
-                   Content.getComponent("RrLed"),
-                   Content.getComponent("RrLed3"),
-                   Content.getComponent("RrLed4")];
+
       
 
 /** This is a data structure that can be used for

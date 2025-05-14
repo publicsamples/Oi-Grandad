@@ -4,162 +4,29 @@
   <Node FactoryPath="container.chain" ID="gt2244" Bypassed="0" Name="gt2244"
         ShowParameters="1">
     <Nodes>
-      <Node ID="branch1" FactoryPath="container.branch" Bypassed="0" Name="branch1"
-            ShowParameters="1">
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            Name="midichain">
         <Nodes>
-          <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
-                Name="midichain">
-            <Nodes>
-              <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
-                <ComplexData>
-                  <AudioFiles>
-                    <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Quetzalcoatl/Q-Bb.wav"
-                               MinValue="0" MaxValue="2025494"/>
-                  </AudioFiles>
-                </ComplexData>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
-                  <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
-                             ID="Pitch" Value="1.0"/>
-                  <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" DefaultValue="80.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Automated="1"/>
-                </Parameters>
-              </Node>
-            </Nodes>
-            <Parameters/>
-          </Node>
-          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain1">
-            <Nodes>
-              <Node ID="midichain1" FactoryPath="container.midichain" Bypassed="0"
-                    Name="midichain">
-                <Nodes>
-                  <Node ID="oscillator" FactoryPath="core.oscillator" Bypassed="0" Name="oscillator">
-                    <ComplexData>
-                      <DisplayBuffers>
-                        <DisplayBuffer Index="-1"/>
-                      </DisplayBuffers>
-                    </ComplexData>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" DefaultValue="0.0"
-                                 Automated="1"/>
-                      <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.2299045622348785" ID="Frequency" Value="55.00000052154063"
-                                 DefaultValue="220.0"/>
-                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Freq Ratio"
-                                 DefaultValue="1.0" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Phase" Value="0.49782275390625"
-                                 DefaultValue="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="0.25" ID="Gain" DefaultValue="1.0" Automated="1"/>
-                    </Parameters>
-                  </Node>
-                </Nodes>
-                <Parameters/>
-              </Node>
-              <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add">
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                </Parameters>
-              </Node>
-              <Node ID="file_player" FactoryPath="core.file_player" Bypassed="0"
-                    Name="file_player">
-                <ComplexData>
-                  <AudioFiles>
-                    <AudioFile Index="0" MinValue="0" MaxValue="2025494"/>
-                  </AudioFiles>
-                </ComplexData>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="PlaybackMode"
-                             Value="1.0" DefaultValue="2.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"
-                             DefaultValue="0.0"/>
-                  <Parameter MinValue="20.0" MaxValue="2000.0" ID="RootFrequency" Value="504.906875"/>
-                  <Parameter MinValue="0.0" MaxValue="2.0" StepSize="0.009999999776482582"
-                             ID="FreqRatio" DefaultValue="" Value="0.0"/>
-                </Parameters>
-              </Node>
-              <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
-                <Nodes>
-                  <Node ID="faust1" FactoryPath="core.faust" Bypassed="0" Name="faust1">
-                    <Properties>
-                      <Property ID="ClassId" Value="greyhole"/>
-                      <Property ID="NumParameters" Value="0"/>
-                    </Properties>
-                    <Parameters>
-                      <Parameter MinValue="0.001000000047497451" MaxValue="1.450000047683716"
-                                 StepSize="0.00009999999747378752" ID="delayTime" Value="0.001600000032340176"
-                                 DefaultValue="0.2000000029802322"/>
-                      <Parameter MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.001000000047497451"
-                                 ID="damping" Automated="1"/>
-                      <Parameter MinValue="0.5" MaxValue="3.0" StepSize="0.00009999999747378752"
-                                 ID="size" DefaultValue="1.0" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.00009999999747378752"
-                                 ID="diffusion" DefaultValue="0.5" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.009999999776482582"
-                                 ID="feedback" DefaultValue="0.8999999761581421" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
-                                 ID="modDepth" Value="0.0" DefaultValue="0.1000000014901161"/>
-                      <Parameter MinValue="0.0" MaxValue="10.0" StepSize="0.009999999776482582"
-                                 ID="modFreq" Value="5.829999869689345" DefaultValue="2.0"/>
-                    </Parameters>
-                    <SwitchTargets/>
-                  </Node>
-                  <Node ID="faust2" FactoryPath="core.faust" Bypassed="0" Name="faust1">
-                    <Properties>
-                      <Property ID="ClassId" Value="granular"/>
-                      <Property ID="NumParameters" Value="0"/>
-                    </Properties>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
-                                 ID="decal" Value="0.04500000213738531" DefaultValue="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1.5" StepSize="0.001000000047497451"
-                                 ID="feedback" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
-                                 ID="population" DefaultValue="1.0" Automated="1"/>
-                      <Parameter MinValue="0.125" MaxValue="4.0" StepSize="0.001000000047497451"
-                                 ID="speed" Value="0.648000024841167" DefaultValue="1.0"/>
-                      <Parameter MinValue="4.000000189989805" MaxValue="1200.0" StepSize="0.001000000047497451"
-                                 ID="taille" DefaultValue="10.0" Automated="1"/>
-                    </Parameters>
-                    <SwitchTargets/>
-                  </Node>
-                  <Node ID="gain1" FactoryPath="core.gain" Bypassed="0" Name="gain1">
-                    <Parameters>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Gain" Value="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
-                    </Parameters>
-                  </Node>
-                  <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
-                    <Nodes>
-                      <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain2">
-                        <Nodes/>
-                        <Parameters/>
-                      </Node>
-                      <Node ID="chain3" FactoryPath="container.chain" Bypassed="0" Name="chain2">
-                        <Nodes/>
-                        <Parameters/>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                </Nodes>
-                <Parameters/>
-              </Node>
-            </Nodes>
-            <Parameters/>
+          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Quetzalcoatl/Q-Bb.wav"
+                           MinValue="0" MaxValue="2025494"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Value="1.0"/>
+              <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" DefaultValue="80.0"
+                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Automated="1"/>
+            </Parameters>
           </Node>
         </Nodes>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1" StepSize="1.0" ID="Index" DefaultValue="0.0"
-                     Automated="1"/>
-        </Parameters>
+        <Parameters/>
       </Node>
     </Nodes>
     <Parameters>
@@ -167,24 +34,17 @@
                  DefaultValue="1.0">
         <Connections>
           <Connection NodeId="granulator" ParameterId="Position"/>
-          <Connection NodeId="add" ParameterId="Value"/>
         </Connections>
-      </Parameter>
-      <Parameter ID="Pitch" MinValue="-36.0" MaxValue="36.0" Value="2.00000056624412"
-                 DefaultValue="1.0" StepSize="0.1000000014901161">
-        <Connections/>
       </Parameter>
       <Parameter ID="GrainSize" MinValue="20.0" MaxValue="128000.0" Value="11018.28125"
                  DefaultValue="1.0">
         <Connections>
           <Connection NodeId="granulator" ParameterId="GrainSize"/>
-          <Connection NodeId="faust2" ParameterId="taille"/>
         </Connections>
       </Parameter>
       <Parameter ID="Dense" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="granulator" ParameterId="Density"/>
-          <Connection NodeId="faust2" ParameterId="population"/>
         </Connections>
       </Parameter>
       <Parameter ID="spread" MinValue="0.0" MaxValue="1.0" Value="0.8700156860351562"
@@ -196,98 +56,6 @@
       <Parameter ID="Detune" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="granulator" ParameterId="Detune"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchWinSync"
-                 Value="1.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PitchWinTempo"
-                 Value="2.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchWinDiv"
-                 Value="8.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                 ID="PitchWinTime" Value="63.90000095218419" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="PitchXXfSync"
-                 Value="1.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="PichXfTempo"
-                 Value="14.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchXfDiv"
-                 Value="8.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                 ID="PitchXfTime" Value="56.90000084787606" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMin"
-                 Value="-12.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="PitchMax"
-                 Value="12.0" DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="12.0" ID="PitchStep" Value="0.994359375"
-                 DefaultValue="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0">
-        <Connections>
-          <Connection NodeId="branch1" ParameterId="Index"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="InputShape"
-                 Value="2.0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="oscillator" ParameterId="Mode"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="InputRatio"
-                 Value="0.0">
-        <Connections>
-          <Connection NodeId="oscillator" ParameterId="Freq Ratio"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="0.08" ID="InputGain" Value="0.002192519531249999"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="oscillator" ParameterId="Gain"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.009999999776482582"
-                 ID="Feed" Value="0.0">
-        <Connections>
-          <Connection NodeId="faust1" ParameterId="feedback"/>
-          <Connection NodeId="faust2" ParameterId="feedback"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.001000000047497451"
-                 ID="Damp" Value="0.0">
-        <Connections>
-          <Connection NodeId="faust1" ParameterId="damping"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.5" MaxValue="3.0" StepSize="0.00009999999747378752"
-                 ID="Size" Value="0.5" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="faust1" ParameterId="size"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.00009999999747378752"
-                 ID="Diff" Value="0.0">
-        <Connections>
-          <Connection NodeId="faust1" ParameterId="diffusion"/>
         </Connections>
       </Parameter>
     </Parameters>

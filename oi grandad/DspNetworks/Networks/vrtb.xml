@@ -3,29 +3,12 @@
 <Network ID="vrtb" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="vrtb" Bypassed="0" Name="vrtb">
     <Nodes>
-      <Node ID="faust" FactoryPath="core.faust" Bypassed="0" Name="faust">
-        <Properties>
-          <Property ID="ClassId" Value="greyhole"/>
-          <Property ID="NumParameters" Value="0"/>
-        </Properties>
+      <Node ID="reverb" FactoryPath="fx.reverb" Bypassed="0" Name="reverb">
         <Parameters>
-          <Parameter MinValue="0.001000000047497451" MaxValue="1.450000047683716"
-                     StepSize="0.00009999999747378752" ID="delayTime" Value="0.001000000047497451"
-                     DefaultValue="0.2000000029802322"/>
-          <Parameter MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.001000000047497451"
-                     ID="damping" Value="0.9110000432701781" DefaultValue="0.0"/>
-          <Parameter MinValue="0.5" MaxValue="3.0" StepSize="0.00009999999747378752"
-                     ID="size" Value="2.999999936844688" DefaultValue="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.00009999999747378752"
-                     ID="diffusion" Value="0.0" DefaultValue="0.5"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.009999999776482582"
-                     ID="feedback" Value="0.9999999776482582" DefaultValue="0.8999999761581421"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
-                     ID="modDepth" Value="1.0" DefaultValue="0.1000000014901161"/>
-          <Parameter MinValue="0.0" MaxValue="10.0" StepSize="0.009999999776482582"
-                     ID="modFreq" Value="0.7999999821186066" DefaultValue="2.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Damping" Value="0.5"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Width" Value="0.5"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Size" Value="0.5"/>
         </Parameters>
-        <SwitchTargets/>
       </Node>
     </Nodes>
     <Parameters/>
