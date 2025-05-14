@@ -3,27 +3,33 @@
 <Network ID="vec3" AllowPolyphonic="1" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="vec3" Bypassed="0" Name="vec3">
     <Nodes>
-      <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
-            NodeColour="4282864562" Name="global_cable1">
-        <Properties>
-          <Property ID="Connection" Value="v3"/>
-        </Properties>
-        <ModulationTargets>
-          <Connection NodeId="gain" ParameterId="Gain"/>
-        </ModulationTargets>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
-        </Parameters>
-      </Node>
-      <Node ID="gain" FactoryPath="core.gain" Bypassed="0" Name="gain">
-        <Parameters>
-          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                     SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
-          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                     SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
-          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                     SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
-        </Parameters>
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0"
+            Name="fix8_block">
+        <Nodes>
+          <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
+                NodeColour="4282864562" Name="global_cable1">
+            <Properties>
+              <Property ID="Connection" Value="v3"/>
+            </Properties>
+            <ModulationTargets>
+              <Connection NodeId="gain" ParameterId="Gain"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="gain" FactoryPath="core.gain" Bypassed="0" Name="gain">
+            <Parameters>
+              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
       </Node>
     </Nodes>
     <Parameters/>

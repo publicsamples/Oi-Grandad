@@ -416,51 +416,15 @@ using smoothed_parameter_unscaled1_t = wrap::mod<parameter::plain<core::fix_dela
 template <int NV>
 using tempo_sync1_t = wrap::mod<parameter::plain<smoothed_parameter_unscaled1_t<NV>, 0>, 
                                 control::tempo_sync<NV>>;
-
-template <int NV>
-using converter3_mod = parameter::chain<ranges::Identity, 
-                                        parameter::plain<wrap::no_process<core::fix_delay>, 0>, 
-                                        parameter::plain<wrap::no_process<jdsp::jdelay<NV>>, 1>, 
-                                        parameter::plain<jdsp::jdelay_thiran<NV>, 1>>;
-
-template <int NV>
-using converter3_t = control::converter<converter3_mod<NV>, 
-                                        conversion_logic::ms2freq>;
-
-template <int NV>
-using converter2_mod = parameter::chain<ranges::Identity, 
-                                        parameter::plain<converter3_t<NV>, 0>, 
-                                        parameter::plain<filters::allpass<NV>, 0>>;
-
-template <int NV>
-using converter2_t = control::converter<converter2_mod<NV>, 
-                                        conversion_logic::midi2freq>;
-template <int NV>
-using pma_t = control::pma<NV, 
-                           parameter::plain<converter2_t<NV>, 0>>;
-DECLARE_PARAMETER_RANGE_STEP(pma31_mod_0Range, 
+DECLARE_PARAMETER_RANGE_STEP(pma31_modRange, 
                              0., 
                              18., 
                              1.);
 
 template <int NV>
-using pma31_mod_0 = parameter::from0To1<tempo_sync1_t<NV>, 
-                                        0, 
-                                        pma31_mod_0Range>;
-
-DECLARE_PARAMETER_RANGE(pma31_mod_1Range, 
-                        5.55112e-17, 
-                        1.);
-
-template <int NV>
-using pma31_mod_1 = parameter::from0To1<pma_t<NV>, 
-                                        2, 
-                                        pma31_mod_1Range>;
-
-template <int NV>
-using pma31_mod = parameter::chain<ranges::Identity, 
-                                   pma31_mod_0<NV>, 
-                                   pma31_mod_1<NV>>;
+using pma31_mod = parameter::from0To1<tempo_sync1_t<NV>, 
+                                      0, 
+                                      pma31_modRange>;
 
 template <int NV>
 using pma31_t = control::pma<NV, pma31_mod<NV>>;
@@ -659,10 +623,14 @@ using branch21_t = container::branch<parameter::empty,
                                      chain351_t<NV>>;
 
 template <int NV>
-using peak21_mod = parameter::plain<control::pma_unscaled<NV, parameter::empty>, 
-                                    0>;
+using pma_unscaled_mod = parameter::chain<ranges::Identity, 
+                                          parameter::plain<filters::allpass<NV>, 0>, 
+                                          parameter::plain<jdsp::jdelay_thiran<NV>, 1>>;
+
 template <int NV>
-using peak21_t = wrap::mod<peak21_mod<NV>, 
+using pma_unscaled_t = control::pma_unscaled<NV, pma_unscaled_mod<NV>>;
+template <int NV>
+using peak21_t = wrap::mod<parameter::plain<pma_unscaled_t<NV>, 0>, 
                            wrap::no_data<core::peak>>;
 
 namespace chain335_t_parameters
@@ -674,7 +642,7 @@ using chain335_t = container::chain<parameter::plain<Process_impl::branch21_t<NV
                                     wrap::fix<1, math::clear<NV>>, 
                                     branch21_t<NV>, 
                                     peak21_t<NV>, 
-                                    control::pma_unscaled<NV, parameter::empty>, 
+                                    pma_unscaled_t<NV>, 
                                     math::clear<NV>>;
 using global_cable272_t_index = global_cable240_t_index;
 
@@ -1355,26 +1323,6 @@ template <int NV>
 using xfader1_t = control::xfader<xfader1_multimod<NV>, faders::linear>;
 
 template <int NV> using chain5_t = chain2_t<NV>;
-
-template <int NV>
-using midi2_t = wrap::mod<parameter::plain<pma_t<NV>, 0>, 
-                          control::midi<midi_logic::notenumber<NV>>>;
-
-template <int NV>
-using midichain2_t_ = container::chain<parameter::empty, 
-                                       wrap::fix<2, midi2_t<NV>>>;
-
-template <int NV>
-using midichain2_t = wrap::event<midichain2_t_<NV>>;
-
-template <int NV>
-using modchain2_t_ = container::chain<parameter::empty, 
-                                      wrap::fix<1, pma_t<NV>>, 
-                                      converter2_t<NV>, 
-                                      converter3_t<NV>>;
-
-template <int NV>
-using modchain2_t = wrap::control_rate<modchain2_t_<NV>>;
 using stereo_cable = cable::block<2>;
 
 template <int NV>
@@ -1388,7 +1336,7 @@ using chain1_t = container::chain<parameter::empty,
 using stereo_frame_cable = cable::frame<2>;
 
 template <int NV>
-using frame1_block_t_ = container::chain<parameter::empty, 
+using frame2_block_t_ = container::chain<parameter::empty, 
                                          wrap::fix<2, routing::receive<stereo_frame_cable>>, 
                                          jdsp::jdelay_thiran<NV>, 
                                          wrap::no_process<jdsp::jdelay<NV>>, 
@@ -1397,11 +1345,11 @@ using frame1_block_t_ = container::chain<parameter::empty,
                                          routing::send<stereo_frame_cable>>;
 
 template <int NV>
-using frame1_block_t = wrap::frame<2, frame1_block_t_<NV>>;
+using frame2_block_t = wrap::frame<2, frame2_block_t_<NV>>;
 
 template <int NV>
 using chain8_t = container::chain<parameter::empty, 
-                                  wrap::fix<2, frame1_block_t<NV>>, 
+                                  wrap::fix<2, frame2_block_t<NV>>, 
                                   filters::one_pole<NV>>;
 
 template <int NV>
@@ -1416,9 +1364,7 @@ using branch1_t = container::branch<parameter::empty,
 
 template <int NV>
 using chain6_t = container::chain<parameter::empty, 
-                                  wrap::fix<2, midichain2_t<NV>>, 
-                                  modchain2_t<NV>, 
-                                  branch1_t<NV>>;
+                                  wrap::fix<2, branch1_t<NV>>>;
 
 template <int NV>
 using chain7_t = container::chain<parameter::empty, 
@@ -1465,10 +1411,14 @@ namespace Process_t_parameters
 {
 // Parameter list for Process_impl::Process_t ------------------------------------------------------
 
+DECLARE_PARAMETER_RANGE(cutRange, 
+                        5.55112e-17, 
+                        1.);
+
 template <int NV>
 using cut = parameter::from0To1<Process_impl::pma26_t<NV>, 
                                 2, 
-                                Process_impl::pma31_mod_1Range>;
+                                cutRange>;
 
 template <int NV>
 using q = parameter::chain<ranges::Identity, 
@@ -1499,7 +1449,7 @@ DECLARE_PARAMETER_RANGE(deltempo_InputRange,
 template <int NV>
 using deltempo_0 = parameter::from0To1<Process_impl::pma31_t<NV>, 
                                        2, 
-                                       Process_impl::pma31_mod_1Range>;
+                                       cutRange>;
 
 template <int NV>
 using deltempo = parameter::chain<deltempo_InputRange, deltempo_0<NV>>;
@@ -1514,27 +1464,10 @@ using deldiv = parameter::from0To1<Process_impl::tempo_sync1_t<NV>,
                                    1, 
                                    deldivRange>;
 
-DECLARE_PARAMETER_RANGE(delmod_InputRange, 
-                        -1., 
-                        1.);
 template <int NV>
-using delmod_0 = parameter::from0To1<Process_impl::pma31_t<NV>, 
-                                     1, 
-                                     Process_impl::pma32_modRange>;
-
-DECLARE_PARAMETER_RANGE(delmod_1Range, 
-                        -36., 
-                        36.);
-
-template <int NV>
-using delmod_1 = parameter::from0To1<control::pma_unscaled<NV, parameter::empty>, 
-                                     1, 
-                                     delmod_1Range>;
-
-template <int NV>
-using delmod = parameter::chain<delmod_InputRange, 
-                                delmod_0<NV>, 
-                                delmod_1<NV>>;
+using delmod = parameter::chain<ranges::Identity, 
+                                parameter::plain<Process_impl::pma31_t<NV>, 1>, 
+                                parameter::plain<Process_impl::pma_unscaled_t<NV>, 1>>;
 
 DECLARE_PARAMETER_RANGE_STEP(delsrc_InputRange, 
                              1., 
@@ -1558,7 +1491,7 @@ using delsrc = parameter::chain<delsrc_InputRange,
 template <int NV>
 using DelLP = parameter::from0To1<Process_impl::pma28_t<NV>, 
                                   2, 
-                                  Process_impl::pma31_mod_1Range>;
+                                  cutRange>;
 
 DECLARE_PARAMETER_RANGE_STEP(LpSrc_InputRange, 
                              1., 
@@ -1575,7 +1508,7 @@ using LpSrc = parameter::chain<LpSrc_InputRange, LpSrc_0<NV>>;
 template <int NV>
 using Pan = parameter::from0To1<Process_impl::pma32_t<NV>, 
                                 2, 
-                                Process_impl::pma31_mod_1Range>;
+                                cutRange>;
 
 DECLARE_PARAMETER_RANGE_STEP(PanSrc_InputRange, 
                              1., 
@@ -1634,7 +1567,7 @@ DECLARE_PARAMETER_RANGE_SKEW(gain_InputRange,
 template <int NV>
 using gain_0 = parameter::from0To1<Process_impl::pma33_t<NV>, 
                                    2, 
-                                   Process_impl::pma31_mod_1Range>;
+                                   cutRange>;
 
 template <int NV>
 using gain = parameter::chain<gain_InputRange, gain_0<NV>>;
@@ -1673,7 +1606,7 @@ template <int NV>
 using delmix = parameter::plain<Process_impl::xfader1_t<NV>, 
                                 0>;
 template <int NV>
-using pitch = parameter::plain<control::pma_unscaled<NV, parameter::empty>, 
+using pitch = parameter::plain<Process_impl::pma_unscaled_t<NV>, 
                                2>;
 template <int NV>
 using LpMod = parameter::plain<Process_impl::pma28_t<NV>, 
@@ -1760,13 +1693,13 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
             0x003F, 0x0000, 0x5B00, 0x0004, 0x0000, 0x7563, 0x7374, 0x6372, 
             0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x8000, 0x5B3F, 0x0005, 0x0000, 0x6564, 0x746C, 0x6D65, 
-            0x6F70, 0x0000, 0x8000, 0x003F, 0x9000, 0x0041, 0x8000, 0x003F, 
+            0x6F70, 0x0000, 0x8000, 0x003F, 0x9000, 0x0041, 0x9000, 0x0041, 
             0x8000, 0x003F, 0x0000, 0x5B00, 0x0006, 0x0000, 0x6564, 0x646C, 
             0x7669, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x5B00, 0x0007, 0x0000, 0x6564, 0x6D6C, 
             0x7869, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x0000, 0x5B00, 0x0008, 0x0000, 0x6970, 0x6374, 
-            0x0068, 0x0000, 0xC1C0, 0x0000, 0x41C0, 0x1BD3, 0xC14A, 0x0000, 
+            0x0068, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x095B, 0x0000, 0x6400, 0x6C65, 0x6F6D, 
             0x0064, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x0A5B, 0x0000, 0x6400, 0x6C65, 0x7273, 
@@ -1803,7 +1736,7 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
             0x5B00, 0x001A, 0x0000, 0x6147, 0x6E69, 0x7253, 0x0063, 0x0000, 
             0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x1B5B, 0x0000, 0x4700, 0x6961, 0x536E, 0x6F6D, 0x746F, 
-            0x0068, 0x0000, 0x0000, 0x0000, 0x447A, 0x0000, 0x0000, 0x209B, 
+            0x0068, 0x0000, 0x0000, 0x0000, 0x447A, 0x6667, 0x4086, 0x209B, 
             0x3E9A, 0xCCCD, 0x3DCC, 0x1C5B, 0x0000, 0x4700, 0x6961, 0x526E, 
             0x7365, 0x7465, 0x0000, 0xC800, 0x00C2, 0x0000, 0x0000, 0x0000, 
             0x3E00, 0xAD83, 0xCD40, 0xCCCC, 0x003D, 0x0000
@@ -2219,7 +2152,7 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
                        getT(0).getT(2).getT(1).getT(15).
                        getT(1);
 		auto& peak21 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2).getT(2);        // Process_impl::peak21_t<NV>
-		auto& pma_unscaled = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2).getT(3);  // control::pma_unscaled<NV, parameter::empty>
+		auto& pma_unscaled = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2).getT(3);  // Process_impl::pma_unscaled_t<NV>
 		auto& clear38 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2).getT(4);       // math::clear<NV>
 		auto& chain301 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(3);              // Process_impl::chain301_t<NV>
 		auto& clear33 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(3).getT(0);       // math::clear<NV>
@@ -2640,71 +2573,55 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		auto& gain2 = this->getT(0).getT(0).getT(0).getT(3).getT(1).getT(0).getT(0);         // core::gain<NV>
 		auto& chain7 = this->getT(0).getT(0).getT(0).getT(3).getT(1).getT(1);                // Process_impl::chain7_t<NV>
 		auto& chain6 = this->getT(0).getT(0).getT(0).getT(3).getT(1).getT(1).getT(0);        // Process_impl::chain6_t<NV>
-		auto& midichain2 = this->getT(0).getT(0).getT(0).getT(3).                            // Process_impl::midichain2_t<NV>
-                           getT(1).getT(1).getT(0).getT(0);
-		auto& midi2 = this->getT(0).getT(0).getT(0).getT(3).                                 // Process_impl::midi2_t<NV>
-                      getT(1).getT(1).getT(0).getT(0).
-                      getT(0);
-		auto& modchain2 = this->getT(0).getT(0).getT(0).getT(3).                             // Process_impl::modchain2_t<NV>
-                          getT(1).getT(1).getT(0).getT(1);
-		auto& pma = this->getT(0).getT(0).getT(0).getT(3).                                   // Process_impl::pma_t<NV>
-                    getT(1).getT(1).getT(0).getT(1).
-                    getT(0);
-		auto& converter2 = this->getT(0).getT(0).getT(0).getT(3).                            // Process_impl::converter2_t<NV>
-                           getT(1).getT(1).getT(0).getT(1).
-                           getT(1);
-		auto& converter3 = this->getT(0).getT(0).getT(0).getT(3).                            // Process_impl::converter3_t<NV>
-                           getT(1).getT(1).getT(0).getT(1).
-                           getT(2);
 		auto& branch1 = this->getT(0).getT(0).getT(0).getT(3).                               // Process_impl::branch1_t<NV>
-                        getT(1).getT(1).getT(0).getT(2);
+                        getT(1).getT(1).getT(0).getT(0);
 		auto& chain1 = this->getT(0).getT(0).getT(0).getT(3).                                // Process_impl::chain1_t<NV>
-                       getT(1).getT(1).getT(0).getT(2).
+                       getT(1).getT(1).getT(0).getT(0).
                        getT(0);
 		auto& tempo_sync1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                   // Process_impl::tempo_sync1_t<NV>
-                            getT(1).getT(0).getT(2).getT(0).getT(0);
+                            getT(1).getT(0).getT(0).getT(0).getT(0);
 		auto& receive1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                      // routing::receive<stereo_cable>
-                         getT(1).getT(0).getT(2).getT(0).getT(1);
+                         getT(1).getT(0).getT(0).getT(0).getT(1);
 		auto& smoothed_parameter_unscaled1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).  // Process_impl::smoothed_parameter_unscaled1_t<NV>
-                                             getT(1).getT(0).getT(2).getT(0).getT(2);
+                                             getT(1).getT(0).getT(0).getT(0).getT(2);
 		auto& fix_delay1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).            // core::fix_delay
-                           getT(1).getT(0).getT(2).getT(0).getT(3);
+                           getT(1).getT(0).getT(0).getT(0).getT(3);
 		auto& one_pole2 = this->getT(0).getT(0).getT(0).getT(3).getT(1).             // filters::one_pole<NV>
-                          getT(1).getT(0).getT(2).getT(0).getT(4);
+                          getT(1).getT(0).getT(0).getT(0).getT(4);
 		auto& send1 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                 // routing::send<stereo_cable>
-                      getT(1).getT(0).getT(2).getT(0).getT(5);
+                      getT(1).getT(0).getT(0).getT(0).getT(5);
 		auto& chain8 = this->getT(0).getT(0).getT(0).getT(3).                        // Process_impl::chain8_t<NV>
-                       getT(1).getT(1).getT(0).getT(2).
+                       getT(1).getT(1).getT(0).getT(0).
                        getT(1);
-		auto& frame1_block = this->getT(0).getT(0).getT(0).getT(3).getT(1).          // Process_impl::frame1_block_t<NV>
-                             getT(1).getT(0).getT(2).getT(1).getT(0);
+		auto& frame2_block = this->getT(0).getT(0).getT(0).getT(3).getT(1).          // Process_impl::frame2_block_t<NV>
+                             getT(1).getT(0).getT(0).getT(1).getT(0);
 		auto& receive3 = this->getT(0).getT(0).getT(0).getT(3).getT(1).              // routing::receive<stereo_frame_cable>
-                         getT(1).getT(0).getT(2).getT(1).getT(0).
+                         getT(1).getT(0).getT(0).getT(1).getT(0).
                          getT(0);
 		auto& jdelay_thiran = this->getT(0).getT(0).getT(0).getT(3).getT(1).         // jdsp::jdelay_thiran<NV>
-                              getT(1).getT(0).getT(2).getT(1).getT(0).
+                              getT(1).getT(0).getT(0).getT(1).getT(0).
                               getT(1);
 		auto& jdelay = this->getT(0).getT(0).getT(0).getT(3).getT(1).                // wrap::no_process<jdsp::jdelay<NV>>
-                       getT(1).getT(0).getT(2).getT(1).getT(0).
+                       getT(1).getT(0).getT(0).getT(1).getT(0).
                        getT(2);
 		auto& fix_delay3 = this->getT(0).getT(0).getT(0).getT(3).getT(1).            // wrap::no_process<core::fix_delay>
-                           getT(1).getT(0).getT(2).getT(1).getT(0).
+                           getT(1).getT(0).getT(0).getT(1).getT(0).
                            getT(3);
 		auto& one_pole3 = this->getT(0).getT(0).getT(0).getT(3).getT(1).             // filters::one_pole<NV>
-                          getT(1).getT(0).getT(2).getT(1).getT(0).
+                          getT(1).getT(0).getT(0).getT(1).getT(0).
                           getT(4);
 		auto& send3 = this->getT(0).getT(0).getT(0).getT(3).getT(1).                 // routing::send<stereo_frame_cable>
-                      getT(1).getT(0).getT(2).getT(1).getT(0).
+                      getT(1).getT(0).getT(0).getT(1).getT(0).
                       getT(5);
 		auto& one_pole4 = this->getT(0).getT(0).getT(0).getT(3).getT(1).             // filters::one_pole<NV>
-                          getT(1).getT(0).getT(2).getT(1).getT(1);
+                          getT(1).getT(0).getT(0).getT(1).getT(1);
 		auto& chain9 = this->getT(0).getT(0).getT(0).getT(3).                        // Process_impl::chain9_t<NV>
-                       getT(1).getT(1).getT(0).getT(2).
+                       getT(1).getT(1).getT(0).getT(0).
                        getT(2);
 		auto& allpass = this->getT(0).getT(0).getT(0).getT(3).getT(1).               // filters::allpass<NV>
-                        getT(1).getT(0).getT(2).getT(2).getT(0);
+                        getT(1).getT(0).getT(0).getT(2).getT(0);
 		auto& one_pole = this->getT(0).getT(0).getT(0).getT(3).getT(1).              // filters::one_pole<NV>
-                         getT(1).getT(0).getT(2).getT(2).getT(1);
+                         getT(1).getT(0).getT(0).getT(2).getT(1);
 		auto& gain3 = this->getT(0).getT(0).getT(0).getT(3).getT(1).getT(1).getT(1); // core::gain<NV>
 		auto& jpanner = this->getT(0).getT(0).getT(0).getT(4);                       // jdsp::jpanner<NV>
 		auto& ahdsr = this->getT(0).getT(0).getT(0).getT(5);                         // Process_impl::ahdsr_t<NV>
@@ -2790,133 +2707,127 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
-		global_cable240.getWrappedObject().getParameter().connectT(0, add234);   // global_cable240 -> add234::Value
-		global_cable241.getWrappedObject().getParameter().connectT(0, add235);   // global_cable241 -> add235::Value
-		global_cable242.getWrappedObject().getParameter().connectT(0, add236);   // global_cable242 -> add236::Value
-		global_cable243.getWrappedObject().getParameter().connectT(0, add237);   // global_cable243 -> add237::Value
-		global_cable244.getWrappedObject().getParameter().connectT(0, add238);   // global_cable244 -> add238::Value
-		global_cable245.getWrappedObject().getParameter().connectT(0, add239);   // global_cable245 -> add239::Value
-		global_cable246.getWrappedObject().getParameter().connectT(0, add240);   // global_cable246 -> add240::Value
-		global_cable247.getWrappedObject().getParameter().connectT(0, add241);   // global_cable247 -> add241::Value
-		global_cable248.getWrappedObject().getParameter().connectT(0, add242);   // global_cable248 -> add242::Value
-		global_cable249.getWrappedObject().getParameter().connectT(0, add243);   // global_cable249 -> add243::Value
-		global_cable250.getWrappedObject().getParameter().connectT(0, add244);   // global_cable250 -> add244::Value
-		global_cable251.getWrappedObject().getParameter().connectT(0, add245);   // global_cable251 -> add245::Value
-		global_cable252.getWrappedObject().getParameter().connectT(0, add246);   // global_cable252 -> add246::Value
-		global_cable253.getWrappedObject().getParameter().connectT(0, add247);   // global_cable253 -> add247::Value
-		global_cable254.getWrappedObject().getParameter().connectT(0, add248);   // global_cable254 -> add248::Value
-		global_cable255.getWrappedObject().getParameter().connectT(0, add249);   // global_cable255 -> add249::Value
-		pma26.getWrappedObject().getParameter().connectT(0, svf);                // pma26 -> svf::Frequency
-		pma26.getWrappedObject().getParameter().connectT(1, svf1);               // pma26 -> svf1::Frequency
-		pma26.getWrappedObject().getParameter().connectT(2, svf2);               // pma26 -> svf2::Frequency
-		peak17.getParameter().connectT(0, pma26);                                // peak17 -> pma26::Value
-		global_cable320.getWrappedObject().getParameter().connectT(0, add314);   // global_cable320 -> add314::Value
-		global_cable321.getWrappedObject().getParameter().connectT(0, add315);   // global_cable321 -> add315::Value
-		global_cable322.getWrappedObject().getParameter().connectT(0, add316);   // global_cable322 -> add316::Value
-		global_cable323.getWrappedObject().getParameter().connectT(0, add317);   // global_cable323 -> add317::Value
-		global_cable324.getWrappedObject().getParameter().connectT(0, add318);   // global_cable324 -> add318::Value
-		global_cable325.getWrappedObject().getParameter().connectT(0, add319);   // global_cable325 -> add319::Value
-		global_cable326.getWrappedObject().getParameter().connectT(0, add320);   // global_cable326 -> add320::Value
-		global_cable327.getWrappedObject().getParameter().connectT(0, add321);   // global_cable327 -> add321::Value
-		global_cable328.getWrappedObject().getParameter().connectT(0, add322);   // global_cable328 -> add322::Value
-		global_cable329.getWrappedObject().getParameter().connectT(0, add323);   // global_cable329 -> add323::Value
-		global_cable330.getWrappedObject().getParameter().connectT(0, add324);   // global_cable330 -> add324::Value
-		global_cable331.getWrappedObject().getParameter().connectT(0, add325);   // global_cable331 -> add325::Value
-		global_cable332.getWrappedObject().getParameter().connectT(0, add326);   // global_cable332 -> add326::Value
-		global_cable333.getWrappedObject().getParameter().connectT(0, add327);   // global_cable333 -> add327::Value
-		global_cable334.getWrappedObject().getParameter().connectT(0, add328);   // global_cable334 -> add328::Value
-		global_cable335.getWrappedObject().getParameter().connectT(0, add329);   // global_cable335 -> add329::Value
-		smoothed_parameter_unscaled1.getParameter().connectT(0, fix_delay1);     // smoothed_parameter_unscaled1 -> fix_delay1::DelayTime
-		tempo_sync1.getParameter().connectT(0, smoothed_parameter_unscaled1);    // tempo_sync1 -> smoothed_parameter_unscaled1::Value
-		converter3.getWrappedObject().getParameter().connectT(0, fix_delay3);    // converter3 -> fix_delay3::DelayTime
-		converter3.getWrappedObject().getParameter().connectT(1, jdelay);        // converter3 -> jdelay::DelayTime
-		converter3.getWrappedObject().getParameter().connectT(2, jdelay_thiran); // converter3 -> jdelay_thiran::DelayTime
-		converter2.getWrappedObject().getParameter().connectT(0, converter3);    // converter2 -> converter3::Value
-		converter2.getWrappedObject().getParameter().connectT(1, allpass);       // converter2 -> allpass::Frequency
-		pma.getWrappedObject().getParameter().connectT(0, converter2);           // pma -> converter2::Value
-		pma31.getWrappedObject().getParameter().connectT(0, tempo_sync1);        // pma31 -> tempo_sync1::Tempo
-		pma31.getWrappedObject().getParameter().connectT(1, pma);                // pma31 -> pma::Add
-		peak22.getParameter().connectT(0, pma31);                                // peak22 -> pma31::Value
-		global_cable304.getWrappedObject().getParameter().connectT(0, add298);   // global_cable304 -> add298::Value
-		global_cable305.getWrappedObject().getParameter().connectT(0, add299);   // global_cable305 -> add299::Value
-		global_cable306.getWrappedObject().getParameter().connectT(0, add300);   // global_cable306 -> add300::Value
-		global_cable307.getWrappedObject().getParameter().connectT(0, add301);   // global_cable307 -> add301::Value
-		global_cable308.getWrappedObject().getParameter().connectT(0, add302);   // global_cable308 -> add302::Value
-		global_cable309.getWrappedObject().getParameter().connectT(0, add303);   // global_cable309 -> add303::Value
-		global_cable310.getWrappedObject().getParameter().connectT(0, add304);   // global_cable310 -> add304::Value
-		global_cable311.getWrappedObject().getParameter().connectT(0, add305);   // global_cable311 -> add305::Value
-		global_cable312.getWrappedObject().getParameter().connectT(0, add306);   // global_cable312 -> add306::Value
-		global_cable313.getWrappedObject().getParameter().connectT(0, add307);   // global_cable313 -> add307::Value
-		global_cable314.getWrappedObject().getParameter().connectT(0, add308);   // global_cable314 -> add308::Value
-		global_cable315.getWrappedObject().getParameter().connectT(0, add309);   // global_cable315 -> add309::Value
-		global_cable316.getWrappedObject().getParameter().connectT(0, add310);   // global_cable316 -> add310::Value
-		global_cable317.getWrappedObject().getParameter().connectT(0, add311);   // global_cable317 -> add311::Value
-		global_cable318.getWrappedObject().getParameter().connectT(0, add312);   // global_cable318 -> add312::Value
-		global_cable319.getWrappedObject().getParameter().connectT(0, add313);   // global_cable319 -> add313::Value
-		peak21.getParameter().connectT(0, pma_unscaled);                         // peak21 -> pma_unscaled::Value
-		global_cable272.getWrappedObject().getParameter().connectT(0, add266);   // global_cable272 -> add266::Value
-		global_cable273.getWrappedObject().getParameter().connectT(0, add267);   // global_cable273 -> add267::Value
-		global_cable274.getWrappedObject().getParameter().connectT(0, add268);   // global_cable274 -> add268::Value
-		global_cable275.getWrappedObject().getParameter().connectT(0, add269);   // global_cable275 -> add269::Value
-		global_cable276.getWrappedObject().getParameter().connectT(0, add270);   // global_cable276 -> add270::Value
-		global_cable277.getWrappedObject().getParameter().connectT(0, add271);   // global_cable277 -> add271::Value
-		global_cable278.getWrappedObject().getParameter().connectT(0, add272);   // global_cable278 -> add272::Value
-		global_cable279.getWrappedObject().getParameter().connectT(0, add273);   // global_cable279 -> add273::Value
-		global_cable280.getWrappedObject().getParameter().connectT(0, add274);   // global_cable280 -> add274::Value
-		global_cable281.getWrappedObject().getParameter().connectT(0, add275);   // global_cable281 -> add275::Value
-		global_cable282.getWrappedObject().getParameter().connectT(0, add276);   // global_cable282 -> add276::Value
-		global_cable283.getWrappedObject().getParameter().connectT(0, add277);   // global_cable283 -> add277::Value
-		global_cable284.getWrappedObject().getParameter().connectT(0, add278);   // global_cable284 -> add278::Value
-		global_cable285.getWrappedObject().getParameter().connectT(0, add279);   // global_cable285 -> add279::Value
-		global_cable286.getWrappedObject().getParameter().connectT(0, add280);   // global_cable286 -> add280::Value
-		global_cable287.getWrappedObject().getParameter().connectT(0, add281);   // global_cable287 -> add281::Value
-		pma28.getWrappedObject().getParameter().connectT(0, one_pole2);          // pma28 -> one_pole2::Frequency
-		pma28.getWrappedObject().getParameter().connectT(1, one_pole3);          // pma28 -> one_pole3::Frequency
-		pma28.getWrappedObject().getParameter().connectT(2, one_pole);           // pma28 -> one_pole::Frequency
-		peak19.getParameter().connectT(0, pma28);                                // peak19 -> pma28::Value
-		global_cable336.getWrappedObject().getParameter().connectT(0, add330);   // global_cable336 -> add330::Value
-		global_cable337.getWrappedObject().getParameter().connectT(0, add331);   // global_cable337 -> add331::Value
-		global_cable338.getWrappedObject().getParameter().connectT(0, add332);   // global_cable338 -> add332::Value
-		global_cable339.getWrappedObject().getParameter().connectT(0, add333);   // global_cable339 -> add333::Value
-		global_cable340.getWrappedObject().getParameter().connectT(0, add334);   // global_cable340 -> add334::Value
-		global_cable341.getWrappedObject().getParameter().connectT(0, add335);   // global_cable341 -> add335::Value
-		global_cable342.getWrappedObject().getParameter().connectT(0, add336);   // global_cable342 -> add336::Value
-		global_cable343.getWrappedObject().getParameter().connectT(0, add337);   // global_cable343 -> add337::Value
-		global_cable344.getWrappedObject().getParameter().connectT(0, add338);   // global_cable344 -> add338::Value
-		global_cable345.getWrappedObject().getParameter().connectT(0, add339);   // global_cable345 -> add339::Value
-		global_cable346.getWrappedObject().getParameter().connectT(0, add340);   // global_cable346 -> add340::Value
-		global_cable347.getWrappedObject().getParameter().connectT(0, add341);   // global_cable347 -> add341::Value
-		global_cable348.getWrappedObject().getParameter().connectT(0, add342);   // global_cable348 -> add342::Value
-		global_cable349.getWrappedObject().getParameter().connectT(0, add343);   // global_cable349 -> add343::Value
-		global_cable350.getWrappedObject().getParameter().connectT(0, add344);   // global_cable350 -> add344::Value
-		global_cable351.getWrappedObject().getParameter().connectT(0, add345);   // global_cable351 -> add345::Value
-		pma32.getWrappedObject().getParameter().connectT(0, jpanner);            // pma32 -> jpanner::Pan
-		peak23.getParameter().connectT(0, pma32);                                // peak23 -> pma32::Value
-		global_cable352.getWrappedObject().getParameter().connectT(0, add346);   // global_cable352 -> add346::Value
-		global_cable353.getWrappedObject().getParameter().connectT(0, add347);   // global_cable353 -> add347::Value
-		global_cable354.getWrappedObject().getParameter().connectT(0, add348);   // global_cable354 -> add348::Value
-		global_cable355.getWrappedObject().getParameter().connectT(0, add349);   // global_cable355 -> add349::Value
-		global_cable356.getWrappedObject().getParameter().connectT(0, add350);   // global_cable356 -> add350::Value
-		global_cable357.getWrappedObject().getParameter().connectT(0, add351);   // global_cable357 -> add351::Value
-		global_cable358.getWrappedObject().getParameter().connectT(0, add352);   // global_cable358 -> add352::Value
-		global_cable359.getWrappedObject().getParameter().connectT(0, add353);   // global_cable359 -> add353::Value
-		global_cable360.getWrappedObject().getParameter().connectT(0, add354);   // global_cable360 -> add354::Value
-		global_cable361.getWrappedObject().getParameter().connectT(0, add355);   // global_cable361 -> add355::Value
-		global_cable362.getWrappedObject().getParameter().connectT(0, add356);   // global_cable362 -> add356::Value
-		global_cable363.getWrappedObject().getParameter().connectT(0, add357);   // global_cable363 -> add357::Value
-		global_cable364.getWrappedObject().getParameter().connectT(0, add358);   // global_cable364 -> add358::Value
-		global_cable365.getWrappedObject().getParameter().connectT(0, add359);   // global_cable365 -> add359::Value
-		global_cable366.getWrappedObject().getParameter().connectT(0, add360);   // global_cable366 -> add360::Value
-		global_cable367.getWrappedObject().getParameter().connectT(0, add361);   // global_cable367 -> add361::Value
-		pma33.getWrappedObject().getParameter().connectT(0, gain4);              // pma33 -> gain4::Gain
-		peak24.getParameter().connectT(0, pma33);                                // peak24 -> pma33::Value
+		global_cable240.getWrappedObject().getParameter().connectT(0, add234);     // global_cable240 -> add234::Value
+		global_cable241.getWrappedObject().getParameter().connectT(0, add235);     // global_cable241 -> add235::Value
+		global_cable242.getWrappedObject().getParameter().connectT(0, add236);     // global_cable242 -> add236::Value
+		global_cable243.getWrappedObject().getParameter().connectT(0, add237);     // global_cable243 -> add237::Value
+		global_cable244.getWrappedObject().getParameter().connectT(0, add238);     // global_cable244 -> add238::Value
+		global_cable245.getWrappedObject().getParameter().connectT(0, add239);     // global_cable245 -> add239::Value
+		global_cable246.getWrappedObject().getParameter().connectT(0, add240);     // global_cable246 -> add240::Value
+		global_cable247.getWrappedObject().getParameter().connectT(0, add241);     // global_cable247 -> add241::Value
+		global_cable248.getWrappedObject().getParameter().connectT(0, add242);     // global_cable248 -> add242::Value
+		global_cable249.getWrappedObject().getParameter().connectT(0, add243);     // global_cable249 -> add243::Value
+		global_cable250.getWrappedObject().getParameter().connectT(0, add244);     // global_cable250 -> add244::Value
+		global_cable251.getWrappedObject().getParameter().connectT(0, add245);     // global_cable251 -> add245::Value
+		global_cable252.getWrappedObject().getParameter().connectT(0, add246);     // global_cable252 -> add246::Value
+		global_cable253.getWrappedObject().getParameter().connectT(0, add247);     // global_cable253 -> add247::Value
+		global_cable254.getWrappedObject().getParameter().connectT(0, add248);     // global_cable254 -> add248::Value
+		global_cable255.getWrappedObject().getParameter().connectT(0, add249);     // global_cable255 -> add249::Value
+		pma26.getWrappedObject().getParameter().connectT(0, svf);                  // pma26 -> svf::Frequency
+		pma26.getWrappedObject().getParameter().connectT(1, svf1);                 // pma26 -> svf1::Frequency
+		pma26.getWrappedObject().getParameter().connectT(2, svf2);                 // pma26 -> svf2::Frequency
+		peak17.getParameter().connectT(0, pma26);                                  // peak17 -> pma26::Value
+		global_cable320.getWrappedObject().getParameter().connectT(0, add314);     // global_cable320 -> add314::Value
+		global_cable321.getWrappedObject().getParameter().connectT(0, add315);     // global_cable321 -> add315::Value
+		global_cable322.getWrappedObject().getParameter().connectT(0, add316);     // global_cable322 -> add316::Value
+		global_cable323.getWrappedObject().getParameter().connectT(0, add317);     // global_cable323 -> add317::Value
+		global_cable324.getWrappedObject().getParameter().connectT(0, add318);     // global_cable324 -> add318::Value
+		global_cable325.getWrappedObject().getParameter().connectT(0, add319);     // global_cable325 -> add319::Value
+		global_cable326.getWrappedObject().getParameter().connectT(0, add320);     // global_cable326 -> add320::Value
+		global_cable327.getWrappedObject().getParameter().connectT(0, add321);     // global_cable327 -> add321::Value
+		global_cable328.getWrappedObject().getParameter().connectT(0, add322);     // global_cable328 -> add322::Value
+		global_cable329.getWrappedObject().getParameter().connectT(0, add323);     // global_cable329 -> add323::Value
+		global_cable330.getWrappedObject().getParameter().connectT(0, add324);     // global_cable330 -> add324::Value
+		global_cable331.getWrappedObject().getParameter().connectT(0, add325);     // global_cable331 -> add325::Value
+		global_cable332.getWrappedObject().getParameter().connectT(0, add326);     // global_cable332 -> add326::Value
+		global_cable333.getWrappedObject().getParameter().connectT(0, add327);     // global_cable333 -> add327::Value
+		global_cable334.getWrappedObject().getParameter().connectT(0, add328);     // global_cable334 -> add328::Value
+		global_cable335.getWrappedObject().getParameter().connectT(0, add329);     // global_cable335 -> add329::Value
+		smoothed_parameter_unscaled1.getParameter().connectT(0, fix_delay1);       // smoothed_parameter_unscaled1 -> fix_delay1::DelayTime
+		tempo_sync1.getParameter().connectT(0, smoothed_parameter_unscaled1);      // tempo_sync1 -> smoothed_parameter_unscaled1::Value
+		pma31.getWrappedObject().getParameter().connectT(0, tempo_sync1);          // pma31 -> tempo_sync1::Tempo
+		peak22.getParameter().connectT(0, pma31);                                  // peak22 -> pma31::Value
+		global_cable304.getWrappedObject().getParameter().connectT(0, add298);     // global_cable304 -> add298::Value
+		global_cable305.getWrappedObject().getParameter().connectT(0, add299);     // global_cable305 -> add299::Value
+		global_cable306.getWrappedObject().getParameter().connectT(0, add300);     // global_cable306 -> add300::Value
+		global_cable307.getWrappedObject().getParameter().connectT(0, add301);     // global_cable307 -> add301::Value
+		global_cable308.getWrappedObject().getParameter().connectT(0, add302);     // global_cable308 -> add302::Value
+		global_cable309.getWrappedObject().getParameter().connectT(0, add303);     // global_cable309 -> add303::Value
+		global_cable310.getWrappedObject().getParameter().connectT(0, add304);     // global_cable310 -> add304::Value
+		global_cable311.getWrappedObject().getParameter().connectT(0, add305);     // global_cable311 -> add305::Value
+		global_cable312.getWrappedObject().getParameter().connectT(0, add306);     // global_cable312 -> add306::Value
+		global_cable313.getWrappedObject().getParameter().connectT(0, add307);     // global_cable313 -> add307::Value
+		global_cable314.getWrappedObject().getParameter().connectT(0, add308);     // global_cable314 -> add308::Value
+		global_cable315.getWrappedObject().getParameter().connectT(0, add309);     // global_cable315 -> add309::Value
+		global_cable316.getWrappedObject().getParameter().connectT(0, add310);     // global_cable316 -> add310::Value
+		global_cable317.getWrappedObject().getParameter().connectT(0, add311);     // global_cable317 -> add311::Value
+		global_cable318.getWrappedObject().getParameter().connectT(0, add312);     // global_cable318 -> add312::Value
+		global_cable319.getWrappedObject().getParameter().connectT(0, add313);     // global_cable319 -> add313::Value
+		pma_unscaled.getWrappedObject().getParameter().connectT(0, allpass);       // pma_unscaled -> allpass::Frequency
+		pma_unscaled.getWrappedObject().getParameter().connectT(1, jdelay_thiran); // pma_unscaled -> jdelay_thiran::DelayTime
+		peak21.getParameter().connectT(0, pma_unscaled);                           // peak21 -> pma_unscaled::Value
+		global_cable272.getWrappedObject().getParameter().connectT(0, add266);     // global_cable272 -> add266::Value
+		global_cable273.getWrappedObject().getParameter().connectT(0, add267);     // global_cable273 -> add267::Value
+		global_cable274.getWrappedObject().getParameter().connectT(0, add268);     // global_cable274 -> add268::Value
+		global_cable275.getWrappedObject().getParameter().connectT(0, add269);     // global_cable275 -> add269::Value
+		global_cable276.getWrappedObject().getParameter().connectT(0, add270);     // global_cable276 -> add270::Value
+		global_cable277.getWrappedObject().getParameter().connectT(0, add271);     // global_cable277 -> add271::Value
+		global_cable278.getWrappedObject().getParameter().connectT(0, add272);     // global_cable278 -> add272::Value
+		global_cable279.getWrappedObject().getParameter().connectT(0, add273);     // global_cable279 -> add273::Value
+		global_cable280.getWrappedObject().getParameter().connectT(0, add274);     // global_cable280 -> add274::Value
+		global_cable281.getWrappedObject().getParameter().connectT(0, add275);     // global_cable281 -> add275::Value
+		global_cable282.getWrappedObject().getParameter().connectT(0, add276);     // global_cable282 -> add276::Value
+		global_cable283.getWrappedObject().getParameter().connectT(0, add277);     // global_cable283 -> add277::Value
+		global_cable284.getWrappedObject().getParameter().connectT(0, add278);     // global_cable284 -> add278::Value
+		global_cable285.getWrappedObject().getParameter().connectT(0, add279);     // global_cable285 -> add279::Value
+		global_cable286.getWrappedObject().getParameter().connectT(0, add280);     // global_cable286 -> add280::Value
+		global_cable287.getWrappedObject().getParameter().connectT(0, add281);     // global_cable287 -> add281::Value
+		pma28.getWrappedObject().getParameter().connectT(0, one_pole2);            // pma28 -> one_pole2::Frequency
+		pma28.getWrappedObject().getParameter().connectT(1, one_pole3);            // pma28 -> one_pole3::Frequency
+		pma28.getWrappedObject().getParameter().connectT(2, one_pole);             // pma28 -> one_pole::Frequency
+		peak19.getParameter().connectT(0, pma28);                                  // peak19 -> pma28::Value
+		global_cable336.getWrappedObject().getParameter().connectT(0, add330);     // global_cable336 -> add330::Value
+		global_cable337.getWrappedObject().getParameter().connectT(0, add331);     // global_cable337 -> add331::Value
+		global_cable338.getWrappedObject().getParameter().connectT(0, add332);     // global_cable338 -> add332::Value
+		global_cable339.getWrappedObject().getParameter().connectT(0, add333);     // global_cable339 -> add333::Value
+		global_cable340.getWrappedObject().getParameter().connectT(0, add334);     // global_cable340 -> add334::Value
+		global_cable341.getWrappedObject().getParameter().connectT(0, add335);     // global_cable341 -> add335::Value
+		global_cable342.getWrappedObject().getParameter().connectT(0, add336);     // global_cable342 -> add336::Value
+		global_cable343.getWrappedObject().getParameter().connectT(0, add337);     // global_cable343 -> add337::Value
+		global_cable344.getWrappedObject().getParameter().connectT(0, add338);     // global_cable344 -> add338::Value
+		global_cable345.getWrappedObject().getParameter().connectT(0, add339);     // global_cable345 -> add339::Value
+		global_cable346.getWrappedObject().getParameter().connectT(0, add340);     // global_cable346 -> add340::Value
+		global_cable347.getWrappedObject().getParameter().connectT(0, add341);     // global_cable347 -> add341::Value
+		global_cable348.getWrappedObject().getParameter().connectT(0, add342);     // global_cable348 -> add342::Value
+		global_cable349.getWrappedObject().getParameter().connectT(0, add343);     // global_cable349 -> add343::Value
+		global_cable350.getWrappedObject().getParameter().connectT(0, add344);     // global_cable350 -> add344::Value
+		global_cable351.getWrappedObject().getParameter().connectT(0, add345);     // global_cable351 -> add345::Value
+		pma32.getWrappedObject().getParameter().connectT(0, jpanner);              // pma32 -> jpanner::Pan
+		peak23.getParameter().connectT(0, pma32);                                  // peak23 -> pma32::Value
+		global_cable352.getWrappedObject().getParameter().connectT(0, add346);     // global_cable352 -> add346::Value
+		global_cable353.getWrappedObject().getParameter().connectT(0, add347);     // global_cable353 -> add347::Value
+		global_cable354.getWrappedObject().getParameter().connectT(0, add348);     // global_cable354 -> add348::Value
+		global_cable355.getWrappedObject().getParameter().connectT(0, add349);     // global_cable355 -> add349::Value
+		global_cable356.getWrappedObject().getParameter().connectT(0, add350);     // global_cable356 -> add350::Value
+		global_cable357.getWrappedObject().getParameter().connectT(0, add351);     // global_cable357 -> add351::Value
+		global_cable358.getWrappedObject().getParameter().connectT(0, add352);     // global_cable358 -> add352::Value
+		global_cable359.getWrappedObject().getParameter().connectT(0, add353);     // global_cable359 -> add353::Value
+		global_cable360.getWrappedObject().getParameter().connectT(0, add354);     // global_cable360 -> add354::Value
+		global_cable361.getWrappedObject().getParameter().connectT(0, add355);     // global_cable361 -> add355::Value
+		global_cable362.getWrappedObject().getParameter().connectT(0, add356);     // global_cable362 -> add356::Value
+		global_cable363.getWrappedObject().getParameter().connectT(0, add357);     // global_cable363 -> add357::Value
+		global_cable364.getWrappedObject().getParameter().connectT(0, add358);     // global_cable364 -> add358::Value
+		global_cable365.getWrappedObject().getParameter().connectT(0, add359);     // global_cable365 -> add359::Value
+		global_cable366.getWrappedObject().getParameter().connectT(0, add360);     // global_cable366 -> add360::Value
+		global_cable367.getWrappedObject().getParameter().connectT(0, add361);     // global_cable367 -> add361::Value
+		pma33.getWrappedObject().getParameter().connectT(0, gain4);                // pma33 -> gain4::Gain
+		peak24.getParameter().connectT(0, pma33);                                  // peak24 -> pma33::Value
 		auto& xfader_p = xfader.getWrappedObject().getParameter();
 		xfader_p.getParameterT(0).connectT(0, gain);  // xfader -> gain::Gain
 		xfader_p.getParameterT(1).connectT(0, gain1); // xfader -> gain1::Gain
 		auto& xfader1_p = xfader1.getWrappedObject().getParameter();
 		xfader1_p.getParameterT(0).connectT(0, gain2); // xfader1 -> gain2::Gain
 		xfader1_p.getParameterT(1).connectT(0, gain3); // xfader1 -> gain3::Gain
-		midi2.getParameter().connectT(0, pma);         // midi2 -> pma::Value
 		auto& ahdsr_p = ahdsr.getWrappedObject().getParameter();
 		
 		// Send Connections ------------------------------------------------------------------------
@@ -3421,14 +3332,6 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		gain2.setParameterT(1, 20.);   // core::gain::Smoothing
 		gain2.setParameterT(2, -100.); // core::gain::ResetValue
 		
-		;                         // pma::Value is automated
-		pma.setParameterT(1, 1.); // control::pma::Multiply
-		;                         // pma::Add is automated
-		
-		; // converter2::Value is automated
-		
-		; // converter3::Value is automated
-		
 		; // branch1::Index is automated
 		
 		;                                   // tempo_sync1::Tempo is automated
@@ -3457,10 +3360,10 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		jdelay_thiran.setParameterT(0, 1000.); // jdsp::jdelay_thiran::Limit
 		;                                      // jdelay_thiran::DelayTime is automated
 		
-		jdelay.setParameterT(0, 1000.); // jdsp::jdelay::Limit
-		;                               // jdelay::DelayTime is automated
+		jdelay.setParameterT(0, 1000.);   // jdsp::jdelay::Limit
+		jdelay.setParameterT(1, 2.78453); // jdsp::jdelay::DelayTime
 		
-		;                                   // fix_delay3::DelayTime is automated
+		fix_delay3.setParameterT(0, 0.);    // core::fix_delay::DelayTime
 		fix_delay3.setParameterT(1, 1024.); // core::fix_delay::FadeTime
 		
 		;                                 // one_pole3::Frequency is automated
@@ -3517,10 +3420,10 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		this->setParameterT(2, 1.);
 		this->setParameterT(3, 0.);
 		this->setParameterT(4, 1.);
-		this->setParameterT(5, 1.);
+		this->setParameterT(5, 18.);
 		this->setParameterT(6, 0.);
 		this->setParameterT(7, 1.);
-		this->setParameterT(8, -12.);
+		this->setParameterT(8, 1.);
 		this->setParameterT(9, 0.);
 		this->setParameterT(10, 1.);
 		this->setParameterT(11, 1.);
@@ -3539,7 +3442,7 @@ template <int NV> struct instance: public Process_impl::Process_t_<NV>
 		this->setParameterT(24, 2.);
 		this->setParameterT(25, 0.);
 		this->setParameterT(26, 1.);
-		this->setParameterT(27, 0.);
+		this->setParameterT(27, 4.2);
 		this->setParameterT(28, 0.);
 		this->setExternalData({}, -1);
 	}

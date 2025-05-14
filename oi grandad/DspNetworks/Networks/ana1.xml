@@ -11,23 +11,32 @@
         </Properties>
         <ComplexData>
           <AudioFiles>
-            <AudioFile Index="0" MinValue="0" MaxValue="720000"/>
+            <AudioFile Index="0" MinValue="0" MaxValue="1268608"/>
           </AudioFiles>
         </ComplexData>
         <Parameters/>
         <ModulationTargets>
+          <Connection NodeId="pma_unscaled" ParameterId="Value"/>
           <Connection NodeId="event_data_writer" ParameterId="Value"/>
         </ModulationTargets>
       </Node>
       <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
             Name="midichain">
         <Nodes>
+          <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0"
+                Name="pma_unscaled">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="0.5" DefaultValue="1.0"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Value="0.0"/>
+            </Parameters>
+          </Node>
           <Node ID="event_data_writer" FactoryPath="routing.event_data_writer"
                 Bypassed="0" Name="event_data_writer">
             <Parameters>
               <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="SlotIndex"
                          Value="0.0"/>
-              <Parameter MinValue="0.0" MaxValue="128000.0" ID="Value" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="4075.0" ID="Value" Automated="1"/>
             </Parameters>
           </Node>
         </Nodes>

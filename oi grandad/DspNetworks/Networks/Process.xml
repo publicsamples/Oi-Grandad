@@ -813,7 +813,6 @@
                                 </Parameters>
                                 <ModulationTargets>
                                   <Connection NodeId="tempo_sync1" ParameterId="Tempo"/>
-                                  <Connection NodeId="pma" ParameterId="Add"/>
                                 </ModulationTargets>
                               </Node>
                               <Node ID="clear40" FactoryPath="math.clear" Bypassed="0" Name="clear2">
@@ -1213,12 +1212,15 @@
                               <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0"
                                     Name="pma_unscaled">
                                 <Parameters>
-                                  <Parameter MinValue="-36.0" MaxValue="36.0" ID="Value" Automated="1"/>
-                                  <Parameter MinValue="-36.0" MaxValue="36.0" ID="Multiply" DefaultValue="1.0"
+                                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" DefaultValue="1.0"
                                              Automated="1"/>
-                                  <Parameter MinValue="-36.0" MaxValue="36.0" ID="Add" DefaultValue="0.0"
-                                             Automated="1"/>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" DefaultValue="0.0" Automated="1"/>
                                 </Parameters>
+                                <ModulationTargets>
+                                  <Connection NodeId="allpass" ParameterId="Frequency"/>
+                                  <Connection NodeId="jdelay_thiran" ParameterId="DelayTime"/>
+                                </ModulationTargets>
                               </Node>
                               <Node ID="clear38" FactoryPath="math.clear" Bypassed="0" Name="clear2">
                                 <Parameters>
@@ -2058,7 +2060,7 @@
                                 </Parameters>
                               </Node>
                               <Node ID="branch24" FactoryPath="container.branch" Bypassed="0" Name="branch"
-                                    ShowParameters="1">
+                                    ShowParameters="1" Folded="1">
                                 <Nodes>
                                   <Node ID="chain387" FactoryPath="container.chain" Bypassed="0" Name="chain5">
                                     <Nodes>
@@ -2628,64 +2630,6 @@
                             <Nodes>
                               <Node ID="chain6" FactoryPath="container.chain" Bypassed="0" Name="chain2">
                                 <Nodes>
-                                  <Node ID="midichain2" FactoryPath="container.midichain" Bypassed="0"
-                                        Name="midichain">
-                                    <Nodes>
-                                      <Node ID="midi2" FactoryPath="control.midi" Bypassed="0" Name="midi">
-                                        <Properties>
-                                          <Property ID="Mode" Value="NoteNumber"/>
-                                        </Properties>
-                                        <ModulationTargets>
-                                          <Connection NodeId="pma" ParameterId="Value"/>
-                                        </ModulationTargets>
-                                        <Parameters/>
-                                      </Node>
-                                    </Nodes>
-                                    <Parameters/>
-                                  </Node>
-                                  <Node ID="modchain2" FactoryPath="container.modchain" Bypassed="0"
-                                        Name="modchain">
-                                    <Nodes>
-                                      <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Name="pma">
-                                        <ModulationTargets>
-                                          <Connection NodeId="converter2" ParameterId="Value"/>
-                                        </ModulationTargets>
-                                        <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                                          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
-                                          <Parameter MinValue="5.551115123125783e-17" MaxValue="1.0" ID="Add" Automated="1"/>
-                                        </Parameters>
-                                      </Node>
-                                      <Node ID="converter2" FactoryPath="control.converter" Bypassed="0"
-                                            Name="converter">
-                                        <Properties>
-                                          <Property ID="Mode" Value="Midi2Freq"/>
-                                        </Properties>
-                                        <ModulationTargets>
-                                          <Connection NodeId="converter3" ParameterId="Value"/>
-                                          <Connection NodeId="allpass" ParameterId="Frequency"/>
-                                        </ModulationTargets>
-                                        <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="127.0" StepSize="1.0" ID="Value" Automated="1"/>
-                                        </Parameters>
-                                      </Node>
-                                      <Node ID="converter3" FactoryPath="control.converter" Bypassed="0"
-                                            Name="converter">
-                                        <Properties>
-                                          <Property ID="Mode" Value="Ms2Freq"/>
-                                        </Properties>
-                                        <ModulationTargets>
-                                          <Connection NodeId="fix_delay3" ParameterId="DelayTime"/>
-                                          <Connection NodeId="jdelay" ParameterId="DelayTime"/>
-                                          <Connection NodeId="jdelay_thiran" ParameterId="DelayTime"/>
-                                        </ModulationTargets>
-                                        <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                                        </Parameters>
-                                      </Node>
-                                    </Nodes>
-                                    <Parameters/>
-                                  </Node>
                                   <Node ID="branch1" FactoryPath="container.branch" Bypassed="0" Name="branch1"
                                         ShowParameters="1">
                                     <Nodes>
@@ -2767,8 +2711,8 @@
                                       </Node>
                                       <Node ID="chain8" FactoryPath="container.chain" Bypassed="0" Name="WaveGuide">
                                         <Nodes>
-                                          <Node ID="frame1_block" FactoryPath="container.frame1_block" Bypassed="0"
-                                                Name="frame1_block">
+                                          <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="0"
+                                                Name="frame2_block">
                                             <Nodes>
                                               <Node ID="receive3" FactoryPath="routing.receive" Bypassed="0" Name="receive">
                                                 <Parameters>
@@ -2790,13 +2734,13 @@
                                                   <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
                                                              ID="Limit" Value="1000.0"/>
                                                   <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
-                                                             ID="DelayTime" Automated="1"/>
+                                                             ID="DelayTime" DefaultValue="" Value="2.784528165339426"/>
                                                 </Parameters>
                                               </Node>
                                               <Node ID="fix_delay3" FactoryPath="core.fix_delay" Bypassed="1" Name="fix_delay">
                                                 <Parameters>
                                                   <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                                                             SkewFactor="0.3010300099849701" ID="DelayTime" Automated="1"/>
+                                                             SkewFactor="0.3010300099849701" ID="DelayTime"/>
                                                   <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
                                                              Value="1024.0"/>
                                                 </Parameters>
@@ -3018,7 +2962,7 @@
           <Connection NodeId="chain267" ParameterId="ModSrc"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="18.0" ID="deltempo" Value="1.0" DefaultValue="0.0">
+      <Parameter MinValue="1.0" MaxValue="18.0" ID="deltempo" Value="18.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma31" ParameterId="Add"/>
         </Connections>
@@ -3033,8 +2977,7 @@
           <Connection NodeId="xfader1" ParameterId="Value"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-24.0" MaxValue="24.0" ID="pitch" Value="-12.63179347826087"
-                 DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="pitch" Value="1.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma_unscaled" ParameterId="Add"/>
         </Connections>
@@ -3149,7 +3092,8 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.3010300099849701" ID="GainSmooth" Value="0.0">
+                 SkewFactor="0.3010300099849701" ID="GainSmooth" Value="4.200000062584876"
+                 DefaultValue="0.0">
         <Connections>
           <Connection NodeId="gain4" ParameterId="Smoothing"/>
         </Connections>

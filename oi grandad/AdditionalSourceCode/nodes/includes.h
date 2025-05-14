@@ -26,6 +26,7 @@
 #include "gt2244.h"
 #include "Hole_networkdata.h"
 #include "MacroMod.h"
+#include "modcont_networkdata.h"
 #include "Proc2_networkdata.h"
 #include "Proc3_networkdata.h"
 #include "Proc4_networkdata.h"
