@@ -1,27 +1,13 @@
-
-*.hip
-*.mp3
-oi grandad/AudioFiles/Yo Pensioner/Loops/
-Yo Pensioner/Loops/
-oi grandad.vst3.WIN.x64.zip
-oi grandad.vst3
-AudioResources.dat
-AudioFiles/Loops/
-Samples/Loops/
 oi grandad/Images/SAVE.afdesign
 oi grandad/Images/qexp.afdesign
 oi grandad/Images/Patecatl.afdesign
 oi grandad/Images/close.afdesign
 oi grandad/Images/blueish.png
-oi grandad/AudioFiles/AudioFiles/Loops/
-*.aiff
 *.zip
 *.ndx
 .DS_Store
-*.wav
-*.aif
-oi grandad/AudioFiles/Loops/
 .DS_Store
-/oi grandad/Binaries
 /oi grandad/DspNetworks/Binaries
-/oi grandad/AudioFiles
+/oi grandad/AudioFiles x
+/oi grandad/Binaries
+oi grandad/PooledResources/AudioResources.dat
