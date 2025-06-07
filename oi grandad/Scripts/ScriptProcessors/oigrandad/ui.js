@@ -24,6 +24,7 @@ include("Files.js");
 include("macros.js");
 
 
+
 const var BoxItems = Content.getComponent("BoxItems");
 
 //Tabs
@@ -382,7 +383,7 @@ inline function onHoldControl(component, value)
 
  {
      if (value)
- 	    Synth.playNote(MidiNote.getValue(), 127);
+ 	    Synth.playNote(MidiNote.getValue()+24, 127);
  	  else
 	    Engine.allNotesOff();
 };
@@ -510,11 +511,16 @@ Content.getComponent("ShowFolder").setControlCallback(onShowFolderControl);
 //OverSample Menus
 
 
+
+
+
 inline function onOS1Control(component, value)
 {
 	Engine.allNotesOff();
 
 	gran.setAttribute(gran.over, value);
+	Analysis1.setAttribute(Analysis1.over, value);
+	
 };
 
 Content.getComponent("OS1").setControlCallback(onOS1Control);

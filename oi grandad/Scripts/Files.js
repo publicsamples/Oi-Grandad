@@ -60,20 +60,20 @@ if(value == 1)
          
          //find files in selected folder
          
-            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
 
             for (file in folderArray) {
                 file = file.toString(0);
                 
-            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
                                  
              for (file1 in folderArray2) {
               file1 = file1.toString(3);          
                 
          //Populate the Folder Label
               
-                FolderLabel.set("text", folder.toString(0));
-                Folder.push(folder);
+
+             Folder.push(folder);
                 
             };
             
@@ -108,6 +108,8 @@ inline function onFileSelectFront1Control(component, value)
 	 FileSelect1.setValue(value);
      FileSelect1.changed();
      FileSelectMac1.setValue(value);
+     
+   FolderLabel.set("text", FileSelectFront1.getItemText());
     
 };
 
@@ -125,6 +127,8 @@ inline function onFileSelectMac1Control(component, value)
 	 FileSelect1.setValue(value);
      FileSelect1.changed();
      FileSelectFront1.setValue(value);
+     FolderLabel.set("text", FileSelectMac1.getItemText());
+
 };
 
 Content.getComponent("FileSelectMac1").setControlCallback(onFileSelectMac1Control);
@@ -133,7 +137,7 @@ Content.getComponent("FileSelectMac1").setControlCallback(onFileSelectMac1Contro
 inline function onFileSelect1Control(component, value) {
 
     slot1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
-    slotA1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
+	slotA1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect1").setControlCallback(onFileSelect1Control);
@@ -150,19 +154,19 @@ if(value == 1)
          
          //find files in selected folder
          
-            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
 
             for (file in folderArray) {
                 file = file.toString(0);
                 
-            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
                                  
              for (File2 in folderArray2) {
               File2 = File2.toString(3);          
                 
          //Populate the Folder Label
               
-                FolderLabel1.set("text", folder.toString(0));
+          //      FolderLabel1.set("text", folder.toString(1));
                 Folder2.push(folder);
                 
             };
@@ -196,6 +200,7 @@ inline function onFileSelectFront2Control(component, value)
 	 FileSelect2.setValue(value);
      FileSelect2.changed();
      FileSelectMac2.setValue(value);
+     FolderLabel1.set("text", FileSelectMac2.getItemText());
 };
 
 Content.getComponent("FileSelectFront2").setControlCallback(onFileSelectFront2Control);
@@ -212,6 +217,7 @@ inline function onFileSelectMac2Control(component, value)
 	 FileSelect2.setValue(value);
      FileSelect2.changed();
      FileSelectFront2.setValue(value);
+     FolderLabel1.set("text", FileSelectMac2.getItemText());
 };
 
 Content.getComponent("FileSelectMac2").setControlCallback(onFileSelectMac2Control);
@@ -220,7 +226,7 @@ Content.getComponent("FileSelectMac2").setControlCallback(onFileSelectMac2Contro
 inline function onFileSelect2Control(component, value) {
 
     slot2.loadFile(FileSelect2.get("items").split("\n")[value - 1]);
-    slotA2.loadFile(FileSelect2.get("items").split("\n")[value - 1]);
+	slotA2.loadFile(FileSelect2.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect2").setControlCallback(onFileSelect2Control);
@@ -237,19 +243,19 @@ if(value == 1)
          
          //find files in selected folder
          
-            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
 
             for (file in folderArray) {
                 file = file.toString(0);
                 
-            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
                                  
              for (File2 in folderArray2) {
               File2 = File2.toString(3);          
                 
          //Populate the Folder Label
               
-                FolderLabel2.set("text", folder.toString(0));
+                FolderLabel2.set("text", folder.toString(1));
                 Folder3.push(folder);
                 
             };
@@ -283,6 +289,7 @@ inline function onFileSelectFront3Control(component, value)
 	 FileSelect3.setValue(value);
      FileSelect3.changed();
      FileSelectMac3.setValue(value);
+     FolderLabel2.set("text", FileSelectMac3.getItemText());
 };
 
 Content.getComponent("FileSelectFront3").setControlCallback(onFileSelectFront3Control);
@@ -293,7 +300,7 @@ Content.getComponent("FileSelectFront3").setControlCallback(onFileSelectFront3Co
 inline function onFileSelect3Control(component, value) {
 
     slot3.loadFile(FileSelect3.get("items").split("\n")[value - 1]);
-    slotA3.loadFile(FileSelect3.get("items").split("\n")[value - 1]);
+	slotA3.loadFile(FileSelect3.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect3").setControlCallback(onFileSelect3Control);
@@ -312,6 +319,7 @@ inline function onFileSelectMac3Control(component, value)
 	 FileSelect3.setValue(value);
      FileSelect3.changed();
      FileSelectMac3.setValue(value);
+     FolderLabel2.set("text", FileSelectMac3.getItemText());
 };
 
 Content.getComponent("FileSelectMac3").setControlCallback(onFileSelectMac3Control);
@@ -328,19 +336,19 @@ if(value == 1)
          
          //find files in selected folder
          
-            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
 
             for (file in folderArray) {
                 file = file.toString(0);
                 
-            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif", false);
+            var folderArray2 = FileSystem.findFiles(folder, "*.wav, *.aif, *.ogg, *.mp3", false);
                                  
              for (File2 in folderArray2) {
               File2 = File2.toString(3);          
                 
          //Populate the Folder Label
               
-                FolderLabel3.set("text", folder.toString(0));
+                FolderLabel3.set("text", folder.toString(1));
                 Folder4.push(folder);
                 
             };
@@ -366,7 +374,7 @@ Content.getComponent("FolderSelect3").setControlCallback(onFolderSelect3Control)
 inline function onFileSelect4Control(component, value) {
 
     slot4.loadFile(FileSelect4.get("items").split("\n")[value - 1]);
-    slotA4.loadFile(FileSelect4.get("items").split("\n")[value - 1]);
+	slotA4.loadFile(FileSelect4.get("items").split("\n")[value - 1]);
 };
 
 Content.getComponent("FileSelect4").setControlCallback(onFileSelect4Control);
@@ -383,6 +391,7 @@ inline function onFileSelectFront4Control(component, value)
 	 FileSelect4.setValue(value);
      FileSelect4.changed();
      FileSelectMac4.setValue(value);
+     FolderLabel3.set("text", FileSelectMac4.getItemText());
 };
 
 Content.getComponent("FileSelectFront4").setControlCallback(onFileSelectFront4Control);
@@ -399,9 +408,15 @@ inline function onFileSelectMac4Control(component, value)
 	 FileSelect4.setValue(value);
      FileSelect4.changed();
      FileSelectFront4.setValue(value);
+     FolderLabel3.set("text", FileSelectMac4.getItemText());
 };
 
 Content.getComponent("FileSelectMac4").setControlCallback(onFileSelectMac4Control);
 
 
+const var pool = Engine.loadAudioFilesIntoPool();
+File1.setFile("{PROJECT_FOLDER}Embed/basschain-_3.wav");  
+File2.setFile("{PROJECT_FOLDER}Genres/hisuer.wav");  
+File3.setFile("{PROJECT_FOLDER}Genres/hp-perc.wav");  
+File4.setFile("{PROJECT_FOLDER}Genres/OGluv.wav");  
 

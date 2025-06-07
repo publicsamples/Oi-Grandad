@@ -204,8 +204,13 @@ if(value == 2)
 
 Content.getComponent("XfMode1").setControlCallback(onXfMode1Control);
 
-const var Dsync1 = [Content.getComponent("DelayTime1"),
-                   Content.getComponent("deldiv1")];
+//mystrey box
+const var Dsync1 =[];
+
+Dsync1[0] = Content.getComponent("DelayTime1");
+Dsync1[1] = Content.getComponent("DelayTempo1");
+Dsync1[2] = Content.getComponent("DelayPitch1");
+
 
 const var DelayPitch1 = Content.getComponent("DelayPitch1");
 
@@ -213,29 +218,24 @@ const var Proc1 = Synth.getEffect("Proc1");
 
 inline function onDelMode1Control(component, value)
 {
-if(value == 1)
+	Proc1.setAttribute(Proc1.DelClockMode, value);  
+
+	
+//for (i = 0; i < Dsync1.length; i++)
+ //       Dsync1[i].showControl(value - 1 == i);
+
+if(value == 2)
   {
-	for(s in Dsync1)
-             s.showControl(1);   
-    DelayPitch1.showControl(0);          
-    Proc1.setAttribute(Proc1.delaymode, 1);   
-             
-             }
- if(value == 2)
+
+  //  deldiv1.showControl(1);           
+            
+   }
+   else
    {
- 	for(s in Dsync1)
-              s.showControl(0);   
-    DelayPitch1.showControl(1);           
-    Proc1.setAttribute(Proc1.delaymode, 2);   
-              }            
-             
-  if(value == 3)
-    {
-  	for(s in Dsync1)
-              s.showControl(0);   
-    DelayPitch1.showControl(1); 
-    Proc1.setAttribute(Proc1.delaymode, 3);    
-               }           
+//	deldiv1.showControl(0);
+	}
+
+         
 };
 
 Content.getComponent("DelMode1").setControlCallback(onDelMode1Control);

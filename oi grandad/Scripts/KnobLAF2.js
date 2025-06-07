@@ -208,13 +208,7 @@ for (i = 0; i < 12; i++)
 
 } 
 
-const var DelayPitches =[];
 
-for (i = 0; i < 4; i++)
-{
-    DelayPitches[i] = Content.getComponent("DelayPitch"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
 
 const var DelayTimes =[];
 

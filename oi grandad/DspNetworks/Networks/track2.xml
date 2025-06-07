@@ -14,10 +14,18 @@
               </Node>
               <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain">
                 <Nodes>
-                  <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+                  <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak">
                     <ModulationTargets>
                       <Connection NodeId="global_cable1" ParameterId="Value"/>
                     </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="1" Name="comp">
                     <ComplexData>
                       <DisplayBuffers>
                         <DisplayBuffer Index="-1"/>

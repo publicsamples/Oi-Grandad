@@ -129,13 +129,7 @@ for (i = 0; i < 3; i++)
 
 }  
 
-const var DelayPitch =[];
 
-for (i = 0; i < 4; i++)
-{
-    DelayPitch[i] = Content.getComponent("DelayPitch"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-}  
  
 const var DelayTime =[];
 
@@ -316,5 +310,9 @@ for (i = 0; i < 4; i++)
 
 const var RecEnableLaf = Content.getComponent("RecEnable1").setLocalLookAndFeel(LAF_Button);
 
+const var DelMode1 = Content.getComponent("DelMode1").setLocalLookAndFeel(LAF_Button);
+const var DelMode2 = Content.getComponent("DelMode2").setLocalLookAndFeel(LAF_Button);
+const var DelMode3 = Content.getComponent("DelMode3").setLocalLookAndFeel(LAF_Button);
+const var DelMode4 = Content.getComponent("DelMode4").setLocalLookAndFeel(LAF_Button);
 
 
