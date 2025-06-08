@@ -48,34 +48,115 @@ inline function onOutputSelectorControl(component, value)
 
 Content.getComponent("OutputSelector").setControlCallback(onOutputSelectorControl);
 
-
-
-//presets
-const var Pbox = [];
-
-Pbox[0] = Content.getComponent("settings");
-Pbox[1] = Content.getComponent("blank1");
-Pbox[2] = Content.getComponent("blank2");
-
-const var pre= Content.getComponent("presets");
-
-inline function onpresetsControl(component, value)
+inline function onOutputSelector1Control(component, value)
 {
-    for (i = 0; i < Pbox.length; i++)
-        Pbox[i].showControl(value - 1 == i);
+
+	local success = true;
+	
+	switch(value)
+    {
+        case 1:
+            matrix.addConnection(2, 0);
+            matrix.addConnection(3, 1);
+            break;
+        case 2:
+            matrix.addConnection(2, 2);
+            success = matrix.addConnection(3, 3);
+            break;
+        case 3:
+            matrix.addConnection(2, 4);
+            success = matrix.addConnection(3, 5);
+            break;
+        case 4:
+            matrix.addConnection(2, 6);
+            success = matrix.addConnection(3, 7);
+            break;
+    }
+    
+    if(!success)
+    {
+        matrix.addConnection(2, 0);
+        matrix.addConnection(3, 1);
+    }
+    
+    SucessLabel1.set("text", success ? "OK" : "Error");
 };
 
+Content.getComponent("OutputSelector1").setControlCallback(onOutputSelector1Control);
 
-Content.getComponent("presets").setControlCallback(onpresetsControl);
 
-function onControl(number, value)
+
+inline function onOutputSelector2Control(component, value)
 {
-    if(number == widget1)
+
+	local success = true;
+	
+	switch(value)
     {
-        Module1.setAttribute(Module1.Parameter, value);
+        case 1:
+            matrix.addConnection(4, 0);
+            matrix.addConnection(5, 1);
+            break;
+        case 2:
+            matrix.addConnection(4, 2);
+            success = matrix.addConnection(5, 3);
+            break;
+        case 3:
+            matrix.addConnection(4, 4);
+            success = matrix.addConnection(5, 5);
+            break;
+        case 4:
+            matrix.addConnection(4, 6);
+            success = matrix.addConnection(5, 7);
+            break;
     }
-    else if (number == widget2)
+    
+    if(!success)
     {
-        Module2.setAttribute(Module2.Parameter, value);
+        matrix.addConnection(4, 0);
+        matrix.addConnection(5, 1);
     }
-}
+    
+    SucessLabel2.set("text", success ? "OK" : "Error");
+};
+
+Content.getComponent("OutputSelector2").setControlCallback(onOutputSelector2Control);
+
+
+
+inline function onOutputSelector3Control(component, value)
+{
+
+	local success = true;
+	
+	switch(value)
+    {
+        case 1:
+            matrix.addConnection(6, 0);
+            matrix.addConnection(7, 1);
+            break;
+        case 2:
+            matrix.addConnection(6, 2);
+            success = matrix.addConnection(7, 3);
+            break;
+        case 3:
+            matrix.addConnection(6, 4);
+            success = matrix.addConnection(7, 5);
+            break;
+        case 4:
+            matrix.addConnection(6, 6);
+            success = matrix.addConnection(7, 7);
+            break;
+    }
+    
+    if(!success)
+    {
+        matrix.addConnection(6, 0);
+        matrix.addConnection(7, 1);
+    }
+    
+    SucessLabel3.set("text", success ? "OK" : "Error");
+};
+
+Content.getComponent("OutputSelector3").setControlCallback(onOutputSelector3Control);
+

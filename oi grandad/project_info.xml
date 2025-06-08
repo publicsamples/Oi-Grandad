@@ -2,7 +2,7 @@
 
 <ProjectSettings>
   <Name value="OiGrandad2"/>
-  <Version value="2.2.1"/>
+  <Version value="2.2.2"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -12,8 +12,8 @@
   <AdditionalDspLibraries value=""/>
   <OSXStaticLibs value=""/>
   <WindowsStaticLibFolder value=""/>
-  <ExtraDefinitionsWindows value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
-  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
+  <ExtraDefinitionsWindows value="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
+  <ExtraDefinitionsOSX value="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
   <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
   <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;"/>
   <AppGroupID value=""/>
