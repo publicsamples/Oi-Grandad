@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="gt2244" AllowCompilation="1" Version="0.0.0">
+<Network ID="gt2244" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="gt2244" Bypassed="0" Name="gt2244"
         ShowParameters="1">
     <Nodes>

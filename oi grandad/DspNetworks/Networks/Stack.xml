@@ -3967,7 +3967,7 @@
                           <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
                             <ComplexData>
                               <AudioFiles>
-                                <AudioFile Index="0" MinValue="0" MaxValue="3907614"/>
+                                <AudioFile Index="0" MinValue="0" MaxValue="0"/>
                               </AudioFiles>
                             </ComplexData>
                             <Parameters>
@@ -4429,7 +4429,7 @@
                                   <Node ID="granulator1" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
                                     <ComplexData>
                                       <AudioFiles>
-                                        <AudioFile Index="0" MinValue="0" MaxValue="3907614"/>
+                                        <AudioFile Index="0" MinValue="0" MaxValue="0"/>
                                       </AudioFiles>
                                     </ComplexData>
                                     <Parameters>
@@ -4869,7 +4869,7 @@
                                       <Node ID="granulator2" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
                                         <ComplexData>
                                           <AudioFiles>
-                                            <AudioFile Index="0" MinValue="0" MaxValue="3907614"/>
+                                            <AudioFile Index="0" MinValue="0" MaxValue="0"/>
                                           </AudioFiles>
                                         </ComplexData>
                                         <Parameters>
@@ -5315,7 +5315,7 @@
                                   <Node ID="granulator3" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
                                     <ComplexData>
                                       <AudioFiles>
-                                        <AudioFile Index="0" MinValue="0" MaxValue="3907614"/>
+                                        <AudioFile Index="0" MinValue="0" MaxValue="0"/>
                                       </AudioFiles>
                                     </ComplexData>
                                     <Parameters>
