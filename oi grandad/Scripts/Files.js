@@ -109,7 +109,7 @@ inline function onFileSelectFront1Control(component, value)
      FileSelect1.changed();
      FileSelectMac1.setValue(value);
      
-   FolderLabel.set("text", FileSelectFront1.getItemText());
+
     
 };
 
@@ -127,7 +127,7 @@ inline function onFileSelectMac1Control(component, value)
 	 FileSelect1.setValue(value);
      FileSelect1.changed();
      FileSelectFront1.setValue(value);
-     FolderLabel.set("text", FileSelectMac1.getItemText());
+
 
 };
 
@@ -200,7 +200,7 @@ inline function onFileSelectFront2Control(component, value)
 	 FileSelect2.setValue(value);
      FileSelect2.changed();
      FileSelectMac2.setValue(value);
-     FolderLabel1.set("text", FileSelectMac2.getItemText());
+
 };
 
 Content.getComponent("FileSelectFront2").setControlCallback(onFileSelectFront2Control);
@@ -217,7 +217,7 @@ inline function onFileSelectMac2Control(component, value)
 	 FileSelect2.setValue(value);
      FileSelect2.changed();
      FileSelectFront2.setValue(value);
-     FolderLabel1.set("text", FileSelectMac2.getItemText());
+
 };
 
 Content.getComponent("FileSelectMac2").setControlCallback(onFileSelectMac2Control);
@@ -255,7 +255,7 @@ if(value == 1)
                 
          //Populate the Folder Label
               
-                FolderLabel2.set("text", folder.toString(1));
+
                 Folder3.push(folder);
                 
             };
@@ -289,7 +289,7 @@ inline function onFileSelectFront3Control(component, value)
 	 FileSelect3.setValue(value);
      FileSelect3.changed();
      FileSelectMac3.setValue(value);
-     FolderLabel2.set("text", FileSelectMac3.getItemText());
+
 };
 
 Content.getComponent("FileSelectFront3").setControlCallback(onFileSelectFront3Control);
@@ -319,7 +319,7 @@ inline function onFileSelectMac3Control(component, value)
 	 FileSelect3.setValue(value);
      FileSelect3.changed();
      FileSelectMac3.setValue(value);
-     FolderLabel2.set("text", FileSelectMac3.getItemText());
+
 };
 
 Content.getComponent("FileSelectMac3").setControlCallback(onFileSelectMac3Control);
@@ -348,7 +348,7 @@ if(value == 1)
                 
          //Populate the Folder Label
               
-                FolderLabel3.set("text", folder.toString(1));
+
                 Folder4.push(folder);
                 
             };
@@ -391,7 +391,7 @@ inline function onFileSelectFront4Control(component, value)
 	 FileSelect4.setValue(value);
      FileSelect4.changed();
      FileSelectMac4.setValue(value);
-     FolderLabel3.set("text", FileSelectMac4.getItemText());
+
 };
 
 Content.getComponent("FileSelectFront4").setControlCallback(onFileSelectFront4Control);
@@ -408,15 +408,15 @@ inline function onFileSelectMac4Control(component, value)
 	 FileSelect4.setValue(value);
      FileSelect4.changed();
      FileSelectFront4.setValue(value);
-     FolderLabel3.set("text", FileSelectMac4.getItemText());
+
 };
 
 Content.getComponent("FileSelectMac4").setControlCallback(onFileSelectMac4Control);
 
 
 const var pool = Engine.loadAudioFilesIntoPool();
-File1.setFile("{PROJECT_FOLDER}Embed/basschain-_3.wav");  
-File2.setFile("{PROJECT_FOLDER}Genres/hisuer.wav");  
-File3.setFile("{PROJECT_FOLDER}Genres/hp-perc.wav");  
-File4.setFile("{PROJECT_FOLDER}Genres/OGluv.wav");  
+File1.setFile("{PROJECT_FOLDER}Factory/basschain-_3.wav");  
+File2.setFile("{PROJECT_FOLDER}Factory/hisuer.wav");  
+File3.setFile("{PROJECT_FOLDER}Factory/hp-perc.wav");  
+File4.setFile("{PROJECT_FOLDER}Factory/OGluv.wav");  
 

@@ -31,7 +31,6 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::PitchShifter<1>, scriptnode::wrap::illegal_poly<project::PitchShifter<1>>>();
 		registerPolyNode<project::MODEFILTR<1>, scriptnode::wrap::illegal_poly<project::MODEFILTR<1>>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
-		registerNode<project::gt2244>();
 		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
 		registerPolyNode<project::Process<1>, wrap::illegal_poly<project::Process<1>>>();
 		registerPolyNode<project::Stack<1>, wrap::illegal_poly<project::Stack<1>>>();
@@ -43,6 +42,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::g1stack_networkdata>();
 		registerDataNode<project::grainF_networkdata>();
 		registerDataNode<project::GranularWithMod_networkdata>();
+		registerDataNode<project::gt2244_networkdata>();
 		registerDataNode<project::Hole_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
 		registerDataNode<project::Proc2_networkdata>();

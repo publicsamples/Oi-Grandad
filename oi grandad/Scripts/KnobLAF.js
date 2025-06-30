@@ -314,5 +314,11 @@ const var DelMode1 = Content.getComponent("DelMode1").setLocalLookAndFeel(LAF_Bu
 const var DelMode2 = Content.getComponent("DelMode2").setLocalLookAndFeel(LAF_Button);
 const var DelMode3 = Content.getComponent("DelMode3").setLocalLookAndFeel(LAF_Button);
 const var DelMode4 = Content.getComponent("DelMode4").setLocalLookAndFeel(LAF_Button);
-
-
+const var DelMode5 = Content.getComponent("DelMode5").setLocalLookAndFeel(LAF_Button);
+const var DelMode6 = Content.getComponent("DelMode6").setLocalLookAndFeel(LAF_Button);
+const var DelMode7 = Content.getComponent("DelMode7").setLocalLookAndFeel(LAF_Button);
+const var DelMode8 = Content.getComponent("DelMode8").setLocalLookAndFeel(LAF_Button);
+const var DelMode9 = Content.getComponent("DelMode9").setLocalLookAndFeel(LAF_Button);
+const var DelMode10 = Content.getComponent("DelMode10").setLocalLookAndFeel(LAF_Button);
+const var DelMode11 = Content.getComponent("DelMode11").setLocalLookAndFeel(LAF_Button);
+const var DelMode12 = Content.getComponent("DelMode12").setLocalLookAndFeel(LAF_Button);

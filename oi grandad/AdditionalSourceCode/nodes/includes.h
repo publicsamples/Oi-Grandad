@@ -24,7 +24,7 @@
 #include "g1stack_networkdata.h"
 #include "grainF_networkdata.h"
 #include "GranularWithMod_networkdata.h"
-#include "gt2244.h"
+#include "gt2244_networkdata.h"
 #include "Hole_networkdata.h"
 #include "MacroMod.h"
 #include "modcont_networkdata.h"

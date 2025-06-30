@@ -33,11 +33,11 @@ Compilation options: -lang cpp -rui -nvi -ct 1 -cn _PitchShifter2 -scn ::faust::
 
 struct _PitchShifter2 final : public ::faust::dsp {
 	
+	int IOTA0;
+	float fVec0[131072];
 	FAUSTFLOAT fHslider0;
 	FAUSTFLOAT fHslider1;
 	float fRec0[2];
-	int IOTA0;
-	float fVec0[131072];
 	FAUSTFLOAT fHslider2;
 	float fVec1[131072];
 	int fSampleRate;
@@ -87,12 +87,12 @@ struct _PitchShifter2 final : public ::faust::dsp {
 	}
 	
 	void instanceClear() {
-		for (int l0 = 0; l0 < 2; l0 = l0 + 1) {
-			fRec0[l0] = 0.0f;
-		}
 		IOTA0 = 0;
-		for (int l1 = 0; l1 < 131072; l1 = l1 + 1) {
-			fVec0[l1] = 0.0f;
+		for (int l0 = 0; l0 < 131072; l0 = l0 + 1) {
+			fVec0[l0] = 0.0f;
+		}
+		for (int l1 = 0; l1 < 2; l1 = l1 + 1) {
+			fRec0[l1] = 0.0f;
 		}
 		for (int l2 = 0; l2 < 131072; l2 = l2 + 1) {
 			fVec1[l2] = 0.0f;
@@ -135,31 +135,31 @@ struct _PitchShifter2 final : public ::faust::dsp {
 		float fSlow1 = std::pow(2.0f, 0.083333336f * std::max<float>(4e+01f, std::min<float>(1e+04f, float(fHslider1))));
 		float fSlow2 = 1.0f / std::max<float>(1.0f, std::min<float>(1e+04f, float(fHslider2)));
 		for (int i0 = 0; i0 < count; i0 = i0 + 1) {
+			float fTemp0 = float(input0[i0]);
+			fVec0[IOTA0 & 131071] = fTemp0;
 			fRec0[0] = std::fmod(fSlow0 + (fRec0[1] + 1.0f - fSlow1), fSlow0);
-			float fTemp0 = std::floor(fRec0[0]);
-			float fTemp1 = 1.0f - fRec0[0];
-			float fTemp2 = fTemp0 + fTemp1;
-			float fTemp3 = float(input0[i0]);
-			fVec0[IOTA0 & 131071] = fTemp3;
-			int iTemp4 = int(fRec0[0]);
-			int iTemp5 = std::min<int>(65537, std::max<int>(0, iTemp4));
-			float fTemp6 = fRec0[0] - fTemp0;
-			int iTemp7 = std::min<int>(65537, std::max<int>(0, iTemp4 + 1));
+			int iTemp1 = int(fRec0[0]);
+			int iTemp2 = std::min<int>(65537, std::max<int>(0, iTemp1));
+			float fTemp3 = std::floor(fRec0[0]);
+			float fTemp4 = 1.0f - fRec0[0];
+			float fTemp5 = fTemp3 + fTemp4;
+			float fTemp6 = fRec0[0] - fTemp3;
+			int iTemp7 = std::min<int>(65537, std::max<int>(0, iTemp1 + 1));
 			float fTemp8 = std::min<float>(fSlow2 * fRec0[0], 1.0f);
 			float fTemp9 = fSlow0 + fRec0[0];
 			int iTemp10 = int(fTemp9);
 			int iTemp11 = std::min<int>(65537, std::max<int>(0, iTemp10));
 			float fTemp12 = std::floor(fTemp9);
-			float fTemp13 = fTemp12 + fTemp1 - fSlow0;
+			float fTemp13 = fTemp12 + fTemp4 - fSlow0;
 			float fTemp14 = fSlow0 + (fRec0[0] - fTemp12);
 			int iTemp15 = std::min<int>(65537, std::max<int>(0, iTemp10 + 1));
 			float fTemp16 = 1.0f - fTemp8;
-			output0[i0] = FAUSTFLOAT((fTemp2 * fVec0[(IOTA0 - iTemp5) & 131071] + fTemp6 * fVec0[(IOTA0 - iTemp7) & 131071]) * fTemp8 + (fVec0[(IOTA0 - iTemp11) & 131071] * fTemp13 + fTemp14 * fVec0[(IOTA0 - iTemp15) & 131071]) * fTemp16);
+			output0[i0] = FAUSTFLOAT((fVec0[(IOTA0 - iTemp2) & 131071] * fTemp5 + fTemp6 * fVec0[(IOTA0 - iTemp7) & 131071]) * fTemp8 + (fVec0[(IOTA0 - iTemp11) & 131071] * fTemp13 + fTemp14 * fVec0[(IOTA0 - iTemp15) & 131071]) * fTemp16);
 			float fTemp17 = float(input1[i0]);
 			fVec1[IOTA0 & 131071] = fTemp17;
-			output1[i0] = FAUSTFLOAT(fTemp8 * (fTemp2 * fVec1[(IOTA0 - iTemp5) & 131071] + fTemp6 * fVec1[(IOTA0 - iTemp7) & 131071]) + fTemp16 * (fTemp13 * fVec1[(IOTA0 - iTemp11) & 131071] + fTemp14 * fVec1[(IOTA0 - iTemp15) & 131071]));
-			fRec0[1] = fRec0[0];
+			output1[i0] = FAUSTFLOAT((fTemp14 * fVec1[(IOTA0 - iTemp15) & 131071] + fTemp13 * fVec1[(IOTA0 - iTemp11) & 131071]) * fTemp16 + fTemp8 * (fVec1[(IOTA0 - iTemp2) & 131071] * fTemp5 + fTemp6 * fVec1[(IOTA0 - iTemp7) & 131071]));
 			IOTA0 = IOTA0 + 1;
+			fRec0[1] = fRec0[0];
 		}
 	}
 

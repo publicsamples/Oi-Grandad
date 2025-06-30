@@ -8,7 +8,7 @@
              textColour="955443169">
     <Component type="ScriptPanel" id="V0" x="12.0" y="41.0" width="820.0" height="620.0"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Filter1" x="612.0" y="13.0" width="200.0"
                  height="130.0" itemColour="3001935573" itemColour2="3001935573"
                  parentComponent="V0">
@@ -50,7 +50,7 @@
           <Component type="ScriptSlider" id="mix1" x="135.0" y="39.0" parentComponent="VoiceParam10"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40.0" height="40.0" showTextBox="0"
-                     processorId="Proc1" parameterId="mix" bgColour="4290629078"/>
+                     processorId="Proc1" parameterId="mix" bgColour="4290629078" defaultValue="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel31" x="105.0" y="78.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam10" fontStyle="Regular" fontSize="15.0"
@@ -157,7 +157,7 @@
           <Component type="ScriptSlider" id="DelayTime1" x="1.0" y="18.0" parentComponent="VoiceParam11"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50.0" height="50.0" showTextBox="0"
-                     processorId="res1" max="10000.0" parameterId="Del" middlePosition="1000.0"
+                     processorId="res1" max="1000.0" parameterId="Del" middlePosition="500.0"
                      stepSize="1.0" mode="Time" bgColour="4294885004" suffix=" ms"/>
           <Component type="ScriptButton" id="DelMode1" x="0.0" y="1.0" width="20.0"
                      height="20.0" parentComponent="VoiceParam11" bgColour="4294901760"
@@ -178,6 +178,13 @@
       <Component type="ScriptPanel" id="Amp1" x="611.0" y="363.0" width="200.0"
                  height="190.0" itemColour="3001935573" itemColour2="3001935573"
                  parentComponent="V0">
+        <Component type="ScriptLabel" id="ParamLabel186" x="28" y="-1" textColour="4280884766"
+                   width="50" height="30" fontName="Montserrat" editable="0" parentComponent="Amp1"
+                   fontStyle="Regular" fontSize="12.0" text="Pre/Post Delay" alignment="left"/>
+        <Component type="ScriptButton" id="DelMode9" x="6" y="5" width="20.0" height="20.0"
+                   parentComponent="Amp1" bgColour="4294901760" itemColour="4294175719"
+                   itemColour2="4294175743" textColour="16777215" processorId="res1"
+                   parameterId="EnvPos" text="winsync1"/>
         <Component type="ScriptPanel" id="VoiceParam12" x="6.0" y="28.0" width="90.0"
                    height="80.0" parentComponent="Amp1" borderRadius="0.0" itemColour="3001935573"
                    itemColour2="3001935573" textColour="587202560">
@@ -200,10 +207,10 @@
           <Component type="ScriptSlider" id="Vol0" x="3.0" y="12.0" parentComponent="VoiceParam12"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45.0" height="45.0" showTextBox="0"
-                     processorId="Proc1" parameterId="gain" middlePosition="-50.0"
-                     min="-100.0" max="0.0" stepSize="0.1000000014901161" suffix=" dB"
-                     isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
-                     deferControlCallback="1"/>
+                     processorId="Proc1" parameterId="gain" middlePosition="0.0" min="-48.0"
+                     max="24.0" stepSize="0.1000000014901161" suffix=" dB" isMetaParameter="1"
+                     bgColour="4294937226" itemColour2="4211081216" deferControlCallback="1"
+                     showValuePopup="Below"/>
           <Component type="ScriptLabel" id="ParamLabel42" x="49.0" y="59.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam12" fontStyle="Regular" fontSize="15.0"
@@ -292,7 +299,7 @@
                      height="20.0" parentComponent="ScriptPanel1" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284"/>
           <Component type="ScriptComboBox" id="FileSelectFront1" x="78.0" y="99.0"
-                     max="8" width="160.0" height="15.0" items="01.I.Grave.mp3&#10;02.Ii.Scherzo.mp3&#10;03.Iii.MarcheFunbre.mp3&#10;04.Iv.Finale-Presto.mp3&#10;Bach-liszt-PreludeAndFugueInAMinorBwv543.mp3&#10;hisuer.wav&#10;OG.wav&#10;OGluv.wav"
+                     max="35" width="160.0" height="15.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel1" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform" x="10.0" y="5.0"
@@ -308,38 +315,31 @@
           <Component type="ScriptTable" id="PosIndicator2" x="10.0" y="5.0" width="550.0"
                      height="90.0" parentComponent="ScriptPanel1" bgColour="4294956709"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran"
-                     customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
-                     visible="0"/>
+                     customColours="1" tableIndex="1" enabled="0" saveInPreset="0"/>
           <Component type="ScriptTable" id="PosIndicator3" x="10.0" y="5.0" width="550.0"
                      height="90.0" parentComponent="ScriptPanel1" bgColour="4294966980"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran"
-                     customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
-                     visible="0"/>
+                     customColours="1" tableIndex="2" enabled="0" saveInPreset="0"/>
           <Component type="ScriptTable" id="PosIndicator4" x="10.0" y="5.0" width="550.0"
                      height="90.0" parentComponent="ScriptPanel1" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran"
-                     customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptLabel" id="FolderLabel" x="78.0" y="98.0" parentComponent="ScriptPanel1"
-                     text="04.Iv.Finale-Presto.mp3" width="160.0" height="18.0" fontName="Montserrat"
-                     bgColour="4293781205" textColour="4278190080" editable="0" fontSize="18.0"/>
+                     customColours="1" tableIndex="3" enabled="0" saveInPreset="0"/>
           <Component type="ScriptButton" id="FolderSelect" x="10.0" y="99.0" parentComponent="ScriptPanel1"
                      width="30.0" height="20.0" isMomentary="1" saveInPreset="0" filmstripImage="{PROJECT_FOLDER}Folder.png"
                      scaleFactor="0.05000000074505806"/>
           <Component type="ScriptComboBox" id="XfMode1" x="503.0" y="96.0" max="4"
                      width="30.0" height="20.0" items="Off&#10;SQR&#10;RMS&#10;Switch"
-                     parentComponent="ScriptPanel1" textColour="4278190080" bgColour="1426063360"
-                     visible="0"/>
+                     parentComponent="ScriptPanel1" textColour="4278190080" bgColour="1426063360"/>
           <Component type="ScriptLabel" id="XfModeLabel1" x="443.0" y="96.0" textColour="4280884766"
                      width="60.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="ScriptPanel1" fontStyle="Regular" fontSize="15.0"
-                     text="XFADE:" visible="0"/>
+                     text="XFADE:"/>
           <Component type="ScriptLabel" id="semi61" x="38.0" y="97.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="ScriptPanel1" fontStyle="Regular" fontSize="15.0"
                      text="FILE:"/>
-          <Component type="ScriptComboBox" id="FileSelect1" x="-48.0" y="18.0" max="8"
-                     width="590.0" height="60.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/01.I.Grave.mp3&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/02.Ii.Scherzo.mp3&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/03.Iii.MarcheFunbre.mp3&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/04.Iv.Finale-Presto.mp3&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/Bach-liszt-PreludeAndFugueInAMinorBwv543.mp3&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/OG.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/OGluv.wav"
+          <Component type="ScriptComboBox" id="FileSelect1" x="-48.0" y="18.0" max="35"
+                     width="590.0" height="60.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/1CRD.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/ABT70.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Bad Guy m7_9.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-0.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLDRON.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLLHARM.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CASTLESM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLOCK.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLUM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Eggz_AugMaj7.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM2.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Gspider.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/JPXF.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/kick.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LOOP1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LP5.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/PlukyMin90.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Q-Wavy.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SIN5TH.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SISSMEAR.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/snare.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/STRG.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/TRI1.WAV"
                      parentComponent="ScriptPanel1" bgColour="4278190080" textColour="4294901760"
                      visible="0" saveInPreset="0"/>
           <Component type="ScriptLabel" id="semi66" x="242.0" y="96.0" textColour="4280884766"
@@ -366,15 +366,14 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="30.0" height="30.0"
                      showTextBox="0" processorId="gran" parameterId="Position" textColour="3003077888"
-                     itemColour="1362309939" bgColour="16777215" visible="0"/>
+                     itemColour="1362309939" bgColour="16777215"/>
           <Component type="ScriptLabel" id="PosOffsetLabel1" x="130.0" y="7.0" textColour="4280884766"
                      width="40.0" height="15.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam1" fontStyle="Regular" fontSize="15.0"
-                     text="offset" alignment="left" visible="0"/>
+                     text="offset" alignment="left"/>
           <Component type="ScriptPanel" id="StagesPos1" x="7.0" y="7.0" width="80.0"
                      height="60.0" parentComponent="VoiceParam1" itemColour="0" bgColour="16777215"
-                     textColour="4286491829" itemColour2="0" borderSize="1.0" borderRadius="4.0"
-                     visible="0">
+                     textColour="4286491829" itemColour2="0" borderSize="1.0" borderRadius="4.0">
             <Component type="ScriptSliderPack" id="ScriptSliderPack1" x="5.0" y="6.0"
                        width="70.0" height="50.0" parentComponent="StagesPos1" sliderAmount="4.0"
                        itemColour="4286491829" itemColour2="13023914" processorId="gran"
@@ -400,7 +399,7 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.239999994635582" width="60.0" height="60.0" showTextBox="0"
                      processorId="gran" parameterId="Position" showValuePopup="Below"
-                     bgColour="4286491829"/>
+                     bgColour="4286491829" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel2" x="89.0" y="71.0" textColour="4280884766"
                      width="40.0" height="15.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam1" fontStyle="Regular" fontSize="15.0"
@@ -416,7 +415,7 @@
           <Component type="ScriptLabel" id="ParamLabel51" x="336.0" y="2.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam2" fontStyle="Regular" fontSize="15.0"
-                     text="div" alignment="left" visible="0"/>
+                     text="div" alignment="left"/>
           <Component type="ScriptSlider" id="windowdiv1" x="316.0" y="2.0" parentComponent="VoiceParam2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="20.0" height="20.0"
@@ -424,14 +423,14 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="WinDiv" max="16.0" suffix=" ms"
                      middlePosition="8.5" min="1.0" stepSize="1.0" defaultValue="1.0"
-                     bgColour="16711680" visible="0"/>
+                     bgColour="16711680"/>
           <Component type="ScriptSlider" id="Window1" x="185.0" y="23.0" parentComponent="VoiceParam2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50.0" height="50.0" showTextBox="0"
                      processorId="gran" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
           <Component type="ScriptSlider" showTextBox="0" id="winmod1" x="247.0" y="40.0"
                      width="30.0" height="30.0" processorId="gran" parameterId="WinMod"
                      parentComponent="VoiceParam2" numStrips="200.0" dragDirection="Vertical"
@@ -466,14 +465,14 @@
                      processorId="gran" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" pluginParameterName="Voice1GrainSize" showValuePopup="Below"
                      parameterId="WinTempo" mode="TempoSync" max="18.0" middlePosition="9.0"
-                     stepSize="1.0" bgColour="4294351196" visible="0"/>
+                     stepSize="1.0" bgColour="4294351196"/>
           <Component type="ScriptSlider" id="Winfade1" x="313.0" y="23.0" parentComponent="VoiceParam2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="51.0" height="50.0" showTextBox="0"
                      processorId="gran" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel21" x="321.0" y="72.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam2" fontStyle="Regular" fontSize="15.0"
@@ -484,17 +483,16 @@
                      processorId="gran" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="FadeTempo" mode="TempoSync"
-                     max="18.0" middlePosition="9.0" stepSize="1.0" visible="0"/>
+                     max="18.0" middlePosition="9.0" stepSize="1.0"/>
           <Component type="ScriptSlider" id="pitchoffset1" x="97.0" y="2.0" parentComponent="VoiceParam2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="20.0" height="20.0"
                      showTextBox="0" middlePosition="0.5" processorId="gran" parameterId="PitchStack"
                      textColour="3942601984" bgColour="0" itemColour="4294903559"
-                     defaultValue="0.5" showValuePopup="Below" visible="0"/>
+                     defaultValue="0.5" showValuePopup="Below"/>
           <Component type="ScriptPanel" id="StagesPitch1" x="9.0" y="5.0" width="80.0"
                      height="60.0" parentComponent="VoiceParam2" itemColour="0" bgColour="4291389544"
-                     textColour="4291389544" itemColour2="0" borderSize="1.0" borderRadius="4.0"
-                     visible="0">
+                     textColour="4291389544" itemColour2="0" borderSize="1.0" borderRadius="4.0">
             <Component type="ScriptSliderPack" id="ScriptSliderPack2" x="5.0" y="5.0"
                        width="70.0" height="49.0" parentComponent="StagesPitch1" sliderAmount="4.0"
                        itemColour="4291389544" itemColour2="13023914" processorId="gran"
@@ -507,7 +505,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0" textColour="2817780711" itemColour2="16777215" itemColour="1358891016"
                      bgColour="4278190080"/>
-          <Component type="ScriptComboBox" id="PmodSel1" x="132.0" y="38.0" width="20.0"
+          <Component type="ScriptComboBox" id="PmodSel1" x="133.0" y="38.0" width="20.0"
                      height="20.0" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam2" bgColour="4278190080" itemColour="5166303"
                      processorId="gran" parameterId="PitchSrc" defaultValue="0.0"
@@ -521,7 +519,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50.0" height="60.0" showTextBox="0"
                      processorId="gran" parameterId="Pitch" min="-24.0" max="24.0"
-                     middlePosition="0.0" showValuePopup="Below" bgColour="4291389544"/>
+                     middlePosition="0.0" showValuePopup="Below" bgColour="4291389544"
+                     visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel6" x="94.0" y="67.0" textColour="4280884766"
                      width="40.0" height="15.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam2" fontStyle="Regular" fontSize="15.0"
@@ -529,7 +528,7 @@
           <Component type="ScriptLabel" id="PitchOffsetLabel1" x="115.0" y="2.0" textColour="4280884766"
                      width="50.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam2" fontStyle="Regular" fontSize="15.0"
-                     text="offset" alignment="left" visible="0"/>
+                     text="offset" alignment="left"/>
           <Component type="ScriptSlider" id="pitch5" x="47.0" y="4.0" parentComponent="VoiceParam2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="0.0" height="40.0" showTextBox="0"
@@ -732,6 +731,9 @@
                      text="mod" alignment="left"/>
         </Component>
       </Component>
+      <Component type="ScriptButton" id="PowerBtn1" x="16.0" y="17.0" width="20.0"
+                 height="20.0" parentComponent="V0" processorId="Container1" parameterId="Bypass"
+                 filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
     <Component type="ScriptPanel" id="V1" x="12.0" y="41.0" width="820.0" height="620.0"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
@@ -791,7 +793,7 @@
           <Component type="ScriptLabel" id="ParamLabel70" x="16.0" y="4.0" textColour="4280884766"
                      width="40.0" height="10.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam16" fontStyle="Regular" fontSize="12.0"
-                     text="mode" alignment="left" processorId="res2"/>
+                     text="Track" alignment="left" processorId="res2"/>
           <Component type="ScriptSlider" id="delcut2" x="96.0" y="20.0" parentComponent="VoiceParam16"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="40.0" height="40.0" showTextBox="0"
@@ -830,9 +832,9 @@
           <Component type="ScriptSlider" id="DelayTime2" x="1.0" y="18.0" parentComponent="VoiceParam16"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50.0" height="50.0" showTextBox="0"
-                     processorId="res2" max="10000.0" parameterId="Del" middlePosition="1000.0"
+                     processorId="res2" max="1000.0" parameterId="Del" middlePosition="500.0"
                      stepSize="1.0" mode="Time" bgColour="4294885004" suffix=" ms"/>
-          <Component type="ScriptButton" id="DelMode2" x="0.0" y="1.0" width="20.0"
+          <Component type="ScriptButton" id="DelMode2" x="0.0" y="-1.0" width="20.0"
                      height="20.0" parentComponent="VoiceParam16" bgColour="4294901760"
                      itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
                      processorId="res2" parameterId="mode" text="winsync1"/>
@@ -884,7 +886,7 @@
           <Component type="ScriptSlider" id="mix2" x="135.0" y="39.0" parentComponent="VoiceParam15"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40.0" height="40.0" showTextBox="0"
-                     processorId="Proc2" parameterId="mix" bgColour="4290629078"/>
+                     processorId="Proc2" parameterId="mix" bgColour="4290629078" defaultValue="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel63" x="105.0" y="78.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam15" fontStyle="Regular" fontSize="15.0"
@@ -906,6 +908,13 @@
       <Component type="ScriptPanel" id="Amp2" x="611.0" y="363.0" width="200.0"
                  height="190.0" itemColour="3001935573" itemColour2="3001935573"
                  parentComponent="V1">
+        <Component type="ScriptLabel" id="ParamLabel194" x="28" y="-1" textColour="4280884766"
+                   width="50" height="30" fontName="Montserrat" editable="0" parentComponent="Amp2"
+                   fontStyle="Regular" fontSize="12.0" text="Pre/Post Delay" alignment="left"/>
+        <Component type="ScriptButton" id="DelMode10" x="6" y="5" width="20.0" height="20.0"
+                   parentComponent="Amp2" bgColour="4294901760" itemColour="4294175719"
+                   itemColour2="4294175743" textColour="16777215" processorId="res2"
+                   parameterId="EnvPos" text="winsync1"/>
         <Component type="ScriptPanel" id="VoiceParam17" x="6.0" y="28.0" width="90.0"
                    height="80.0" parentComponent="Amp2" borderRadius="0.0" itemColour="3001935573"
                    itemColour2="3001935573" textColour="587202560">
@@ -929,9 +938,9 @@
           <Component type="ScriptSlider" id="Vol1" x="3.0" y="12.0" parentComponent="VoiceParam17"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45.0" height="45.0" showTextBox="0"
-                     processorId="Proc2" parameterId="gain" middlePosition="-50.0"
-                     mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-                     suffix=" dB" isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
+                     processorId="Proc2" parameterId="gain" middlePosition="0.0" mode="Decibel"
+                     min="-48.0" max="24.0" stepSize="0.1000000014901161" suffix=" dB"
+                     isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
                      deferControlCallback="1"/>
           <Component type="ScriptLabel" id="ParamLabel76" x="49.0" y="59.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
@@ -1029,7 +1038,7 @@
                      height="20.0" parentComponent="ScriptPanel4" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284"/>
           <Component type="ScriptComboBox" id="FileSelectFront2" x="78.0" y="99.0"
-                     max="37" width="160.0" height="15.0" items="Clock1.wav&#10;Clock2.wav&#10;Clock3.wav&#10;Clock4.wav&#10;ColourBlend1.aif&#10;ColourBlend2.aif&#10;ColourBlend3.aif&#10;ColourBlend4.aif&#10;ColourBlend5.aif&#10;ColourBlend6.aif&#10;ColourBlend7.aif&#10;ColourBlend8.aif&#10;Radio1.aif&#10;Radio2.aif&#10;Radio3.aif&#10;Radio4.aif&#10;Radio5.aif&#10;Radio6.aif&#10;Radio7.aif&#10;Radio8.aif&#10;Radio9.aif&#10;RM1.wav&#10;RM2.wav&#10;RM3.wav&#10;RM4.wav&#10;Water1.wav&#10;Water2.wav&#10;Water3.wav&#10;Water4.wav&#10;xmod1.aif&#10;xmod2.aif&#10;xmod3.aif&#10;xmod4.aif&#10;xmod5.aif&#10;xmod6.aif&#10;xmod7.aif&#10;xmod8.aif"
+                     max="35" width="160.0" height="15.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel4" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="10.0" y="5.0"
@@ -1057,10 +1066,6 @@
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran2"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptLabel" id="FolderLabel1" x="78.0" y="98.0" parentComponent="ScriptPanel4"
-                     text="Clock4.wav" width="160.0" height="18.0" fontName="Montserrat"
-                     bgColour="4293781205" textColour="4278190080" enabled="0" editable="0"
-                     fontSize="18.0"/>
           <Component type="ScriptButton" id="FolderSelect1" x="10.0" y="99.0" parentComponent="ScriptPanel4"
                      width="30.0" height="20.0" isMomentary="1" saveInPreset="0" filmstripImage="{PROJECT_FOLDER}Folder.png"
                      scaleFactor="0.05000000074505806"/>
@@ -1076,8 +1081,8 @@
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="ScriptPanel4" fontStyle="Regular" fontSize="15.0"
                      text="FILE:"/>
-          <Component type="ScriptComboBox" id="FileSelect2" x="71.0" y="101.0" max="37"
-                     width="100.0" height="20.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Clock1.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Clock2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Clock3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Clock4.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend1.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend2.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend3.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend4.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend5.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend6.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend7.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/ColourBlend8.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio1.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio2.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio3.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio4.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio5.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio6.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio7.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio8.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Radio9.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/RM1.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/RM2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/RM3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/RM4.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Water1.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Water2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Water3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/Water4.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod1.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod2.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod3.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod4.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod5.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod6.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod7.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Noise/xmod8.aif"
+          <Component type="ScriptComboBox" id="FileSelect2" x="71.0" y="101.0" max="35"
+                     width="100.0" height="20.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/1CRD.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/ABT70.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Bad Guy m7_9.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-0.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLDRON.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLLHARM.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CASTLESM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLOCK.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLUM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Eggz_AugMaj7.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM2.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Gspider.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/JPXF.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/kick.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LOOP1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LP5.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/PlukyMin90.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Q-Wavy.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SIN5TH.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SISSMEAR.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/snare.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/STRG.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/TRI1.WAV"
                      parentComponent="ScriptPanel4" textColour="4278190080" bgColour="1426063360"
                      visible="0" saveInPreset="0"/>
         </Component>
@@ -1172,8 +1177,8 @@
                      scaleFactor="0.1599999964237213" width="50.0" height="50.0" showTextBox="0"
                      processorId="gran2" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0"/>
           <Component type="ScriptSlider" showTextBox="0" id="winmod2" x="247.0" y="40.0"
                      width="30.0" height="30.0" processorId="gran2" parameterId="WinMod"
                      parentComponent="VoiceParam9" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1216,8 +1221,8 @@
                      scaleFactor="0.1599999964237213" width="51.0" height="50.0" showTextBox="0"
                      processorId="gran2" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel26" x="321.0" y="72.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam9" fontStyle="Regular" fontSize="15.0"
@@ -1285,8 +1290,7 @@
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="Grain" middlePosition="0.5"
-                     itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
-                     visible="0"/>
+                     itemColour="4291863459" bgColour="4290759931" textColour="4278190080"/>
           <Component type="ScriptSlider" showTextBox="0" id="GrainMod2" x="82.0" y="35.0"
                      width="30.0" height="30.0" processorId="gran2" parameterId="GrainMod"
                      parentComponent="VoiceParam20" filmstripImage="{PROJECT_FOLDER}K7.png"
@@ -1324,7 +1328,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="16.0" middlePosition="8.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215"/>
+                     bgColour="16777215" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel88" x="116.0" y="67.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam20" fontStyle="Regular" fontSize="15.0"
@@ -1336,11 +1340,11 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931" locked="1"/>
+                     bgColour="4290759931" locked="1" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel187" x="120.0" y="66.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam20" fontStyle="Regular" fontSize="15.0"
-                     text="div" alignment="left"/>
+                     text="div" alignment="left" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceParam21" x="169.0" y="250.0" width="100.0"
                    height="90.0" parentComponent="Grain1" borderRadius="0.0" itemColour="3002330087"
@@ -1471,6 +1475,9 @@
                      text="mod" alignment="left"/>
         </Component>
       </Component>
+      <Component type="ScriptButton" id="PowerBtn2" x="16.0" y="17.0" width="20.0"
+                 height="20.0" parentComponent="V1" processorId="Container2" parameterId="Bypass"
+                 filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
     <Component type="ScriptPanel" id="V2" x="12.0" y="41.0" width="820.0" height="620.0"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
@@ -1516,7 +1523,7 @@
           <Component type="ScriptSlider" id="mix3" x="135.0" y="39.0" parentComponent="VoiceParam25"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40.0" height="40.0" showTextBox="0"
-                     processorId="Proc3" parameterId="mix" bgColour="4290629078"/>
+                     processorId="Proc3" parameterId="mix" bgColour="4290629078" defaultValue="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel100" x="105.0" y="78.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam25" fontStyle="Regular" fontSize="15.0"
@@ -1560,9 +1567,9 @@
           <Component type="ScriptSlider" id="Vol2" x="3.0" y="12.0" parentComponent="VoiceParam27"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45.0" height="45.0" showTextBox="0"
-                     processorId="Proc3" parameterId="gain" middlePosition="-50.0"
-                     mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-                     suffix=" dB" isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
+                     processorId="Proc3" parameterId="gain" middlePosition="0.0" mode="Decibel"
+                     min="-48.0" max="24.0" stepSize="0.1000000014901161" suffix=" dB"
+                     isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
                      deferControlCallback="1"/>
           <Component type="ScriptLabel" id="ParamLabel113" x="49.0" y="59.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
@@ -1644,6 +1651,13 @@
       <Component type="ScriptPanel" id="Delay3" x="611.0" y="153.0" width="200.0"
                  height="200.0" itemColour="3001935573" itemColour2="3001935573"
                  parentComponent="V2">
+        <Component type="ScriptLabel" id="ParamLabel195" x="28" y="209" textColour="4280884766"
+                   width="50" height="30" fontName="Montserrat" editable="0" parentComponent="Delay3"
+                   fontStyle="Regular" fontSize="12.0" text="Pre/Post Delay" alignment="left"/>
+        <Component type="ScriptButton" id="DelMode11" x="6" y="215" width="20.0"
+                   height="20.0" parentComponent="Delay3" bgColour="4294901760"
+                   itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
+                   processorId="res3" parameterId="EnvPos" text="winsync1"/>
         <Component type="ScriptComboBox" id="DelMode7" x="125.0" y="4.0" width="40.0"
                    height="20.0" text="" items="I&#10;II&#10;III" parentComponent="Delay3"
                    bgColour="4278190080" itemColour="5166303" defaultValue="0.0"
@@ -1735,7 +1749,7 @@
           <Component type="ScriptSlider" id="DelayTime3" x="1.0" y="18.0" parentComponent="VoiceParam26"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50.0" height="50.0" showTextBox="0"
-                     processorId="res3" max="10000.0" parameterId="Del" middlePosition="1000.0"
+                     processorId="res3" max="1000.0" parameterId="Del" middlePosition="500.0"
                      stepSize="1.0" mode="Time" bgColour="4294885004" suffix=" ms"/>
           <Component type="ScriptButton" id="DelMode3" x="0.0" y="1.0" width="20.0"
                      height="20.0" parentComponent="VoiceParam26" bgColour="4294901760"
@@ -1765,7 +1779,7 @@
                      height="20.0" parentComponent="ScriptPanel5" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284"/>
           <Component type="ScriptComboBox" id="FileSelectFront3" x="78.0" y="99.0"
-                     max="149" width="160.0" height="15.0" items="4sel84-01.wav&#10;4sel84-02.wav&#10;4sel84-03.wav&#10;Birdlike - mod.wav&#10;Birdlike - porto.wav&#10;Birdlike.wav&#10;ClimA76-01.wav&#10;ClimA76-02.wav&#10;ClimA76-03.wav&#10;ClimA76-04.wav&#10;ClimA76-05.wav&#10;ClimA76-06.wav&#10;ClimA76-07.wav&#10;ClimA76-08.wav&#10;ClimA76-09.wav&#10;Climb121-01.wav&#10;Climb121-02.wav&#10;Climb121-03.wav&#10;Climb121-04.wav&#10;Climb121-05.wav&#10;Climb121-06.wav&#10;Climb121-07.wav&#10;Climb121-08.wav&#10;Climb121-09.wav&#10;Climb121-10.wav&#10;Climb121-11.wav&#10;Climb121-12.wav&#10;GhostOfMD-01.wav&#10;GhostOfMD-02.wav&#10;GhostOfMD-03.wav&#10;GhostOfMD-04.wav&#10;GhostOfMD-05.wav&#10;GhostOfMD-06.wav&#10;grilla-02.wav&#10;grilla-03.wav&#10;grilla-04.wav&#10;grilla-05.wav&#10;grilla-06.wav&#10;grilla-07.wav&#10;grilla-08.wav&#10;grilla-09.wav&#10;grilla-10.wav&#10;grilla-11.wav&#10;grilla-13.wav&#10;grilla-15.wav&#10;grilla-16.wav&#10;grilla-17.wav&#10;grilla-18.wav&#10;hbs74-01.wav&#10;hbs74-02.wav&#10;hbs74-03.wav&#10;hbs74-04.wav&#10;hbs74-05.wav&#10;hbs74-06.wav&#10;hbs74-07.wav&#10;holo-01.wav&#10;holo-03.wav&#10;holo-04.wav&#10;holo-05.wav&#10;holo-06.wav&#10;holo-07.wav&#10;holo-09.wav&#10;holo-10.wav&#10;holo-11.wav&#10;holo-12.wav&#10;holo-14.wav&#10;holo-15.wav&#10;inseen90-01.wav&#10;inseen90-02.wav&#10;inseen90-03.wav&#10;inseen90-04.wav&#10;inseen90-05.wav&#10;inseen90-06.wav&#10;JJ-01.wav&#10;JJ-02.wav&#10;JJ-03.wav&#10;JJ-04.wav&#10;JJ-05.wav&#10;JJ-06.wav&#10;maribass175-01.wav&#10;maribass175-02.wav&#10;maribass175-03.wav&#10;maribass175-04.wav&#10;maribass175-05.wav&#10;maribass175-06.wav&#10;maribass175-07.wav&#10;maribass175-08.wav&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;mgroove124-04.wav&#10;mgroove124-05.wav&#10;mgroove124-06.wav&#10;mgroove124-07.wav&#10;MidCreeper-01.wav&#10;MidCreeper-02.wav&#10;MidCreeper-03.wav&#10;MidCreeper-04.wav&#10;obj-01.aif&#10;obj-02.aif&#10;obj-03.aif&#10;organ.wav&#10;PercT130-01.wav&#10;PercT130-02.wav&#10;PercT130-03.wav&#10;PercT130-04.wav&#10;PercT130-05.wav&#10;PercT130-06.wav&#10;PercT130-07.wav&#10;PercT130-08.wav&#10;PercT130-09.wav&#10;SimpleDirty124-01.wav&#10;SimpleDirty124-02.wav&#10;SimpleDirty124-03.wav&#10;SimpleDirty124-04.wav&#10;SomethingInTheWater-01.wav&#10;SomethingInTheWater-02.wav&#10;SomethingInTheWater-03.wav&#10;SomethingInTheWater-04.wav&#10;SomethingInTheWater-05.wav&#10;SomethingInTheWater-06.wav&#10;SomethingInTheWater-07.wav&#10;SomethingInTheWater-08.wav&#10;SomethingInTheWater-09.wav&#10;SomethingInTheWater-10.wav&#10;swany-01.aif&#10;swany-02.aif&#10;swany-03.aif&#10;swany-04.aif&#10;swany-05.aif&#10;swany-06.aif&#10;TempoMucker-01.wav&#10;TempoMucker-02.wav&#10;TempoMucker-03.wav&#10;TempoMucker-04.wav&#10;TempoMucker-05.wav&#10;TempoMucker-06.wav&#10;TempoMucker-07.wav&#10;TempoMucker-08.wav&#10;TempoMucker-09.wav&#10;TempoMucker-10.wav&#10;TempoMucker-11.wav&#10;TempoMucker-12.wav&#10;TempoMucker-13.wav&#10;TempoMucker-14.wav&#10;TempoMucker-15.wav&#10;TempoMucker-16.wav&#10;Tree126-01.wav&#10;Tree126-04.wav"
+                     max="35" width="160.0" height="15.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel5" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform2" x="10.0" y="5.0"
@@ -1793,10 +1807,6 @@
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran3"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptLabel" id="FolderLabel2" x="78.0" y="98.0" parentComponent="ScriptPanel5"
-                     text="ClimA76-09.wav" width="160.0" height="18.0" fontName="Montserrat"
-                     bgColour="4293781205" textColour="4278190080" enabled="0" editable="0"
-                     fontSize="18.0"/>
           <Component type="ScriptButton" id="FolderSelect2" x="10.0" y="99.0" parentComponent="ScriptPanel5"
                      width="30.0" height="20.0" isMomentary="1" saveInPreset="0" filmstripImage="{PROJECT_FOLDER}Folder.png"
                      scaleFactor="0.05000000074505806"/>
@@ -1812,8 +1822,8 @@
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="ScriptPanel5" fontStyle="Regular" fontSize="15.0"
                      text="FILE:"/>
-          <Component type="ScriptComboBox" id="FileSelect3" x="71.0" y="101.0" max="149"
-                     width="100.0" height="20.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/4sel84-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/4sel84-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/4sel84-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Birdlike - mod.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Birdlike - porto.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Birdlike.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/ClimA76-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-10.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-11.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Climb121-12.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/GhostOfMD-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/GhostOfMD-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/GhostOfMD-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/GhostOfMD-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/GhostOfMD-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/GhostOfMD-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-10.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-11.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-13.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-15.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-16.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-17.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/grilla-18.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/hbs74-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-10.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-11.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-12.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-14.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/holo-15.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/inseen90-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/inseen90-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/inseen90-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/inseen90-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/inseen90-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/inseen90-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/JJ-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/JJ-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/JJ-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/JJ-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/JJ-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/JJ-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/maribass175-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/mgroove124-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/MidCreeper-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/MidCreeper-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/MidCreeper-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/MidCreeper-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/obj-01.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/obj-02.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/obj-03.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/organ.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/PercT130-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SimpleDirty124-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SimpleDirty124-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SimpleDirty124-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SimpleDirty124-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/SomethingInTheWater-10.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/swany-01.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/swany-02.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/swany-03.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/swany-04.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/swany-05.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/swany-06.aif&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-04.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-05.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-06.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-07.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-08.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-09.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-10.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-11.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-12.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-13.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-14.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-15.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/TempoMucker-16.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Tree126-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Stems/Tree126-04.wav"
+          <Component type="ScriptComboBox" id="FileSelect3" x="71.0" y="101.0" max="35"
+                     width="100.0" height="20.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/1CRD.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/ABT70.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Bad Guy m7_9.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-0.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLDRON.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLLHARM.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CASTLESM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLOCK.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLUM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Eggz_AugMaj7.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM2.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Gspider.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/JPXF.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/kick.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LOOP1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LP5.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/PlukyMin90.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Q-Wavy.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SIN5TH.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SISSMEAR.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/snare.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/STRG.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/TRI1.WAV"
                      parentComponent="ScriptPanel5" textColour="4278190080" bgColour="1426063360"
                      visible="0" saveInPreset="0"/>
         </Component>
@@ -1907,8 +1917,8 @@
                      scaleFactor="0.1599999964237213" width="50.0" height="50.0" showTextBox="0"
                      processorId="gran3" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0"/>
           <Component type="ScriptSlider" showTextBox="0" id="winmod3" x="247.0" y="40.0"
                      width="30.0" height="30.0" processorId="gran3" parameterId="WinMod"
                      parentComponent="VoiceParam31" numStrips="200.0" dragDirection="Vertical"
@@ -1950,8 +1960,8 @@
                      scaleFactor="0.1599999964237213" width="51.0" height="50.0" showTextBox="0"
                      processorId="gran3" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel126" x="321.0" y="69.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam31" fontStyle="Regular" fontSize="15.0"
@@ -2194,9 +2204,12 @@
         </Component>
       </Component>
     </Component>
+    <Component type="ScriptButton" id="PowerBtn3" x="28.0" y="58.0" width="20.0"
+               height="20.0" parentComponent="Og" processorId="Container3" parameterId="Bypass"
+               filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     <Component type="ScriptPanel" id="V3" x="12.0" y="41.0" width="820.0" height="620.0"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Filter4" x="612.0" y="13.0" width="200.0"
                  height="130.0" itemColour="3001935573" itemColour2="3001935573"
                  parentComponent="V3">
@@ -2238,7 +2251,7 @@
           <Component type="ScriptSlider" id="mix4" x="135.0" y="39.0" parentComponent="VoiceParam37"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40.0" height="40.0" showTextBox="0"
-                     processorId="Proc4" parameterId="mix" bgColour="4290629078"/>
+                     processorId="Proc4" parameterId="mix" bgColour="4290629078" defaultValue="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel144" x="105.0" y="78.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam37" fontStyle="Regular" fontSize="15.0"
@@ -2282,9 +2295,9 @@
           <Component type="ScriptSlider" id="Vol3" x="3.0" y="12.0" parentComponent="VoiceParam39"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45.0" height="45.0" showTextBox="0"
-                     processorId="Proc4" parameterId="gain" middlePosition="-50.0"
-                     mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-                     suffix=" dB" isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
+                     processorId="Proc4" parameterId="gain" middlePosition="0.0" mode="Decibel"
+                     min="-48.0" max="24.0" stepSize="0.1000000014901161" suffix=" dB"
+                     isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
                      deferControlCallback="1"/>
           <Component type="ScriptLabel" id="ParamLabel157" x="49.0" y="59.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
@@ -2366,6 +2379,13 @@
       <Component type="ScriptPanel" id="Delay4" x="611.0" y="153.0" width="200.0"
                  height="200.0" itemColour="3001935573" itemColour2="3001935573"
                  parentComponent="V3">
+        <Component type="ScriptLabel" id="ParamLabel196" x="28" y="209" textColour="4280884766"
+                   width="50" height="30" fontName="Montserrat" editable="0" parentComponent="Delay4"
+                   fontStyle="Regular" fontSize="12.0" text="Pre/Post Delay" alignment="left"/>
+        <Component type="ScriptButton" id="DelMode12" x="6" y="215" width="20.0"
+                   height="20.0" parentComponent="Delay4" bgColour="4294901760"
+                   itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
+                   processorId="res4" parameterId="EnvPos" text="winsync1"/>
         <Component type="ScriptComboBox" id="DelMode8" x="125.0" y="4.0" width="40.0"
                    height="20.0" text="" items="I&#10;II&#10;III" parentComponent="Delay4"
                    bgColour="4278190080" itemColour="5166303" defaultValue="0.0"
@@ -2457,7 +2477,7 @@
           <Component type="ScriptSlider" id="DelayTime4" x="1.0" y="18.0" parentComponent="VoiceParam38"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50.0" height="50.0" showTextBox="0"
-                     processorId="res4" max="10000.0" parameterId="Del" middlePosition="1000.0"
+                     processorId="res4" max="1000.0" parameterId="Del" middlePosition="500.0"
                      stepSize="1.0" mode="Time" bgColour="4294885004" suffix=" ms"/>
           <Component type="ScriptButton" id="DelMode4" x="0.0" y="1.0" width="20.0"
                      height="20.0" parentComponent="VoiceParam38" bgColour="4294901760"
@@ -2487,7 +2507,7 @@
                      height="20.0" parentComponent="ScriptPanel10" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284"/>
           <Component type="ScriptComboBox" id="FileSelectFront4" x="78.0" y="99.0"
-                     max="3" width="160.0" height="15.0" items="hisuer.wav&#10;OG.wav&#10;OGluv.wav"
+                     max="35" width="160.0" height="15.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel10" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform3" x="10.0" y="5.0"
@@ -2512,10 +2532,6 @@
                      height="90.0" parentComponent="ScriptPanel10" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran4"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"/>
-          <Component type="ScriptLabel" id="FolderLabel3" x="78.0" y="98.0" parentComponent="ScriptPanel10"
-                     text="hisuer.wav" width="160.0" height="18.0" fontName="Montserrat"
-                     bgColour="4293781205" textColour="4278190080" enabled="0" editable="0"
-                     fontSize="18.0"/>
           <Component type="ScriptButton" id="FolderSelect3" x="10.0" y="99.0" parentComponent="ScriptPanel10"
                      width="30.0" height="20.0" isMomentary="1" saveInPreset="0" filmstripImage="{PROJECT_FOLDER}Folder.png"
                      scaleFactor="0.05000000074505806"/>
@@ -2531,8 +2547,8 @@
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="ScriptPanel10" fontStyle="Regular" fontSize="15.0"
                      text="FILE:"/>
-          <Component type="ScriptComboBox" id="FileSelect4" x="71.0" y="101.0" max="3"
-                     width="100.0" height="20.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/OG.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/misc/OGluv.wav"
+          <Component type="ScriptComboBox" id="FileSelect4" x="71.0" y="101.0" max="35"
+                     width="100.0" height="20.0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/1CRD.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/ABT70.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Bad Guy m7_9.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-0.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLDRON.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/BELLLHARM.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CASTLESM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLOCK.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/CLUM.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Eggz_AugMaj7.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/FM2.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Gspider.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/JPXF.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/kick.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LOOP1.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/LP5.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-02.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/mgroove124-03.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/PlukyMin90.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/Q-Wavy.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv01.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv2.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/shiv3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SIN5TH.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/SISSMEAR.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/snare.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/STRG.WAV&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/TRI1.WAV"
                      parentComponent="ScriptPanel10" textColour="4278190080" bgColour="1426063360"
                      visible="0" saveInPreset="0"/>
         </Component>
@@ -2626,8 +2642,8 @@
                      scaleFactor="0.1599999964237213" width="50.0" height="50.0" showTextBox="0"
                      processorId="gran4" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0"/>
           <Component type="ScriptSlider" showTextBox="0" id="winmod4" x="247.0" y="40.0"
                      width="30.0" height="30.0" processorId="gran4" parameterId="WinMod"
                      parentComponent="VoiceParam43" numStrips="200.0" dragDirection="Vertical"
@@ -2669,8 +2685,8 @@
                      scaleFactor="0.1599999964237213" width="51.0" height="50.0" showTextBox="0"
                      processorId="gran4" enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="10000.0"
-                     suffix=" ms" middlePosition="5000.0"/>
+                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
+                     suffix=" ms" middlePosition="500.0" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel170" x="321.0" y="72.0" textColour="4280884766"
                      width="40.0" height="20.0" fontName="Montserrat" editable="0"
                      parentComponent="VoiceParam43" fontStyle="Regular" fontSize="15.0"
@@ -2912,6 +2928,9 @@
                      text="mod" alignment="left"/>
         </Component>
       </Component>
+      <Component type="ScriptButton" id="PowerBtn4" x="16.0" y="17.0" width="20.0"
+                 height="20.0" parentComponent="V3" processorId="Container4" parameterId="Bypass"
+                 filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
     <Component type="ScriptPanel" id="V4" x="12.0" y="41.0" width="820.0" height="620.0"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
@@ -2934,8 +2953,8 @@
           <Component type="ScriptButton" id="StgSel6" x="546.0" y="100.0" width="20.0"
                      height="20.0" parentComponent="ScriptPanel11" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284" visible="0"/>
-          <Component type="ScriptComboBox" id="FileSelectMac1" x="36.0" y="82.0" max="8"
-                     width="100.0" height="20.0" items="01.I.Grave.mp3&#10;02.Ii.Scherzo.mp3&#10;03.Iii.MarcheFunbre.mp3&#10;04.Iv.Finale-Presto.mp3&#10;Bach-liszt-PreludeAndFugueInAMinorBwv543.mp3&#10;hisuer.wav&#10;OG.wav&#10;OGluv.wav"
+          <Component type="ScriptComboBox" id="FileSelectMac1" x="36.0" y="82.0" max="35"
+                     width="100.0" height="20.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel11" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" isMetaParameter="1" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform8" x="10.0" y="5.0"
@@ -2960,9 +2979,6 @@
                      height="75.0" parentComponent="ScriptPanel11" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"/>
-          <Component type="ScriptLabel" id="FolderLabel4" x="378.0" y="48.0" parentComponent="ScriptPanel11"
-                     text="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Waveterm"
-                     visible="0"/>
           <Component type="ScriptComboBox" id="XfMode5" x="503.0" y="96.0" max="4"
                      width="30.0" height="20.0" items="Off&#10;SQR&#10;RMS&#10;Switch"
                      parentComponent="ScriptPanel11" textColour="4278190080" bgColour="1426063360"
@@ -3152,8 +3168,8 @@
           <Component type="ScriptButton" id="StgSel7" x="546.0" y="100.0" width="20.0"
                      height="20.0" parentComponent="ScriptPanel12" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284" visible="0"/>
-          <Component type="ScriptComboBox" id="FileSelectMac2" x="36.0" y="82.0" max="37"
-                     width="100.0" height="20.0" items="Clock1.wav&#10;Clock2.wav&#10;Clock3.wav&#10;Clock4.wav&#10;ColourBlend1.aif&#10;ColourBlend2.aif&#10;ColourBlend3.aif&#10;ColourBlend4.aif&#10;ColourBlend5.aif&#10;ColourBlend6.aif&#10;ColourBlend7.aif&#10;ColourBlend8.aif&#10;Radio1.aif&#10;Radio2.aif&#10;Radio3.aif&#10;Radio4.aif&#10;Radio5.aif&#10;Radio6.aif&#10;Radio7.aif&#10;Radio8.aif&#10;Radio9.aif&#10;RM1.wav&#10;RM2.wav&#10;RM3.wav&#10;RM4.wav&#10;Water1.wav&#10;Water2.wav&#10;Water3.wav&#10;Water4.wav&#10;xmod1.aif&#10;xmod2.aif&#10;xmod3.aif&#10;xmod4.aif&#10;xmod5.aif&#10;xmod6.aif&#10;xmod7.aif&#10;xmod8.aif"
+          <Component type="ScriptComboBox" id="FileSelectMac2" x="36.0" y="82.0" max="35"
+                     width="100.0" height="20.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel12" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" isMetaParameter="1" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform9" x="10.0" y="5.0"
@@ -3178,9 +3194,6 @@
                      height="75.0" parentComponent="ScriptPanel12" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran2"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"/>
-          <Component type="ScriptLabel" id="FolderLabel5" x="378.0" y="48.0" parentComponent="ScriptPanel12"
-                     text="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Waveterm"
-                     visible="0"/>
           <Component type="ScriptComboBox" id="XfMode6" x="503.0" y="96.0" max="4"
                      width="30.0" height="20.0" items="Off&#10;SQR&#10;RMS&#10;Switch"
                      parentComponent="ScriptPanel12" textColour="4278190080" bgColour="1426063360"
@@ -3370,8 +3383,8 @@
           <Component type="ScriptButton" id="StgSel8" x="546.0" y="100.0" width="20.0"
                      height="20.0" parentComponent="ScriptPanel13" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284" visible="0"/>
-          <Component type="ScriptComboBox" id="FileSelectMac3" x="36.0" y="82.0" max="149"
-                     width="100.0" height="20.0" items="4sel84-01.wav&#10;4sel84-02.wav&#10;4sel84-03.wav&#10;Birdlike - mod.wav&#10;Birdlike - porto.wav&#10;Birdlike.wav&#10;ClimA76-01.wav&#10;ClimA76-02.wav&#10;ClimA76-03.wav&#10;ClimA76-04.wav&#10;ClimA76-05.wav&#10;ClimA76-06.wav&#10;ClimA76-07.wav&#10;ClimA76-08.wav&#10;ClimA76-09.wav&#10;Climb121-01.wav&#10;Climb121-02.wav&#10;Climb121-03.wav&#10;Climb121-04.wav&#10;Climb121-05.wav&#10;Climb121-06.wav&#10;Climb121-07.wav&#10;Climb121-08.wav&#10;Climb121-09.wav&#10;Climb121-10.wav&#10;Climb121-11.wav&#10;Climb121-12.wav&#10;GhostOfMD-01.wav&#10;GhostOfMD-02.wav&#10;GhostOfMD-03.wav&#10;GhostOfMD-04.wav&#10;GhostOfMD-05.wav&#10;GhostOfMD-06.wav&#10;grilla-02.wav&#10;grilla-03.wav&#10;grilla-04.wav&#10;grilla-05.wav&#10;grilla-06.wav&#10;grilla-07.wav&#10;grilla-08.wav&#10;grilla-09.wav&#10;grilla-10.wav&#10;grilla-11.wav&#10;grilla-13.wav&#10;grilla-15.wav&#10;grilla-16.wav&#10;grilla-17.wav&#10;grilla-18.wav&#10;hbs74-01.wav&#10;hbs74-02.wav&#10;hbs74-03.wav&#10;hbs74-04.wav&#10;hbs74-05.wav&#10;hbs74-06.wav&#10;hbs74-07.wav&#10;holo-01.wav&#10;holo-03.wav&#10;holo-04.wav&#10;holo-05.wav&#10;holo-06.wav&#10;holo-07.wav&#10;holo-09.wav&#10;holo-10.wav&#10;holo-11.wav&#10;holo-12.wav&#10;holo-14.wav&#10;holo-15.wav&#10;inseen90-01.wav&#10;inseen90-02.wav&#10;inseen90-03.wav&#10;inseen90-04.wav&#10;inseen90-05.wav&#10;inseen90-06.wav&#10;JJ-01.wav&#10;JJ-02.wav&#10;JJ-03.wav&#10;JJ-04.wav&#10;JJ-05.wav&#10;JJ-06.wav&#10;maribass175-01.wav&#10;maribass175-02.wav&#10;maribass175-03.wav&#10;maribass175-04.wav&#10;maribass175-05.wav&#10;maribass175-06.wav&#10;maribass175-07.wav&#10;maribass175-08.wav&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;mgroove124-04.wav&#10;mgroove124-05.wav&#10;mgroove124-06.wav&#10;mgroove124-07.wav&#10;MidCreeper-01.wav&#10;MidCreeper-02.wav&#10;MidCreeper-03.wav&#10;MidCreeper-04.wav&#10;obj-01.aif&#10;obj-02.aif&#10;obj-03.aif&#10;organ.wav&#10;PercT130-01.wav&#10;PercT130-02.wav&#10;PercT130-03.wav&#10;PercT130-04.wav&#10;PercT130-05.wav&#10;PercT130-06.wav&#10;PercT130-07.wav&#10;PercT130-08.wav&#10;PercT130-09.wav&#10;SimpleDirty124-01.wav&#10;SimpleDirty124-02.wav&#10;SimpleDirty124-03.wav&#10;SimpleDirty124-04.wav&#10;SomethingInTheWater-01.wav&#10;SomethingInTheWater-02.wav&#10;SomethingInTheWater-03.wav&#10;SomethingInTheWater-04.wav&#10;SomethingInTheWater-05.wav&#10;SomethingInTheWater-06.wav&#10;SomethingInTheWater-07.wav&#10;SomethingInTheWater-08.wav&#10;SomethingInTheWater-09.wav&#10;SomethingInTheWater-10.wav&#10;swany-01.aif&#10;swany-02.aif&#10;swany-03.aif&#10;swany-04.aif&#10;swany-05.aif&#10;swany-06.aif&#10;TempoMucker-01.wav&#10;TempoMucker-02.wav&#10;TempoMucker-03.wav&#10;TempoMucker-04.wav&#10;TempoMucker-05.wav&#10;TempoMucker-06.wav&#10;TempoMucker-07.wav&#10;TempoMucker-08.wav&#10;TempoMucker-09.wav&#10;TempoMucker-10.wav&#10;TempoMucker-11.wav&#10;TempoMucker-12.wav&#10;TempoMucker-13.wav&#10;TempoMucker-14.wav&#10;TempoMucker-15.wav&#10;TempoMucker-16.wav&#10;Tree126-01.wav&#10;Tree126-04.wav"
+          <Component type="ScriptComboBox" id="FileSelectMac3" x="36.0" y="82.0" max="35"
+                     width="100.0" height="20.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel13" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" isMetaParameter="1" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform10" x="10.0" y="5.0"
@@ -3396,9 +3409,6 @@
                      height="75.0" parentComponent="ScriptPanel13" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran3"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"/>
-          <Component type="ScriptLabel" id="FolderLabel6" x="378.0" y="48.0" parentComponent="ScriptPanel13"
-                     text="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Waveterm"
-                     visible="0"/>
           <Component type="ScriptComboBox" id="XfMode7" x="503.0" y="96.0" max="4"
                      width="30.0" height="20.0" items="Off&#10;SQR&#10;RMS&#10;Switch"
                      parentComponent="ScriptPanel13" textColour="4278190080" bgColour="1426063360"
@@ -3588,8 +3598,8 @@
           <Component type="ScriptButton" id="StgSel9" x="546.0" y="100.0" width="20.0"
                      height="20.0" parentComponent="ScriptPanel14" filmstripImage="{PROJECT_FOLDER}quad.png"
                      scaleFactor="0.1299999952316284" visible="0"/>
-          <Component type="ScriptComboBox" id="FileSelectMac4" x="36.0" y="82.0" max="3"
-                     width="100.0" height="20.0" items="hisuer.wav&#10;OG.wav&#10;OGluv.wav"
+          <Component type="ScriptComboBox" id="FileSelectMac4" x="36.0" y="82.0" max="35"
+                     width="100.0" height="20.0" items="1CRD.WAV&#10;ABT70.WAV&#10;Bad Guy m7_9.wav&#10;basschain-0.wav&#10;basschain-_3.wav&#10;BELLDRON.WAV&#10;BELLLHARM.wav&#10;CASTLESM.WAV&#10;CLOCK.WAV&#10;CLUM.WAV&#10;Eggz_AugMaj7.wav&#10;FM1.WAV&#10;FM2.WAV&#10;Gspider.wav&#10;hisuer.wav&#10;hp-perc.wav&#10;JPXF.wav&#10;kick.wav&#10;LOOP1.WAV&#10;LP5.WAV&#10;mgroove124-01.wav&#10;mgroove124-02.wav&#10;mgroove124-03.wav&#10;OGluv.wav&#10;perc.wav&#10;PlukyMin90.wav&#10;Q-Wavy.wav&#10;shiv01.wav&#10;shiv2.wav&#10;shiv3.wav&#10;SIN5TH.wav&#10;SISSMEAR.WAV&#10;snare.wav&#10;STRG.WAV&#10;TRI1.WAV"
                      parentComponent="ScriptPanel14" textColour="4278190080" bgColour="4286740857"
                      itemColour="4281545523" isMetaParameter="1" text="*" saveInPreset="0"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform11" x="10.0" y="5.0"
@@ -3614,9 +3624,6 @@
                      height="75.0" parentComponent="ScriptPanel14" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="gran4"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"/>
-          <Component type="ScriptLabel" id="FolderLabel7" x="378.0" y="48.0" parentComponent="ScriptPanel14"
-                     text="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Waveterm"
-                     visible="0"/>
           <Component type="ScriptComboBox" id="XfMode8" x="503.0" y="96.0" max="4"
                      width="30.0" height="20.0" items="Off&#10;SQR&#10;RMS&#10;Switch"
                      parentComponent="ScriptPanel14" textColour="4278190080" bgColour="1426063360"
@@ -3833,8 +3840,7 @@
                  itemColour="3001935573" textColour="3001935573"/>
       <Component type="ScriptPanel" id="MOD1" x="-1.0" y="0.0" width="620.0" height="170.0"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
-                 visible="0">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
         <Component type="ScriptPanel" id="seq1" x="7.0" y="8.0" width="290.0" height="160.0"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
@@ -4126,7 +4132,8 @@
       </Component>
       <Component type="ScriptPanel" id="MOD2" x="-1.0" y="0.0" width="620.0" height="170.0"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
+                 visible="0">
         <Component type="ScriptPanel" id="seq3" x="7.0" y="8.0" width="290.0" height="160.0"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD2">
@@ -4425,7 +4432,7 @@
                    textColour="4278190080" text="*" parentComponent="MOD3">
           <Component type="ScriptPanel" id="Step5" x="13.0" y="30.0" width="270.0"
                      height="60.0" parentComponent="seq5" itemColour="0" itemColour2="0"
-                     textColour="16777215" bgColour="16777215">
+                     textColour="16777215" bgColour="16777215" visible="0">
             <Component type="ScriptSliderPack" id="SliderPackA16" x="8.0" y="0.0" processorId="s5"
                        width="240.0" height="60.0" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step5" bgColour="4281811545"/>
@@ -4444,7 +4451,7 @@
           </Component>
           <Component type="ScriptPanel" id="Table5" x="13.0" y="30.0" width="270.0"
                      height="60.0" parentComponent="seq5" itemColour="0" itemColour2="0"
-                     textColour="16777215" bgColour="16777215" visible="0">
+                     textColour="16777215" bgColour="16777215">
             <Component type="ScriptTable" id="ScriptTable5" x="10.0" y="0.0" width="240.0"
                        height="60.0" parentComponent="Table5" itemColour="2046820352"
                        bgColour="3203262165" itemColour2="3422552064" processorId="s5"
@@ -5011,7 +5018,7 @@
                    textColour="4278190080" text="*" parentComponent="MOD5">
           <Component type="ScriptPanel" id="Step9" x="13.0" y="30.0" width="270.0"
                      height="60.0" parentComponent="seq9" itemColour="0" itemColour2="0"
-                     textColour="16777215" bgColour="16777215" visible="0">
+                     textColour="16777215" bgColour="16777215">
             <Component type="ScriptSliderPack" id="SliderPackA32" x="8.0" y="0.0" processorId="s9"
                        width="240.0" height="60.0" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step9" bgColour="4281811545"/>
@@ -5030,7 +5037,7 @@
           </Component>
           <Component type="ScriptPanel" id="Table9" x="13.0" y="30.0" width="270.0"
                      height="60.0" parentComponent="seq9" itemColour="0" itemColour2="0"
-                     textColour="16777215" bgColour="16777215">
+                     textColour="16777215" bgColour="16777215" visible="0">
             <Component type="ScriptTable" id="ScriptTable9" x="10.0" y="0.0" width="240.0"
                        height="60.0" parentComponent="Table9" itemColour="2046820352"
                        bgColour="3203262165" itemColour2="3422552064" processorId="s9"
@@ -5761,7 +5768,8 @@
              textColour="268435456" visible="0">
     <Component type="ScriptPanel" id="BoxItem1" x="0.0" y="0.0" width="100.0"
                height="90.0" parentComponent="BoxItems" borderRadius="0.0" itemColour="0"
-               textColour="16777215" bgColour="16777215" allowCallbacks="Clicks Only">
+               textColour="16777215" bgColour="16777215" allowCallbacks="Clicks Only"
+               visible="0">
       <Component type="ScriptLabel" id="ParamLabel57" x="5.0" y="68.0" textColour="4280884766"
                  width="90.0" height="20.0" fontName="Montserrat" editable="0"
                  parentComponent="BoxItem1" fontStyle="Regular" fontSize="15.0"
@@ -5781,7 +5789,7 @@
     <Component type="ScriptPanel" id="BoxItem2" x="0.0" y="0.0" width="100.0"
                height="90.0" parentComponent="BoxItems" borderRadius="0.0" itemColour="4278649346"
                textColour="16777215" bgColour="16777215" itemColour2="4278190080"
-               allowCallbacks="Clicks Only" visible="0">
+               allowCallbacks="Clicks Only">
       <Component type="ScriptImage" id="ScriptImage3" x="-1.0" y="3.0" width="110.0"
                  height="90.0" parentComponent="BoxItem2" fileName="{PROJECT_FOLDER}q.png"
                  enabled="0"/>
@@ -5987,12 +5995,13 @@
              itemColour2="2800608981" textColour="4294109134"/>
   <Component type="ScriptComboBox" id="cmbPresets" x="634.0" y="19.0" width="200.0"
              height="30.0" bgColour="2834420659" itemColour="2381435827" itemColour2="15591125"
-             textColour="2767382478" useCustomPopup="1" saveInPreset="0" items="&#10;v2_2::Drones &amp; Ambient::1&#10;v2_2::Drones &amp; Ambient::2&#10;v2_2::Grooves::You'll get used to it"
-             max="3">
+             textColour="2767382478" useCustomPopup="1" saveInPreset="0" text="LOAD A PRESET"
+             items="&#10;v2_2::Drones &amp; Ambient::1&#10;v2_2::Drones &amp; Ambient::2&#10;v2_2::Drones &amp; Ambient::3&#10;v2_2::Factory::test1&#10;v2_2::Grooves::You'll get used to it"
+             max="5">
     <Component type="ScriptLabel" id="ScriptLabel11" x="0.0" y="1.0" width="200.0"
                height="30.0" parentComponent="cmbPresets" text="Select a preset.."
                fontName="Montserrat" bgColour="4291389544" textColour="4294757580"
-               editable="0"/>
+               editable="0" visible="0"/>
   </Component>
   <Component type="ScriptLabel" id="Label32" x="77.0" y="650.0" width="40.0"
              height="20.0" fontName="Montserrat" fontSize="14.0" textColour="3706906574"

@@ -5,7 +5,7 @@ Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
 include("RR.js");
 include("rec.js");
 
-//include("MultiChannel.js");
+include("MultiChannel.js");
 include("ModControls.js");
 include("Rect.js");
 
