@@ -9,6 +9,8 @@
 
 // Include third party header files ----------------
 
+#include "granul.h"
+#include "granular.h"
 #include "MODEFILTR.h"
 #include "PitchShifter.h"
 #include "PitchShifter2.h"
@@ -33,7 +35,7 @@
 #include "Proc4_networkdata.h"
 #include "Process.h"
 #include "record_networkdata.h"
-#include "res1_networkdata.h"
+#include "res1.h"
 #include "Stack.h"
 #include "track2_networkdata.h"
 #include "track3_networkdata.h"

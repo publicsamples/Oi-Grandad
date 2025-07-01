@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="res1" Version="0.0.0">
+<Network ID="res1" Version="0.0.0" AllowCompilation="1">
   <Node FactoryPath="container.chain" ID="res1" Bypassed="0" Name="res1"
         ShowParameters="1">
     <Nodes>
@@ -415,6 +415,8 @@
                     <ModulationTargets>
                       <Connection NodeId="input_toggle1" ParameterId="Value2"/>
                       <Connection NodeId="minmax1" ParameterId="Value"/>
+                      <Connection NodeId="cable_table" ParameterId="Value"/>
+                      <Connection NodeId="cable_table1" ParameterId="Value"/>
                     </ModulationTargets>
                   </Node>
                   <Node ID="input_toggle1" FactoryPath="control.input_toggle" Bypassed="0"
@@ -827,6 +829,9 @@
                     </Parameters>
                     <ModulationTargets>
                       <Connection NodeId="one_pole145" ParameterId="Frequency"/>
+                      <Connection NodeId="one_pole147" ParameterId="Frequency"/>
+                      <Connection NodeId="one_pole146" ParameterId="Frequency"/>
+                      <Connection NodeId="faust" ParameterId="speed"/>
                     </ModulationTargets>
                   </Node>
                   <Node ID="clear45" FactoryPath="math.clear" Bypassed="0" Name="clear2">
@@ -848,7 +853,8 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain"
+            Folded="1">
         <Nodes>
           <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain1">
             <Nodes>
@@ -928,7 +934,7 @@
         <Parameters/>
       </Node>
       <Node ID="soft_bypass" FactoryPath="container.soft_bypass" Bypassed="0"
-            Name="soft_bypass">
+            Name="soft_bypass" Folded="1">
         <Properties>
           <Property ID="SmoothingTime" Value="20"/>
         </Properties>
@@ -1033,23 +1039,23 @@
               </Node>
               <Node ID="chain7" FactoryPath="container.chain" Bypassed="0" Name="chain6">
                 <Nodes>
-                  <Node ID="dynamic_blocksize1" FactoryPath="container.dynamic_blocksize"
-                        Bypassed="0" Name="dynamic_blocksize1" ShowParameters="1">
+                  <Node ID="chain5" FactoryPath="container.chain" Bypassed="0" Name="chain4"
+                        ShowParameters="1">
                     <Nodes>
-                      <Node ID="chain5" FactoryPath="container.chain" Bypassed="0" Name="chain4"
+                      <Node ID="branch3" FactoryPath="container.branch" Bypassed="0" Name="branch3"
                             ShowParameters="1">
                         <Nodes>
-                          <Node ID="receive" FactoryPath="routing.receive" Bypassed="0" Name="receive">
-                            <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" DefaultValue="0.0"
-                                         Automated="1"/>
-                            </Parameters>
-                          </Node>
-                          <Node ID="branch3" FactoryPath="container.branch" Bypassed="0" Name="branch3"
-                                ShowParameters="1">
+                          <Node ID="dynamic_blocksize3" FactoryPath="container.dynamic_blocksize"
+                                Bypassed="0" Name="dynamic_blocksize3" ShowParameters="1">
                             <Nodes>
                               <Node ID="chain3" FactoryPath="container.chain" Bypassed="0" Name="chain3">
                                 <Nodes>
+                                  <Node ID="receive" FactoryPath="routing.receive" Bypassed="0" Name="receive">
+                                    <Parameters>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" DefaultValue="0.0"
+                                                 Automated="1"/>
+                                    </Parameters>
+                                  </Node>
                                   <Node ID="fix_delay" FactoryPath="core.fix_delay" Bypassed="0" Name="fix_delay">
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
@@ -1081,14 +1087,91 @@
                                           <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0" ID="Position" Automated="1"/>
                                         </Parameters>
                                       </Node>
+                                      <Node ID="one_pole145" FactoryPath="filters.one_pole" Bypassed="0"
+                                            Name="one_poleD">
+                                        <ComplexData>
+                                          <Filters>
+                                            <Filter Index="-1"/>
+                                          </Filters>
+                                        </ComplexData>
+                                        <Parameters>
+                                          <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                                                     ID="Frequency" DefaultValue="1000.0" Automated="1"/>
+                                          <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                                                     ID="Q" Value="1.0"/>
+                                          <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                                                     ID="Smoothing" Value="0.009999999776482582"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                                        </Parameters>
+                                      </Node>
+                                      <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
+                                        <ModulationTargets>
+                                          <Connection NodeId="comp" ParameterId="Threshhold"/>
+                                        </ModulationTargets>
+                                        <Parameters>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
+                                          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
+                                                     ID="Minimum" Value="-100.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
+                                                     ID="Maximum" Value="0.0" DefaultValue="1.0"/>
+                                          <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                                     ID="Skew" Value="5.422270979580217" DefaultValue="1.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.1" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="1.0"
+                                                     DefaultValue="0.0"/>
+                                        </Parameters>
+                                      </Node>
+                                      <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+                                        <ComplexData>
+                                          <DisplayBuffers>
+                                            <DisplayBuffer Index="-1"/>
+                                          </DisplayBuffers>
+                                        </ComplexData>
+                                        <Parameters>
+                                          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                                     SkewFactor="5.422270774841309" ID="Threshhold" Automated="1"/>
+                                          <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                                     SkewFactor="0.4306765496730804" ID="Attack" Value="25.90000038594007"
+                                                     DefaultValue="50.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                                     SkewFactor="0.4306765496730804" ID="Release" Value="109.7000016346574"
+                                                     DefaultValue="50.0"/>
+                                          <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
+                                                     SkewFactor="0.2968033850193024" ID="Ratio" Value="2.80000002682209"
+                                                     DefaultValue="1.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
+                                        </Parameters>
+                                      </Node>
+                                      <Node ID="send3" FactoryPath="routing.send" Bypassed="0" Name="send1">
+                                        <Properties>
+                                          <Property ID="Connection" Value="receive"/>
+                                        </Properties>
+                                        <Parameters/>
+                                      </Node>
                                     </Nodes>
                                     <Parameters/>
                                   </Node>
                                 </Nodes>
                                 <Parameters/>
                               </Node>
+                            </Nodes>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="7.0" StepSize="1.0" ID="BlockSize" Value="0.0"
+                                         DefaultValue="4.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="dynamic_blocksize" FactoryPath="container.dynamic_blocksize"
+                                Bypassed="0" Name="dynamic_blocksize" ShowParameters="1">
+                            <Nodes>
                               <Node ID="chain13" FactoryPath="container.chain" Bypassed="0" Name="chain11">
                                 <Nodes>
+                                  <Node ID="receive1" FactoryPath="routing.receive" Bypassed="0" Name="receive1">
+                                    <Parameters>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+                                    </Parameters>
+                                  </Node>
                                   <Node ID="fix_delay1" FactoryPath="core.fix_delay" Bypassed="0" Name="fix_delay">
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
@@ -1105,11 +1188,88 @@
                                                  Automated="1"/>
                                     </Parameters>
                                   </Node>
+                                  <Node ID="one_pole147" FactoryPath="filters.one_pole" Bypassed="0"
+                                        Name="one_poleD">
+                                    <ComplexData>
+                                      <Filters>
+                                        <Filter Index="-1"/>
+                                      </Filters>
+                                    </ComplexData>
+                                    <Parameters>
+                                      <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                                                 ID="Frequency" DefaultValue="1000.0" Automated="1"/>
+                                      <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                                                 ID="Q" Value="1.0"/>
+                                      <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                                                 ID="Smoothing" Value="0.009999999776482582"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                                    </Parameters>
+                                  </Node>
+                                  <Node ID="minmax3" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
+                                    <ModulationTargets>
+                                      <Connection NodeId="comp2" ParameterId="Threshhold"/>
+                                    </ModulationTargets>
+                                    <Parameters>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
+                                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
+                                                 ID="Minimum" Value="-100.0" DefaultValue="0.0"/>
+                                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
+                                                 ID="Maximum" Value="0.0" DefaultValue="1.0"/>
+                                      <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                                 ID="Skew" Value="5.422270979580217" DefaultValue="1.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.1" DefaultValue="0.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="1.0"
+                                                 DefaultValue="0.0"/>
+                                    </Parameters>
+                                  </Node>
+                                  <Node ID="comp2" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+                                    <ComplexData>
+                                      <DisplayBuffers>
+                                        <DisplayBuffer Index="-1"/>
+                                      </DisplayBuffers>
+                                    </ComplexData>
+                                    <Parameters>
+                                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="5.422270774841309" ID="Threshhold" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="0.4306765496730804" ID="Attack" Value="21.1000003144145"
+                                                 DefaultValue="50.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="0.4306765496730804" ID="Release" Value="109.7000016346574"
+                                                 DefaultValue="50.0"/>
+                                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="0.2968033850193024" ID="Ratio" Value="2.80000002682209"
+                                                 DefaultValue="1.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
+                                    </Parameters>
+                                  </Node>
+                                  <Node ID="send" FactoryPath="routing.send" Bypassed="0" Name="send">
+                                    <Properties>
+                                      <Property ID="Connection" Value="receive1"/>
+                                    </Properties>
+                                    <Parameters/>
+                                  </Node>
                                 </Nodes>
                                 <Parameters/>
                               </Node>
+                            </Nodes>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="7.0" StepSize="1.0" ID="BlockSize" Value="0.0"
+                                         DefaultValue="4.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="dynamic_blocksize2" FactoryPath="container.dynamic_blocksize"
+                                Bypassed="0" Name="dynamic_blocksize" ShowParameters="1">
+                            <Nodes>
                               <Node ID="chain14" FactoryPath="container.chain" Bypassed="0" Name="chain12">
                                 <Nodes>
+                                  <Node ID="receive2" FactoryPath="routing.receive" Bypassed="0" Name="receive2">
+                                    <Parameters>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+                                    </Parameters>
+                                  </Node>
                                   <Node ID="fix_delay3" FactoryPath="core.fix_delay" Bypassed="0" Name="fix_delay1">
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
@@ -1129,12 +1289,6 @@
                                                          ID="Limit" Value="1000.0"/>
                                               <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
                                                          ID="DelayTime" Automated="1"/>
-                                            </Parameters>
-                                          </Node>
-                                          <Node ID="pitch_shift" FactoryPath="fx.pitch_shift" Bypassed="0" Name="pitch_shift">
-                                            <Parameters>
-                                              <Parameter MinValue="0.25" MaxValue="4.0" SkewFactor="0.4306765496730804"
-                                                         ID="FreqRatio" Value="2.1352638115397" DefaultValue="1.0"/>
                                             </Parameters>
                                           </Node>
                                           <Node ID="gain2" FactoryPath="core.gain" Bypassed="0" Name="gain">
@@ -1177,86 +1331,153 @@
                                     </Nodes>
                                     <Parameters/>
                                   </Node>
+                                  <Node ID="one_pole146" FactoryPath="filters.one_pole" Bypassed="0"
+                                        Name="one_poleD">
+                                    <ComplexData>
+                                      <Filters>
+                                        <Filter Index="-1"/>
+                                      </Filters>
+                                    </ComplexData>
+                                    <Parameters>
+                                      <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                                                 ID="Frequency" DefaultValue="1000.0" Automated="1"/>
+                                      <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                                                 ID="Q" Value="1.0"/>
+                                      <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                                                 ID="Smoothing" Value="0.009999999776482582"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                                    </Parameters>
+                                  </Node>
+                                  <Node ID="minmax2" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
+                                    <ModulationTargets>
+                                      <Connection NodeId="comp1" ParameterId="Threshhold"/>
+                                    </ModulationTargets>
+                                    <Parameters>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
+                                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
+                                                 ID="Minimum" Value="-100.0" DefaultValue="0.0"/>
+                                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
+                                                 ID="Maximum" Value="0.0" DefaultValue="1.0"/>
+                                      <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                                                 ID="Skew" Value="5.422270979580217" DefaultValue="1.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.1" DefaultValue="0.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="1.0"
+                                                 DefaultValue="0.0"/>
+                                    </Parameters>
+                                  </Node>
+                                  <Node ID="comp1" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+                                    <ComplexData>
+                                      <DisplayBuffers>
+                                        <DisplayBuffer Index="-1"/>
+                                      </DisplayBuffers>
+                                    </ComplexData>
+                                    <Parameters>
+                                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="5.422270774841309" ID="Threshhold" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="0.4306765496730804" ID="Attack" Value="25.90000038594007"
+                                                 DefaultValue="50.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="0.4306765496730804" ID="Release" Value="109.7000016346574"
+                                                 DefaultValue="50.0"/>
+                                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
+                                                 SkewFactor="0.2968033850193024" ID="Ratio" Value="2.80000002682209"
+                                                 DefaultValue="1.0"/>
+                                      <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
+                                    </Parameters>
+                                  </Node>
+                                  <Node ID="send1" FactoryPath="routing.send" Bypassed="0" Name="send1">
+                                    <Properties>
+                                      <Property ID="Connection" Value="receive2"/>
+                                    </Properties>
+                                    <Parameters/>
+                                  </Node>
                                 </Nodes>
                                 <Parameters/>
                               </Node>
                             </Nodes>
                             <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="2" StepSize="1.0" ID="Index" DefaultValue="0.0"
-                                         Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="7.0" StepSize="1.0" ID="BlockSize" Value="0.0"
+                                         DefaultValue="4.0"/>
                             </Parameters>
                           </Node>
-                          <Node ID="one_pole145" FactoryPath="filters.one_pole" Bypassed="0"
-                                Name="one_poleD">
-                            <ComplexData>
-                              <Filters>
-                                <Filter Index="-1"/>
-                              </Filters>
-                            </ComplexData>
-                            <Parameters>
-                              <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
-                                         ID="Frequency" DefaultValue="1000.0" Automated="1"/>
-                              <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                         ID="Q" Value="1.0"/>
-                              <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
-                                         ID="Smoothing" Value="0.009999999776482582"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-                            </Parameters>
-                          </Node>
-                          <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
-                            <ModulationTargets>
-                              <Connection NodeId="comp" ParameterId="Threshhold"/>
-                            </ModulationTargets>
-                            <Parameters>
-                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
-                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
-                                         ID="Minimum" Value="-100.0" DefaultValue="0.0"/>
-                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1" SkewFactor="5.422270979580217"
-                                         ID="Maximum" Value="0.0" DefaultValue="1.0"/>
-                              <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
-                                         ID="Skew" Value="5.422270979580217" DefaultValue="1.0"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.1" DefaultValue="0.0"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="1.0"
-                                         DefaultValue="0.0"/>
-                            </Parameters>
-                          </Node>
-                          <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
-                            <ComplexData>
-                              <DisplayBuffers>
-                                <DisplayBuffer Index="-1"/>
-                              </DisplayBuffers>
-                            </ComplexData>
-                            <Parameters>
-                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                         SkewFactor="5.422270774841309" ID="Threshhold" Automated="1"/>
-                              <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                         SkewFactor="0.4306765496730804" ID="Attack" Value="25.90000038594007"
-                                         DefaultValue="50.0"/>
-                              <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                         SkewFactor="0.4306765496730804" ID="Release" Value="109.7000016346574"
-                                         DefaultValue="50.0"/>
-                              <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
-                                         SkewFactor="0.2968033850193024" ID="Ratio" Value="2.80000002682209"
-                                         DefaultValue="1.0"/>
-                              <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
-                            </Parameters>
-                          </Node>
-                          <Node ID="send3" FactoryPath="routing.send" Bypassed="0" Name="send1">
-                            <Properties>
-                              <Property ID="Connection" Value="receive"/>
-                            </Properties>
+                          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain2">
+                            <Nodes>
+                              <Node ID="cable_table" FactoryPath="control.cable_table" Bypassed="0"
+                                    Name="cable_table">
+                                <ModulationTargets>
+                                  <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
+                                </ModulationTargets>
+                                <ComplexData>
+                                  <Tables>
+                                    <Table Index="-1" EmbeddedData="36...............vO....+.........vO...f+....9C...vO"/>
+                                  </Tables>
+                                </ComplexData>
+                                <Parameters>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                                </Parameters>
+                              </Node>
+                              <Node ID="cable_table1" FactoryPath="control.cable_table" Bypassed="0"
+                                    Name="cable_table">
+                                <ModulationTargets>
+                                  <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
+                                </ModulationTargets>
+                                <ComplexData>
+                                  <Tables>
+                                    <Table Index="-1" EmbeddedData="48..........9C...vO....+.........vO..3e+.........vO...f+....9C...vO"/>
+                                  </Tables>
+                                </ComplexData>
+                                <Parameters>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                                </Parameters>
+                              </Node>
+                              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+                                    Name="tempo_sync">
+                                <ModulationTargets>
+                                  <Connection NodeId="faust" ParameterId="taille"/>
+                                </ModulationTargets>
+                                <Parameters>
+                                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                                  <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="Multiplier"
+                                             DefaultValue="1.0" Automated="1"/>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
+                                             DefaultValue="0.0"/>
+                                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                             ID="UnsyncedTime" Value="200.0"/>
+                                </Parameters>
+                              </Node>
+                              <Node ID="faust" FactoryPath="core.faust" Bypassed="0" Name="faust">
+                                <Properties>
+                                  <Property ID="ClassId" Value="granular"/>
+                                  <Property ID="NumParameters" Value="0"/>
+                                </Properties>
+                                <Parameters>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
+                                             ID="decal" Automated="1"/>
+                                  <Parameter MinValue="0.0" MaxValue="2.0" StepSize="0.001000000047497451"
+                                             ID="feedback" Automated="1"/>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.001000000047497451"
+                                             ID="population" DefaultValue="1.0" Automated="1"/>
+                                  <Parameter MinValue="0.1250000059371814" MaxValue="4.0" StepSize="0.001000000047497451"
+                                             ID="speed" DefaultValue="1.0" Automated="1"/>
+                                  <Parameter MinValue="4.0" MaxValue="12000.0" StepSize="0.001000000047497451"
+                                             ID="taille" DefaultValue="10.0" Automated="1"/>
+                                </Parameters>
+                                <SwitchTargets/>
+                              </Node>
+                            </Nodes>
                             <Parameters/>
                           </Node>
                         </Nodes>
-                        <Parameters/>
+                        <Parameters>
+                          <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" DefaultValue="0.0"
+                                     Automated="1"/>
+                        </Parameters>
                       </Node>
                     </Nodes>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="7.0" StepSize="1.0" ID="BlockSize" DefaultValue="4.0"
-                                 Value="0.0"/>
-                    </Parameters>
+                    <Parameters/>
                   </Node>
                   <Node ID="gain5" FactoryPath="core.gain" Bypassed="0" Name="gain4">
                     <Parameters>
@@ -1344,10 +1565,12 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="feed" MinValue="0.0" MaxValue="1.0" Value="0.586786687374115"
-                 DefaultValue="1.0">
+      <Parameter ID="feed" MinValue="0.0" MaxValue="1.0" Value="1.0">
         <Connections>
           <Connection NodeId="receive" ParameterId="Feedback"/>
+          <Connection NodeId="receive1" ParameterId="Feedback"/>
+          <Connection NodeId="receive2" ParameterId="Feedback"/>
+          <Connection NodeId="faust" ParameterId="feedback"/>
         </Connections>
       </Parameter>
       <Parameter ID="Del" MinValue="0.0" MaxValue="1000.0" Value="1000.0" DefaultValue="1.0"
@@ -1356,22 +1579,26 @@
           <Connection NodeId="pma32" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="LP" MinValue="20.0" MaxValue="20000.0" Value="20000.0" DefaultValue="1.0"
+      <Parameter ID="LP" MinValue="20.0" MaxValue="20000.0" Value="5148.0" DefaultValue="1.0"
                  SkewFactor="0.2299045622348785">
         <Connections>
           <Connection NodeId="pma35" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Freq" Value="0.40650475025177"
-                 DefaultValue="0.0" StepSize="0" SkewFactor="1">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Freq" Value="1.0" DefaultValue="0.0"
+                 StepSize="0" SkewFactor="1">
         <Connections>
           <Connection NodeId="input_toggle1" ParameterId="Value1"/>
+          <Connection NodeId="faust" ParameterId="population"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Comp" Value="0.89402174949646"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Comp" Value="0.119999997317791"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="minmax" ParameterId="Value"/>
+          <Connection NodeId="minmax3" ParameterId="Value"/>
+          <Connection NodeId="minmax2" ParameterId="Value"/>
+          <Connection NodeId="faust" ParameterId="decal"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="mode" Value="0.0">
@@ -1388,7 +1615,7 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.1976716816425323" ID="d" Value="8947.700133331118"
+                 SkewFactor="0.1976716816425323" ID="d" Value="2000.000029802322"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="ahdsr1" ParameterId="Decay"/>
@@ -1397,19 +1624,19 @@
           <Connection NodeId="ahdsr" ParameterId="Release"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="s" Value="0.8728458881378174"
-                 DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="s" Value="1.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="ahdsr1" ParameterId="Sustain"/>
           <Connection NodeId="ahdsr" ParameterId="Sustain"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Del1Mod" Value="0.0">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Del1Mod" Value="-0.009999999776482582"
+                 DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma32" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Del1Src" Value="1.0"
+      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Del1Src" Value="5.0"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="branch23" ParameterId="Index"/>
@@ -1428,12 +1655,12 @@
           <Connection NodeId="chain403" ParameterId="ModSrc"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="EnvPos" Value="1.0" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="EnvPos" Value="0.0">
         <Connections>
           <Connection NodeId="xfader" ParameterId="Value"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="3.0" StepSize="1.0" ID="type" Value="3.0"
+      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1.0" ID="type" Value="4.0"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="branch3" ParameterId="Index"/>

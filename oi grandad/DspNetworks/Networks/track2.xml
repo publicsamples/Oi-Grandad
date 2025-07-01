@@ -25,27 +25,6 @@
                     </ComplexData>
                     <Parameters/>
                   </Node>
-                  <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="1" Name="comp">
-                    <ComplexData>
-                      <DisplayBuffers>
-                        <DisplayBuffer Index="-1"/>
-                      </DisplayBuffers>
-                    </ComplexData>
-                    <Parameters>
-                      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="5.422270774841309" ID="Threshhold" Value="-61.59999942779541"
-                                 DefaultValue="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Attack" Value="0.2000000029802322"
-                                 DefaultValue="50.0"/>
-                      <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.4306765496730804" ID="Release" Value="0.0" DefaultValue="50.0"/>
-                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.2968033850193024" ID="Ratio" Value="4.400000050663948"
-                                 DefaultValue="1.0"/>
-                      <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Sidechain" Value="0.0"/>
-                    </Parameters>
-                  </Node>
                   <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
                         NodeColour="4289049160" Name="global_cable">
                     <Properties>
@@ -71,25 +50,6 @@
         <Parameters/>
       </Node>
     </Nodes>
-    <Parameters>
-      <Parameter ID="input1" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="input2" MinValue="0.0" MaxValue="1.0" Value="0.269109375">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="input3" MinValue="0.0" MaxValue="1.0" Value="0.3755156249999999">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="input4" MinValue="0.0" MaxValue="1.0" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="Smooth" MinValue="0.0" MaxValue="1.0" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="Thresh" MinValue="0.0" MaxValue="1.0" Value="0.304734375">
-        <Connections/>
-      </Parameter>
-    </Parameters>
+    <Parameters/>
   </Node>
 </Network>

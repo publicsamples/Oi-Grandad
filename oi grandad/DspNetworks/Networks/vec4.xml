@@ -31,10 +31,6 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="no_midi" FactoryPath="container.no_midi" Bypassed="0" Name="no_midi">
-        <Nodes/>
-        <Parameters/>
-      </Node>
     </Nodes>
     <Parameters/>
   </Node>

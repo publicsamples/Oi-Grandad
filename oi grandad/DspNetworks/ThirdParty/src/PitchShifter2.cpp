@@ -157,7 +157,7 @@ struct _PitchShifter2 final : public ::faust::dsp {
 			output0[i0] = FAUSTFLOAT((fVec0[(IOTA0 - iTemp2) & 131071] * fTemp5 + fTemp6 * fVec0[(IOTA0 - iTemp7) & 131071]) * fTemp8 + (fVec0[(IOTA0 - iTemp11) & 131071] * fTemp13 + fTemp14 * fVec0[(IOTA0 - iTemp15) & 131071]) * fTemp16);
 			float fTemp17 = float(input1[i0]);
 			fVec1[IOTA0 & 131071] = fTemp17;
-			output1[i0] = FAUSTFLOAT((fTemp14 * fVec1[(IOTA0 - iTemp15) & 131071] + fTemp13 * fVec1[(IOTA0 - iTemp11) & 131071]) * fTemp16 + fTemp8 * (fVec1[(IOTA0 - iTemp2) & 131071] * fTemp5 + fTemp6 * fVec1[(IOTA0 - iTemp7) & 131071]));
+			output1[i0] = FAUSTFLOAT(fTemp8 * (fVec1[(IOTA0 - iTemp2) & 131071] * fTemp5 + fTemp6 * fVec1[(IOTA0 - iTemp7) & 131071]) + fTemp16 * (fTemp13 * fVec1[(IOTA0 - iTemp11) & 131071] + fTemp14 * fVec1[(IOTA0 - iTemp15) & 131071]));
 			IOTA0 = IOTA0 + 1;
 			fRec0[1] = fRec0[0];
 		}

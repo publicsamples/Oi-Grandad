@@ -96,8 +96,8 @@ struct _MODEFILTR final : public ::faust::dsp {
 	void instanceConstants(int sample_rate) {
 		fSampleRate = sample_rate;
 		fConst0 = std::min<float>(1.92e+05f, std::max<float>(1.0f, float(fSampleRate)));
-		fConst1 = 1.0f / fConst0;
-		fConst2 = 6.2831855f / fConst0;
+		fConst1 = 6.2831855f / fConst0;
+		fConst2 = 1.0f / fConst0;
 	}
 	
 	void instanceResetUserInterface() {
@@ -137,8 +137,8 @@ struct _MODEFILTR final : public ::faust::dsp {
 	void buildUserInterface(UI* ui_interface) {
 		ui_interface->openVerticalBox("MODEFILTR");
 		ui_interface->addHorizontalSlider("freq", &fHslider0, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
-		ui_interface->addHorizontalSlider("gain", &fHslider1, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
-		ui_interface->addHorizontalSlider("t60", &fHslider2, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1e+02f), FAUSTFLOAT(0.01f));
+		ui_interface->addHorizontalSlider("gain", &fHslider2, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
+		ui_interface->addHorizontalSlider("t60", &fHslider1, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1e+02f), FAUSTFLOAT(0.01f));
 		ui_interface->closeBox();
 	}
 	
@@ -148,8 +148,8 @@ struct _MODEFILTR final : public ::faust::dsp {
 		FAUSTFLOAT* output0 = outputs[0];
 		FAUSTFLOAT* output1 = outputs[1];
 		float fSlow0 = std::max<float>(0.0f, std::min<float>(1.0f, float(fHslider0)));
-		float fSlow1 = std::pow(0.001f, fConst1 / std::max<float>(0.0f, std::min<float>(1.0f, float(fHslider1))));
-		float fSlow2 = 2.0f * fSlow1 * std::cos(fConst2 * std::max<float>(0.0f, std::min<float>(1e+02f, float(fHslider2))));
+		float fSlow1 = std::pow(0.001f, fConst2 / std::max<float>(0.0f, std::min<float>(1.0f, float(fHslider2))));
+		float fSlow2 = 2.0f * std::cos(fConst1 * std::max<float>(0.0f, std::min<float>(1e+02f, float(fHslider1)))) * fSlow1;
 		float fSlow3 = _MODEFILTR_faustpower2_f(fSlow1);
 		for (int i0 = 0; i0 < count; i0 = i0 + 1) {
 			fRec0[0] = fSlow2 * fRec0[1] + float(input0[i0]) - fSlow3 * fRec0[2];
@@ -176,13 +176,13 @@ struct _MODEFILTR final : public ::faust::dsp {
 	#define FAUST_PASSIVES 0
 
 	FAUST_ADDHORIZONTALSLIDER("freq", fHslider0, 0.0f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDHORIZONTALSLIDER("gain", fHslider1, 0.0f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDHORIZONTALSLIDER("t60", fHslider2, 0.0f, 0.0f, 1e+02f, 0.01f);
+	FAUST_ADDHORIZONTALSLIDER("gain", fHslider2, 0.0f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDHORIZONTALSLIDER("t60", fHslider1, 0.0f, 0.0f, 1e+02f, 0.01f);
 
 	#define FAUST_LIST_ACTIVES(p) \
 		p(HORIZONTALSLIDER, freq, "freq", fHslider0, 0.0f, 0.0f, 1.0f, 0.01f) \
-		p(HORIZONTALSLIDER, gain, "gain", fHslider1, 0.0f, 0.0f, 1.0f, 0.01f) \
-		p(HORIZONTALSLIDER, t60, "t60", fHslider2, 0.0f, 0.0f, 1e+02f, 0.01f) \
+		p(HORIZONTALSLIDER, gain, "gain", fHslider2, 0.0f, 0.0f, 1.0f, 0.01f) \
+		p(HORIZONTALSLIDER, t60, "t60", fHslider1, 0.0f, 0.0f, 1e+02f, 0.01f) \
 
 	#define FAUST_LIST_PASSIVES(p) \
 
