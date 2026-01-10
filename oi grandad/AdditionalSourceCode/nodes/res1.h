@@ -797,7 +797,8 @@ using xfader1_t = control::xfader<xfader1_multimod<NV>, faders::cosine>;
 template <int NV>
 using chain6_t = container::chain<parameter::empty, 
                                   wrap::fix<2, core::gain<NV>>>;
-using stereo_cable = cable::block<2>;
+template <int NV>
+using stereo_cable = cable::block<NV, 2>;
 
 using comp_t = wrap::no_data<dynamics::comp>;
 template <int NV>
@@ -811,11 +812,11 @@ using chain8_t = container::chain<parameter::empty,
                                   filters::one_pole<NV>, 
                                   minmax_t<NV>, 
                                   comp_t, 
-                                  routing::send<stereo_cable>>;
+                                  routing::send<NV, stereo_cable<NV>>>;
 
 template <int NV>
 using chain3_t = container::chain<parameter::empty, 
-                                  wrap::fix<2, routing::receive<stereo_cable>>, 
+                                  wrap::fix<2, routing::receive<NV, stereo_cable<NV>>>, 
                                   core::fix_delay, 
                                   chain8_t<NV>>;
 
@@ -833,13 +834,13 @@ using minmax3_t = control::minmax<NV,
 
 template <int NV>
 using chain13_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, routing::receive<stereo_cable>>, 
+                                   wrap::fix<2, routing::receive<NV, stereo_cable<NV>>>, 
                                    core::fix_delay, 
                                    fx::phase_delay<NV>, 
                                    filters::one_pole<NV>, 
                                    minmax3_t<NV>, 
                                    comp2_t, 
-                                   routing::send<stereo_cable>>;
+                                   routing::send<NV, stereo_cable<NV>>>;
 
 template <int NV>
 using dynamic_blocksize_t_ = container::chain<parameter::empty, 
@@ -870,13 +871,13 @@ using minmax2_t = control::minmax<NV,
 
 template <int NV>
 using chain14_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, routing::receive<stereo_cable>>, 
+                                   wrap::fix<2, routing::receive<NV, stereo_cable<NV>>>, 
                                    core::fix_delay, 
                                    split1_t<NV>, 
                                    filters::one_pole<NV>, 
                                    minmax2_t<NV>, 
                                    comp1_t, 
-                                   routing::send<stereo_cable>>;
+                                   routing::send<NV, stereo_cable<NV>>>;
 
 template <int NV>
 using dynamic_blocksize2_t_ = container::chain<parameter::empty, 
@@ -933,9 +934,9 @@ using feed_3 = parameter::from0To1<project::granular<NV>,
 
 template <int NV>
 using feed = parameter::chain<ranges::Identity, 
-                              parameter::plain<routing::receive<stereo_cable>, 0>, 
-                              parameter::plain<routing::receive<stereo_cable>, 0>, 
-                              parameter::plain<routing::receive<stereo_cable>, 0>, 
+                              parameter::plain<routing::receive<NV, stereo_cable<NV>>, 0>, 
+                              parameter::plain<routing::receive<NV, stereo_cable<NV>>, 0>, 
+                              parameter::plain<routing::receive<NV, stereo_cable<NV>>, 0>, 
                               feed_3<NV>>;
 
 DECLARE_PARAMETER_RANGE_SKEW(Del_InputRange, 
@@ -1061,12 +1062,6 @@ template <int NV>
 using type = parameter::chain<type_InputRange, type_0<NV>>;
 
 template <int NV>
-using block = parameter::chain<ranges::Identity, 
-                               parameter::plain<res1_impl::dynamic_blocksize3_t<NV>, 0>, 
-                               parameter::plain<res1_impl::dynamic_blocksize_t<NV>, 0>, 
-                               parameter::plain<res1_impl::dynamic_blocksize2_t<NV>, 0>>;
-
-template <int NV>
 using Del1Mod = parameter::plain<res1_impl::pma32_t<NV>, 1>;
 template <int NV>
 using LpMod = parameter::plain<res1_impl::pma35_t<NV>, 1>;
@@ -1076,6 +1071,7 @@ using EnvPos = parameter::plain<res1_impl::xfader_t<NV>,
 template <int NV>
 using Mix = parameter::plain<res1_impl::xfader1_t<NV>, 
                              0>;
+using Power = parameter::empty;
 template <int NV>
 using res1_t_plist = parameter::list<feed<NV>, 
                                      Del<NV>, 
@@ -1093,7 +1089,7 @@ using res1_t_plist = parameter::list<feed<NV>,
                                      EnvPos<NV>, 
                                      type<NV>, 
                                      Mix<NV>, 
-                                     block<NV>>;
+                                     Power>;
 }
 
 template <int NV>
@@ -1120,40 +1116,49 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		
 		SNEX_METADATA_ID(res1);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(256)
+		SNEX_METADATA_ENCODED_PARAMETERS(272)
 		{
-			0x005B, 0x0000, 0x6600, 0x6565, 0x0064, 0x0000, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x015B, 
-            0x0000, 0x4400, 0x6C65, 0x0000, 0x0000, 0x0000, 0x7A00, 0x0044, 
-            0xF380, 0x9B43, 0x9A20, 0xCD3E, 0xCCCC, 0x5B3D, 0x0002, 0x0000, 
-            0x504C, 0x0000, 0xA000, 0x0041, 0x9C40, 0x0046, 0x9C40, 0x1A46, 
-            0x6B6C, 0x003E, 0x0000, 0x5B00, 0x0003, 0x0000, 0x7246, 0x7165, 
-            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
-            0x003F, 0x0000, 0x5B00, 0x0004, 0x0000, 0x6F43, 0x706D, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x5B00, 0x0005, 0x0000, 0x6F6D, 0x6564, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
-            0x5B00, 0x0006, 0x0000, 0x0061, 0x0000, 0x0000, 0x4000, 0x461C, 
-            0x0000, 0x0000, 0x6A72, 0x3E4A, 0xCCCD, 0x3DCC, 0x075B, 0x0000, 
-            0x6400, 0x0000, 0x0000, 0x0000, 0x1C40, 0x0046, 0xFA00, 0x7244, 
-            0x4A6A, 0xCD3E, 0xCCCC, 0x5B3D, 0x0008, 0x0000, 0x0073, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x095B, 0x0000, 0x4400, 0x6C65, 0x4D31, 0x646F, 0x0000, 
-            0x8000, 0x00BF, 0x8000, 0x0A3F, 0x23D7, 0x00BC, 0x8000, 0x003F, 
-            0x0000, 0x5B00, 0x000A, 0x0000, 0x6544, 0x316C, 0x7253, 0x0063, 
-            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x40A0, 0x0000, 0x3F80, 
-            0x0000, 0x3F80, 0x0B5B, 0x0000, 0x4C00, 0x4D70, 0x646F, 0x0000, 
-            0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x5B00, 0x000C, 0x0000, 0x704C, 0x7253, 0x0063, 0x0000, 
-            0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
-            0x3F80, 0x0D5B, 0x0000, 0x4500, 0x766E, 0x6F50, 0x0073, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x0E5B, 0x0000, 0x7400, 0x7079, 0x0065, 0x0000, 0x3F80, 
-            0x0000, 0x4080, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
-            0x0F5B, 0x0000, 0x4D00, 0x7869, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5B00, 0x0010, 
-            0x0000, 0x6C62, 0x636F, 0x006B, 0x0000, 0x0000, 0x0000, 0x40E0, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000
+			0x005C, 0x0000, 0x0000, 0x6566, 0x6465, 0x0000, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x005C, 0x0001, 0x0000, 0x6544, 0x006C, 0x0000, 0x0000, 0x0000, 
+            0x7A00, 0x0044, 0x7A00, 0x9B44, 0x9A20, 0xCD3E, 0xCCCC, 0x5C3D, 
+            0x0200, 0x0000, 0x4C00, 0x0050, 0x0000, 0xA000, 0x0041, 0x9C40, 
+            0x0046, 0xA0E0, 0x1A45, 0x6B6C, 0x003E, 0x0000, 0x5C00, 0x0300, 
+            0x0000, 0x4600, 0x6572, 0x0071, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0400, 
+            0x0000, 0x4300, 0x6D6F, 0x0070, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x8F3F, 0xF5C2, 0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0500, 
+            0x0000, 0x6D00, 0x646F, 0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 
+            0x0000, 0x6100, 0x0000, 0x0000, 0x0000, 0x4000, 0x461C, 0x0000, 
+            0x0000, 0x6A72, 0x3E4A, 0xCCCD, 0x3DCC, 0x005C, 0x0007, 0x0000, 
+            0x0064, 0x0000, 0x0000, 0x0000, 0x1C40, 0x0046, 0xFA00, 0x7244, 
+            0x4A6A, 0xCD3E, 0xCCCC, 0x5C3D, 0x0800, 0x0000, 0x7300, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x005C, 0x0009, 0x0000, 0x6544, 0x316C, 0x6F4D, 
+            0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x0A3F, 0x23D7, 0x00BC, 
+            0x8000, 0x003F, 0x0000, 0x5C00, 0x0A00, 0x0000, 0x4400, 0x6C65, 
+            0x5331, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 
+            0x40A0, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x000B, 0x0000, 
+            0x704C, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0C00, 0x0000, 
+            0x4C00, 0x5370, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x000D, 
+            0x0000, 0x6E45, 0x5076, 0x736F, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x000E, 0x0000, 0x7974, 0x6570, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x4080, 0x0000, 0x4080, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
+            0x000F, 0x0000, 0x694D, 0x0078, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1000, 
+            0x0000, 0x5000, 0x776F, 0x7265, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000
+		};
+		SNEX_METADATA_ENCODED_MOD_INFO(25)
+		{
+			0x003A, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x0000
 		};
 	};
 	
@@ -1293,7 +1298,7 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		auto& branch3 = this->getT(4).getT(1).getT(1).getT(0).getT(0);                      // res1_impl::branch3_t<NV>
 		auto& dynamic_blocksize3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(0);   // res1_impl::dynamic_blocksize3_t<NV>
 		auto& chain3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(0).getT(0);       // res1_impl::chain3_t<NV>
-		auto& receive = this->getT(4).getT(1).getT(1).getT(0).                              // routing::receive<stereo_cable>
+		auto& receive = this->getT(4).getT(1).getT(1).getT(0).                              // routing::receive<NV, stereo_cable<NV>>
                         getT(0).getT(0).getT(0).getT(0);
 		auto& fix_delay = this->getT(4).getT(1).getT(1).getT(0).                            // core::fix_delay
                           getT(0).getT(0).getT(0).getT(1);
@@ -1314,12 +1319,12 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		auto& comp = this->getT(4).getT(1).getT(1).getT(0).                                 // res1_impl::comp_t
                      getT(0).getT(0).getT(0).getT(2).
                      getT(4);
-		auto& send3 = this->getT(4).getT(1).getT(1).getT(0).                                // routing::send<stereo_cable>
+		auto& send3 = this->getT(4).getT(1).getT(1).getT(0).                                // routing::send<NV, stereo_cable<NV>>
                       getT(0).getT(0).getT(0).getT(2).
                       getT(5);
 		auto& dynamic_blocksize = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(1);    // res1_impl::dynamic_blocksize_t<NV>
 		auto& chain13 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(1).getT(0);      // res1_impl::chain13_t<NV>
-		auto& receive1 = this->getT(4).getT(1).getT(1).getT(0).                             // routing::receive<stereo_cable>
+		auto& receive1 = this->getT(4).getT(1).getT(1).getT(0).                             // routing::receive<NV, stereo_cable<NV>>
                          getT(0).getT(1).getT(0).getT(0);
 		auto& fix_delay1 = this->getT(4).getT(1).getT(1).getT(0).                           // core::fix_delay
                            getT(0).getT(1).getT(0).getT(1);
@@ -1331,11 +1336,11 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
                         getT(0).getT(1).getT(0).getT(4);
 		auto& comp2 = this->getT(4).getT(1).getT(1).getT(0).                                // res1_impl::comp2_t
                       getT(0).getT(1).getT(0).getT(5);
-		auto& send = this->getT(4).getT(1).getT(1).getT(0).                                 // routing::send<stereo_cable>
+		auto& send = this->getT(4).getT(1).getT(1).getT(0).                                 // routing::send<NV, stereo_cable<NV>>
                      getT(0).getT(1).getT(0).getT(6);
 		auto& dynamic_blocksize2 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(2);   // res1_impl::dynamic_blocksize2_t<NV>
 		auto& chain14 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(2).getT(0);      // res1_impl::chain14_t<NV>
-		auto& receive2 = this->getT(4).getT(1).getT(1).getT(0).                             // routing::receive<stereo_cable>
+		auto& receive2 = this->getT(4).getT(1).getT(1).getT(0).                             // routing::receive<NV, stereo_cable<NV>>
                          getT(0).getT(2).getT(0).getT(0);
 		auto& fix_delay3 = this->getT(4).getT(1).getT(1).getT(0).                           // core::fix_delay
                            getT(0).getT(2).getT(0).getT(1);
@@ -1361,7 +1366,7 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
                         getT(0).getT(2).getT(0).getT(4);
 		auto& comp1 = this->getT(4).getT(1).getT(1).getT(0).                                // res1_impl::comp1_t
                       getT(0).getT(2).getT(0).getT(5);
-		auto& send1 = this->getT(4).getT(1).getT(1).getT(0).                                // routing::send<stereo_cable>
+		auto& send1 = this->getT(4).getT(1).getT(1).getT(0).                                // routing::send<NV, stereo_cable<NV>>
                       getT(0).getT(2).getT(0).getT(6);
 		auto& chain2 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(3);               // res1_impl::chain2_t<NV>
 		auto& cable_table = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(3).getT(0);  // res1_impl::cable_table_t<NV>
@@ -1431,11 +1436,6 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		this->getParameterT(14).connectT(0, branch3); // type -> branch3::Index
 		
 		this->getParameterT(15).connectT(0, xfader1); // Mix -> xfader1::Value
-		
-		auto& block_p = this->getParameterT(16);
-		block_p.connectT(0, dynamic_blocksize3); // block -> dynamic_blocksize3::BlockSize
-		block_p.connectT(1, dynamic_blocksize);  // block -> dynamic_blocksize::BlockSize
-		block_p.connectT(2, dynamic_blocksize2); // block -> dynamic_blocksize2::BlockSize
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -1709,7 +1709,7 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		
 		; // branch3::Index is automated
 		
-		; // dynamic_blocksize3::BlockSize is automated
+		dynamic_blocksize3.setParameterT(0, 0.); // container::chain::BlockSize
 		
 		; // receive::Feedback is automated
 		
@@ -1745,7 +1745,7 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		comp.setParameterT(3, 2.8);   // dynamics::comp::Ratio
 		comp.setParameterT(4, 0.);    // dynamics::comp::Sidechain
 		
-		; // dynamic_blocksize::BlockSize is automated
+		dynamic_blocksize.setParameterT(0, 0.); // container::chain::BlockSize
 		
 		; // receive1::Feedback is automated
 		
@@ -1774,7 +1774,7 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		comp2.setParameterT(3, 2.8);   // dynamics::comp::Ratio
 		comp2.setParameterT(4, 0.);    // dynamics::comp::Sidechain
 		
-		; // dynamic_blocksize2::BlockSize is automated
+		dynamic_blocksize2.setParameterT(0, 0.); // container::chain::BlockSize
 		
 		; // receive2::Feedback is automated
 		
@@ -1848,10 +1848,10 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		gain.setParameterT(2, 0.);  // core::gain::ResetValue
 		
 		this->setParameterT(0, 1.);
-		this->setParameterT(1, 487.);
-		this->setParameterT(2, 20000.);
+		this->setParameterT(1, 1000.);
+		this->setParameterT(2, 5148.);
 		this->setParameterT(3, 1.);
-		this->setParameterT(4, 0.);
+		this->setParameterT(4, 0.12);
 		this->setParameterT(5, 0.);
 		this->setParameterT(6, 0.);
 		this->setParameterT(7, 2000.);
@@ -1861,9 +1861,9 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
 		this->setParameterT(11, 0.);
 		this->setParameterT(12, 1.);
 		this->setParameterT(13, 0.);
-		this->setParameterT(14, 1.);
+		this->setParameterT(14, 4.);
 		this->setParameterT(15, 1.);
-		this->setParameterT(16, 1.);
+		this->setParameterT(16, 0.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override

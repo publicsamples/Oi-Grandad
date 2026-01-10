@@ -59,6 +59,11 @@
                     </ComplexData>
                     <Parameters>
                       <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                 Value="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Mode" Value="0.0"/>
+                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Intensity" Value="1.0"/>
                     </Parameters>
                   </Node>
                   <Node ID="sb_container1" FactoryPath="container.chain" NodeColour="4284971161"
@@ -834,7 +839,8 @@
           <Connection NodeId="smoothed_parameter28" ParameterId="SmoothingTime"/>
         </Connections>
       </Parameter>
-      <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="0.7056249999999999">
+      <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.4300000071525574"
+                 DefaultValue="0.7056249999999999">
         <Connections>
           <Connection NodeId="pma5" ParameterId="Add"/>
           <Connection NodeId="pma10" ParameterId="Add"/>
@@ -848,7 +854,7 @@
           <Connection NodeId="global_mod1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="modamount" MinValue="0.0" MaxValue="1.0" Value="1.0">
+      <Parameter ID="modamount" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="pma5" ParameterId="Multiply"/>
           <Connection NodeId="pma10" ParameterId="Multiply"/>

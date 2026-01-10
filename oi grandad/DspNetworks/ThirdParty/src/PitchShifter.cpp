@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------
 name: "PitchShifter"
-Code generated with Faust 2.75.7 (https://faust.grame.fr)
+Code generated with Faust 2.81.2 (https://faust.grame.fr)
 Compilation options: -lang cpp -rui -nvi -ct 1 -cn _PitchShifter -scn ::faust::dsp -es 1 -mcd 16 -mdd 1024 -mdy 33 -uim -single -ftz 0
 ------------------------------------------------------------ */
 
@@ -48,15 +48,15 @@ struct _PitchShifter final : public ::faust::dsp {
 	void metadata(Meta* m) { 
 		m->declare("compile_options", "-lang cpp -rui -nvi -ct 1 -cn _PitchShifter -scn ::faust::dsp -es 1 -mcd 16 -mdd 1024 -mdy 33 -uim -single -ftz 0");
 		m->declare("delays.lib/name", "Faust Delay Library");
-		m->declare("delays.lib/version", "1.1.0");
+		m->declare("delays.lib/version", "1.2.0");
 		m->declare("filename", "PitchShifter.dsp");
 		m->declare("maths.lib/author", "GRAME");
 		m->declare("maths.lib/copyright", "GRAME");
 		m->declare("maths.lib/license", "LGPL with exception");
 		m->declare("maths.lib/name", "Faust Math Library");
-		m->declare("maths.lib/version", "2.8.0");
+		m->declare("maths.lib/version", "2.8.1");
 		m->declare("misceffects.lib/name", "Misc Effects Library");
-		m->declare("misceffects.lib/version", "2.5.0");
+		m->declare("misceffects.lib/version", "2.5.1");
 		m->declare("name", "PitchShifter");
 	}
 

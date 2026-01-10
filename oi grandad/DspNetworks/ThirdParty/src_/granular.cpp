@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------
 name: "granular"
-Code generated with Faust 2.75.7 (https://faust.grame.fr)
+Code generated with Faust 2.81.2 (https://faust.grame.fr)
 Compilation options: -lang cpp -rui -nvi -ct 1 -cn _granular -scn ::faust::dsp -es 1 -mcd 16 -mdd 1024 -mdy 33 -uim -single -ftz 0
 ------------------------------------------------------------ */
 
@@ -108,18 +108,17 @@ struct _granular final : public ::faust::dsp {
 	
 	void metadata(Meta* m) { 
 		m->declare("aanl.lib/name", "Faust Antialiased Nonlinearities");
-		m->declare("aanl.lib/version", "1.3.0");
+		m->declare("aanl.lib/version", "1.4.1");
 		m->declare("analyzers.lib/name", "Faust Analyzer Library");
 		m->declare("analyzers.lib/version", "1.2.0");
 		m->declare("basics.lib/name", "Faust Basic Element Library");
 		m->declare("basics.lib/sAndH:author", "Romain Michon");
-		m->declare("basics.lib/tabulateNd", "Copyright (C) 2023 Bart Brouns <bart@magnetophon.nl>");
-		m->declare("basics.lib/version", "1.19.1");
+		m->declare("basics.lib/version", "1.21.0");
 		m->declare("compile_options", "-lang cpp -rui -nvi -ct 1 -cn _granular -scn ::faust::dsp -es 1 -mcd 16 -mdd 1024 -mdy 33 -uim -single -ftz 0");
 		m->declare("compressors.lib/name", "Faust Compressor Effect Library");
 		m->declare("compressors.lib/version", "1.6.0");
 		m->declare("delays.lib/name", "Faust Delay Library");
-		m->declare("delays.lib/version", "1.1.0");
+		m->declare("delays.lib/version", "1.2.0");
 		m->declare("demos.lib/name", "Faust Demos Library");
 		m->declare("demos.lib/version", "1.2.0");
 		m->declare("dx7.lib/version", "1.1.0");
@@ -128,7 +127,7 @@ struct _granular final : public ::faust::dsp {
 		m->declare("envelopes.lib/license", "LGPL with exception");
 		m->declare("envelopes.lib/name", "Faust Envelope Library");
 		m->declare("envelopes.lib/version", "1.3.0");
-		m->declare("fds.lib/author", "Riccardo Russo");
+		m->declare("fds.lib/author", "Romain Michon");
 		m->declare("fds.lib/name", "Faust Finite Difference Schemes Library");
 		m->declare("fds.lib/version", "1.1.0");
 		m->declare("filename", "granular.dsp");
@@ -140,7 +139,7 @@ struct _granular final : public ::faust::dsp {
 		m->declare("filters.lib/pole:author", "Julius O. Smith III");
 		m->declare("filters.lib/pole:copyright", "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>");
 		m->declare("filters.lib/pole:license", "MIT-style STK-4.3 license");
-		m->declare("filters.lib/version", "1.3.0");
+		m->declare("filters.lib/version", "1.7.1");
 		m->declare("filters.lib/zero:author", "Julius O. Smith III");
 		m->declare("filters.lib/zero:copyright", "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>");
 		m->declare("filters.lib/zero:license", "MIT-style STK-4.3 license");
@@ -149,38 +148,40 @@ struct _granular final : public ::faust::dsp {
 		m->declare("hoa.lib/name", "High Order Ambisonics library");
 		m->declare("hoa.lib/version", "1.4.0");
 		m->declare("interpolators.lib/name", "Faust Interpolator Library");
-		m->declare("interpolators.lib/version", "1.3.1");
+		m->declare("interpolators.lib/version", "1.4.0");
+		m->declare("linearalgebra.lib/name", "Faust Linear Algebra Library");
+		m->declare("linearalgebra.lib/version", "0.1.0");
 		m->declare("maths.lib/author", "GRAME");
 		m->declare("maths.lib/copyright", "GRAME");
 		m->declare("maths.lib/license", "LGPL with exception");
 		m->declare("maths.lib/name", "Faust Math Library");
-		m->declare("maths.lib/version", "2.8.0");
-		m->declare("mi.lib/author", "James Leonard");
+		m->declare("maths.lib/version", "2.8.1");
+		m->declare("mi.lib/author", "Romain Michon");
 		m->declare("mi.lib/copyright", "2018-2020 GRAME / GIPSA-Lab");
 		m->declare("mi.lib/name", "Faust mass-interaction physical modelling library");
 		m->declare("mi.lib/version", "1.1.0");
 		m->declare("misceffects.lib/name", "Misc Effects Library");
-		m->declare("misceffects.lib/version", "2.5.0");
+		m->declare("misceffects.lib/version", "2.5.1");
 		m->declare("name", "granular");
 		m->declare("noises.lib/name", "Faust Noise Generator Library");
-		m->declare("noises.lib/version", "1.4.1");
+		m->declare("noises.lib/version", "1.5.0");
 		m->declare("oscillators.lib/name", "Faust Oscillator Library");
-		m->declare("oscillators.lib/version", "1.5.1");
+		m->declare("oscillators.lib/version", "1.6.0");
 		m->declare("phaflangers.lib/name", "Faust Phaser and Flanger Library");
 		m->declare("phaflangers.lib/version", "1.1.0");
 		m->declare("physmodels.lib/name", "Faust Physical Models Library");
-		m->declare("physmodels.lib/version", "1.1.0");
+		m->declare("physmodels.lib/version", "1.2.0");
 		m->declare("platform.lib/name", "Generic Platform Library");
 		m->declare("platform.lib/version", "1.3.0");
 		m->declare("quantizers.lib/name", "Faust Frequency Quantization Library");
-		m->declare("quantizers.lib/version", "1.1.0");
+		m->declare("quantizers.lib/version", "1.1.1");
 		m->declare("reducemaps.lib/author", "Yann Orlarey");
 		m->declare("reducemaps.lib/copyright", "Grame and Yann Orlarey");
 		m->declare("reducemaps.lib/license", "LGPL with exception");
 		m->declare("reducemaps.lib/name", "Reduce Library");
 		m->declare("reducemaps.lib/version", "1.2.0");
 		m->declare("reverbs.lib/name", "Faust Reverb Library");
-		m->declare("reverbs.lib/version", "1.3.0");
+		m->declare("reverbs.lib/version", "1.4.0");
 		m->declare("routes.lib/name", "Faust Signal Routing Library");
 		m->declare("routes.lib/version", "1.2.0");
 		m->declare("signals.lib/name", "Faust Signal Routing Library");
@@ -188,11 +189,11 @@ struct _granular final : public ::faust::dsp {
 		m->declare("soundfiles.lib/name", "Faust Soundfile Library");
 		m->declare("soundfiles.lib/version", "1.7.0");
 		m->declare("spats.lib/name", "Faust Spatialization Library");
-		m->declare("spats.lib/version", "1.1.0");
+		m->declare("spats.lib/version", "1.2.0");
 		m->declare("synths.lib/name", "Faust Synthesizer Library");
 		m->declare("synths.lib/version", "1.1.0");
 		m->declare("vaeffects.lib/name", "Faust Virtual Analog Filter Effect Library");
-		m->declare("vaeffects.lib/version", "1.2.1");
+		m->declare("vaeffects.lib/version", "1.4.0");
 		m->declare("wdmodels.lib/name", "Faust Wave Digital Model Library");
 		m->declare("wdmodels.lib/version", "1.2.1");
 		m->declare("webaudio.lib/author", "GRAME");
@@ -236,8 +237,8 @@ struct _granular final : public ::faust::dsp {
 	void instanceResetUserInterface() {
 		fHslider0 = FAUSTFLOAT(0.0f);
 		fHslider1 = FAUSTFLOAT(0.0f);
-		fHslider2 = FAUSTFLOAT(1.0f);
-		fHslider3 = FAUSTFLOAT(1e+01f);
+		fHslider2 = FAUSTFLOAT(1e+01f);
+		fHslider3 = FAUSTFLOAT(1.0f);
 		fHslider4 = FAUSTFLOAT(1.0f);
 	}
 	
@@ -365,12 +366,12 @@ struct _granular final : public ::faust::dsp {
 		ui_interface->addHorizontalSlider("decal", &fHslider1, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.001f));
 		ui_interface->declare(&fHslider0, "BELA", "ANALOG_4");
 		ui_interface->addHorizontalSlider("feedback", &fHslider0, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(2.0f), FAUSTFLOAT(0.001f));
-		ui_interface->declare(&fHslider2, "BELA", "ANALOG_0");
-		ui_interface->addHorizontalSlider("population", &fHslider2, FAUSTFLOAT(1.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.001f));
+		ui_interface->declare(&fHslider3, "BELA", "ANALOG_0");
+		ui_interface->addHorizontalSlider("population", &fHslider3, FAUSTFLOAT(1.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.001f));
 		ui_interface->declare(&fHslider4, "BELA", "ANALOG_3");
 		ui_interface->addHorizontalSlider("speed", &fHslider4, FAUSTFLOAT(1.0f), FAUSTFLOAT(0.125f), FAUSTFLOAT(4.0f), FAUSTFLOAT(0.001f));
-		ui_interface->declare(&fHslider3, "BELA", "ANALOG_1");
-		ui_interface->addHorizontalSlider("taille", &fHslider3, FAUSTFLOAT(1e+01f), FAUSTFLOAT(4.0f), FAUSTFLOAT(1.2e+04f), FAUSTFLOAT(0.001f));
+		ui_interface->declare(&fHslider2, "BELA", "ANALOG_1");
+		ui_interface->addHorizontalSlider("taille", &fHslider2, FAUSTFLOAT(1e+01f), FAUSTFLOAT(4.0f), FAUSTFLOAT(1.2e+04f), FAUSTFLOAT(0.001f));
 		ui_interface->closeBox();
 	}
 	
@@ -381,8 +382,8 @@ struct _granular final : public ::faust::dsp {
 		FAUSTFLOAT* output1 = outputs[1];
 		float fSlow0 = std::max<float>(0.0f, std::min<float>(2.0f, float(fHslider0)));
 		int iSlow1 = int(4.41e+04f * (1.0f - std::max<float>(0.0f, std::min<float>(1.0f, float(fHslider1)))));
-		float fSlow2 = std::max<float>(4.0f, std::min<float>(1.2e+04f, float(fHslider3)));
-		int iSlow3 = int(fConst0 * (0.01f * (1.0f - std::max<float>(0.0f, std::min<float>(1.0f, float(fHslider2)))) + 0.001f) * fSlow2);
+		float fSlow2 = std::max<float>(4.0f, std::min<float>(1.2e+04f, float(fHslider2)));
+		int iSlow3 = int(fConst0 * fSlow2 * (0.01f * (1.0f - std::max<float>(0.0f, std::min<float>(1.0f, float(fHslider3)))) + 0.001f));
 		float fSlow4 = std::max<float>(0.125f, std::min<float>(4.0f, float(fHslider4)));
 		float fSlow5 = 1e+03f / fSlow2;
 		float fSlow6 = 0.33333334f * float(iSlow3);
@@ -392,13 +393,13 @@ struct _granular final : public ::faust::dsp {
 		int iSlow10 = iSlow3 + -10;
 		for (int i0 = 0; i0 < count; i0 = i0 + 1) {
 			iRec2[0] = (iRec2[1] + 1) % 44100;
-			ftbl0[iRec2[0]] = fSlow0 * fRec0[1] + float(input0[i0]);
+			ftbl0[iRec2[0]] = float(input0[i0]) + fSlow0 * fRec0[1];
 			iRec4[0] = (iRec4[1] + 1) % iSlow3;
 			int iTemp0 = ((iRec4[0] < 10) ? 1 : 0);
 			iVec0[0] = iTemp0;
 			int iTemp1 = iTemp0 > iVec0[1];
 			fRec5[0] = ((iTemp1) ? fSlow4 : fRec5[1]);
-			fRec3[0] = std::max<float>(0.0f, ((iTemp1) ? float(fRec5[0] < 0.0f) : fRec3[1] + fRec5[0]));
+			fRec3[0] = std::max<float>(0.0f, ((iTemp1) ? float(fRec5[0] < 0.0f) : fRec5[0] + fRec3[1]));
 			iRec6[0] = ((iTemp1) ? iRec2[0] : iRec6[1]);
 			int iTemp2 = (iSlow1 + int(fRec3[0]) + iRec6[0]) % 44100;
 			fRec8[0] = ((iTemp1) ? fSlow5 : fRec8[1]);
@@ -410,7 +411,7 @@ struct _granular final : public ::faust::dsp {
 			iVec1[0] = iTemp6;
 			int iTemp7 = iTemp6 > iVec1[1];
 			fRec10[0] = ((iTemp7) ? fSlow4 : fRec10[1]);
-			fRec9[0] = std::max<float>(0.0f, ((iTemp7) ? float(fRec10[0] < 0.0f) : fRec9[1] + fRec10[0]));
+			fRec9[0] = std::max<float>(0.0f, ((iTemp7) ? float(fRec10[0] < 0.0f) : fRec10[0] + fRec9[1]));
 			iRec11[0] = ((iTemp7) ? iRec2[0] : iRec11[1]);
 			int iTemp8 = (iSlow1 + int(fRec9[0]) + iRec11[0]) % 44100;
 			fRec13[0] = ((iTemp7) ? fSlow5 : fRec13[1]);
@@ -421,7 +422,7 @@ struct _granular final : public ::faust::dsp {
 			iVec2[0] = iTemp11;
 			int iTemp12 = iTemp11 > iVec2[1];
 			fRec15[0] = ((iTemp12) ? fSlow4 : fRec15[1]);
-			fRec14[0] = std::max<float>(0.0f, ((iTemp12) ? float(fRec15[0] < 0.0f) : fRec14[1] + fRec15[0]));
+			fRec14[0] = std::max<float>(0.0f, ((iTemp12) ? float(fRec15[0] < 0.0f) : fRec15[0] + fRec14[1]));
 			iRec16[0] = ((iTemp12) ? iRec2[0] : iRec16[1]);
 			int iTemp13 = (iSlow1 + int(fRec14[0]) + iRec16[0]) % 44100;
 			fRec18[0] = ((iTemp12) ? fSlow5 : fRec18[1]);
@@ -432,7 +433,7 @@ struct _granular final : public ::faust::dsp {
 			iVec3[0] = iTemp16;
 			int iTemp17 = iTemp16 > iVec3[1];
 			fRec20[0] = ((iTemp17) ? fSlow4 : fRec20[1]);
-			fRec19[0] = std::max<float>(0.0f, ((iTemp17) ? float(fRec20[0] < 0.0f) : fRec19[1] + fRec20[0]));
+			fRec19[0] = std::max<float>(0.0f, ((iTemp17) ? float(fRec20[0] < 0.0f) : fRec20[0] + fRec19[1]));
 			iRec21[0] = ((iTemp17) ? iRec2[0] : iRec21[1]);
 			int iTemp18 = (iSlow1 + int(fRec19[0]) + iRec21[0]) % 44100;
 			fRec23[0] = ((iTemp17) ? fSlow5 : fRec23[1]);
@@ -444,8 +445,8 @@ struct _granular final : public ::faust::dsp {
 			fRec1[0] = fConst2 * (fConst3 * fRec1[1] + 0.1f * (fTemp21 - fVec4[1]));
 			fRec0[0] = fRec1[0];
 			output0[i0] = FAUSTFLOAT(fRec0[0]);
-			ftbl1[iRec2[0]] = fSlow0 * fRec24[1] + float(input1[i0]);
-			float fTemp22 = ftbl1[iTemp2] * fTemp4 + ftbl1[iTemp8] * fTemp10 + ftbl1[iTemp13] * fTemp15 + ftbl1[iTemp18] * fTemp20;
+			ftbl1[iRec2[0]] = float(input1[i0]) + fSlow0 * fRec24[1];
+			float fTemp22 = fTemp4 * ftbl1[iTemp2] + fTemp10 * ftbl1[iTemp8] + fTemp15 * ftbl1[iTemp13] + fTemp20 * ftbl1[iTemp18];
 			fVec5[0] = fTemp22;
 			fRec25[0] = fConst2 * (fConst3 * fRec25[1] + 0.1f * (fTemp22 - fVec5[1]));
 			fRec24[0] = fRec25[0];
@@ -499,16 +500,16 @@ struct _granular final : public ::faust::dsp {
 
 	FAUST_ADDHORIZONTALSLIDER("decal", fHslider1, 0.0f, 0.0f, 1.0f, 0.001f);
 	FAUST_ADDHORIZONTALSLIDER("feedback", fHslider0, 0.0f, 0.0f, 2.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("population", fHslider2, 1.0f, 0.0f, 1.0f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("population", fHslider3, 1.0f, 0.0f, 1.0f, 0.001f);
 	FAUST_ADDHORIZONTALSLIDER("speed", fHslider4, 1.0f, 0.125f, 4.0f, 0.001f);
-	FAUST_ADDHORIZONTALSLIDER("taille", fHslider3, 1e+01f, 4.0f, 1.2e+04f, 0.001f);
+	FAUST_ADDHORIZONTALSLIDER("taille", fHslider2, 1e+01f, 4.0f, 1.2e+04f, 0.001f);
 
 	#define FAUST_LIST_ACTIVES(p) \
 		p(HORIZONTALSLIDER, decal, "decal", fHslider1, 0.0f, 0.0f, 1.0f, 0.001f) \
 		p(HORIZONTALSLIDER, feedback, "feedback", fHslider0, 0.0f, 0.0f, 2.0f, 0.001f) \
-		p(HORIZONTALSLIDER, population, "population", fHslider2, 1.0f, 0.0f, 1.0f, 0.001f) \
+		p(HORIZONTALSLIDER, population, "population", fHslider3, 1.0f, 0.0f, 1.0f, 0.001f) \
 		p(HORIZONTALSLIDER, speed, "speed", fHslider4, 1.0f, 0.125f, 4.0f, 0.001f) \
-		p(HORIZONTALSLIDER, taille, "taille", fHslider3, 1e+01f, 4.0f, 1.2e+04f, 0.001f) \
+		p(HORIZONTALSLIDER, taille, "taille", fHslider2, 1e+01f, 4.0f, 1.2e+04f, 0.001f) \
 
 	#define FAUST_LIST_PASSIVES(p) \
 
