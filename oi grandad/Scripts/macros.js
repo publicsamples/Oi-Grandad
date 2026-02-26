@@ -58,20 +58,6 @@ uph.setPostCallback(function(presetFile)
 	
 }
 
-const var posoffset1 = Content.getComponent("posoffset1");
-const var posoffset2 = Content.getComponent("posoffset2");
-const var posoffset3 = Content.getComponent("posoffset3");
-const var posoffset4 = Content.getComponent("posoffset4");
-
-inline function onMacroPos1Control(component, value)
-{
-	pos.setValue(value);
-	pos.changed();
-	posoffset1.setValue(value);
-	posoffset1.changed();
-};
-
-Content.getComponent("MacroPos1").setControlCallback(onMacroPos1Control);
 
 inline function onMacroPos2Control(component, value)
 {

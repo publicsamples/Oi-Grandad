@@ -1,21 +1,11 @@
-const var pitch3 = Content.getComponent("pitch3");
+const var StackItem4 = [Content.getComponent("PosIndicator14"),
+                        Content.getComponent("PosIndicator15"),
+                        Content.getComponent("PosIndicator16")];
+                        
+const var VoiceParam4 = Content.getComponent("VoiceParam39");
+const var VoiceParamB4 = Content.getComponent("VoiceParamB4");
 
-const var XfModControls4 = Content.getComponent("XfModControls4");
-const var XfMode4 = Content.getComponent("XfMode4");
-
-const var StackItem4 = [Content.getComponent("PosIndicator11"),
-                        Content.getComponent("PosIndicator12"),
-                        Content.getComponent("PosIndicator13"),
-                        Content.getComponent("StagesPos4"),
-                        Content.getComponent("PosOffsetLabel4"),
-                        Content.getComponent("posoffset4"),
-                        Content.getComponent("XfModeLabel4"),
-                        Content.getComponent("XfMode4"),
-                        Content.getComponent("StagesPitch4"),
-                        Content.getComponent("PitchOffsetLabel4"),
-                        Content.getComponent("pitchoffset4")];
-
-
+  
 
 inline function onStgSel4Control(component, value)
 {
@@ -23,17 +13,14 @@ inline function onStgSel4Control(component, value)
 if(value == 0)
   {
 
-     XfMode4.setValue(1);
-             XfMode4.changed();
+  	VoiceParam4.showControl(1);
+  	VoiceParamB4.showControl(0);
              
-        gran4.setAttribute(gran4.Stack, 0);  
-        gran4.setAttribute(gran4.PositionModMode, 0);
-        gran4.setAttribute(gran4.PitchModMode, 0);
-        pos3.showControl(1);
-        pitch3.showControl(1);
-        XfModControls4.showControl(0);
-        
-        
+        gran3.setAttribute(gran3.scrubMode, 1);  
+       // gran3.setAttribute(gran3.PositionModMode, 0);
+
+      
+
        for(s in StackItem4)
             s.showControl(0);
                    
@@ -41,12 +28,12 @@ if(value == 0)
 	
 if(value == 1)
   {
-			pos3.showControl(0);
-         gran4.setAttribute(gran4.Stack, 1);   
-        gran4.setAttribute(gran4.PositionModMode, 1);
-               gran4.setAttribute(gran4.PitchModMode, 1);
-               pitch3.showControl(0);
-               
+	VoiceParam4.showControl(0);
+	VoiceParamB4.showControl(1);
+	  	
+	  	
+          gran3.setAttribute(gran3.scrubMode, 2);  
+
               for(s in StackItem4)
                   s.showControl(1);
               
@@ -57,165 +44,141 @@ if(value == 1)
 
 Content.getComponent("StgSel4").setControlCallback(onStgSel4Control);
 
+///Position Macros
 
 const var pos3 = Content.getComponent("pos3");
+const var posmod3 = Content.getComponent("posmod3");
+const var pos1modsel3 = Content.getComponent("pos1modsel3");
+const var MultPosA4 = Content.getComponent("MultPosA4");
+const var MacroPos4 = Content.getComponent("MacroPos4");
+const var PosHeadModA4 = Content.getComponent("PosHeadModA4");
+const var PosHeadSrcA4 = Content.getComponent("PosHeadSrcA4");
 
-
-inline function onposoffset4Control(component, value)
+inline function onMultPosA4Control(component, value)
 {
-		pos3.setValue(value);
-		pos3.changed();
+	pos3.setValue(value);
+	MacroPos4.setValue(value);
+	pos3.changed();
 };
 
-Content.getComponent("posoffset4").setControlCallback(onposoffset4Control);
+Content.getComponent("MultPosA4").setControlCallback(onMultPosA4Control);
 
-const var pitchCont4 = Content.getComponent("pitch3");
 
-inline function onpitchoffset4Control(component, value)
+inline function onpos3Control(component, value)
 {
-		pitchCont4.setValue(value);
-		pitchCont4.changed();
+	 gran3.setAttribute(gran3.Position, value); 
+	 MultPosA4.setValue(value);
+	 MacroPos4.setValue(value);
 };
 
-Content.getComponent("pitchoffset4").setControlCallback(onpitchoffset4Control);
+Content.getComponent("pos3").setControlCallback(onpos3Control);
+
+inline function onMacroPos4Control(component, value)
+{
+	pos3.setValue(value);
+	pos3.changed();
+	MultPosA4.setValue(value);
+	
+};
+
+Content.getComponent("MacroPos4").setControlCallback(onMacroPos4Control);
 
 
-const var GrainSyncUI4 = [Content.getComponent("graintempo4"),
-						Content.getComponent("graindiv4")];
 
+inline function onposmod3Control(component, value)
+{
+	gran3.setAttribute(gran3.PositionMod, value); 
+	PosHeadModA4.setValue(value);
+};
+
+Content.getComponent("posmod3").setControlCallback(onposmod3Control);
+
+inline function onPosHeadModA4Control(component, value)
+{
+	posmod3.setValue(value);
+	posmod3.changed();
+};
+
+Content.getComponent("PosHeadModA4").setControlCallback(onPosHeadModA4Control);
+
+
+inline function onpos1modsel3Control(component, value)
+{
+	gran3.setAttribute(gran3.PositionSrc, value); 
+	PosHeadSrcA4.setValue(value);
+};
+
+Content.getComponent("pos1modsel3").setControlCallback(onpos1modsel3Control);
+
+
+inline function onPosHeadSrcA4Control(component, value)
+{
+	pos1modsel3.setValue(value);
+	pos1modsel3.changed();
+};
+
+Content.getComponent("PosHeadSrcA4").setControlCallback(onPosHeadSrcA4Control);
+
+const var DenseLabel4 = Content.getComponent("DenseLabel4");
+const var DenseLabelB4 = Content.getComponent("DenseLabelB4");
+
+
+
+inline function onGrainXf4Control(component, value)
+{
+	gran3.setAttribute(gran3.scrubBlen, value); 
+	
+	if(value == 0)
+	  {
+	DenseLabel4.showControl(1);
+	DenseLabelB4.showControl(0);
+	}
+
+	if(value == 1)
+		  {
+		DenseLabel4.showControl(0);
+		DenseLabelB4.showControl(1);
+		}
+};
+
+Content.getComponent("GrainXf4").setControlCallback(onGrainXf4Control);
+
+
+const var graindiv4 = Content.getComponent("graindiv4");
+const var graintempo4 = Content.getComponent("graintempo4");
 const var grainsize4 = Content.getComponent("grainsize4");
 
 inline function onGrainSync4Control(component, value)
 {
-	if(value == 0)
-  {
-
-     
-        gran4.setAttribute(gran4.GrainSync, 0);  
-     	grainsize4.showControl(1);
-       
-       	for(s in GrainSyncUI4)
-                 s.showControl(0);             
-	}
+	graindiv4.showControl(value);
+	graintempo4.showControl(value);
+	grainsize4.showControl(value-1);
 	
-	if(value == 1)
-	  {
-	
-	     
-	        gran4.setAttribute(gran4.GrainSync, 1);  
-	     	grainsize4.showControl(0);
-	       
-	       	for(s in GrainSyncUI4)
-	                 s.showControl(1);             
-	}
+	gran3.setAttribute(gran3.GrainSync, value);
 };
 
 Content.getComponent("GrainSync4").setControlCallback(onGrainSync4Control);
 
-const var WinSyncUI4 = [Content.getComponent("WindowTempo4"), 
-                        Content.getComponent("WinFadeTempo4"),
-                        Content.getComponent("windowdiv4")];
-                        
-const var WinControls4 = [Content.getComponent("Winfade4"),
-                          Content.getComponent("Window4")];
+const var maxGrains4 = Content.getComponent("maxGrains4");
 
-
-
-inline function onwinsync4Control(component, value)
-{
-if(value == 0)
-  {
-
-     
-        gran4.setAttribute(gran4.WinSync, 0);  
-     	for(s in WinControls4)
-                 s.showControl(1);  
-       
-       
-       	for(s in WinSyncUI4)
-                 s.showControl(0);             
-	}
-	
-	if(value == 1)
-	  {
-	
-	     
-	        gran4.setAttribute(gran4.WinSync, 1);  
-	     for(s in WinControls4)
-                 s.showControl(0); 
-	       
-	       	for(s in WinSyncUI4)
-	                 s.showControl(1);             
-	}
-};
-
-Content.getComponent("winsync4").setControlCallback(onwinsync4Control);
-
-
-inline function onXfMode4Control(component, value)
+inline function onmaxGrains4Control(component, value)
 {
 if(value == 1)
-  {
-
-     
-        gran4.setAttribute(gran4.XfMode, 1);  
-	    XfModControls4.showControl(0);                       
-	}
-if(value == 2)
-  {
-
-     
-        gran4.setAttribute(gran4.XfMode, 2);  
-	    XfModControls4.showControl(1);                       
-	}
-	
-	if(value == 3)
 	  {
-	
-	     
-	        gran4.setAttribute(gran4.XfMode, 4);  
-		    XfModControls4.showControl(1);                       
-		}	
-	
+	 gran3.setAttribute(gran3.MaxGrains, 2);
+	 }
+	 
+	 if(value == 2)
+	 	  {
+	 	 gran3.setAttribute(gran3.MaxGrains, 4);
+	 	 }
+	 	 
+	 	 if(value == 3)
+	 	 	  {
+	 	 	 gran3.setAttribute(gran3.MaxGrains, 8);
+	 	 	 }
 };
 
-Content.getComponent("XfMode4").setControlCallback(onXfMode4Control);
-
-const var Dsync4 = [Content.getComponent("DelayTime4"),
-                   Content.getComponent("deldiv2")];
-
-const var DelayPitch4 = Content.getComponent("DelayPitch4");
-
-const var Proc4 = Synth.getEffect("Proc4");
-
-inline function onDelMode4Control(component, value)
-{
-if(value == 1)
-  {
-	for(s in Dsync4)
-             s.showControl(1);   
-    DelayPitch4.showControl(0);          
-    Proc4.setAttribute(Proc4.delaymode, 1);   
-             
-             }
- if(value == 2)
-   {
- 	for(s in Dsync4)
-              s.showControl(0);   
-    DelayPitch4.showControl(1);           
-    Proc4.setAttribute(Proc4.delaymode, 2);   
-              }            
-             
-  if(value == 3)
-    {
-  	for(s in Dsync4)
-              s.showControl(0);   
-    DelayPitch4.showControl(1); 
-    Proc4.setAttribute(Proc4.delaymode, 4);    
-               }           
-};
-
-Content.getComponent("DelMode4").setControlCallback(onDelMode4Control);
-
+Content.getComponent("maxGrains4").setControlCallback(onmaxGrains4Control);
 
 

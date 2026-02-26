@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="buff" Version="0.0.0" AllowPolyphonic="1">
+  <Node FactoryPath="container.chain" ID="buff" Bypassed="0" Name="buff">
+    <Nodes>
+      <Node ID="snex_node1" FactoryPath="core.snex_node" Bypassed="0" Name="snex_node1">
+        <Properties>
+          <Property ID="ClassId" Value="BufferState"/>
+        </Properties>
+        <ComplexData>
+          <Tables/>
+          <SliderPacks/>
+          <AudioFiles/>
+          <Filters/>
+          <DisplayBuffers/>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="speed" Value="0.886484375"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="freeze" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="reverse" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="jumpProb" Value="0.205859375"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="80000.0" ID="jump" Value="9181.25" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Stutter" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Warp" Value="0.3734218750000001"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.534640625"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="range" Value="1.0" DefaultValue="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

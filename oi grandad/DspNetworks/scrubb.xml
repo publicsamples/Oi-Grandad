@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="scrubb" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="scrubb" Bypassed="0" Name="scrubb">
+    <Nodes>
+      <Node ID="snex_node" FactoryPath="core.snex_node" Bypassed="0" Name="snex_node">
+        <Properties>
+          <Property ID="ClassId" Value="Scrub_Player_A"/>
+        </Properties>
+        <ComplexData>
+          <Tables/>
+          <SliderPacks/>
+          <AudioFiles>
+            <AudioFile Index="0" EmbeddedData="" MinValue="0" MaxValue="614096"/>
+          </AudioFiles>
+          <Filters/>
+          <DisplayBuffers/>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="pitchSemitones" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrub" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="800.0" ID="grainMs" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubSmooth" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

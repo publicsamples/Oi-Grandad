@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Parameters>
+  <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="Pitch" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="scrub" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="0.0" SkewFactor="1.0"
+             ID="grainMs" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0" SkewFactor="1.0" ID="mode"
+             TextToValueConverter="Undefined" Page="" SubGroup="" Value="0.0"
+             DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="0.0" SkewFactor="1.0"
+             ID="searchWinSize" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+</Parameters>

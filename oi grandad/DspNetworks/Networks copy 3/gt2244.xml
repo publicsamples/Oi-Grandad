@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="gt2244" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="gt2244" Bypassed="0" Name="gt2244"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            Name="midichain">
+        <Nodes>
+          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="0" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Quetzalcoatl/Q-Bb.wav"
+                           MinValue="0" MaxValue="2025494"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Automated="1"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Value="1.0"/>
+              <Parameter MinValue="20.0" MaxValue="128000.0" ID="GrainSize" DefaultValue="80.0"
+                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Automated="1"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="Position" MinValue="0.0" MaxValue="1.0" Value="0.03286345108695652"
+                 DefaultValue="1.0">
+        <Connections>
+          <Connection NodeId="granulator" ParameterId="Position"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="GrainSize" MinValue="20.0" MaxValue="128000.0" Value="11018.28125"
+                 DefaultValue="1.0">
+        <Connections>
+          <Connection NodeId="granulator" ParameterId="GrainSize"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Dense" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="granulator" ParameterId="Density"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="spread" MinValue="0.0" MaxValue="1.0" Value="0.8700156860351562"
+                 DefaultValue="1.0">
+        <Connections>
+          <Connection NodeId="granulator" ParameterId="Spread"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Detune" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="1.0">
+        <Connections>
+          <Connection NodeId="granulator" ParameterId="Detune"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

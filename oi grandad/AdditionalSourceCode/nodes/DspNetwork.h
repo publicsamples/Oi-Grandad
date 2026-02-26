@@ -87,6 +87,16 @@ using ahdsr1_multimod = parameter::list<parameter::empty,
 template <int NV>
 using ahdsr1_t = wrap::no_data<envelope::ahdsr<NV, ahdsr1_multimod<NV>>>;
 
+DECLARE_PARAMETER_RANGE_STEP(cable_table3_modRange, 
+                             0., 
+                             1., 
+                             1.);
+
+template <int NV>
+using cable_table3_mod = parameter::from0To1<input_toggle2_t<NV>, 
+                                             0, 
+                                             cable_table3_modRange>;
+
 struct cable_table3_t_data
 {
 	span<float, 512> data =
@@ -181,7 +191,7 @@ struct cable_table3_t_data
 };
 
 template <int NV>
-using cable_table3_t = wrap::data<control::cable_table<parameter::plain<input_toggle2_t<NV>, 0>>, 
+using cable_table3_t = wrap::data<control::cable_table<cable_table3_mod<NV>>, 
                                   data::embedded::table<cable_table3_t_data>>;
 using global_cable32_t_index = runtime_target::indexers::fix_hash<1120565314>;
 
@@ -1082,6 +1092,11 @@ using chain80_t = container::chain<parameter::empty,
                                    peak6_t<NV>, 
                                    math::clear<NV>>;
 
+template <int NV>
+using cable_table4_mod = parameter::from0To1<input_toggle3_t<NV>, 
+                                             0, 
+                                             cable_table3_modRange>;
+
 struct cable_table4_t_data
 {
 	span<float, 512> data =
@@ -1176,7 +1191,7 @@ struct cable_table4_t_data
 };
 
 template <int NV>
-using cable_table4_t = wrap::data<control::cable_table<parameter::plain<input_toggle3_t<NV>, 0>>, 
+using cable_table4_t = wrap::data<control::cable_table<cable_table4_mod<NV>>, 
                                   data::embedded::table<cable_table4_t_data>>;
 
 template <int NV>
@@ -1305,10 +1320,19 @@ using sb_container_t = container::chain<parameter::empty,
 
 namespace softbypass_switch3_t_parameters
 {
+DECLARE_PARAMETER_RANGE_STEP(Switch_InputRange, 
+                             0., 
+                             1., 
+                             1.);
+
+template <int NV>
+using Switch = parameter::chain<Switch_InputRange, 
+                                parameter::plain<DspNetwork_impl::switcher_t<NV>, 0>>;
+
 }
 
 template <int NV>
-using softbypass_switch3_t = container::chain<parameter::plain<DspNetwork_impl::switcher_t<NV>, 0>, 
+using softbypass_switch3_t = container::chain<softbypass_switch3_t_parameters::Switch<NV>, 
                                               wrap::fix<1, switcher_t<NV>>, 
                                               sb_container_t<NV>>;
 
@@ -1546,10 +1570,13 @@ DECLARE_PARAMETER_RANGE_STEP_INV(type_InputRange,
                                  0., 
                                  1., 
                                  0.1);
+template <int NV>
+using type_0 = parameter::from0To1<DspNetwork_impl::softbypass_switch3_t<NV>, 
+                                   0, 
+                                   DspNetwork_impl::cable_table3_modRange>;
 
 template <int NV>
-using type = parameter::chain<type_InputRange, 
-                              parameter::plain<DspNetwork_impl::softbypass_switch3_t<NV>, 0>>;
+using type = parameter::chain<type_InputRange, type_0<NV>>;
 
 DECLARE_PARAMETER_RANGE_STEP(keysync_InputRange, 
                              0., 
@@ -1562,6 +1589,15 @@ using keysync = parameter::chain<keysync_InputRange,
                                  parameter::plain<DspNetwork_impl::cable_table2_t<NV>, 0>, 
                                  parameter::plain<DspNetwork_impl::cable_table3_t<NV>, 0>, 
                                  parameter::plain<DspNetwork_impl::cable_table4_t<NV>, 0>>;
+
+DECLARE_PARAMETER_RANGE_STEP(onshot_InputRange, 
+                             0., 
+                             1., 
+                             1.);
+
+template <int NV>
+using onshot = parameter::chain<onshot_InputRange, 
+                                parameter::plain<DspNetwork_impl::ramp_t<NV>, 1>>;
 
 DECLARE_PARAMETER_RANGE(morph_InputRange, 
                         1., 
@@ -1597,9 +1633,6 @@ using morphmodest = parameter::chain<morphmodest_InputRange, morphmodest_0<NV>>;
 template <int NV>
 using dir = parameter::plain<DspNetwork_impl::minmax_t<NV>, 
                              5>;
-template <int NV>
-using onshot = parameter::plain<DspNetwork_impl::ramp_t<NV>, 
-                                1>;
 using Out = parameter::plain<DspNetwork_impl::branch1_t, 
                              0>;
 template <int NV>
@@ -1670,12 +1703,9 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
             0x7475, 0x0000, 0x0000, 0x0000, 0x0000, 0x4170, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000
 		};
-		SNEX_METADATA_ENCODED_MOD_INFO(25)
+		SNEX_METADATA_ENCODED_MOD_INFO(2)
 		{
-			0x003A, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x0000
+			0x3D3B, 0x003E
 		};
 	};
 	

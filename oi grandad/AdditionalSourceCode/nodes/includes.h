@@ -9,6 +9,7 @@
 
 // Include third party header files ----------------
 
+#include "gr1.h"
 #include "granul.h"
 #include "granular.h"
 #include "MODEFILTR.h"
@@ -22,21 +23,26 @@
 #include "ana3_networkdata.h"
 #include "ana4_networkdata.h"
 #include "analyise_networkdata.h"
+#include "buff_networkdata.h"
 #include "DspNetwork.h"
 #include "g1stack_networkdata.h"
 #include "grainF_networkdata.h"
 #include "GranularWithMod_networkdata.h"
+#include "Gr_networkdata.h"
 #include "gt2244_networkdata.h"
 #include "Hole_networkdata.h"
+#include "k_networkdata.h"
 #include "MacroMod.h"
+#include "min_networkdata.h"
 #include "modcont_networkdata.h"
-#include "Proc2_networkdata.h"
-#include "Proc3_networkdata.h"
-#include "Proc4_networkdata.h"
-#include "Process.h"
+#include "ng_networkdata.h"
+#include "OutMods_networkdata.h"
+#include "pb_networkdata.h"
+#include "pitch_networkdata.h"
 #include "record_networkdata.h"
 #include "res1.h"
-#include "Stack.h"
+#include "res2.h"
+#include "sn.h"
 #include "track2_networkdata.h"
 #include "track3_networkdata.h"
 #include "track4_networkdata.h"
@@ -51,6 +57,7 @@
 #include "vec4_networkdata.h"
 #include "vecfade_networkdata.h"
 #include "vrtb_networkdata.h"
+#include "_networkdata.h"
 
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )

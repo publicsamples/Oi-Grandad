@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Parameters>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="Pitch" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="loop" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+</Parameters>

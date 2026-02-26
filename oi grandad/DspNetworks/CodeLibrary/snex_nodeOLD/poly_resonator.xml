@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Parameters>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="feedback" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="tone" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="structure" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="spread" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="saturation" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="mix" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="5.0" StepSize="0.0" SkewFactor="1.0"
+             ID="mode" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+</Parameters>

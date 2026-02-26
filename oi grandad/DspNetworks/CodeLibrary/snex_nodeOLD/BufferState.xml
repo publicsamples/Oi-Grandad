@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Parameters>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="speed" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="freeze" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="reverse" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="jumpProb" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="80000.0" StepSize="0.0" SkewFactor="1.0"
+             ID="jump" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="Stutter" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="Warp" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="Position" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="range" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+</Parameters>

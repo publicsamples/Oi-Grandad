@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="res2" AllowPolyphonic="1" Version="0.0.0" AllowCompilation="1">
+  <Node FactoryPath="container.chain" ID="res2" Bypassed="0" Name="res2"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="receive" FactoryPath="routing.receive" Bypassed="0" Name="receive">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" TextToValueConverter="NormalizedPercentage"
+                     Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="jdelay_thiran" FactoryPath="jdsp.jdelay_thiran" Bypassed="0"
+            Name="jdelay_thiran">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="30.0" ID="Limit" TextToValueConverter="Time"
+                     Value="30.0"/>
+          <Parameter MinValue="0.0" MaxValue="30.0" ID="DelayTime" TextToValueConverter="Time"
+                     Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="haas" FactoryPath="fx.haas" Bypassed="0" Name="haas">
+        <Parameters>
+          <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
+                     ID="Position" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="one_pole" FactoryPath="filters.one_pole" Bypassed="0" Name="one_pole">
+        <ComplexData>
+          <Filters>
+            <Filter Index="-1"/>
+          </Filters>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                     ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                     ID="Q" Value="1.0"/>
+          <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
+                     Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                     ID="Smoothing" Value="0.009999999776482582"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Mode" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="send" FactoryPath="routing.send" Bypassed="0" Name="send">
+        <Properties>
+          <Property ID="Connection" Value="receive"/>
+        </Properties>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="FB" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="0.5623125">
+        <Connections>
+          <Connection NodeId="receive" ParameterId="Feedback"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="DELAY" MinValue="0.0" MaxValue="30.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="20.22515625" TextToValueConverter="Time">
+        <Connections>
+          <Connection NodeId="jdelay_thiran" ParameterId="DelayTime"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="HASS" MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
+                 ModColour="0" ExternalModulation="Disabled" DefaultValue="" Value="0.1000000163912771">
+        <Connections>
+          <Connection NodeId="haas" ParameterId="Position"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="lp" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled">
+        <Connections>
+          <Connection NodeId="one_pole" ParameterId="Frequency"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

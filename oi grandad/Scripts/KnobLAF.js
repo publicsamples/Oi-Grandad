@@ -155,11 +155,28 @@ for (i = 0; i < 4; i++)
 
 } 
 
+
+const var Jitter =[];
+
+for (i = 0; i < 4; i++)
+{
+    Jitter[i] = Content.getComponent("Jitter"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+} 
+
 const var cutoff =[];
 
 for (i = 0; i < 4; i++)
 {
-    cutoff[i] = Content.getComponent("cutoff"+(i+1)).setLocalLookAndFeel(KnobLaf);
+    cutoff[i] = Content.getComponent("cutoffA"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+} 
+
+const var cutoffB =[];
+
+for (i = 0; i < 4; i++)
+{
+    cutoffB[i] = Content.getComponent("cutoffB"+(i+1)).setLocalLookAndFeel(KnobLaf);
 
 } 
 
@@ -192,21 +209,6 @@ for (i = 0; i < 3; i++)
 
 Content.getComponent("spread").setLocalLookAndFeel(KnobLaf);
 
-const var Winfade =[];
-
-for (i = 0; i < 4; i++)
-{
-    Winfade[i] = Content.getComponent("Winfade"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-} 
-
-const var WinFadeTempo =[];
-
-for (i = 0; i < 4; i++)
-{
-    WinFadeTempo[i] = Content.getComponent("WinFadeTempo"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-} 
 
 ////////////////// CONSTANTS //////////////////
 
@@ -310,11 +312,4 @@ for (i = 0; i < 4; i++)
 
 const var RecEnableLaf = Content.getComponent("RecEnable1").setLocalLookAndFeel(LAF_Button);
 
-const var DelMode1 = Content.getComponent("DelMode1").setLocalLookAndFeel(LAF_Button);
-const var DelMode2 = Content.getComponent("DelMode2").setLocalLookAndFeel(LAF_Button);
-const var DelMode3 = Content.getComponent("DelMode3").setLocalLookAndFeel(LAF_Button);
-const var DelMode4 = Content.getComponent("DelMode4").setLocalLookAndFeel(LAF_Button);
-const var EnvPos1 = Content.getComponent("EnvPos1").setLocalLookAndFeel(LAF_Button);
-const var EnvPos2 = Content.getComponent("EnvPos2").setLocalLookAndFeel(LAF_Button);
-const var EnvPos3 = Content.getComponent("EnvPos3").setLocalLookAndFeel(LAF_Button);
-const var EnvPos4 = Content.getComponent("EnvPos4").setLocalLookAndFeel(LAF_Button);
+

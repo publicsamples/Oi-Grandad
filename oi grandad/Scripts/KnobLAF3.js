@@ -100,31 +100,32 @@ for(s in MacroMods)
 
 
 const var VoiceMods1 = [Content.getComponent("posmod"),
-                        Content.getComponent("GrainMod1"),
-                        Content.getComponent("densemod"),
                         Content.getComponent("pmod1"),
                         Content.getComponent("detmod"),
+                        Content.getComponent("spreadmod4"),
+                        Content.getComponent("densemod"),
                         Content.getComponent("spreadmod"),
                         Content.getComponent("winmod1"),
-                        Content.getComponent("cutmod1"),
-                        Content.getComponent("delmod1"),
-                        Content.getComponent("delcutmod1"),
-                        Content.getComponent("PanMod1"),
-                        Content.getComponent("volmod")];
+                        Content.getComponent("GrainMod1"),
+                        Content.getComponent("cutmodA1"),
+                        Content.getComponent("cutmodB1"),
+                        Content.getComponent("volmod"),
+                        Content.getComponent("PanMod1")];
+
 
 for(s in VoiceMods1)
       s.setLocalLookAndFeel(KnobLaf3);
 
-const var VoiceMods2 = [Content.getComponent("posmod1"),
-                        Content.getComponent("GrainMod2"),
-                        Content.getComponent("densemod1"),
+const var VoiceMods2 = [Content.getComponent("pmod2"),
                         Content.getComponent("detmod1"),
+                        Content.getComponent("posmod1"),
+                        Content.getComponent("spreadmod5"),
+                        Content.getComponent("densemod1"),
+                        Content.getComponent("GrainMod2"),
                         Content.getComponent("spreadmod1"),
                         Content.getComponent("winmod2"),
-                        Content.getComponent("pmod2"),
-                        Content.getComponent("delcutmod2"),
-                        Content.getComponent("delmod2"),
-                        Content.getComponent("cutmod2"),
+                        Content.getComponent("cutmodA2"),
+                        Content.getComponent("cutmodB2"),
                         Content.getComponent("PanMod2"),
                         Content.getComponent("volmod1")];
 
@@ -132,40 +133,37 @@ const var VoiceMods2 = [Content.getComponent("posmod1"),
 for(s in VoiceMods2)
       s.setLocalLookAndFeel(KnobLaf3);
 
-const var VoiceMods3 = [Content.getComponent("posmod2"),
-                        Content.getComponent("GrainMod3"),
-                        Content.getComponent("densemod2"),
-                        Content.getComponent("pmod3"),
+const var VoiceMods3 = [Content.getComponent("pmod3"),
                         Content.getComponent("detmod2"),
+                        Content.getComponent("posmod2"),
+                        Content.getComponent("spreadmod6"),
+                        Content.getComponent("densemod2"),
                         Content.getComponent("spreadmod2"),
+                        Content.getComponent("GrainMod3"),
                         Content.getComponent("winmod3"),
-                        Content.getComponent("cutmod3"),
-                        Content.getComponent("delmod3"),
-                        Content.getComponent("delcutmod3"),
+                        Content.getComponent("cutmodA3"),
+                        Content.getComponent("cutmodB3"),
                         Content.getComponent("volmod2"),
                         Content.getComponent("PanMod3")];
 
 for(s in VoiceMods3)
       s.setLocalLookAndFeel(KnobLaf3);
       
-const var VoiceMods4 = [Content.getComponent("cutmod4"),
-                        Content.getComponent("delmod4"),
-                        Content.getComponent("delcutmod4"),
+const var VoiceMods4 = [Content.getComponent("cutmodA4"),
+                        Content.getComponent("cutmodB4"),
+                        Content.getComponent("posmod3"),
                         Content.getComponent("PanMod4"),
                         Content.getComponent("volmod3"),
-                        Content.getComponent("MorphMod12"),
-                        Content.getComponent("TempoMod12"),
-                        Content.getComponent("spreadmod3"),
-                        Content.getComponent("detmod3"),
                         Content.getComponent("winmod4"),
-                        Content.getComponent("pmod4"),
-                        Content.getComponent("densemod3"),
                         Content.getComponent("GrainMod4"),
-                        Content.getComponent("posmod3")];
+                        Content.getComponent("spreadmod3"),
+                        Content.getComponent("spreadmod7"),
+                        Content.getComponent("densemod3"),
+                        Content.getComponent("pmod4"),
+                        Content.getComponent("detmod3")];
 
- for(s in VoiceMods4)
-       s.setLocalLookAndFeel(KnobLaf3);     
-
+for(s in VoiceMods4)
+      s.setLocalLookAndFeel(KnobLaf3);
       
       
 const var TempoMod =[];

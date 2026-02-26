@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="sn" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="sn" Bypassed="0" Name="sn"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
+        <Nodes>
+          <Node ID="tempo_sync1" FactoryPath="control.tempo_sync" Bypassed="0"
+                Name="tempo_sync1">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" DefaultValue="0.0"
+                         Automated="1"/>
+              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                         DefaultValue="1.0" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" DefaultValue="0.0"
+                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         ID="UnsyncedTime" TextToValueConverter="Time" DefaultValue="200.0"
+                         Automated="1"/>
+            </Parameters>
+            <ModulationTargets>
+              <Connection NodeId="snex_node" ParameterId="grainMs"/>
+            </ModulationTargets>
+          </Node>
+          <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+              <Parameter MinValue="2.0" MaxValue="8.0" ID="Minimum" Value="2.0"/>
+              <Parameter MinValue="2.0" MaxValue="8.0" ID="Maximum" Value="8.0" DefaultValue="2.0"/>
+              <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
+                         ID="Skew" Value="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="2.0" ID="Step" Value="2.0" DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Value="0.0"/>
+            </Parameters>
+            <ModulationTargets>
+              <Connection NodeId="snex_node" ParameterId="maxGrains"/>
+            </ModulationTargets>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="snex_node" FactoryPath="core.snex_node" Bypassed="0" Name="snex_node">
+        <Properties>
+          <Property ID="ClassId" Value="granular_player_stepquant_density_hybrid"/>
+        </Properties>
+        <ComplexData>
+          <Tables/>
+          <SliderPacks>
+            <SliderPack Index="1" EmbeddedData=""/>
+          </SliderPacks>
+          <AudioFiles>
+            <AudioFile Index="0" EmbeddedData="" MinValue="0" MaxValue="61442"/>
+          </AudioFiles>
+          <Filters/>
+          <DisplayBuffers/>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="pitch" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrub" DefaultValue="0.0" Automated="1"/>
+          <Parameter MinValue="1.0" MaxValue="32000.0" ID="grainMs" DefaultValue="10.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="density" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="windowShape" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="panSpread" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchMode" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchSpread" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="1.0" MaxValue="8.0" ID="maxGrains" DefaultValue="1.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubMode" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlend" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="reverse" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="jitter" DefaultValue="0.0"
+                     Automated="1"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="scrub"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="-12.0" MaxValue="12.0" ID="Pitch" Value="-12.0" TextToValueConverter=""
+                 DefaultValue="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="pitch"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="1.0" DefaultValue="0.0"
+                 TextToValueConverter="">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="density"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="WinShape" Value="0.7259680706521739"
+                 DefaultValue="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="windowShape"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="panSpread" Value="1.0" DefaultValue="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="panSpread"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="1.0" MaxValue="3.0" ID="pmode" Value="3.0" DefaultValue="1.0"
+                 StepSize="1" ExternalModulation="Disabled" ModColour="0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="pitchMode"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="pspread" Value="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="pitchSpread"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="18.0" ID="grainsize" Value="5.0" DefaultValue="0.0"
+                 StepSize="1.0">
+        <Connections>
+          <Connection NodeId="tempo_sync1" ParameterId="Tempo"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="1.0" MaxValue="8.0" StepSize="2" ID="MaxGrain" Value="8.0"
+                 DefaultValue="1.0" ExternalModulation="Disabled" ModColour="0">
+        <Connections>
+          <Connection NodeId="minmax" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="1.0" MaxValue="3.0" ID="ScrubMode" Value="2.0" DefaultValue="1.0"
+                 StepSize="1" ExternalModulation="Disabled" ModColour="0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="scrubMode"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Value="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="scrubBlend"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="reverse" Value="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="reverse"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="jitter" Value="0.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="jitter"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="grainSync" Value="1.0"
+                 DefaultValue="0.0" TextToValueConverter="">
+        <Connections>
+          <Connection NodeId="tempo_sync1" ParameterId="Enabled"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="grainDiv" Value="1.0"
+                 DefaultValue="0.0" TextToValueConverter="">
+        <Connections>
+          <Connection NodeId="tempo_sync1" ParameterId="Multiplier"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                 ID="GrainMs" Value="0.3000000044703483" DefaultValue="0.0" TextToValueConverter="Time">
+        <Connections>
+          <Connection NodeId="tempo_sync1" ParameterId="UnsyncedTime"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

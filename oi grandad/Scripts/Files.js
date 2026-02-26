@@ -23,20 +23,14 @@ const var FileSelectFront2 = Content.getComponent("FileSelectFront2");
 const var FileSelectFront3 = Content.getComponent("FileSelectFront3");
 const var FileSelectFront4 = Content.getComponent("FileSelectFront4");
 
-const var Analysis1 = Synth.getAudioSampleProcessor("Analysis1");
-const var Analysis2 = Synth.getAudioSampleProcessor("Analysis2");
-const var Analysis3 = Synth.getAudioSampleProcessor("Analysis3");
-const var Analysis4 = Synth.getAudioSampleProcessor("Analysis4");
-
-const slotA1 = Analysis1.getAudioFile(0);
-const slotA2 = Analysis2.getAudioFile(0);
-const slotA3 = Analysis3.getAudioFile(0);
-const slotA4 = Analysis4.getAudioFile(0);
-
 const var FileSelectMac1 = Content.getComponent("FileSelectMac1");
 const var FileSelectMac2 = Content.getComponent("FileSelectMac2");
 const var FileSelectMac3 = Content.getComponent("FileSelectMac3");
 const var FileSelectMac4 = Content.getComponent("FileSelectMac4");
+
+const var FileName1 = Content.getComponent("FileName1");
+
+
 
 
 //Store folder path
@@ -109,6 +103,7 @@ inline function onFileSelectFront1Control(component, value)
      FileSelect1.changed();
      FileSelectMac1.setValue(value);
      
+     FileName1.set("text", FileSelectFront1.getItemText());
 
     
 };
@@ -137,7 +132,8 @@ Content.getComponent("FileSelectMac1").setControlCallback(onFileSelectMac1Contro
 inline function onFileSelect1Control(component, value) {
 
     slot1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
-	slotA1.loadFile(FileSelect1.get("items").split("\n")[value - 1]);
+	
+	
 };
 
 Content.getComponent("FileSelect1").setControlCallback(onFileSelect1Control);

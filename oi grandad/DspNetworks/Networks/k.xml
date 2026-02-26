@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="k" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="k" Bypassed="0" Name="k">
+    <Nodes>
+      <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+            Name="tempo_sync">
+        <ModulationTargets>
+          <Connection NodeId="ramp" ParameterId="PeriodTime"/>
+        </ModulationTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                     Value="8.0" DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     ID="UnsyncedTime" TextToValueConverter="Time" Value="200.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="ramp" FactoryPath="core.ramp" Bypassed="0" Name="ramp">
+        <ModulationTargets>
+          <Connection NodeId="global_cable" ParameterId="Value"/>
+        </ModulationTargets>
+        <ComplexData>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1"/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                     ID="PeriodTime" TextToValueConverter="Time" DefaultValue="100.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" TextToValueConverter="NormalizedPercentage"
+                     Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+            Name="global_cable" NodeColour="4289884488">
+        <Properties>
+          <Property ID="Connection" Value="Modulator2"/>
+        </Properties>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

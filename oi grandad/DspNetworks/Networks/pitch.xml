@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="pitch" Version="0.0.0" AllowPolyphonic="1">
+  <Node FactoryPath="container.chain" ID="pitch" Bypassed="0" Name="pitch"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
+        <Nodes>
+          <Node ID="wrapmidi1" FactoryPath="container.midichain" Bypassed="0"
+                Name="wrapmidi1">
+            <Nodes>
+              <Node ID="midi" FactoryPath="control.midi" Bypassed="0" Name="midi">
+                <Properties>
+                  <Property ID="Mode" Value="NoteNumber"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="faust" ParameterId="shift (semitones)"/>
+                </ModulationTargets>
+                <Parameters/>
+              </Node>
+              <Node ID="midi1" FactoryPath="control.midi" Bypassed="0" Name="midi">
+                <Properties>
+                  <Property ID="Mode" Value="Frequency"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="converter2" ParameterId="Value"/>
+                </ModulationTargets>
+                <Parameters/>
+              </Node>
+              <Node ID="converter2" FactoryPath="control.converter" Bypassed="0"
+                    Name="converter2">
+                <Properties>
+                  <Property ID="Mode" Value="Freq2Ms"/>
+                </Properties>
+                <ModulationTargets>
+                  <Connection NodeId="faust" ParameterId="window (samples)"/>
+                  <Connection NodeId="faust" ParameterId="xfade (samples)"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1" SkewFactor="0.2299045584686382"
+                             ID="Value" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="faust" FactoryPath="core.faust" Bypassed="0" Name="faust">
+            <Properties>
+              <Property ID="ClassId" Value="PitchShifter"/>
+              <Property ID="NumParameters" Value="0"/>
+            </Properties>
+            <Parameters>
+              <Parameter MinValue="-64.0" MaxValue="64.0" StepSize="0.1000000014901161"
+                         ID="shift (semitones)" Automated="1" DefaultValue="0.0"/>
+              <Parameter MinValue="50.0" MaxValue="10000.0" StepSize="1.0" ID="window (samples)"
+                         DefaultValue="1000.0" Automated="1"/>
+              <Parameter MinValue="1.0" MaxValue="10000.0" StepSize="1.0" ID="xfade (samples)"
+                         DefaultValue="10.0" Automated="1"/>
+            </Parameters>
+            <SwitchTargets/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="pitch" MinValue="-24.0" MaxValue="24.0" StepSize="0.1000000014901161"
+                 ModColour="0" ExternalModulation="Disabled" DefaultValue="" Value="3.576278650996301e-7">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

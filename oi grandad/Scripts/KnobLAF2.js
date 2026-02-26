@@ -90,25 +90,35 @@ const var res =[];
 
 for (i = 0; i < 4; i++)
 {
-    res[i] = Content.getComponent("res"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    res[i] = Content.getComponent("resA"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
 
-const var mix =[];
+const var resB =[];
 
 for (i = 0; i < 4; i++)
 {
-    mix[i] = Content.getComponent("mix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    resB[i] = Content.getComponent("resB"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
 
-const var feed =[];
+const var FmixA =[];
 
 for (i = 0; i < 4; i++)
 {
-    feed[i] = Content.getComponent("feed"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    FmixA[i] = Content.getComponent("FmixA"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
+
+const var FmixB =[];
+
+for (i = 0; i < 4; i++)
+{
+    FmixB[i] = Content.getComponent("FmixB"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+
 
 const var delmix =[];
 
@@ -118,13 +128,6 @@ for (i = 0; i < 4; i++)
 
 } 
 
-const var delsmth =[];
-
-for (i = 0; i < 4; i++)
-{
-    delsmth[i] = Content.getComponent("delsmth"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
 
 const var delcut =[];
 
@@ -176,6 +179,14 @@ for (i = 0; i < 4; i++)
 
 } 
 
+const var release =[];
+
+for (i = 0; i < 4; i++)
+{
+    release[i] = Content.getComponent("release"+(i)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
 const var tempo =[];
 
 for (i = 0; i < 12; i++)
@@ -192,13 +203,6 @@ for (i = 0; i < 12; i++)
 
 } 
 
-const var deldiv =[];
-
-for (i = 0; i < 4; i++)
-{
-    deldiv[i] = Content.getComponent("deldiv"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
 
 const var Stage =[];
 

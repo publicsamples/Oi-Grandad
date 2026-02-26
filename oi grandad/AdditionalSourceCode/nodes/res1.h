@@ -967,22 +967,52 @@ using LP_0 = parameter::from0To1<res1_impl::pma35_t<NV>,
 template <int NV>
 using LP = parameter::chain<LP_InputRange, LP_0<NV>>;
 
+DECLARE_PARAMETER_RANGE_STEP(Freq_1Range, 
+                             0., 
+                             1., 
+                             0.001);
+
+template <int NV>
+using Freq_1 = parameter::from0To1<project::granular<NV>, 
+                                   2, 
+                                   Freq_1Range>;
+
 template <int NV>
 using Freq = parameter::chain<ranges::Identity, 
                               parameter::plain<res1_impl::input_toggle1_t<NV>, 1>, 
-                              parameter::plain<project::granular<NV>, 2>>;
+                              Freq_1<NV>>;
+
+template <int NV>
+using Comp_3 = parameter::from0To1<project::granular<NV>, 
+                                   0, 
+                                   Freq_1Range>;
 
 template <int NV>
 using Comp = parameter::chain<ranges::Identity, 
                               parameter::plain<res1_impl::minmax_t<NV>, 0>, 
                               parameter::plain<res1_impl::minmax3_t<NV>, 0>, 
                               parameter::plain<res1_impl::minmax2_t<NV>, 0>, 
-                              parameter::plain<project::granular<NV>, 0>>;
+                              Comp_3<NV>>;
+
+DECLARE_PARAMETER_RANGE_STEP(mode_0Range, 
+                             0., 
+                             1., 
+                             1.);
+
+template <int NV>
+using mode_0 = parameter::from0To1<res1_impl::input_toggle_t<NV>, 
+                                   0, 
+                                   mode_0Range>;
+
+template <int NV>
+using mode_1 = parameter::from0To1<res1_impl::input_toggle1_t<NV>, 
+                                   0, 
+                                   mode_0Range>;
 
 template <int NV>
 using mode = parameter::chain<ranges::Identity, 
-                              parameter::plain<res1_impl::input_toggle_t<NV>, 0>, 
-                              parameter::plain<res1_impl::input_toggle1_t<NV>, 0>>;
+                              mode_0<NV>, 
+                              mode_1<NV>>;
 
 template <int NV>
 using a = parameter::chain<ranges::Identity, 
@@ -1153,12 +1183,9 @@ template <int NV> struct instance: public res1_impl::res1_t_<NV>
             0x0000, 0x5000, 0x776F, 0x7265, 0x0000, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000
 		};
-		SNEX_METADATA_ENCODED_MOD_INFO(25)
+		SNEX_METADATA_ENCODED_MOD_INFO(2)
 		{
-			0x003A, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x0000
+			0x3D3B, 0x003E
 		};
 	};
 	

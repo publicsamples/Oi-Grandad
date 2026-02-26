@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="trkin3" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="trkin3" Bypassed="0" Name="trkin3">
+    <Nodes>
+      <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
+        <Nodes>
+          <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak">
+            <ModulationTargets>
+              <Connection NodeId="global_cable" ParameterId="Value"/>
+            </ModulationTargets>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters/>
+          </Node>
+          <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+                Name="global_cable" NodeColour="4282928306">
+            <Properties>
+              <Property ID="Connection" Value="a3"/>
+            </Properties>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>
