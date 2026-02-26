@@ -8,7 +8,7 @@
           <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
             <Nodes>
               <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable" NodeColour="4289900872">
+                    Name="global_cable" NodeColour="4289900872" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="GranOut1"/>
                 </Properties>
@@ -19,12 +19,12 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
                 </Parameters>
               </Node>
-              <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add">
+              <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add" Folded="1">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak">
+              <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak" Folded="1">
                 <ComplexData>
                   <DisplayBuffers>
                     <DisplayBuffer Index="-1"/>
@@ -32,7 +32,8 @@
                 </ComplexData>
                 <Parameters/>
               </Node>
-              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+              <Node ID="comp" FactoryPath="dynamics.comp" Bypassed="0" Name="comp"
+                    Folded="1">
                 <ModulationTargets>
                   <Connection NodeId="global_cable1" ParameterId="Value"/>
                 </ModulationTargets>
@@ -69,10 +70,11 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain">
+          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain"
+                Folded="1">
             <Nodes>
               <Node ID="global_cable2" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable" NodeColour="4289900872">
+                    Name="global_cable" NodeColour="4289900872" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="GranOut2"/>
                 </Properties>
@@ -83,12 +85,12 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
                 </Parameters>
               </Node>
-              <Node ID="add1" FactoryPath="math.add" Bypassed="0" Name="add">
+              <Node ID="add1" FactoryPath="math.add" Bypassed="0" Name="add" Folded="1">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="peak1" FactoryPath="core.peak" Bypassed="0" Name="peak">
+              <Node ID="peak1" FactoryPath="core.peak" Bypassed="0" Name="peak" Folded="1">
                 <ComplexData>
                   <DisplayBuffers>
                     <DisplayBuffer Index="-1"/>
@@ -96,7 +98,8 @@
                 </ComplexData>
                 <Parameters/>
               </Node>
-              <Node ID="comp1" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+              <Node ID="comp1" FactoryPath="dynamics.comp" Bypassed="0" Name="comp"
+                    Folded="1">
                 <ModulationTargets>
                   <Connection NodeId="global_cable3" ParameterId="Value"/>
                 </ModulationTargets>
@@ -122,7 +125,7 @@
                 </Parameters>
               </Node>
               <Node ID="global_cable3" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable1" NodeColour="4289049160">
+                    Name="global_cable1" NodeColour="4289049160" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="Modulator14"/>
                 </Properties>
@@ -133,10 +136,11 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain">
+          <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain"
+                Folded="1">
             <Nodes>
               <Node ID="global_cable4" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable" NodeColour="4289900872">
+                    Name="global_cable" NodeColour="4289900872" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="GranOut3"/>
                 </Properties>
@@ -147,12 +151,12 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
                 </Parameters>
               </Node>
-              <Node ID="add2" FactoryPath="math.add" Bypassed="0" Name="add">
+              <Node ID="add2" FactoryPath="math.add" Bypassed="0" Name="add" Folded="1">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="peak2" FactoryPath="core.peak" Bypassed="0" Name="peak">
+              <Node ID="peak2" FactoryPath="core.peak" Bypassed="0" Name="peak" Folded="1">
                 <ComplexData>
                   <DisplayBuffers>
                     <DisplayBuffer Index="-1"/>
@@ -160,7 +164,8 @@
                 </ComplexData>
                 <Parameters/>
               </Node>
-              <Node ID="comp2" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+              <Node ID="comp2" FactoryPath="dynamics.comp" Bypassed="0" Name="comp"
+                    Folded="1">
                 <ModulationTargets>
                   <Connection NodeId="global_cable5" ParameterId="Value"/>
                 </ModulationTargets>
@@ -186,7 +191,7 @@
                 </Parameters>
               </Node>
               <Node ID="global_cable5" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable1" NodeColour="4289049160">
+                    Name="global_cable1" NodeColour="4289049160" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="Modulator15"/>
                 </Properties>
@@ -197,10 +202,11 @@
             </Nodes>
             <Parameters/>
           </Node>
-          <Node ID="chain3" FactoryPath="container.chain" Bypassed="0" Name="chain">
+          <Node ID="chain3" FactoryPath="container.chain" Bypassed="0" Name="chain"
+                Folded="1">
             <Nodes>
               <Node ID="global_cable6" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable" NodeColour="4289900872">
+                    Name="global_cable" NodeColour="4289900872" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="GranOut4"/>
                 </Properties>
@@ -211,12 +217,12 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
                 </Parameters>
               </Node>
-              <Node ID="add3" FactoryPath="math.add" Bypassed="0" Name="add">
+              <Node ID="add3" FactoryPath="math.add" Bypassed="0" Name="add" Folded="1">
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="peak3" FactoryPath="core.peak" Bypassed="0" Name="peak">
+              <Node ID="peak3" FactoryPath="core.peak" Bypassed="0" Name="peak" Folded="1">
                 <ComplexData>
                   <DisplayBuffers>
                     <DisplayBuffer Index="-1"/>
@@ -224,7 +230,8 @@
                 </ComplexData>
                 <Parameters/>
               </Node>
-              <Node ID="comp3" FactoryPath="dynamics.comp" Bypassed="0" Name="comp">
+              <Node ID="comp3" FactoryPath="dynamics.comp" Bypassed="0" Name="comp"
+                    Folded="1">
                 <ModulationTargets>
                   <Connection NodeId="global_cable7" ParameterId="Value"/>
                 </ModulationTargets>
@@ -250,7 +257,7 @@
                 </Parameters>
               </Node>
               <Node ID="global_cable7" FactoryPath="routing.global_cable" Bypassed="0"
-                    Name="global_cable1" NodeColour="4289049160">
+                    Name="global_cable1" NodeColour="4289049160" Folded="1">
                 <Properties>
                   <Property ID="Connection" Value="Modulator16"/>
                 </Properties>

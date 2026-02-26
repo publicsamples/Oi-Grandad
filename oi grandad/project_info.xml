@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ProjectSettings>
-  <Name value="oigrandad"/>
-  <Version value="2.2.3"/>
+  <Name value="oi grandad"/>
+  <Version value="2.3.1"/>
   <Description value=""/>
   <BundleIdentifier value="com.modularsamples.product"/>
   <PluginCode value="Msog"/>
@@ -13,7 +13,7 @@
   <OSXStaticLibs value=""/>
   <WindowsStaticLibFolder value=""/>
   <ExtraDefinitionsWindows value="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
-  <ExtraDefinitionsOSX value="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
+  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
   <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
   <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;"/>
   <AppGroupID value=""/>
@@ -28,7 +28,7 @@
   <EncryptionKey value=""/>
   <LinkExpansionsToProject value="No"/>
   <ReadOnlyFactoryPresets value="No"/>
-  <ForceStereoOutput value="No"/>
+  <ForceStereoOutput value="1"/>
   <EnableMidiOut value="No"/>
   <AdminPermissions value="No"/>
   <EmbedUserPresets value="0"/>
@@ -37,7 +37,7 @@
   <OverwriteOldUserPresets value="No"/>
   <UseGlobalAppDataFolderWindows value="1"/>
   <UseGlobalAppDataFolderMacOS value="1"/>
-  <DefaultUserPreset value="v2/Factory/MessagePad.preset"/>
+  <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
   <IncludeLorisInFrontend value="No"/>
