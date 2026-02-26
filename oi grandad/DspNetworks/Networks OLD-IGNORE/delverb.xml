@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="delverb" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="delverb" Bypassed="0" ShowParameters="1">
+    <Nodes>
+      <Node ID="mod1" FactoryPath="container.modchain" Bypassed="0" ShowParameters="1"
+            Folded="1">
+        <Nodes>
+          <Node ID="global_mod" FactoryPath="core.global_mod" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="filtermod" ParameterId="Value"/>
+              <Connection NodeId="delaymod" ParameterId="Value"/>
+              <Connection NodeId="damp1mod" ParameterId="Value"/>
+              <Connection NodeId="width1mod" ParameterId="Value"/>
+              <Connection NodeId="damp2mod" ParameterId="Value"/>
+              <Connection NodeId="width2mod" ParameterId="Value"/>
+            </ModulationTargets>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="9.0" StepSize="1.0" ID="Index" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="split1" FactoryPath="container.split" Bypassed="0">
+            <Nodes>
+              <Node ID="filtermod" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="delaymod" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity1" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="damp1mod" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity3" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="width1mod" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity2" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="damp2mod" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity5" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="width2mod" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity4" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="mod3" FactoryPath="container.modchain" Bypassed="0" ShowParameters="1"
+            Folded="1">
+        <Nodes>
+          <Node ID="global_mod2" FactoryPath="core.global_mod" Bypassed="0">
+            <ModulationTargets>
+              <Connection NodeId="filtermod1" ParameterId="Value"/>
+              <Connection NodeId="delaymod1" ParameterId="Value"/>
+              <Connection NodeId="damp1mod1" ParameterId="Value"/>
+              <Connection NodeId="width1mod1" ParameterId="Value"/>
+              <Connection NodeId="damp2mod1" ParameterId="Value"/>
+              <Connection NodeId="width2mod1" ParameterId="Value"/>
+            </ModulationTargets>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="split3" FactoryPath="container.split" Bypassed="0">
+            <Nodes>
+              <Node ID="filtermod1" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="delaymod1" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity1" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="damp1mod1" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity3" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="width1mod1" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity2" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="damp2mod1" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity5" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="width2mod1" FactoryPath="control.intensity" Bypassed="0">
+                <ModulationTargets>
+                  <Connection NodeId="intensity4" ParameterId="Intensity"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0">
+        <Properties>
+          <Property ID="NumParameters" Value="2"/>
+          <Property ID="Mode" Value="RMS"/>
+        </Properties>
+        <SwitchTargets>
+          <SwitchTarget>
+            <Connections/>
+          </SwitchTarget>
+          <SwitchTarget>
+            <Connections>
+              <Connection NodeId="gain1" ParameterId="Gain"/>
+            </Connections>
+          </SwitchTarget>
+        </SwitchTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="split" FactoryPath="container.split" Bypassed="0">
+        <Nodes>
+          <Node ID="chain" FactoryPath="container.chain" Bypassed="0">
+            <Nodes>
+              <Node ID="gain" FactoryPath="core.gain" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="Gain" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" ShowParameters="0">
+            <Nodes>
+              <Node ID="gain1" FactoryPath="core.gain" Bypassed="0" Folded="1">
+                <Parameters>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                  <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="reverb" FactoryPath="fx.reverb" Bypassed="0" Folded="1">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Damping" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Width" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Size" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="intensity3" FactoryPath="control.intensity" Bypassed="0"
+                    Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="reverb" ParameterId="Damping"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="intensity2" FactoryPath="control.intensity" Bypassed="0"
+                    Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="reverb" ParameterId="Width"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="intensity" FactoryPath="control.intensity" Bypassed="0" Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="svf" ParameterId="Frequency"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="receive" FactoryPath="routing.receive" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="jdelay2" FactoryPath="jdsp.jdelay" Bypassed="0">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                             ID="Limit" Value="234.7538880431153"/>
+                  <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                             ID="DelayTime" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="send" FactoryPath="routing.send" Bypassed="0">
+                <Properties>
+                  <Property ID="Connection" Value="receive"/>
+                </Properties>
+                <Parameters/>
+              </Node>
+              <Node ID="svf" FactoryPath="filters.svf" Bypassed="0" Folded="1">
+                <ComplexData>
+                  <Filters>
+                    <Filter Index="-1" EmbeddedData=""/>
+                  </Filters>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                             ID="Frequency" Automated="1"/>
+                  <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                             ID="Q" Automated="1"/>
+                  <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="1.644749999999998"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                             ID="Smoothing" Value="0.009999999776482582"/>
+                  <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="intensity1" FactoryPath="control.intensity" Bypassed="0"
+                    Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="jdelay2" ParameterId="DelayTime"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="reverb2" FactoryPath="fx.reverb" Bypassed="0" Folded="1">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Damping" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Width" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Size" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="intensity5" FactoryPath="control.intensity" Bypassed="0"
+                    Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="reverb2" ParameterId="Damping"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="intensity4" FactoryPath="control.intensity" Bypassed="0"
+                    Folded="1">
+                <ModulationTargets>
+                  <Connection NodeId="reverb2" ParameterId="Width"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Intensity" Automated="1"/>
+                </Parameters>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="mix" MinValue="0.0" MaxValue="1.0" Value="0.6532256774902343">
+        <Connections>
+          <Connection NodeId="xfader" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="damp1" MinValue="0.0" MaxValue="1.0" Value="0.52953125">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="width1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="intensity3" ParameterId="Value"/>
+          <Connection NodeId="intensity2" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="size1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="reverb" ParameterId="Size"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="cut" MinValue="0.0" MaxValue="1.0" Value="0.5558519897460938">
+        <Connections>
+          <Connection NodeId="intensity" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="res" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="svf" ParameterId="Q"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="type" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="svf" ParameterId="Mode"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="delaytime" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="intensity1" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="damp2" MinValue="0.0" MaxValue="1.0" Value="0.9999998779296875">
+        <Connections>
+          <Connection NodeId="intensity5" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="width2" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="intensity4" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="size2" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="reverb2" ParameterId="Size"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="moddest1" MinValue="1.0" MaxValue="10.0" StepSize="1" Value="10.0">
+        <Connections>
+          <Connection NodeId="global_mod" ParameterId="Index"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="cutmod1" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="filtermod" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="delmod1" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="delaymod" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="damp1mod1" MinValue="0.0" MaxValue="1.0" Value="0.30246875">
+        <Connections>
+          <Connection NodeId="damp1mod" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="width1mod1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="width1mod" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="damp2mod1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="damp2mod" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="width2mod1" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="width2mod" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="moddest2" MinValue="0.0" MaxValue="1.0" Value="0.3244131469726563">
+        <Connections>
+          <Connection NodeId="global_mod2" ParameterId="Index"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="delaymod2" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="delaymod1" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="cutmod2" MinValue="0.0" MaxValue="1.0" Value="0.9179683227539063">
+        <Connections>
+          <Connection NodeId="filtermod1" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="damp1mod2" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="damp1mod1" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="width1mod2" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="width1mod1" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="damp2mod2" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="damp2mod1" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="width2mod2" MinValue="0.0" MaxValue="1.0" Value="0.0">
+        <Connections>
+          <Connection NodeId="width2mod1" ParameterId="Intensity"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="feed" MinValue="0.0" MaxValue="1.0" Value="0.7052893066406249">
+        <Connections>
+          <Connection NodeId="receive" ParameterId="Feedback"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

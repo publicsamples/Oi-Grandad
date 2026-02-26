@@ -10,16 +10,24 @@ include("ModControls.js");
 include("Rect.js");
 
 include("GeneralLAF.js");
+
+//main knobs
 include("KnobLAF.js");
 include("KnobLAF4.js");
 include("KnobLAF2.js");
+
+//regular mods
 include("KnobLAF3.js");
+
+//Mini Mods
+include("KnobLAF5.js");
+
+
 include("Voice1.js");
 include("Voice2.js");
 include("Voice3.js");
 include("Voice4.js");
 
-include("Files.js");
 
 include("macros.js");
 
@@ -48,7 +56,6 @@ inline function onButtonControl(component, value)
     {
         panels[i].showControl(idx == i);
         buttons[i].setValue(i == idx && value);
-        BoxItems.showControl(0);
     }
 }
 
@@ -58,14 +65,16 @@ onButtonControl(buttons[0], true);
 //AnFile1.referToData(AudioWaveform);
 
  //
- const var gran = Synth.getEffect("gran");
- const var gran2 = Synth.getEffect("gran2");
- const var gran3 = Synth.getEffect("gran3");
- const var gran4 = Synth.getEffect("gran4");
+
+ const var gran = Synth.getChildSynth("Granular1");
+ const var gran1 = Synth.getChildSynth("Granular2");
+ const var gran2 = Synth.getChildSynth("Granular3");
+ const var gran3 = Synth.getChildSynth("Granular4");
+
 
 const var psync1 = Content.getComponent("psync1");
 const var pitch8 = Content.getComponent("pitch8");
-const var ps1 = Synth.getEffect("gran");
+const var ps1 = Synth.getChildSynth("Granular1");
 const var pmod1 = Content.getComponent("pmod1");
 const var PmodSel1 = Content.getComponent("PmodSel1");
 
@@ -107,97 +116,6 @@ PlgInPk.setMouseCallback(function(event)
 });
 
 
-const var BoxItem1 = Content.getComponent("BoxItem1");
-
-BoxItem1.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/gyckl/vjdyz48");
-  } 
-  else 
-  {
- //   link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-const var BoxItem2 = Content.getComponent("BoxItem2");
-
-BoxItem2.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/lybce/1qhl90k");
-  } 
-  else 
-  {
- //   link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-const var BoxItem3 = Content.getComponent("BoxItem3");
-
-BoxItem3.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://modularsamples.gumroad.com/l/lybce/1qhl90k");
-  } 
-  else 
-  {
-  //  link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-const var BoxItem4 = Content.getComponent("BoxItem4");
-
-BoxItem4.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://github.com/publicsamples/Oi-Grandad/discussions/6");
-  } 
-  else 
-  {
- //   link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-const var BoxItem5 = Content.getComponent("BoxItem5");
-
-BoxItem5.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://github.com/publicsamples/Oi-Grandad/discussions/31");
-  } 
-  else 
-  {
- //   link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-const var ScriptPanel15 = Content.getComponent("ScriptPanel15");
-
-ScriptPanel15.setMouseCallback(function(event)
-{
-  if (event.clicked)
-  {
-    Engine.openWebsite("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-  } 
-  else 
-  {
- //   link_hover = event.hover;
-    this.repaint();
-  }
-});
-
-
 //Playback Menu
 
 
@@ -213,10 +131,10 @@ const var LedPanel = Content.getComponent("LedPanel");
 const var Playback = Content.getComponent("Playback");
 
 const var XFcont = Content.getComponent("XFcont");
-const var xf1 = Synth.getEffect("xf1");
-const var xf2 = Synth.getEffect("xf2");
-const var xf3 = Synth.getEffect("xf3");
-const var xf4 = Synth.getEffect("xf4");
+const var xf1 = Synth.getEffect("Xf1");
+const var xf2 = Synth.getEffect("Xf2");
+const var xf3 = Synth.getEffect("Xf3");
+const var xf4 = Synth.getEffect("Xf4");
 const var xfade = Synth.getModulator("xfade");
 
 inline function onPlaybackControl(component, value)
@@ -276,94 +194,6 @@ inline function onPlaybackControl(component, value)
 Content.getComponent("Playback").setControlCallback(onPlaybackControl);
 
 
-//mystrey box
-const var BoxItem =[];
-
-BoxItem[0] = Content.getComponent("BoxItem1");
-BoxItem[1] = Content.getComponent("BoxItem2");
-BoxItem[2] = Content.getComponent("BoxItem3");
-BoxItem[3] = Content.getComponent("BoxItem4");
-BoxItem[4] = Content.getComponent("BoxItem5");
-
-const var BoxSel = Content.getComponent("BoxSel");
-
-
-inline function onBoxSelControl(component, value)
-{
-
-for (i = 0; i < BoxItem.length; i++)
-        BoxItem[i].showControl(value - 1 == i);
-    }
-    
-
-Content.getComponent("BoxSel").setControlCallback(onBoxSelControl);
-
-
-
-
-
-inline function onCloseBoxControl(component, value)
-{
-	BoxItems.showControl(0);
-};
-
-Content.getComponent("CloseBox").setControlCallback(onCloseBoxControl);
-
-
-
-inline function onScriptButton1Control(component, value)
-{
-if(value == 1)
-{
-	
-	BoxItems.fadeComponent(1, 1000);
-	BoxSel.setValue(Math.randInt(1, 6));
-	BoxSel.changed();
-	
-	}
-	
-};
-
-Content.getComponent("ScriptButton1").setControlCallback(onScriptButton1Control);
-
-inline function onScriptButton2Control(component, value)
-{
-	if(value == 1)
-	{
-
-	BoxItems.fadeComponent(1, 1000);
-	BoxSel.setValue(Math.randInt(1, 6));
-	BoxSel.changed();
-	
-	}
-	
-};
-
-Content.getComponent("ScriptButton2").setControlCallback(onScriptButton2Control);
-
-
-inline function onScriptButton3Control(component, value)
-{
-	BoxItems.fadeComponent(1, 1000);
-	BoxSel.setValue(Math.randInt(1, 6));
-	BoxSel.changed();
-	
-};
-
-Content.getComponent("ScriptButton3").setControlCallback(onScriptButton3Control);
-
-
-
-inline function onScriptButton4Control(component, value)
-{
-	BoxItems.fadeComponent(1, 1000);
-	BoxSel.setValue(Math.randInt(1, 6));
-	BoxSel.changed();
-	
-};
-
-Content.getComponent("ScriptButton4").setControlCallback(onScriptButton4Control);
-
 /*
 	This snippet implements a stereo audio recorder
 	The final audio file is written to a file and loaded into an Audio Loop Player
@@ -383,7 +213,7 @@ inline function onHoldControl(component, value)
 
  {
      if (value)
- 	    Synth.playNote(MidiNote.getValue()+24, 127);
+ 	    Synth.playNote(MidiNote.getValue()+23, 127);
  	  else
 	    Engine.allNotesOff();
 };
@@ -513,47 +343,6 @@ Content.getComponent("ShowFolder").setControlCallback(onShowFolderControl);
 
 
 
-
-inline function onOS1Control(component, value)
-{
-	Engine.allNotesOff();
-
-	gran.setAttribute(gran.over, value);
-	Analysis1.setAttribute(Analysis1.over, value);
-	
-};
-
-Content.getComponent("OS1").setControlCallback(onOS1Control);
-
-
-inline function onOS2Control(component, value)
-{
-		Engine.allNotesOff();
-
-	gran2.setAttribute(gran2.over, value);
-};
-
-Content.getComponent("OS2").setControlCallback(onOS2Control);
-
-
-inline function onOS3Control(component, value)
-{
-	Engine.allNotesOff();
-	
-	gran3.setAttribute(gran3.over, value);
-};
-
-Content.getComponent("OS3").setControlCallback(onOS3Control);
-
-
-inline function onOS4Control(component, value)
-{
-	Engine.allNotesOff();
-	
-	gran4.setAttribute(gran4.over, value);
-};
-
-Content.getComponent("OS4").setControlCallback(onOS4Control);
 
 //presets
 

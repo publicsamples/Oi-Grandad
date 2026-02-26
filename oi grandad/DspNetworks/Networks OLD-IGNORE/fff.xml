@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="fff">
+  <Node FactoryPath="container.chain" ID="fff" Bypassed="0">
+    <Nodes>
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0">
+        <Nodes>
+          <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="-1" EmbeddedData="{PROJECT_FOLDER}Sweeps/syncf.wav" MinValue="0"
+                           MaxValue="1326762"/>
+              </AudioFiles>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.6776718749999999"/>
+              <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                         ID="Pitch" Value="1.0"/>
+              <Parameter MinValue="20.0" MaxValue="7500.0" ID="GrainSize" Value="2010.264375"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

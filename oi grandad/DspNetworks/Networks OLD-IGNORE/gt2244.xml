@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="gt2244" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="gt2244" Bypassed="0" Name="gt2244">
+    <Nodes>
+      <Node ID="midichain" FactoryPath="container.midichain" Bypassed="0"
+            Name="midichain">
+        <Nodes>
+          <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="1"
+                Name="frame2_block">
+            <Nodes>
+              <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="1"
+                    Name="fix8_block">
+                <Nodes>
+                  <Node ID="repitch" FactoryPath="container.repitch" Bypassed="0" Name="repitch"
+                        ShowParameters="1">
+                    <Nodes>
+                      <Node ID="granulator" FactoryPath="core.granulator" Bypassed="0" Name="granulator">
+                        <ComplexData>
+                          <AudioFiles>
+                            <AudioFile Index="-1" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Quetzalcoatl/Q-Bb.wav"
+                                       MinValue="0" MaxValue="1047273"/>
+                          </AudioFiles>
+                        </ComplexData>
+                        <Parameters>
+                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.388640625"
+                                     DefaultValue="0.0"/>
+                          <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                     ID="Pitch" Value="1.0"/>
+                          <Parameter MinValue="20.0" MaxValue="800.0" ID="GrainSize" Value="510.7915625"
+                                     DefaultValue="80.0"/>
+                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.6989375"
+                                     DefaultValue="0.0"/>
+                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Spread" Value="0.0"/>
+                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Detune" Value="0.0"/>
+                        </Parameters>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297680854797"
+                                 ID="RepitchFactor" Value="1.213867594513358" DefaultValue="1.0"/>
+                      <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Interpolation"
+                                 Value="1.0" DefaultValue="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

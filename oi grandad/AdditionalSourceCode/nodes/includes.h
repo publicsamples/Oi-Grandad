@@ -7,15 +7,6 @@
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
 
-// Include third party header files ----------------
-
-#include "gr1.h"
-#include "granul.h"
-#include "granular.h"
-#include "MODEFILTR.h"
-#include "PitchShifter.h"
-#include "PitchShifter2.h"
-
 // Include compiled network files ------------------
 
 #include "ana1_networkdata.h"
@@ -40,7 +31,7 @@
 #include "pb_networkdata.h"
 #include "pitch_networkdata.h"
 #include "record_networkdata.h"
-#include "res1.h"
+#include "res1_networkdata.h"
 #include "res2.h"
 #include "sn.h"
 #include "track2_networkdata.h"

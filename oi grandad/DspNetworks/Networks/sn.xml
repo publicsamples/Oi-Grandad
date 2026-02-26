@@ -7433,6 +7433,7 @@
           <SwitchTarget>
             <Connections>
               <Connection NodeId="gain1" ParameterId="Gain"/>
+              <Connection NodeId="receive3" ParameterId="Feedback"/>
             </Connections>
           </SwitchTarget>
         </SwitchTargets>
@@ -7453,7 +7454,7 @@
                                  Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                  SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                 Value="363.8000054210424" DefaultValue="20.0"/>
+                                 Value="10.30000015348196" DefaultValue="20.0"/>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                  Value="-100.0" DefaultValue="0.0"/>
@@ -7544,7 +7545,8 @@
                                       <Node ID="receive3" FactoryPath="routing.receive" Bypassed="0" Name="receive"
                                             NodeColour="4285684146">
                                         <Parameters>
-                                          <Parameter MinValue="0.9" MaxValue="1.0" ID="Feedback" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.9" MaxValue="1.0" ID="Feedback" DefaultValue="0.0"
+                                                     Automated="1"/>
                                         </Parameters>
                                       </Node>
                                       <Node ID="one_pole5" FactoryPath="filters.one_pole" Bypassed="0" Name="one_pole5">
@@ -7669,7 +7671,7 @@
                                     <Nodes>
                                       <Node ID="res2" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Automated="1"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7684,7 +7686,7 @@
                                                      Value="-11.99999868869783"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647" DefaultValue="20.0"/>
+                                                     Value="6.000000089406966" DefaultValue="20.0"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896" DefaultValue="0.0"/>
@@ -7698,7 +7700,7 @@
                                     <Nodes>
                                       <Node ID="res18" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7713,7 +7715,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7727,7 +7729,7 @@
                                     <Nodes>
                                       <Node ID="res19" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7742,7 +7744,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7756,7 +7758,7 @@
                                     <Nodes>
                                       <Node ID="res20" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7771,7 +7773,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7785,7 +7787,7 @@
                                     <Nodes>
                                       <Node ID="res21" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7800,7 +7802,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7814,7 +7816,7 @@
                                     <Nodes>
                                       <Node ID="res22" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7829,7 +7831,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7843,7 +7845,7 @@
                                     <Nodes>
                                       <Node ID="res23" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7858,7 +7860,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7872,7 +7874,7 @@
                                     <Nodes>
                                       <Node ID="res24" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                         <Parameters>
-                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="1.0" DefaultValue="0.0"/>
+                                          <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.0" Value="1.0"/>
                                           <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
                                                      Value="0.0"/>
                                           <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
@@ -7887,7 +7889,7 @@
                                                      Value="-11.99999868869783" DefaultValue="0.0"/>
                                           <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                      SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                                     Value="91.70000136643647"/>
+                                                     Value="6.000000089406966"/>
                                           <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                      SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                                      Value="-30.19999895989896"/>
@@ -7948,7 +7950,7 @@
                                  Automated="1"/>
                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                  SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
-                                 Value="275.1000040993094" DefaultValue="20.0"/>
+                                 Value="11.60000017285347" DefaultValue="20.0"/>
                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                  SkewFactor="5.422270774841309" ID="ResetValue" TextToValueConverter="Decibel"
                                  Value="-100.0" DefaultValue="0.0"/>
@@ -8531,12 +8533,14 @@
           <Connection NodeId="svf2" ParameterId="Mode"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="GrainOut" Value="0.0">
+      <Parameter MinValue="0.0" MaxValue="3.0" ID="GrainOut" Value="0.0" StepSize="1.0"
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="branch2" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResOut" Value="0.0">
+      <Parameter MinValue="0.0" MaxValue="3.0" ID="ResOut" Value="0.0" StepSize="1.0"
+                 TextToValueConverter="">
         <Connections>
           <Connection NodeId="branch18" ParameterId="Index"/>
         </Connections>
