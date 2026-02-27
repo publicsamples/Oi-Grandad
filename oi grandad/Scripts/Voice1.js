@@ -1,5 +1,4 @@
 const var XfModControls1 = Content.getComponent("XfModControls1");
-const var XfMode1 = Content.getComponent("XfMode1");
 
 const var StackItem1 = [Content.getComponent("PosIndicator2"),
                         Content.getComponent("PosIndicator3"),
@@ -195,5 +194,4 @@ if(value == 1)
 };
 
 Content.getComponent("maxGrains1").setControlCallback(onmaxGrains1Control);
-
 

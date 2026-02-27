@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="sndummy" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0"
-         HasTail="0">
+<Network ID="sndummy" AllowPolyphonic="1" Version="0.0.0" HasTail="0">
   <Node FactoryPath="container.chain" ID="sndummy" Bypassed="0" Name="sndummy"
         ShowParameters="1">
     <Nodes>

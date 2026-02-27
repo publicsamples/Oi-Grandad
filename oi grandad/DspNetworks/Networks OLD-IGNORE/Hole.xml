@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="Hole" AllowCompilation="1" Version="0.0.0">
+<Network ID="Hole" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="Hole" Bypassed="0" Name="Hole"
         ShowParameters="1">
     <Nodes>
@@ -37,13 +37,13 @@
         </Connections>
       </Parameter>
       <Parameter ID="size" MinValue="0.5" MaxValue="3.0" StepSize="0.00009999999747378752"
-                 Value="0.9999999873689376" DefaultValue="1.0">
+                 Value="0.999999987368935" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="faust" ParameterId="size"/>
         </Connections>
       </Parameter>
       <Parameter ID="diff" MinValue="0.0" MaxValue="0.9900000095367432" StepSize="0.00009999999747378752"
-                 Value="0.8415999787393957" DefaultValue="1.0">
+                 Value="0.8415999787393914" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="faust" ParameterId="diffusion"/>
         </Connections>

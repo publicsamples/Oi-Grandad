@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="NewGrain" Version="0.0.0" AllowPolyphonic="1">
+  <Node FactoryPath="container.chain" ID="NewGrain" Bypassed="0" Name="NewGrain">
+    <Nodes/>
+    <Parameters/>
+  </Node>
+</Network>

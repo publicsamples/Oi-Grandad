@@ -453,7 +453,7 @@
             <Control type="ScriptSlider" id="MorphMod2" value="0.5"/>
             <Control type="ScriptSliderPack" id="TableVis2" value="-1.0" data="16....f+....9C...3O...f+."/>
             <Control type="ScriptPanel" id="MOD2" value="0.0"/>
-            <Control type="ScriptSliderPack" id="SliderPackA8" value="9" data="64......fqGE7C.....MyLS8vdT31C6QgyOb8nP97Qgq4SJb8nOOJb89zLyL7yLyLyOjBWu9PJb85iT35wOZlYl9."/>
+            <Control type="ScriptSliderPack" id="SliderPackA8" value="9.0" data="64......fqGE7C.....MyLS8vdT31C6QgyOb8nP97Qgq4SJb8nOOJb89zLyL7yLyLyOjBWu9PJb85iT35wOZlYl9."/>
             <Control type="ScriptSliderPack" id="SliderPackA9" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA10" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA11" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -827,8 +827,24 @@
               </SliderPacks>
             </Processor>
             <Processor Type="HardcodedTimevariantModulator" ID="s4" Bypassed="0" Intensity="1.0"
-                       Bipolar="0" Network="">
+                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
+                       moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
+                       morph="1.0" morphmod="0.5" morphmodest="0.0" Out="0.0">
               <ChildProcessors/>
+              <Tables>
+                <Table EmbeddedData=""/>
+                <Table EmbeddedData=""/>
+                <Table EmbeddedData=""/>
+                <Table EmbeddedData=""/>
+              </Tables>
+              <SliderPacks>
+                <SliderPack EmbeddedData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+                <SliderPack EmbeddedData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+                <SliderPack EmbeddedData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+                <SliderPack EmbeddedData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+                <SliderPack EmbeddedData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+                <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
+              </SliderPacks>
             </Processor>
             <Processor Type="HardcodedTimevariantModulator" ID="s5" Bypassed="0" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
@@ -990,17 +1006,6 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="ScriptTimeVariantModulator" ID="Script Time Variant Modulator1"
-                       Bypassed="0" Intensity="1.0" Bipolar="0">
-              <ChildProcessors/>
-              <Content/>
-              <Networks>
-                <Network ID="OutMods" Version="0.0.0"/>
-              </Networks>
-              <UIData>
-                <ContentProperties DeviceType="Desktop"/>
-              </UIData>
-            </Processor>
             <Processor Type="ScriptTimeVariantModulator" ID="xfade" Bypassed="1" Intensity="1.0"
                        Bipolar="0" NumTables="4" NumSliderPacks="6">
               <ChildProcessors/>
@@ -1032,7 +1037,7 @@
               </ChildProcessors>
             </Processor>
             <Processor Type="MacroModulator" ID="Macro Control Modulator2" Bypassed="0"
-                       Intensity="1.0" Bipolar="0" UseTable="0.0" MacroIndex="-1.0"
+                       Intensity="1.0" Bipolar="0" UseTable="0.0" MacroIndex="1.0"
                        SmoothTime="200.0" MacroTableData="">
               <ChildProcessors/>
             </Processor>
@@ -1629,49 +1634,6 @@
                    MinValue="0" MaxValue="294000"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="ScriptSynth" ID="Scriptnode Synthesiser1" Bypassed="1"
-               Gain="0.25" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
-               IconColour="0" NumTables="4" NumAudioFiles="1">
-      <ChildProcessors>
-        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
-          <ChildProcessors>
-            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope1" Bypassed="0" Monophonic="0.0"
-                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
-              <ChildProcessors>
-                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
-                           Intensity="1.0">
-                  <ChildProcessors/>
-                </Processor>
-              </ChildProcessors>
-            </Processor>
-          </ChildProcessors>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="EffectChain" ID="FX" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra1" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra2" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-      </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-      <Content/>
-      <Networks>
-        <Network ID="sndummy" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0"
-                 HasTail="0"/>
-      </Networks>
-      <UIData>
-        <ContentProperties DeviceType="Desktop"/>
-      </UIData>
-    </Processor>
   </ChildProcessors>
   <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                  Channel2="0" Send2="-1" Channel3="1" Send3="-1" Channel4="0"
@@ -1679,7 +1641,7 @@
                  Send7="-1" Channel8="0" Send8="-1" Channel9="1" Send9="-1"/>
   <macro_controls>
     <macro name="Slot 1" value="127.0" midi_cc="-1">
-      <controlled_parameter id="Macro Control Modulator1" parameter="3" parameter_name="MacroValue"
+      <controlled_parameter id="Macro Control Modulator1" parameter="0" parameter_name="MacroValue"
                             min="0.0" max="1.0" low="0.0" high="1.0" skew="1.0" step="0.01"
                             inverted="0" readonly="1" converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADv..."/>
     </macro>
