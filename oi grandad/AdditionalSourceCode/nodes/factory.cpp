@@ -39,6 +39,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::vec2b_networkdata>();
 		registerDataNode<project::vec3_networkdata>();
 		registerDataNode<project::vec4_networkdata>();
+		registerDataNode<project::vecfade_networkdata>();
 	}
 };
 }

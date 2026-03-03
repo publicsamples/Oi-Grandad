@@ -21,6 +21,7 @@
 #include "vec2b_networkdata.h"
 #include "vec3_networkdata.h"
 #include "vec4_networkdata.h"
+#include "vecfade_networkdata.h"
 
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )

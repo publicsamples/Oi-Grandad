@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<Network ID="DspNetwork2" AllowPolyphonic="1">
-  <Node FactoryPath="container.chain" ID="DspNetwork2" Bypassed="0" ShowParameters="0">
-    <Nodes/>
-    <Parameters/>
-  </Node>
-</Network>

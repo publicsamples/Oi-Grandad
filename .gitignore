@@ -14,3 +14,5 @@ oi grandad/PooledResources/AudioResources.dat
 *.wav
 *.aif
 oi grandad/AudioFiles/Loops/
+oi grandad/DspNetworks/CodeLibrary/snex_node/granular_player_spec.h
+oi grandad/DspNetworks/CodeLibrary/snex_node/granular_player_spec.xml

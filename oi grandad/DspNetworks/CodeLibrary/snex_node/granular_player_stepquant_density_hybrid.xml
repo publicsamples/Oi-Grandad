@@ -25,9 +25,9 @@
   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
              ID="pitchSpread" TextToValueConverter="Undefined" Page="" SubGroup=""
              Value="0.0" DefaultValue="0.0"/>
-  <Parameter MinValue="1.0" MaxValue="8.0" StepSize="1" SkewFactor="1.0" ID="maxGrains"
-             TextToValueConverter="Undefined" Page="" SubGroup="" Value="0.0"
-             DefaultValue="0.0"/>
+  <Parameter MinValue="4.0" MaxValue="16.0" StepSize="1" SkewFactor="1.0"
+             ID="maxGrains" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
              ID="scrubMode" TextToValueConverter="Undefined" Page="" SubGroup=""
              Value="0.0" DefaultValue="0.0"/>
@@ -37,9 +37,9 @@
   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" SkewFactor="1.0" ID="reverse"
              TextToValueConverter="Undefined" Page="" SubGroup="" Value="0.0"
              DefaultValue="0.0"/>
-  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0" SkewFactor="1.0" ID="windowType"
-             TextToValueConverter="Undefined" Page="" SubGroup="" Value="0.0"
-             DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="windowType" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
              ID="scrubB" TextToValueConverter="Undefined" Page="" SubGroup=""
              Value="0.0" DefaultValue="0.0"/>

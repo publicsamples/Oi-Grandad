@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="specTest" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="specTest" Bypassed="0" Name="specTest">
+    <Nodes>
+      <Node ID="snex_node1" FactoryPath="core.snex_node" Bypassed="0" Name="snex_node1">
+        <Properties>
+          <Property ID="ClassId" Value="granular_player_spec"/>
+        </Properties>
+        <ComplexData>
+          <Tables/>
+          <SliderPacks/>
+          <AudioFiles>
+            <AudioFile Index="-1" EmbeddedData="{PROJECT_FOLDER}One shots/VD1.wav" MinValue="0"
+                       MaxValue="114857"/>
+          </AudioFiles>
+          <Filters/>
+          <DisplayBuffers/>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="pitch" Value="-0.06075000000000053"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrub" Value="0.710734375"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="1" ID="grainMs" Value="941.0"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="density" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="windowShape" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="panSpread" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchMode" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchSpread" Value="0.4435625"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="4.0" MaxValue="16.0" StepSize="1" ID="maxGrains" Value="16.0"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubMode" Value="0.6215781249999999"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlend" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" ID="reverse" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="windowType" Value="0.6090625000000001"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubB" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubC" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubD" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

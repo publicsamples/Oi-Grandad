@@ -2,8 +2,8 @@ const var StackItem4 = [Content.getComponent("PosIndicator14"),
                         Content.getComponent("PosIndicator15"),
                         Content.getComponent("PosIndicator16")];
                         
-const var VoiceParam4 = Content.getComponent("VoiceParam39");
-const var VoiceParamB4 = Content.getComponent("VoiceParamB4");
+const var VoiceParam4 = Content.getComponent("PosParam4");
+const var VoiceParamB4 = Content.getComponent("PosParamB4");
 
   
 
@@ -177,8 +177,70 @@ if(value == 1)
 	 	 	  {
 	 	 	 gran3.setAttribute(gran3.MaxGrains, 8);
 	 	 	 }
+	 	 if(value == 4)
+	 	 	 	 	 	 	 	 	 	  {
+	 	 	 	 	 	 	 gran3.setAttribute(gran3.MaxGrains, 10);
+	 	 	 	 	 	 	 	 }	
+	 	 	 	 	 	 	 if(value == 5)
+	 	 	 	 	 	 	 	 	 	 	 	  {
+	 	 	 	 	 	 	 gran3.setAttribute(gran3.MaxGrains, 12);
+	 	 	 	 	 	 	 	 	 	 }	  
+	 	 	 	 	 	 	 if(value == 6)
+	 	 	 	 	 	 	 	 	 	 	 	  {
+	 	 	 	 	 	 	 gran3.setAttribute(gran3.MaxGrains, 14);
+	 	 	 	 	 	 	 	 	 	 }	
+	 	 	 	 	 	 	 if(value == 6)
+	 	 	 	 	 	 	 	 	 	 	 	 	  {
+	 	 	 	 	 	 	 gran3.setAttribute(gran3.MaxGrains, 14);
+	 	 	 	 	 	 	 	 	 	 	 }
+	 	 	 	 	 	 	 if(value == 6)
+	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	  {
+	 	 	 	 	 	 	 gran3.setAttribute(gran3.MaxGrains, 16);
+	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 }	 	 
+	 	 	 
 };
 
 Content.getComponent("maxGrains4").setControlCallback(onmaxGrains4Control);
 
+const var DivLabel3 = Content.getComponent("DivLabel3");
+const var PitchDiv4 = Content.getComponent("PitchDiv4");
+const var DetuneLabel3 = Content.getComponent("DetuneLabel3");
+const var PitchTempo4 = Content.getComponent("PitchTempo4");
+const var det3 = Content.getComponent("det3");
+
+inline function onPitchMode4Control(component, value)
+{
+	if(value == 1)
+	  {
+	 gran3.setAttribute(gran3.PitchMode, 1);
+	 DivLabel3.showControl(0);
+	 PitchDiv4.showControl(0);
+	 PitchTempo4.showControl(0);;
+	 det3.showControl(1);
+	 DetuneLabel3.setValue("DETUNE");
+	 }
+	 
+	 if(value == 2)
+	 	  {
+	 	 gran3.setAttribute(gran3.PitchMode, 2);
+	 	 DivLabel3.showControl(0);
+	 	 	 PitchDiv4.showControl(0);
+	 	 	 PitchTempo4.showControl(0);;
+	 	 	 det3.showControl(1);
+	 	 	 DetuneLabel3.setValue("HARM.");
+	 	 }
+	 	 
+	 if(value == 3)
+	 	  {
+	 	 gran3.setAttribute(gran3.PitchMode, 3);
+	 	 DivLabel3.showControl(1);
+	 	 PitchDiv4.showControl(1);
+	 	 PitchTempo4.showControl(1);;
+	 	 det3.showControl(0);
+	 	 DetuneLabel3.setValue("TEMPO");
+	 	 }	 
+	 	 
+};
+
+Content.getComponent("PitchMode4").setControlCallback(onPitchMode4Control);
 

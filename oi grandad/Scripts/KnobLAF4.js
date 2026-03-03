@@ -98,6 +98,15 @@ for (i = 0; i < 4; i++)
 
 } 
 
+
+const var PitchDiv =[];
+
+for (i = 0; i < 4; i++)
+{
+    PitchDiv[i] = Content.getComponent("PitchDiv"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
+
 const var pitchoffset =[];
 
 for (i = 0; i < 4; i++)
