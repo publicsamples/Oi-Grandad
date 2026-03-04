@@ -4,7 +4,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
     SNEX_NODE(granular_player_stepquant_density_hybrid);
 
     static const int NUM_CHANNELS = 2;
-    static const int MAX_GRAINS   = 64;
+    static const int MAX_GRAINS   = 32;
   
     
     ExternalData audioData;
@@ -31,7 +31,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
     double pitchSyncInput = 0.0; // raw external input for mode 2 (Hz or ms)
 	double pitchMode = 0.0; 
 
-  double maxGrains = 4.0;     // 1–64
+  double maxGrains = 4.0;     // 1–32
   double scrubMode = 0.0;     // 0 = normal, 1 = xfade
   double scrubBlend = 0.0;    // 0–1 shaping
   double reverse = 0.0;   // 0 = forward, 1 = reverse
@@ -105,6 +105,54 @@ bool   schedActive15 = false;
 double schedPhase16 = 0.0;
 double schedStart16 = 0.0;
 bool   schedActive16 = false;
+double schedPhase17 = 0.0;
+double schedStart17 = 0.0;
+bool   schedActive17 = false;
+double schedPhase18 = 0.0;
+double schedStart18 = 0.0;
+bool   schedActive18 = false;
+double schedPhase19 = 0.0;
+double schedStart19 = 0.0;
+bool   schedActive19 = false;
+double schedPhase20 = 0.0;
+double schedStart20 = 0.0;
+bool   schedActive20 = false;
+double schedPhase21 = 0.0;
+double schedStart21 = 0.0;
+bool   schedActive21 = false;
+double schedPhase22 = 0.0;
+double schedStart22 = 0.0;
+bool   schedActive22 = false;
+double schedPhase23 = 0.0;
+double schedStart23 = 0.0;
+bool   schedActive23 = false;
+double schedPhase24 = 0.0;
+double schedStart24 = 0.0;
+bool   schedActive24 = false;
+double schedPhase25 = 0.0;
+double schedStart25 = 0.0;
+bool   schedActive25 = false;
+double schedPhase26 = 0.0;
+double schedStart26 = 0.0;
+bool   schedActive26 = false;
+double schedPhase27 = 0.0;
+double schedStart27 = 0.0;
+bool   schedActive27 = false;
+double schedPhase28 = 0.0;
+double schedStart28 = 0.0;
+bool   schedActive28 = false;
+double schedPhase29 = 0.0;
+double schedStart29 = 0.0;
+bool   schedActive29 = false;
+double schedPhase30 = 0.0;
+double schedStart30 = 0.0;
+bool   schedActive30 = false;
+double schedPhase31 = 0.0;
+double schedStart31 = 0.0;
+bool   schedActive31 = false;
+double schedPhase32 = 0.0;
+double schedStart32 = 0.0;
+bool   schedActive32 = false;
 
 // Output diffusion state (allpass, per voice)
 double ap1L = 0.0;
@@ -181,6 +229,54 @@ double ap2R = 0.0;
     schedPhase16 = 0.0;
     schedStart16 = 0.0;
     schedActive16 = false;
+    schedPhase17 = 0.0;
+    schedStart17 = 0.0;
+    schedActive17 = false;
+    schedPhase18 = 0.0;
+    schedStart18 = 0.0;
+    schedActive18 = false;
+    schedPhase19 = 0.0;
+    schedStart19 = 0.0;
+    schedActive19 = false;
+    schedPhase20 = 0.0;
+    schedStart20 = 0.0;
+    schedActive20 = false;
+    schedPhase21 = 0.0;
+    schedStart21 = 0.0;
+    schedActive21 = false;
+    schedPhase22 = 0.0;
+    schedStart22 = 0.0;
+    schedActive22 = false;
+    schedPhase23 = 0.0;
+    schedStart23 = 0.0;
+    schedActive23 = false;
+    schedPhase24 = 0.0;
+    schedStart24 = 0.0;
+    schedActive24 = false;
+    schedPhase25 = 0.0;
+    schedStart25 = 0.0;
+    schedActive25 = false;
+    schedPhase26 = 0.0;
+    schedStart26 = 0.0;
+    schedActive26 = false;
+    schedPhase27 = 0.0;
+    schedStart27 = 0.0;
+    schedActive27 = false;
+    schedPhase28 = 0.0;
+    schedStart28 = 0.0;
+    schedActive28 = false;
+    schedPhase29 = 0.0;
+    schedStart29 = 0.0;
+    schedActive29 = false;
+    schedPhase30 = 0.0;
+    schedStart30 = 0.0;
+    schedActive30 = false;
+    schedPhase31 = 0.0;
+    schedStart31 = 0.0;
+    schedActive31 = false;
+    schedPhase32 = 0.0;
+    schedStart32 = 0.0;
+    schedActive32 = false;
 
     ap1L = 0.0;
     ap1R = 0.0;
@@ -203,6 +299,126 @@ void reset()
 {
     for (auto& v : voiceData)
         v.reset();
+}
+
+inline double getTailPhase(const VoiceData& v, int i)
+{
+    if (i == 16) return v.schedPhase17;
+    if (i == 17) return v.schedPhase18;
+    if (i == 18) return v.schedPhase19;
+    if (i == 19) return v.schedPhase20;
+    if (i == 20) return v.schedPhase21;
+    if (i == 21) return v.schedPhase22;
+    if (i == 22) return v.schedPhase23;
+    if (i == 23) return v.schedPhase24;
+    if (i == 24) return v.schedPhase25;
+    if (i == 25) return v.schedPhase26;
+    if (i == 26) return v.schedPhase27;
+    if (i == 27) return v.schedPhase28;
+    if (i == 28) return v.schedPhase29;
+    if (i == 29) return v.schedPhase30;
+    if (i == 30) return v.schedPhase31;
+    return v.schedPhase32;
+}
+
+inline void setTailPhase(VoiceData& v, int i, double x)
+{
+    if (i == 16) v.schedPhase17 = x;
+    else if (i == 17) v.schedPhase18 = x;
+    else if (i == 18) v.schedPhase19 = x;
+    else if (i == 19) v.schedPhase20 = x;
+    else if (i == 20) v.schedPhase21 = x;
+    else if (i == 21) v.schedPhase22 = x;
+    else if (i == 22) v.schedPhase23 = x;
+    else if (i == 23) v.schedPhase24 = x;
+    else if (i == 24) v.schedPhase25 = x;
+    else if (i == 25) v.schedPhase26 = x;
+    else if (i == 26) v.schedPhase27 = x;
+    else if (i == 27) v.schedPhase28 = x;
+    else if (i == 28) v.schedPhase29 = x;
+    else if (i == 29) v.schedPhase30 = x;
+    else if (i == 30) v.schedPhase31 = x;
+    else v.schedPhase32 = x;
+}
+
+inline double getTailStart(const VoiceData& v, int i)
+{
+    if (i == 16) return v.schedStart17;
+    if (i == 17) return v.schedStart18;
+    if (i == 18) return v.schedStart19;
+    if (i == 19) return v.schedStart20;
+    if (i == 20) return v.schedStart21;
+    if (i == 21) return v.schedStart22;
+    if (i == 22) return v.schedStart23;
+    if (i == 23) return v.schedStart24;
+    if (i == 24) return v.schedStart25;
+    if (i == 25) return v.schedStart26;
+    if (i == 26) return v.schedStart27;
+    if (i == 27) return v.schedStart28;
+    if (i == 28) return v.schedStart29;
+    if (i == 29) return v.schedStart30;
+    if (i == 30) return v.schedStart31;
+    return v.schedStart32;
+}
+
+inline void setTailStart(VoiceData& v, int i, double x)
+{
+    if (i == 16) v.schedStart17 = x;
+    else if (i == 17) v.schedStart18 = x;
+    else if (i == 18) v.schedStart19 = x;
+    else if (i == 19) v.schedStart20 = x;
+    else if (i == 20) v.schedStart21 = x;
+    else if (i == 21) v.schedStart22 = x;
+    else if (i == 22) v.schedStart23 = x;
+    else if (i == 23) v.schedStart24 = x;
+    else if (i == 24) v.schedStart25 = x;
+    else if (i == 25) v.schedStart26 = x;
+    else if (i == 26) v.schedStart27 = x;
+    else if (i == 27) v.schedStart28 = x;
+    else if (i == 28) v.schedStart29 = x;
+    else if (i == 29) v.schedStart30 = x;
+    else if (i == 30) v.schedStart31 = x;
+    else v.schedStart32 = x;
+}
+
+inline bool getTailActive(const VoiceData& v, int i)
+{
+    if (i == 16) return v.schedActive17;
+    if (i == 17) return v.schedActive18;
+    if (i == 18) return v.schedActive19;
+    if (i == 19) return v.schedActive20;
+    if (i == 20) return v.schedActive21;
+    if (i == 21) return v.schedActive22;
+    if (i == 22) return v.schedActive23;
+    if (i == 23) return v.schedActive24;
+    if (i == 24) return v.schedActive25;
+    if (i == 25) return v.schedActive26;
+    if (i == 26) return v.schedActive27;
+    if (i == 27) return v.schedActive28;
+    if (i == 28) return v.schedActive29;
+    if (i == 29) return v.schedActive30;
+    if (i == 30) return v.schedActive31;
+    return v.schedActive32;
+}
+
+inline void setTailActive(VoiceData& v, int i, bool x)
+{
+    if (i == 16) v.schedActive17 = x;
+    else if (i == 17) v.schedActive18 = x;
+    else if (i == 18) v.schedActive19 = x;
+    else if (i == 19) v.schedActive20 = x;
+    else if (i == 20) v.schedActive21 = x;
+    else if (i == 21) v.schedActive22 = x;
+    else if (i == 22) v.schedActive23 = x;
+    else if (i == 23) v.schedActive24 = x;
+    else if (i == 24) v.schedActive25 = x;
+    else if (i == 25) v.schedActive26 = x;
+    else if (i == 26) v.schedActive27 = x;
+    else if (i == 27) v.schedActive28 = x;
+    else if (i == 28) v.schedActive29 = x;
+    else if (i == 29) v.schedActive30 = x;
+    else if (i == 30) v.schedActive31 = x;
+    else v.schedActive32 = x;
 }
 
     inline double hann(double x)
@@ -678,6 +894,15 @@ double sumsq =
     w_raw5*w_raw5 + w_raw6*w_raw6 + w_raw7*w_raw7 + w_raw8*w_raw8 +
     w_raw9*w_raw9 + w_raw10*w_raw10 + w_raw11*w_raw11 + w_raw12*w_raw12 +
     w_raw13*w_raw13 + w_raw14*w_raw14 + w_raw15*w_raw15 + w_raw16*w_raw16;
+
+if (isStackMode && g > 16)
+{
+    for (int i = 16; i < g; ++i)
+    {
+        double wt = getGrainWeight(i, g, true);
+        sumsq += wt * wt;
+    }
+}
 
 // Normalisation factor (protect against zero)
 double wnorm = 1.0;
@@ -1717,6 +1942,118 @@ double pan16 = panSpread * normPan16 * 2.0;
 Lsum += monoL16 * w16 * (0.5 * (1.0 - pan16)) * weight16;
 Rsum += monoR16 * w16 * (0.5 * (1.0 + pan16)) * weight16;
 
+// Additional rendered grains 17..32
+if (g > 16)
+{
+    for (int i = 16; i < g; ++i)
+    {
+        double weightNRaw = getGrainWeight(i, g, isStackMode);
+        if (!isStackMode)
+        {
+            int idxA = baseIndex;
+            int idxB = baseIndex + 1;
+            if (idxA < 0) idxA = 0;
+            if (idxA > g - 1) idxA = g - 1;
+            if (idxB > g - 1) idxB = g - 1;
+
+            double t = clamp01(frac);
+            double gA = Math.cos(0.5 * Math.PI * t);
+            double gB = Math.sin(0.5 * Math.PI * t);
+            double mN = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
+            weightNRaw *= mN;
+        }
+
+        double weightN = weightNRaw * wnorm;
+        if (weightN <= 0.0)
+            continue;
+
+        double baseN = scrubBase;
+        if (scrubState == 1)
+        {
+            double tN = (g > 1) ? ((double)i / (double)(g - 1)) : 0.0;
+            double scrubN = scrub;
+            if (tN <= (1.0 / 3.0))
+            {
+                double u = tN * 3.0;
+                scrubN = scrub + (scrubB - scrub) * u;
+            }
+            else if (tN <= (2.0 / 3.0))
+            {
+                double u = (tN - (1.0 / 3.0)) * 3.0;
+                scrubN = scrubB + (scrubC - scrubB) * u;
+            }
+            else
+            {
+                double u = (tN - (2.0 / 3.0)) * 3.0;
+                scrubN = scrubC + (scrubD - scrubC) * u;
+            }
+
+            scrubN = quantiseScrub(scrubN, audioData);
+            if (scrubN < 0.0) scrubN += 1.0;
+            if (scrubN > 1.0) scrubN -= 1.0;
+            baseN = scrubN * maxStart;
+        }
+
+        if (isStackMode)
+        {
+            double denomN = (g > 1) ? (double)(g - 1) : 1.0;
+            double idxNormN = (double)i / denomN;
+            double amtN = maxStart * densityPositionSpreadRange * clamp01(density);
+            baseN += A2curve(idxNormN) * amtN;
+        }
+
+        bool activeN = getTailActive(v, i);
+        double phaseN = getTailPhase(v, i);
+        double startN = getTailStart(v, i);
+        if (!activeN)
+        {
+            activeN = true;
+            phaseN = 0.0;
+            startN = baseN;
+        }
+
+        double detuneSeedN = 0.77 + (double)(i + 1) * 1.31;
+        double harmonicTargetN = (double)(i + 1);
+        double grainPitchMulN = getPitchModeMul(pitchState, spreadNorm, detuneSeedN, harmonicTargetN);
+        double phaseIncN = v.delta * grainPitchMulN * dir;
+        phaseN += phaseIncN;
+
+        if (phaseN >= grainSize)
+        {
+            phaseN -= grainSize;
+            if (lockStartOnWrap)
+                startN = baseN;
+        }
+        if (phaseN < 0.0)
+        {
+            phaseN += grainSize;
+            if (lockStartOnWrap)
+                startN = baseN;
+        }
+
+        double posN = startN + phaseN;
+        if (posN < 0.0) posN = 0.0;
+        if (posN >= audioData.numSamples - 1.0)
+            posN = audioData.numSamples - 2.0;
+
+        int iN = (int)posN;
+        double fN = posN - (double)iN;
+        double wN = morphedWindow(cloudWindowPhase(phaseN / grainSize, i));
+        double monoLN = (1.0 - fN) * sample[0][iN] + fN * sample[0][iN + 1];
+        double monoRN = (1.0 - fN) * sample[1][iN] + fN * sample[1][iN + 1];
+
+        double normPanN = (((double)i - center) * invDenom);
+        double panN = panSpread * normPanN * 2.0;
+
+        Lsum += monoLN * wN * (0.5 * (1.0 - panN)) * weightN;
+        Rsum += monoRN * wN * (0.5 * (1.0 + panN)) * weightN;
+
+        setTailActive(v, i, activeN);
+        setTailPhase(v, i, phaseN);
+        setTailStart(v, i, startN);
+    }
+}
+
 
 
 
@@ -1885,7 +2222,7 @@ void setExternalData(const ExternalData& ed, int index)
                           pitchSyncInput = v;
                       }     
      
-// 16 — maxGrains (1–64)
+// 16 — maxGrains (1–32)
 if (P == 8)
 {
     if (v < 1.0) v = 1.0;

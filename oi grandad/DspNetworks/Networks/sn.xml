@@ -7243,7 +7243,7 @@
               <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchSpread" DefaultValue="0.0"
                          Automated="1"/>
               <Parameter MinValue="4.0" MaxValue="32.0" ID="maxGrains" StepSize="1" DefaultValue="4.0"
-                         Value="25.0"/>
+                         Value="32.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubMode" DefaultValue="0.0"
                          Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlend" DefaultValue="0.0"
@@ -8277,7 +8277,7 @@
           <Connection NodeId="snex_node1" ParameterId="reverse"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.3899999856948853"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.07999999821186066"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Add"/>
@@ -8366,8 +8366,7 @@
           <Connection NodeId="branch6" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.2199999988079071"
-                 DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.0">
         <Connections>
           <Connection NodeId="pma9" ParameterId="Add"/>
         </Connections>
@@ -8383,7 +8382,7 @@
           <Connection NodeId="branch8" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="WinShape" Value="0.5240937471389771"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="WinShape" Value="0.1099687516689301"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma10" ParameterId="Add"/>
@@ -8395,7 +8394,7 @@
           <Connection NodeId="branch9" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.4000000059604645"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.6499999761581421"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma11" ParameterId="Add"/>
@@ -8431,7 +8430,7 @@
           <Connection NodeId="branch11" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Jitter" Value="0.4600000083446503"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Jitter" Value="0.5400000214576721"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma2" ParameterId="Add"/>
@@ -8467,7 +8466,7 @@
           <Connection NodeId="branch7" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1" ID="GrainTempo" Value="3.0"
+      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1" ID="GrainTempo" Value="4.0"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma7" ParameterId="Add"/>
