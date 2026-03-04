@@ -839,8 +839,7 @@
           <Connection NodeId="smoothed_parameter28" ParameterId="SmoothingTime"/>
         </Connections>
       </Parameter>
-      <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.4300000071525574"
-                 DefaultValue="0.7056249999999999">
+      <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="0.7056249999999999">
         <Connections>
           <Connection NodeId="pma5" ParameterId="Add"/>
           <Connection NodeId="pma10" ParameterId="Add"/>
@@ -848,7 +847,7 @@
           <Connection NodeId="pma12" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="moddest" MinValue="0.0" MaxValue="16.0" Value="6.0" StepSize="0.1"
+      <Parameter ID="moddest" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="0.1"
                  DefaultValue="1.5">
         <Connections>
           <Connection NodeId="global_mod1" ParameterId="Index"/>

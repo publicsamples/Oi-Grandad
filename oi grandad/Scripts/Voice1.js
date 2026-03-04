@@ -179,35 +179,24 @@ inline function onmaxGrains1Control(component, value)
 {
 if(value == 1)
 	  {
-	 gran.setAttribute(gran.MaxGrains, 2);
+	 gran.setAttribute(gran.MaxGrains, 8);
 	 }
 	 
 	 if(value == 2)
 	 	  {
-	 	 gran.setAttribute(gran.MaxGrains, 4);
+	 	 gran.setAttribute(gran.MaxGrains, 16);
 	 	 }
 	 	 
 	 	 if(value == 3)
 	 	 	  {
-	 	 gran.setAttribute(gran.MaxGrains, 8);
+	 	 gran.setAttribute(gran.MaxGrains, 32);
 	 	 	 }
+	 	 	 
 	 	 if(value == 4)
 	 	 	 	 	  {
-	 	 gran.setAttribute(gran.MaxGrains, 10);
-	 	 	 }	
-	 	 if(value == 5)
-	 	 	 	 	 	 	  {
-	 	 gran.setAttribute(gran.MaxGrains, 12);
-	 	 	 	 	 }	  
-	 	 if(value == 6)
-	 	 	 	 	 	 	  {
-	 	 gran.setAttribute(gran.MaxGrains, 14);
-	 	 	 	 	 }	
-	 	 if(value == 7)
-	 	 	 	 	 	 	 	  {
-	 	 gran.setAttribute(gran.MaxGrains, 16);
-	 	 	 	 	 	 }	 	 	 	 
-	 	 	 	 	  
+	 	 	 	 gran.setAttribute(gran.MaxGrains, 64);
+	 	 	 	 	 }	 
+	 	 
 };
 
 Content.getComponent("maxGrains1").setControlCallback(onmaxGrains1Control);

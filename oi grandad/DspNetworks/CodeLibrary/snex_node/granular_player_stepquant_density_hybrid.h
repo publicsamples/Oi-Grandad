@@ -4,7 +4,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
     SNEX_NODE(granular_player_stepquant_density_hybrid);
 
     static const int NUM_CHANNELS = 2;
-    static const int MAX_GRAINS   = 16;
+    static const int MAX_GRAINS   = 64;
   
     
     ExternalData audioData;
@@ -31,14 +31,14 @@ struct granular_player_stepquant_density_hybrid: public data::base
     double pitchSyncInput = 0.0; // raw external input for mode 2 (Hz or ms)
 	double pitchMode = 0.0; 
 
-  double maxGrains = 4.0;     // 1–16
+  double maxGrains = 4.0;     // 1–64
   double scrubMode = 0.0;     // 0 = normal, 1 = xfade
   double scrubBlend = 0.0;    // 0–1 shaping
   double reverse = 0.0;   // 0 = forward, 1 = reverse
   double phaseScatter = 0.0;   // 0..1 per-grain envelope phase scatter
   // Subtle density-linked grain start spread. Tweak this to taste.
   // Final spread in samples = maxStart * densityPositionSpreadRange * density.
-  const double densityPositionSpreadRange = 0.03;
+  const double densityPositionSpreadRange = 0.3;
 	
     // -----------------------------------------------------
     struct VoiceData
@@ -326,18 +326,10 @@ void reset()
     // In morph mode, density is reserved for crossfade weighting only.
     inline double cloudWindowPhase(double phaseNorm, int grainIndex)
     {
-        double d = (scrubBlend < 0.5) ? clamp01(density) : 0.0;
-        // Keep some anchor so it doesn't become too "chorused"/detached.
-        double maxSpreadCycles = 1.2 * d;
-
-        double denom = (double)(MAX_GRAINS - 1);
-        if (denom < 1.0) denom = 1.0;
-
-        double frac = (double)grainIndex / denom; // 0..1 across grains
-        double offset = frac * maxSpreadCycles;
-
+        // Phase diffusion (density-linked per-grain offset) temporarily disabled.
+        // Keep optional user phaseScatter behaviour only.
         double scatter = phaseScatterOffset(grainIndex, scrub);
-        return wrap01(phaseNorm + offset + scatter);
+        return wrap01(phaseNorm + scatter);
     }
 
     // Mode 2 sync input converter:
@@ -828,7 +820,7 @@ if (scrubBlend < 0.5)   // only stack mode
 int baseIndex = 0;
 double frac = 0.0;
 
-if (scrubMode > 0.5 && scrubBlend > 0.5)
+if (scrubBlend > 0.5)
 {
     double pos = density * (double)(g - 1);
 
@@ -837,6 +829,64 @@ if (scrubMode > 0.5 && scrubBlend > 0.5)
 
     baseIndex = (int)Math.floor(pos);
     frac = pos - (double)baseIndex;
+}
+
+// Apply morph gains directly to raw grain weights so all later
+// per-grain weight assignments inherit the same blend behavior.
+if (!isStackMode)
+{
+    int idxA = baseIndex;
+    int idxB = baseIndex + 1;
+    if (idxA < 0) idxA = 0;
+    if (idxA > g - 1) idxA = g - 1;
+    if (idxB > g - 1) idxB = g - 1;
+
+    // Equal-power blend between adjacent active grains.
+    double t = clamp01(frac);
+    double gA = Math.cos(0.5 * Math.PI * t);
+    double gB = Math.sin(0.5 * Math.PI * t);
+
+    if (g <= 1)
+    {
+        idxA = 0;
+        idxB = 0;
+        gA = 1.0;
+        gB = 0.0;
+    }
+
+    double m1  = ((idxA == 0)  ? gA : 0.0) + ((idxB == 0)  ? gB : 0.0);
+    double m2  = ((idxA == 1)  ? gA : 0.0) + ((idxB == 1)  ? gB : 0.0);
+    double m3  = ((idxA == 2)  ? gA : 0.0) + ((idxB == 2)  ? gB : 0.0);
+    double m4  = ((idxA == 3)  ? gA : 0.0) + ((idxB == 3)  ? gB : 0.0);
+    double m5  = ((idxA == 4)  ? gA : 0.0) + ((idxB == 4)  ? gB : 0.0);
+    double m6  = ((idxA == 5)  ? gA : 0.0) + ((idxB == 5)  ? gB : 0.0);
+    double m7  = ((idxA == 6)  ? gA : 0.0) + ((idxB == 6)  ? gB : 0.0);
+    double m8  = ((idxA == 7)  ? gA : 0.0) + ((idxB == 7)  ? gB : 0.0);
+    double m9  = ((idxA == 8)  ? gA : 0.0) + ((idxB == 8)  ? gB : 0.0);
+    double m10 = ((idxA == 9)  ? gA : 0.0) + ((idxB == 9)  ? gB : 0.0);
+    double m11 = ((idxA == 10) ? gA : 0.0) + ((idxB == 10) ? gB : 0.0);
+    double m12 = ((idxA == 11) ? gA : 0.0) + ((idxB == 11) ? gB : 0.0);
+    double m13 = ((idxA == 12) ? gA : 0.0) + ((idxB == 12) ? gB : 0.0);
+    double m14 = ((idxA == 13) ? gA : 0.0) + ((idxB == 13) ? gB : 0.0);
+    double m15 = ((idxA == 14) ? gA : 0.0) + ((idxB == 14) ? gB : 0.0);
+    double m16 = ((idxA == 15) ? gA : 0.0) + ((idxB == 15) ? gB : 0.0);
+
+    w_raw1  *= m1;
+    w_raw2  *= m2;
+    w_raw3  *= m3;
+    w_raw4  *= m4;
+    w_raw5  *= m5;
+    w_raw6  *= m6;
+    w_raw7  *= m7;
+    w_raw8  *= m8;
+    w_raw9  *= m9;
+    w_raw10 *= m10;
+    w_raw11 *= m11;
+    w_raw12 *= m12;
+    w_raw13 *= m13;
+    w_raw14 *= m14;
+    w_raw15 *= m15;
+    w_raw16 *= m16;
 }
 
 double spreadNorm = isStackMode ? 1.0 : density;
@@ -1835,7 +1885,7 @@ void setExternalData(const ExternalData& ed, int index)
                           pitchSyncInput = v;
                       }     
      
-// 16 — maxGrains (1–16)
+// 16 — maxGrains (1–64)
 if (P == 8)
 {
     if (v < 1.0) v = 1.0;

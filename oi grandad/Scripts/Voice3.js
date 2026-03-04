@@ -165,38 +165,28 @@ inline function onmaxGrains3Control(component, value)
 {
 if(value == 1)
 	  {
-	 gran2.setAttribute(gran2.MaxGrains, 2);
+	 gran2.setAttribute(gran2.MaxGrains, 4);
 	 }
 	 
 	 if(value == 2)
 	 	  {
-	 	 gran2.setAttribute(gran2.MaxGrains, 4);
+	 	 gran2.setAttribute(gran2.MaxGrains, 8);
 	 	 }
 	 	 
 	 	 if(value == 3)
 	 	 	  {
-	 	 	 gran2.setAttribute(gran2.MaxGrains, 8);
+	 	 	 gran2.setAttribute(gran2.MaxGrains, 16);
 	 	 	 }
+	 	 	 
 	 	 	 if(value == 4)
-	 	 	 	 	 	 	 	 	 	 	  {
-	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 10);
-	 	 	 	 	 	 	 	 	 }	
-	 	 	 	 	 	 	 	 if(value == 5)
-	 	 	 	 	 	 	 	 	 	 	 	 	  {
-	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 12);
-	 	 	 	 	 	 	 	 	 	 	 }	  
-	 	 	 	 	 	 	 	 if(value == 6)
-	 	 	 	 	 	 	 	 	 	 	 	 	  {
-	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 14);
-	 	 	 	 	 	 	 	 	 	 	 }	
-	 	 	 	 	 	 	 	 if(value == 6)
-	 	 	 	 	 	 	 	 	 	 	 	 	 	  {
-	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 14);
-	 	 	 	 	 	 	 	 	 	 	 	 }
-	 	 	 	 	 	 	 	 if(value == 6)
-	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	  {
-	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 16);
-	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 }	 
+	 	 	 	 	 	  {
+	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 32);
+	 	 	 	 	 	 }
+	 	 	 if(value == 4)
+	 	 	 	 	 	 	 	 	  {
+	 	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 64);
+	 	 	 	 	 	 	 	 	 }	 	 	 
+	 	 
 };
 
 Content.getComponent("maxGrains3").setControlCallback(onmaxGrains3Control);
@@ -238,7 +228,9 @@ inline function onPitchMode3Control(component, value)
 	 	 PitchTempo3.showControl(1);;
 	 	 det2.showControl(0);
 	 	 DetuneLabel2.setValue("TEMPO");
-	 	 }	 
+	 	 }	
+	 	 
+	 	  
 	 	 
 };
 

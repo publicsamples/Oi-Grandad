@@ -267,3 +267,14 @@ const var macroMods = [Content.getComponent("MacroScr1"),
  for(s in macroMods)
          s.setLocalLookAndFeel(cBLaf);       
        
+       
+const var ResMode = [Content.getComponent("ResMode1"),
+                      Content.getComponent("ResMode2"),
+                      Content.getComponent("ResMode3"),
+                      Content.getComponent("ResMode4")];
+                      
+                      
+   
+   for(s in ResMode)
+           s.setLocalLookAndFeel(cBLaf);       
+                            

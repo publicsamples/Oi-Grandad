@@ -200,10 +200,10 @@ Content.getComponent("ModType4").setControlCallback(onModType4Control);
 
 const var mod4tables = []
 
-mod4tables[0] = Content.getComponent("ScriptTableA12");
-mod4tables[1] = Content.getComponent("ScriptTableA13");
-mod4tables[2] = Content.getComponent("ScriptTableA14");
-mod4tables[3] = Content.getComponent("ScriptTableA15");
+mod4tables[0] = Content.getComponent("SliderPackA12");
+mod4tables[1] = Content.getComponent("SliderPackA13");
+mod4tables[2] = Content.getComponent("SliderPackA14");
+mod4tables[3] = Content.getComponent("SliderPackA15");
 
 
 const var Mod4SPs = []
@@ -255,10 +255,10 @@ Content.getComponent("ModType5").setControlCallback(onModType5Control);
 
 const var mod5tables = []
 
-mod5tables[0] = Content.getComponent("ScriptTableA16");
-mod5tables[1] = Content.getComponent("ScriptTableA17");
-mod5tables[2] = Content.getComponent("ScriptTableA18");
-mod5tables[3] = Content.getComponent("ScriptTableA19");
+mod5tables[0] = Content.getComponent("SliderPackA16");
+mod5tables[1] = Content.getComponent("SliderPackA17");
+mod5tables[2] = Content.getComponent("SliderPackA18");
+mod5tables[3] = Content.getComponent("SliderPackA19");
 
 
 const var Mod5SPs = []
@@ -310,10 +310,10 @@ Content.getComponent("ModType6").setControlCallback(onModType6Control);
 
 const var mod6tables = []
 
-mod6tables[0] = Content.getComponent("ScriptTableA20");
-mod6tables[1] = Content.getComponent("ScriptTableA21");
-mod6tables[2] = Content.getComponent("ScriptTableA22");
-mod6tables[3] = Content.getComponent("ScriptTableA23");
+mod6tables[0] = Content.getComponent("SliderPackA20");
+mod6tables[1] = Content.getComponent("SliderPackA21");
+mod6tables[2] = Content.getComponent("SliderPackA22");
+mod6tables[3] = Content.getComponent("SliderPackA23");
 
 
 const var Mod6SPs = []
@@ -365,10 +365,10 @@ Content.getComponent("ModType7").setControlCallback(onModType7Control);
 
 const var mod7tables = []
 
-mod7tables[0] = Content.getComponent("ScriptTableA24");
-mod7tables[1] = Content.getComponent("ScriptTableA25");
-mod7tables[2] = Content.getComponent("ScriptTableA26");
-mod7tables[3] = Content.getComponent("ScriptTableA27");
+mod7tables[0] = Content.getComponent("SliderPackA24");
+mod7tables[1] = Content.getComponent("SliderPackA25");
+mod7tables[2] = Content.getComponent("SliderPackA26");
+mod7tables[3] = Content.getComponent("SliderPackA27");
 
 
 const var Mod7SPs = []

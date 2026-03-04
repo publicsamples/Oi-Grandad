@@ -7,6 +7,9 @@
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
 
+// Include embedded audio data ---------------------
+
+#include "embedded_audiodata.h"
 // Include compiled network files ------------------
 
 #include "DspNetwork.h"
@@ -16,6 +19,7 @@
 #include "res2.h"
 #include "sn.h"
 #include "sndummy_networkdata.h"
+#include "specTest.h"
 #include "track_networkdata.h"
 #include "vec1b_networkdata.h"
 #include "vec2b_networkdata.h"
