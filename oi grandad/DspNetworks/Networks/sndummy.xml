@@ -7,7 +7,8 @@
       <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="1"
             Name="fix8_block">
         <Nodes>
-          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
+          <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain"
+                Folded="1">
             <Nodes>
               <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
                 <Nodes>
@@ -8123,18 +8124,17 @@
       <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlen" Value="0.0">
         <Connections/>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="reverse" Value="1.0"
-                 TextToValueConverter="" DefaultValue="0.0">
+      <Parameter MinValue="1.0" MaxValue="5.0" StepSize="1.0" ID="reverse" Value="1.0"
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections/>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.09000000357627869"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.8100000023841858"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="PositionMod" Value="0.6100000143051147"
-                 TextToValueConverter="" DefaultValue="0.0">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="PositionMod" Value="0.0" TextToValueConverter="">
         <Connections>
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>
@@ -8197,8 +8197,8 @@
           <Connection NodeId="branch5" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-12.0" MaxValue="12.0" ID="Pitch" Value="10.0" ExternalModulation="Disabled"
-                 ModColour="0" DefaultValue="0.0">
+      <Parameter MinValue="-12.0" MaxValue="12.0" ID="Pitch" Value="-9.399999618530273"
+                 ExternalModulation="Disabled" ModColour="0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma6" ParameterId="Add"/>
         </Connections>
@@ -8260,7 +8260,7 @@
           <Connection NodeId="branch10" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSprd" Value="0.05999999865889549"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSprd" Value="0.2599999904632568"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma12" ParameterId="Add"/>

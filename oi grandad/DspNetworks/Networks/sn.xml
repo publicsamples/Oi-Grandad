@@ -393,8 +393,8 @@
                       </Node>
                       <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Name="pma">
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="scrub"/>
                           <Connection NodeId="cable_table" ParameterId="Value"/>
+                          <Connection NodeId="snex_node" ParameterId="scrub"/>
                         </ModulationTargets>
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
@@ -798,8 +798,8 @@
                       </Node>
                       <Node ID="pma3" FactoryPath="control.pma" Bypassed="0" Name="pma">
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="scrubB"/>
                           <Connection NodeId="cable_table1" ParameterId="Value"/>
+                          <Connection NodeId="snex_node" ParameterId="scrubB"/>
                         </ModulationTargets>
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
@@ -1203,8 +1203,8 @@
                       </Node>
                       <Node ID="pma4" FactoryPath="control.pma" Bypassed="0" Name="pma">
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="scrubC"/>
                           <Connection NodeId="cable_table2" ParameterId="Value"/>
+                          <Connection NodeId="snex_node" ParameterId="scrubC"/>
                         </ModulationTargets>
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
@@ -1608,8 +1608,8 @@
                       </Node>
                       <Node ID="pma5" FactoryPath="control.pma" Bypassed="0" Name="pma">
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="scrubD"/>
                           <Connection NodeId="cable_table3" ParameterId="Value"/>
+                          <Connection NodeId="snex_node" ParameterId="scrubD"/>
                         </ModulationTargets>
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
@@ -2019,7 +2019,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" DefaultValue="0.0" Automated="1"/>
                         </Parameters>
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="pitch"/>
+                          <Connection NodeId="snex_node" ParameterId="pitch"/>
                         </ModulationTargets>
                       </Node>
                     </Nodes>
@@ -2412,7 +2412,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" DefaultValue="0.0" Automated="1"/>
                         </Parameters>
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="density"/>
+                          <Connection NodeId="snex_node" ParameterId="density"/>
                         </ModulationTargets>
                       </Node>
                     </Nodes>
@@ -2805,7 +2805,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" DefaultValue="0.0" Automated="1"/>
                         </Parameters>
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="windowShape"/>
+                          <Connection NodeId="snex_node" ParameterId="windowShape"/>
                         </ModulationTargets>
                       </Node>
                     </Nodes>
@@ -3198,7 +3198,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" DefaultValue="0.0" Automated="1"/>
                         </Parameters>
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="panSpread"/>
+                          <Connection NodeId="snex_node" ParameterId="panSpread"/>
                         </ModulationTargets>
                       </Node>
                     </Nodes>
@@ -3989,15 +3989,15 @@
                         </Parameters>
                       </Node>
                       <Node ID="pma2" FactoryPath="control.pma" Bypassed="0" Name="pma2">
-                        <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="phaseScatter"/>
-                        </ModulationTargets>
                         <Parameters>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                           <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" DefaultValue="1.0"
                                      Automated="1"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
                         </Parameters>
+                        <ModulationTargets>
+                          <Connection NodeId="snex_node" ParameterId="phaseScatter"/>
+                        </ModulationTargets>
                       </Node>
                     </Nodes>
                     <Parameters/>
@@ -7173,7 +7173,7 @@
                                      Automated="1"/>
                         </Parameters>
                         <ModulationTargets>
-                          <Connection NodeId="snex_node1" ParameterId="grainMs"/>
+                          <Connection NodeId="snex_node" ParameterId="grainMs"/>
                         </ModulationTargets>
                       </Node>
                     </Nodes>
@@ -7201,68 +7201,82 @@
               <Connection NodeId="input_toggle" ParameterId="Value2"/>
             </ModulationTargets>
           </Node>
+          <Node ID="cable_table4" FactoryPath="control.cable_table" Bypassed="0"
+                Name="cable_table4">
+            <ModulationTargets>
+              <Connection NodeId="input_toggle" ParameterId="Input"/>
+            </ModulationTargets>
+            <ComplexData>
+              <Tables>
+                <Table Index="-1" EmbeddedData="48...............vO68Kq9.........vOCAZJ+....9C...vO...f+.........vO"/>
+              </Tables>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+            </Parameters>
+          </Node>
           <Node ID="input_toggle" FactoryPath="control.input_toggle" Bypassed="0"
                 Name="input_toggle">
             <ModulationTargets>
-              <Connection NodeId="snex_node1" ParameterId="pitchSpread"/>
+              <Connection NodeId="snex_node" ParameterId="pitchSpread"/>
             </ModulationTargets>
             <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.09500628709793091"
-                         ID="Input" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Input" Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="snex_node1" FactoryPath="core.snex_node" Bypassed="0" Name="snex_node1">
-            <Properties>
-              <Property ID="ClassId" Value="granular_player_stepquant_density_hybrid"/>
-            </Properties>
-            <ComplexData>
-              <Tables/>
-              <SliderPacks/>
-              <AudioFiles>
-                <AudioFile Index="0" EmbeddedData="" MinValue="0" MaxValue="1418533"/>
-              </AudioFiles>
-              <Filters/>
-              <DisplayBuffers/>
-            </ComplexData>
-            <Parameters>
-              <Parameter MinValue="-12.0" MaxValue="12.0" ID="pitch" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="scrub" DefaultValue="0.0" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="3200.0" ID="grainMs" DefaultValue="1031.0"
-                         StepSize="1" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="density" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="windowShape" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="panSpread" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchMode" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchSpread" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="4.0" MaxValue="32.0" ID="maxGrains" StepSize="1" DefaultValue="4.0"
-                         Value="32.0"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubMode" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlend" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" ID="reverse" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="windowType" DefaultValue="0.0"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubB" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubC" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubD" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="0" ID="phaseScatter"
-                         DefaultValue="0.0" Automated="1"/>
-            </Parameters>
-          </Node>
         </Nodes>
         <Parameters/>
+      </Node>
+      <Node ID="snex_node" FactoryPath="core.snex_node" Bypassed="0" Name="snex_node">
+        <Properties>
+          <Property ID="ClassId" Value="granular_player_stepquant_density_hybrid"/>
+        </Properties>
+        <ComplexData>
+          <Tables/>
+          <SliderPacks/>
+          <AudioFiles>
+            <AudioFile Index="0" EmbeddedData="" MinValue="0" MaxValue="325662"/>
+          </AudioFiles>
+          <Filters/>
+          <DisplayBuffers/>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="pitch" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrub" DefaultValue="0.0" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="1" ID="grainMs" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="density" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="windowShape" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="panSpread" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchMode" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="pitchSpread" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="4.0" MaxValue="32.0" StepSize="1" ID="maxGrains" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubMode" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlend" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" ID="reverse" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="0" ID="phaseScatter"
+                     DefaultValue="0.0" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubB" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubC" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubD" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Parameter" Value="0.0299482421875"
+                     DefaultValue="0.0"/>
+        </Parameters>
       </Node>
       <Node ID="branch2" FactoryPath="container.branch" Bypassed="0" Name="branch2"
             ShowParameters="1" Folded="1">
@@ -7462,7 +7476,7 @@
       <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0" Name="xfader">
         <Properties>
           <Property ID="NumParameters" Value="2"/>
-          <Property ID="Mode" Value="RMS"/>
+          <Property ID="Mode" Value="Linear"/>
         </Properties>
         <SwitchTargets>
           <SwitchTarget>
@@ -7583,7 +7597,7 @@
                                       <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                                       <Parameter MinValue="0.5" MaxValue="2.0" SkewFactor="0.6309297535714574"
                                                  ID="Multiply" DefaultValue="1.0" Automated="1"/>
-                                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Value="0.02" DefaultValue="0.0"/>
+                                      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Value="0.0"/>
                                     </Parameters>
                                   </Node>
                                   <Node ID="receive3" FactoryPath="routing.receive" Bypassed="0" Name="receive"
@@ -7617,7 +7631,7 @@
                                     <Parameters>
                                       <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                                                  SkewFactor="0.3010300099849701" ID="DelayTime" TextToValueConverter="Time"
-                                                 DefaultValue="100.0" Automated="1"/>
+                                                 DefaultValue="100.0000014901161" Automated="1"/>
                                       <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
                                                  Value="621.0" DefaultValue="512.0"/>
                                     </Parameters>
@@ -8249,41 +8263,44 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter MinValue="1.0" MaxValue="3.0" StepSize="1" ID="PitchMode" Value="2.0"
+      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1" ID="PitchMode" Value="3.0"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
         <Connections>
-          <Connection NodeId="input_toggle" ParameterId="Input"/>
-          <Connection NodeId="snex_node1" ParameterId="pitchMode"/>
+          <Connection NodeId="cable_table4" ParameterId="Value"/>
+          <Connection NodeId="snex_node" ParameterId="pitchMode"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="4.0" MaxValue="32.0" StepSize="1.0" ID="MaxGrains"
-                 Value="16.0" ExternalModulation="Disabled" ModColour="0" DefaultValue="4.0">
-        <Connections/>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1" ID="scrubMode" Value="1.0"
-                 ExternalModulation="Disabled" ModColour="0">
+                 Value="32.0" ExternalModulation="Disabled" ModColour="0" DefaultValue="4.0">
         <Connections>
-          <Connection NodeId="snex_node1" ParameterId="scrubMode"/>
+          <Connection NodeId="snex_node" ParameterId="maxGrains"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1" ID="scrubMode" Value="4.0"
+                 ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
+        <Connections>
+          <Connection NodeId="snex_node" ParameterId="scrubMode"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlen" Value="0.0">
         <Connections>
-          <Connection NodeId="snex_node1" ParameterId="scrubBlend"/>
+          <Connection NodeId="snex_node" ParameterId="scrubBlend"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="reverse" Value="0.0"
-                 TextToValueConverter="">
+      <Parameter MinValue="1.0" MaxValue="3.0" StepSize="1.0" ID="reverse" Value="1.0"
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections>
-          <Connection NodeId="snex_node1" ParameterId="reverse"/>
+          <Connection NodeId="snex_node" ParameterId="reverse"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.07999999821186066"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Position" Value="0.3600000143051147"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="PositionMod" Value="0.0" TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="PositionMod" Value="-0.5400000214576721"
+                 TextToValueConverter="" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>
@@ -8295,14 +8312,13 @@
           <Connection NodeId="branch" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Pos2" Value="0.239999994635582"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Pos2" Value="0.7699999809265137"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma3" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Pos2Mod" Value="0.4600000083446503"
-                 TextToValueConverter="" DefaultValue="0.0">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Pos2Mod" Value="0.0" TextToValueConverter="">
         <Connections>
           <Connection NodeId="pma3" ParameterId="Multiply"/>
         </Connections>
@@ -8313,7 +8329,7 @@
           <Connection NodeId="branch3" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Pos3" Value="0.7900000214576721"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Pos3" Value="0.3300000131130219"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma4" ParameterId="Add"/>
@@ -8331,7 +8347,7 @@
           <Connection NodeId="branch4" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Pos4" Value="0.9599999785423279"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Pos4" Value="0.5199999809265137"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma5" ParameterId="Add"/>
@@ -8371,7 +8387,8 @@
           <Connection NodeId="pma9" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="DenseMod" Value="0.0" TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="DenseMod" Value="0.02999999932944775"
+                 TextToValueConverter="" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma9" ParameterId="Multiply"/>
         </Connections>
@@ -8382,8 +8399,7 @@
           <Connection NodeId="branch8" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="WinShape" Value="0.1099687516689301"
-                 DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="WinShape" Value="1.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma10" ParameterId="Add"/>
         </Connections>
@@ -8394,7 +8410,7 @@
           <Connection NodeId="branch9" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.6499999761581421"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.2700000107288361"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma11" ParameterId="Add"/>
@@ -8412,7 +8428,8 @@
           <Connection NodeId="branch10" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSprd" Value="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSprd" Value="0.5799999833106995"
+                 DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma12" ParameterId="Add"/>
         </Connections>
@@ -8430,24 +8447,24 @@
           <Connection NodeId="branch11" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Jitter" Value="0.5400000214576721"
-                 DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="phaseScatter" Value="0.0">
         <Connections>
           <Connection NodeId="pma2" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="JitterMod" Value="0.0" TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="phaseScatterMod" Value="-0.04160156100988388"
+                 TextToValueConverter="" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma2" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1" ID="JitterSrc" Value="6.0"
-                 ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
+      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1" ID="phaseScatterSrc"
+                 Value="6.0" ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="branch12" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="5.0" MaxValue="1000.0" ID="GrainSize" Value="167.0"
+      <Parameter MinValue="5.0" MaxValue="1000.0" ID="GrainSize" Value="464.0"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="5.0">
         <Connections>
           <Connection NodeId="pma8" ParameterId="Add"/>
@@ -8466,7 +8483,7 @@
           <Connection NodeId="branch7" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1" ID="GrainTempo" Value="4.0"
+      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1" ID="GrainTempo" Value="10.0"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma7" ParameterId="Add"/>
@@ -8516,7 +8533,7 @@
           <Connection NodeId="svf1" ParameterId="Q"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResoMix" Value="0.25" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResoMix" Value="0.0">
         <Connections>
           <Connection NodeId="pma15" ParameterId="Add"/>
         </Connections>
@@ -8664,13 +8681,13 @@
           <Connection NodeId="receive3" ParameterId="Feedback"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1" ID="PitchTempo" Value="1.0"
+      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1" ID="PitchTempo" Value="10.0"
                  DefaultValue="0.0" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="pma21" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchDiv" Value="2.0"
+      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="PitchDiv" Value="1.0"
                  DefaultValue="0.0" TextToValueConverter="">
         <Connections>
           <Connection NodeId="tempo_sync1" ParameterId="Multiplier"/>

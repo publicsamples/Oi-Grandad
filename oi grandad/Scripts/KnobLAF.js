@@ -119,6 +119,14 @@ for (i = 0; i < 4; i++)
 
 }  	
 
+const var PitchTempo =[];
+
+for (i = 0; i < 4; i++)
+{
+    PitchTempo[i] = Content.getComponent("PitchTempo"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+}  	
+
 Content.getComponent("pitch").setLocalLookAndFeel(KnobLaf);
 
 const var pitch24 =[];

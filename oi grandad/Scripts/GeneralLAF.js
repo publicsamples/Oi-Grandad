@@ -141,8 +141,7 @@ const var ModeMenus1 = [Content.getComponent("type"),
                         Content.getComponent("type4"),
                         Content.getComponent("OutputSelector"),
                         Content.getComponent("maxGrains1"),
-                        Content.getComponent("PitchMode1"),
-                        Content.getComponent("Voices1")];
+                        Content.getComponent("PitchMode1")];
 
 
 for(s in ModeMenus1)
@@ -276,5 +275,13 @@ const var ResMode = [Content.getComponent("ResMode1"),
                       
    
    for(s in ResMode)
-           s.setLocalLookAndFeel(cBLaf);       
+           s.setLocalLookAndFeel(cBLaf);      
+           
+const var Dir = [Content.getComponent("Dir1"),
+                      Content.getComponent("Dir2"),
+                      Content.getComponent("Dir3"),
+                      Content.getComponent("Dir4")];
+                      
+//for(s in Dir)
+     //      s.setLocalLookAndFeel(cBLaf);      
                             

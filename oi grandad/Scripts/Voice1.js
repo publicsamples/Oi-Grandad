@@ -10,7 +10,7 @@ const var VoiceParamB1 = Content.getComponent("PosParamB1");
 inline function onStgSel1Control(component, value)
 {
 
-if(value == 0)
+if(value == 1)
   {
 
   	VoiceParam1.showControl(1);
@@ -23,7 +23,7 @@ if(value == 0)
                    
 	}
 	
-if(value == 1)
+if(value == 2)
   {
 	VoiceParam1.showControl(0);
 	VoiceParamB1.showControl(1);
@@ -35,6 +35,32 @@ if(value == 1)
                   s.showControl(1);
               
 	}
+	
+	if(value == 3)
+	  {
+	
+	  	VoiceParam1.showControl(1);
+	  	VoiceParamB1.showControl(0);
+	             
+	        gran.setAttribute(gran.scrubMode, 3);  
+	      
+	       for(s in StackItem1)
+	            s.showControl(0);
+	                   
+		}
+		
+		if(value == 4)
+		  {
+			VoiceParam1.showControl(0);
+			VoiceParamB1.showControl(1);
+			  	
+			  	
+		          gran.setAttribute(gran.scrubMode, 4);  
+		
+		              for(s in StackItem1)
+		                  s.showControl(1);
+		              
+			}
 	
 
 };
@@ -239,6 +265,16 @@ inline function onPitchMode1Control(component, value)
 	 	 det.showControl(0);
 	 	 DetuneLabel.setValue("TEMPO");
 	 	 }	 
+	 	 
+	 	 if(value == 4)
+	 	 	 	  {
+	 	 	 	 gran.setAttribute(gran.PitchMode, 4);
+	 	 	 	 DivLabel.showControl(0);
+	 	 	 	 	 PitchDiv1.showControl(0);
+	 	 	 	 	 PitchTempo1.showControl(0);;
+	 	 	 	 	 det.showControl(1);
+	 	 	 	 	 DetuneLabel.setValue("HARM.");
+	 	 	 	 }
 	 	 
 };
 
