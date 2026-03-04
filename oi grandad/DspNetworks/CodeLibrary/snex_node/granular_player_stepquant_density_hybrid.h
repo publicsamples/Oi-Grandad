@@ -4,7 +4,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
     SNEX_NODE(granular_player_stepquant_density_hybrid);
 
     static const int NUM_CHANNELS = 2;
-    static const int MAX_GRAINS   = 32;
+    static const int MAX_GRAINS   = 64;
   
     
     ExternalData audioData;
@@ -31,11 +31,14 @@ struct granular_player_stepquant_density_hybrid: public data::base
     double pitchSyncInput = 0.0; // raw external input for mode 2 (Hz or ms)
 	double pitchMode = 0.0; 
 
-  double maxGrains = 4.0;     // 1–32
+  double maxGrains = 4.0;     // 1–64
   double scrubMode = 0.0;     // 0 = normal, 1 = xfade
   double scrubBlend = 0.0;    // 0–1 shaping
   double reverse = 0.0;   // 0 = forward, 1 = reverse
-  double phaseScatter = 0.0;   // raw sample-domain scatter amount
+  double phaseScatter = 0.0;   // 0..1 per-grain envelope phase scatter
+  // Subtle density-linked grain start spread. Tweak this to taste.
+  // Final spread in samples = maxStart * densityPositionSpreadRange * density.
+  const double densityPositionSpreadRange = 0.3;
 	
     // -----------------------------------------------------
     struct VoiceData
@@ -102,54 +105,6 @@ bool   schedActive15 = false;
 double schedPhase16 = 0.0;
 double schedStart16 = 0.0;
 bool   schedActive16 = false;
-double schedPhase17 = 0.0;
-double schedStart17 = 0.0;
-bool   schedActive17 = false;
-double schedPhase18 = 0.0;
-double schedStart18 = 0.0;
-bool   schedActive18 = false;
-double schedPhase19 = 0.0;
-double schedStart19 = 0.0;
-bool   schedActive19 = false;
-double schedPhase20 = 0.0;
-double schedStart20 = 0.0;
-bool   schedActive20 = false;
-double schedPhase21 = 0.0;
-double schedStart21 = 0.0;
-bool   schedActive21 = false;
-double schedPhase22 = 0.0;
-double schedStart22 = 0.0;
-bool   schedActive22 = false;
-double schedPhase23 = 0.0;
-double schedStart23 = 0.0;
-bool   schedActive23 = false;
-double schedPhase24 = 0.0;
-double schedStart24 = 0.0;
-bool   schedActive24 = false;
-double schedPhase25 = 0.0;
-double schedStart25 = 0.0;
-bool   schedActive25 = false;
-double schedPhase26 = 0.0;
-double schedStart26 = 0.0;
-bool   schedActive26 = false;
-double schedPhase27 = 0.0;
-double schedStart27 = 0.0;
-bool   schedActive27 = false;
-double schedPhase28 = 0.0;
-double schedStart28 = 0.0;
-bool   schedActive28 = false;
-double schedPhase29 = 0.0;
-double schedStart29 = 0.0;
-bool   schedActive29 = false;
-double schedPhase30 = 0.0;
-double schedStart30 = 0.0;
-bool   schedActive30 = false;
-double schedPhase31 = 0.0;
-double schedStart31 = 0.0;
-bool   schedActive31 = false;
-double schedPhase32 = 0.0;
-double schedStart32 = 0.0;
-bool   schedActive32 = false;
 
 // Output diffusion state (allpass, per voice)
 double ap1L = 0.0;
@@ -226,54 +181,6 @@ double ap2R = 0.0;
     schedPhase16 = 0.0;
     schedStart16 = 0.0;
     schedActive16 = false;
-    schedPhase17 = 0.0;
-    schedStart17 = 0.0;
-    schedActive17 = false;
-    schedPhase18 = 0.0;
-    schedStart18 = 0.0;
-    schedActive18 = false;
-    schedPhase19 = 0.0;
-    schedStart19 = 0.0;
-    schedActive19 = false;
-    schedPhase20 = 0.0;
-    schedStart20 = 0.0;
-    schedActive20 = false;
-    schedPhase21 = 0.0;
-    schedStart21 = 0.0;
-    schedActive21 = false;
-    schedPhase22 = 0.0;
-    schedStart22 = 0.0;
-    schedActive22 = false;
-    schedPhase23 = 0.0;
-    schedStart23 = 0.0;
-    schedActive23 = false;
-    schedPhase24 = 0.0;
-    schedStart24 = 0.0;
-    schedActive24 = false;
-    schedPhase25 = 0.0;
-    schedStart25 = 0.0;
-    schedActive25 = false;
-    schedPhase26 = 0.0;
-    schedStart26 = 0.0;
-    schedActive26 = false;
-    schedPhase27 = 0.0;
-    schedStart27 = 0.0;
-    schedActive27 = false;
-    schedPhase28 = 0.0;
-    schedStart28 = 0.0;
-    schedActive28 = false;
-    schedPhase29 = 0.0;
-    schedStart29 = 0.0;
-    schedActive29 = false;
-    schedPhase30 = 0.0;
-    schedStart30 = 0.0;
-    schedActive30 = false;
-    schedPhase31 = 0.0;
-    schedStart31 = 0.0;
-    schedActive31 = false;
-    schedPhase32 = 0.0;
-    schedStart32 = 0.0;
-    schedActive32 = false;
 
     ap1L = 0.0;
     ap1R = 0.0;
@@ -298,222 +205,6 @@ void reset()
         v.reset();
 }
 
-inline double getGrainPhase(const VoiceData& v, int i)
-{
-    if (i == 0) return v.schedPhase;
-    if (i == 1) return v.schedPhase2;
-    if (i == 2) return v.schedPhase3;
-    if (i == 3) return v.schedPhase4;
-    if (i == 4) return v.schedPhase5;
-    if (i == 5) return v.schedPhase6;
-    if (i == 6) return v.schedPhase7;
-    if (i == 7) return v.schedPhase8;
-    if (i == 8) return v.schedPhase9;
-    if (i == 9) return v.schedPhase10;
-    if (i == 10) return v.schedPhase11;
-    if (i == 11) return v.schedPhase12;
-    if (i == 12) return v.schedPhase13;
-    if (i == 13) return v.schedPhase14;
-    if (i == 14) return v.schedPhase15;
-    if (i == 15) return v.schedPhase16;
-    if (i == 16) return v.schedPhase17;
-    if (i == 17) return v.schedPhase18;
-    if (i == 18) return v.schedPhase19;
-    if (i == 19) return v.schedPhase20;
-    if (i == 20) return v.schedPhase21;
-    if (i == 21) return v.schedPhase22;
-    if (i == 22) return v.schedPhase23;
-    if (i == 23) return v.schedPhase24;
-    if (i == 24) return v.schedPhase25;
-    if (i == 25) return v.schedPhase26;
-    if (i == 26) return v.schedPhase27;
-    if (i == 27) return v.schedPhase28;
-    if (i == 28) return v.schedPhase29;
-    if (i == 29) return v.schedPhase30;
-    if (i == 30) return v.schedPhase31;
-    return v.schedPhase32;
-}
-
-inline void setGrainPhase(VoiceData& v, int i, double x)
-{
-    if (i == 0) v.schedPhase = x;
-    else if (i == 1) v.schedPhase2 = x;
-    else if (i == 2) v.schedPhase3 = x;
-    else if (i == 3) v.schedPhase4 = x;
-    else if (i == 4) v.schedPhase5 = x;
-    else if (i == 5) v.schedPhase6 = x;
-    else if (i == 6) v.schedPhase7 = x;
-    else if (i == 7) v.schedPhase8 = x;
-    else if (i == 8) v.schedPhase9 = x;
-    else if (i == 9) v.schedPhase10 = x;
-    else if (i == 10) v.schedPhase11 = x;
-    else if (i == 11) v.schedPhase12 = x;
-    else if (i == 12) v.schedPhase13 = x;
-    else if (i == 13) v.schedPhase14 = x;
-    else if (i == 14) v.schedPhase15 = x;
-    else if (i == 15) v.schedPhase16 = x;
-    else if (i == 16) v.schedPhase17 = x;
-    else if (i == 17) v.schedPhase18 = x;
-    else if (i == 18) v.schedPhase19 = x;
-    else if (i == 19) v.schedPhase20 = x;
-    else if (i == 20) v.schedPhase21 = x;
-    else if (i == 21) v.schedPhase22 = x;
-    else if (i == 22) v.schedPhase23 = x;
-    else if (i == 23) v.schedPhase24 = x;
-    else if (i == 24) v.schedPhase25 = x;
-    else if (i == 25) v.schedPhase26 = x;
-    else if (i == 26) v.schedPhase27 = x;
-    else if (i == 27) v.schedPhase28 = x;
-    else if (i == 28) v.schedPhase29 = x;
-    else if (i == 29) v.schedPhase30 = x;
-    else if (i == 30) v.schedPhase31 = x;
-    else v.schedPhase32 = x;
-}
-
-inline double getGrainStart(const VoiceData& v, int i)
-{
-    if (i == 0) return v.schedStart;
-    if (i == 1) return v.schedStart2;
-    if (i == 2) return v.schedStart3;
-    if (i == 3) return v.schedStart4;
-    if (i == 4) return v.schedStart5;
-    if (i == 5) return v.schedStart6;
-    if (i == 6) return v.schedStart7;
-    if (i == 7) return v.schedStart8;
-    if (i == 8) return v.schedStart9;
-    if (i == 9) return v.schedStart10;
-    if (i == 10) return v.schedStart11;
-    if (i == 11) return v.schedStart12;
-    if (i == 12) return v.schedStart13;
-    if (i == 13) return v.schedStart14;
-    if (i == 14) return v.schedStart15;
-    if (i == 15) return v.schedStart16;
-    if (i == 16) return v.schedStart17;
-    if (i == 17) return v.schedStart18;
-    if (i == 18) return v.schedStart19;
-    if (i == 19) return v.schedStart20;
-    if (i == 20) return v.schedStart21;
-    if (i == 21) return v.schedStart22;
-    if (i == 22) return v.schedStart23;
-    if (i == 23) return v.schedStart24;
-    if (i == 24) return v.schedStart25;
-    if (i == 25) return v.schedStart26;
-    if (i == 26) return v.schedStart27;
-    if (i == 27) return v.schedStart28;
-    if (i == 28) return v.schedStart29;
-    if (i == 29) return v.schedStart30;
-    if (i == 30) return v.schedStart31;
-    return v.schedStart32;
-}
-
-inline void setGrainStart(VoiceData& v, int i, double x)
-{
-    if (i == 0) v.schedStart = x;
-    else if (i == 1) v.schedStart2 = x;
-    else if (i == 2) v.schedStart3 = x;
-    else if (i == 3) v.schedStart4 = x;
-    else if (i == 4) v.schedStart5 = x;
-    else if (i == 5) v.schedStart6 = x;
-    else if (i == 6) v.schedStart7 = x;
-    else if (i == 7) v.schedStart8 = x;
-    else if (i == 8) v.schedStart9 = x;
-    else if (i == 9) v.schedStart10 = x;
-    else if (i == 10) v.schedStart11 = x;
-    else if (i == 11) v.schedStart12 = x;
-    else if (i == 12) v.schedStart13 = x;
-    else if (i == 13) v.schedStart14 = x;
-    else if (i == 14) v.schedStart15 = x;
-    else if (i == 15) v.schedStart16 = x;
-    else if (i == 16) v.schedStart17 = x;
-    else if (i == 17) v.schedStart18 = x;
-    else if (i == 18) v.schedStart19 = x;
-    else if (i == 19) v.schedStart20 = x;
-    else if (i == 20) v.schedStart21 = x;
-    else if (i == 21) v.schedStart22 = x;
-    else if (i == 22) v.schedStart23 = x;
-    else if (i == 23) v.schedStart24 = x;
-    else if (i == 24) v.schedStart25 = x;
-    else if (i == 25) v.schedStart26 = x;
-    else if (i == 26) v.schedStart27 = x;
-    else if (i == 27) v.schedStart28 = x;
-    else if (i == 28) v.schedStart29 = x;
-    else if (i == 29) v.schedStart30 = x;
-    else if (i == 30) v.schedStart31 = x;
-    else v.schedStart32 = x;
-}
-
-inline bool getGrainActive(const VoiceData& v, int i)
-{
-    if (i == 0) return v.schedActive;
-    if (i == 1) return v.schedActive2;
-    if (i == 2) return v.schedActive3;
-    if (i == 3) return v.schedActive4;
-    if (i == 4) return v.schedActive5;
-    if (i == 5) return v.schedActive6;
-    if (i == 6) return v.schedActive7;
-    if (i == 7) return v.schedActive8;
-    if (i == 8) return v.schedActive9;
-    if (i == 9) return v.schedActive10;
-    if (i == 10) return v.schedActive11;
-    if (i == 11) return v.schedActive12;
-    if (i == 12) return v.schedActive13;
-    if (i == 13) return v.schedActive14;
-    if (i == 14) return v.schedActive15;
-    if (i == 15) return v.schedActive16;
-    if (i == 16) return v.schedActive17;
-    if (i == 17) return v.schedActive18;
-    if (i == 18) return v.schedActive19;
-    if (i == 19) return v.schedActive20;
-    if (i == 20) return v.schedActive21;
-    if (i == 21) return v.schedActive22;
-    if (i == 22) return v.schedActive23;
-    if (i == 23) return v.schedActive24;
-    if (i == 24) return v.schedActive25;
-    if (i == 25) return v.schedActive26;
-    if (i == 26) return v.schedActive27;
-    if (i == 27) return v.schedActive28;
-    if (i == 28) return v.schedActive29;
-    if (i == 29) return v.schedActive30;
-    if (i == 30) return v.schedActive31;
-    return v.schedActive32;
-}
-
-inline void setGrainActive(VoiceData& v, int i, bool x)
-{
-    if (i == 0) v.schedActive = x;
-    else if (i == 1) v.schedActive2 = x;
-    else if (i == 2) v.schedActive3 = x;
-    else if (i == 3) v.schedActive4 = x;
-    else if (i == 4) v.schedActive5 = x;
-    else if (i == 5) v.schedActive6 = x;
-    else if (i == 6) v.schedActive7 = x;
-    else if (i == 7) v.schedActive8 = x;
-    else if (i == 8) v.schedActive9 = x;
-    else if (i == 9) v.schedActive10 = x;
-    else if (i == 10) v.schedActive11 = x;
-    else if (i == 11) v.schedActive12 = x;
-    else if (i == 12) v.schedActive13 = x;
-    else if (i == 13) v.schedActive14 = x;
-    else if (i == 14) v.schedActive15 = x;
-    else if (i == 15) v.schedActive16 = x;
-    else if (i == 16) v.schedActive17 = x;
-    else if (i == 17) v.schedActive18 = x;
-    else if (i == 18) v.schedActive19 = x;
-    else if (i == 19) v.schedActive20 = x;
-    else if (i == 20) v.schedActive21 = x;
-    else if (i == 21) v.schedActive22 = x;
-    else if (i == 22) v.schedActive23 = x;
-    else if (i == 23) v.schedActive24 = x;
-    else if (i == 24) v.schedActive25 = x;
-    else if (i == 25) v.schedActive26 = x;
-    else if (i == 26) v.schedActive27 = x;
-    else if (i == 27) v.schedActive28 = x;
-    else if (i == 28) v.schedActive29 = x;
-    else if (i == 29) v.schedActive30 = x;
-    else if (i == 30) v.schedActive31 = x;
-    else v.schedActive32 = x;
-}
-
     inline double hann(double x)
     {
         return 0.5 - 0.5 * Math.cos(2.0 * Math.PI * x);
@@ -530,37 +221,6 @@ inline void setGrainActive(VoiceData& v, int i, bool x)
     {
         x = clamp01(x);
         return x * x * (3.0 - 2.0 * x);
-    }
-
-    inline double lerp01(double a, double b, double t)
-    {
-        return a + (b - a) * t;
-    }
-
-    // Map grain index across 4 scrub controls so all controls participate
-    // even when active grain count is below 16.
-    inline double multiScrubByIndex(int grainIndex, int activeCount)
-    {
-        if (activeCount <= 1)
-            return scrub;
-
-        double t = (double)grainIndex / (double)(activeCount - 1); // 0..1
-
-        if (t <= (1.0 / 3.0))
-        {
-            double u = t * 3.0;
-            return lerp01(scrub, scrubB, u);
-        }
-        else if (t <= (2.0 / 3.0))
-        {
-            double u = (t - (1.0 / 3.0)) * 3.0;
-            return lerp01(scrubB, scrubC, u);
-        }
-        else
-        {
-            double u = (t - (2.0 / 3.0)) * 3.0;
-            return lerp01(scrubC, scrubD, u);
-        }
     }
 
     inline double tukey(double x, double alpha)
@@ -602,17 +262,42 @@ inline void setGrainActive(VoiceData& v, int i, bool x)
         return 0.42 - 0.5 * Math.cos(2.0 * Math.PI * x) + 0.08 * Math.cos(4.0 * Math.PI * x);
     }
 
-    // Window morph:
-    // 0.0 = Hann (Tukey alpha = 1.0)
-    // 1.0 = flatter Tukey with long plateau (better for long looper grains)
+    // Legacy-style Hann shaper:
+    // 0.0 = plain Hann
+    // 1.0 = narrower + steeper falloff
     inline double morphedWindow(double phaseNorm)
     {
         double x = clamp01(phaseNorm);
         double shape = clamp01(windowShape);
-        double alpha = 1.0 - 0.98 * shape; // 1.0 -> 0.02
-        if (alpha < 0.02) alpha = 0.02;
-        return tukey(x, alpha);
+
+        // Width shrink around center.
+        double width = 1.0 - 0.85 * shape;
+        if (width < 0.05) width = 0.05;
+
+        double c = 2.0 * x - 1.0;    // -1..+1
+        double cw = c / width;       // width-shaped domain
+        if (cw <= -1.0 || cw >= 1.0)
+            return 0.0;
+
+        double xw = 0.5 * (cw + 1.0); // back to 0..1
+        double w = hann(xw);
+
+        // Falloff steepness.
+        double fall = 1.0 + 3.0 * shape;
+        return Math.pow(w, fall);
     }
+    
+    
+    inline double A2curve(double x)
+    {
+        // Base cluster at beginning: (1-x)^2 * (1 - 0.5x)
+        double base = (1.0 - x);
+        base = base * base * (1.0 - 0.5 * x);
+    
+        // Map base (0..1) to symmetric -1..+1 range
+        return (base * -1.0) + x;
+    }
+
     inline double wrap01(double x)
     {
         x = x - Math.floor(x);
@@ -621,7 +306,7 @@ inline void setGrainActive(VoiceData& v, int i, bool x)
     }
 
     // Deterministic per-grain envelope phase offset (in cycles).
-    // phaseScatter is interpreted in samples and converted to cycles by grainSize.
+    // This moves envelope timing only, not grain read position.
     inline double phaseScatterOffset(int grainIndex, double scrubVal)
     {
         if (phaseScatter <= 0.0)
@@ -630,30 +315,19 @@ inline void setGrainActive(VoiceData& v, int i, bool x)
         double seed = (double)(grainIndex + 1) * 37.17 + scrubVal * 19.73;
         double r = Math.sin(seed * 12.9898 + 78.233); // -1..1
 
-        double scatterSamples = r * phaseScatter;
-        double maxScatterCycles = (grainSize > 1.0) ? (scatterSamples / grainSize) : 0.0;
+        double p = phaseScatter * phaseScatter; // finer low-end control
+        double maxScatterCycles = 0.45 * p;
 
-        return maxScatterCycles;
+        return r * maxScatterCycles;
     }
 
-    // Deterministic per-grain read-start offset (in samples).
-    // Uses the same raw sample-domain control as phase scatter.
-    inline double phaseScatterStartOffsetSamples(int grainIndex, double scrubVal, double maxStart)
-    {
-        if (phaseScatter <= 0.0)
-            return 0.0;
-
-        double seed = (double)(grainIndex + 1) * 37.17 + scrubVal * 19.73;
-        double r = Math.sin(seed * 12.9898 + 78.233); // -1..1
-        double maxScatterSamples = phaseScatter;
-        if (maxScatterSamples > maxStart)
-            maxScatterSamples = maxStart;
-        return r * maxScatterSamples;
-    }
-
-    // Envelope phase staggering per grain (driven by phaseScatter only).
+    // Density-driven envelope phase staggering per grain.
+    // Only active in stack mode (scrubBlend < 0.5).
+    // In morph mode, density is reserved for crossfade weighting only.
     inline double cloudWindowPhase(double phaseNorm, int grainIndex)
     {
+        // Phase diffusion (density-linked per-grain offset) temporarily disabled.
+        // Keep optional user phaseScatter behaviour only.
         double scatter = phaseScatterOffset(grainIndex, scrub);
         return wrap01(phaseNorm + scatter);
     }
@@ -965,38 +639,37 @@ else
 int g = (int)maxGrains;
 if (g < 1) g = 1;
 if (g > MAX_GRAINS) g = MAX_GRAINS;
-int gActive = g;
 bool isStackMode = (scrubBlend < 0.5);
 
 // =========================================================
-// 32-GRAIN NORMALISATION  (APPLY BEFORE MIXING)
+// 16-GRAIN NORMALISATION  (APPLY BEFORE MIXING)
 // =========================================================
 
 // Compute all raw weights now
 // ===============================================
-// SNEX-SAFE 32-GRAIN NORMALISATION
+// SNEX-SAFE 16-GRAIN NORMALISATION
 // ===============================================
 
 // Raw, unnormalised weights
-double w_raw1  = getGrainWeight(0,  gActive, isStackMode);
-double w_raw2  = getGrainWeight(1,  gActive, isStackMode);
-double w_raw3  = getGrainWeight(2,  gActive, isStackMode);
-double w_raw4  = getGrainWeight(3,  gActive, isStackMode);
-double w_raw5  = getGrainWeight(4,  gActive, isStackMode);
-double w_raw6  = getGrainWeight(5,  gActive, isStackMode);
-double w_raw7  = getGrainWeight(6,  gActive, isStackMode);
-double w_raw8  = getGrainWeight(7,  gActive, isStackMode);
-double w_raw9  = getGrainWeight(8,  gActive, isStackMode);
-double w_raw10 = getGrainWeight(9,  gActive, isStackMode);
-double w_raw11 = getGrainWeight(10, gActive, isStackMode);
-double w_raw12 = getGrainWeight(11, gActive, isStackMode);
-double w_raw13 = getGrainWeight(12, gActive, isStackMode);
-double w_raw14 = getGrainWeight(13, gActive, isStackMode);
-double w_raw15 = getGrainWeight(14, gActive, isStackMode);
-double w_raw16 = getGrainWeight(15, gActive, isStackMode);
+double w_raw1  = getGrainWeight(0,  g, isStackMode);
+double w_raw2  = getGrainWeight(1,  g, isStackMode);
+double w_raw3  = getGrainWeight(2,  g, isStackMode);
+double w_raw4  = getGrainWeight(3,  g, isStackMode);
+double w_raw5  = getGrainWeight(4,  g, isStackMode);
+double w_raw6  = getGrainWeight(5,  g, isStackMode);
+double w_raw7  = getGrainWeight(6,  g, isStackMode);
+double w_raw8  = getGrainWeight(7,  g, isStackMode);
+double w_raw9  = getGrainWeight(8,  g, isStackMode);
+double w_raw10 = getGrainWeight(9,  g, isStackMode);
+double w_raw11 = getGrainWeight(10, g, isStackMode);
+double w_raw12 = getGrainWeight(11, g, isStackMode);
+double w_raw13 = getGrainWeight(12, g, isStackMode);
+double w_raw14 = getGrainWeight(13, g, isStackMode);
+double w_raw15 = getGrainWeight(14, g, isStackMode);
+double w_raw16 = getGrainWeight(15, g, isStackMode);
 
 // -----------------------------------------------
-// CONSTANT-POWER GRAIN NORMALISATION
+// CONSTANT-POWER GRAIN NORMALISATION (16 grains)
 // -----------------------------------------------
 
 // Sum of squared weights
@@ -1005,15 +678,6 @@ double sumsq =
     w_raw5*w_raw5 + w_raw6*w_raw6 + w_raw7*w_raw7 + w_raw8*w_raw8 +
     w_raw9*w_raw9 + w_raw10*w_raw10 + w_raw11*w_raw11 + w_raw12*w_raw12 +
     w_raw13*w_raw13 + w_raw14*w_raw14 + w_raw15*w_raw15 + w_raw16*w_raw16;
-
-if (isStackMode && gActive > 16)
-{
-    for (int i = 16; i < gActive; ++i)
-    {
-        double wt = getGrainWeight(i, gActive, true);
-        sumsq += wt * wt;
-    }
-}
 
 // Normalisation factor (protect against zero)
 double wnorm = 1.0;
@@ -1039,63 +703,32 @@ double weight15 = w_raw15 * wnorm;
 double weight16 = w_raw16 * wnorm;
 
           
-		double center = (double)(gActive - 1) * 0.5;
-       double invDenom = (gActive > 1) ? 1.0 / (double)(gActive - 1) : 0.0;
+		double center = (double)(g - 1) * 0.5;
+       double invDenom = (g > 1) ? 1.0 / (double)(g - 1) : 0.0;
        
 
 if (scrubState == 1)
 {
-    // Multi-scrub mode distributed across active grain count.
-    double ms1  = quantiseScrub(multiScrubByIndex(0,  gActive), audioData);
-    double ms2  = quantiseScrub(multiScrubByIndex(1,  gActive), audioData);
-    double ms3  = quantiseScrub(multiScrubByIndex(2,  gActive), audioData);
-    double ms4  = quantiseScrub(multiScrubByIndex(3,  gActive), audioData);
-    double ms5  = quantiseScrub(multiScrubByIndex(4,  gActive), audioData);
-    double ms6  = quantiseScrub(multiScrubByIndex(5,  gActive), audioData);
-    double ms7  = quantiseScrub(multiScrubByIndex(6,  gActive), audioData);
-    double ms8  = quantiseScrub(multiScrubByIndex(7,  gActive), audioData);
-    double ms9  = quantiseScrub(multiScrubByIndex(8,  gActive), audioData);
-    double ms10 = quantiseScrub(multiScrubByIndex(9,  gActive), audioData);
-    double ms11 = quantiseScrub(multiScrubByIndex(10, gActive), audioData);
-    double ms12 = quantiseScrub(multiScrubByIndex(11, gActive), audioData);
-    double ms13 = quantiseScrub(multiScrubByIndex(12, gActive), audioData);
-    double ms14 = quantiseScrub(multiScrubByIndex(13, gActive), audioData);
-    double ms15 = quantiseScrub(multiScrubByIndex(14, gActive), audioData);
-    double ms16 = quantiseScrub(multiScrubByIndex(15, gActive), audioData);
+    // Multi-scrub mode (no sliderpack)
+    basePos1 = scrub  * maxStart;
+    basePos2 = scrub  * maxStart;
 
-    if (ms1  < 0.0) ms1  += 1.0; if (ms1  > 1.0) ms1  -= 1.0;
-    if (ms2  < 0.0) ms2  += 1.0; if (ms2  > 1.0) ms2  -= 1.0;
-    if (ms3  < 0.0) ms3  += 1.0; if (ms3  > 1.0) ms3  -= 1.0;
-    if (ms4  < 0.0) ms4  += 1.0; if (ms4  > 1.0) ms4  -= 1.0;
-    if (ms5  < 0.0) ms5  += 1.0; if (ms5  > 1.0) ms5  -= 1.0;
-    if (ms6  < 0.0) ms6  += 1.0; if (ms6  > 1.0) ms6  -= 1.0;
-    if (ms7  < 0.0) ms7  += 1.0; if (ms7  > 1.0) ms7  -= 1.0;
-    if (ms8  < 0.0) ms8  += 1.0; if (ms8  > 1.0) ms8  -= 1.0;
-    if (ms9  < 0.0) ms9  += 1.0; if (ms9  > 1.0) ms9  -= 1.0;
-    if (ms10 < 0.0) ms10 += 1.0; if (ms10 > 1.0) ms10 -= 1.0;
-    if (ms11 < 0.0) ms11 += 1.0; if (ms11 > 1.0) ms11 -= 1.0;
-    if (ms12 < 0.0) ms12 += 1.0; if (ms12 > 1.0) ms12 -= 1.0;
-    if (ms13 < 0.0) ms13 += 1.0; if (ms13 > 1.0) ms13 -= 1.0;
-    if (ms14 < 0.0) ms14 += 1.0; if (ms14 > 1.0) ms14 -= 1.0;
-    if (ms15 < 0.0) ms15 += 1.0; if (ms15 > 1.0) ms15 -= 1.0;
-    if (ms16 < 0.0) ms16 += 1.0; if (ms16 > 1.0) ms16 -= 1.0;
+    basePos3 = scrubB * maxStart;
+    basePos4 = scrubB * maxStart;
 
-    basePos1  = ms1  * maxStart;
-    basePos2  = ms2  * maxStart;
-    basePos3  = ms3  * maxStart;
-    basePos4  = ms4  * maxStart;
-    basePos5  = ms5  * maxStart;
-    basePos6  = ms6  * maxStart;
-    basePos7  = ms7  * maxStart;
-    basePos8  = ms8  * maxStart;
-    basePos9  = ms9  * maxStart;
-    basePos10 = ms10 * maxStart;
-    basePos11 = ms11 * maxStart;
-    basePos12 = ms12 * maxStart;
-    basePos13 = ms13 * maxStart;
-    basePos14 = ms14 * maxStart;
-    basePos15 = ms15 * maxStart;
-    basePos16 = ms16 * maxStart;
+    basePos5 = scrubC * maxStart;
+    basePos6 = scrubC * maxStart;
+
+    basePos7 = scrubD * maxStart;
+    basePos8 = scrubD * maxStart;
+    basePos9  = scrub  * maxStart;
+    basePos10 = scrub  * maxStart;
+    basePos11 = scrubB * maxStart;
+    basePos12 = scrubB * maxStart;
+    basePos13 = scrubC * maxStart;
+    basePos14 = scrubC * maxStart;
+    basePos15 = scrubD * maxStart;
+    basePos16 = scrubD * maxStart;
 }
 else
 {
@@ -1118,7 +751,70 @@ else
     basePos16 = scrubBase;
 }
 
-//double densitySpread = density * grainSize;
+
+// -----------------------------------------------------
+// A2 START POSITION SPREAD (Soft Cluster)
+// -----------------------------------------------------
+if (scrubBlend < 0.5)   // only stack mode
+{
+    double d = clamp01(density);
+
+    double denom = (g > 1 ? (double)(g - 1) : 1.0);
+
+    double iNorm0  = 0.0          / denom;
+    double iNorm1  = 1.0          / denom;
+    double iNorm2  = 2.0          / denom;
+    double iNorm3  = 3.0          / denom;
+    double iNorm4  = 4.0          / denom;
+    double iNorm5  = 5.0          / denom;
+    double iNorm6  = 6.0          / denom;
+    double iNorm7  = 7.0          / denom;
+    double iNorm8  = 8.0          / denom;
+    double iNorm9  = 9.0          / denom;
+    double iNorm10 = 10.0         / denom;
+    double iNorm11 = 11.0         / denom;
+    double iNorm12 = 12.0         / denom;
+    double iNorm13 = 13.0         / denom;
+    double iNorm14 = 14.0         / denom;
+    double iNorm15 = 15.0         / denom;
+
+    double o0  = A2curve(iNorm0);
+    double o1  = A2curve(iNorm1);
+    double o2  = A2curve(iNorm2);
+    double o3  = A2curve(iNorm3);
+    double o4  = A2curve(iNorm4);
+    double o5  = A2curve(iNorm5);
+    double o6  = A2curve(iNorm6);
+    double o7  = A2curve(iNorm7);
+    double o8  = A2curve(iNorm8);
+    double o9  = A2curve(iNorm9);
+    double o10 = A2curve(iNorm10);
+    double o11 = A2curve(iNorm11);
+    double o12 = A2curve(iNorm12);
+    double o13 = A2curve(iNorm13);
+    double o14 = A2curve(iNorm14);
+    double o15 = A2curve(iNorm15);
+
+    double amt = maxStart * densityPositionSpreadRange * d;
+    basePos1  += o0  * amt;
+    basePos2  += o1  * amt;
+    basePos3  += o2  * amt;
+    basePos4  += o3  * amt;
+    basePos5  += o4  * amt;
+    basePos6  += o5  * amt;
+    basePos7  += o6  * amt;
+    basePos8  += o7  * amt;
+    basePos9  += o8  * amt;
+    basePos10 += o9  * amt;
+    basePos11 += o10 * amt;
+    basePos12 += o11 * amt;
+    basePos13 += o12 * amt;
+    basePos14 += o13 * amt;
+    basePos15 += o14 * amt;
+    basePos16 += o15 * amt;
+}
+// (Spray mode removed)
+
 
 // --- Morph calculation (shared by all grains) ---
 int baseIndex = 0;
@@ -1126,17 +822,74 @@ double frac = 0.0;
 
 if (scrubBlend > 0.5)
 {
-    double pos = density * (double)(gActive - 1);
+    double pos = density * (double)(g - 1);
 
     if (pos < 0.0) pos = 0.0;
-    if (pos > (double)(gActive - 1)) pos = (double)(gActive - 1);
+    if (pos > (double)(g - 1)) pos = (double)(g - 1);
 
     baseIndex = (int)Math.floor(pos);
     frac = pos - (double)baseIndex;
 }
 
-// Density is reserved for grain weighting / crossfade only.
-double spreadNorm = 1.0;
+// Apply morph gains directly to raw grain weights so all later
+// per-grain weight assignments inherit the same blend behavior.
+if (!isStackMode)
+{
+    int idxA = baseIndex;
+    int idxB = baseIndex + 1;
+    if (idxA < 0) idxA = 0;
+    if (idxA > g - 1) idxA = g - 1;
+    if (idxB > g - 1) idxB = g - 1;
+
+    // Equal-power blend between adjacent active grains.
+    double t = clamp01(frac);
+    double gA = Math.cos(0.5 * Math.PI * t);
+    double gB = Math.sin(0.5 * Math.PI * t);
+
+    if (g <= 1)
+    {
+        idxA = 0;
+        idxB = 0;
+        gA = 1.0;
+        gB = 0.0;
+    }
+
+    double m1  = ((idxA == 0)  ? gA : 0.0) + ((idxB == 0)  ? gB : 0.0);
+    double m2  = ((idxA == 1)  ? gA : 0.0) + ((idxB == 1)  ? gB : 0.0);
+    double m3  = ((idxA == 2)  ? gA : 0.0) + ((idxB == 2)  ? gB : 0.0);
+    double m4  = ((idxA == 3)  ? gA : 0.0) + ((idxB == 3)  ? gB : 0.0);
+    double m5  = ((idxA == 4)  ? gA : 0.0) + ((idxB == 4)  ? gB : 0.0);
+    double m6  = ((idxA == 5)  ? gA : 0.0) + ((idxB == 5)  ? gB : 0.0);
+    double m7  = ((idxA == 6)  ? gA : 0.0) + ((idxB == 6)  ? gB : 0.0);
+    double m8  = ((idxA == 7)  ? gA : 0.0) + ((idxB == 7)  ? gB : 0.0);
+    double m9  = ((idxA == 8)  ? gA : 0.0) + ((idxB == 8)  ? gB : 0.0);
+    double m10 = ((idxA == 9)  ? gA : 0.0) + ((idxB == 9)  ? gB : 0.0);
+    double m11 = ((idxA == 10) ? gA : 0.0) + ((idxB == 10) ? gB : 0.0);
+    double m12 = ((idxA == 11) ? gA : 0.0) + ((idxB == 11) ? gB : 0.0);
+    double m13 = ((idxA == 12) ? gA : 0.0) + ((idxB == 12) ? gB : 0.0);
+    double m14 = ((idxA == 13) ? gA : 0.0) + ((idxB == 13) ? gB : 0.0);
+    double m15 = ((idxA == 14) ? gA : 0.0) + ((idxB == 14) ? gB : 0.0);
+    double m16 = ((idxA == 15) ? gA : 0.0) + ((idxB == 15) ? gB : 0.0);
+
+    w_raw1  *= m1;
+    w_raw2  *= m2;
+    w_raw3  *= m3;
+    w_raw4  *= m4;
+    w_raw5  *= m5;
+    w_raw6  *= m6;
+    w_raw7  *= m7;
+    w_raw8  *= m8;
+    w_raw9  *= m9;
+    w_raw10 *= m10;
+    w_raw11 *= m11;
+    w_raw12 *= m12;
+    w_raw13 *= m13;
+    w_raw14 *= m14;
+    w_raw15 *= m15;
+    w_raw16 *= m16;
+}
+
+double spreadNorm = isStackMode ? 1.0 : density;
 
 
 double Lsum = 0.0;
@@ -1145,86 +898,824 @@ double Rsum = 0.0;
 double dir = (reverse > 0.5) ? -1.0 : 1.0;
 bool lockStartOnWrap = true;
 
-for (int i = 0; i < gActive; ++i)
+// ============================
+// GRAIN 1 (Hybrid Mode C)
+// ============================
+
+weight1  = w_raw1  * wnorm;
+
+// Selected scrub source
+double s1 = (scrubState == 1 ? scrubVal1 : scrubSmoothed);
+
+// Final base position (density-spread applied above)
+double base1 = basePos1;
+
+if (!v.schedActive)
 {
-    double weightNRaw = getGrainWeight(i, gActive, isStackMode);
-    if (!isStackMode)
-    {
-        int idxA = baseIndex;
-        int idxB = baseIndex + 1;
-        if (idxA < 0) idxA = 0;
-        if (idxA > gActive - 1) idxA = gActive - 1;
-        if (idxB > gActive - 1) idxB = gActive - 1;
-        double t = clamp01(frac);
-        double gA = Math.cos(0.5 * Math.PI * t);
-        double gB = Math.sin(0.5 * Math.PI * t);
-        double mN = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
-        weightNRaw *= mN;
-    }
-
-    double weightN = weightNRaw * wnorm;
-    if (weightN <= 0.0)
-        continue;
-
-    double baseN = scrubBase;
-    if (scrubState == 1)
-    {
-        double msN = quantiseScrub(multiScrubByIndex(i, gActive), audioData);
-        if (msN < 0.0) msN += 1.0;
-        if (msN > 1.0) msN -= 1.0;
-        baseN = msN * maxStart;
-    }
-    baseN += phaseScatterStartOffsetSamples(i, scrub, maxStart);
-
-    bool activeN = getGrainActive(v, i);
-    double phaseN = getGrainPhase(v, i);
-    double startN = getGrainStart(v, i);
-    if (!activeN)
-    {
-        activeN = true;
-        phaseN = 0.0;
-        startN = baseN;
-    }
-
-    double detuneSeedN = 0.77 + (double)(i + 1) * 1.31;
-    double harmonicTargetN = (double)(i + 1);
-    double grainPitchMulN = getPitchModeMul(pitchState, spreadNorm, detuneSeedN, harmonicTargetN);
-    double phaseIncN = v.delta * grainPitchMulN * dir;
-    phaseN += phaseIncN;
-
-    if (phaseN >= grainSize)
-    {
-        phaseN -= grainSize;
-        if (lockStartOnWrap)
-            startN = baseN;
-    }
-    if (phaseN < 0.0)
-    {
-        phaseN += grainSize;
-        if (lockStartOnWrap)
-            startN = baseN;
-    }
-
-    double posN = startN + phaseN;
-    if (posN < 0.0) posN = 0.0;
-    if (posN >= audioData.numSamples - 1.0)
-        posN = audioData.numSamples - 2.0;
-
-    int iN = (int)posN;
-    double fN = posN - (double)iN;
-    double wN = morphedWindow(cloudWindowPhase(phaseN / grainSize, i));
-    double monoLN = (1.0 - fN) * sample[0][iN] + fN * sample[0][iN + 1];
-    double monoRN = (1.0 - fN) * sample[1][iN] + fN * sample[1][iN + 1];
-
-    double normPanN = (((double)i - center) * invDenom);
-    double panN = panSpread * normPanN * 2.0;
-    Lsum += monoLN * wN * (0.5 * (1.0 - panN)) * weightN;
-    Rsum += monoRN * wN * (0.5 * (1.0 + panN)) * weightN;
-
-    setGrainActive(v, i, activeN);
-    setGrainPhase(v, i, phaseN);
-    setGrainStart(v, i, startN);
+    v.schedActive = true;
+    v.schedPhase = 0.0;
+    v.schedStart = base1;
 }
+
+// pitch multiplier (Hybrid keeps your detune seed 0.77)
+double grainPitchMul1 = getPitchModeMul(pitchState, spreadNorm, 0.77, 1.0);
+
+double phaseInc1 = v.delta * grainPitchMul1 * dir;
+
+// advance phase
+v.schedPhase += phaseInc1;
+
+// wrap handling
+if (v.schedPhase >= grainSize)
+{
+    v.schedPhase -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart = base1;
+}
+if (v.schedPhase < 0.0)
+{
+    v.schedPhase += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart = base1;
+}
+
+// absolute playback position
+double pos1 = v.schedStart + v.schedPhase;
+
+// bounds check
+if (pos1 < 0.0) pos1 = 0.0;
+if (pos1 >= audioData.numSamples - 1.0)
+    pos1 = audioData.numSamples - 2.0;
+
+int i1 = (int)pos1;
+double f1 = pos1 - (double)i1;
+
+// window
+double w1 = morphedWindow(
+    cloudWindowPhase(v.schedPhase / grainSize, 0)
+);
+
+// sample fetch
+double monoL1 = (1.0 - f1) * sample[0][i1] + f1 * sample[0][i1 + 1];
+double monoR1 = (1.0 - f1) * sample[1][i1] + f1 * sample[1][i1 + 1];
+
+// panning
+double normPan1 = ((0.0 - center) * invDenom);
+double pan1 = panSpread * normPan1 * 2.0;
+
+// pan into mix
+Lsum += monoL1 * w1 * (0.5 * (1.0 - pan1)) * weight1;
+Rsum += monoR1 * w1 * (0.5 * (1.0 + pan1)) * weight1;
+
+weight2  = w_raw2  * wnorm;
+double s2 = (scrubState == 1 ? scrubVal2 : scrubSmoothed);
+double base2 = basePos2;
+
+if (!v.schedActive2)
+{
+    v.schedActive2 = true;
+    v.schedPhase2 = 0.0;
+    v.schedStart2 = base2;
+}
+
+double grainPitchMul2 = getPitchModeMul(pitchState, spreadNorm, 1.91, 2.0);
+double phaseInc2 = v.delta * grainPitchMul2 * dir;
+
+v.schedPhase2 += phaseInc2;
+
+if (v.schedPhase2 >= grainSize)
+{
+    v.schedPhase2 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart2 = base2;
+}
+if (v.schedPhase2 < 0.0)
+{
+    v.schedPhase2 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart2 = base2;
+}
+
+double pos2 = v.schedStart2 + v.schedPhase2;
+if (pos2 < 0.0) pos2 = 0.0;
+if (pos2 >= audioData.numSamples - 1.0)
+    pos2 = audioData.numSamples - 2.0;
+
+int i2 = (int)pos2;
+double f2 = pos2 - (double)i2;
+
+double w2 = morphedWindow(
+    cloudWindowPhase(v.schedPhase2 / grainSize, 1)
+);
+
+double monoL2 = (1.0 - f2) * sample[0][i2] + f2 * sample[0][i2 + 1];
+double monoR2 = (1.0 - f2) * sample[1][i2] + f2 * sample[1][i2 + 1];
+
+double normPan2 = ((1.0 - center) * invDenom);
+double pan2 = panSpread * normPan2 * 2.0;
+
+Lsum += monoL2 * w2 * (0.5 * (1.0 - pan2)) * weight2;
+Rsum += monoR2 * w2 * (0.5 * (1.0 + pan2)) * weight2;
+
+weight3  = w_raw3  * wnorm;
+double s3 = (scrubState == 1 ? scrubVal3 : scrubSmoothed);
+double base3 = basePos3;
+
+if (!v.schedActive3)
+{
+    v.schedActive3 = true;
+    v.schedPhase3 = 0.0;
+    v.schedStart3 = base3;
+}
+
+double grainPitchMul3 = getPitchModeMul(pitchState, spreadNorm, 2.43, 3.0);
+double phaseInc3 = v.delta * grainPitchMul3 * dir;
+
+v.schedPhase3 += phaseInc3;
+
+if (v.schedPhase3 >= grainSize)
+{
+    v.schedPhase3 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart3 = base3;
+}
+if (v.schedPhase3 < 0.0)
+{
+    v.schedPhase3 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart3 = base3;
+}
+
+double pos3 = v.schedStart3 + v.schedPhase3;
+if (pos3 < 0.0) pos3 = 0.0;
+if (pos3 >= audioData.numSamples - 1.0)
+    pos3 = audioData.numSamples - 2.0;
+
+int i3 = (int)pos3;
+double f3 = pos3 - (double)i3;
+
+double w3 = morphedWindow(
+    cloudWindowPhase(v.schedPhase3 / grainSize, 2)
+);
+
+double monoL3 = (1.0 - f3) * sample[0][i3] + f3 * sample[0][i3 + 1];
+double monoR3 = (1.0 - f3) * sample[1][i3] + f3 * sample[1][i3 + 1];
+
+double normPan3 = ((2.0 - center) * invDenom);
+double pan3 = panSpread * normPan3 * 2.0;
+
+Lsum += monoL3 * w3 * (0.5 * (1.0 - pan3)) * weight3;
+Rsum += monoR3 * w3 * (0.5 * (1.0 + pan3)) * weight3;
+
+weight4  = w_raw4  * wnorm;
+double s4 = (scrubState == 1 ? scrubVal4 : scrubSmoothed);
+double base4 = basePos4;
+
+if (!v.schedActive4)
+{
+    v.schedActive4 = true;
+    v.schedPhase4 = 0.0;
+    v.schedStart4 = base4;
+}
+
+double grainPitchMul4 = getPitchModeMul(pitchState, spreadNorm, 3.17, 4.0);
+double phaseInc4 = v.delta * grainPitchMul4 * dir;
+
+v.schedPhase4 += phaseInc4;
+
+if (v.schedPhase4 >= grainSize)
+{
+    v.schedPhase4 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart4 = base4;
+}
+if (v.schedPhase4 < 0.0)
+{
+    v.schedPhase4 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart4 = base4;
+}
+
+double pos4 = v.schedStart4 + v.schedPhase4;
+if (pos4 < 0.0) pos4 = 0.0;
+if (pos4 >= audioData.numSamples - 1.0)
+    pos4 = audioData.numSamples - 2.0;
+
+int i4 = (int)pos4;
+double f4 = pos4 - (double)i4;
+
+double w4 = morphedWindow(
+    cloudWindowPhase(v.schedPhase4 / grainSize, 3)
+);
+
+double monoL4 = (1.0 - f4) * sample[0][i4] + f4 * sample[0][i4 + 1];
+double monoR4 = (1.0 - f4) * sample[1][i4] + f4 * sample[1][i4 + 1];
+
+double normPan4 = ((3.0 - center) * invDenom);
+double pan4 = panSpread * normPan4 * 2.0;
+
+Lsum += monoL4 * w4 * (0.5 * (1.0 - pan4)) * weight4;
+Rsum += monoR4 * w4 * (0.5 * (1.0 + pan4)) * weight4;
+
+weight5  = w_raw5  * wnorm;
+double s5 = (scrubState == 1 ? scrubVal5 : scrubSmoothed);
+double base5 = basePos5;
+
+if (!v.schedActive5)
+{
+    v.schedActive5 = true;
+    v.schedPhase5 = 0.0;
+    v.schedStart5 = base5;
+}
+
+double grainPitchMul5 = getPitchModeMul(pitchState, spreadNorm, 4.03, 5.0);
+double phaseInc5 = v.delta * grainPitchMul5 * dir;
+
+v.schedPhase5 += phaseInc5;
+
+if (v.schedPhase5 >= grainSize)
+{
+    v.schedPhase5 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart5 = base5;
+}
+if (v.schedPhase5 < 0.0)
+{
+    v.schedPhase5 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart5 = base5;
+}
+
+double pos5 = v.schedStart5 + v.schedPhase5;
+if (pos5 < 0.0) pos5 = 0.0;
+if (pos5 >= audioData.numSamples - 1.0)
+    pos5 = audioData.numSamples - 2.0;
+
+int i5 = (int)pos5;
+double f5 = pos5 - (double)i5;
+
+double w5 = morphedWindow(
+    cloudWindowPhase(v.schedPhase5 / grainSize, 4)
+);
+
+double monoL5 = (1.0 - f5) * sample[0][i5] + f5 * sample[0][i5 + 1];
+double monoR5 = (1.0 - f5) * sample[1][i5] + f5 * sample[1][i5 + 1];
+
+double normPan5 = ((4.0 - center) * invDenom);
+double pan5 = panSpread * normPan5 * 2.0;
+
+Lsum += monoL5 * w5 * (0.5 * (1.0 - pan5)) * weight5;
+Rsum += monoR5 * w5 * (0.5 * (1.0 + pan5)) * weight5;
+
+weight6  = w_raw6  * wnorm;
+double s6 = (scrubState == 1 ? scrubVal6 : scrubSmoothed);
+double base6 = basePos6;
+
+if (!v.schedActive6)
+{
+    v.schedActive6 = true;
+    v.schedPhase6 = 0.0;
+    v.schedStart6 = base6;
+}
+
+double grainPitchMul6 = getPitchModeMul(pitchState, spreadNorm, 5.11, 6.0);
+double phaseInc6 = v.delta * grainPitchMul6 * dir;
+
+v.schedPhase6 += phaseInc6;
+
+if (v.schedPhase6 >= grainSize)
+{
+    v.schedPhase6 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart6 = base6;
+}
+if (v.schedPhase6 < 0.0)
+{
+    v.schedPhase6 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart6 = base6;
+}
+
+double pos6 = v.schedStart6 + v.schedPhase6;
+if (pos6 < 0.0) pos6 = 0.0;
+if (pos6 >= audioData.numSamples - 1.0)
+    pos6 = audioData.numSamples - 2.0;
+
+int i6 = (int)pos6;
+double f6 = pos6 - (double)i6;
+
+double w6 = morphedWindow(
+    cloudWindowPhase(v.schedPhase6 / grainSize, 5)
+);
+
+double monoL6 = (1.0 - f6) * sample[0][i6] + f6 * sample[0][i6 + 1];
+double monoR6 = (1.0 - f6) * sample[1][i6] + f6 * sample[1][i6 + 1];
+
+double normPan6 = ((5.0 - center) * invDenom);
+double pan6 = panSpread * normPan6 * 2.0;
+
+Lsum += monoL6 * w6 * (0.5 * (1.0 - pan6)) * weight6;
+Rsum += monoR6 * w6 * (0.5 * (1.0 + pan6)) * weight6;
+
+weight7  = w_raw7  * wnorm;
+double s7 = (scrubState == 1 ? scrubVal7 : scrubSmoothed);
+double base7 = basePos7;
+
+if (!v.schedActive7)
+{
+    v.schedActive7 = true;
+    v.schedPhase7 = 0.0;
+    v.schedStart7 = base7;
+}
+
+double grainPitchMul7 = getPitchModeMul(pitchState, spreadNorm, 6.41, 7.0);
+double phaseInc7 = v.delta * grainPitchMul7 * dir;
+
+v.schedPhase7 += phaseInc7;
+
+if (v.schedPhase7 >= grainSize)
+{
+    v.schedPhase7 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart7 = base7;
+}
+if (v.schedPhase7 < 0.0)
+{
+    v.schedPhase7 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart7 = base7;
+}
+
+double pos7 = v.schedStart7 + v.schedPhase7;
+if (pos7 < 0.0) pos7 = 0.0;
+if (pos7 >= audioData.numSamples - 1.0)
+    pos7 = audioData.numSamples - 2.0;
+
+int i7 = (int)pos7;
+double f7 = pos7 - (double)i7;
+
+double w7 = morphedWindow(
+    cloudWindowPhase(v.schedPhase7 / grainSize, 6)
+);
+
+double monoL7 = (1.0 - f7) * sample[0][i7] + f7 * sample[0][i7 + 1];
+double monoR7 = (1.0 - f7) * sample[1][i7] + f7 * sample[1][i7 + 1];
+
+double normPan7 = ((6.0 - center) * invDenom);
+double pan7 = panSpread * normPan7 * 2.0;
+
+Lsum += monoL7 * w7 * (0.5 * (1.0 - pan7)) * weight7;
+Rsum += monoR7 * w7 * (0.5 * (1.0 + pan7)) * weight7;
+
+weight8  = w_raw8  * wnorm;
+double s8 = (scrubState == 1 ? scrubVal8 : scrubSmoothed);
+double base8 = basePos8;
+
+if (!v.schedActive8)
+{
+    v.schedActive8 = true;
+    v.schedPhase8 = 0.0;
+    v.schedStart8 = base8;
+}
+
+double grainPitchMul8 = getPitchModeMul(pitchState, spreadNorm, 7.73, 8.0);
+double phaseInc8 = v.delta * grainPitchMul8 * dir;
+
+v.schedPhase8 += phaseInc8;
+
+if (v.schedPhase8 >= grainSize)
+{
+    v.schedPhase8 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart8 = base8;
+}
+if (v.schedPhase8 < 0.0)
+{
+    v.schedPhase8 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart8 = base8;
+}
+
+double pos8 = v.schedStart8 + v.schedPhase8;
+if (pos8 < 0.0) pos8 = 0.0;
+if (pos8 >= audioData.numSamples - 1.0)
+    pos8 = audioData.numSamples - 2.0;
+
+int i8 = (int)pos8;
+double f8 = pos8 - (double)i8;
+
+double w8 = morphedWindow(
+    cloudWindowPhase(v.schedPhase8 / grainSize, 7)
+);
+
+double monoL8 = (1.0 - f8) * sample[0][i8] + f8 * sample[0][i8 + 1];
+double monoR8 = (1.0 - f8) * sample[1][i8] + f8 * sample[1][i8 + 1];
+
+double normPan8 = ((7.0 - center) * invDenom);
+double pan8 = panSpread * normPan8 * 2.0;
+
+Lsum += monoL8 * w8 * (0.5 * (1.0 - pan8)) * weight8;
+Rsum += monoR8 * w8 * (0.5 * (1.0 + pan8)) * weight8;
+
+weight9  = w_raw9  * wnorm;
+double s9 = (scrubState == 1 ? scrubVal9 : scrubSmoothed);
+double base9 = basePos9;
+
+if (!v.schedActive9)
+{
+    v.schedActive9 = true;
+    v.schedPhase9 = 0.0;
+    v.schedStart9 = base9;
+}
+
+double grainPitchMul9 = getPitchModeMul(pitchState, spreadNorm, 8.97, 9.0);
+double phaseInc9 = v.delta * grainPitchMul9 * dir;
+
+v.schedPhase9 += phaseInc9;
+
+if (v.schedPhase9 >= grainSize)
+{
+    v.schedPhase9 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart9 = base9;
+}
+if (v.schedPhase9 < 0.0)
+{
+    v.schedPhase9 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart9 = base9;
+}
+
+double pos9 = v.schedStart9 + v.schedPhase9;
+if (pos9 < 0.0) pos9 = 0.0;
+if (pos9 >= audioData.numSamples - 1.0)
+    pos9 = audioData.numSamples - 2.0;
+
+int i9 = (int)pos9;
+double f9 = pos9 - (double)i9;
+
+double w9 = morphedWindow(
+    cloudWindowPhase(v.schedPhase9 / grainSize, 8)
+);
+
+double monoL9 = (1.0 - f9) * sample[0][i9] + f9 * sample[0][i9 + 1];
+double monoR9 = (1.0 - f9) * sample[1][i9] + f9 * sample[1][i9 + 1];
+
+double normPan9 = ((8.0 - center) * invDenom);
+double pan9 = panSpread * normPan9 * 2.0;
+
+Lsum += monoL9 * w9 * (0.5 * (1.0 - pan9)) * weight9;
+Rsum += monoR9 * w9 * (0.5 * (1.0 + pan9)) * weight9;
+
+weight10  = w_raw10  * wnorm;
+double s10 = (scrubState == 1 ? scrubVal10 : scrubSmoothed);
+double base10 = basePos10;
+
+if (!v.schedActive10)
+{
+    v.schedActive10 = true;
+    v.schedPhase10 = 0.0;
+    v.schedStart10 = base10;
+}
+
+double grainPitchMul10 = getPitchModeMul(pitchState, spreadNorm, 9.31, 10.0);
+double phaseInc10 = v.delta * grainPitchMul10 * dir;
+
+v.schedPhase10 += phaseInc10;
+
+if (v.schedPhase10 >= grainSize)
+{
+    v.schedPhase10 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart10 = base10;
+}
+if (v.schedPhase10 < 0.0)
+{
+    v.schedPhase10 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart10 = base10;
+}
+
+double pos10 = v.schedStart10 + v.schedPhase10;
+if (pos10 < 0.0) pos10 = 0.0;
+if (pos10 >= audioData.numSamples - 1.0)
+    pos10 = audioData.numSamples - 2.0;
+
+int i10 = (int)pos10;
+double f10 = pos10 - (double)i10;
+
+double w10 = morphedWindow(
+    cloudWindowPhase(v.schedPhase10 / grainSize, 9)
+);
+
+double monoL10 = (1.0 - f10) * sample[0][i10] + f10 * sample[0][i10 + 1];
+double monoR10 = (1.0 - f10) * sample[1][i10] + f10 * sample[1][i10 + 1];
+
+double normPan10 = ((9.0 - center) * invDenom);
+double pan10 = panSpread * normPan10 * 2.0;
+
+Lsum += monoL10 * w10 * (0.5 * (1.0 - pan10)) * weight10;
+Rsum += monoR10 * w10 * (0.5 * (1.0 + pan10)) * weight10;
+
+weight11  = w_raw11  * wnorm;
+double s11 = (scrubState == 1 ? scrubVal11 : scrubSmoothed);
+double base11 = basePos11;
+
+if (!v.schedActive11)
+{
+    v.schedActive11 = true;
+    v.schedPhase11 = 0.0;
+    v.schedStart11 = base11;
+}
+
+double grainPitchMul11 = getPitchModeMul(pitchState, spreadNorm, 10.62, 11.0);
+double phaseInc11 = v.delta * grainPitchMul11 * dir;
+
+v.schedPhase11 += phaseInc11;
+
+if (v.schedPhase11 >= grainSize)
+{
+    v.schedPhase11 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart11 = base11;
+}
+if (v.schedPhase11 < 0.0)
+{
+    v.schedPhase11 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart11 = base11;
+}
+
+double pos11 = v.schedStart11 + v.schedPhase11;
+if (pos11 < 0.0) pos11 = 0.0;
+if (pos11 >= audioData.numSamples - 1.0)
+    pos11 = audioData.numSamples - 2.0;
+
+int i11 = (int)pos11;
+double f11 = pos11 - (double)i11;
+
+double w11 = morphedWindow(
+    cloudWindowPhase(v.schedPhase11 / grainSize, 10)
+);
+
+double monoL11 = (1.0 - f11) * sample[0][i11] + f11 * sample[0][i11 + 1];
+double monoR11 = (1.0 - f11) * sample[1][i11] + f11 * sample[1][i11 + 1];
+
+double normPan11 = ((10.0 - center) * invDenom);
+double pan11 = panSpread * normPan11 * 2.0;
+
+Lsum += monoL11 * w11 * (0.5 * (1.0 - pan11)) * weight11;
+Rsum += monoR11 * w11 * (0.5 * (1.0 + pan11)) * weight11;
+
+weight12  = w_raw12  * wnorm;
+double s12 = (scrubState == 1 ? scrubVal12 : scrubSmoothed);
+double base12 = basePos12;
+
+if (!v.schedActive12)
+{
+    v.schedActive12 = true;
+    v.schedPhase12 = 0.0;
+    v.schedStart12 = base12;
+}
+
+double grainPitchMul12 = getPitchModeMul(pitchState, spreadNorm, 11.91, 12.0);
+double phaseInc12 = v.delta * grainPitchMul12 * dir;
+
+v.schedPhase12 += phaseInc12;
+
+if (v.schedPhase12 >= grainSize)
+{
+    v.schedPhase12 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart12 = base12;
+}
+if (v.schedPhase12 < 0.0)
+{
+    v.schedPhase12 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart12 = base12;
+}
+
+double pos12 = v.schedStart12 + v.schedPhase12;
+if (pos12 < 0.0) pos12 = 0.0;
+if (pos12 >= audioData.numSamples - 1.0)
+    pos12 = audioData.numSamples - 2.0;
+
+int i12 = (int)pos12;
+double f12 = pos12 - (double)i12;
+
+double w12 = morphedWindow(
+    cloudWindowPhase(v.schedPhase12 / grainSize, 11)
+);
+
+double monoL12 = (1.0 - f12) * sample[0][i12] + f12 * sample[0][i12 + 1];
+double monoR12 = (1.0 - f12) * sample[1][i12] + f12 * sample[1][i12 + 1];
+
+double normPan12 = ((11.0 - center) * invDenom);
+double pan12 = panSpread * normPan12 * 2.0;
+
+Lsum += monoL12 * w12 * (0.5 * (1.0 - pan12)) * weight12;
+Rsum += monoR12 * w12 * (0.5 * (1.0 + pan12)) * weight12;
+
+weight13  = w_raw13  * wnorm;
+double s13 = (scrubState == 1 ? scrubVal13 : scrubSmoothed);
+double base13 = basePos13;
+
+if (!v.schedActive13)
+{
+    v.schedActive13 = true;
+    v.schedPhase13 = 0.0;
+    v.schedStart13 = base13;
+}
+
+double grainPitchMul13 = getPitchModeMul(pitchState, spreadNorm, 12.27, 13.0);
+double phaseInc13 = v.delta * grainPitchMul13 * dir;
+
+v.schedPhase13 += phaseInc13;
+
+if (v.schedPhase13 >= grainSize)
+{
+    v.schedPhase13 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart13 = base13;
+}
+if (v.schedPhase13 < 0.0)
+{
+    v.schedPhase13 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart13 = base13;
+}
+
+double pos13 = v.schedStart13 + v.schedPhase13;
+if (pos13 < 0.0) pos13 = 0.0;
+if (pos13 >= audioData.numSamples - 1.0)
+    pos13 = audioData.numSamples - 2.0;
+
+int i13 = (int)pos13;
+double f13 = pos13 - (double)i13;
+
+double w13 = morphedWindow(
+    cloudWindowPhase(v.schedPhase13 / grainSize, 12)
+);
+
+double monoL13 = (1.0 - f13) * sample[0][i13] + f13 * sample[0][i13 + 1];
+double monoR13 = (1.0 - f13) * sample[1][i13] + f13 * sample[1][i13 + 1];
+
+double normPan13 = ((12.0 - center) * invDenom);
+double pan13 = panSpread * normPan13 * 2.0;
+
+Lsum += monoL13 * w13 * (0.5 * (1.0 - pan13)) * weight13;
+Rsum += monoR13 * w13 * (0.5 * (1.0 + pan13)) * weight13;
+
+weight14  = w_raw14  * wnorm;
+double s14 = (scrubState == 1 ? scrubVal14 : scrubSmoothed);
+double base14 = basePos14;
+
+if (!v.schedActive14)
+{
+    v.schedActive14 = true;
+    v.schedPhase14 = 0.0;
+    v.schedStart14 = base14;
+}
+
+double grainPitchMul14 = getPitchModeMul(pitchState, spreadNorm, 13.44, 14.0);
+double phaseInc14 = v.delta * grainPitchMul14 * dir;
+
+v.schedPhase14 += phaseInc14;
+
+if (v.schedPhase14 >= grainSize)
+{
+    v.schedPhase14 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart14 = base14;
+}
+if (v.schedPhase14 < 0.0)
+{
+    v.schedPhase14 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart14 = base14;
+}
+
+double pos14 = v.schedStart14 + v.schedPhase14;
+if (pos14 < 0.0) pos14 = 0.0;
+if (pos14 >= audioData.numSamples - 1.0)
+    pos14 = audioData.numSamples - 2.0;
+
+int i14 = (int)pos14;
+double f14 = pos14 - (double)i14;
+
+double w14 = morphedWindow(
+    cloudWindowPhase(v.schedPhase14 / grainSize, 13)
+);
+
+double monoL14 = (1.0 - f14) * sample[0][i14] + f14 * sample[0][i14 + 1];
+double monoR14 = (1.0 - f14) * sample[1][i14] + f14 * sample[1][i14 + 1];
+
+double normPan14 = ((13.0 - center) * invDenom);
+double pan14 = panSpread * normPan14 * 2.0;
+
+Lsum += monoL14 * w14 * (0.5 * (1.0 - pan14)) * weight14;
+Rsum += monoR14 * w14 * (0.5 * (1.0 + pan14)) * weight14;
+
+weight15  = w_raw15  * wnorm;
+double s15 = (scrubState == 1 ? scrubVal15 : scrubSmoothed);
+double base15 = basePos15;
+
+if (!v.schedActive15)
+{
+    v.schedActive15 = true;
+    v.schedPhase15 = 0.0;
+    v.schedStart15 = base15;
+}
+
+double grainPitchMul15 = getPitchModeMul(pitchState, spreadNorm, 14.72, 15.0);
+double phaseInc15 = v.delta * grainPitchMul15 * dir;
+
+v.schedPhase15 += phaseInc15;
+
+if (v.schedPhase15 >= grainSize)
+{
+    v.schedPhase15 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart15 = base15;
+}
+if (v.schedPhase15 < 0.0)
+{
+    v.schedPhase15 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart15 = base15;
+}
+
+double pos15 = v.schedStart15 + v.schedPhase15;
+if (pos15 < 0.0) pos15 = 0.0;
+if (pos15 >= audioData.numSamples - 1.0)
+    pos15 = audioData.numSamples - 2.0;
+
+int i15 = (int)pos15;
+double f15 = pos15 - (double)i15;
+
+double w15 = morphedWindow(
+    cloudWindowPhase(v.schedPhase15 / grainSize, 14)
+);
+
+double monoL15 = (1.0 - f15) * sample[0][i15] + f15 * sample[0][i15 + 1];
+double monoR15 = (1.0 - f15) * sample[1][i15] + f15 * sample[1][i15 + 1];
+
+double normPan15 = ((14.0 - center) * invDenom);
+double pan15 = panSpread * normPan15 * 2.0;
+
+Lsum += monoL15 * w15 * (0.5 * (1.0 - pan15)) * weight15;
+Rsum += monoR15 * w15 * (0.5 * (1.0 + pan15)) * weight15;
+
+weight16  = w_raw16  * wnorm;
+double s16 = (scrubState == 1 ? scrubVal16 : scrubSmoothed);
+double base16 = basePos16;
+
+if (!v.schedActive16)
+{
+    v.schedActive16 = true;
+    v.schedPhase16 = 0.0;
+    v.schedStart16 = base16;
+}
+
+double grainPitchMul16 = getPitchModeMul(pitchState, spreadNorm, 15.91, 16.0);
+double phaseInc16 = v.delta * grainPitchMul16 * dir;
+
+v.schedPhase16 += phaseInc16;
+
+if (v.schedPhase16 >= grainSize)
+{
+    v.schedPhase16 -= grainSize;
+    if (lockStartOnWrap)
+        v.schedStart16 = base16;
+}
+if (v.schedPhase16 < 0.0)
+{
+    v.schedPhase16 += grainSize;
+    if (lockStartOnWrap)
+        v.schedStart16 = base16;
+}
+
+double pos16 = v.schedStart16 + v.schedPhase16;
+if (pos16 < 0.0) pos16 = 0.0;
+if (pos16 >= audioData.numSamples - 1.0)
+    pos16 = audioData.numSamples - 2.0;
+
+int i16 = (int)pos16;
+double f16 = pos16 - (double)i16;
+
+double w16 = morphedWindow(
+    cloudWindowPhase(v.schedPhase16 / grainSize, 15)
+);
+
+double monoL16 = (1.0 - f16) * sample[0][i16] + f16 * sample[0][i16 + 1];
+double monoR16 = (1.0 - f16) * sample[1][i16] + f16 * sample[1][i16 + 1];
+
+double normPan16 = ((15.0 - center) * invDenom);
+double pan16 = panSpread * normPan16 * 2.0;
+
+Lsum += monoL16 * w16 * (0.5 * (1.0 - pan16)) * weight16;
+Rsum += monoR16 * w16 * (0.5 * (1.0 + pan16)) * weight16;
 
 
 
@@ -1234,19 +1725,43 @@ for (int i = 0; i < gActive; ++i)
 // ----------------------------
 
 double rmsNorm = 1.0;
-if (isStackMode && gActive > 1)
-    rmsNorm = 1.0 / Math.sqrt((double)gActive);
+if (isStackMode && g > 1)
+    rmsNorm = 1.0 / Math.sqrt((double)g);
 
 Lsum *= rmsNorm;
 Rsum *= rmsNorm;
 
-// Write mixed grain output to the current stereo frame.
+
+
+// ----------------------------
+// DENSITY-DRIVEN ALLPASS DIFFUSION
+// Keeps brightness but smears transients / grain edges.
+// ----------------------------
+double diffusion = (isStackMode) ? clamp01(density) : 0.0;
+if (diffusion > 0.0001)
+{
+    // Conservative coefficients for stability and subtle buildup.
+    double a1 = 0.08 + 0.62 * diffusion;
+    double a2 = 0.04 + 0.47 * diffusion;
+
+    double yL1 = (0.0 - a1) * Lsum + v.ap1L;
+    v.ap1L = Lsum + a1 * yL1;
+    double yR1 = (0.0 - a1) * Rsum + v.ap1R;
+    v.ap1R = Rsum + a1 * yR1;
+
+    double yL2 = (0.0 - a2) * yL1 + v.ap2L;
+    v.ap2L = yL1 + a2 * yL2;
+    double yR2 = (0.0 - a2) * yR1 + v.ap2R;
+    v.ap2R = yR1 + a2 * yR2;
+
+    double wet = 0.75 * diffusion;
+    double dry = 1.0 - wet;
+    Lsum = Lsum * dry + yL2 * wet;
+    Rsum = Rsum * dry + yR2 * wet;
+}
+
 fd[0] += (float)Lsum;
 fd[1] += (float)Rsum;
-
-
-
-
 }   // ← VERY IMPORTANT: close processInternal()
 // -----------------------------------------------------
 
@@ -1370,7 +1885,7 @@ void setExternalData(const ExternalData& ed, int index)
                           pitchSyncInput = v;
                       }     
      
-// 16 — maxGrains (1–32)
+// 16 — maxGrains (1–64)
 if (P == 8)
 {
     if (v < 1.0) v = 1.0;
@@ -1401,10 +1916,11 @@ if (P == 11)
     if (v > 1.0) v = 1.0;
     reverse = v;
 }
-// phaseScatter (raw samples)
+// phaseScatter (0–1)
 if (P == 12)
 {
     if (v < 0.0) v = 0.0;
+    if (v > 1.0) v = 1.0;
     phaseScatter = v;
 }
 if (P == 13) scrubB = v;
