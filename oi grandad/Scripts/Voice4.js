@@ -182,10 +182,7 @@ if(value == 1)
 	 	 	 	  {
 	 	 	 	 gran3.setAttribute(gran3.MaxGrains, 32);
 	 	 	 	 }	 
-	 	 	if(value == 4)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran3.setAttribute(gran3.MaxGrains, 64);
-	 	 		 	 	 	 }	  	 
+	 	 
 };
 
 

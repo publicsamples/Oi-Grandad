@@ -165,22 +165,22 @@ inline function onmaxGrains2Control(component, value)
 {
 if(value == 1)
 	  {
-	 gran1.setAttribute(gran1.MaxGrains, 8);
+	 gran1.setAttribute(gran1.MaxGrains, 4);
 	 }
 	 
 	 if(value == 2)
 	 	  {
-	 	 gran1.setAttribute(gran1.MaxGrains, 16);
+	 	 gran1.setAttribute(gran1.MaxGrains, 8);
 	 	 }
 	 	 
 	 	 if(value == 3)
 	 	 	  {
-	 	 	 gran1.setAttribute(gran1.MaxGrains, 32);
+	 	 	 gran1.setAttribute(gran1.MaxGrains, 16);
 	 	 	 }
 	 	 	 
 	 	 if(value == 4)
 	 	 	 	 	  {
-	 	 	 	 	 gran1.setAttribute(gran1.MaxGrains, 64);
+	 	 	 	 	 gran1.setAttribute(gran1.MaxGrains, 32);
 	 	 	 	 	 }		 	 	 	 
 };
 

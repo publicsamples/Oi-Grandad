@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Parameters>
+  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="0.0" SkewFactor="1.0"
+             ID="pitch" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="scrub" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="panSpread" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="pitchMode" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="pitchSpread" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="noiseSineMix" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.5" DefaultValue="0.5"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="harmonicity" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.0" DefaultValue="0.0"/>
+  <Parameter MinValue="1.0" MaxValue="10.0" StepSize="1.0" SkewFactor="1.0"
+             ID="analysisWindow" TextToValueConverter="Undefined" Page=""
+             SubGroup="" Value="80.0" DefaultValue="80.0"/>
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
+             ID="freqLock" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="0.18" DefaultValue="0.18"/>
+  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" SkewFactor="1.0"
+             ID="partials" TextToValueConverter="Undefined" Page="" SubGroup=""
+             Value="12.0" DefaultValue="12.0"/>
+</Parameters>

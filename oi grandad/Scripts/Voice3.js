@@ -182,10 +182,7 @@ if(value == 1)
 	 	 	 	 	 	  {
 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 32);
 	 	 	 	 	 	 }
-	 	 	 if(value == 4)
-	 	 	 	 	 	 	 	 	  {
-	 	 	 	 	 	 	 	 	 gran2.setAttribute(gran2.MaxGrains, 64);
-	 	 	 	 	 	 	 	 	 }	 	 	 
+	 	  	 
 	 	 
 };
 

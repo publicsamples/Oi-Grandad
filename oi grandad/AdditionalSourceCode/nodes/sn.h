@@ -207,7 +207,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 {
 	SNEX_NODE(granular_player_stepquant_density_hybrid);
 	static const int NUM_CHANNELS = 2;
-	static const int MAX_GRAINS   = 32;
+	static const int MAX_GRAINS   = 16;
 	ExternalData audioData;
 	span<dyn<float>, NUM_CHANNELS> sample;
 	double sr = 0.0;
@@ -227,12 +227,14 @@ struct granular_player_stepquant_density_hybrid: public data::base
 	double pitchSpread = 0.0;     // 0..1 amount (modes 0/1)
 	double pitchSyncInput = 0.0; // raw external input for mode 2 (Hz or ms)
 	double pitchMode = 0.0;
-	double densityMorphSmoothed = 0.0;
-	double maxGrains = 4.0;     // 1–32
+	double maxGrains = 4.0;     // 1–16
 	double scrubMode = 0.0;     // 0 = normal, 1 = xfade
 	double scrubBlend = 0.0;    // 0–1 shaping
 	double reverse = 0.0;   // 0 = forward, 1 = reverse
-	double phaseScatter = 0.0;   // raw sample-domain scatter amount
+	double phaseScatter = 0.0;   // 0..1 per-grain envelope phase scatter
+	// Subtle density-linked grain start spread. Tweak this to taste.
+	// Final spread in samples = maxStart * densityPositionSpreadRange * density.
+	const double densityPositionSpreadRange = 0.3;
 	// -----------------------------------------------------
 	struct VoiceData
 	{
@@ -289,54 +291,6 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double schedPhase16 = 0.0;
 		double schedStart16 = 0.0;
 		bool   schedActive16 = false;
-		double schedPhase17 = 0.0;
-		double schedStart17 = 0.0;
-		bool   schedActive17 = false;
-		double schedPhase18 = 0.0;
-		double schedStart18 = 0.0;
-		bool   schedActive18 = false;
-		double schedPhase19 = 0.0;
-		double schedStart19 = 0.0;
-		bool   schedActive19 = false;
-		double schedPhase20 = 0.0;
-		double schedStart20 = 0.0;
-		bool   schedActive20 = false;
-		double schedPhase21 = 0.0;
-		double schedStart21 = 0.0;
-		bool   schedActive21 = false;
-		double schedPhase22 = 0.0;
-		double schedStart22 = 0.0;
-		bool   schedActive22 = false;
-		double schedPhase23 = 0.0;
-		double schedStart23 = 0.0;
-		bool   schedActive23 = false;
-		double schedPhase24 = 0.0;
-		double schedStart24 = 0.0;
-		bool   schedActive24 = false;
-		double schedPhase25 = 0.0;
-		double schedStart25 = 0.0;
-		bool   schedActive25 = false;
-		double schedPhase26 = 0.0;
-		double schedStart26 = 0.0;
-		bool   schedActive26 = false;
-		double schedPhase27 = 0.0;
-		double schedStart27 = 0.0;
-		bool   schedActive27 = false;
-		double schedPhase28 = 0.0;
-		double schedStart28 = 0.0;
-		bool   schedActive28 = false;
-		double schedPhase29 = 0.0;
-		double schedStart29 = 0.0;
-		bool   schedActive29 = false;
-		double schedPhase30 = 0.0;
-		double schedStart30 = 0.0;
-		bool   schedActive30 = false;
-		double schedPhase31 = 0.0;
-		double schedStart31 = 0.0;
-		bool   schedActive31 = false;
-		double schedPhase32 = 0.0;
-		double schedStart32 = 0.0;
-		bool   schedActive32 = false;
 		// Output diffusion state (allpass, per voice)
 		double ap1L = 0.0;
 		double ap1R = 0.0;
@@ -395,54 +349,6 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			schedPhase16 = 0.0;
 			schedStart16 = 0.0;
 			schedActive16 = false;
-			schedPhase17 = 0.0;
-			schedStart17 = 0.0;
-			schedActive17 = false;
-			schedPhase18 = 0.0;
-			schedStart18 = 0.0;
-			schedActive18 = false;
-			schedPhase19 = 0.0;
-			schedStart19 = 0.0;
-			schedActive19 = false;
-			schedPhase20 = 0.0;
-			schedStart20 = 0.0;
-			schedActive20 = false;
-			schedPhase21 = 0.0;
-			schedStart21 = 0.0;
-			schedActive21 = false;
-			schedPhase22 = 0.0;
-			schedStart22 = 0.0;
-			schedActive22 = false;
-			schedPhase23 = 0.0;
-			schedStart23 = 0.0;
-			schedActive23 = false;
-			schedPhase24 = 0.0;
-			schedStart24 = 0.0;
-			schedActive24 = false;
-			schedPhase25 = 0.0;
-			schedStart25 = 0.0;
-			schedActive25 = false;
-			schedPhase26 = 0.0;
-			schedStart26 = 0.0;
-			schedActive26 = false;
-			schedPhase27 = 0.0;
-			schedStart27 = 0.0;
-			schedActive27 = false;
-			schedPhase28 = 0.0;
-			schedStart28 = 0.0;
-			schedActive28 = false;
-			schedPhase29 = 0.0;
-			schedStart29 = 0.0;
-			schedActive29 = false;
-			schedPhase30 = 0.0;
-			schedStart30 = 0.0;
-			schedActive30 = false;
-			schedPhase31 = 0.0;
-			schedStart31 = 0.0;
-			schedActive31 = false;
-			schedPhase32 = 0.0;
-			schedStart32 = 0.0;
-			schedActive32 = false;
 			ap1L = 0.0;
 			ap1R = 0.0;
 			ap2L = 0.0;
@@ -455,132 +361,12 @@ struct granular_player_stepquant_density_hybrid: public data::base
 	{
 		sr = ps.sampleRate;
 		voiceData.prepare(ps);
-		densityMorphSmoothed = density;
-		if (densityMorphSmoothed < 0.0) densityMorphSmoothed = 0.0;
-			if (densityMorphSmoothed > 1.0) densityMorphSmoothed = 1.0;
-		}
+	}
 	void reset()
 	{
 		for (auto& v : voiceData)
 			v.reset();
-		densityMorphSmoothed = density;
-		if (densityMorphSmoothed < 0.0) densityMorphSmoothed = 0.0;
-			if (densityMorphSmoothed > 1.0) densityMorphSmoothed = 1.0;
-		}
-	inline double getTailPhase(const VoiceData& v, int i)
-	{
-		if (i == 16) return v.schedPhase17;
-			if (i == 17) return v.schedPhase18;
-			if (i == 18) return v.schedPhase19;
-			if (i == 19) return v.schedPhase20;
-			if (i == 20) return v.schedPhase21;
-			if (i == 21) return v.schedPhase22;
-			if (i == 22) return v.schedPhase23;
-			if (i == 23) return v.schedPhase24;
-			if (i == 24) return v.schedPhase25;
-			if (i == 25) return v.schedPhase26;
-			if (i == 26) return v.schedPhase27;
-			if (i == 27) return v.schedPhase28;
-			if (i == 28) return v.schedPhase29;
-			if (i == 29) return v.schedPhase30;
-			if (i == 30) return v.schedPhase31;
-			return v.schedPhase32;
 	}
-	inline void setTailPhase(VoiceData& v, int i, double x)
-	{
-		if (i == 16) v.schedPhase17 = x;
-			else if (i == 17) v.schedPhase18 = x;
-			else if (i == 18) v.schedPhase19 = x;
-			else if (i == 19) v.schedPhase20 = x;
-			else if (i == 20) v.schedPhase21 = x;
-			else if (i == 21) v.schedPhase22 = x;
-			else if (i == 22) v.schedPhase23 = x;
-			else if (i == 23) v.schedPhase24 = x;
-			else if (i == 24) v.schedPhase25 = x;
-			else if (i == 25) v.schedPhase26 = x;
-			else if (i == 26) v.schedPhase27 = x;
-			else if (i == 27) v.schedPhase28 = x;
-			else if (i == 28) v.schedPhase29 = x;
-			else if (i == 29) v.schedPhase30 = x;
-			else if (i == 30) v.schedPhase31 = x;
-			else v.schedPhase32 = x;
-		}
-	inline double getTailStart(const VoiceData& v, int i)
-	{
-		if (i == 16) return v.schedStart17;
-			if (i == 17) return v.schedStart18;
-			if (i == 18) return v.schedStart19;
-			if (i == 19) return v.schedStart20;
-			if (i == 20) return v.schedStart21;
-			if (i == 21) return v.schedStart22;
-			if (i == 22) return v.schedStart23;
-			if (i == 23) return v.schedStart24;
-			if (i == 24) return v.schedStart25;
-			if (i == 25) return v.schedStart26;
-			if (i == 26) return v.schedStart27;
-			if (i == 27) return v.schedStart28;
-			if (i == 28) return v.schedStart29;
-			if (i == 29) return v.schedStart30;
-			if (i == 30) return v.schedStart31;
-			return v.schedStart32;
-	}
-	inline void setTailStart(VoiceData& v, int i, double x)
-	{
-		if (i == 16) v.schedStart17 = x;
-			else if (i == 17) v.schedStart18 = x;
-			else if (i == 18) v.schedStart19 = x;
-			else if (i == 19) v.schedStart20 = x;
-			else if (i == 20) v.schedStart21 = x;
-			else if (i == 21) v.schedStart22 = x;
-			else if (i == 22) v.schedStart23 = x;
-			else if (i == 23) v.schedStart24 = x;
-			else if (i == 24) v.schedStart25 = x;
-			else if (i == 25) v.schedStart26 = x;
-			else if (i == 26) v.schedStart27 = x;
-			else if (i == 27) v.schedStart28 = x;
-			else if (i == 28) v.schedStart29 = x;
-			else if (i == 29) v.schedStart30 = x;
-			else if (i == 30) v.schedStart31 = x;
-			else v.schedStart32 = x;
-		}
-	inline bool getTailActive(const VoiceData& v, int i)
-	{
-		if (i == 16) return v.schedActive17;
-			if (i == 17) return v.schedActive18;
-			if (i == 18) return v.schedActive19;
-			if (i == 19) return v.schedActive20;
-			if (i == 20) return v.schedActive21;
-			if (i == 21) return v.schedActive22;
-			if (i == 22) return v.schedActive23;
-			if (i == 23) return v.schedActive24;
-			if (i == 24) return v.schedActive25;
-			if (i == 25) return v.schedActive26;
-			if (i == 26) return v.schedActive27;
-			if (i == 27) return v.schedActive28;
-			if (i == 28) return v.schedActive29;
-			if (i == 29) return v.schedActive30;
-			if (i == 30) return v.schedActive31;
-			return v.schedActive32;
-	}
-	inline void setTailActive(VoiceData& v, int i, bool x)
-	{
-		if (i == 16) v.schedActive17 = x;
-			else if (i == 17) v.schedActive18 = x;
-			else if (i == 18) v.schedActive19 = x;
-			else if (i == 19) v.schedActive20 = x;
-			else if (i == 20) v.schedActive21 = x;
-			else if (i == 21) v.schedActive22 = x;
-			else if (i == 22) v.schedActive23 = x;
-			else if (i == 23) v.schedActive24 = x;
-			else if (i == 24) v.schedActive25 = x;
-			else if (i == 25) v.schedActive26 = x;
-			else if (i == 26) v.schedActive27 = x;
-			else if (i == 27) v.schedActive28 = x;
-			else if (i == 28) v.schedActive29 = x;
-			else if (i == 29) v.schedActive30 = x;
-			else if (i == 30) v.schedActive31 = x;
-			else v.schedActive32 = x;
-		}
 	inline double hann(double x)
 	{
 		return 0.5 - 0.5 * Math.cos(2.0 * Math.PI * x);
@@ -595,6 +381,21 @@ struct granular_player_stepquant_density_hybrid: public data::base
 	{
 		x = clamp01(x);
 		return x * x * (3.0 - 2.0 * x);
+	}
+	inline double triangle(double x)
+	{
+		x = clamp01(x);
+		return 1.0 - Math.abs(2.0 * x - 1.0);
+	}
+	inline double cosineWindow(double x)
+	{
+		x = clamp01(x);
+		return Math.sin(Math.PI * x);
+	}
+	inline double blackman(double x)
+	{
+		x = clamp01(x);
+		return 0.42 - 0.5 * Math.cos(2.0 * Math.PI * x) + 0.08 * Math.cos(4.0 * Math.PI * x);
 	}
 	inline double tukey(double x, double alpha)
 	{
@@ -614,40 +415,30 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		}
 		return 1.0;
 	}
-	inline double triangle(double x)
-	{
-		x = clamp01(x);
-		return 1.0 - Math.abs(2.0 * x - 1.0);
-	}
-	inline double cosineWindow(double x)
-	{
-		x = clamp01(x);
-		return Math.sin(Math.PI * x);
-	}
-	inline double blackman(double x)
-	{
-		x = clamp01(x);
-		return 0.42 - 0.5 * Math.cos(2.0 * Math.PI * x) + 0.08 * Math.cos(4.0 * Math.PI * x);
-	}
-	// Legacy-style Hann shaper:
-	// 0.0 = plain Hann
-	// 1.0 = narrower + steeper falloff
+	// Window morph:
+	// 0.0 = Hann (Tukey alpha = 1.0)
+	// 1.0 = flatter Tukey with long plateau (better for long looper grains)
 	inline double morphedWindow(double phaseNorm)
 	{
 		double x = clamp01(phaseNorm);
 		double shape = clamp01(windowShape);
-		// Width shrink around center.
-		double width = 1.0 - 0.85 * shape;
-		if (width < 0.05) width = 0.05;
-			double c = 2.0 * x - 1.0;    // -1..+1
-		double cw = c / width;       // width-shaped domain
-		if (cw <= -1.0 || cw >= 1.0)
-			return 0.0;
-		double xw = 0.5 * (cw + 1.0); // back to 0..1
-		double w = hann(xw);
-		// Falloff steepness.
-		double fall = 1.0 + 3.0 * shape;
-		return Math.pow(w, fall);
+		double alpha = 1.0 - 0.98 * shape; // 1.0 -> 0.02
+		if (alpha < 0.02) alpha = 0.02;
+			return tukey(x, alpha);
+	}
+	inline double wrap01(double x)
+	{
+		x = x - Math.floor(x);
+		if (x < 0.0) x += 1.0;
+			return x;
+	}
+	inline double A2curve(double x)
+	{
+		// Base cluster at beginning: (1-x)^2 * (1 - 0.5x)
+		double base = (1.0 - x);
+		base = base * base * (1.0 - 0.5 * x);
+		// Map base (0..1) to symmetric -1..+1 range
+		return (base * -1.0) + x;
 	}
 	inline double wrap01(double x)
 	{
@@ -656,33 +447,24 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			return x;
 	}
 	// Deterministic per-grain envelope phase offset (in cycles).
-	// phaseScatter is interpreted in samples and converted to cycles by grainSize.
+	// This moves envelope timing only, not grain read position.
 	inline double phaseScatterOffset(int grainIndex, double scrubVal)
 	{
 		if (phaseScatter <= 0.0)
 			return 0.0;
 		double seed = (double)(grainIndex + 1) * 37.17 + scrubVal * 19.73;
 		double r = Math.sin(seed * 12.9898 + 78.233); // -1..1
-		double scatterSamples = r * phaseScatter;
-		double maxScatterCycles = (grainSize > 1.0) ? (scatterSamples / grainSize) : 0.0;
-		return maxScatterCycles;
+		double p = phaseScatter * phaseScatter; // finer low-end control
+		double maxScatterCycles = 0.45 * p;
+		return r * maxScatterCycles;
 	}
-	// Deterministic per-grain read-start offset (in samples).
-	// Uses the same raw sample-domain control as phase scatter.
-	inline double phaseScatterStartOffsetSamples(int grainIndex, double scrubVal, double maxStart)
-	{
-		if (phaseScatter <= 0.0)
-			return 0.0;
-		double seed = (double)(grainIndex + 1) * 37.17 + scrubVal * 19.73;
-		double r = Math.sin(seed * 12.9898 + 78.233); // -1..1
-		double maxScatterSamples = phaseScatter;
-		if (maxScatterSamples > maxStart)
-			maxScatterSamples = maxStart;
-		return r * maxScatterSamples;
-	}
-	// Envelope phase staggering per grain (driven by phaseScatter only).
+	// Density-driven envelope phase staggering per grain.
+	// Only active in stack mode (scrubBlend < 0.5).
+	// In morph mode, density is reserved for crossfade weighting only.
 	inline double cloudWindowPhase(double phaseNorm, int grainIndex)
 	{
+		// Phase diffusion (density-linked per-grain offset) temporarily disabled.
+		// Keep optional user phaseScatter behaviour only.
 		double scatter = phaseScatterOffset(grainIndex, scrub);
 		return wrap01(phaseNorm + scatter);
 	}
@@ -931,8 +713,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		int g = (int)maxGrains;
 		if (g < 1) g = 1;
 			if (g > MAX_GRAINS) g = MAX_GRAINS;
-			int gActive = g;
-		bool isStackMode = (scrubBlend < 0.5);
+			bool isStackMode = (scrubBlend < 0.5);
 		// =========================================================
 		// 16-GRAIN NORMALISATION  (APPLY BEFORE MIXING)
 		// =========================================================
@@ -941,22 +722,22 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		// SNEX-SAFE 16-GRAIN NORMALISATION
 		// ===============================================
 		// Raw, unnormalised weights
-		double w_raw1  = getGrainWeight(0,  gActive, isStackMode);
-		double w_raw2  = getGrainWeight(1,  gActive, isStackMode);
-		double w_raw3  = getGrainWeight(2,  gActive, isStackMode);
-		double w_raw4  = getGrainWeight(3,  gActive, isStackMode);
-		double w_raw5  = getGrainWeight(4,  gActive, isStackMode);
-		double w_raw6  = getGrainWeight(5,  gActive, isStackMode);
-		double w_raw7  = getGrainWeight(6,  gActive, isStackMode);
-		double w_raw8  = getGrainWeight(7,  gActive, isStackMode);
-		double w_raw9  = getGrainWeight(8,  gActive, isStackMode);
-		double w_raw10 = getGrainWeight(9,  gActive, isStackMode);
-		double w_raw11 = getGrainWeight(10, gActive, isStackMode);
-		double w_raw12 = getGrainWeight(11, gActive, isStackMode);
-		double w_raw13 = getGrainWeight(12, gActive, isStackMode);
-		double w_raw14 = getGrainWeight(13, gActive, isStackMode);
-		double w_raw15 = getGrainWeight(14, gActive, isStackMode);
-		double w_raw16 = getGrainWeight(15, gActive, isStackMode);
+		double w_raw1  = getGrainWeight(0,  g, isStackMode);
+		double w_raw2  = getGrainWeight(1,  g, isStackMode);
+		double w_raw3  = getGrainWeight(2,  g, isStackMode);
+		double w_raw4  = getGrainWeight(3,  g, isStackMode);
+		double w_raw5  = getGrainWeight(4,  g, isStackMode);
+		double w_raw6  = getGrainWeight(5,  g, isStackMode);
+		double w_raw7  = getGrainWeight(6,  g, isStackMode);
+		double w_raw8  = getGrainWeight(7,  g, isStackMode);
+		double w_raw9  = getGrainWeight(8,  g, isStackMode);
+		double w_raw10 = getGrainWeight(9,  g, isStackMode);
+		double w_raw11 = getGrainWeight(10, g, isStackMode);
+		double w_raw12 = getGrainWeight(11, g, isStackMode);
+		double w_raw13 = getGrainWeight(12, g, isStackMode);
+		double w_raw14 = getGrainWeight(13, g, isStackMode);
+		double w_raw15 = getGrainWeight(14, g, isStackMode);
+		double w_raw16 = getGrainWeight(15, g, isStackMode);
 		// -----------------------------------------------
 		// CONSTANT-POWER GRAIN NORMALISATION (16 grains)
 		// -----------------------------------------------
@@ -966,14 +747,6 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		w_raw5*w_raw5 + w_raw6*w_raw6 + w_raw7*w_raw7 + w_raw8*w_raw8 +
 		w_raw9*w_raw9 + w_raw10*w_raw10 + w_raw11*w_raw11 + w_raw12*w_raw12 +
 		w_raw13*w_raw13 + w_raw14*w_raw14 + w_raw15*w_raw15 + w_raw16*w_raw16;
-		if (isStackMode && gActive > 16)
-		{
-			for (int i = 16; i < gActive; ++i)
-			{
-				double wt = getGrainWeight(i, gActive, true);
-				sumsq += wt * wt;
-			}
-		}
 		// Normalisation factor (protect against zero)
 		double wnorm = 1.0;
 		if (isStackMode)
@@ -995,8 +768,8 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double weight14 = w_raw14 * wnorm;
 		double weight15 = w_raw15 * wnorm;
 		double weight16 = w_raw16 * wnorm;
-		double center = (double)(gActive - 1) * 0.5;
-		double invDenom = (gActive > 1) ? 1.0 / (double)(gActive - 1) : 0.0;
+		double center = (double)(g - 1) * 0.5;
+		double invDenom = (g > 1) ? 1.0 / (double)(g - 1) : 0.0;
 		if (scrubState == 1)
 		{
 			// Multi-scrub mode (no sliderpack)
@@ -1037,39 +810,72 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			basePos15 = scrubBase;
 			basePos16 = scrubBase;
 		}
-		// phaseScatter-driven read-start spread (joint with envelope phase scatter).
-		basePos1  += phaseScatterStartOffsetSamples(0,  scrub, maxStart);
-		basePos2  += phaseScatterStartOffsetSamples(1,  scrub, maxStart);
-		basePos3  += phaseScatterStartOffsetSamples(2,  scrub, maxStart);
-		basePos4  += phaseScatterStartOffsetSamples(3,  scrub, maxStart);
-		basePos5  += phaseScatterStartOffsetSamples(4,  scrub, maxStart);
-		basePos6  += phaseScatterStartOffsetSamples(5,  scrub, maxStart);
-		basePos7  += phaseScatterStartOffsetSamples(6,  scrub, maxStart);
-		basePos8  += phaseScatterStartOffsetSamples(7,  scrub, maxStart);
-		basePos9  += phaseScatterStartOffsetSamples(8,  scrub, maxStart);
-		basePos10 += phaseScatterStartOffsetSamples(9,  scrub, maxStart);
-		basePos11 += phaseScatterStartOffsetSamples(10, scrub, maxStart);
-		basePos12 += phaseScatterStartOffsetSamples(11, scrub, maxStart);
-		basePos13 += phaseScatterStartOffsetSamples(12, scrub, maxStart);
-		basePos14 += phaseScatterStartOffsetSamples(13, scrub, maxStart);
-		basePos15 += phaseScatterStartOffsetSamples(14, scrub, maxStart);
-		basePos16 += phaseScatterStartOffsetSamples(15, scrub, maxStart);
+		// -----------------------------------------------------
+		// A2 START POSITION SPREAD (Soft Cluster)
+		// -----------------------------------------------------
+		if (scrubBlend < 0.5)   // only stack mode
+		{
+			double d = clamp01(density);
+			double denom = (g > 1 ? (double)(g - 1) : 1.0);
+			double iNorm0  = 0.0          / denom;
+			double iNorm1  = 1.0          / denom;
+			double iNorm2  = 2.0          / denom;
+			double iNorm3  = 3.0          / denom;
+			double iNorm4  = 4.0          / denom;
+			double iNorm5  = 5.0          / denom;
+			double iNorm6  = 6.0          / denom;
+			double iNorm7  = 7.0          / denom;
+			double iNorm8  = 8.0          / denom;
+			double iNorm9  = 9.0          / denom;
+			double iNorm10 = 10.0         / denom;
+			double iNorm11 = 11.0         / denom;
+			double iNorm12 = 12.0         / denom;
+			double iNorm13 = 13.0         / denom;
+			double iNorm14 = 14.0         / denom;
+			double iNorm15 = 15.0         / denom;
+			double o0  = A2curve(iNorm0);
+			double o1  = A2curve(iNorm1);
+			double o2  = A2curve(iNorm2);
+			double o3  = A2curve(iNorm3);
+			double o4  = A2curve(iNorm4);
+			double o5  = A2curve(iNorm5);
+			double o6  = A2curve(iNorm6);
+			double o7  = A2curve(iNorm7);
+			double o8  = A2curve(iNorm8);
+			double o9  = A2curve(iNorm9);
+			double o10 = A2curve(iNorm10);
+			double o11 = A2curve(iNorm11);
+			double o12 = A2curve(iNorm12);
+			double o13 = A2curve(iNorm13);
+			double o14 = A2curve(iNorm14);
+			double o15 = A2curve(iNorm15);
+			double amt = maxStart * densityPositionSpreadRange * d;
+			basePos1  += o0  * amt;
+			basePos2  += o1  * amt;
+			basePos3  += o2  * amt;
+			basePos4  += o3  * amt;
+			basePos5  += o4  * amt;
+			basePos6  += o5  * amt;
+			basePos7  += o6  * amt;
+			basePos8  += o7  * amt;
+			basePos9  += o8  * amt;
+			basePos10 += o9  * amt;
+			basePos11 += o10 * amt;
+			basePos12 += o11 * amt;
+			basePos13 += o12 * amt;
+			basePos14 += o13 * amt;
+			basePos15 += o14 * amt;
+			basePos16 += o15 * amt;
+		}
+		// (Spray mode removed)
 		// --- Morph calculation (shared by all grains) ---
 		int baseIndex = 0;
 		double frac = 0.0;
-		double densityMorphTarget = clamp01(density);
-		double morphAlpha = 0.01;
-		if (sr > 1.0)
-		{
-			double tauSec = 0.01; // ~10 ms smoothing
-			morphAlpha = 1.0 - Math.exp(-1.0 / (tauSec * sr));
-		}
-		densityMorphSmoothed += (densityMorphTarget - densityMorphSmoothed) * morphAlpha;
 		if (scrubBlend > 0.5)
 		{
-			double pos = densityMorphSmoothed * (double)(gActive - 1);
+			double pos = density * (double)(g - 1);
 			if (pos < 0.0) pos = 0.0;
-				if (pos > (double)(gActive - 1)) pos = (double)(gActive - 1);
+				if (pos > (double)(g - 1)) pos = (double)(g - 1);
 				baseIndex = (int)Math.floor(pos);
 			frac = pos - (double)baseIndex;
 		}
@@ -1080,13 +886,13 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			int idxA = baseIndex;
 			int idxB = baseIndex + 1;
 			if (idxA < 0) idxA = 0;
-				if (idxA > gActive - 1) idxA = gActive - 1;
-				if (idxB > gActive - 1) idxB = gActive - 1;
+				if (idxA > g - 1) idxA = g - 1;
+				if (idxB > g - 1) idxB = g - 1;
 				// Equal-power blend between adjacent active grains.
 			double t = clamp01(frac);
 			double gA = Math.cos(0.5 * Math.PI * t);
 			double gB = Math.sin(0.5 * Math.PI * t);
-			if (gActive <= 1)
+			if (g <= 1)
 			{
 				idxA = 0;
 				idxB = 0;
@@ -1126,8 +932,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			w_raw15 *= m15;
 			w_raw16 *= m16;
 		}
-		// Keep density dedicated to grain weighting/crossfade; don't let it modulate pitch spread.
-		double spreadNorm = 1.0;
+		double spreadNorm = isStackMode ? 1.0 : density;
 		double Lsum = 0.0;
 		double Rsum = 0.0;
 		double dir = (reverse > 0.5) ? -1.0 : 1.0;
@@ -1770,91 +1575,37 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double pan16 = panSpread * normPan16 * 2.0;
 		Lsum += monoL16 * w16 * (0.5 * (1.0 - pan16)) * weight16;
 		Rsum += monoR16 * w16 * (0.5 * (1.0 + pan16)) * weight16;
-		// Additional rendered grains 17..32
-		if (gActive > 16)
-		{
-			for (int i = 16; i < gActive; ++i)
-			{
-				double weightNRaw = getGrainWeight(i, gActive, isStackMode);
-				if (!isStackMode)
-				{
-					int idxA = baseIndex;
-					int idxB = baseIndex + 1;
-					if (idxA < 0) idxA = 0;
-						if (idxA > gActive - 1) idxA = gActive - 1;
-						if (idxB > gActive - 1) idxB = gActive - 1;
-						double t = clamp01(frac);
-					double gA = Math.cos(0.5 * Math.PI * t);
-					double gB = Math.sin(0.5 * Math.PI * t);
-					double mN = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
-					weightNRaw *= mN;
-				}
-				double weightN = weightNRaw * wnorm;
-				if (weightN <= 0.0)
-					continue;
-				double baseN = scrubBase;
-				if (scrubState == 1)
-				{
-					int bank = i % 8;
-					if (bank < 2) baseN = scrub * maxStart;
-						else if (bank < 4) baseN = scrubB * maxStart;
-						else if (bank < 6) baseN = scrubC * maxStart;
-						else baseN = scrubD * maxStart;
-					}
-				baseN += phaseScatterStartOffsetSamples(i, scrub, maxStart);
-				bool activeN = getTailActive(v, i);
-				double phaseN = getTailPhase(v, i);
-				double startN = getTailStart(v, i);
-				if (!activeN)
-				{
-					activeN = true;
-					phaseN = 0.0;
-					startN = baseN;
-				}
-				double detuneSeedN = 0.77 + (double)(i + 1) * 1.31;
-				double harmonicTargetN = (double)(i + 1);
-				double grainPitchMulN = getPitchModeMul(pitchState, spreadNorm, detuneSeedN, harmonicTargetN);
-				double phaseIncN = v.delta * grainPitchMulN * dir;
-				phaseN += phaseIncN;
-				if (phaseN >= grainSize)
-				{
-					phaseN -= grainSize;
-					if (lockStartOnWrap)
-						startN = baseN;
-				}
-				if (phaseN < 0.0)
-				{
-					phaseN += grainSize;
-					if (lockStartOnWrap)
-						startN = baseN;
-				}
-				double posN = startN + phaseN;
-				if (posN < 0.0) posN = 0.0;
-					if (posN >= audioData.numSamples - 1.0)
-					posN = audioData.numSamples - 2.0;
-				int iN = (int)posN;
-				double fN = posN - (double)iN;
-				double wN = morphedWindow(cloudWindowPhase(phaseN / grainSize, i));
-				double monoLN = (1.0 - fN) * sample[0][iN] + fN * sample[0][iN + 1];
-				double monoRN = (1.0 - fN) * sample[1][iN] + fN * sample[1][iN + 1];
-				double normPanN = (((double)i - center) * invDenom);
-				double panN = panSpread * normPanN * 2.0;
-				Lsum += monoLN * wN * (0.5 * (1.0 - panN)) * weightN;
-				Rsum += monoRN * wN * (0.5 * (1.0 + panN)) * weightN;
-				setTailActive(v, i, activeN);
-				setTailPhase(v, i, phaseN);
-				setTailStart(v, i, startN);
-			}
-		}
 		// ----------------------------
 		// RMS NORMALISATION (SAFE SNEX VERSION)
 		// ----------------------------
 		double rmsNorm = 1.0;
-		if (isStackMode && gActive > 1)
-			rmsNorm = 1.0 / Math.sqrt((double)gActive);
+		if (isStackMode && g > 1)
+			rmsNorm = 1.0 / Math.sqrt((double)g);
 		Lsum *= rmsNorm;
 		Rsum *= rmsNorm;
-		// Write mixed grain output to the current stereo frame.
+		// ----------------------------
+		// DENSITY-DRIVEN ALLPASS DIFFUSION
+		// Keeps brightness but smears transients / grain edges.
+		// ----------------------------
+		double diffusion = (isStackMode) ? clamp01(density) : 0.0;
+		if (diffusion > 0.0001)
+		{
+			// Conservative coefficients for stability and subtle buildup.
+			double a1 = 0.08 + 0.62 * diffusion;
+			double a2 = 0.04 + 0.47 * diffusion;
+			double yL1 = (0.0 - a1) * Lsum + v.ap1L;
+			v.ap1L = Lsum + a1 * yL1;
+			double yR1 = (0.0 - a1) * Rsum + v.ap1R;
+			v.ap1R = Rsum + a1 * yR1;
+			double yL2 = (0.0 - a2) * yL1 + v.ap2L;
+			v.ap2L = yL1 + a2 * yL2;
+			double yR2 = (0.0 - a2) * yR1 + v.ap2R;
+			v.ap2R = yR1 + a2 * yR2;
+			double wet = 0.75 * diffusion;
+			double dry = 1.0 - wet;
+			Lsum = Lsum * dry + yL2 * wet;
+			Rsum = Rsum * dry + yR2 * wet;
+		}
 		fd[0] += (float)Lsum;
 		fd[1] += (float)Rsum;
 	}   // ← VERY IMPORTANT: close processInternal()
@@ -1869,6 +1620,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		auto fd = pd.toFrameData();
 		while (fd.next())
 			processInternal(fd.toSpan(), v);
+		audioData.setDisplayedValue(v.scanPos);
 	}
 	void processFrame(span<float, NUM_CHANNELS>& fd)
 	{
@@ -1876,6 +1628,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			return;
 		auto& v = voiceData.get();
 		processInternal(fd, v);
+		audioData.setDisplayedValue(v.scanPos);
 	}
 	// -----------------------------------------------------
 	void handleHiseEvent(HiseEvent& e)
@@ -1956,7 +1709,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			// Keep raw input for mode 2 sync lock (Hz or ms).
 			pitchSyncInput = v;
 		}
-		// 16 — maxGrains (1–32)
+		// 16 — maxGrains (1–16)
 		if (P == 8)
 		{
 			if (v < 1.0) v = 1.0;
@@ -1984,10 +1737,11 @@ struct granular_player_stepquant_density_hybrid: public data::base
 				if (v > 1.0) v = 1.0;
 				reverse = v;
 		}
-		// phaseScatter (raw samples)
+		// phaseScatter (0–1)
 		if (P == 12)
 		{
 			if (v < 0.0) v = 0.0;
+				if (v > 1.0) v = 1.0;
 				phaseScatter = v;
 		}
 		if (P == 13) scrubB = v;
@@ -5718,6 +5472,13 @@ template <int NV>
 using modchain_t = wrap::control_rate<modchain_t_<NV>>;
 
 template <int NV>
+using frame2_block_t_ = container::chain<parameter::empty, 
+                                         wrap::fix<2, snex_node1_t<NV>>>;
+
+template <int NV>
+using frame2_block_t = wrap::frame<2, frame2_block_t_<NV>>;
+
+template <int NV>
 using fix8_block_t = container::chain<parameter::empty, 
                                       wrap::fix<2, modchain_t<NV>>, 
                                       tempo_sync1_t<NV>, 
@@ -5726,7 +5487,7 @@ using fix8_block_t = container::chain<parameter::empty,
                                       cable_table5_t<NV>, 
                                       tempo_sync3_t<NV>, 
                                       converter_t<NV>, 
-                                      snex_node1_t<NV>>;
+                                      frame2_block_t<NV>>;
 
 using global_cable15_t_index = runtime_target::indexers::fix_hash<162771259>;
 using peak1_mod = parameter::plain<routing::global_cable<global_cable15_t_index, parameter::empty>, 
@@ -5980,17 +5741,12 @@ using PitchMode = parameter::chain<PitchMode_InputRange,
 
 DECLARE_PARAMETER_RANGE_STEP(MaxGrains_InputRange, 
                              4., 
-                             64., 
-                             1.);
-DECLARE_PARAMETER_RANGE_STEP(MaxGrains_0Range, 
-                             1., 
                              32., 
                              1.);
-
 template <int NV>
 using MaxGrains_0 = parameter::from0To1<sn_impl::snex_node1_t<NV>, 
                                         8, 
-                                        MaxGrains_0Range>;
+                                        sn_impl::cable_table4_modRange>;
 
 template <int NV>
 using MaxGrains = parameter::chain<MaxGrains_InputRange, MaxGrains_0<NV>>;
@@ -6533,61 +6289,61 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 			0x005C, 0x0000, 0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0065, 
             0x0000, 0x8000, 0x003F, 0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x0100, 0x0000, 0x4D00, 0x7861, 0x7247, 
-            0x6961, 0x736E, 0x0000, 0x0000, 0x4080, 0x0000, 0x4280, 0x0000, 
-            0x4280, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0002, 0x0000, 
+            0x6961, 0x736E, 0x0000, 0x0000, 0x4080, 0x0000, 0x4200, 0x0000, 
+            0x4100, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0002, 0x0000, 
             0x6373, 0x7572, 0x4D62, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0040, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0300, 0x0000, 0x7300, 0x7263, 0x6275, 0x6C42, 0x6E65, 0x0000, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0004, 0x0000, 0x6572, 0x6576, 0x7372, 
             0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x0500, 0x0000, 0x5000, 0x736F, 
-            0x7469, 0x6F69, 0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 
+            0x7469, 0x6F69, 0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0x0A3F, 
+            0x23D7, 0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 
             0x5000, 0x736F, 0x7469, 0x6F69, 0x4D6E, 0x646F, 0x0000, 0x0000, 
-            0xBF80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
+            0xBF80, 0x0000, 0x3F80, 0x5C29, 0x3E8F, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x0007, 0x0000, 0x6F50, 0x6973, 0x6974, 0x6E6F, 
-            0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x4000, 
+            0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x0000, 
             0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0800, 0x0000, 0x5000, 
-            0x736F, 0x0032, 0x0000, 0x0000, 0x0000, 0x8000, 0xA73F, 0x9E37, 
-            0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0900, 0x0000, 0x5000, 
+            0x736F, 0x0032, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0900, 0x0000, 0x5000, 
             0x736F, 0x4D32, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
-            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000A, 
+            0x851F, 0x3F2B, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000A, 
             0x0000, 0x6F50, 0x3273, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0B00, 0x0000, 0x5000, 0x736F, 0x0033, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x8F3F, 0x35C2, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x0C00, 0x0000, 0x5000, 0x736F, 0x4D33, 0x646F, 0x0000, 0x0000, 
-            0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0xBF80, 0x0000, 0x3F80, 0xD70A, 0x3CA3, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x000D, 0x0000, 0x6F50, 0x3373, 0x7253, 0x0063, 
             0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x0E00, 0x0000, 0x5000, 0x736F, 0x0034, 
             0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x0F00, 0x0000, 0x5000, 0x736F, 0x4D34, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0010, 0x0000, 0x6F50, 
             0x3473, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1100, 0x0000, 
+            0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1100, 0x0000, 
             0x5000, 0x7469, 0x6863, 0x0000, 0x0000, 0xC140, 0x0000, 0x4140, 
-            0x4DEA, 0xBFEB, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0012, 
+            0x0000, 0x3440, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0012, 
             0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 
-            0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0xD70A, 0xBC23, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0013, 0x0000, 0x6950, 0x6374, 0x5368, 0x6372, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4040, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x0014, 0x0000, 0x6544, 0x736E, 0x0065, 
-            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x1500, 0x0000, 0x4400, 0x6E65, 0x6573, 
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1600, 0x0000, 0x4400, 
             0x6E65, 0x6573, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1700, 
+            0x0041, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1700, 
             0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x0065, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x483F, 0x0161, 0x003F, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x1800, 0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x5365, 
             0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0019, 0x0000, 0x6150, 
             0x536E, 0x7270, 0x6165, 0x0064, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x383F, 0x39BD, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1A00, 
+            0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1A00, 
             0x0000, 0x5000, 0x6E61, 0x7053, 0x6572, 0x6461, 0x6F4D, 0x0064, 
             0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x1B00, 0x0000, 0x5000, 0x6E61, 0x7053, 
@@ -6599,41 +6355,41 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001E, 0x0000, 0x6950, 
             0x6374, 0x5368, 0x7270, 0x5364, 0x6372, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x4180, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x4180, 0x0000, 0x40E0, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x001F, 0x0000, 0x694A, 0x7474, 0x7265, 0x0000, 0x0000, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x0020, 0x0000, 0x694A, 0x7474, 0x7265, 0x6F4D, 
-            0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x643F, 0x0321, 0x003E, 
+            0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x0A3F, 0x23D7, 0x003C, 
             0x8000, 0x003F, 0x0000, 0x5C00, 0x2100, 0x0000, 0x4A00, 0x7469, 
             0x6574, 0x5372, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 
-            0x0000, 0x4100, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0022, 
+            0x0000, 0x40C0, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0022, 
             0x0000, 0x7247, 0x6961, 0x536E, 0x7A69, 0x0065, 0x0000, 0xA000, 
-            0x0040, 0x7A00, 0x2D44, 0xCF0A, 0x0042, 0x8000, 0x003F, 0x0000, 
+            0x0040, 0x7A00, 0x0044, 0xE880, 0x0043, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x2300, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6F4D, 0x0064, 
-            0x0000, 0x8000, 0x00BF, 0x8000, 0xCD3F, 0x2CCC, 0x003C, 0x8000, 
+            0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x2400, 0x0000, 0x4700, 0x6172, 0x6E69, 
-            0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x1000, 
-            0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2500, 0x0000, 0x4700, 
+            0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0xA000, 
+            0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2500, 0x0000, 0x4700, 
             0x6172, 0x6E69, 0x6554, 0x706D, 0x006F, 0x0000, 0x0000, 0x0000, 
-            0x9000, 0x0041, 0x0000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x9000, 0x0041, 0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x2600, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6944, 0x0076, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x0042, 0x8000, 0x003F, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x2700, 0x0000, 0x4700, 0x6172, 0x6E69, 0x7953, 
-            0x636E, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x636E, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0028, 0x0000, 0x6957, 
             0x536E, 0x6168, 0x6570, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 
             0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x2900, 0x0000, 0x5000, 0x6572, 0x7543, 0x0074, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x863F, 0xAE6B, 0x003E, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x2A00, 0x0000, 0x5000, 0x6572, 0x7543, 0x4D74, 0x646F, 
             0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0xB852, 0x3F1E, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x005C, 0x002B, 0x0000, 0x7250, 0x4365, 
             0x7475, 0x7253, 0x0063, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2C00, 0x0000, 
             0x5000, 0x6572, 0x7543, 0x4D74, 0x646F, 0x0065, 0x0000, 0x8000, 
-            0x003F, 0xA000, 0x0040, 0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x5C3F, 0x2D00, 0x0000, 0x5000, 0x6572, 0x7543, 0x5174, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0xCCCD, 0x3E4C, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x002E, 0x0000, 0x6552, 0x6F73, 0x694D, 
             0x0078, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x5C00, 0x2F00, 0x0000, 0x5200, 0x7365, 
@@ -6642,23 +6398,23 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x5200, 0x7365, 0x536F, 0x6372, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x0031, 0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x3F80, 0x8000, 0x3F70, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0xC28F, 0x3F35, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0032, 0x0000, 0x6552, 0x7073, 0x6950, 
             0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0033, 
             0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x7253, 0x0063, 0x0000, 
             0x8000, 0x003F, 0x8000, 0x0041, 0x4000, 0x0040, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x3400, 0x0000, 0x5200, 0x7365, 0x704C, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0xB439, 0x3EBA, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0035, 0x0000, 0x6552, 0x4C73, 0x4D70, 
             0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0036, 0x0000, 0x6552, 
             0x4C73, 0x5370, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0037, 
             0x0000, 0x6F50, 0x7473, 0x7543, 0x0074, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x143F, 0x07AE, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0xCD3F, 0xCCCC, 0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x3800, 0x0000, 0x5000, 0x736F, 0x4374, 0x7475, 0x6F4D, 0x0064, 
-            0x0000, 0x8000, 0x00BF, 0x8000, 0xC33F, 0xA8F5, 0x003E, 0x8000, 
+            0x0000, 0x8000, 0x00BF, 0x8000, 0x293F, 0x8F5C, 0x003D, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x3900, 0x0000, 0x5000, 0x736F, 0x4374, 
             0x7475, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3A00, 0x0000, 
@@ -6671,33 +6427,33 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x3F80, 0x005C, 0x003D, 0x0000, 0x6552, 0x4F73, 0x7475, 
             0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x005C, 0x003E, 0x0000, 0x6147, 0x6E69, 
-            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x9A3F, 0x4999, 
-            0x003C, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3F00, 0x0000, 0x6700, 
+            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3F00, 0x0000, 0x6700, 
             0x6961, 0x536E, 0x6372, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0040, 
-            0x0000, 0x6F56, 0x006C, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4100, 0x0000, 
-            0x5000, 0x7261, 0x006E, 0x0000, 0x8000, 0x00BF, 0x8000, 0xBD3F, 
-            0x35E9, 0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4200, 0x0000, 
+            0x0000, 0x6F56, 0x006C, 0x0000, 0x0000, 0x0000, 0x8000, 0x333F, 
+            0x7333, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4100, 0x0000, 
+            0x5000, 0x7261, 0x006E, 0x0000, 0x8000, 0x00BF, 0x8000, 0xCD3F, 
+            0x4CCC, 0x00BE, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4200, 0x0000, 
             0x5000, 0x6E61, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 
-            0x383F, 0x69BD, 0x00BD, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4300, 
+            0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4300, 
             0x0000, 0x5000, 0x6E61, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0041, 0x3000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0041, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x4400, 0x0000, 0x4600, 0x696D, 0x3178, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0045, 0x0000, 0x6D46, 0x7869, 0x0032, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x333F, 0x5333, 0x003B, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x4600, 0x0000, 0x6600, 0x6565, 0x0064, 0x0000, 0x0000, 
             0x0000, 0x8000, 0x263F, 0x6BD5, 0x003F, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x4700, 0x0000, 0x5000, 0x7469, 0x6863, 0x6554, 0x706D, 
-            0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 0xC000, 0x0040, 
+            0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 0xE000, 0x0040, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x4800, 0x0000, 0x5000, 0x7469, 
             0x6863, 0x6944, 0x0076, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4900, 0x0000, 
             0x6400, 0x6C65, 0x6F4D, 0x6564, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x4040, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
             0x004A, 0x0000, 0x694A, 0x5374, 0x6E79, 0x0063, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(2)
@@ -7680,7 +7436,8 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		auto& cable_table5 = this->getT(0).getT(4);                                              // sn_impl::cable_table5_t<NV>
 		auto& tempo_sync3 = this->getT(0).getT(5);                                               // sn_impl::tempo_sync3_t<NV>
 		auto& converter = this->getT(0).getT(6);                                                 // sn_impl::converter_t<NV>
-		auto& snex_node1 = this->getT(0).getT(7);                                                // sn_impl::snex_node1_t<NV>
+		auto& frame2_block = this->getT(0).getT(7);                                              // sn_impl::frame2_block_t<NV>
+		auto& snex_node1 = this->getT(0).getT(7).getT(0);                                        // sn_impl::snex_node1_t<NV>
 		auto& branch2 = this->getT(1);                                                           // sn_impl::branch2_t
 		auto& chain25 = this->getT(1).getT(0);                                                   // sn_impl::chain25_t
 		auto& peak1 = this->getT(1).getT(0).getT(0);                                             // sn_impl::peak1_t
@@ -9790,80 +9547,80 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // global_cable22::Value is automated
 		
 		this->setParameterT(0, 1.);
-		this->setParameterT(1, 64.);
-		this->setParameterT(2, 2.);
+		this->setParameterT(1, 8.);
+		this->setParameterT(2, 1.);
 		this->setParameterT(3, 0.);
 		this->setParameterT(4, 0.);
-		this->setParameterT(5, 0.);
-		this->setParameterT(6, 1.);
-		this->setParameterT(7, 3.);
-		this->setParameterT(8, 0.309018);
-		this->setParameterT(9, 0.);
-		this->setParameterT(10, 1.);
-		this->setParameterT(11, 0.71);
-		this->setParameterT(12, 0.);
+		this->setParameterT(5, 0.16);
+		this->setParameterT(6, 0.28);
+		this->setParameterT(7, 2.);
+		this->setParameterT(8, 0.);
+		this->setParameterT(9, 0.67);
+		this->setParameterT(10, 2.);
+		this->setParameterT(11, 0.);
+		this->setParameterT(12, 0.02);
 		this->setParameterT(13, 1.);
 		this->setParameterT(14, 0.);
-		this->setParameterT(15, 0.);
-		this->setParameterT(16, 1.);
-		this->setParameterT(17, -1.83832);
-		this->setParameterT(18, 0.);
-		this->setParameterT(19, 3.);
-		this->setParameterT(20, 1.);
+		this->setParameterT(15, 1.);
+		this->setParameterT(16, 2.);
+		this->setParameterT(17, 1.78814e-07);
+		this->setParameterT(18, -0.01);
+		this->setParameterT(19, 13.);
+		this->setParameterT(20, 0.);
 		this->setParameterT(21, 0.);
-		this->setParameterT(22, 1.);
-		this->setParameterT(23, 0.);
+		this->setParameterT(22, 4.);
+		this->setParameterT(23, 0.505391);
 		this->setParameterT(24, 1.);
-		this->setParameterT(25, 0.725543);
+		this->setParameterT(25, 0.);
 		this->setParameterT(26, 0.);
 		this->setParameterT(27, 14.);
 		this->setParameterT(28, 0.);
 		this->setParameterT(29, 0.);
-		this->setParameterT(30, 16.);
+		this->setParameterT(30, 7.);
 		this->setParameterT(31, 0.);
-		this->setParameterT(32, 0.128057);
-		this->setParameterT(33, 8.);
-		this->setParameterT(34, 103.52);
-		this->setParameterT(35, 0.0105469);
-		this->setParameterT(36, 9.);
-		this->setParameterT(37, 8.);
+		this->setParameterT(32, 0.01);
+		this->setParameterT(33, 6.);
+		this->setParameterT(34, 465.);
+		this->setParameterT(35, 0.);
+		this->setParameterT(36, 5.);
+		this->setParameterT(37, 16.);
 		this->setParameterT(38, 1.);
-		this->setParameterT(39, 0.);
+		this->setParameterT(39, 1.);
 		this->setParameterT(40, 0.);
-		this->setParameterT(41, 0.340664);
+		this->setParameterT(41, 1.);
 		this->setParameterT(42, 0.62);
 		this->setParameterT(43, 1.);
-		this->setParameterT(44, 3.);
-		this->setParameterT(45, 1.);
+		this->setParameterT(44, 1.);
+		this->setParameterT(45, 0.2);
 		this->setParameterT(46, 0.);
 		this->setParameterT(47, 0.0298828);
 		this->setParameterT(48, 1.);
-		this->setParameterT(49, 0.939453);
+		this->setParameterT(49, 0.71);
 		this->setParameterT(50, 0.);
 		this->setParameterT(51, 3.);
-		this->setParameterT(52, 1.);
+		this->setParameterT(52, 0.364656);
 		this->setParameterT(53, 0.);
 		this->setParameterT(54, 1.);
-		this->setParameterT(55, 0.53);
-		this->setParameterT(56, 0.33);
+		this->setParameterT(55, 0.1);
+		this->setParameterT(56, 0.07);
 		this->setParameterT(57, 4.);
 		this->setParameterT(58, 0.63);
 		this->setParameterT(59, 3.);
 		this->setParameterT(60, 0.);
 		this->setParameterT(61, 0.);
-		this->setParameterT(62, 0.0123047);
+		this->setParameterT(62, 0.);
 		this->setParameterT(63, 1.);
-		this->setParameterT(64, 1.);
-		this->setParameterT(65, 0.177649);
-		this->setParameterT(66, -0.0570652);
-		this->setParameterT(67, 11.);
+		this->setParameterT(64, 0.95);
+		this->setParameterT(65, -0.2);
+		this->setParameterT(66, 0.);
+		this->setParameterT(67, 4.);
 		this->setParameterT(68, 0.);
-		this->setParameterT(69, 0.00322266);
+		this->setParameterT(69, 0.);
 		this->setParameterT(70, 0.921221);
-		this->setParameterT(71, 6.);
+		this->setParameterT(71, 7.);
 		this->setParameterT(72, 1.);
 		this->setParameterT(73, 1.);
-		this->setParameterT(74, 0.);
+		this->setParameterT(74, 1.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
@@ -10211,7 +9968,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(17).getT(1).setExternalData(b, index); // sn_impl::peak7_t<NV>
 		this->getT(0).getT(3).setExternalData(b, index);                          // sn_impl::cable_table4_t<NV>
 		this->getT(0).getT(4).setExternalData(b, index);                          // sn_impl::cable_table5_t<NV>
-		this->getT(0).getT(7).setExternalData(b, index);                          // sn_impl::snex_node1_t<NV>
+		this->getT(0).getT(7).getT(0).setExternalData(b, index);                  // sn_impl::snex_node1_t<NV>
 		this->getT(1).getT(0).getT(0).setExternalData(b, index);                  // sn_impl::peak1_t
 		this->getT(1).getT(1).getT(0).setExternalData(b, index);                  // sn_impl::peak19_t
 		this->getT(1).getT(2).getT(0).setExternalData(b, index);                  // sn_impl::peak18_t
