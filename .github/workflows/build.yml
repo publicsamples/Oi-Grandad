@@ -127,7 +127,6 @@ jobs:
             '/* CI patch: compatibility shims for legacy JUCE/HISE VST symbols. */' \
             '#include "AppConfig.h"' \
             '#if JUCE_MAC' \
-            'namespace juce { class Component; }' \
             'namespace juce {' \
             'void initialiseMacVST() {}' \
             'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
@@ -141,7 +140,6 @@ jobs:
               '' \
               '// CI_LEGACY_VST3_SYMBOL_SHIMS' \
               '#if JUCE_MAC' \
-              'namespace juce { class Component; }' \
               'namespace juce {' \
               'void initialiseMacVST() {}' \
               'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
