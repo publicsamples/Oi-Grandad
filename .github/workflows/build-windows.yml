@@ -65,12 +65,10 @@ jobs:
           # Ensure VST3 string conversion units are compiled on Windows (required by some SDK/JUCE combos).
           $vstProjContent = Get-Content -Raw -Path $vstProj
           if ($vstProjContent -notmatch 'public\.sdk\\source\\vst\\utility\\stringconvert\.cpp') {
-            $insert = @"
-  <ItemGroup>
-    <ClCompile Include="..\..\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK\public.sdk\source\common\commonstringconvert.cpp" />
-    <ClCompile Include="..\..\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK\public.sdk\source\vst\utility\stringconvert.cpp" />
-  </ItemGroup>
-"@
+            $insert = '  <ItemGroup>`r`n' +
+                      '    <ClCompile Include="..\..\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK\public.sdk\source\common\commonstringconvert.cpp" />`r`n' +
+                      '    <ClCompile Include="..\..\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK\public.sdk\source\vst\utility\stringconvert.cpp" />`r`n' +
+                      '  </ItemGroup>'
             $vstProjContent = $vstProjContent -replace '</Project>\s*$', "$insert`r`n</Project>"
             Set-Content -Path $vstProj -Value $vstProjContent -NoNewline
           }
