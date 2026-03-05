@@ -62,6 +62,19 @@ jobs:
             Set-Content -Path $p -Value $c -NoNewline
           }
 
+          # Ensure VST3 string conversion units are compiled on Windows (required by some SDK/JUCE combos).
+          $vstProjContent = Get-Content -Raw -Path $vstProj
+          if ($vstProjContent -notmatch 'public\.sdk\\source\\vst\\utility\\stringconvert\.cpp') {
+            $insert = @"
+  <ItemGroup>
+    <ClCompile Include="..\..\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK\public.sdk\source\common\commonstringconvert.cpp" />
+    <ClCompile Include="..\..\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK\public.sdk\source\vst\utility\stringconvert.cpp" />
+  </ItemGroup>
+"@
+            $vstProjContent = $vstProjContent -replace '</Project>\s*$', "$insert`r`n</Project>"
+            Set-Content -Path $vstProj -Value $vstProjContent -NoNewline
+          }
+
           # HISE JUCE snapshot compatibility: IPtr must be unwrapped before assigning to auto*.
           $wrapper = Join-Path $hise "JUCE\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"
           if (Test-Path $wrapper) {
@@ -126,6 +139,16 @@ jobs:
           $clientUtils = Join-Path $ws "oi grandad\Binaries\JuceLibraryCode\include_juce_audio_plugin_client_utils.cpp"
           if (Test-Path $clientUtils) {
             '#include "AppConfig.h"' | Set-Content -Path $clientUtils -NoNewline
+          }
+
+          # Ensure VST3 StringConvert implementation is linked when JUCE client is built in headers-only mode.
+          $clientVst3 = Join-Path $ws "oi grandad\Binaries\JuceLibraryCode\include_juce_audio_plugin_client_VST3.cpp"
+          if (Test-Path $clientVst3) {
+            $vc = Get-Content -Raw -Path $clientVst3
+            if ($vc -notmatch "public\.sdk/source/vst/utility/stringconvert\.cpp") {
+              $vc += "`r`n#include <public.sdk/source/vst/utility/stringconvert.cpp>"
+              Set-Content -Path $clientVst3 -Value $vc -NoNewline
+            }
           }
 
       - name: Build VST3 (Windows)
