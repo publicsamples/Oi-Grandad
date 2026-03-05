@@ -122,10 +122,19 @@ jobs:
           done
 
           if [[ -n "$vst3_common" ]]; then
-            perl -0pi -e '
-              s/return\s+Steinberg::Vst::kSpeakerACN\d+;/return 0;/g;
-              s/return\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr);/return 0;/g;
-            ' "$vst3_common"
+            if ! grep -q 'kSpeakerACN0' "$sdk_dir/pluginterfaces/vst/vsttypes.h"; then
+              perl -0pi -e '
+                s/^[ \t]*case\s+Steinberg::Vst::kSpeakerACN\d+:\s*return\s+AudioChannelSet::ambisonicACN\d+;\s*\n//mg;
+                s/^[ \t]*case\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr):\s*return\s+AudioChannelSet::(?:bottomSideLeft|bottomSideRight|bottomRearLeft|bottomRearRight);\s*\n//mg;
+                s/return\s+Steinberg::Vst::kSpeakerACN\d+;/return 0;/g;
+                s/return\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr);/return 0;/g;
+              ' "$vst3_common"
+
+              if grep -Eq 'case[[:space:]]+Steinberg::Vst::kSpeakerACN|return[[:space:]]+Steinberg::Vst::kSpeakerACN|case[[:space:]]+Steinberg::Vst::kSpeakerB(sl|sr|rl|rr)|return[[:space:]]+Steinberg::Vst::kSpeakerB(sl|sr|rl|rr)' "$vst3_common"; then
+                echo "ERROR: Legacy speaker symbol patch did not fully apply to $vst3_common"
+                exit 1
+              fi
+            fi
           fi
 
       - name: Sanity check JUCE modules path
