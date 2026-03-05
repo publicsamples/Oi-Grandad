@@ -1,0 +1,89 @@
+name: Build macOS (Fresh)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Normalize project paths for CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          client_utils_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+          vst_utils_mm="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
+          test -f "$pbxproj"
+          test -f "$client_utils_cpp"
+          test -f "$vst_utils_mm"
+
+          HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
+            s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
+          ' "$pbxproj"
+
+          perl -0pi -e '
+            s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
+          ' "$pbxproj"
+
+          cat > "$client_utils_cpp" <<'EOF'
+          #include "AppConfig.h"
+          EOF
+
+          cat > "$vst_utils_mm" <<'EOF'
+          #include "AppConfig.h"
+          EOF
+
+      - name: Build VST3
+        shell: bash
+        run: |
+          xcodebuild \
+            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
+            -scheme "oi grandad - VST3" \
+            -configuration Release \
+            MACOSX_DEPLOYMENT_TARGET=10.13 \
+            OTHER_CPLUSPLUSFLAGS="-x objective-c++" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Build AU
+        shell: bash
+        run: |
+          xcodebuild \
+            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
+            -scheme "oi grandad - AU" \
+            -configuration Release \
+            MACOSX_DEPLOYMENT_TARGET=10.13 \
+            OTHER_CPLUSPLUSFLAGS="-x objective-c++" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          find . -type d \( -name "*.vst3" -o -name "*.component" \) -print > bundles.txt
+
+          if [ ! -s bundles.txt ]; then
+            echo "ERROR: No .vst3 or .component bundles found."
+            exit 1
+          fi
+
+          while IFS= read -r bundle; do
+            name="$(basename "$bundle")"
+            ditto -c -k --sequesterRsrc --keepParent "$bundle" "dist/$name.zip"
+          done < bundles.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-au-vst3-unsigned
+          path: dist/*.zip
