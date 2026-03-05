@@ -65,6 +65,17 @@ jobs:
             Set-Content -Path $wrapper -Value $wc -NoNewline
           }
 
+          # JUCE/HISE compatibility on MSVC: use CRT-prefixed case-insensitive functions.
+          $juceTextDir = Join-Path $hise "JUCE\modules\juce_core\text"
+          if (Test-Path $juceTextDir) {
+            Get-ChildItem -Path $juceTextDir -Filter "juce_CharPointer_*.h" -File | ForEach-Object {
+              $hc = Get-Content -Raw -Path $_.FullName
+              $hc = [regex]::Replace($hc, '\bstricmp\b', '_stricmp')
+              $hc = [regex]::Replace($hc, '\bstrnicmp\b', '_strnicmp')
+              Set-Content -Path $_.FullName -Value $hc -NoNewline
+            }
+          }
+
           # Ensure FAUST headers exist at include path expected by HISE/JUCE.
           $faustRoot = Join-Path $faustInclude "faust"
           New-Item -ItemType Directory -Force -Path (Join-Path $faustRoot "dsp") | Out-Null
