@@ -44,7 +44,25 @@ jobs:
             $c = $c.Replace('/Users/rick/Documents/GitHub/HISE/tools/faust/include', $faustInclude)
             $c = $c.Replace('\Users\rick\Documents\GitHub\HISE', $hise)
             $c = $c.Replace('/Users/rick/Documents/GitHub/HISE', $hise)
+            # Remove unresolved exporter placeholders that break CI builds.
+            $c = $c.Replace('%FFT_HEADER_PATH%;', '')
+            $c = $c.Replace('%FFT_LINKER_FLAGS%', '')
+            $c = $c.Replace('%WIN_STATIC_LIBS%', '')
+            $c = $c.Replace('%WIN_STATIC_LIB_FOLDER_R64%;', '')
+            $c = $c.Replace('%WIN_STATIC_LIB_FOLDER_D64%;', '')
+            $c = $c.Replace('%PREBUILD_COMMAND%;', '')
+            $c = $c.Replace('%PREBUILD_COMMAND%', '')
+            # Windows compatibility defines for SDK/JUCE on modern toolchains.
+            $c = $c.Replace('WIN32;_WINDOWS;', 'WIN32;_WINDOWS;NOMINMAX;stricmp=_stricmp;')
             Set-Content -Path $p -Value $c -NoNewline
+          }
+
+          # HISE JUCE snapshot compatibility: IPtr must be unwrapped before assigning to auto*.
+          $wrapper = Join-Path $hise "JUCE\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"
+          if (Test-Path $wrapper) {
+            $wc = Get-Content -Raw -Path $wrapper
+            $wc = [regex]::Replace($wc, 'if\s*\(\s*auto\*\s+handler\s*=\s*componentHandler\s*\)', 'if (auto* handler = componentHandler.get())')
+            Set-Content -Path $wrapper -Value $wc -NoNewline
           }
 
           # Ensure FAUST headers exist at include path expected by HISE/JUCE.
