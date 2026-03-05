@@ -143,10 +143,22 @@ jobs:
           $clientVst3 = Join-Path $ws "oi grandad\Binaries\JuceLibraryCode\include_juce_audio_plugin_client_VST3.cpp"
           if (Test-Path $clientVst3) {
             $vc = Get-Content -Raw -Path $clientVst3
+            if ($vc -notmatch "public\.sdk/source/common/commonstringconvert\.cpp") {
+              $vc += "`r`n#include <public.sdk/source/common/commonstringconvert.cpp>"
+            }
             if ($vc -notmatch "public\.sdk/source/vst/utility/stringconvert\.cpp") {
               $vc += "`r`n#include <public.sdk/source/vst/utility/stringconvert.cpp>"
-              Set-Content -Path $clientVst3 -Value $vc -NoNewline
             }
+            if ($vc -notmatch "StringConvertCIShim") {
+              $vc += "`r`n// StringConvertCIShim: provides the legacy 2-arg overload if this SDK/JUCE combo misses it."
+              $vc += "`r`nnamespace Steinberg { namespace Vst { namespace StringConvert {"
+              $vc += "`r`nbool convert (const std::string& utf8Str, Steinberg::Vst::TChar* str)"
+              $vc += "`r`n{"
+              $vc += "`r`n    return convert (utf8Str, str, 128);"
+              $vc += "`r`n}"
+              $vc += "`r`n}}}"
+            }
+            Set-Content -Path $clientVst3 -Value $vc -NoNewline
           }
 
       - name: Build VST3 (Windows)
