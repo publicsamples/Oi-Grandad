@@ -26,34 +26,19 @@ jobs:
           headless_sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
 
           if [[ ! -f "$sdk_header" ]]; then
-            echo "VST3 SDK headers not found in HISE checkout. Fetching Steinberg VST3 SDK..."
-            tmp_sdk="$GITHUB_WORKSPACE/_vst3sdk"
-            rm -rf "$tmp_sdk"
-            git_fetch_ok=0
+            echo "VST3 SDK headers not found in HISE checkout. Preparing SDK..."
+            sdk_zip="$GITHUB_WORKSPACE/HISE/tools/SDK/sdk.zip"
+            sdk_parent="$(dirname "$sdk_dir")"
+            mkdir -p "$sdk_parent"
 
-            for branch in master main ""; do
-              for attempt in 1 2 3; do
-                rm -rf "$tmp_sdk"
-                if [[ -n "$branch" ]]; then
-                  echo "Attempt $attempt: git clone branch '$branch'"
-                  if git clone --depth 1 --branch "$branch" https://github.com/steinbergmedia/vst3sdk.git "$tmp_sdk"; then
-                    git_fetch_ok=1
-                    break 2
-                  fi
-                else
-                  echo "Attempt $attempt: git clone default branch"
-                  if git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git "$tmp_sdk"; then
-                    git_fetch_ok=1
-                    break 2
-                  fi
-                fi
-                sleep 2
-              done
-            done
-
-            if [[ "$git_fetch_ok" -ne 1 ]]; then
-              echo "git clone failed; trying codeload tarballs"
+            if [[ -f "$sdk_zip" ]]; then
+              echo "Extracting SDK from $sdk_zip"
+              unzip -q -o "$sdk_zip" -d "$sdk_parent"
+            else
+              echo "Local sdk.zip missing; falling back to codeload tarballs"
+              tmp_sdk="$GITHUB_WORKSPACE/_vst3sdk"
               rm -rf "$tmp_sdk" "$GITHUB_WORKSPACE/_vst3sdk.tar.gz"
+              fetch_ok=0
               for ref in master main; do
                 url="https://codeload.github.com/steinbergmedia/vst3sdk/tar.gz/refs/heads/$ref"
                 echo "Downloading $url"
@@ -61,22 +46,18 @@ jobs:
                   tar -xzf "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" -C "$GITHUB_WORKSPACE"
                   extracted="$GITHUB_WORKSPACE/vst3sdk-$ref"
                   if [[ -d "$extracted" ]]; then
-                    mv "$extracted" "$tmp_sdk"
-                    git_fetch_ok=1
+                    rm -rf "$sdk_dir"
+                    mv "$extracted" "$sdk_dir"
+                    fetch_ok=1
                     break
                   fi
                 fi
               done
+              if [[ "$fetch_ok" -ne 1 ]]; then
+                echo "ERROR: Could not provide VST3 SDK headers (local zip missing and network fetch failed)."
+                exit 1
+              fi
             fi
-
-            if [[ "$git_fetch_ok" -ne 1 ]]; then
-              echo "ERROR: Could not fetch Steinberg VST3 SDK from GitHub."
-              exit 1
-            fi
-
-            mkdir -p "$(dirname "$sdk_dir")"
-            rm -rf "$sdk_dir"
-            mv "$tmp_sdk" "$sdk_dir"
           fi
 
           if [[ ! -e "$headless_sdk_dir" ]]; then
