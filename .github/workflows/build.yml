@@ -78,6 +78,7 @@ jobs:
           pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
           client_utils_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
           vst_utils_mm="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
+          sdk_dir="$GITHUB_WORKSPACE/HISE/tools/SDK/VST3 SDK"
           test -f "$pbxproj"
           test -f "$client_utils_cpp"
           test -f "$vst_utils_mm"
