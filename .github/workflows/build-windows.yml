@@ -52,6 +52,11 @@ jobs:
             $c = $c.Replace('%WIN_STATIC_LIB_FOLDER_D64%;', '')
             $c = $c.Replace('%PREBUILD_COMMAND%;', '')
             $c = $c.Replace('%PREBUILD_COMMAND%', '')
+            # Ensure IPP is not enabled in CI unless explicitly wired (melatonin_blur fallback path is fine).
+            $c = $c.Replace('PAMPLEJUCE_IPP;', '')
+            $c = $c.Replace('_IPP_SEQUENTIAL_STATIC;', '')
+            $c = $c.Replace('PAMPLEJUCE_IPP=1;', '')
+            $c = $c.Replace('_IPP_SEQUENTIAL_STATIC=1;', '')
             # Windows compatibility defines for SDK/JUCE on modern toolchains.
             $c = $c.Replace('WIN32;_WINDOWS;', 'WIN32;_WINDOWS;NOMINMAX;stricmp=_stricmp;')
             Set-Content -Path $p -Value $c -NoNewline
