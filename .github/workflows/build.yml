@@ -17,10 +17,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test -e HISE || ln -s "oi grandad/Binaries" HISE
           pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
           test -f "$pbxproj"
 
-          HISE_ROOT="$GITHUB_WORKSPACE/oi grandad/Binaries" perl -0pi -e '
+          HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
             s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
             s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
           ' "$pbxproj"
@@ -86,7 +87,11 @@ jobs:
       - name: Rewrite hardcoded paths for CI (Windows)
         shell: pwsh
         run: |
-          $hiseRootPosix = "$env:GITHUB_WORKSPACE/oi grandad/Binaries"
+          if (-not (Test-Path "HISE")) {
+            New-Item -ItemType Junction -Path "HISE" -Target "oi grandad\Binaries" | Out-Null
+          }
+
+          $hiseRootPosix = "$env:GITHUB_WORKSPACE/HISE"
           $hiseRootWin = ($hiseRootPosix -replace '/', '\')
 
           $files = @(
@@ -148,10 +153,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test -e HISE || ln -s "oi grandad/Binaries" HISE
           makefile="oi grandad/Binaries/Builds/LinuxMakefile/Makefile"
           test -f "$makefile"
 
-          HISE_ROOT="$GITHUB_WORKSPACE/oi grandad/Binaries" perl -0pi -e '
+          HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
             s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
             s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
           ' "$makefile"
