@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="j2dKyn" name="oi grandad" projectType="dll" cppLanguageStandard="17"
+              jucerFormatVersion="1">
+  <MAINGROUP id="pGnv3y" name="oi grandad">
+    <GROUP id="{35679809-0FA5-3027-50B5-CF866453D7B2}" name="Source">
+      <FILE id="Sbp8Ar" name="includes.h" compile="0" resource="0" file="Source/includes.h"/>
+      <FILE id="LviiT0" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="HrkhQ5" name="RNBO.cpp" compile="1" resource="0" file="Source/RNBO.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022" IPP1ALibrary="" extraCompilerFlags="/bigobj /cgthreads8  /wd&quot;4100&quot; /wd&quot;4127&quot; /wd&quot;4244&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4459&quot;&#10;"
+            extraDefs="NOMINMAX=1&#10;&#10;WIN32_LEAN_AND_MEAN=1" extraLinkerFlags="%WIN_STATIC_LIBS%">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" binaryPath="dll" targetName="oigrandad_debug"
+                       headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       libraryPath="%WIN_STATIC_LIB_FOLDER_D64%" useRuntimeLibDLL="0"/>
+        <CONFIGURATION isDebug="0" name="CI" targetName="oigrandad_ci" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       binaryPath="dll" alwaysGenerateDebugSymbols="0" optimisation="2"
+                       linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="oigrandad" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       libraryPath="%WIN_STATIC_LIB_FOLDER_R64%" binaryPath="dll" alwaysGenerateDebugSymbols="1"
+                       linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_faust" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_faust_types" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="juce_dsp" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraDefs="" extraLinkerFlags=""
+               externalLibraries="" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off"
+               xcodeValidArchs="arm64,arm64e,x86_64">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" osxArchitecture="64BitIntel" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       libraryPath="" binaryPath="dll" targetName="oigrandad_debug"
+                       customXcodeFlags="CODE_SIGNING_ALLOWED=NO"/>
+        <CONFIGURATION isDebug="0" name="CI" osxArchitecture="64BitIntel" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       libraryPath="" binaryPath="dll" optimisation="4" linkTimeOptimisation="0"
+                       customXcodeFlags="CODE_SIGNING_ALLOWED=NO" targetName="oigrandad_ci"/>
+        <CONFIGURATION isDebug="0" name="Release" osxArchitecture="64BitIntel" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       libraryPath="" binaryPath="dll" customXcodeFlags="CODE_SIGNING_ALLOWED=NO"
+                       targetName="oigrandad"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_faust_types" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_faust" path="/Users/rick/Documents/GitHub/HISE"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraDefs="" extraLinkerFlags="-no-pie&#10;"
+                extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override&#10;-fpermissive"
+                linuxExtraPkgConfig="x11 xinerama xext">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" binaryPath="dll" targetName="oi grandad_debug"
+                       headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"/>
+        <CONFIGURATION isDebug="0" name="Release" binaryPath="dll" targetName="oi grandad"
+                       headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_basics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
+        <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_dsp_library" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_faust" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_faust_types" path="/Users/rick/Documents/GitHub/HISE"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="hi_dsp_library" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="hi_faust" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="hi_faust_types" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="hi_tools" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+  <JUCEOPTIONS HISE_NO_GUI_TOOLS="1" HI_EXPORT_DSP_LIBRARY="0" JUCE_LOAD_CURL_SYMBOLS_LAZILY="1"
+               IS_STATIC_DSP_LIBRARY="0" HISE_INCLUDE_FAUST="1" HI_EXPORT_AS_PROJECT_DLL="1"/>
+</JUCERPROJECT>
