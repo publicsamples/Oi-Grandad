@@ -5,6 +5,10 @@ on:
   push:
     branches: [ main ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   mac:
     runs-on: macos-latest
@@ -12,6 +16,32 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Ensure VST3 SDK headers exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk_dir="$GITHUB_WORKSPACE/HISE/tools/SDK/VST3 SDK"
+          sdk_header="$sdk_dir/pluginterfaces/vst/vsttypes.h"
+          headless_sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+
+          if [[ ! -f "$sdk_header" ]]; then
+            echo "VST3 SDK headers not found in HISE checkout. Fetching Steinberg VST3 SDK..."
+            tmp_sdk="$GITHUB_WORKSPACE/_vst3sdk"
+            rm -rf "$tmp_sdk"
+            git clone --depth 1 https://github.com/steinbergmedia/vst3sdk.git "$tmp_sdk"
+            mkdir -p "$(dirname "$sdk_dir")"
+            rm -rf "$sdk_dir"
+            mv "$tmp_sdk" "$sdk_dir"
+          fi
+
+          if [[ ! -e "$headless_sdk_dir" ]]; then
+            mkdir -p "$(dirname "$headless_sdk_dir")"
+            ln -s "$sdk_dir" "$headless_sdk_dir"
+          fi
+
+          test -f "$sdk_header"
+          test -f "$headless_sdk_dir/pluginterfaces/vst/vsttypes.h"
 
       - name: Normalize project paths for CI
         shell: bash
