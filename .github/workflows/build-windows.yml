@@ -88,22 +88,22 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $sln = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad.sln"
-          msbuild $sln /m /t:"oi grandad_VST3" /p:Configuration=Release /p:Platform=x64
+          $proj = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
+          msbuild $proj /m /t:Build /p:Configuration=Release /p:Platform=x64
 
       - name: Package (Windows)
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           New-Item -ItemType Directory -Force -Path dist | Out-Null
-          $bundles = Get-ChildItem -Path . -Recurse -Filter *.vst3 -Directory
-          if ($bundles.Count -eq 0) {
-            throw "No .vst3 bundles found"
+          $vst3Files = Get-ChildItem -Path . -Recurse -Filter *.vst3 -File
+          if ($vst3Files.Count -eq 0) {
+            throw "No .vst3 files found"
           }
 
-          foreach ($b in $bundles) {
-            $zipPath = Join-Path "dist" ($b.Name + ".zip")
-            Compress-Archive -Path $b.FullName -DestinationPath $zipPath -Force
+          foreach ($f in $vst3Files) {
+            $zipPath = Join-Path "dist" ($f.Name + ".zip")
+            Compress-Archive -Path $f.FullName -DestinationPath $zipPath -Force
           }
 
           Get-ChildItem dist
