@@ -59,6 +59,53 @@ jobs:
           ls -la "oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client" || exit 1
           test -f "oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp" || exit 1
 
+      - name: Preflight generated shim includes (macOS)
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="$GITHUB_WORKSPACE/oi grandad/Binaries"
+          cd "$base"
+
+          include_roots=(
+            "$base/JuceLibraryCode"
+            "$GITHUB_WORKSPACE/HISE"
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules"
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_plugin_client"
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          )
+
+          resolve_include() {
+            local rel="$1"
+            local d
+            for d in "${include_roots[@]}"; do
+              if [[ -f "$d/$rel" ]]; then
+                return 0
+              fi
+            done
+            return 1
+          }
+
+          missing_file="$(mktemp)"
+          checked=0
+          while IFS= read -r -d '' shim; do
+            inc="$(sed -n 's/^#include <\(.*\)>/\1/p' "$shim" | head -n1 | tr -d '\r')"
+            [[ -z "$inc" ]] && continue
+            checked=$((checked + 1))
+            if ! resolve_include "$inc"; then
+              printf '%s\t%s\n' "$shim" "$inc" >> "$missing_file"
+            fi
+          done < <(find JuceLibraryCode -maxdepth 1 -type f \( -name 'include_*.cpp' -o -name 'include_*.mm' -o -name 'include_*.c' \) -print0)
+
+          missing_count="$(wc -l < "$missing_file" | tr -d ' ')"
+          echo "Shim preflight checked: $checked"
+          echo "Shim preflight unresolved: $missing_count"
+
+          if [[ "$missing_count" -gt 0 ]]; then
+            echo "Unresolved generated shim includes:"
+            sort "$missing_file"
+            exit 1
+          fi
+
       - name: Build VST3 (macOS)
         run: |
           xcodebuild \

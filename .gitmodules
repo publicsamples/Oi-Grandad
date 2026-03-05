@@ -4,3 +4,6 @@
 [submodule "oi grandad/Binaries/JUCE"]
 	path = oi grandad/Binaries/JUCE
 	url = https://github.com/juce-framework/JUCE.git
+[submodule "HISE"]
+	path = HISE
+	url = https://github.com/christophhart/HISE.git
