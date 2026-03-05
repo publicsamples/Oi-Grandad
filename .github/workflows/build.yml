@@ -21,26 +21,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          sdk_dir="$GITHUB_WORKSPACE/HISE/tools/SDK/VST3 SDK"
+          sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
           sdk_header="$sdk_dir/pluginterfaces/vst/vsttypes.h"
+          sdk_speaker="$sdk_dir/pluginterfaces/vst/vstspeaker.h"
           headless_sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
-          sdk_zip="$GITHUB_WORKSPACE/HISE/tools/SDK/sdk.zip"
-          sdk_parent="$(dirname "$sdk_dir")"
 
-          if [[ ! -f "$sdk_header" ]]; then
-            echo "VST3 SDK is missing required files. Extracting bundled sdk.zip..."
-            mkdir -p "$sdk_parent"
-            if [[ ! -f "$sdk_zip" ]]; then
-              echo "ERROR: Missing $sdk_zip"
-              exit 1
-            fi
-            unzip -q -o "$sdk_zip" -d "$sdk_parent"
+          if [[ ! -f "$sdk_header" || ! -f "$sdk_speaker" ]]; then
+            echo "ERROR: Expected JUCE bundled VST3 SDK at $sdk_dir but required files were missing."
+            exit 1
           fi
 
-          if [[ ! -e "$headless_sdk_dir" ]]; then
-            mkdir -p "$(dirname "$headless_sdk_dir")"
-            ln -s "$sdk_dir" "$headless_sdk_dir"
-          fi
+          mkdir -p "$(dirname "$headless_sdk_dir")"
+          rm -rf "$headless_sdk_dir"
+          ln -s "$sdk_dir" "$headless_sdk_dir"
 
           # Compatibility shim: some JUCE/HISE revisions include sdk .cpp files that are
           # not present in older bundled VST3 SDK snapshots (eg base/source/flock.cpp).
@@ -68,7 +61,9 @@ jobs:
           fi
 
           test -f "$sdk_header"
+          test -f "$sdk_speaker"
           test -f "$headless_sdk_dir/pluginterfaces/vst/vsttypes.h"
+          test -f "$headless_sdk_dir/pluginterfaces/vst/vstspeaker.h"
 
       - name: Rewrite hardcoded paths for CI (macOS)
         shell: bash
@@ -78,7 +73,7 @@ jobs:
           pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
           client_utils_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
           vst_utils_mm="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
-          sdk_dir="$GITHUB_WORKSPACE/HISE/tools/SDK/VST3 SDK"
+          sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
           test -f "$pbxproj"
           test -f "$client_utils_cpp"
           test -f "$vst_utils_mm"
@@ -123,7 +118,7 @@ jobs:
           done
 
           if [[ -n "$vst3_common" ]]; then
-            if ! grep -q 'kSpeakerACN0' "$sdk_dir/pluginterfaces/vst/vsttypes.h"; then
+            if ! grep -q 'kSpeakerACN0' "$sdk_dir/pluginterfaces/vst/vstspeaker.h"; then
               perl -0pi -e '
                 s/^[ \t]*case\s+Steinberg::Vst::kSpeakerACN\d+:\s*return\s+AudioChannelSet::ambisonicACN\d+;\s*\n//mg;
                 s/^[ \t]*case\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr):\s*return\s+AudioChannelSet::(?:bottomSideLeft|bottomSideRight|bottomRearLeft|bottomRearRight);\s*\n//mg;
