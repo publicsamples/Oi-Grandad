@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -178,6 +169,7 @@ public:
         */
         Position movedByLines (int deltaLines) const;
 
+
         /** Returns the character in the document at this position.
             @see getLineText
         */
@@ -187,6 +179,8 @@ public:
             @see getCharacter, getLineNumber
         */
         String getLineText() const;
+
+		const CodeDocument* getOwner() const { return owner; }
 
     private:
         CodeDocument* owner = nullptr;
@@ -259,6 +253,9 @@ public:
 
     /** Writes the editor's current contents to a stream. */
     bool writeToStream (OutputStream& stream);
+
+	/** Disables the undo manger and directly calls the functions. */
+	void setDisableUndo(bool shouldBeDisabled);
 
     //==============================================================================
     /** Returns the preferred new-line characters for the document.
@@ -344,6 +341,11 @@ public:
 
         /** Called by a CodeDocument when text is deleted. */
         virtual void codeDocumentTextDeleted (int startIndex, int endIndex) = 0;
+
+		virtual void lineRangeChanged(Range<int> range, bool wasAdded)
+		{
+			ignoreUnused(range, wasAdded);
+		};
     };
 
     /** Registers a listener object to receive callbacks when the document changes.
@@ -356,6 +358,8 @@ public:
         @see addListener
     */
     void removeListener (Listener* listener);
+
+	int getNumListeners() const;
 
     //==============================================================================
     /** Iterates the text in a CodeDocument.
@@ -417,6 +421,8 @@ public:
         /** Returns the line number of the next character. */
         int getLine() const noexcept            { return line; }
 
+		int getIndexInLine() const;
+
         /** Returns true if the iterator has reached the end of the document. */
         bool isEOF() const noexcept;
 
@@ -449,11 +455,14 @@ private:
     ListenerList<Listener> listeners;
     String newLineChars { "\r\n" };
 
+	bool undoDisabled = false;
+
     void insert (const String& text, int insertPos, bool undoable);
     void remove (int startPos, int endPos, bool undoable);
     void checkLastLineStatus();
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CodeDocument)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CodeDocument);
+	JUCE_DECLARE_WEAK_REFERENCEABLE(CodeDocument);
 };
 
 } // namespace juce

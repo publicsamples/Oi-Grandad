@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -130,7 +121,7 @@ public:
 
         This must be a localised string.
     */
-    virtual String getTitle() const                  { return component.getTitle(); }
+    virtual String getTitle() const                  { return component.getComponentTitle(); }
 
     /** A short description of the UI element.
 
@@ -295,55 +286,11 @@ public:
     */
     static void postAnnouncement (const String& announcementString, AnnouncementPriority priority);
 
-    /** Posts a local system notification.
-
-        In order for this to do anything, the following conditions must be met.
-        - At build time:
-            - The juce_gui_extra module must be included in the project.
-            - Push notifications must be enabled by setting the preprocessor definition
-              JUCE_PUSH_NOTIFICATIONS=1
-        - At run time:
-            - An accessibility client (narrator, voiceover etc.) must be active.
-
-        Additionally, on Android, an icon is required for notifications.
-        This must be specified by adding the path to the icon file called
-        "accessibilitynotificationicon" in the "Extra Android Raw Resources" setting
-        in the Projucer.
-
-        This will use the push notification client on macOS, iOS and Android.
-        On Windows this will create a system tray icon to post the notification.
-
-        @param notificationTitle   the title of the notification
-        @param notificationBody    the main body text of the notification
-    */
-    static void postSystemNotification (const String& notificationTitle,
-                                        const String& notificationBody);
-
     //==============================================================================
     /** @internal */
     AccessibilityNativeHandle* getNativeImplementation() const;
     /** @internal */
     std::type_index getTypeIndex() const  { return typeIndex; }
-    /** @internal */
-    static void clearCurrentlyFocusedHandler() { currentlyFocusedHandler = nullptr; }
-
-    /** @internal
-
-        The following functions provide the means to associate JUCE Components with OS specific
-        types that provide their own accessibility mechanisms. This way accessibility navigation
-        can move from a JUCE Component to a native, embedded window and back.
-
-        These functions assume that the concrete types behind the void* are
-        - Windows: HWND
-        - MacOS: NSView*
-        - iOS: UIView*
-        - Android: GlobalRef that points to an android.view.View
-    */
-    static void*      getNativeChildForComponent (Component& component);
-    /** @internal */
-    static void       setNativeChildForComponent (Component& component, void* nativeChild);
-    /** @internal */
-    static Component* getComponentForNativeChild (void* nativeChild);
 
 private:
     //==============================================================================
@@ -353,9 +300,8 @@ private:
     void grabFocusInternal (bool);
     void giveAwayFocusInternal() const;
     void takeFocus();
-    static bool areAnyAccessibilityClientsActive();
 
-    static inline AccessibilityHandler* currentlyFocusedHandler = nullptr;
+    static AccessibilityHandler* currentlyFocusedHandler;
 
     //==============================================================================
     Component& component;

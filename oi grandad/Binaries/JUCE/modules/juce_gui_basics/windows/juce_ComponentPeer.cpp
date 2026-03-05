@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -43,15 +34,12 @@ ComponentPeer::ComponentPeer (Component& comp, int flags)
       styleFlags (flags),
       uniqueID (lastUniquePeerID += 2) // increment by 2 so that this can never hit 0
 {
-    auto& desktop = Desktop::getInstance();
-    desktop.peers.add (this);
-    desktop.addFocusChangeListener (this);
+    Desktop::getInstance().peers.add (this);
 }
 
 ComponentPeer::~ComponentPeer()
 {
     auto& desktop = Desktop::getInstance();
-    desktop.removeFocusChangeListener (this);
     desktop.peers.removeFirstMatchingValue (this);
     desktop.triggerFocusCallback();
 }
@@ -83,7 +71,7 @@ bool ComponentPeer::isValidPeer (const ComponentPeer* const peer) noexcept
 
 void ComponentPeer::updateBounds()
 {
-    setBounds (detail::ScalingHelpers::scaledScreenPosToUnscaled (component, component.getBoundsInParent()), false);
+    setBounds (ScalingHelpers::scaledScreenPosToUnscaled (component, component.getBoundsInParent()), false);
 }
 
 bool ComponentPeer::isKioskMode() const
@@ -164,12 +152,10 @@ void ComponentPeer::handlePaint (LowLevelGraphicsContext& contextToPaintTo)
   #endif
 
     /** If this fails, it's probably be because your CPU floating-point precision mode has
-        been set to low. This setting is sometimes changed by things like Direct3D, and can
+        been set to low.. This setting is sometimes changed by things like Direct3D, and can
         mess up a lot of the calculations that the library needs to do.
     */
     jassert (roundToInt (10.1f) == 10);
-
-    ++peerFrameNumber;
 }
 
 Component* ComponentPeer::getTargetForKeyPress()
@@ -189,9 +175,10 @@ Component* ComponentPeer::getTargetForKeyPress()
 bool ComponentPeer::handleKeyPress (const int keyCode, const juce_wchar textCharacter)
 {
     return handleKeyPress (KeyPress (keyCode,
-                                     ModifierKeys::getCurrentModifiers().withoutMouseButtons(),
+                                     ModifierKeys::currentModifiers.withoutMouseButtons(),
                                      textCharacter));
 }
+
 
 bool ComponentPeer::handleKeyPress (const KeyPress& keyInfo)
 {
@@ -275,19 +262,6 @@ void ComponentPeer::handleModifierKeysChange()
     target->internalModifierKeysChanged();
 }
 
-void ComponentPeer::refreshTextInputTarget()
-{
-    const auto* lastTarget = std::exchange (textInputTarget, findCurrentTextInputTarget());
-
-    if (lastTarget == textInputTarget)
-        return;
-
-    if (textInputTarget == nullptr)
-        dismissPendingTextInput();
-    else if (auto* c = Component::getCurrentlyFocusedComponent())
-        textInputRequired (globalToLocal (c->getScreenPosition()), *textInputTarget);
-}
-
 TextInputTarget* ComponentPeer::findCurrentTextInputTarget()
 {
     auto* c = Component::getCurrentlyFocusedComponent();
@@ -300,12 +274,7 @@ TextInputTarget* ComponentPeer::findCurrentTextInputTarget()
     return nullptr;
 }
 
-void ComponentPeer::closeInputMethodContext() {}
-
-void ComponentPeer::dismissPendingTextInput()
-{
-    closeInputMethodContext();
-}
+void ComponentPeer::dismissPendingTextInput() {}
 
 //==============================================================================
 void ComponentPeer::handleBroughtToFront()
@@ -326,7 +295,7 @@ void ComponentPeer::handleMovedOrResized()
     {
         const WeakReference<Component> deletionChecker (&component);
 
-        auto newBounds = detail::ComponentHelpers::rawPeerPositionToLocal (component, getBounds());
+        auto newBounds = Component::ComponentHelpers::rawPeerPositionToLocal (component, getBounds());
         auto oldBounds = component.getBounds();
 
         const bool wasMoved   = (oldBounds.getPosition() != newBounds.getPosition());
@@ -441,7 +410,7 @@ Rectangle<float> ComponentPeer::globalToLocal (const Rectangle<float>& screenPos
 
 Rectangle<int> ComponentPeer::getAreaCoveredBy (const Component& subComponent) const
 {
-    return detail::ScalingHelpers::scaledScreenPosToUnscaled
+    return ScalingHelpers::scaledScreenPosToUnscaled
             (component, component.getLocalArea (&subComponent, subComponent.getLocalBounds()));
 }
 
@@ -562,7 +531,7 @@ bool ComponentPeer::handleDragDrop (const ComponentPeer::DragInfo& info)
             infoCopy.position = targetComp->getLocalPoint (&component, info.position);
 
             // We'll use an async message to deliver the drop, because if the target decides
-            // to run a modal loop, it can gum-up the operating system.
+            // to run a modal loop, it can gum-up the operating system..
             MessageManager::callAsync ([=]
             {
                 if (auto* c = targetComp.get())
@@ -597,8 +566,8 @@ void ComponentPeer::setRepresentedFile (const File&)
 }
 
 //==============================================================================
-int ComponentPeer::getCurrentRenderingEngine() const                             { return 0; }
-void ComponentPeer::setCurrentRenderingEngine ([[maybe_unused]] int index)       { jassert (index == 0); }
+int ComponentPeer::getCurrentRenderingEngine() const            { return 0; }
+void ComponentPeer::setCurrentRenderingEngine (int index)       { jassert (index == 0); ignoreUnused (index); }
 
 //==============================================================================
 std::function<ModifierKeys()> ComponentPeer::getNativeRealtimeModifiers = nullptr;
@@ -615,16 +584,6 @@ ModifierKeys ComponentPeer::getCurrentModifiersRealtime() noexcept
 void ComponentPeer::forceDisplayUpdate()
 {
     Desktop::getInstance().displays->refresh();
-}
-
-void ComponentPeer::callVBlankListeners (double timestampSec)
-{
-    vBlankListeners.call ([timestampSec] (auto& l) { l.onVBlank (timestampSec); });
-}
-
-void ComponentPeer::globalFocusChanged ([[maybe_unused]] Component* comp)
-{
-    refreshTextInputTarget();
 }
 
 } // namespace juce

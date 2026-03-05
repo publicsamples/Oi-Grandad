@@ -1,86 +1,30 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 namespace juce
 {
-
-/** A class for receiving callbacks from a Slider or WebSliderRelay.
-
-    To be told when a slider's value changes, you can register a Slider::Listener
-    object using Slider::addListener().
-
-    @see Slider::addListener, Slider::removeListener, WebSliderRelay::addListener,
-         WebSliderRelay::removeListener
-
-     @tags{GUI}
-*/
-template <typename Emitter>
-class JUCE_API  SliderListener
-{
-public:
-    //==============================================================================
-    /** Destructor. */
-    virtual ~SliderListener() = default;
-
-    //==============================================================================
-    /** Called when the slider's value is changed.
-
-        This may be caused by dragging it, or by typing in its text entry box,
-        or by a call to Slider::setValue().
-
-        You can find out the new value using Slider::getValue().
-
-        @see Slider::valueChanged
-    */
-    virtual void sliderValueChanged (Emitter*) = 0;
-
-    //==============================================================================
-    /** Called when the slider is about to be dragged.
-
-        This is called when a drag begins, then it's followed by multiple calls
-        to sliderValueChanged(), and then sliderDragEnded() is called after the
-        user lets go.
-
-        @see sliderDragEnded, Slider::startedDragging
-    */
-    virtual void sliderDragStarted (Emitter*) {}
-
-    /** Called after a drag operation has finished.
-        @see sliderDragStarted, Slider::stoppedDragging
-    */
-    virtual void sliderDragEnded (Emitter*) {}
-};
 
 //==============================================================================
 /**
@@ -480,9 +424,6 @@ public:
     */
     void setNormalisableRange (NormalisableRange<double> newNormalisableRange);
 
-    /** Returns the slider's normalisable range. */
-    NormalisableRange<double> getNormalisableRange() const noexcept;
-
     /** Returns the slider's range. */
     Range<double> getRange() const noexcept;
 
@@ -604,7 +545,48 @@ public:
                              NotificationType notification = sendNotificationAsync);
 
     //==============================================================================
-    using Listener = SliderListener<Slider>;
+    /** A class for receiving callbacks from a Slider.
+
+        To be told when a slider's value changes, you can register a Slider::Listener
+        object using Slider::addListener().
+
+        @see Slider::addListener, Slider::removeListener
+    */
+    class JUCE_API  Listener
+    {
+    public:
+        //==============================================================================
+        /** Destructor. */
+        virtual ~Listener() = default;
+
+        //==============================================================================
+        /** Called when the slider's value is changed.
+
+            This may be caused by dragging it, or by typing in its text entry box,
+            or by a call to Slider::setValue().
+
+            You can find out the new value using Slider::getValue().
+
+            @see Slider::valueChanged
+        */
+        virtual void sliderValueChanged (Slider* slider) = 0;
+
+        //==============================================================================
+        /** Called when the slider is about to be dragged.
+
+            This is called when a drag begins, then it's followed by multiple calls
+            to sliderValueChanged(), and then sliderDragEnded() is called after the
+            user lets go.
+
+            @see sliderDragEnded, Slider::startedDragging
+        */
+        virtual void sliderDragStarted (Slider*) {}
+
+        /** Called after a drag operation has finished.
+            @see sliderDragStarted, Slider::stoppedDragging
+        */
+        virtual void sliderDragEnded (Slider*) {}
+    };
 
     /** Adds a listener to be called when this slider's value changes. */
     void addListener (Listener* listener);
@@ -622,10 +604,10 @@ public:
     /** You can assign a lambda to this callback object to have it called when the slider's drag ends. */
     std::function<void()> onDragEnd;
 
-    /** You can assign a lambda that will be used to convert text to a slider value. */
+    /** You can assign a lambda that will be used to convert textual values to the slider's normalised position. */
     std::function<double (const String&)> valueFromTextFunction;
 
-    /** You can assign a lambda that will be used to convert a slider value to text. */
+    /** You can assign a lambda that will be used to convert the slider's normalised position to a textual value. */
     std::function<String (double)> textFromValueFunction;
 
     //==============================================================================
@@ -690,7 +672,7 @@ public:
         transparent window, so if you're using an OS that can't do transparent windows
         you'll have to add it to a parent component instead).
 
-        By default the popup display is shown when hovering will remain visible for 2 seconds,
+        By default the popup display shown when hovering will remain visible for 2 seconds,
         but it is possible to change this by passing a different hoverTimeout value. A
         value of -1 will cause the popup to remain until a mouseExit() occurs on the slider.
     */
@@ -746,29 +728,25 @@ public:
     virtual void valueChanged();
 
     //==============================================================================
-    /** Returns a slider value for some given text.
-
-        Subclasses can override this to convert a text string to a value.
-        Alternatively assign a lambda to valueFromTextFunction.
+    /** Subclasses can override this to convert a text string to a value.
 
         When the user enters something into the text-entry box, this method is
         called to convert it to a value.
         The default implementation just tries to convert it to a double.
 
-        @see getTextFromValue, valueFromTextFunction, textFromValueFunction
+        @see getTextFromValue
     */
     virtual double getValueFromText (const String& text);
 
-    /** Returns a text representation for a given slider value.
+    /** Turns the slider's current value into a text string.
 
         Subclasses can override this to customise the formatting of the text-entry box.
-        Alternatively assign a lambda to textFromValueFunction.
 
         The default implementation just turns the value into a string, using
         a number of decimal places based on the range interval. If a suffix string
         has been set using setTextValueSuffix(), this will be appended to the text.
 
-        @see getValueFromText, textFromValueFunction, valueFromTextFunction
+        @see getValueFromText
     */
     virtual String getTextFromValue (double value);
 
@@ -799,6 +777,8 @@ public:
         @see getNumDecimalPlacesToDisplay
     */
     void setNumDecimalPlacesToDisplay (int decimalPlacesToDisplay);
+
+
 
     //==============================================================================
     /** Allows a user-defined mapping of distance along the slider to its value.
@@ -911,7 +891,7 @@ public:
     //==============================================================================
     /** An RAII class for sending slider listener drag messages.
 
-        This is useful if you are programmatically updating the slider's value and want
+        This is useful if you are programatically updating the slider's value and want
         to imitate a mouse event, for example in a custom AccessibilityHandler.
 
         @see Slider::Listener
@@ -943,7 +923,7 @@ public:
                                        float sliderPos,
                                        float minSliderPos,
                                        float maxSliderPos,
-                                       Slider::SliderStyle,
+                                       const Slider::SliderStyle,
                                        Slider&) = 0;
 
         virtual void drawLinearSliderBackground (Graphics&,
@@ -951,20 +931,15 @@ public:
                                                  float sliderPos,
                                                  float minSliderPos,
                                                  float maxSliderPos,
-                                                 Slider::SliderStyle,
+                                                 const Slider::SliderStyle style,
                                                  Slider&) = 0;
-
-        virtual void drawLinearSliderOutline (Graphics&,
-                                              int x, int y, int width, int height,
-                                              Slider::SliderStyle,
-                                              Slider&) = 0;
 
         virtual void drawLinearSliderThumb (Graphics&,
                                             int x, int y, int width, int height,
                                             float sliderPos,
                                             float minSliderPos,
                                             float maxSliderPos,
-                                            Slider::SliderStyle,
+                                            const Slider::SliderStyle,
                                             Slider&) = 0;
 
         virtual int getSliderThumbRadius (Slider&) = 0;
@@ -1018,13 +993,9 @@ public:
     void mouseExit (const MouseEvent&) override;
     /** @internal */
     void mouseEnter (const MouseEvent&) override;
-    /** @internal */
-    bool keyPressed (const KeyPress&) override;
-    /** @internal */
-    std::unique_ptr<AccessibilityHandler> createAccessibilityHandler() override;
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     // These methods' bool parameters have changed: see the new method signature.
     [[deprecated]] void setValue (double, bool);
     [[deprecated]] void setValue (double, bool, bool);
@@ -1036,13 +1007,19 @@ public:
     [[deprecated]] void setMaxValue (double, bool);
     [[deprecated]] void setMinAndMaxValues (double, double, bool, bool);
     [[deprecated]] void setMinAndMaxValues (double, double, bool);
-    /** @endcond */
+   #endif
+
+protected:
+
+	/** returns the current textbox label. */
+	Label* getTextBox();
 
 private:
     //==============================================================================
     JUCE_PUBLIC_IN_DLL_BUILD (class Pimpl)
     std::unique_ptr<Pimpl> pimpl;
 
+    std::unique_ptr<AccessibilityHandler> createAccessibilityHandler() override;
     void init (SliderStyle, TextEntryBoxPosition);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Slider)

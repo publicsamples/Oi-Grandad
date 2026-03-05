@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -42,7 +33,9 @@ ImageConvolutionKernel::ImageConvolutionKernel (int sizeToUse)
     clear();
 }
 
-ImageConvolutionKernel::~ImageConvolutionKernel() = default;
+ImageConvolutionKernel::~ImageConvolutionKernel()
+{
+}
 
 //==============================================================================
 float ImageConvolutionKernel::getKernelValue (const int x, const int y) const noexcept
@@ -142,10 +135,8 @@ void ImageConvolutionKernel::applyToImage (Image& destImage,
 
     const Image::BitmapData srcData (sourceImage, Image::BitmapData::readOnly);
 
-    const auto applyKernel = [&] (auto stride)
+    if (destData.pixelStride == 4)
     {
-        constexpr auto pixelStride = stride.value;
-
         for (int y = area.getY(); y < bottom; ++y)
         {
             uint8* dest = line;
@@ -153,7 +144,10 @@ void ImageConvolutionKernel::applyToImage (Image& destImage,
 
             for (int x = area.getX(); x < right; ++x)
             {
-                float sum[pixelStride]{};
+                float c1 = 0;
+                float c2 = 0;
+                float c3 = 0;
+                float c4 = 0;
 
                 for (int yy = 0; yy < size; ++yy)
                 {
@@ -162,47 +156,140 @@ void ImageConvolutionKernel::applyToImage (Image& destImage,
                     if (sy >= srcData.height)
                         break;
 
-                    if (sy < 0)
-                        continue;
-
-                    int sx = x - (size >> 1);
-                    const uint8* src = srcData.getPixelPointer (sx, sy);
-
-                    for (int xx = 0; xx < size; ++xx)
+                    if (sy >= 0)
                     {
-                        if (sx >= srcData.width)
-                            break;
+                        int sx = x - (size >> 1);
+                        const uint8* src = srcData.getPixelPointer (sx, sy);
 
-                        if (sx >= 0)
+                        for (int xx = 0; xx < size; ++xx)
                         {
-                            const auto kernelMult = values[xx + yy * size];
+                            if (sx >= srcData.width)
+                                break;
 
-                            for (auto& s : sum)
-                                s += kernelMult * *src++;
-                        }
-                        else
-                        {
-                            src += pixelStride;
-                        }
+                            if (sx >= 0)
+                            {
+                                const float kernelMult = values [xx + yy * size];
+                                c1 += kernelMult * *src++;
+                                c2 += kernelMult * *src++;
+                                c3 += kernelMult * *src++;
+                                c4 += kernelMult * *src++;
+                            }
+                            else
+                            {
+                                src += 4;
+                            }
 
-                        ++sx;
+                            ++sx;
+                        }
                     }
                 }
 
-                for (const auto& s : sum)
-                    *dest++ = (uint8) jmin (0xff, roundToInt (s));
+                *dest++ = (uint8) jmin (0xff, roundToInt (c1));
+                *dest++ = (uint8) jmin (0xff, roundToInt (c2));
+                *dest++ = (uint8) jmin (0xff, roundToInt (c3));
+                *dest++ = (uint8) jmin (0xff, roundToInt (c4));
             }
         }
-    };
-
-    switch (destData.pixelStride)
+    }
+    else if (destData.pixelStride == 3)
     {
-        case 4:
-            return applyKernel (std::integral_constant<size_t, 4>{});
-        case 3:
-            return applyKernel (std::integral_constant<size_t, 3>{});
-        case 1:
-            return applyKernel (std::integral_constant<size_t, 1>{});
+        for (int y = area.getY(); y < bottom; ++y)
+        {
+            uint8* dest = line;
+            line += destData.lineStride;
+
+            for (int x = area.getX(); x < right; ++x)
+            {
+                float c1 = 0;
+                float c2 = 0;
+                float c3 = 0;
+
+                for (int yy = 0; yy < size; ++yy)
+                {
+                    const int sy = y + yy - (size >> 1);
+
+                    if (sy >= srcData.height)
+                        break;
+
+                    if (sy >= 0)
+                    {
+                        int sx = x - (size >> 1);
+                        const uint8* src = srcData.getPixelPointer (sx, sy);
+
+                        for (int xx = 0; xx < size; ++xx)
+                        {
+                            if (sx >= srcData.width)
+                                break;
+
+                            if (sx >= 0)
+                            {
+                                const float kernelMult = values [xx + yy * size];
+                                c1 += kernelMult * *src++;
+                                c2 += kernelMult * *src++;
+                                c3 += kernelMult * *src++;
+                            }
+                            else
+                            {
+                                src += 3;
+                            }
+
+                            ++sx;
+                        }
+                    }
+                }
+
+                *dest++ = (uint8) roundToInt (c1);
+                *dest++ = (uint8) roundToInt (c2);
+                *dest++ = (uint8) roundToInt (c3);
+            }
+        }
+    }
+    else if (destData.pixelStride == 1)
+    {
+        for (int y = area.getY(); y < bottom; ++y)
+        {
+            uint8* dest = line;
+            line += destData.lineStride;
+
+            for (int x = area.getX(); x < right; ++x)
+            {
+                float c1 = 0;
+
+                for (int yy = 0; yy < size; ++yy)
+                {
+                    const int sy = y + yy - (size >> 1);
+
+                    if (sy >= srcData.height)
+                        break;
+
+                    if (sy >= 0)
+                    {
+                        int sx = x - (size >> 1);
+                        const uint8* src = srcData.getPixelPointer (sx, sy);
+
+                        for (int xx = 0; xx < size; ++xx)
+                        {
+                            if (sx >= srcData.width)
+                                break;
+
+                            if (sx >= 0)
+                            {
+                                const float kernelMult = values [xx + yy * size];
+                                c1 += kernelMult * *src++;
+                            }
+                            else
+                            {
+                                src += 3;
+                            }
+
+                            ++sx;
+                        }
+                    }
+                }
+
+                *dest++ = (uint8) roundToInt (c1);
+            }
+        }
     }
 }
 

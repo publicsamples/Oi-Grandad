@@ -12,7 +12,7 @@
   ------------------------------------------------------------------------------
 
   The Projucer is part of the JUCE library.
-  Copyright (c) - Raw Material Software Limited.
+  Copyright (c) 2020 - Raw Material Software Limited.
 
   ==============================================================================
 */

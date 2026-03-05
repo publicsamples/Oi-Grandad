@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -60,6 +51,8 @@ namespace Ids
     DECLARE_ID (addUsingNamespaceToJuceHeader);
     DECLARE_ID (usePrecompiledHeaderFile);
     DECLARE_ID (precompiledHeaderFile);
+    DECLARE_ID (displaySplashScreen);
+    DECLARE_ID (splashScreenColour);
     DECLARE_ID (position);
     DECLARE_ID (source);
     DECLARE_ID (width);
@@ -79,10 +72,11 @@ namespace Ids
     DECLARE_ID (defaultUserModulePath);
     DECLARE_ID (vstLegacyFolder);
     DECLARE_ID (vst3Folder);
+    DECLARE_ID (rtasFolder);
     DECLARE_ID (auFolder);
     DECLARE_ID (vstLegacyPath);
+    DECLARE_ID (rtasPath);
     DECLARE_ID (aaxPath);
-    DECLARE_ID (araPath);
     DECLARE_ID (flags);
     DECLARE_ID (line);
     DECLARE_ID (index);
@@ -125,11 +119,11 @@ namespace Ids
     DECLARE_ID (cppLibType);
     DECLARE_ID (codeSigningIdentity);
     DECLARE_ID (fastMath);
-    DECLARE_ID (intrinsicFunctions);
     DECLARE_ID (linkTimeOptimisation);
     DECLARE_ID (vstBinaryLocation);
     DECLARE_ID (vst3BinaryLocation);
     DECLARE_ID (auBinaryLocation);
+    DECLARE_ID (rtasBinaryLocation);
     DECLARE_ID (aaxBinaryLocation);
     DECLARE_ID (unityPluginBinaryLocation);
     DECLARE_ID (enablePluginBinaryCopyStep);
@@ -150,6 +144,9 @@ namespace Ids
     DECLARE_ID (msvcManifestFile);
     DECLARE_ID (warningsAreErrors);
     DECLARE_ID (linuxArchitecture);
+    DECLARE_ID (linuxCodeBlocksArchitecture);
+    DECLARE_ID (windowsCodeBlocksArchitecture);
+    DECLARE_ID (codeBlocksWindowsTarget);
     DECLARE_ID (toolset);
     DECLARE_ID (windowsTargetPlatformVersion);
     DECLARE_ID (debugInformationFormat);
@@ -161,16 +158,13 @@ namespace Ids
     DECLARE_ID (smallIcon);
     DECLARE_ID (prebuildCommand);
     DECLARE_ID (postbuildCommand);
+    DECLARE_ID (generateManifest);
     DECLARE_ID (useRuntimeLibDLL);
     DECLARE_ID (multiProcessorCompilation);
     DECLARE_ID (enableIncrementalLinking);
     DECLARE_ID (bundleIdentifier);
     DECLARE_ID (aaxIdentifier);
-    DECLARE_ID (araFactoryID);
-    DECLARE_ID (araDocumentArchiveID);
-    DECLARE_ID (araCompatibleArchiveIDs);
     DECLARE_ID (aaxFolder);
-    DECLARE_ID (araFolder);
     DECLARE_ID (compile);
     DECLARE_ID (noWarnings);
     DECLARE_ID (skipPCH);
@@ -202,11 +196,6 @@ namespace Ids
     DECLARE_ID (appSandbox);
     DECLARE_ID (appSandboxInheritance);
     DECLARE_ID (appSandboxOptions);
-    DECLARE_ID (appSandboxHomeDirRO);
-    DECLARE_ID (appSandboxHomeDirRW);
-    DECLARE_ID (appSandboxAbsDirRO);
-    DECLARE_ID (appSandboxAbsDirRW);
-    DECLARE_ID (appSandboxExceptionIOKit);
     DECLARE_ID (hardenedRuntime);
     DECLARE_ID (hardenedRuntimeOptions);
     DECLARE_ID (microphonePermissionNeeded);
@@ -215,8 +204,6 @@ namespace Ids
     DECLARE_ID (cameraPermissionText);
     DECLARE_ID (sendAppleEventsPermissionNeeded);
     DECLARE_ID (sendAppleEventsPermissionText);
-    DECLARE_ID (localNetworkPermissionNeeded);
-    DECLARE_ID (localNetworkPermissionText);
     DECLARE_ID (androidJavaLibs);
     DECLARE_ID (androidAdditionalJavaFolders);
     DECLARE_ID (androidAdditionalResourceFolders);
@@ -241,13 +228,7 @@ namespace Ids
     DECLARE_ID (androidGradleSettingsContent);
     DECLARE_ID (androidCustomStringXmlElements);
     DECLARE_ID (androidBluetoothNeeded);
-    DECLARE_ID (androidBluetoothScanNeeded);
-    DECLARE_ID (androidBluetoothAdvertiseNeeded);
-    DECLARE_ID (androidBluetoothConnectNeeded);
     DECLARE_ID (androidExternalReadNeeded);
-    DECLARE_ID (androidReadMediaAudioPermission);
-    DECLARE_ID (androidReadMediaImagesPermission);
-    DECLARE_ID (androidReadMediaVideoPermission);
     DECLARE_ID (androidExternalWriteNeeded);
     DECLARE_ID (androidInAppBilling);
     DECLARE_ID (androidVibratePermissionNeeded);
@@ -268,7 +249,6 @@ namespace Ids
     DECLARE_ID (androidScreenOrientation);
     DECLARE_ID (androidExtraAssetsFolder);
     DECLARE_ID (androidStudioExePath);
-    DECLARE_ID (androidEnableVirtualMidi);
     DECLARE_ID (iosDeviceFamily);
     const Identifier iPhoneScreenOrientation ("iosScreenOrientation"); // old name is confusing
     DECLARE_ID (iPadScreenOrientation);
@@ -291,8 +271,11 @@ namespace Ids
     const Identifier androidPluginVersion ("gradleWrapperVersion"); // old name is very confusing, but we need to remain backward compatible
     DECLARE_ID (gradleToolchain);
     DECLARE_ID (gradleToolchainVersion);
-    DECLARE_ID (gradleClangTidy);
     DECLARE_ID (linuxExtraPkgConfig);
+    DECLARE_ID (clionMakefileEnabled);
+    DECLARE_ID (clionXcodeEnabled);
+    DECLARE_ID (clionCodeBlocksEnabled);
+    DECLARE_ID (clionExePath);
     DECLARE_ID (font);
     DECLARE_ID (colour);
     DECLARE_ID (userNotes);
@@ -348,12 +331,11 @@ namespace Ids
     DECLARE_ID (buildVST3);
     DECLARE_ID (buildAU);
     DECLARE_ID (buildAUv3);
+    DECLARE_ID (buildRTAS);
     DECLARE_ID (buildAAX);
     DECLARE_ID (buildStandalone);
     DECLARE_ID (buildUnity);
-    DECLARE_ID (buildLV2);
     DECLARE_ID (enableIAA);
-    DECLARE_ID (enableARA);
     DECLARE_ID (pluginName);
     DECLARE_ID (pluginDesc);
     DECLARE_ID (pluginManufacturer);
@@ -373,11 +355,12 @@ namespace Ids
     DECLARE_ID (pluginAUExportPrefix);
     DECLARE_ID (pluginAUMainType);
     DECLARE_ID (pluginAUIsSandboxSafe);
+    DECLARE_ID (pluginRTASCategory);
+    DECLARE_ID (pluginRTASDisableBypass);
+    DECLARE_ID (pluginRTASDisableMultiMono);
     DECLARE_ID (pluginAAXCategory);
     DECLARE_ID (pluginAAXDisableBypass);
     DECLARE_ID (pluginAAXDisableMultiMono);
-    DECLARE_ID (pluginARAAnalyzableContent);
-    DECLARE_ID (pluginARATransformFlags);
     DECLARE_ID (pluginVSTNumMidiInputs);
     DECLARE_ID (pluginVSTNumMidiOutputs);
     DECLARE_ID (suppressPlistResourceUsage);
@@ -385,7 +368,6 @@ namespace Ids
     DECLARE_ID (exporters);
     DECLARE_ID (website);
     DECLARE_ID (mainClass);
-    DECLARE_ID (documentControllerClass);
     DECLARE_ID (moduleFlags);
     DECLARE_ID (projectLineFeed);
     DECLARE_ID (compilerFlagSchemes);
@@ -394,12 +376,9 @@ namespace Ids
     DECLARE_ID (dontAskAboutJUCEPath);
     DECLARE_ID (postExportShellCommandPosix);
     DECLARE_ID (postExportShellCommandWin);
+    DECLARE_ID (guiEditorEnabled);
     DECLARE_ID (jucerFormatVersion);
     DECLARE_ID (buildNumber);
-    DECLARE_ID (lv2Uri);
-    DECLARE_ID (lv2UriUi);
-    DECLARE_ID (lv2BinaryLocation);
-    DECLARE_ID (vst3ManifestEnabled);
 
     DECLARE_ID (osxSDK);
     DECLARE_ID (osxCompatibility);

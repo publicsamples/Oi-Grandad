@@ -1,41 +1,37 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
+namespace juce
+{
+namespace dsp
+{
+
 /**
     Classes for state variable filter processing.
 */
-namespace juce::dsp::StateVariableFilter
+namespace StateVariableFilter
 {
     template <typename NumericType>
     struct Parameters;
@@ -74,7 +70,7 @@ namespace juce::dsp::StateVariableFilter
         using ParametersPtr = typename Parameters<NumericType>::Ptr;
 
         //==============================================================================
-        /** @cond */
+       #ifndef DOXYGEN
         /** Creates a filter with default parameters. */
         [[deprecated ("The classes in the StateVariableFilter namespace are deprecated. you should "
                      "use the equivalent functionality in the StateVariableTPTFilter class.")]]
@@ -84,7 +80,7 @@ namespace juce::dsp::StateVariableFilter
         [[deprecated ("The classes in the StateVariableFilter namespace are deprecated. you should "
                      "use the equivalent functionality in the StateVariableTPTFilter class.")]]
         Filter (ParametersPtr parametersToUse) : parameters (std::move (parametersToUse)) { reset(); }
-        /** @endcond */
+       #endif
 
         /** Creates a copy of another filter. */
         Filter (const Filter&) = default;
@@ -114,7 +110,7 @@ namespace juce::dsp::StateVariableFilter
         template <typename ProcessContext>
         void process (const ProcessContext& context) noexcept
         {
-            static_assert (std::is_same_v<typename ProcessContext::SampleType, SampleType>,
+            static_assert (std::is_same<typename ProcessContext::SampleType, SampleType>::value,
                            "The sample-type of the filter must match the sample-type supplied to this process callback");
 
             if (context.isBypassed)
@@ -228,7 +224,7 @@ namespace juce::dsp::StateVariableFilter
 
             Note: The bandwidth of the resonance increases with the value of the
             parameter. To have a standard 12 dB/octave filter, the value must be set
-            at 1 / sqrt (2).
+            at 1 / sqrt(2).
         */
         void setCutOffFrequency (double sampleRate, NumericType frequency,
                                  NumericType resonance = static_cast<NumericType> (1.0 / MathConstants<double>::sqrt2)) noexcept
@@ -258,5 +254,7 @@ namespace juce::dsp::StateVariableFilter
         NumericType R2  = static_cast<NumericType> (MathConstants<double>::sqrt2);
         NumericType h   = static_cast<NumericType> (1.0 / (1.0 + R2 * g + g * g));
     };
+}
 
-} // namespace juce::dsp::StateVariableFilter
+} // namespace dsp
+} // namespace juce

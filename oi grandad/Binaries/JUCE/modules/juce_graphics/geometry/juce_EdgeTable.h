@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -72,6 +63,15 @@ public:
     /** Creates an edge table containing a rectangle list. */
     explicit EdgeTable (const RectangleList<float>& rectanglesToAdd);
 
+    /** Creates a copy of another edge table. */
+    EdgeTable (const EdgeTable&);
+
+    /** Copies from another edge table. */
+    EdgeTable& operator= (const EdgeTable&);
+
+    /** Destructor. */
+    ~EdgeTable();
+
     //==============================================================================
     void clipToRectangle (Rectangle<int> r);
     void excludeRectangle (Rectangle<int> r);
@@ -111,7 +111,7 @@ public:
     template <class EdgeTableIterationCallback>
     void iterate (EdgeTableIterationCallback& iterationCallback) const noexcept
     {
-        const int* lineStart = table.data();
+        const int* lineStart = table;
 
         for (int y = 0; y < bounds.getHeight(); ++y)
         {
@@ -138,7 +138,7 @@ public:
                     if (endOfRun == (x / scale))
                     {
                         // small segment within the same pixel, so just save it for the next
-                        // time round
+                        // time round..
                         levelAccumulator += (endX - x) * level;
                     }
                     else
@@ -154,20 +154,20 @@ public:
                             if (levelAccumulator >= 255)
                                 iterationCallback.handleEdgeTablePixelFull (x);
                             else
-                                iterationCallback.handleEdgeTablePixel (x, static_cast<uint8_t> (levelAccumulator));
+                                iterationCallback.handleEdgeTablePixel (x, levelAccumulator);
                         }
 
-                        // if there's a run of similar pixels, do it all in one go
+                        // if there's a run of similar pixels, do it all in one go..
                         if (level > 0)
                         {
                             jassert (endOfRun <= bounds.getRight());
                             const int numPix = endOfRun - ++x;
 
                             if (numPix > 0)
-                                iterationCallback.handleEdgeTableLine (x, numPix, static_cast<uint8_t> (level));
+                                iterationCallback.handleEdgeTableLine (x, numPix, level);
                         }
 
-                        // save the bit at the end to be drawn next time round the loop
+                        // save the bit at the end to be drawn next time round the loop.
                         levelAccumulator = (endX & 0xff) * level;
                     }
 
@@ -184,7 +184,7 @@ public:
                     if (levelAccumulator >= 255)
                         iterationCallback.handleEdgeTablePixelFull (x);
                     else
-                        iterationCallback.handleEdgeTablePixel (x, static_cast<uint8_t> (levelAccumulator));
+                        iterationCallback.handleEdgeTablePixel (x, levelAccumulator);
                 }
             }
         }
@@ -204,7 +204,7 @@ private:
         bool operator< (const LineItem& other) const noexcept   { return x < other.x; }
     };
 
-    CopyableHeapBlock<int> table;
+    HeapBlock<int> table;
     Rectangle<int> bounds;
     int maxEdgesPerLine, lineStrideElements;
     bool needToCheckEmptiness = true;
@@ -218,6 +218,7 @@ private:
     void intersectWithEdgeTableLine (int y, const int* otherLine);
     void clipEdgeTableLineToRange (int* line, int x1, int x2) noexcept;
     void sanitiseLevels (bool useNonZeroWinding) noexcept;
+    static void copyEdgeTableData (int* dest, int destLineStride, const int* src, int srcLineStride, int numLines) noexcept;
 
     JUCE_LEAK_DETECTOR (EdgeTable)
 };

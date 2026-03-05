@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -140,7 +128,7 @@ public:
 
         auto proportion = clampTo0To1 ((v - start) / (end - start));
 
-        if (exactlyEqual (skew, static_cast<ValueType> (1)))
+        if (skew == static_cast<ValueType> (1))
             return proportion;
 
         if (! symmetricSkew)
@@ -166,7 +154,7 @@ public:
 
         if (! symmetricSkew)
         {
-            if (! exactlyEqual (skew, static_cast<ValueType> (1)) && proportion > ValueType())
+            if (skew != static_cast<ValueType> (1) && proportion > ValueType())
                 proportion = std::exp (std::log (proportion) / skew);
 
             return start + (end - start) * proportion;
@@ -174,7 +162,7 @@ public:
 
         auto distanceFromMiddle = static_cast<ValueType> (2) * proportion - static_cast<ValueType> (1);
 
-        if (! exactlyEqual (skew, static_cast<ValueType> (1)) && ! exactlyEqual (distanceFromMiddle, static_cast<ValueType> (0)))
+        if (skew != static_cast<ValueType> (1) && distanceFromMiddle != static_cast<ValueType> (0))
             distanceFromMiddle = std::exp (std::log (std::abs (distanceFromMiddle)) / skew)
                                  * (distanceFromMiddle < ValueType() ? static_cast<ValueType> (-1)
                                                                      : static_cast<ValueType> (1));
@@ -194,6 +182,14 @@ public:
             v = start + interval * std::floor ((v - start) / interval + static_cast<ValueType> (0.5));
 
         return (v <= start || end <= start) ? start : (v >= end ? end : v);
+    }
+
+    /** Returns a copy of this range with the skew factor defined by the given middle position. */
+    NormalisableRange<ValueType> withCentreSkew(ValueType centrePointValue) const
+    {
+	    auto copy = *this;
+        copy.setSkewForCentre(centrePointValue);
+        return copy;
     }
 
     /** Returns the extent of the normalisable range. */
@@ -259,10 +255,6 @@ private:
     static ValueType clampTo0To1 (ValueType value)
     {
         auto clampedValue = jlimit (static_cast<ValueType> (0), static_cast<ValueType> (1), value);
-
-        // If you hit this assertion then either your normalisation function is not working
-        // correctly or your input is out of the expected bounds.
-        jassert (exactlyEqual (clampedValue, value));
 
         return clampedValue;
     }

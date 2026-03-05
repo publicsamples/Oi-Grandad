@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -52,7 +40,7 @@ MidiMessageSequence::MidiMessageSequence (const MidiMessageSequence& other)
         auto noteOffIndex = other.getIndexOfMatchingKeyUp (i);
 
         if (noteOffIndex >= 0)
-            list.getUnchecked (i)->noteOffObject = list.getUnchecked (noteOffIndex);
+            list.getUnchecked(i)->noteOffObject = list.getUnchecked (noteOffIndex);
     }
 }
 
@@ -115,7 +103,7 @@ int MidiMessageSequence::getIndexOfMatchingKeyUp (int index) const noexcept
         if (auto* noteOff = meh->noteOffObject)
         {
             for (int i = index; i < list.size(); ++i)
-                if (list.getUnchecked (i) == noteOff)
+                if (list.getUnchecked(i) == noteOff)
                     return i;
 
             jassertfalse; // we've somehow got a pointer to a note-off object that isn't in the sequence
@@ -136,7 +124,7 @@ int MidiMessageSequence::getNextIndexAtTime (double timeStamp) const noexcept
     int i;
 
     for (i = 0; i < numEvents; ++i)
-        if (list.getUnchecked (i)->message.getTimeStamp() >= timeStamp)
+        if (list.getUnchecked(i)->message.getTimeStamp() >= timeStamp)
             break;
 
     return i;
@@ -169,7 +157,7 @@ MidiMessageSequence::MidiEventHolder* MidiMessageSequence::addEvent (MidiEventHo
     int i;
 
     for (i = list.size(); --i >= 0;)
-        if (list.getUnchecked (i)->message.getTimeStamp() <= time)
+        if (list.getUnchecked(i)->message.getTimeStamp() <= time)
             break;
 
     list.insert (i + 1, newEvent);
@@ -239,7 +227,7 @@ void MidiMessageSequence::updateMatchedPairs() noexcept
 {
     for (int i = 0; i < list.size(); ++i)
     {
-        auto* meh = list.getUnchecked (i);
+        auto* meh = list.getUnchecked(i);
         auto& m1 = meh->message;
 
         if (m1.isNoteOn())
@@ -251,7 +239,7 @@ void MidiMessageSequence::updateMatchedPairs() noexcept
 
             for (int j = i + 1; j < len; ++j)
             {
-                auto* meh2 = list.getUnchecked (j);
+                auto* meh2 = list.getUnchecked(j);
                 auto& m = meh2->message;
 
                 if (m.getNoteNumber() == note && m.getChannel() == chan)
@@ -278,7 +266,7 @@ void MidiMessageSequence::updateMatchedPairs() noexcept
 
 void MidiMessageSequence::addTimeToMessages (double delta) noexcept
 {
-    if (! approximatelyEqual (delta, 0.0))
+    if (delta != 0)
         for (auto* m : list)
             m->message.addToTimeStamp (delta);
 }
@@ -304,70 +292,77 @@ void MidiMessageSequence::extractSysExMessages (MidiMessageSequence& destSequenc
 void MidiMessageSequence::deleteMidiChannelMessages (const int channelNumberToRemove)
 {
     for (int i = list.size(); --i >= 0;)
-        if (list.getUnchecked (i)->message.isForChannel (channelNumberToRemove))
-            list.remove (i);
+        if (list.getUnchecked(i)->message.isForChannel (channelNumberToRemove))
+            list.remove(i);
 }
 
 void MidiMessageSequence::deleteSysExMessages()
 {
     for (int i = list.size(); --i >= 0;)
-        if (list.getUnchecked (i)->message.isSysEx())
-            list.remove (i);
+        if (list.getUnchecked(i)->message.isSysEx())
+            list.remove(i);
 }
 
 //==============================================================================
 class OptionalPitchWheel
 {
-    Optional<int> value;
+    int value = 0;
+    bool valid = false;
 
 public:
     void emit (int channel, Array<MidiMessage>& out) const
     {
-        if (value.hasValue())
-            out.add (MidiMessage::pitchWheel (channel, *value));
+        if (valid)
+            out.add (MidiMessage::pitchWheel (channel, value));
     }
 
     void set (int v)
     {
         value = v;
+        valid = true;
     }
 };
 
 class OptionalControllerValues
 {
-    Optional<char> values[128];
+    int values[128];
 
 public:
+    OptionalControllerValues()
+    {
+        std::fill (std::begin (values), std::end (values), -1);
+    }
+
     void emit (int channel, Array<MidiMessage>& out) const
     {
         for (auto it = std::begin (values); it != std::end (values); ++it)
-            if (it->hasValue())
-                out.add (MidiMessage::controllerEvent (channel, (int) std::distance (std::begin (values), it), **it));
+            if (*it != -1)
+                out.add (MidiMessage::controllerEvent (channel, (int) std::distance (std::begin (values), it), *it));
     }
 
     void set (int controller, int value)
     {
-        values[controller] = (char) value;
+        values[controller] = value;
     }
 };
 
 class OptionalProgramChange
 {
-    Optional<char> value, bankLSB, bankMSB;
+    int value = -1, bankLSB = -1, bankMSB = -1;
 
 public:
     void emit (int channel, double time, Array<MidiMessage>& out) const
     {
-        if (! value.hasValue())
+        if (value == -1)
             return;
 
-        if (bankLSB.hasValue() && bankMSB.hasValue())
+        if (bankLSB != -1 && bankMSB != -1)
         {
-            out.add (MidiMessage::controllerEvent (channel, 0x00, *bankMSB).withTimeStamp (time));
-            out.add (MidiMessage::controllerEvent (channel, 0x20, *bankLSB).withTimeStamp (time));
+            out.add (MidiMessage::controllerEvent (channel, 0x00, bankMSB).withTimeStamp (time));
+            out.add (MidiMessage::controllerEvent (channel, 0x20, bankLSB).withTimeStamp (time));
         }
 
-        out.add (MidiMessage::programChange (channel, *value).withTimeStamp (time));
+        out.add (MidiMessage::programChange (channel, value).withTimeStamp (time));
     }
 
     // Returns true if this is a bank number change, and false otherwise.
@@ -375,21 +370,22 @@ public:
     {
         switch (controller)
         {
-            case 0x00: bankMSB = (char) v; return true;
-            case 0x20: bankLSB = (char) v; return true;
+            case 0x00: bankMSB = v; return true;
+            case 0x20: bankLSB = v; return true;
         }
 
         return false;
     }
 
-    void setProgram (int v) { value = (char) v; }
+    void setProgram (int v) { value   = v; }
 };
 
 class ParameterNumberState
 {
     enum class Kind { rpn, nrpn };
 
-    Optional<char> newestRpnLsb, newestRpnMsb, newestNrpnLsb, newestNrpnMsb, lastSentLsb, lastSentMsb;
+    int newestRpnLsb = -1, newestRpnMsb = -1, newestNrpnLsb = -1, newestNrpnMsb = -1;
+    int lastSentLsb = -1, lastSentMsb = -1;
     Kind lastSentKind = Kind::rpn, newestKind = Kind::rpn;
 
 public:
@@ -405,11 +401,11 @@ public:
         auto lastSent = std::tie (lastSentKind, lastSentMsb, lastSentLsb);
         const auto newest = std::tie (newestKind, newestMsb, newestLsb);
 
-        if (lastSent == newest || ! newestMsb.hasValue() || ! newestLsb.hasValue())
+        if (lastSent == newest || newestMsb == -1 || newestLsb == -1)
             return;
 
-        out.add (MidiMessage::controllerEvent (channel, newestKind == Kind::rpn ? 0x65 : 0x63, *newestMsb).withTimeStamp (time));
-        out.add (MidiMessage::controllerEvent (channel, newestKind == Kind::rpn ? 0x64 : 0x62, *newestLsb).withTimeStamp (time));
+        out.add (MidiMessage::controllerEvent (channel, newestKind == Kind::rpn ? 0x65 : 0x63, newestMsb).withTimeStamp (time));
+        out.add (MidiMessage::controllerEvent (channel, newestKind == Kind::rpn ? 0x64 : 0x62, newestLsb).withTimeStamp (time));
 
         lastSent = newest;
     }
@@ -419,10 +415,10 @@ public:
     {
         switch (controller)
         {
-            case 0x65: newestRpnMsb  = (char) value; newestKind = Kind::rpn;  return true;
-            case 0x64: newestRpnLsb  = (char) value; newestKind = Kind::rpn;  return true;
-            case 0x63: newestNrpnMsb = (char) value; newestKind = Kind::nrpn; return true;
-            case 0x62: newestNrpnLsb = (char) value; newestKind = Kind::nrpn; return true;
+            case 0x65: newestRpnMsb  = value; newestKind = Kind::rpn;  return true;
+            case 0x64: newestRpnLsb  = value; newestKind = Kind::rpn;  return true;
+            case 0x63: newestNrpnMsb = value; newestKind = Kind::nrpn; return true;
+            case 0x62: newestNrpnLsb = value; newestKind = Kind::nrpn; return true;
         }
 
         return false;
@@ -489,7 +485,7 @@ void MidiMessageSequence::createControllerUpdatesForTime (int channel, double ti
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-struct MidiMessageSequenceTest final : public UnitTest
+struct MidiMessageSequenceTest  : public UnitTest
 {
     MidiMessageSequenceTest()
         : UnitTest ("MidiMessageSequence", UnitTestCategories::midi)
@@ -566,7 +562,7 @@ struct MidiMessageSequenceTest final : public UnitTest
             {
                 const auto isEqual = [this] (const ControlValue& cv, const MidiMessage& msg)
                 {
-                    return exactlyEqual (msg.getTimeStamp(), time)
+                    return msg.getTimeStamp() == time
                         && msg.isController()
                         && msg.getChannel() == channel
                         && msg.getControllerNumber() == cv.control

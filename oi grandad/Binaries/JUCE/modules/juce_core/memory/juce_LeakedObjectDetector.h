@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -67,21 +55,15 @@ public:
             DBG ("*** Dangling pointer deletion! Class: " << getLeakedObjectClassName());
 
             /** If you hit this, then you've managed to delete more instances of this class than you've
-                created. That indicates that you're deleting some dangling pointers.
+                created.. That indicates that you're deleting some dangling pointers.
 
                 Note that although this assertion will have been triggered during a destructor, it might
                 not be this particular deletion that's at fault - the incorrect one may have happened
                 at an earlier point in the program, and simply not been detected until now.
 
-                Many errors like this are caused by using old-fashioned, non-RAII techniques for
-                object management. If you're seeing this, it's a good idea to double-check
-                that you're using std::unique_ptrs, OwnedArrays,
-                ReferenceCountedObjects, etc, and avoiding manual calls to the 'delete'
-                operator at all costs!
-
-                You may also see this error if JUCE's shutdown code is called while an object
-                containing a leak detector is still alive (perhaps declared as a namespace-scope
-                static).
+                Most errors like this are caused by using old-fashioned, non-RAII techniques for
+                your object management. Tut, tut. Always, always use std::unique_ptrs, OwnedArrays,
+                ReferenceCountedObjects, etc, and avoid the 'delete' operator at all costs!
             */
             jassertfalse;
         }
@@ -103,15 +85,9 @@ private:
                 /** If you hit this, then you've leaked one or more objects of the type specified by
                     the 'OwnerClass' template parameter - the name should have been printed by the line above.
 
-                    Many errors like this are caused by using old-fashioned, non-RAII techniques for
-                    object management. If you're seeing this, it's a good idea to double-check
-                    that you're using std::unique_ptrs, OwnedArrays,
-                    ReferenceCountedObjects, etc, and avoiding manual calls to the 'delete'
-                    operator at all costs!
-
-                    You may also see this error if JUCE's shutdown code is called while an object
-                    containing a leak detector is still alive (perhaps declared as a namespace-scope
-                    static).
+                    If you're leaking, it's probably because you're using old-fashioned, non-RAII techniques for
+                    your object management. Tut, tut. Always, always use std::unique_ptrs, OwnedArrays,
+                    ReferenceCountedObjects, etc, and avoid the 'delete' operator at all costs!
                 */
                 jassertfalse;
             }
@@ -137,7 +113,7 @@ private:
  #if (DOXYGEN || JUCE_CHECK_MEMORY_LEAKS)
   /** This macro lets you embed a leak-detecting object inside a class.
 
-      To use it, simply declare a JUCE_LEAK_DETECTOR (YourClassName) inside a private section
+      To use it, simply declare a JUCE_LEAK_DETECTOR(YourClassName) inside a private section
       of the class declaration. E.g.
 
       @code

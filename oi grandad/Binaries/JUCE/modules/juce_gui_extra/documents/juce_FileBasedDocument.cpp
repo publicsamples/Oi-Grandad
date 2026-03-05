@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -154,21 +145,23 @@ public:
                                                  fileWildcard);
 
         asyncFc->launchAsync (FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles,
-                              [this, showMessageOnFailure, cb = std::move (callback)] (const FileChooser& fc)
+                              [this, showMessageOnFailure, callback = std::move (callback)] (const FileChooser& fc)
         {
             auto chosenFile = fc.getResult();
 
             if (chosenFile == File{})
             {
-                NullCheckedInvocation::invoke (cb, Result::fail (TRANS ("User cancelled")));
+                if (callback != nullptr)
+                    callback (Result::fail (TRANS ("User cancelled")));
+
                 return;
             }
 
             WeakReference<Pimpl> parent { this };
-            loadFromAsync (chosenFile, showMessageOnFailure, [parent, cb] (Result result)
+            loadFromAsync (chosenFile, showMessageOnFailure, [parent, callback] (Result result)
             {
-                if (parent != nullptr)
-                    NullCheckedInvocation::invoke (cb, result);
+                if (parent != nullptr && callback != nullptr)
+                    callback (result);
             });
 
             asyncFc = nullptr;
@@ -221,7 +214,7 @@ public:
                                        [] (SafeParentPointer ptr, auto cb)
                                        {
                                            if (ptr != nullptr)
-                                               ptr->askToSaveChangesAsync (ptr, std::move (cb));
+                                               ptr->askToSaveChanges (ptr, std::move (cb));
                                        },
                                        [parent] (bool askUserForFileIfNotSpecified,
                                                  bool showMessageOnFailure,
@@ -344,17 +337,15 @@ private:
                 MouseCursor::hideWaitCursor();
 
             if (showMessageOnFailure)
-            {
-                auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::WarningIcon,
-                                                                 TRANS ("Failed to open file..."),
-                                                                 TRANS ("There was an error while trying to load the file: FLNM")
-                                                                         .replace ("FLNM", "\n" + newFile.getFullPathName())
-                                                                     + "\n\n"
-                                                                     + result.getErrorMessage());
-                parent->messageBox = AlertWindow::showScopedAsync (options, nullptr);
-            }
+                AlertWindow::showMessageBoxAsync (MessageBoxIconType::WarningIcon,
+                                                  TRANS ("Failed to open file..."),
+                                                  TRANS ("There was an error while trying to load the file: FLNM")
+                                                          .replace ("FLNM", "\n" + newFile.getFullPathName())
+                                                      + "\n\n"
+                                                      + result.getErrorMessage());
 
-            NullCheckedInvocation::invoke (completed, result);
+            if (completed != nullptr)
+                completed (result);
         };
 
         if (newFile.existsAsFile())
@@ -362,7 +353,7 @@ private:
             auto afterLoading = [parent,
                                  showWaitCursor,
                                  newFile,
-                                 cb = std::move (completed),
+                                 completed = std::move (completed),
                                  tidyUp] (Result result)
             {
                 if (result.wasOk())
@@ -373,7 +364,10 @@ private:
                         MouseCursor::hideWaitCursor();
 
                     parent->document.setLastDocumentOpened (newFile);
-                    NullCheckedInvocation::invoke (cb, result);
+
+                    if (completed != nullptr)
+                        completed (result);
+
                     return;
                 }
 
@@ -400,13 +394,15 @@ private:
 
         if (! hasChangedSinceSaved())
         {
-            NullCheckedInvocation::invoke (completed, savedOk);
+            if (completed != nullptr)
+                completed (savedOk);
+
             return;
         }
 
-        auto afterAsking = [save = std::forward<DoSave> (doSave),
-                            cb = std::move (completed)] (SafeParentPointer ptr,
-                                                         int alertResult)
+        auto afterAsking = [doSave = std::forward<DoSave> (doSave),
+                            completed = std::move (completed)] (SafeParentPointer ptr,
+                                                                int alertResult)
         {
             if (ptr.shouldExitAsyncCallback())
                 return;
@@ -414,55 +410,52 @@ private:
             switch (alertResult)
             {
                 case 1:  // save changes
-                    save (true, true, [ptr, cb] (SaveResult result)
+                    doSave (true, true, [ptr, completed] (SaveResult result)
                     {
                         if (ptr.shouldExitAsyncCallback())
                             return;
 
-                        NullCheckedInvocation::invoke (cb, result);
+                        if (completed != nullptr)
+                            completed (result);
                     });
                     return;
 
                 case 2:  // discard changes
-                    NullCheckedInvocation::invoke (cb, savedOk);
+                    if (completed != nullptr)
+                        completed (savedOk);
+
                     return;
             }
 
-            NullCheckedInvocation::invoke (cb, userCancelledSave);
+            if (completed != nullptr)
+                completed (userCancelledSave);
         };
 
         doAskToSaveChanges (parent, std::move (afterAsking));
     }
 
     //==============================================================================
-    MessageBoxOptions getAskToSaveChangesOptions() const
+    int askToSaveChanges (SafeParentPointer parent,
+                          std::function<void (SafeParentPointer, int)> callback)
     {
-        return MessageBoxOptions::makeOptionsYesNoCancel (MessageBoxIconType::QuestionIcon,
-                                                          TRANS ("Closing document..."),
-                                                          TRANS ("Do you want to save the changes to \"DCNM\"?")
-                                                                  .replace ("DCNM", document.getDocumentTitle()),
-                                                          TRANS ("Save"),
-                                                          TRANS ("Discard changes"),
-                                                          TRANS ("Cancel"));
-    }
+        auto* modalCallback = callback == nullptr
+                                  ? nullptr
+                                  : ModalCallbackFunction::create ([parent, callback = std::move (callback)] (int alertResult)
+                                                                   {
+                                                                       if (parent != nullptr)
+                                                                           callback (parent, alertResult);
+                                                                   });
 
-    void askToSaveChangesAsync (SafeParentPointer parent,
-                                std::function<void (SafeParentPointer, int)> callback)
-    {
-        messageBox = AlertWindow::showScopedAsync (getAskToSaveChangesOptions(),
-                                                   [parent, cb = std::move (callback)] (int alertResult)
-                                                   {
-                                                       if (parent != nullptr)
-                                                           cb (parent, alertResult);
-                                                   });
+        return AlertWindow::showYesNoCancelBox (MessageBoxIconType::QuestionIcon,
+                                                TRANS ("Closing document..."),
+                                                TRANS ("Do you want to save the changes to \"DCNM\"?")
+                                                    .replace ("DCNM", document.getDocumentTitle()),
+                                                TRANS ("Save"),
+                                                TRANS ("Discard changes"),
+                                                TRANS ("Cancel"),
+                                                nullptr,
+                                                modalCallback);
     }
-
-   #if JUCE_MODAL_LOOPS_PERMITTED
-    int askToSaveChangesSync()
-    {
-        return AlertWindow::show (getAskToSaveChangesOptions());
-    }
-   #endif
 
     //==============================================================================
     template <typename DoSaveDocument>
@@ -484,7 +477,7 @@ private:
                                   showWaitCursor,
                                   oldFile,
                                   newFile,
-                                  after = std::move (afterSave)] (Result result)
+                                  afterSave = std::move (afterSave)] (Result result)
         {
             if (parent.shouldExitAsyncCallback())
             {
@@ -503,7 +496,9 @@ private:
 
                 parent->document.sendChangeMessage(); // because the filename may have changed
 
-                NullCheckedInvocation::invoke (after, savedOk);
+                if (afterSave != nullptr)
+                    afterSave (savedOk);
+
                 return;
             }
 
@@ -513,19 +508,18 @@ private:
                 MouseCursor::hideWaitCursor();
 
             if (showMessageOnFailure)
-            {
-                auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::WarningIcon,
-                                                                 TRANS ("Error writing to file..."),
-                                                                 TRANS ("An error occurred while trying to save \"DCNM\" to the file: FLNM")
-                                                                         .replace ("DCNM", parent->document.getDocumentTitle())
-                                                                         .replace ("FLNM", "\n" + newFile.getFullPathName())
-                                                                     + "\n\n"
-                                                                     + result.getErrorMessage());
-                parent->messageBox = AlertWindow::showScopedAsync (options, nullptr);
-            }
+                AlertWindow::showMessageBoxAsync (MessageBoxIconType::WarningIcon,
+                                                  TRANS ("Error writing to file..."),
+                                                  TRANS ("An error occurred while trying to save \"DCNM\" to the file: FLNM")
+                                                          .replace ("DCNM", parent->document.getDocumentTitle())
+                                                          .replace ("FLNM", "\n" + newFile.getFullPathName())
+                                                      + "\n\n"
+                                                      + result.getErrorMessage());
 
             parent->document.sendChangeMessage(); // because the filename may have changed
-            NullCheckedInvocation::invoke (after, failedToWriteToFile);
+
+            if (afterSave != nullptr)
+                afterSave (failedToWriteToFile);
         });
     }
 
@@ -555,7 +549,9 @@ private:
             // can't save to an unspecified file
             jassertfalse;
 
-            NullCheckedInvocation::invoke (callback, failedToWriteToFile);
+            if (callback != nullptr)
+                callback (failedToWriteToFile);
+
             return;
         }
 
@@ -564,7 +560,7 @@ private:
                                    newFile,
                                    showMessageOnFailure,
                                    showWaitCursor,
-                                   saveDocument = std::forward<DoSaveDocument> (doSaveDocument)]
+                                   doSaveDocument = std::forward<DoSaveDocument> (doSaveDocument)]
         {
             if (! parent.shouldExitAsyncCallback())
                 parent->saveInternal (parent,
@@ -572,12 +568,12 @@ private:
                                       showMessageOnFailure,
                                       showWaitCursor,
                                       callback,
-                                      saveDocument);
+                                      doSaveDocument);
         };
 
         if (warnAboutOverwritingExistingFiles && newFile.exists())
         {
-            auto afterAsking = [cb = std::move (callback),
+            auto afterAsking = [callback = std::move (callback),
                                 saveInternalHelper] (SafeParentPointer ptr,
                                                      bool shouldOverwrite)
             {
@@ -586,8 +582,8 @@ private:
 
                 if (shouldOverwrite)
                     saveInternalHelper();
-                else
-                    NullCheckedInvocation::invoke (cb, userCancelledSave);
+                else if (callback != nullptr)
+                    callback (userCancelledSave);
             };
             doAskToOverwriteFile (parent, newFile, std::move (afterAsking));
             return;
@@ -619,7 +615,7 @@ private:
                     [] (SafeParentPointer ptr, const File& destination, std::function<void (SafeParentPointer, bool)> cb)
                     {
                         if (ptr != nullptr)
-                            ptr->askToOverwriteFileAsync (ptr, destination, std::move (cb));
+                            ptr->askToOverwriteFile (ptr, destination, std::move (cb));
                     },
                     [parent] (const File& destination, std::function<void (Result)> cb)
                     {
@@ -664,44 +660,37 @@ private:
                                [] (SafeParentPointer ptr, const File& destination, auto cb)
                                {
                                    if (ptr != nullptr)
-                                       ptr->askToOverwriteFileAsync (ptr, destination, std::move (cb));
+                                       ptr->askToOverwriteFile (ptr, destination, std::move (cb));
                                });
     }
 
     //==============================================================================
-    MessageBoxOptions getAskToOverwriteFileOptions (const File& newFile) const
-    {
-        return MessageBoxOptions::makeOptionsOkCancel (MessageBoxIconType::WarningIcon,
-                                                       TRANS ("File already exists"),
-                                                       TRANS ("There's already a file called: FLNM")
-                                                               .replace ("FLNM", newFile.getFullPathName())
-                                                           + "\n\n"
-                                                           + TRANS ("Are you sure you want to overwrite it?"),
-                                                       TRANS ("Overwrite"),
-                                                       TRANS ("Cancel"));
-    }
-
-    void askToOverwriteFileAsync (SafeParentPointer parent,
-                                  const File& newFile,
-                                  std::function<void (SafeParentPointer, bool)> callback)
+    bool askToOverwriteFile (SafeParentPointer parent,
+                             const File& newFile,
+                             std::function<void (SafeParentPointer, bool)> callback)
     {
         if (parent == nullptr)
-            return;
+            return false;
 
-        messageBox = AlertWindow::showScopedAsync (getAskToOverwriteFileOptions (newFile),
-                                                   [parent, cb = std::move (callback)] (int r)
-                                                   {
-                                                       if (parent != nullptr)
-                                                           NullCheckedInvocation::invoke (cb, parent, r != 1);
-                                                   });
-    }
+        auto* modalCallback = callback == nullptr
+                                  ? nullptr
+                                  : ModalCallbackFunction::create ([parent, callback = std::move (callback)] (int r)
+                                                                   {
+                                                                       if (parent != nullptr)
+                                                                           callback (parent, r == 1);
+                                                                   });
 
-   #if JUCE_MODAL_LOOPS_PERMITTED
-    bool askToOverwriteFileSync (const File& newFile)
-    {
-        return AlertWindow::show (getAskToOverwriteFileOptions (newFile));
+        return AlertWindow::showOkCancelBox (MessageBoxIconType::WarningIcon,
+                                             TRANS ("File already exists"),
+                                             TRANS ("There's already a file called: FLNM")
+                                                     .replace ("FLNM", newFile.getFullPathName())
+                                                 + "\n\n"
+                                                 + TRANS ("Are you sure you want to overwrite it?"),
+                                             TRANS ("Overwrite"),
+                                             TRANS ("Cancel"),
+                                             nullptr,
+                                             modalCallback);
     }
-   #endif
 
     //==============================================================================
     void getSaveAsFilenameAsync (SafeParentPointer parent,
@@ -715,9 +704,9 @@ private:
         if (warnAboutOverwritingExistingFiles)
             flags |= FileBrowserComponent::warnAboutOverwriting;
 
-        asyncFc->launchAsync (flags, [parent, cb = std::move (callback)] (const FileChooser& fc)
+        asyncFc->launchAsync (flags, [parent, callback = std::move (callback)] (const FileChooser& fc)
         {
-            cb (parent, fc.getResult());
+            callback (parent, fc.getResult());
         });
     }
 
@@ -732,26 +721,28 @@ private:
     {
         doSelectFilename (parent,
                           warnAboutOverwritingExistingFiles,
-                          [saveAs = std::forward<DoSaveAs> (doSaveAs),
-                           askToOverwriteFile = std::forward<DoAskToOverwriteFile> (doAskToOverwriteFile),
-                           cb = std::move (callback)] (SafeParentPointer parentPtr, File chosen)
+                          [doSaveAs = std::forward<DoSaveAs> (doSaveAs),
+                           doAskToOverwriteFile = std::forward<DoAskToOverwriteFile> (doAskToOverwriteFile),
+                           callback = std::move (callback)] (SafeParentPointer parentPtr, File chosen)
         {
             if (parentPtr.shouldExitAsyncCallback())
                 return;
 
             if (chosen == File{})
             {
-                NullCheckedInvocation::invoke (cb, userCancelledSave);
+                if (callback != nullptr)
+                    callback (userCancelledSave);
+
                 return;
             }
 
-            auto updateAndSaveAs = [parentPtr, saveAs, cb] (const File& chosenFile)
+            auto updateAndSaveAs = [parentPtr, doSaveAs, callback] (const File& chosenFile)
             {
                 if (parentPtr.shouldExitAsyncCallback())
                     return;
 
                 parentPtr->document.setLastDocumentOpened (chosenFile);
-                saveAs (parentPtr, chosenFile, false, false, true, cb, false);
+                doSaveAs (parentPtr, chosenFile, false, false, true, callback, false);
             };
 
             if (chosen.getFileExtension().isEmpty())
@@ -760,7 +751,7 @@ private:
 
                 if (chosen.exists())
                 {
-                    auto afterAsking = [chosen, updateAndSaveAs, cb] (SafeParentPointer overwritePtr,
+                    auto afterAsking = [chosen, updateAndSaveAs, callback] (SafeParentPointer overwritePtr,
                                                                             bool overwrite)
                     {
                         if (overwritePtr.shouldExitAsyncCallback())
@@ -768,11 +759,11 @@ private:
 
                         if (overwrite)
                             updateAndSaveAs (chosen);
-                        else
-                            NullCheckedInvocation::invoke (cb, userCancelledSave);
+                        else if (callback != nullptr)
+                            callback (userCancelledSave);
                     };
 
-                    askToOverwriteFile (parentPtr, chosen, std::move (afterAsking));
+                    doAskToOverwriteFile (parentPtr, chosen, std::move (afterAsking));
                     return;
                 }
             }
@@ -895,7 +886,7 @@ private:
     template <typename Callback>
     void askToSaveChangesSync (SafeParentPointer parent, Callback&& callback)
     {
-        callback (parent, askToSaveChangesSync());
+        callback (parent, askToSaveChanges (parent, nullptr));
     }
 
     //==============================================================================
@@ -917,7 +908,7 @@ private:
                                  const File& newFile,
                                  Callback&& callback)
     {
-        callback (parent, askToOverwriteFileSync (newFile));
+        callback (parent, askToOverwriteFile (parent, newFile, nullptr));
     }
 
     //==============================================================================
@@ -954,7 +945,6 @@ private:
     bool changedSinceSave = false;
     String fileExtension, fileWildcard, openFileDialogTitle, saveFileDialogTitle;
     std::unique_ptr<FileChooser> asyncFc;
-    ScopedMessageBox messageBox;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Pimpl)
     JUCE_DECLARE_WEAK_REFERENCEABLE (Pimpl)
@@ -1107,13 +1097,17 @@ void FileBasedDocument::setFile (const File& newFile)
 void FileBasedDocument::loadDocumentAsync (const File& file, std::function<void (Result)> callback)
 {
     const auto result = loadDocument (file);
-    NullCheckedInvocation::invoke (callback, result);
+
+    if (callback != nullptr)
+        callback (result);
 }
 
 void FileBasedDocument::saveDocumentAsync (const File& file, std::function<void (Result)> callback)
 {
     const auto result = saveDocument (file);
-    NullCheckedInvocation::invoke (callback, result);
+
+    if (callback != nullptr)
+        callback (result);
 }
 
 File FileBasedDocument::getSuggestedSaveAsFile (const File& defaultFile)

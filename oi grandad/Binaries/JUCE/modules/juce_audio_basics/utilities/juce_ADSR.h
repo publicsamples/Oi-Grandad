@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -42,10 +30,6 @@ namespace juce
     To use it, call setSampleRate() with the current sample rate and give it some parameters
     with setParameters() then call getNextSample() to get the envelope value to be applied
     to each audio sample or applyEnvelopeToBuffer() to apply the envelope to a whole buffer.
-
-    Do not change the parameters during playback. If you change the parameters before the
-    release stage has completed then you must call reset() before the next call to
-    noteOn().
 
     @tags{Audio}
 */
@@ -169,54 +153,39 @@ public:
     */
     float getNextSample() noexcept
     {
-        switch (state)
+        if (state == State::idle)
+            return 0.0f;
+
+        if (state == State::attack)
         {
-            case State::idle:
+            envelopeVal += attackRate;
+
+            if (envelopeVal >= 1.0f)
             {
-                return 0.0f;
+                envelopeVal = 1.0f;
+                goToNextState();
             }
+        }
+        else if (state == State::decay)
+        {
+            envelopeVal -= decayRate;
 
-            case State::attack:
-            {
-                envelopeVal += attackRate;
-
-                if (envelopeVal >= 1.0f)
-                {
-                    envelopeVal = 1.0f;
-                    goToNextState();
-                }
-
-                break;
-            }
-
-            case State::decay:
-            {
-                envelopeVal -= decayRate;
-
-                if (envelopeVal <= parameters.sustain)
-                {
-                    envelopeVal = parameters.sustain;
-                    goToNextState();
-                }
-
-                break;
-            }
-
-            case State::sustain:
+            if (envelopeVal <= parameters.sustain)
             {
                 envelopeVal = parameters.sustain;
-                break;
+                goToNextState();
             }
+        }
+        else if (state == State::sustain)
+        {
+            envelopeVal = parameters.sustain;
+        }
+        else if (state == State::release)
+        {
+            envelopeVal -= releaseRate;
 
-            case State::release:
-            {
-                envelopeVal -= releaseRate;
-
-                if (envelopeVal <= 0.0f)
-                    goToNextState();
-
-                break;
-            }
+            if (envelopeVal <= 0.0f)
+                goToNextState();
         }
 
         return envelopeVal;
@@ -281,18 +250,10 @@ private:
     void goToNextState() noexcept
     {
         if (state == State::attack)
-        {
             state = (decayRate > 0.0f ? State::decay : State::sustain);
-            return;
-        }
-
-        if (state == State::decay)
-        {
+        else if (state == State::decay)
             state = State::sustain;
-            return;
-        }
-
-        if (state == State::release)
+        else if (state == State::release)
             reset();
     }
 

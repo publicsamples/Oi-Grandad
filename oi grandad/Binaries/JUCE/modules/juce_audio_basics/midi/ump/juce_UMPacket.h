@@ -1,39 +1,30 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
-/** @cond */
-namespace juce::universal_midi_packets
+#ifndef DOXYGEN
+
+namespace juce
+{
+namespace universal_midi_packets
 {
 
 /**
@@ -47,44 +38,44 @@ class Packet
 public:
     Packet() = default;
 
-    template <size_t w = numWords, std::enable_if_t<w == 1, int> = 0>
+    template <size_t w = numWords, typename std::enable_if<w == 1, int>::type = 0>
     Packet (uint32_t a)
         : contents { { a } }
     {
         jassert (Utils::getNumWordsForMessageType (a) == 1);
     }
 
-    template <size_t w = numWords, std::enable_if_t<w == 2, int> = 0>
+    template <size_t w = numWords, typename std::enable_if<w == 2, int>::type = 0>
     Packet (uint32_t a, uint32_t b)
         : contents { { a, b } }
     {
         jassert (Utils::getNumWordsForMessageType (a) == 2);
     }
 
-    template <size_t w = numWords, std::enable_if_t<w == 3, int> = 0>
+    template <size_t w = numWords, typename std::enable_if<w == 3, int>::type = 0>
     Packet (uint32_t a, uint32_t b, uint32_t c)
         : contents { { a, b, c } }
     {
         jassert (Utils::getNumWordsForMessageType (a) == 3);
     }
 
-    template <size_t w = numWords, std::enable_if_t<w == 4, int> = 0>
+    template <size_t w = numWords, typename std::enable_if<w == 4, int>::type = 0>
     Packet (uint32_t a, uint32_t b, uint32_t c, uint32_t d)
         : contents { { a, b, c, d } }
     {
         jassert (Utils::getNumWordsForMessageType (a) == 4);
     }
 
-    template <size_t w, std::enable_if_t<w == numWords, int> = 0>
+    template <size_t w, typename std::enable_if<w == numWords, int>::type = 0>
     explicit Packet (const std::array<uint32_t, w>& fullPacket)
         : contents (fullPacket)
     {
         jassert (Utils::getNumWordsForMessageType (fullPacket.front()) == numWords);
     }
 
-    Packet withMessageType (Utils::MessageKind type) const noexcept
+    Packet withMessageType (uint8_t type) const noexcept
     {
-        return withU4<0> (uint8_t (type));
+        return withU4<0> (type);
     }
 
     Packet withGroup (uint8_t group) const noexcept
@@ -92,9 +83,9 @@ public:
         return withU4<1> (group);
     }
 
-    Packet withStatus (std::byte status) const noexcept
+    Packet withStatus (uint8_t status) const noexcept
     {
-        return withU4<2> (uint8_t (status));
+        return withU4<2> (status);
     }
 
     Packet withChannel (uint8_t channel) const noexcept
@@ -102,11 +93,11 @@ public:
         return withU4<3> (channel);
     }
 
-    Utils::MessageKind getMessageType() const noexcept { return Utils::MessageKind (getU4<0>()); }
+    uint8_t getMessageType() const noexcept { return getU4<0>(); }
 
     uint8_t getGroup() const noexcept { return getU4<1>(); }
 
-    std::byte getStatus() const noexcept { return getU4<2>(); }
+    uint8_t getStatus() const noexcept { return getU4<2>(); }
 
     uint8_t getChannel() const noexcept { return getU4<3>(); }
 
@@ -169,16 +160,6 @@ public:
         return std::get<index> (contents);
     }
 
-    bool operator== (const Packet& other) const
-    {
-        return contents == other.contents;
-    }
-
-    bool operator!= (const Packet& other) const
-    {
-        return contents != other.contents;
-    }
-
     //==============================================================================
     using Contents = std::array<uint32_t, numWords>;
 
@@ -191,7 +172,6 @@ public:
     const_iterator cend()                     const noexcept { return contents.end(); }
 
     const uint32_t* data()                    const noexcept { return contents.data(); }
-    size_t size()                             const noexcept { return contents.size(); }
 
     const uint32_t& front()                   const noexcept { return contents.front(); }
     const uint32_t& back()                    const noexcept { return contents.back(); }
@@ -207,5 +187,7 @@ using PacketX2 = Packet<2>;
 using PacketX3 = Packet<3>;
 using PacketX4 = Packet<4>;
 
-} // namespace juce::universal_midi_packets
-/** @endcond */
+}
+}
+
+#endif

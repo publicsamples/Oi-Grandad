@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,7 +26,7 @@
 namespace juce
 {
 
-class FileChooserDialogBox::ContentComponent final : public Component
+class FileChooserDialogBox::ContentComponent  : public Component
 {
 public:
     ContentComponent (const String& name, const String& desc, FileBrowserComponent& chooser)
@@ -124,7 +115,7 @@ FileChooserDialogBox::FileChooserDialogBox (const String& name,
     if (parentComp != nullptr)
         parentComp->addAndMakeVisible (this);
     else
-        setAlwaysOnTop (WindowUtils::areThereAnyAlwaysOnTopWindows());
+        setAlwaysOnTop (juce_areThereAnyAlwaysOnTopWindows());
 }
 
 FileChooserDialogBox::~FileChooserDialogBox()
@@ -191,26 +182,28 @@ void FileChooserDialogBox::fileDoubleClicked (const File&)
 void FileChooserDialogBox::fileClicked (const File&, const MouseEvent&) {}
 void FileChooserDialogBox::browserRootChanged (const File&) {}
 
+void FileChooserDialogBox::okToOverwriteFileCallback (int result, FileChooserDialogBox* box)
+{
+    if (result != 0 && box != nullptr)
+        box->exitModalState (1);
+}
+
 void FileChooserDialogBox::okButtonPressed()
 {
     if (warnAboutOverwritingExistingFiles
          && content->chooserComponent.isSaveMode()
-         && content->chooserComponent.getSelectedFile (0).exists())
+         && content->chooserComponent.getSelectedFile(0).exists())
     {
-        auto options = MessageBoxOptions::makeOptionsOkCancel (MessageBoxIconType::WarningIcon,
-                                                               TRANS ("File already exists"),
-                                                               TRANS ("There's already a file called: FLNM")
-                                                                  .replace ("FLNM", content->chooserComponent.getSelectedFile (0).getFullPathName())
-                                                                 + "\n\n"
-                                                                 + TRANS ("Are you sure you want to overwrite it?"),
-                                                               TRANS ("Overwrite"),
-                                                               TRANS ("Cancel"),
-                                                               this);
-        messageBox = AlertWindow::showScopedAsync (options, [this] (int result)
-        {
-            if (result != 0)
-                exitModalState (1);
-        });
+        AlertWindow::showOkCancelBox (MessageBoxIconType::WarningIcon,
+                                      TRANS("File already exists"),
+                                      TRANS("There's already a file called: FLNM")
+                                         .replace ("FLNM", content->chooserComponent.getSelectedFile(0).getFullPathName())
+                                        + "\n\n"
+                                        + TRANS("Are you sure you want to overwrite it?"),
+                                      TRANS("Overwrite"),
+                                      TRANS("Cancel"),
+                                      this,
+                                      ModalCallbackFunction::forComponent (okToOverwriteFileCallback, this));
     }
     else
     {
@@ -234,13 +227,13 @@ void FileChooserDialogBox::createNewFolder()
 
     if (parent.isDirectory())
     {
-        auto* aw = new AlertWindow (TRANS ("New Folder"),
-                                    TRANS ("Please enter the name for the folder"),
+        auto* aw = new AlertWindow (TRANS("New Folder"),
+                                    TRANS("Please enter the name for the folder"),
                                     MessageBoxIconType::NoIcon, this);
 
         aw->addTextEditor ("Folder Name", String(), String(), false);
-        aw->addButton (TRANS ("Create Folder"), 1, KeyPress (KeyPress::returnKey));
-        aw->addButton (TRANS ("Cancel"),        0, KeyPress (KeyPress::escapeKey));
+        aw->addButton (TRANS("Create Folder"), 1, KeyPress (KeyPress::returnKey));
+        aw->addButton (TRANS("Cancel"),        0, KeyPress (KeyPress::escapeKey));
 
         aw->enterModalState (true,
                              ModalCallbackFunction::forComponent (createNewFolderCallback, this,
@@ -258,12 +251,9 @@ void FileChooserDialogBox::createNewFolderConfirmed (const String& nameFromDialo
         auto parent = content->chooserComponent.getRoot();
 
         if (! parent.getChildFile (name).createDirectory())
-        {
-            auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::WarningIcon,
-                                                             TRANS ("New Folder"),
-                                                             TRANS ("Couldn't create the folder!"));
-            messageBox = AlertWindow::showScopedAsync (options, nullptr);
-        }
+            AlertWindow::showMessageBoxAsync (MessageBoxIconType::WarningIcon,
+                                              TRANS ("New Folder"),
+                                              TRANS ("Couldn't create the folder!"));
 
         content->chooserComponent.refresh();
     }

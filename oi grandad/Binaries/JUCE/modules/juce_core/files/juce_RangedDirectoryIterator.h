@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -36,14 +24,15 @@ namespace juce
 {
 
 //==============================================================================
-JUCE_BEGIN_IGNORE_DEPRECATION_WARNINGS
+JUCE_BEGIN_IGNORE_WARNINGS_GCC_LIKE ("-Wdeprecated-declarations")
+JUCE_BEGIN_IGNORE_WARNINGS_MSVC (4996)
 
 /**
     Describes the attributes of a file or folder.
 
     @tags{Core}
 */
-class JUCE_API DirectoryEntry final
+class DirectoryEntry final
 {
 public:
     /** The path to a file or folder. */
@@ -107,7 +96,7 @@ inline const DirectoryEntry& operator* (const DirectoryEntry& e) noexcept { retu
 
     @tags{Core}
 */
-class JUCE_API RangedDirectoryIterator final
+class RangedDirectoryIterator final
 {
 public:
     using difference_type   = std::ptrdiff_t;
@@ -129,13 +118,11 @@ public:
                                 separated by a semi-colon or comma, e.g. "*.jpg;*.png"
         @param whatToLookFor    a value from the File::TypesOfFileToFind enum, specifying
                                 whether to look for files, directories, or both.
-        @param followSymlinks   the policy to use when symlinks are encountered
     */
     RangedDirectoryIterator (const File& directory,
                              bool isRecursive,
                              const String& wildCard = "*",
-                             int whatToLookFor = File::findFiles,
-                             File::FollowSymlinks followSymlinks = File::FollowSymlinks::yes);
+                             int whatToLookFor = File::findFiles);
 
     /** Returns true if both iterators are in their end/sentinel state,
         otherwise returns false.
@@ -195,6 +182,7 @@ inline RangedDirectoryIterator begin (const RangedDirectoryIterator& it) { retur
 inline RangedDirectoryIterator end   (const RangedDirectoryIterator&)    { return {}; }
 
 
-JUCE_END_IGNORE_DEPRECATION_WARNINGS
+JUCE_END_IGNORE_WARNINGS_MSVC
+JUCE_END_IGNORE_WARNINGS_GCC_LIKE
 
 } // namespace juce

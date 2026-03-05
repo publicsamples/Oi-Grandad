@@ -1,39 +1,105 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 namespace juce
 {
+
+#define JUCE_MAKE_STREAMABLE_OBJECT(streamMarker) static char getStreamMarker() { return streamMarker; };
+#define JUCE_WRITE_STREAMABLE_OBJECT_MARKERS(output) os.writeByte(getStreamMarker());
+
+
+/** This base class allows any (reference counted) object to be converted and printed as JSON string.
+ *
+ *  It also allows serialization of the object (if possible).
+ *
+ *  In order to use this interface class, subclass your class from this class and override the methods
+ *
+ *  - writeAsJSON
+ *  - writeToStream
+ *
+ *  Also use the JUCE_MAKE_STREAMABLE_OBJECT macro defined above to add a unique UUID to this object type
+ *  (search the codebase for all occurrences of this macro to find a free one.)
+ *
+ *  In the writeToStream method, use the JUCE_WRITE_STREAMABLE_OBJECT_MARKERS() macro to automatically write
+ *  the stream marker at the beginning of your writeToStreamMethod
+ *
+ *  Then you need to create a static function with the signature
+ *
+ *  static ObjectWithJSONConverter* createFromStream(InputStream& input);
+ *
+ *  that will create an object of your type. Note that the input stream is already moved beyond the type marker
+ *  and points directly to the beginning of the user data. */
+class JUCE_API  ObjectWithJSONConverter
+{
+public:
+
+	virtual ~ObjectWithJSONConverter() {};
+
+    /** Implement this and write a JSON representation of this object. This is mostly used for the trace() call
+     *  in order to create a textual representation of this object. */
+    virtual void writeAsJSON (OutputStream&, int indentLevel, bool allOnOneLine, int maximumDecimalPlaces) = 0;
+
+    /** Overwrite this and write the stream marker with JUCE_WRITE_STREAMABLE_OBJECT_MARKERS as well as the data.
+     */
+    virtual void writeToStream(OutputStream& os) = 0;
+
+    static std::pair<char, ObjectWithJSONConverter*> createFromMarker(InputStream& os);
+
+     template <typename SubClass> static void registerStreamCreatorStatic()
+    {
+	    static_assert(std::is_base_of<ObjectWithJSONConverter, SubClass>(), "only call this from subclasses");
+
+        auto marker = SubClass::getStreamMarker();
+
+        for(int i = 0; i < 32; i++)
+        {
+            if(streamCreators[i].first == marker)
+                return;
+
+	        if(streamCreators[i].first == 0)
+	        {
+		        streamCreators[i] = { marker, SubClass::createFromStream};
+                return;
+	        }
+        }
+    }
+
+protected:
+
+    template <typename SubClass> void registerStreamCreator(SubClass* obj)
+    {
+        registerStreamCreatorStatic<SubClass>();
+    }
+
+private:
+
+    typedef ObjectWithJSONConverter*(*StreamCreatorFunctions)(InputStream&);
+    static std::array<std::pair<char, StreamCreatorFunctions>, 32> streamCreators;
+};
+
+// Small helper function that declares two lambdas, nl() and ind() based on the indentLevel and allInOneLine function
+#ifndef JSON_DECLARE_NL_IND
+#define JSON_DECLARE_NL_IND std::function<void()> nl, ind; ind = [&out, indentLevel](){ for(int i = 0; i < indentLevel; i++) out.writeByte(' '); }; nl = [&out](){ out << NewLine(); }; if(allOnOneLine) { nl = [&out](){ out.writeByte(' '); }; ind = [&out]() {}; };
+#endif
 
 //==============================================================================
 /**
@@ -48,12 +114,14 @@ namespace juce
 
     @tags{Core}
 */
-class JUCE_API  DynamicObject  : public ReferenceCountedObject
+class JUCE_API  DynamicObject  : public ReferenceCountedObject,
+								 public ObjectWithJSONConverter
 {
 public:
     //==============================================================================
     DynamicObject();
     DynamicObject (const DynamicObject&);
+    ~DynamicObject() override;
 
     using Ptr = ReferenceCountedObjectPtr<DynamicObject>;
 
@@ -61,32 +129,38 @@ public:
     /** Returns true if the object has a property with this name.
         Note that if the property is actually a method, this will return false.
     */
-    bool hasProperty (const Identifier& propertyName) const;
+    virtual bool hasProperty (const Identifier& propertyName) const;
 
     /** Returns a named property.
         This returns var() if no such property exists.
     */
-    const var& getProperty (const Identifier& propertyName) const;
+    virtual const var& getProperty (const Identifier& propertyName) const;
 
     /** Sets a named property. */
-    void setProperty (const Identifier& propertyName, const var& newValue);
+    virtual void setProperty (const Identifier& propertyName, const var& newValue);
 
     /** Removes a named property. */
-    void removeProperty (const Identifier& propertyName);
+    virtual void removeProperty (const Identifier& propertyName);
 
     //==============================================================================
-    /** Checks whether this object has a property with the given name that has a
-        value of type NativeFunction.
+    /** Checks whether this object has the specified method.
+
+        The default implementation of this just checks whether there's a property
+        with this name that's actually a method, but this can be overridden for
+        building objects with dynamic invocation.
     */
-    bool hasMethod (const Identifier& methodName) const;
+    virtual bool hasMethod (const Identifier& methodName) const;
 
     /** Invokes a named method on this object.
 
         The default implementation looks up the named property, and if it's a method
         call, then it invokes it.
+
+        This method is virtual to allow more dynamic invocation to used for objects
+        where the methods may not already be set as properties.
     */
-    var invokeMethod (Identifier methodName,
-                      const var::NativeFunctionArgs& args);
+    virtual var invokeMethod (Identifier methodName,
+                              const var::NativeFunctionArgs& args);
 
     /** Adds a method to the class.
 
@@ -101,10 +175,9 @@ public:
     void clear();
 
     /** Returns the NamedValueSet that holds the object's properties. */
-    NamedValueSet& getProperties() noexcept                 { return properties; }
+    NamedValueSet& getProperties() noexcept;
 
-    /** Returns the NamedValueSet that holds the object's properties. */
-    const NamedValueSet& getProperties() const noexcept     { return properties; }
+    void swapProperties(NamedValueSet&& other);
 
     /** Calls var::clone() on all the properties that this object contains. */
     void cloneAllProperties();
@@ -115,7 +188,7 @@ public:
         with a (deep) copy of all of its properties. Subclasses can override this to
         implement their own custom copy routines.
     */
-    virtual std::unique_ptr<DynamicObject> clone() const;
+    virtual Ptr clone() const;
 
     //==============================================================================
     /** Writes this object to a text stream in JSON format.
@@ -123,19 +196,15 @@ public:
         never need to call it directly, but it's virtual so that custom object types
         can stringify themselves appropriately.
     */
-    virtual void writeAsJSON (OutputStream&, const JSON::FormatOptions&);
+    void writeAsJSON (OutputStream&, int indentLevel, bool allOnOneLine, int maximumDecimalPlaces) override;
+
+    void writeToStream(OutputStream& os) override;
+
+    static ObjectWithJSONConverter* createFromStream(InputStream& os);
+
+    JUCE_MAKE_STREAMABLE_OBJECT(1);
 
 private:
-    /** Derived classes may override this function to take additional actions after
-        properties are assigned or removed.
-
-        @param name         the name of the property that changed
-        @param value        if non-null, the value of the property after assignment
-                            if null, indicates that the property was removed
-    */
-    virtual void didModifyProperty ([[maybe_unused]] const Identifier& name,
-                                    [[maybe_unused]] const std::optional<var>& value) {}
-
     //==============================================================================
     NamedValueSet properties;
 

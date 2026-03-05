@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,7 +26,7 @@
 namespace juce
 {
 
-class DropShadower::ShadowWindow final : public Component
+class DropShadower::ShadowWindow  : public Component
 {
 public:
     ShadowWindow (Component* comp, const DropShadow& ds)
@@ -47,17 +38,6 @@ public:
 
         if (comp->isOnDesktop())
         {
-           #if JUCE_WINDOWS
-            const auto scope = [&]() -> std::optional<ScopedThreadDPIAwarenessSetter>
-            {
-                if (comp != nullptr)
-                    if (auto* handle = comp->getWindowHandle())
-                        return ScopedThreadDPIAwarenessSetter (handle);
-
-                return {};
-            }();
-           #endif
-
             setSize (1, 1); // to keep the OS happy by not having zero-size windows
             addToDesktop (ComponentPeer::windowIgnoresMouseClicks
                             | ComponentPeer::windowIsTemporary
@@ -95,98 +75,21 @@ private:
     JUCE_DECLARE_NON_COPYABLE (ShadowWindow)
 };
 
-class DropShadower::VirtualDesktopWatcher final  : public ComponentListener,
-                                                   private Timer
-{
-public:
-    //==============================================================================
-    VirtualDesktopWatcher (Component& c) : component (&c)
-    {
-        component->addComponentListener (this);
-        update();
-    }
-
-    ~VirtualDesktopWatcher() override
-    {
-        stopTimer();
-
-        if (auto* c = component.get())
-            c->removeComponentListener (this);
-    }
-
-    bool shouldHideDropShadow() const
-    {
-        return hasReasonToHide;
-    }
-
-    void addListener (void* listener, std::function<void()> cb)
-    {
-        listeners[listener] = std::move (cb);
-    }
-
-    void removeListener (void* listener)
-    {
-        listeners.erase (listener);
-    }
-
-    //==============================================================================
-    void componentParentHierarchyChanged (Component& c) override
-    {
-        if (component.get() == &c)
-            update();
-    }
-
-private:
-    //==============================================================================
-    void update()
-    {
-        bool newHasReasonToHide = false;
-
-        if (! component.wasObjectDeleted() && isWindows && component->isOnDesktop())
-        {
-            startTimerHz (5);
-
-            WeakReference<VirtualDesktopWatcher> weakThis (this);
-
-            // During scaling changes this call can trigger a call to HWNDComponentPeer::handleDPIChanging()
-            // which deletes this VirtualDesktopWatcher.
-            newHasReasonToHide = ! detail::WindowingHelpers::isWindowOnCurrentVirtualDesktop (component->getWindowHandle());
-
-            if (weakThis == nullptr)
-                return;
-        }
-        else
-        {
-            stopTimer();
-        }
-
-        if (std::exchange (hasReasonToHide, newHasReasonToHide) != newHasReasonToHide)
-            for (auto& l : listeners)
-                l.second();
-    }
-
-    void timerCallback() override
-    {
-        update();
-    }
-
-    //==============================================================================
-    WeakReference<Component> component;
-    const bool isWindows = (SystemStats::getOperatingSystemType() & SystemStats::Windows) != 0;
-    bool hasReasonToHide = false;
-    std::map<void*, std::function<void()>> listeners;
-
-    JUCE_DECLARE_WEAK_REFERENCEABLE (VirtualDesktopWatcher)
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VirtualDesktopWatcher)
-};
-
-class DropShadower::ParentVisibilityChangedListener final : public ComponentListener
+class DropShadower::ParentVisibilityChangedListener  : public ComponentListener,
+                                                       private Timer
 {
 public:
     ParentVisibilityChangedListener (Component& r, ComponentListener& l)
         : root (&r), listener (&l)
     {
-        updateParentHierarchy();
+        if (auto* firstParent = root->getParentComponent())
+            updateParentHierarchy (firstParent);
+
+        if ((SystemStats::getOperatingSystemType() & SystemStats::Windows) != 0)
+        {
+            isOnVirtualDesktop = isWindowOnCurrentVirtualDesktop (root->getWindowHandle());
+            startTimerHz (5);
+        }
     }
 
     ~ParentVisibilityChangedListener() override
@@ -196,17 +99,19 @@ public:
                 comp->removeComponentListener (this);
     }
 
-    void componentVisibilityChanged (Component& component) override
+    void componentVisibilityChanged (Component&) override
     {
-        if (root != &component)
-            listener->componentVisibilityChanged (*root);
+        listener->componentVisibilityChanged (*root);
     }
 
     void componentParentHierarchyChanged (Component& component) override
     {
         if (root == &component)
-            updateParentHierarchy();
+            if (auto* firstParent = root->getParentComponent())
+                updateParentHierarchy (firstParent);
     }
+
+    bool isWindowOnVirtualDesktop() const noexcept  { return isOnVirtualDesktop; }
 
 private:
     class ComponentWithWeakReference
@@ -224,13 +129,13 @@ private:
         WeakReference<Component> ref;
     };
 
-    void updateParentHierarchy()
+    void updateParentHierarchy (Component* rootComponent)
     {
         const auto lastSeenComponents = std::exchange (observedComponents, [&]
         {
             std::set<ComponentWithWeakReference> result;
 
-            for (auto node = root; node != nullptr; node = node->getParentComponent())
+            for (auto node = rootComponent; node != nullptr; node = node->getParentComponent())
                 result.emplace (*node);
 
             return result;
@@ -250,9 +155,26 @@ private:
         withDifference (observedComponents, lastSeenComponents, [this] (auto& comp) { comp.addComponentListener (this); });
     }
 
+    void timerCallback() override
+    {
+        WeakReference<DropShadower> deletionChecker { static_cast<DropShadower*> (listener) };
+
+        const auto wasOnVirtualDesktop = std::exchange (isOnVirtualDesktop,
+                                                        isWindowOnCurrentVirtualDesktop (root->getWindowHandle()));
+
+        // on Windows, isWindowOnCurrentVirtualDesktop() may cause synchronous messages to be dispatched
+        // to the HWND so we need to check if the shadower is still valid after calling
+        if (deletionChecker == nullptr)
+            return;
+
+        if (isOnVirtualDesktop != wasOnVirtualDesktop)
+            listener->componentVisibilityChanged (*root);
+    }
+
     Component* root = nullptr;
     ComponentListener* listener = nullptr;
     std::set<ComponentWithWeakReference> observedComponents;
+    bool isOnVirtualDesktop = true;
 
     JUCE_DECLARE_NON_COPYABLE (ParentVisibilityChangedListener)
     JUCE_DECLARE_NON_MOVEABLE (ParentVisibilityChangedListener)
@@ -263,9 +185,6 @@ DropShadower::DropShadower (const DropShadow& ds)  : shadow (ds)  {}
 
 DropShadower::~DropShadower()
 {
-    if (virtualDesktopWatcher != nullptr)
-        virtualDesktopWatcher->removeListener (this);
-
     if (owner != nullptr)
     {
         owner->removeComponentListener (this);
@@ -298,9 +217,6 @@ void DropShadower::setOwner (Component* componentToFollow)
         // componentVisibilityChanged() event in case it changes for any of the parents.
         visibilityChangedListener = std::make_unique<ParentVisibilityChangedListener> (*owner,
                                                                                        static_cast<ComponentListener&> (*this));
-
-        virtualDesktopWatcher = std::make_unique<VirtualDesktopWatcher> (*owner);
-        virtualDesktopWatcher->addListener (this, [this]() { updateShadows(); });
 
         updateShadows();
     }
@@ -360,7 +276,7 @@ void DropShadower::updateShadows()
         && owner->isShowing()
         && owner->getWidth() > 0 && owner->getHeight() > 0
         && (Desktop::canUseSemiTransparentWindows() || owner->getParentComponent() != nullptr)
-        && (virtualDesktopWatcher == nullptr || ! virtualDesktopWatcher->shouldHideDropShadow()))
+        && (visibilityChangedListener != nullptr && visibilityChangedListener->isWindowOnVirtualDesktop()))
     {
         while (shadowWindows.size() < 4)
             shadowWindows.add (new ShadowWindow (owner, shadow));
@@ -374,7 +290,7 @@ void DropShadower::updateShadows()
         for (int i = 4; --i >= 0;)
         {
             // there seem to be rare situations where the dropshadower may be deleted by
-            // callbacks during this loop, so use a weak ref to watch out for this
+            // callbacks during this loop, so use a weak ref to watch out for this..
             WeakReference<Component> sw (shadowWindows[i]);
 
             if (sw != nullptr)

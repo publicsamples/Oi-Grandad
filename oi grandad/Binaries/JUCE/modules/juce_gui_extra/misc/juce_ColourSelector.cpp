@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,7 +26,7 @@
 namespace juce
 {
 
-struct ColourComponentSlider final : public Slider
+struct ColourComponentSlider  : public Slider
 {
     ColourComponentSlider (const String& name)  : Slider (name)
     {
@@ -54,7 +45,7 @@ struct ColourComponentSlider final : public Slider
 };
 
 //==============================================================================
-class ColourSelector::ColourSpaceView final : public Component
+class ColourSelector::ColourSpaceView  : public Component
 {
 public:
     ColourSpaceView (ColourSelector& cs, float& hue, float& sat, float& val, int edgeSize)
@@ -109,7 +100,7 @@ public:
 
     void updateIfNeeded()
     {
-        if (! approximatelyEqual (lastHue, h))
+        if (lastHue != h)
         {
             lastHue = h;
             colours = {};
@@ -134,7 +125,7 @@ private:
     const int edge;
     Image colours;
 
-    struct ColourSpaceMarker final : public Component
+    struct ColourSpaceMarker  : public Component
     {
         ColourSpaceMarker()
         {
@@ -165,7 +156,7 @@ private:
 };
 
 //==============================================================================
-class ColourSelector::HueSelectorComp final : public Component
+class ColourSelector::HueSelectorComp  : public Component
 {
 public:
     HueSelectorComp (ColourSelector& cs, float& hue, int edgeSize)
@@ -217,7 +208,7 @@ private:
     float& h;
     const int edge;
 
-    struct HueSelectorMarker final : public Component
+    struct HueSelectorMarker  : public Component
     {
         HueSelectorMarker()
         {
@@ -252,7 +243,7 @@ private:
 };
 
 //==============================================================================
-class ColourSelector::SwatchComponent final : public Component
+class ColourSelector::SwatchComponent   : public Component
 {
 public:
     SwatchComponent (ColourSelector& cs, int itemIndex)
@@ -272,9 +263,9 @@ public:
     void mouseDown (const MouseEvent&) override
     {
         PopupMenu m;
-        m.addItem (1, TRANS ("Use this swatch as the current colour"));
+        m.addItem (1, TRANS("Use this swatch as the current colour"));
         m.addSeparator();
-        m.addItem (2, TRANS ("Set this swatch to the current colour"));
+        m.addItem (2, TRANS("Set this swatch to the current colour"));
 
         m.showMenuAsync (PopupMenu::Options().withTargetComponent (this),
                          ModalCallbackFunction::forComponent (menuStaticCallback, this));
@@ -311,7 +302,7 @@ private:
 };
 
 //==============================================================================
-class ColourSelector::ColourPreviewComp final : public Component
+class ColourSelector::ColourPreviewComp  : public Component
 {
 public:
     ColourPreviewComp (ColourSelector& cs, bool isEditable)
@@ -352,7 +343,7 @@ public:
             colourLabel.setColour (Label::textWhenEditingColourId, textColour);
             colourLabel.setText (currentColour.toDisplayString ((owner.flags & showAlphaChannel) != 0), dontSendNotification);
 
-            labelWidth = GlyphArrangement::getStringWidthInt (labelFont, colourLabel.getText());
+            labelWidth = labelFont.getStringWidth (colourLabel.getText());
 
             repaint();
         }
@@ -382,7 +373,7 @@ private:
     ColourSelector& owner;
 
     Colour currentColour;
-    Font labelFont { withDefaultMetrics (FontOptions { 14.0f, Font::bold }) };
+    Font labelFont { 14.0f, Font::bold };
     int labelWidth = 0;
     Label colourLabel;
 
@@ -420,8 +411,12 @@ ColourSelector::ColourSelector (int sectionsToShow, int edge, int gapAroundColou
 
         sliders[3]->setVisible ((flags & showAlphaChannel) != 0);
 
+        // VS2015 needs some scoping braces around this if statement to
+        // avoid a compiler bug.
         for (auto& slider : sliders)
+        {
             slider->onValueChange = [this] { changeColour(); };
+        }
     }
 
     if ((flags & showColourspace) != 0)
@@ -463,7 +458,7 @@ void ColourSelector::setHue (float newH)
 {
     newH = jlimit (0.0f, 1.0f, newH);
 
-    if (! approximatelyEqual (h, newH))
+    if (h != newH)
     {
         h = newH;
         colour = Colour (h, s, v, colour.getFloatAlpha());
@@ -476,7 +471,7 @@ void ColourSelector::setSV (float newS, float newV)
     newS = jlimit (0.0f, 1.0f, newS);
     newV = jlimit (0.0f, 1.0f, newV);
 
-    if (! approximatelyEqual (s, newS) || ! approximatelyEqual (v, newV))
+    if (s != newS || v != newV)
     {
         s = newS;
         v = newV;
@@ -607,7 +602,7 @@ void ColourSelector::resized()
 
         for (int i = 0; i < swatchComponents.size(); ++i)
         {
-            auto* sc = swatchComponents.getUnchecked (i);
+            auto* sc = swatchComponents.getUnchecked(i);
 
             sc->setBounds (x + xGap / 2,
                            y + yGap / 2,

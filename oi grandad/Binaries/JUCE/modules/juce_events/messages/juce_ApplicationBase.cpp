@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -42,12 +30,24 @@ JUCEApplicationBase* JUCEApplicationBase::appInstance = nullptr;
 void* JUCEApplicationBase::iOSCustomDelegate = nullptr;
 #endif
 
+JUCEApplicationBase::JUCEApplicationBase()
+{
+    jassert (isStandaloneApp() && appInstance == nullptr);
+    appInstance = this;
+}
+
+JUCEApplicationBase::~JUCEApplicationBase()
+{
+    jassert (appInstance == this);
+    appInstance = nullptr;
+}
+
 void JUCEApplicationBase::setApplicationReturnValue (const int newReturnValue) noexcept
 {
     appReturnValue = newReturnValue;
 }
 
-// This is called on the Mac and iOS where the OS doesn't allow the stack to unwind on shutdown.
+// This is called on the Mac and iOS where the OS doesn't allow the stack to unwind on shutdown..
 void JUCEApplicationBase::appWillTerminateByForce()
 {
     JUCE_AUTORELEASEPOOL
@@ -91,7 +91,7 @@ void JUCEApplicationBase::sendUnhandledException (const std::exception* const e,
 #endif
 
 #if JUCE_HANDLE_MULTIPLE_INSTANCES
-struct JUCEApplicationBase::MultipleInstanceHandler final : public ActionListener
+struct JUCEApplicationBase::MultipleInstanceHandler  : public ActionListener
 {
     MultipleInstanceHandler (const String& appName)
         : appLock ("juceAppLock_" + appName)
@@ -142,18 +142,6 @@ bool JUCEApplicationBase::sendCommandLineToPreexistingInstance()
 struct JUCEApplicationBase::MultipleInstanceHandler {};
 #endif
 
-JUCEApplicationBase::JUCEApplicationBase()
-{
-    jassert (isStandaloneApp() && appInstance == nullptr);
-    appInstance = this;
-}
-
-JUCEApplicationBase::~JUCEApplicationBase()
-{
-    jassert (appInstance == this);
-    appInstance = nullptr;
-}
-
 //==============================================================================
 #if JUCE_ANDROID
 
@@ -195,8 +183,8 @@ StringArray JUCE_CALLTYPE JUCEApplicationBase::getCommandLineParameterArray()
  extern void initialiseNSApplication();
 #endif
 
-#if (JUCE_LINUX || JUCE_BSD) && JUCE_MODULE_AVAILABLE_juce_gui_extra && (! defined (JUCE_WEB_BROWSER) || JUCE_WEB_BROWSER)
- extern "C" int juce_gtkWebkitMain (int argc, const char* const* argv);
+#if (JUCE_LINUX || JUCE_BSD) && JUCE_MODULE_AVAILABLE_juce_gui_extra && (! defined(JUCE_WEB_BROWSER) || JUCE_WEB_BROWSER)
+ extern int juce_gtkWebkitMain (int argc, const char* argv[]);
 #endif
 
 #if JUCE_WINDOWS
@@ -211,12 +199,14 @@ String JUCEApplicationBase::getCommandLineParameters()
 {
     String argString;
 
-    for (const auto& arg : getCommandLineParameterArray())
+    for (int i = 1; i < juce_argc; ++i)
     {
-        const auto withQuotes = arg.containsChar (' ') && ! arg.isQuotedString()
-                              ? arg.quoted ('"')
-                              : arg;
-        argString << withQuotes << ' ';
+        String arg { CharPointer_UTF8 (juce_argv[i]) };
+
+        if (arg.containsChar (' ') && ! arg.isQuotedString())
+            arg = arg.quoted ('"');
+
+        argString << arg << ' ';
     }
 
     return argString.trim();
@@ -224,12 +214,7 @@ String JUCEApplicationBase::getCommandLineParameters()
 
 StringArray JUCEApplicationBase::getCommandLineParameterArray()
 {
-    StringArray result;
-
-    for (int i = 1; i < juce_argc; ++i)
-        result.add (CharPointer_UTF8 (juce_argv[i]));
-
-    return result;
+    return StringArray (juce_argv + 1, juce_argc - 1);
 }
 
 int JUCEApplicationBase::main (int argc, const char* argv[])
@@ -243,7 +228,7 @@ int JUCEApplicationBase::main (int argc, const char* argv[])
         initialiseNSApplication();
        #endif
 
-       #if (JUCE_LINUX || JUCE_BSD) && JUCE_MODULE_AVAILABLE_juce_gui_extra && (! defined (JUCE_WEB_BROWSER) || JUCE_WEB_BROWSER)
+       #if (JUCE_LINUX || JUCE_BSD) && JUCE_MODULE_AVAILABLE_juce_gui_extra && (! defined(JUCE_WEB_BROWSER) || JUCE_WEB_BROWSER)
         if (argc >= 2 && String (argv[1]) == "--juce-gtkwebkitfork-child")
             return juce_gtkWebkitMain (argc, argv);
        #endif
@@ -273,7 +258,7 @@ int JUCEApplicationBase::main()
 
     JUCE_TRY
     {
-        // loop until a quit message is received
+        // loop until a quit message is received..
         MessageManager::getInstance()->runDispatchLoop();
     }
     JUCE_CATCH_EXCEPTION
@@ -294,21 +279,21 @@ bool JUCEApplicationBase::initialiseApp()
     }
    #endif
 
-   #if JUCE_WINDOWS && (! defined (_CONSOLE))
-    if (isStandaloneApp() && AttachConsole (ATTACH_PARENT_PROCESS) != 0)
+   #if JUCE_WINDOWS && JUCE_STANDALONE_APPLICATION && (! defined (_CONSOLE)) && (! JUCE_MINGW)
+    if (AttachConsole (ATTACH_PARENT_PROCESS) != 0)
     {
-        // If we've launched a GUI app from cmd.exe or PowerShell, we need this to enable printf etc.
+        // if we've launched a GUI app from cmd.exe or PowerShell, we need this to enable printf etc.
         // However, only reassign stdout, stderr, stdin if they have not been already opened by
         // a redirect or similar.
         FILE* ignore;
 
-        if (_fileno (stdout) < 0) freopen_s (&ignore, "CONOUT$", "w", stdout);
-        if (_fileno (stderr) < 0) freopen_s (&ignore, "CONOUT$", "w", stderr);
-        if (_fileno (stdin)  < 0) freopen_s (&ignore, "CONIN$",  "r", stdin);
+        if (_fileno(stdout) < 0) freopen_s (&ignore, "CONOUT$", "w", stdout);
+        if (_fileno(stderr) < 0) freopen_s (&ignore, "CONOUT$", "w", stderr);
+        if (_fileno(stdin)  < 0) freopen_s (&ignore, "CONIN$",  "r", stdin);
     }
    #endif
 
-    // let the app do its setting-up
+    // let the app do its setting-up..
     initialise (getCommandLineParameters());
 
     stillInitialising = false;
@@ -335,7 +320,7 @@ int JUCEApplicationBase::shutdownApp()
 
     JUCE_TRY
     {
-        // give the app a chance to clean up
+        // give the app a chance to clean up..
         shutdown();
     }
     JUCE_CATCH_EXCEPTION

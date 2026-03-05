@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -103,21 +94,23 @@ int ProjucerLookAndFeel::getTabButtonBestWidth (TabBarButton& button, int)
     return 120;
 }
 
-void ProjucerLookAndFeel::drawPropertyComponentLabel (Graphics& g, int, int height, PropertyComponent& component)
+void ProjucerLookAndFeel::drawPropertyComponentLabel (Graphics& g, int width, int height, PropertyComponent& component)
 {
+    ignoreUnused (width);
+
     g.setColour (component.findColour (defaultTextColourId)
                           .withMultipliedAlpha (component.isEnabled() ? 1.0f : 0.6f));
 
-    auto textWidth = getTextWidthForPropertyComponent (component);
+    auto textWidth = getTextWidthForPropertyComponent (&component);
 
     g.setFont (getPropertyComponentFont());
-    g.drawFittedText (component.getName(), 0, 0, textWidth, height, Justification::centredLeft, 5, 1.0f);
+    g.drawFittedText (component.getName(), 0, 0, textWidth - 5, height, Justification::centredLeft, 5, 1.0f);
 }
 
 Rectangle<int> ProjucerLookAndFeel::getPropertyComponentContentPosition (PropertyComponent& component)
 {
-    const auto paddedTextW = getTextWidthForPropertyComponent (component) + 5;
-    return { paddedTextW , 0, component.getWidth() - paddedTextW, component.getHeight() - 1 };
+    const auto textW = getTextWidthForPropertyComponent (&component);
+    return { textW, 0, component.getWidth() - textW, component.getHeight() - 1 };
 }
 
 void ProjucerLookAndFeel::drawButtonBackground (Graphics& g,
@@ -376,9 +369,71 @@ void ProjucerLookAndFeel::drawTreeviewPlusMinusBox (Graphics& g, const Rectangle
     g.strokePath (getArrowPath (area, isOpen ? 2 : 1, false, Justification::centredRight), PathStrokeType (2.0f));
 }
 
-ProgressBar::Style ProjucerLookAndFeel::getDefaultProgressBarStyle (const ProgressBar&)
+void ProjucerLookAndFeel::drawProgressBar (Graphics& g, ProgressBar& progressBar,
+                                           int width, int height, double progress, const String& textToShow)
 {
-    return ProgressBar::Style::circular;
+    ignoreUnused (width, height, progress);
+
+    const auto background = progressBar.findColour (ProgressBar::backgroundColourId);
+    const auto foreground = progressBar.findColour (defaultButtonBackgroundColourId);
+
+    const auto sideLength = jmin (width, height);
+
+    auto barBounds = progressBar.getLocalBounds().withSizeKeepingCentre (sideLength, sideLength).reduced (1).toFloat();
+
+    auto rotationInDegrees  = static_cast<float> ((Time::getMillisecondCounter() / 10) % 360);
+    auto normalisedRotation = rotationInDegrees / 360.0f;
+
+    const auto rotationOffset = 22.5f;
+    const auto maxRotation    = 315.0f;
+
+    auto startInDegrees = rotationInDegrees;
+    auto endInDegrees   = startInDegrees + rotationOffset;
+
+    if (normalisedRotation >= 0.25f && normalisedRotation < 0.5f)
+    {
+        const auto rescaledRotation = (normalisedRotation * 4.0f) - 1.0f;
+        endInDegrees = startInDegrees + rotationOffset + (maxRotation * rescaledRotation);
+    }
+    else if (normalisedRotation >= 0.5f && normalisedRotation <= 1.0f)
+    {
+        endInDegrees = startInDegrees + rotationOffset + maxRotation;
+        const auto rescaledRotation = 1.0f - ((normalisedRotation * 2.0f) - 1.0f);
+        startInDegrees = endInDegrees - rotationOffset - (maxRotation * rescaledRotation);
+    }
+
+    g.setColour (background);
+    Path arcPath2;
+    arcPath2.addCentredArc (barBounds.getCentreX(),
+                            barBounds.getCentreY(),
+                            barBounds.getWidth() * 0.5f,
+                            barBounds.getHeight() * 0.5f, 0.0f,
+                            0.0f,
+                            MathConstants<float>::twoPi,
+                            true);
+    g.strokePath (arcPath2, PathStrokeType (2.0f));
+
+    g.setColour (foreground);
+    Path arcPath;
+    arcPath.addCentredArc (barBounds.getCentreX(),
+                           barBounds.getCentreY(),
+                           barBounds.getWidth() * 0.5f,
+                           barBounds.getHeight() * 0.5f,
+                           0.0f,
+                           degreesToRadians (startInDegrees),
+                           degreesToRadians (endInDegrees),
+                           true);
+
+    arcPath.applyTransform (AffineTransform::rotation (normalisedRotation * MathConstants<float>::pi * 2.25f,
+                                                       barBounds.getCentreX(), barBounds.getCentreY()));
+    g.strokePath (arcPath, PathStrokeType (2.0f));
+
+    if (textToShow.isNotEmpty())
+    {
+        g.setColour (progressBar.findColour (TextButton::textColourOffId));
+        g.setFont (Font (12.0f, 2));
+        g.drawText (textToShow, barBounds, Justification::centred, false);
+    }
 }
 
 //==============================================================================
@@ -521,7 +576,7 @@ void ProjucerLookAndFeel::setupColours()
     setColour (BooleanPropertyComponent::outlineColourId,       Colours::transparentBlack);
     setColour (BooleanPropertyComponent::backgroundColourId,    findColour (widgetBackgroundColourId));
     setColour (ToggleButton::tickDisabledColourId,              Colour (0xffa9a9a9));
-    setColour (ToggleButton::tickColourId,                      findColour (defaultButtonBackgroundColourId).withMultipliedBrightness (1.3f));
+    setColour (ToggleButton::tickColourId,                      findColour (defaultButtonBackgroundColourId).withMultipliedBrightness(1.3f));
     setColour (CodeEditorComponent::backgroundColourId,         findColour (secondaryBackgroundColourId));
     setColour (CodeEditorComponent::lineNumberTextId,           findColour (codeEditorLineNumberColourId));
     setColour (CodeEditorComponent::lineNumberBackgroundId,     findColour (backgroundColourId));
@@ -530,6 +585,5 @@ void ProjucerLookAndFeel::setupColours()
     setColour (TreeView::selectedItemBackgroundColourId,        findColour (defaultHighlightColourId));
     setColour (PopupMenu::highlightedBackgroundColourId,        findColour (defaultHighlightColourId).withAlpha (0.75f));
     setColour (PopupMenu::highlightedTextColourId,              findColour (defaultHighlightedTextColourId));
-    setColour (ProgressBar::foregroundColourId,                 findColour (defaultButtonBackgroundColourId));
     setColour (0x1000440, /*LassoComponent::lassoFillColourId*/ findColour (defaultHighlightColourId).withAlpha (0.3f));
 }

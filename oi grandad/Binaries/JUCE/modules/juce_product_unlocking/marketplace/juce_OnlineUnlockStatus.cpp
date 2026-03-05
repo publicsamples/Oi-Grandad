@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -134,7 +125,7 @@ struct KeyFileUtils
                 xml = parseXML (mb.toString());
         }
 
-        return xml != nullptr ? *xml : XmlElement ("key");
+        return xml != nullptr ? *xml : XmlElement("key");
     }
 
     static XmlElement getXmlFromKeyFile (String keyFileText, RSAKey rsaPublicKey)
@@ -328,20 +319,18 @@ String OnlineUnlockStatus::MachineIDUtilities::getUniqueMachineID()
     return getEncodedIDString (SystemStats::getUniqueDeviceID());
 }
 
-JUCE_BEGIN_IGNORE_DEPRECATION_WARNINGS
-
 StringArray OnlineUnlockStatus::MachineIDUtilities::getLocalMachineIDs()
 {
-    auto flags = SystemStats::MachineIdFlags::macAddresses
-               | SystemStats::MachineIdFlags::fileSystemId
-               | SystemStats::MachineIdFlags::legacyUniqueId
-               | SystemStats::MachineIdFlags::uniqueId;
-    auto identifiers = SystemStats::getMachineIdentifiers (flags);
+#if JUCE_USE_BETTER_MACHINE_IDS
+    return { getUniqueMachineID() };
+#else
+    auto identifiers = SystemStats::getDeviceIdentifiers();
 
     for (auto& identifier : identifiers)
         identifier = getEncodedIDString (identifier);
 
     return identifiers;
+#endif
 }
 
 StringArray OnlineUnlockStatus::getLocalMachineIDs()
@@ -349,10 +338,29 @@ StringArray OnlineUnlockStatus::getLocalMachineIDs()
     return MachineIDUtilities::getLocalMachineIDs();
 }
 
-JUCE_END_IGNORE_DEPRECATION_WARNINGS
-
 void OnlineUnlockStatus::userCancelled()
 {
+}
+
+bool OnlineUnlockStatus::unlockWithTime(Time safeTimeObject)
+{
+	Time times[2] = { getExpiryTime(), safeTimeObject };
+
+	if (times[0] == Time(0))
+		return isUnlocked();
+
+	var actualResult(0), dummyResult(1.0);
+
+	var v(!(times[0] < times[1]));
+	actualResult.swapWith(v);
+	v = var(times[0] == times[1]);
+	dummyResult.swapWith(v);
+	jassert(!dummyResult);
+
+	if ((!dummyResult) && actualResult)
+		status.setProperty(unlockedProp, actualResult, nullptr);
+
+	return var(actualResult);
 }
 
 void OnlineUnlockStatus::setUserEmail (const String& usernameOrEmail)
@@ -365,82 +373,73 @@ String OnlineUnlockStatus::getUserEmail() const
     return status[userNameProp].toString();
 }
 
-Result OnlineUnlockStatus::applyKeyFile (const String& keyFileContent)
+bool OnlineUnlockStatus::applyKeyFile (String keyFileContent)
 {
     KeyFileUtils::KeyFileData data;
     data = KeyFileUtils::getDataFromKeyFile (KeyFileUtils::getXmlFromKeyFile (keyFileContent, getPublicKey()));
 
-    if (data.licensee.isEmpty() || data.email.isEmpty())
-        return Result::fail (LicenseResult::badCredentials);
-
-    if (! doesProductIDMatch (data.appID))
-        return Result::fail (LicenseResult::badProductID);
-
-    if (MachineIDUtilities::getUniqueMachineID().isEmpty())
-        return Result::fail (LicenseResult::notReady);
-
-    setUserEmail (data.email);
-    status.setProperty (keyfileDataProp, keyFileContent, nullptr);
-    status.removeProperty (data.keyFileExpires ? expiryTimeProp : unlockedProp, nullptr);
-
-    var actualResult (0), dummyResult (1.0);
-    var v (machineNumberAllowed (data.machineNumbers, getLocalMachineIDs()));
-    actualResult.swapWith (v);
-    v = machineNumberAllowed (StringArray ("01"), getLocalMachineIDs());
-    dummyResult.swapWith (v);
-    jassert (! dummyResult);
-
-    if (data.keyFileExpires)
+    if (data.licensee.isNotEmpty() && data.email.isNotEmpty() && doesProductIDMatch (data.appID))
     {
-        if ((! dummyResult) && actualResult)
-            status.setProperty (expiryTimeProp, data.expiryTime.toMilliseconds(), nullptr);
+        setUserEmail (data.email);
+        status.setProperty (keyfileDataProp, keyFileContent, nullptr);
+        status.removeProperty (data.keyFileExpires ? expiryTimeProp : unlockedProp, nullptr);
 
-        return getExpiryTime().toMilliseconds() > 0 ? Result::ok()
-                                                    : Result::fail (LicenseResult::licenseExpired);
+        var actualResult (0), dummyResult (1.0);
+        var v (machineNumberAllowed (data.machineNumbers, getLocalMachineIDs()));
+        actualResult.swapWith (v);
+        v = machineNumberAllowed (StringArray ("01"), getLocalMachineIDs());
+        dummyResult.swapWith (v);
+        jassert (! dummyResult);
+
+        if (data.keyFileExpires)
+        {
+			if ((!dummyResult) && actualResult)
+				status.setProperty(expiryTimeProp, data.expiryTime.toMilliseconds(), nullptr);
+            
+			jassert(!isUnlocked());
+
+			return isUnlocked();
+        }
+
+        if ((! dummyResult) && actualResult)
+            status.setProperty (unlockedProp, actualResult, nullptr);
+
+        return isUnlocked();
     }
 
-    if ((! dummyResult) && actualResult)
-        status.setProperty (unlockedProp, actualResult, nullptr);
+    return false;
+}
 
-    return isUnlocked() ? Result::ok()
-                        : Result::fail (LicenseResult::unlockFailed);
+static bool canConnectToWebsite (const URL& url)
+{
+    return url.createInputStream (URL::InputStreamOptions (URL::ParameterHandling::inAddress)
+                                        .withConnectionTimeoutMs (2000)) != nullptr;
 }
 
 static bool areMajorWebsitesAvailable()
 {
-    static constexpr const char* const urlsToTry[] = { "http://google.com",  "http://bing.com",  "http://amazon.com",
-                                                       "https://google.com", "https://bing.com", "https://amazon.com" };
-    const auto canConnectToWebsite = [] (auto url)
-    {
-        return URL (url).createInputStream (URL::InputStreamOptions (URL::ParameterHandling::inAddress)
-                                                .withConnectionTimeoutMs (2000)) != nullptr;
-    };
+    const char* urlsToTry[] = { "http://google.com",  "http://bing.com",  "http://amazon.com",
+                                "https://google.com", "https://bing.com", "https://amazon.com", nullptr};
 
-    return std::any_of (std::begin (urlsToTry),
-                        std::end   (urlsToTry),
-                        canConnectToWebsite);
+    for (const char** url = urlsToTry; *url != nullptr; ++url)
+        if (canConnectToWebsite (URL (*url)))
+            return true;
+
+    return false;
 }
 
 OnlineUnlockStatus::UnlockResult OnlineUnlockStatus::handleXmlReply (XmlElement xml)
 {
     UnlockResult r;
 
-    r.succeeded = false;
-
-    if (const auto keyNode = xml.getChildByName ("KEY"))
+    if (auto keyNode = xml.getChildByName ("KEY"))
     {
-        if (const auto keyText = keyNode->getAllSubText().trim(); keyText.length() > 10)
-        {
-            const auto keyFileResult = applyKeyFile (keyText);
-
-            if (keyFileResult.failed())
-            {
-                r.errorMessage = keyFileResult.getErrorMessage();
-                return r;
-            }
-
-            r.succeeded = true;
-        }
+        const String keyText (keyNode->getAllSubText().trim());
+        r.succeeded = keyText.length() > 10 && applyKeyFile (keyText);
+    }
+    else
+    {
+        r.succeeded = false;
     }
 
     if (xml.hasTagName ("MESSAGE"))
@@ -468,17 +467,17 @@ OnlineUnlockStatus::UnlockResult OnlineUnlockStatus::handleFailedConnection()
 
 String OnlineUnlockStatus::getMessageForConnectionFailure (bool isInternetConnectionWorking)
 {
-    String message = TRANS ("Couldn't connect to XYZ").replace ("XYZ", getWebsiteName()) + "...\n\n";
+    String message = TRANS("Couldn't connect to XYZ").replace ("XYZ", getWebsiteName()) + "...\n\n";
 
     if (isInternetConnectionWorking)
-        message << TRANS ("Your internet connection seems to be OK, but our webserver "
-                          "didn't respond... This is most likely a temporary problem, so try "
-                          "again in a few minutes, but if it persists, please contact us for support!");
+        message << TRANS("Your internet connection seems to be OK, but our webserver "
+                         "didn't respond... This is most likely a temporary problem, so try "
+                         "again in a few minutes, but if it persists, please contact us for support!");
     else
-        message << TRANS ("No internet sites seem to be accessible from your computer.. Before trying again, "
-                          "please check that your network is working correctly, and make sure "
-                          "that any firewall/security software installed on your machine isn't "
-                          "blocking your web connection.");
+        message << TRANS("No internet sites seem to be accessible from your computer.. Before trying again, "
+                         "please check that your network is working correctly, and make sure "
+                         "that any firewall/security software installed on your machine isn't "
+                         "blocking your web connection.");
 
     return message;
 }
@@ -486,7 +485,7 @@ String OnlineUnlockStatus::getMessageForConnectionFailure (bool isInternetConnec
 String OnlineUnlockStatus::getMessageForUnexpectedReply()
 {
     return TRANS ("Unexpected or corrupted reply from XYZ").replace ("XYZ", getWebsiteName()) + "...\n\n"
-                    + TRANS ("Please try again in a few minutes, and contact us for support if this message appears again.");
+                    + TRANS("Please try again in a few minutes, and contact us for support if this message appears again.");
 }
 
 OnlineUnlockStatus::UnlockResult OnlineUnlockStatus::attemptWebserverUnlock (const String& email,

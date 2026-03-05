@@ -1,39 +1,35 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 namespace juce
 {
+
+
+#if JUCE_LINUX
+#define PREVENT_OPTIMISATION asm volatile("": : : "memory")
+#else
+#define PREVENT_OPTIMISATION
+#endif
+
 
 //==============================================================================
 /**
@@ -76,6 +72,8 @@ public:
         const ScopedLockType lock (other.getLock());
         values.addArray (other.begin(), other.size());
 
+		PREVENT_OPTIMISATION;
+
         for (auto* o : *this)
             if (o != nullptr)
                 o->incReferenceCount();
@@ -93,6 +91,8 @@ public:
     {
         const typename ReferenceCountedArray<OtherObjectClass, OtherCriticalSection>::ScopedLockType lock (other.getLock());
         values.addArray (other.begin(), other.size());
+
+		PREVENT_OPTIMISATION;
 
         for (auto* o : *this)
             if (o != nullptr)
@@ -575,7 +575,31 @@ public:
         @see addSorted, sort
     */
     template <class ElementComparator>
-    int indexOfSorted (ElementComparator& comparator, const ObjectClass* objectToLookFor) const noexcept;
+    int indexOfSorted (ElementComparator& comparator,
+                       const ObjectClass* objectToLookFor) const noexcept
+    {
+        ignoreUnused (comparator);
+        const ScopedLockType lock (getLock());
+        int s = 0, e = values.size();
+
+        while (s < e)
+        {
+            if (comparator.compareElements (objectToLookFor, values[s]) == 0)
+                return s;
+
+            auto halfway = (s + e) / 2;
+
+            if (halfway == s)
+                break;
+
+            if (comparator.compareElements (objectToLookFor, values[halfway]) >= 0)
+                s = halfway;
+            else
+                e = halfway;
+        }
+
+        return -1;
+    }
 
     //==============================================================================
     /** Removes an object from the array.
@@ -797,7 +821,7 @@ public:
         int compareElements (ElementType first, ElementType second);
         @endcode
 
-        ...and this method must return:
+        ..and this method must return:
           - a value of < 0 if the first comes before the second
           - a value of 0 if the two objects are equivalent
           - a value of > 0 if the second comes before the first
@@ -816,7 +840,16 @@ public:
         @see sortArray
     */
     template <class ElementComparator>
-    void sort (ElementComparator& comparator, bool retainOrderOfEquivalentItems = false) noexcept;
+    void sort (ElementComparator& comparator,
+               bool retainOrderOfEquivalentItems = false) noexcept
+    {
+        // If you pass in an object with a static compareElements() method, this
+        // avoids getting warning messages about the parameter being unused
+        ignoreUnused (comparator);
+
+        const ScopedLockType lock (getLock());
+        sortArray (comparator, values.begin(), 0, values.size() - 1, retainOrderOfEquivalentItems);
+    }
 
     //==============================================================================
     /** Reduces the amount of storage being used by the array.
@@ -854,11 +887,11 @@ public:
     using ScopedLockType = typename TypeOfCriticalSectionToUse::ScopedLockType;
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     [[deprecated ("This method has been replaced by a more flexible templated version and renamed "
                  "to swapWith to be more consistent with the names used in other classes.")]]
     void swapWithArray (ReferenceCountedArray& other) noexcept { swapWith (other); }
-    /** @endcond */
+   #endif
 
 private:
     //==============================================================================
@@ -882,44 +915,5 @@ private:
             ContainerDeletePolicy<ObjectClass>::destroy (o);
     }
 };
-
-//==============================================================================
-template <class ObjectClass, class TypeOfCriticalSectionToUse>
-template <class ElementComparator>
-int ReferenceCountedArray<ObjectClass, TypeOfCriticalSectionToUse>::indexOfSorted (
-    [[maybe_unused]] ElementComparator& comparator,
-    const ObjectClass* objectToLookFor) const noexcept
-{
-    const ScopedLockType lock (getLock());
-    int s = 0, e = values.size();
-
-    while (s < e)
-    {
-        if (comparator.compareElements (objectToLookFor, values[s]) == 0)
-            return s;
-
-        auto halfway = (s + e) / 2;
-
-        if (halfway == s)
-            break;
-
-        if (comparator.compareElements (objectToLookFor, values[halfway]) >= 0)
-            s = halfway;
-        else
-            e = halfway;
-    }
-
-    return -1;
-}
-
-template <class ObjectClass, class TypeOfCriticalSectionToUse>
-template <class ElementComparator>
-void ReferenceCountedArray<ObjectClass, TypeOfCriticalSectionToUse>::sort (
-    [[maybe_unused]] ElementComparator& comparator,
-    bool retainOrderOfEquivalentItems) noexcept
-{
-    const ScopedLockType lock (getLock());
-    sortArray (comparator, values.begin(), 0, values.size() - 1, retainOrderOfEquivalentItems);
-}
 
 } // namespace juce

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -201,17 +192,19 @@ typedef khronos_uint64_t GLuint64EXT;
 typedef struct __GLsync *GLsync;
 struct _cl_context;
 struct _cl_event;
-typedef void (KHRONOS_APIENTRY *GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
-typedef void (KHRONOS_APIENTRY *GLDEBUGPROCARB)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
-typedef void (KHRONOS_APIENTRY *GLDEBUGPROCKHR)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
-typedef void (KHRONOS_APIENTRY *GLDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severity,GLsizei length,const GLchar *message,void *userParam);
+typedef void ( *GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void ( *GLDEBUGPROCARB)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void ( *GLDEBUGPROCKHR)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void ( *GLDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severity,GLsizei length,const GLchar *message,void *userParam);
 typedef unsigned short GLhalfNV;
 typedef GLintptr GLvdpauSurfaceNV;
-typedef void (KHRONOS_APIENTRY *GLVULKANPROCNV)(void);
+typedef void ( *GLVULKANPROCNV)(void);
 
 JUCE_END_IGNORE_WARNINGS_GCC_LIKE
 
-namespace juce::gl
+namespace juce
+{
+namespace gl
 {
 
 #ifndef GL_VERSION_1_0
@@ -3269,7 +3262,7 @@ enum : GLenum
 extern void         (KHRONOS_APIENTRY* const& glDebugMessageEnableAMD) (GLenum category, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled);
 extern void         (KHRONOS_APIENTRY* const& glDebugMessageInsertAMD) (GLenum category, GLenum severity, GLuint id, GLsizei length, const GLchar *buf);
 extern void         (KHRONOS_APIENTRY* const& glDebugMessageCallbackAMD) (GLDEBUGPROCAMD callback, void *userParam);
-extern GLuint       (KHRONOS_APIENTRY* const& glGetDebugMessageLogAMD) (GLuint count, GLsizei bufSize, GLenum *categories, GLenum *severities, GLuint *ids, GLsizei *lengths, GLchar *message);
+extern GLuint       (KHRONOS_APIENTRY* const& glGetDebugMessageLogAMD) (GLuint count, GLsizei bufSize, GLenum *categories, GLuint *severities, GLuint *ids, GLsizei *lengths, GLchar *message);
 #endif
 
 #ifndef GL_AMD_depth_clamp_separate
@@ -6598,12 +6591,6 @@ enum : GLenum
 extern void         (KHRONOS_APIENTRY* const& glBlitFramebufferEXT) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 #endif
 
-#ifndef GL_EXT_framebuffer_blit_layers
-#define GL_EXT_framebuffer_blit_layers 1
-extern void         (KHRONOS_APIENTRY* const& glBlitFramebufferLayersEXT) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
-extern void         (KHRONOS_APIENTRY* const& glBlitFramebufferLayerEXT) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint srcLayer, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLint dstLayer, GLbitfield mask, GLenum filter);
-#endif
-
 #ifndef GL_EXT_framebuffer_multisample
 #define GL_EXT_framebuffer_multisample 1
 enum : GLenum
@@ -7259,7 +7246,7 @@ extern void         (KHRONOS_APIENTRY* const& glActiveProgramEXT) (GLuint progra
 extern GLuint       (KHRONOS_APIENTRY* const& glCreateShaderProgramEXT) (GLenum type, const GLchar *string);
 extern void         (KHRONOS_APIENTRY* const& glActiveShaderProgramEXT) (GLuint pipeline, GLuint program);
 extern void         (KHRONOS_APIENTRY* const& glBindProgramPipelineEXT) (GLuint pipeline);
-extern GLuint       (KHRONOS_APIENTRY* const& glCreateShaderProgramvEXT) (GLenum type, GLsizei count, const GLchar *const*strings);
+extern GLuint       (KHRONOS_APIENTRY* const& glCreateShaderProgramvEXT) (GLenum type, GLsizei count, const GLchar **strings);
 extern void         (KHRONOS_APIENTRY* const& glDeleteProgramPipelinesEXT) (GLsizei n, const GLuint *pipelines);
 extern void         (KHRONOS_APIENTRY* const& glGenProgramPipelinesEXT) (GLsizei n, GLuint *pipelines);
 extern void         (KHRONOS_APIENTRY* const& glGetProgramPipelineInfoLogEXT) (GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
@@ -7362,10 +7349,6 @@ extern void         (KHRONOS_APIENTRY* const& glMemoryBarrierEXT) (GLbitfield ba
 
 #ifndef GL_EXT_shader_integer_mix
 #define GL_EXT_shader_integer_mix 1
-#endif
-
-#ifndef GL_EXT_shader_samples_identical
-#define GL_EXT_shader_samples_identical 1
 #endif
 
 #ifndef GL_EXT_shadow_funcs
@@ -7784,10 +7767,6 @@ enum : GLenum
 };
 #endif
 
-#ifndef GL_EXT_texture_shadow_lod
-#define GL_EXT_texture_shadow_lod 1
-#endif
-
 #ifndef GL_EXT_texture_shared_exponent
 #define GL_EXT_texture_shared_exponent 1
 enum : GLenum
@@ -7819,34 +7798,6 @@ enum : GLenum
     GL_RGB_SNORM                                            = 0x8F92,
     GL_RGBA_SNORM                                           = 0x8F93,
 };
-#endif
-
-#ifndef GL_EXT_texture_storage
-#define GL_EXT_texture_storage 1
-enum : GLenum
-{
-    GL_TEXTURE_IMMUTABLE_FORMAT_EXT                         = 0x912F,
-    GL_RGBA32F_EXT                                          = 0x8814,
-    GL_RGB32F_EXT                                           = 0x8815,
-    GL_ALPHA32F_EXT                                         = 0x8816,
-    GL_LUMINANCE32F_EXT                                     = 0x8818,
-    GL_LUMINANCE_ALPHA32F_EXT                               = 0x8819,
-    GL_RGBA16F_EXT                                          = 0x881A,
-    GL_RGB16F_EXT                                           = 0x881B,
-    GL_ALPHA16F_EXT                                         = 0x881C,
-    GL_LUMINANCE16F_EXT                                     = 0x881E,
-    GL_LUMINANCE_ALPHA16F_EXT                               = 0x881F,
-    GL_BGRA8_EXT                                            = 0x93A1,
-    GL_R8_EXT                                               = 0x8229,
-    GL_RG8_EXT                                              = 0x822B,
-    GL_R32F_EXT                                             = 0x822E,
-    GL_RG32F_EXT                                            = 0x8230,
-    GL_R16F_EXT                                             = 0x822D,
-    GL_RG16F_EXT                                            = 0x822F,
-};
-extern void         (KHRONOS_APIENTRY* const& glTexStorage1DEXT) (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width);
-extern void         (KHRONOS_APIENTRY* const& glTexStorage2DEXT) (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
-extern void         (KHRONOS_APIENTRY* const& glTexStorage3DEXT) (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
 #endif
 
 #ifndef GL_EXT_texture_swizzle
@@ -9430,6 +9381,12 @@ extern void         (KHRONOS_APIENTRY* const& glMultiTexCoord3hNV) (GLenum targe
 extern void         (KHRONOS_APIENTRY* const& glMultiTexCoord3hvNV) (GLenum target, const GLhalfNV *v);
 extern void         (KHRONOS_APIENTRY* const& glMultiTexCoord4hNV) (GLenum target, GLhalfNV s, GLhalfNV t, GLhalfNV r, GLhalfNV q);
 extern void         (KHRONOS_APIENTRY* const& glMultiTexCoord4hvNV) (GLenum target, const GLhalfNV *v);
+extern void         (KHRONOS_APIENTRY* const& glFogCoordhNV) (GLhalfNV fog);
+extern void         (KHRONOS_APIENTRY* const& glFogCoordhvNV) (const GLhalfNV *fog);
+extern void         (KHRONOS_APIENTRY* const& glSecondaryColor3hNV) (GLhalfNV red, GLhalfNV green, GLhalfNV blue);
+extern void         (KHRONOS_APIENTRY* const& glSecondaryColor3hvNV) (const GLhalfNV *v);
+extern void         (KHRONOS_APIENTRY* const& glVertexWeighthNV) (GLhalfNV weight);
+extern void         (KHRONOS_APIENTRY* const& glVertexWeighthvNV) (const GLhalfNV *weight);
 extern void         (KHRONOS_APIENTRY* const& glVertexAttrib1hNV) (GLuint index, GLhalfNV x);
 extern void         (KHRONOS_APIENTRY* const& glVertexAttrib1hvNV) (GLuint index, const GLhalfNV *v);
 extern void         (KHRONOS_APIENTRY* const& glVertexAttrib2hNV) (GLuint index, GLhalfNV x, GLhalfNV y);
@@ -9442,12 +9399,6 @@ extern void         (KHRONOS_APIENTRY* const& glVertexAttribs1hvNV) (GLuint inde
 extern void         (KHRONOS_APIENTRY* const& glVertexAttribs2hvNV) (GLuint index, GLsizei n, const GLhalfNV *v);
 extern void         (KHRONOS_APIENTRY* const& glVertexAttribs3hvNV) (GLuint index, GLsizei n, const GLhalfNV *v);
 extern void         (KHRONOS_APIENTRY* const& glVertexAttribs4hvNV) (GLuint index, GLsizei n, const GLhalfNV *v);
-extern void         (KHRONOS_APIENTRY* const& glFogCoordhNV) (GLhalfNV fog);
-extern void         (KHRONOS_APIENTRY* const& glFogCoordhvNV) (const GLhalfNV *fog);
-extern void         (KHRONOS_APIENTRY* const& glSecondaryColor3hNV) (GLhalfNV red, GLhalfNV green, GLhalfNV blue);
-extern void         (KHRONOS_APIENTRY* const& glSecondaryColor3hvNV) (const GLhalfNV *v);
-extern void         (KHRONOS_APIENTRY* const& glVertexWeighthNV) (GLhalfNV weight);
-extern void         (KHRONOS_APIENTRY* const& glVertexWeighthvNV) (const GLhalfNV *weight);
 #endif
 
 #ifndef GL_NV_internalformat_sample_query
@@ -10513,10 +10464,6 @@ extern GLboolean    (KHRONOS_APIENTRY* const& glIsTransformFeedbackNV) (GLuint i
 extern void         (KHRONOS_APIENTRY* const& glPauseTransformFeedbackNV) ();
 extern void         (KHRONOS_APIENTRY* const& glResumeTransformFeedbackNV) ();
 extern void         (KHRONOS_APIENTRY* const& glDrawTransformFeedbackNV) (GLenum mode, GLuint id);
-#endif
-
-#ifndef GL_NV_uniform_buffer_std430_layout
-#define GL_NV_uniform_buffer_std430_layout 1
 #endif
 
 #ifndef GL_NV_uniform_buffer_unified_memory
@@ -12038,6 +11985,10 @@ enum : GLenum
 };
 #endif
 
+#ifndef GL_EXT_texture_shadow_lod
+#define GL_EXT_texture_shadow_lod 1
+#endif
+
 
 /** Load all available functions from the OpenGL core API.
 
@@ -12053,4 +12004,5 @@ void loadFunctions();
 */
 void loadExtensions();
 
-} // namespace juce::gl
+}
+}

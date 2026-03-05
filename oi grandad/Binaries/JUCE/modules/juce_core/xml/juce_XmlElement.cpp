@@ -1,39 +1,28 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 namespace juce
 {
+
 static bool isValidXmlNameStartCharacter (juce_wchar character) noexcept
 {
     return character == ':'
@@ -66,19 +55,21 @@ static bool isValidXmlNameBodyCharacter (juce_wchar character) noexcept
 }
 
 XmlElement::XmlAttributeNode::XmlAttributeNode (const XmlAttributeNode& other) noexcept
-    : attribute (other.attribute)
+    : name (other.name),
+      value (other.value)
 {
 }
 
 XmlElement::XmlAttributeNode::XmlAttributeNode (const Identifier& n, const String& v) noexcept
-    : attribute { n, v }
+    : name (n), value (v)
 {
-    jassert (isValidXmlName (attribute.name));
+    jassert (isValidXmlName (name));
 }
 
 XmlElement::XmlAttributeNode::XmlAttributeNode (String::CharPointerType nameStart, String::CharPointerType nameEnd)
-    : XmlAttributeNode ({ nameStart, nameEnd }, {})
+    : name (nameStart, nameEnd)
 {
+    jassert (isValidXmlName (name));
 }
 
 //==============================================================================
@@ -278,7 +269,7 @@ void XmlElement::writeElementAsText (OutputStream& outputStream,
             auto attIndent = (size_t) (indentationLevel + tagName.length() + 1);
             int lineLen = 0;
 
-            for (const auto& [name, value] : getAttributeIterator())
+            for (auto* att = attributes.get(); att != nullptr; att = att->nextListItem)
             {
                 if (lineLen > lineWrapLength && indentationLevel >= 0)
                 {
@@ -289,9 +280,9 @@ void XmlElement::writeElementAsText (OutputStream& outputStream,
 
                 auto startPos = outputStream.getPosition();
                 outputStream.writeByte (' ');
-                outputStream << name;
+                outputStream << att->name;
                 outputStream.write ("=\"", 2);
-                XmlOutputFunctions::escapeIllegalXmlChars (outputStream, value, true);
+                XmlOutputFunctions::escapeIllegalXmlChars (outputStream, att->value, true);
                 outputStream.writeByte ('"');
                 lineLen += (int) (outputStream.getPosition() - startPos);
             }
@@ -533,7 +524,7 @@ static const String& getEmptyStringRef() noexcept
 const String& XmlElement::getAttributeName (const int index) const noexcept
 {
     if (auto* att = attributes[index].get())
-        return att->attribute.name.toString();
+        return att->name.toString();
 
     return getEmptyStringRef();
 }
@@ -541,16 +532,16 @@ const String& XmlElement::getAttributeName (const int index) const noexcept
 const String& XmlElement::getAttributeValue (const int index) const noexcept
 {
     if (auto* att = attributes[index].get())
-        return att->attribute.value;
+        return att->value;
 
     return getEmptyStringRef();
 }
 
-const XmlAttribute* XmlElement::getAttribute (StringRef attributeName) const noexcept
+XmlElement::XmlAttributeNode* XmlElement::getAttribute (StringRef attributeName) const noexcept
 {
-    for (const auto& att : getAttributeIterator())
-        if (att.name == attributeName)
-            return &att;
+    for (auto* att = attributes.get(); att != nullptr; att = att->nextListItem)
+        if (att->name == attributeName)
+            return att;
 
     return nullptr;
 }
@@ -614,14 +605,10 @@ bool XmlElement::compareAttribute (StringRef attributeName,
                                    const bool ignoreCase) const noexcept
 {
     if (auto* att = getAttribute (attributeName))
-        return att->equals (attributeName, stringToCompareAgainst, ignoreCase);
+        return ignoreCase ? att->value.equalsIgnoreCase (stringToCompareAgainst)
+                          : att->value == stringToCompareAgainst;
 
     return false;
-}
-
-bool XmlElement::compareAttribute (const XmlAttribute& other, const bool ignoreCase) const noexcept
-{
-    return compareAttribute (other.name, other.value, ignoreCase);
 }
 
 //==============================================================================
@@ -635,9 +622,9 @@ void XmlElement::setAttribute (const Identifier& attributeName, const String& va
     {
         for (auto* att = attributes.get(); ; att = att->nextListItem)
         {
-            if (att->attribute.name == attributeName)
+            if (att->name == attributeName)
             {
-                att->attribute.value = value;
+                att->value = value;
                 break;
             }
 
@@ -664,7 +651,7 @@ void XmlElement::removeAttribute (const Identifier& attributeName) noexcept
 {
     for (auto* att = &attributes; att->get() != nullptr; att = &(att->get()->nextListItem))
     {
-        if (att->get()->attribute.name == attributeName)
+        if (att->get()->name == attributeName)
         {
             delete att->removeNext();
             break;
@@ -795,7 +782,7 @@ bool XmlElement::isEquivalentTo (const XmlElement* const other,
 
             for (auto* att = attributes.get(); att != nullptr; att = att->nextListItem)
             {
-                if (! other->compareAttribute (att->attribute))
+                if (! other->compareAttribute (att->name, att->value))
                     return false;
 
                 ++totalAtts;
@@ -819,8 +806,11 @@ bool XmlElement::isEquivalentTo (const XmlElement* const other,
                     return false;
                 }
 
-                if (thisAtt->attribute != otherAtt->attribute)
+                if (thisAtt->name != otherAtt->name
+                     || thisAtt->value != otherAtt->value)
+                {
                     return false;
+                }
 
                 thisAtt = thisAtt->nextListItem;
                 otherAtt = otherAtt->nextListItem;
@@ -916,27 +906,23 @@ bool XmlElement::isTextElement() const noexcept
     return tagName.isEmpty();
 }
 
-static const String& getJuceXmlTextContentAttributeName()
-{
-    static String result { "text" };
-    return result;
-}
+static const String juce_xmltextContentAttributeName ("text");
 
 const String& XmlElement::getText() const noexcept
 {
     jassert (isTextElement());  // you're trying to get the text from an element that
-                                // isn't actually a text element. If this contains text sub-nodes, you
+                                // isn't actually a text element.. If this contains text sub-nodes, you
                                 // probably want to use getAllSubText instead.
 
-    return getStringAttribute (getJuceXmlTextContentAttributeName());
+    return getStringAttribute (juce_xmltextContentAttributeName);
 }
 
 void XmlElement::setText (const String& newText)
 {
     if (isTextElement())
-        setAttribute (getJuceXmlTextContentAttributeName(), newText);
+        setAttribute (juce_xmltextContentAttributeName, newText);
     else
-        jassertfalse; // you can only change the text in a text element, not a normal one
+        jassertfalse; // you can only change the text in a text element, not a normal one.
 }
 
 String XmlElement::getAllSubText() const
@@ -966,7 +952,7 @@ String XmlElement::getChildElementAllSubText (StringRef childTagName, const Stri
 XmlElement* XmlElement::createTextElement (const String& text)
 {
     auto e = new XmlElement ((int) 0);
-    e->setAttribute (getJuceXmlTextContentAttributeName(), text);
+    e->setAttribute (juce_xmltextContentAttributeName, text);
     return e;
 }
 
@@ -1007,7 +993,7 @@ void XmlElement::deleteAllTextElements() noexcept
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class XmlElementTests final : public UnitTest
+class XmlElementTests  : public UnitTest
 {
 public:
     XmlElementTests()

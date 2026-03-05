@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,7 +23,8 @@
 namespace juce
 {
 
-/** @cond */
+#ifndef DOXYGEN
+
 //==============================================================================
 /**
     This class is now deprecated in favour of RangedDirectoryIterator.
@@ -44,10 +33,6 @@ namespace juce
 
     A DirectoryIterator will search through a directory and its subdirectories using
     a wildcard filepattern match.
-
-    The iterator keeps track of directories that it has previously traversed, and will
-    skip any previously-seen directories in the case of cycles caused by symbolic links.
-    It is also possible to avoid following symbolic links altogether.
 
     If you may be scanning a large number of files, it's usually smarter to use this
     class than File::findChildFiles() because it allows you to stop at any time, rather
@@ -88,10 +73,17 @@ public:
     DirectoryIterator (const File& directory,
                        bool recursive,
                        const String& pattern = "*",
-                       int type = File::findFiles,
-                       File::FollowSymlinks follow = File::FollowSymlinks::yes)
-        : DirectoryIterator (directory, recursive, pattern, type, follow, nullptr)
+                       int type = File::findFiles)
+        : wildCards (parseWildcards (pattern)),
+          fileFinder (directory, (recursive || wildCards.size() > 1) ? "*" : pattern),
+          wildCard (pattern),
+          path (File::addTrailingSeparator (directory.getFullPathName())),
+          whatToLookFor (type),
+          isRecursive (recursive)
     {
+        // you have to specify the type of files you're looking for!
+        jassert ((whatToLookFor & (File::findFiles | File::findDirectories)) != 0);
+        jassert (whatToLookFor > 0 && whatToLookFor <= 7);
     }
 
     /** Moves the iterator along to the next file.
@@ -134,39 +126,6 @@ public:
     float getEstimatedProgress() const;
 
 private:
-    using KnownPaths = std::set<File>;
-
-    DirectoryIterator (const File& directory,
-                       bool recursive,
-                       const String& pattern,
-                       int type,
-                       File::FollowSymlinks follow,
-                       KnownPaths* seenPaths)
-            : wildCards (parseWildcards (pattern)),
-              fileFinder (directory, (recursive || wildCards.size() > 1) ? "*" : pattern),
-              wildCard (pattern),
-              path (File::addTrailingSeparator (directory.getFullPathName())),
-              whatToLookFor (type),
-              isRecursive (recursive),
-              followSymlinks (follow),
-              knownPaths (seenPaths)
-    {
-        // you have to specify the type of files you're looking for!
-        jassert ((whatToLookFor & (File::findFiles | File::findDirectories)) != 0);
-        jassert (whatToLookFor > 0 && whatToLookFor <= 7);
-
-        if (followSymlinks == File::FollowSymlinks::noCycles)
-        {
-            if (knownPaths == nullptr)
-            {
-                heapKnownPaths = std::make_unique<KnownPaths>();
-                knownPaths = heapKnownPaths.get();
-            }
-
-            knownPaths->insert (directory);
-        }
-    }
-
     //==============================================================================
     struct NativeIterator
     {
@@ -193,15 +152,13 @@ private:
     bool hasBeenAdvanced = false;
     std::unique_ptr<DirectoryIterator> subIterator;
     File currentFile;
-    File::FollowSymlinks followSymlinks = File::FollowSymlinks::yes;
-    KnownPaths* knownPaths = nullptr;
-    std::unique_ptr<KnownPaths> heapKnownPaths;
 
     static StringArray parseWildcards (const String& pattern);
     static bool fileMatches (const StringArray& wildCards, const String& filename);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryIterator)
 };
-/** @endcond */
+
+#endif
 
 } // namespace juce

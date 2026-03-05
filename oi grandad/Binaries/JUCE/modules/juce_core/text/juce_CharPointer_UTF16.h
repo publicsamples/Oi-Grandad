@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -52,70 +40,75 @@ public:
     using CharType = int16;
    #endif
 
-    explicit CharPointer_UTF16 (const CharType* rawPointer) noexcept
+    inline explicit CharPointer_UTF16 (const CharType* rawPointer) noexcept
         : data (const_cast<CharType*> (rawPointer))
     {
     }
 
-    CharPointer_UTF16 (const CharPointer_UTF16& other) = default;
+    inline CharPointer_UTF16 (const CharPointer_UTF16& other) = default;
 
-    CharPointer_UTF16& operator= (const CharPointer_UTF16& other) noexcept = default;
+    inline CharPointer_UTF16 operator= (CharPointer_UTF16 other) noexcept
+    {
+        data = other.data;
+        return *this;
+    }
 
-    CharPointer_UTF16& operator= (const CharType* text) noexcept
+    inline CharPointer_UTF16 operator= (const CharType* text) noexcept
     {
         data = const_cast<CharType*> (text);
         return *this;
     }
 
     /** This is a pointer comparison, it doesn't compare the actual text. */
-    bool operator== (CharPointer_UTF16 other) const noexcept     { return data == other.data; }
-    bool operator!= (CharPointer_UTF16 other) const noexcept     { return data != other.data; }
-    bool operator<= (CharPointer_UTF16 other) const noexcept     { return data <= other.data; }
-    bool operator<  (CharPointer_UTF16 other) const noexcept     { return data <  other.data; }
-    bool operator>= (CharPointer_UTF16 other) const noexcept     { return data >= other.data; }
-    bool operator>  (CharPointer_UTF16 other) const noexcept     { return data >  other.data; }
+    inline bool operator== (CharPointer_UTF16 other) const noexcept     { return data == other.data; }
+    inline bool operator!= (CharPointer_UTF16 other) const noexcept     { return data != other.data; }
+    inline bool operator<= (CharPointer_UTF16 other) const noexcept     { return data <= other.data; }
+    inline bool operator<  (CharPointer_UTF16 other) const noexcept     { return data <  other.data; }
+    inline bool operator>= (CharPointer_UTF16 other) const noexcept     { return data >= other.data; }
+    inline bool operator>  (CharPointer_UTF16 other) const noexcept     { return data >  other.data; }
 
     /** Returns the address that this pointer is pointing to. */
-    CharType* getAddress() const noexcept        { return data; }
+    inline CharType* getAddress() const noexcept        { return data; }
 
     /** Returns the address that this pointer is pointing to. */
-    operator const CharType*() const noexcept    { return data; }
+    inline operator const CharType*() const noexcept    { return data; }
 
     /** Returns true if this pointer is pointing to a null character. */
-    bool isEmpty() const noexcept                { return *data == 0; }
+    inline bool isEmpty() const noexcept                { return *data == 0; }
 
     /** Returns true if this pointer is not pointing to a null character. */
-    bool isNotEmpty() const noexcept             { return *data != 0; }
+    inline bool isNotEmpty() const noexcept             { return *data != 0; }
 
     /** Returns the unicode character that this pointer is pointing to. */
     juce_wchar operator*() const noexcept
     {
-        const auto first = (uint32) (uint16) data[0];
+        auto n = (uint32) (uint16) *data;
 
-        if ((++CharPointer_UTF16 (*this)).data - data == 1)
-            return (juce_wchar) first;
+        if (n >= 0xd800 && n <= 0xdfff && ((uint32) (uint16) data[1]) >= 0xdc00)
+            n = 0x10000 + (((n - 0xd800) << 10) | (((uint32) (uint16) data[1]) - 0xdc00));
 
-        const auto second = (uint32) (uint16) data[1];
-        return (juce_wchar) (0x10000 + (((first - 0xd800) << 10) | (second - 0xdc00)));
+        return (juce_wchar) n;
     }
 
     /** Moves this pointer along to the next character in the string. */
-    CharPointer_UTF16& operator++() noexcept
+    CharPointer_UTF16 operator++() noexcept
     {
-        data += (CharacterFunctions::isHighSurrogate ((uint16) data[0])
-                 && CharacterFunctions::isLowSurrogate ((uint16) data[1]))
-              ? 2
-              : 1;
+        auto n = (uint32) (uint16) *data++;
+
+        if (n >= 0xd800 && n <= 0xdfff && ((uint32) (uint16) *data) >= 0xdc00)
+            ++data;
+
         return *this;
     }
 
     /** Moves this pointer back to the previous character in the string. */
-    CharPointer_UTF16& operator--() noexcept
+    CharPointer_UTF16 operator--() noexcept
     {
-        data -= (CharacterFunctions::isLowSurrogate ((uint16) data[-1])
-                 && CharacterFunctions::isHighSurrogate ((uint16) data[-2]))
-              ? 2
-              : 1;
+        auto n = (uint32) (uint16) (*--data);
+
+        if (n >= 0xdc00 && n <= 0xdfff)
+            --data;
+
         return *this;
     }
 
@@ -123,9 +116,12 @@ public:
         advances the pointer to point to the next character. */
     juce_wchar getAndAdvance() noexcept
     {
-        const auto result = **this;
-        ++(*this);
-        return result;
+        auto n = (uint32) (uint16) *data++;
+
+        if (n >= 0xd800 && n <= 0xdfff && ((uint32) (uint16) *data) >= 0xdc00)
+            n = 0x10000 + ((((n - 0xd800) << 10) | (((uint32) (uint16) *data++) - 0xdc00)));
+
+        return (juce_wchar) n;
     }
 
     /** Moves this pointer along to the next character in the string. */
@@ -137,7 +133,7 @@ public:
     }
 
     /** Moves this pointer forwards by the specified number of characters. */
-    CharPointer_UTF16& operator+= (int numToSkip) noexcept
+    void operator+= (int numToSkip) noexcept
     {
         if (numToSkip < 0)
         {
@@ -149,14 +145,12 @@ public:
             while (--numToSkip >= 0)
                 ++*this;
         }
-
-        return *this;
     }
 
     /** Moves this pointer backwards by the specified number of characters. */
-    CharPointer_UTF16& operator-= (int numToSkip) noexcept
+    void operator-= (int numToSkip) noexcept
     {
-        return operator+= (-numToSkip);
+        operator+= (-numToSkip);
     }
 
     /** Returns the character at a given character index from the start of the string. */
@@ -170,13 +164,17 @@ public:
     /** Returns a pointer which is moved forwards from this one by the specified number of characters. */
     CharPointer_UTF16 operator+ (int numToSkip) const noexcept
     {
-        return CharPointer_UTF16 (*this) += numToSkip;
+        auto p (*this);
+        p += numToSkip;
+        return p;
     }
 
     /** Returns a pointer which is moved backwards from this one by the specified number of characters. */
     CharPointer_UTF16 operator- (int numToSkip) const noexcept
     {
-        return CharPointer_UTF16 (*this) -= numToSkip;
+        auto p (*this);
+        p += -numToSkip;
+        return p;
     }
 
     /** Writes a unicode character to this string, and advances this pointer to point to the next position. */
@@ -195,7 +193,7 @@ public:
     }
 
     /** Writes a null character to this string (leaving the pointer's position unchanged). */
-    void writeNull() const noexcept
+    inline void writeNull() const noexcept
     {
         *data = 0;
     }
@@ -210,7 +208,7 @@ public:
         {
             auto n = (uint32) (uint16) *d++;
 
-            if (CharacterFunctions::isHighSurrogate ((juce_wchar) n))
+            if (n >= 0xd800 && n <= 0xdfff)
             {
                 if (*d++ == 0)
                     break;
@@ -346,8 +344,7 @@ public:
         return CharacterFunctions::compareIgnoreCaseUpTo (*this, other, maxChars);
     }
 
-   #if JUCE_MSVC
-    /** @cond */
+   #if JUCE_MSVC && ! defined (DOXYGEN)
     int compareIgnoreCase (CharPointer_UTF16 other) const noexcept
     {
         return _wcsicmp (data, other.data);
@@ -363,7 +360,6 @@ public:
         const CharType* const t = wcsstr (data, stringToFind.getAddress());
         return t == nullptr ? -1 : (int) (t - data);
     }
-    /** @endcond */
    #endif
 
     /** Returns the character index of a substring, or -1 if it isn't found. */
@@ -436,32 +432,35 @@ public:
     /** Returns true if the given unicode character can be represented in this encoding. */
     static bool canRepresent (juce_wchar character) noexcept
     {
-        return CharacterFunctions::isNonSurrogateCodePoint (character);
+        auto n = (uint32) character;
+        return n < 0x10ffff && (n < 0xd800 || n > 0xdfff);
     }
 
     /** Returns true if this data contains a valid string in this encoding. */
-    static bool isValidString (const CharType* codeUnits, int maxBytesToRead)
+    static bool isValidString (const CharType* dataToTest, int maxBytesToRead)
     {
-        const auto maxCodeUnitsToRead = (size_t) maxBytesToRead / sizeof (CharType);
+        maxBytesToRead /= (int) sizeof (CharType);
 
-        for (size_t codeUnitIndex = 0; codeUnitIndex < maxCodeUnitsToRead; ++codeUnitIndex)
+        while (--maxBytesToRead >= 0 && *dataToTest != 0)
         {
-            const auto c = toCodePoint (codeUnits[codeUnitIndex]);
+            auto n = (uint32) (uint16) *dataToTest++;
 
-            if (c == 0)
-                return true;
+            if (n >= 0xd800)
+            {
+                if (n > 0x10ffff)
+                    return false;
 
-            if (canRepresent (c))
-                continue;
+                if (n <= 0xdfff)
+                {
+                    if (n > 0xdc00)
+                        return false;
 
-            if (! CharacterFunctions::isHighSurrogate (c))
-                return false;
+                    auto nextChar = (uint32) (uint16) *dataToTest++;
 
-            if (++codeUnitIndex >= maxCodeUnitsToRead)
-                return false;
-
-            if (! CharacterFunctions::isLowSurrogate (toCodePoint (codeUnits[codeUnitIndex])))
-                return false;
+                    if (nextChar < 0xdc00 || nextChar > 0xdfff)
+                        return false;
+                }
+            }
         }
 
         return true;
@@ -521,16 +520,6 @@ private:
             ++n;
 
         return n;
-    }
-
-    static inline uint32 toUint32 (CharType c) noexcept
-    {
-        return (uint32) (uint16) c;
-    }
-
-    static inline juce_wchar toCodePoint (CharType c) noexcept
-    {
-        return (juce_wchar) toUint32 (c);
     }
 };
 

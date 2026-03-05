@@ -16,7 +16,9 @@
 
 #include <cassert>
 
-#include "common/OboeDebug.h"
+#include <SLES/OpenSLES.h>
+#include <SLES/OpenSLES_Android.h>
+
 #include "oboe/AudioStreamBuilder.h"
 #include "AudioInputStreamOpenSLES.h"
 #include "AudioStreamOpenSLES.h"
@@ -96,10 +98,9 @@ Result AudioInputStreamOpenSLES::open() {
     SLuint32 bitsPerSample = static_cast<SLuint32>(getBytesPerSample() * kBitsPerByte);
 
     // configure audio sink
-    mBufferQueueLength = calculateOptimalBufferQueueLength();
     SLDataLocator_AndroidSimpleBufferQueue loc_bufq = {
             SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,    // locatorType
-            static_cast<SLuint32>(mBufferQueueLength)};   // numBuffers
+            static_cast<SLuint32>(kBufferQueueLength)};   // numBuffers
 
     // Define the audio data format.
     SLDataFormat_PCM format_pcm = {
@@ -148,8 +149,8 @@ Result AudioInputStreamOpenSLES::open() {
 
     // Configure the stream.
     result = (*mObjectInterface)->GetInterface(mObjectInterface,
-            EngineOpenSLES::getInstance().getIidAndroidConfiguration(),
-            &configItf);
+                                            SL_IID_ANDROIDCONFIGURATION,
+                                            &configItf);
 
     if (SL_RESULT_SUCCESS != result) {
         LOGW("%s() GetInterface(SL_IID_ANDROIDCONFIGURATION) failed with %s",
@@ -187,24 +188,33 @@ Result AudioInputStreamOpenSLES::open() {
         goto error;
     }
 
-    result = (*mObjectInterface)->GetInterface(mObjectInterface,
-                                               EngineOpenSLES::getInstance().getIidRecord(),
-                                               &mRecordInterface);
+    result = (*mObjectInterface)->GetInterface(mObjectInterface, SL_IID_RECORD, &mRecordInterface);
     if (SL_RESULT_SUCCESS != result) {
         LOGE("GetInterface RECORD result:%s", getSLErrStr(result));
         goto error;
     }
 
-    result = finishCommonOpen(configItf);
+    result = AudioStreamOpenSLES::registerBufferQueueCallback();
     if (SL_RESULT_SUCCESS != result) {
         goto error;
     }
+
+    result = updateStreamParameters(configItf);
+    if (SL_RESULT_SUCCESS != result) {
+        goto error;
+    }
+
+    oboeResult = configureBufferSizes(mSampleRate);
+    if (Result::OK != oboeResult) {
+        goto error;
+    }
+
+    allocateFifo();
 
     setState(StreamState::Open);
     return Result::OK;
 
 error:
-    close(); // Clean up various OpenSL objects and prevent resource leaks.
     return Result::ErrorInternal; // TODO convert error from SLES to OBOE
 }
 
@@ -215,10 +225,7 @@ Result AudioInputStreamOpenSLES::close() {
     if (getState() == StreamState::Closed){
         result = Result::ErrorClosed;
     } else {
-        (void) requestStop_l();
-        if (OboeGlobals::areWorkaroundsEnabled()) {
-            sleepBeforeClose();
-        }
+        requestStop_l();
         // invalidate any interfaces
         mRecordInterface = nullptr;
         result = AudioStreamOpenSLES::close_l();
@@ -231,7 +238,7 @@ Result AudioInputStreamOpenSLES::setRecordState_l(SLuint32 newState) {
     Result result = Result::OK;
 
     if (mRecordInterface == nullptr) {
-        LOGW("AudioInputStreamOpenSLES::%s() mRecordInterface is null", __func__);
+        LOGE("AudioInputStreamOpenSLES::%s() mRecordInterface is null", __func__);
         return Result::ErrorInvalidState;
     }
     SLresult slResult = (*mRecordInterface)->SetRecordState(mRecordInterface, newState);
@@ -263,18 +270,12 @@ Result AudioInputStreamOpenSLES::requestStart() {
     setDataCallbackEnabled(true);
 
     setState(StreamState::Starting);
-
-    closePerformanceHint();
-
-    if (getBufferDepth(mSimpleBufferQueueInterface) == 0) {
-        // Enqueue the first buffer to start the streaming.
-        // This does not call the callback function.
-        enqueueCallbackBuffer(mSimpleBufferQueueInterface);
-    }
-
     Result result = setRecordState_l(SL_RECORDSTATE_RECORDING);
     if (result == Result::OK) {
         setState(StreamState::Started);
+        // Enqueue the first buffer to start the streaming.
+        // This does not call the callback function.
+        enqueueCallbackBuffer(mSimpleBufferQueueInterface);
     } else {
         setState(initialState);
     }
@@ -307,7 +308,6 @@ Result AudioInputStreamOpenSLES::requestStop_l() {
         case StreamState::Stopping:
         case StreamState::Stopped:
             return Result::OK;
-        case StreamState::Uninitialized:
         case StreamState::Closed:
             return Result::ErrorClosed;
         default:

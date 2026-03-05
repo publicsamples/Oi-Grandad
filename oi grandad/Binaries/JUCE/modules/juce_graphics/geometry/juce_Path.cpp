@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -37,7 +28,7 @@ namespace juce
 
 // tests that some coordinates aren't NaNs
 #define JUCE_CHECK_COORDS_ARE_VALID(x, y) \
-    jassert (! std::isnan (x) && ! std::isnan (y));
+    jassert (x == x && y == y);
 
 //==============================================================================
 namespace PathHelpers
@@ -67,17 +58,24 @@ namespace PathHelpers
 }
 
 //==============================================================================
+const float Path::lineMarker           = 100001.0f;
+const float Path::moveMarker           = 100002.0f;
+const float Path::quadMarker           = 100003.0f;
+const float Path::cubicMarker          = 100004.0f;
+const float Path::closeSubPathMarker   = 100005.0f;
 
 const float Path::defaultToleranceForTesting = 1.0f;
 const float Path::defaultToleranceForMeasurement = 0.6f;
 
 static bool isMarker (float value, float marker) noexcept
 {
-    return exactlyEqual (value, marker);
+    return value == marker;
 }
 
 //==============================================================================
-Path::PathBounds::PathBounds() noexcept = default;
+Path::PathBounds::PathBounds() noexcept
+{
+}
 
 Rectangle<float> Path::PathBounds::getRectangle() const noexcept
 {
@@ -86,7 +84,7 @@ Rectangle<float> Path::PathBounds::getRectangle() const noexcept
 
 void Path::PathBounds::reset() noexcept
 {
-    *this = {};
+    pathXMin = pathYMin = pathYMax = pathXMax = 0;
 }
 
 void Path::PathBounds::reset (float x, float y) noexcept
@@ -105,9 +103,13 @@ void Path::PathBounds::extend (float x, float y) noexcept
 }
 
 //==============================================================================
-Path::Path() = default;
+Path::Path()
+{
+}
 
-Path::~Path() = default;
+Path::~Path()
+{
+}
 
 Path::Path (const Path& other)
     : data (other.data),
@@ -118,31 +120,32 @@ Path::Path (const Path& other)
 
 Path& Path::operator= (const Path& other)
 {
-    auto copy = other;
-    *this = std::move (copy);
+    if (this != &other)
+    {
+        data = other.data;
+        bounds = other.bounds;
+        useNonZeroWinding = other.useNonZeroWinding;
+    }
+
     return *this;
 }
 
 Path::Path (Path&& other) noexcept
-    : data (std::exchange (other.data, {})),
-      bounds (std::exchange (other.bounds, {})),
-      useNonZeroWinding (std::exchange (other.useNonZeroWinding, {}))
+    : data (std::move (other.data)),
+      bounds (other.bounds),
+      useNonZeroWinding (other.useNonZeroWinding)
 {
 }
 
 Path& Path::operator= (Path&& other) noexcept
 {
-    auto copy = std::move (other);
-    swapWithPath (copy);
+    data = std::move (other.data);
+    bounds = other.bounds;
+    useNonZeroWinding = other.useNonZeroWinding;
     return *this;
 }
 
-bool Path::operator== (const Path& other) const noexcept
-{
-    const auto tie = [] (const auto& x) { return std::tie (x.useNonZeroWinding, x.data); };
-    return tie (*this) == tie (other);
-}
-
+bool Path::operator== (const Path& other) const noexcept    { return useNonZeroWinding == other.useNonZeroWinding && data == other.data; }
 bool Path::operator!= (const Path& other) const noexcept    { return ! operator== (other); }
 
 void Path::clear() noexcept
@@ -154,7 +157,10 @@ void Path::clear() noexcept
 void Path::swapWithPath (Path& other) noexcept
 {
     data.swapWith (other.data);
-    std::swap (bounds, other.bounds);
+    std::swap (bounds.pathXMin, other.bounds.pathXMin);
+    std::swap (bounds.pathXMax, other.bounds.pathXMax);
+    std::swap (bounds.pathYMin, other.bounds.pathYMin);
+    std::swap (bounds.pathYMax, other.bounds.pathYMax);
     std::swap (useNonZeroWinding, other.useNonZeroWinding);
 }
 
@@ -605,7 +611,7 @@ void Path::addArrow (Line<float> line, float lineThickness,
 void Path::addPolygon (Point<float> centre, int numberOfSides,
                        float radius, float startAngle)
 {
-    jassert (numberOfSides > 1); // this would be silly
+    jassert (numberOfSides > 1); // this would be silly.
 
     if (numberOfSides > 1)
     {
@@ -629,7 +635,7 @@ void Path::addPolygon (Point<float> centre, int numberOfSides,
 void Path::addStar (Point<float> centre, int numberOfPoints, float innerRadius,
                     float outerRadius, float startAngle)
 {
-    jassert (numberOfPoints > 1); // this would be silly
+    jassert (numberOfPoints > 1); // this would be silly.
 
     if (numberOfPoints > 1)
     {
@@ -720,11 +726,10 @@ void Path::addBubble (Rectangle<float> bodyArea,
 void Path::addPath (const Path& other)
 {
     const auto* d = other.data.begin();
-    const auto size = other.data.size();
 
-    for (int i = 0; i < size;)
+    for (int i = 0; i < other.data.size();)
     {
-        const auto type = d[i++];
+        auto type = d[i++];
 
         if (isMarker (type, moveMarker))
         {
@@ -762,11 +767,10 @@ void Path::addPath (const Path& other,
                     const AffineTransform& transformToApply)
 {
     const auto* d = other.data.begin();
-    const auto size = other.data.size();
 
-    for (int i = 0; i < size;)
+    for (int i = 0; i < other.data.size();)
     {
-        const auto type = d[i++];
+        auto type = d[i++];
 
         if (isMarker (type, closeSubPathMarker))
         {
@@ -957,8 +961,8 @@ bool Path::contains (float x, float y, float tolerance) const
         }
     }
 
-    return isUsingNonZeroWinding() ? (negativeCrossings != positiveCrossings)
-                                   : ((negativeCrossings + positiveCrossings) & 1) != 0;
+    return useNonZeroWinding ? (negativeCrossings != positiveCrossings)
+                             : ((negativeCrossings + positiveCrossings) & 1) != 0;
 }
 
 bool Path::contains (Point<float> point, float tolerance) const
@@ -966,7 +970,7 @@ bool Path::contains (Point<float> point, float tolerance) const
     return contains (point.x, point.y, tolerance);
 }
 
-bool Path::intersectsLine (Line<float> line, float tolerance) const
+bool Path::intersectsLine (Line<float> line, float tolerance)
 {
     PathFlatteningIterator i (*this, AffineTransform(), tolerance);
     Point<float> intersection;
@@ -1269,11 +1273,11 @@ void Path::loadPathFromStream (InputStream& source)
             break;
 
         case 'n':
-            setUsingNonZeroWinding (true);
+            useNonZeroWinding = true;
             break;
 
         case 'z':
-            setUsingNonZeroWinding (false);
+            useNonZeroWinding = false;
             break;
 
         case 'e':
@@ -1288,13 +1292,14 @@ void Path::loadPathFromStream (InputStream& source)
 
 void Path::loadPathFromData (const void* const pathData, const size_t numberOfBytes)
 {
+    jassert(numberOfBytes != sizeof(char*));
     MemoryInputStream in (pathData, numberOfBytes, false);
     loadPathFromStream (in);
 }
 
 void Path::writePathToStream (OutputStream& dest) const
 {
-    dest.writeByte (isUsingNonZeroWinding() ? 'n' : 'z');
+    dest.writeByte (useNonZeroWinding ? 'n' : 'z');
 
     for (auto* i = data.begin(); i != data.end();)
     {
@@ -1342,7 +1347,7 @@ void Path::writePathToStream (OutputStream& dest) const
 String Path::toString() const
 {
     MemoryOutputStream s (2048);
-    if (! isUsingNonZeroWinding())
+    if (! useNonZeroWinding)
         s << 'a';
 
     float lastMarker = 0.0f;
@@ -1476,6 +1481,10 @@ void Path::restoreFromString (StringRef stringVersion)
 //==============================================================================
 Path::Iterator::Iterator (const Path& p) noexcept
     : elementType (startNewSubPath), path (p), index (path.data.begin())
+{
+}
+
+Path::Iterator::~Iterator() noexcept
 {
 }
 

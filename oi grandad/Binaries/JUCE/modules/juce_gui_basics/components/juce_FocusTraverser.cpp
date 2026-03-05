@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,32 +26,111 @@
 namespace juce
 {
 
-//==============================================================================
-FocusTraverser::FocusTraverser (SkipDisabledComponents skipDisabledComponentsIn)
-    : skipDisabledComponents (skipDisabledComponentsIn)
+namespace FocusHelpers
 {
+    static int getOrder (const Component* c)
+    {
+        auto order = c->getExplicitFocusOrder();
+        return order > 0 ? order : std::numeric_limits<int>::max();
+    }
+
+    template <typename FocusContainerFn>
+    static void findAllComponents (Component* parent,
+                                   std::vector<Component*>& components,
+                                   FocusContainerFn isFocusContainer)
+    {
+        if (parent == nullptr || parent->getNumChildComponents() == 0)
+            return;
+
+        std::vector<Component*> localComponents;
+
+        for (auto* c : parent->getChildren())
+            if (c->isVisible() && c->isEnabled())
+                localComponents.push_back (c);
+
+        const auto compareComponents = [&] (const Component* a, const Component* b)
+        {
+            const auto getComponentOrderAttributes = [] (const Component* c)
+            {
+                return std::make_tuple (getOrder (c),
+                                        c->isAlwaysOnTop() ? 0 : 1,
+                                        c->getY(),
+                                        c->getX());
+            };
+
+            return getComponentOrderAttributes (a) < getComponentOrderAttributes (b);
+        };
+
+        // This will sort so that they are ordered in terms of explicit focus,
+        // always on top, left-to-right, and then top-to-bottom.
+        std::stable_sort (localComponents.begin(), localComponents.end(), compareComponents);
+
+        for (auto* c : localComponents)
+        {
+            components.push_back (c);
+
+            if (! (c->*isFocusContainer)())
+                findAllComponents (c, components, isFocusContainer);
+        }
+    }
+
+    enum class NavigationDirection { forwards, backwards };
+
+    template <typename FocusContainerFn>
+    static Component* navigateFocus (Component* current,
+                                     Component* focusContainer,
+                                     NavigationDirection direction,
+                                     FocusContainerFn isFocusContainer)
+    {
+        if (focusContainer != nullptr)
+        {
+            std::vector<Component*> components;
+            findAllComponents (focusContainer, components, isFocusContainer);
+
+            const auto iter = std::find (components.cbegin(), components.cend(), current);
+
+            if (iter == components.cend())
+                return nullptr;
+
+            switch (direction)
+            {
+                case NavigationDirection::forwards:
+                    if (iter != std::prev (components.cend()))
+                        return *std::next (iter);
+
+                    break;
+
+                case NavigationDirection::backwards:
+                    if (iter != components.cbegin())
+                        return *std::prev (iter);
+
+                    break;
+            }
+        }
+
+        return nullptr;
+    }
 }
 
+//==============================================================================
 Component* FocusTraverser::getNextComponent (Component* current)
 {
     jassert (current != nullptr);
 
-    return detail::FocusHelpers::navigateFocus (current,
-                                                current->findFocusContainer(),
-                                                detail::FocusHelpers::NavigationDirection::forwards,
-                                                &Component::isFocusContainer,
-                                                skipDisabledComponents);
+    return FocusHelpers::navigateFocus (current,
+                                        current->findFocusContainer(),
+                                        FocusHelpers::NavigationDirection::forwards,
+                                        &Component::isFocusContainer);
 }
 
 Component* FocusTraverser::getPreviousComponent (Component* current)
 {
     jassert (current != nullptr);
 
-    return detail::FocusHelpers::navigateFocus (current,
-                                                current->findFocusContainer(),
-                                                detail::FocusHelpers::NavigationDirection::backwards,
-                                                &Component::isFocusContainer,
-                                                skipDisabledComponents);
+    return FocusHelpers::navigateFocus (current,
+                                        current->findFocusContainer(),
+                                        FocusHelpers::NavigationDirection::backwards,
+                                        &Component::isFocusContainer);
 }
 
 Component* FocusTraverser::getDefaultComponent (Component* parentComponent)
@@ -68,11 +138,9 @@ Component* FocusTraverser::getDefaultComponent (Component* parentComponent)
     if (parentComponent != nullptr)
     {
         std::vector<Component*> components;
-
-        detail::FocusHelpers::findAllComponents (parentComponent,
-                                                 components,
-                                                 &Component::isFocusContainer,
-                                                 skipDisabledComponents);
+        FocusHelpers::findAllComponents (parentComponent,
+                                         components,
+                                         &Component::isFocusContainer);
 
         if (! components.empty())
             return components.front();
@@ -84,10 +152,9 @@ Component* FocusTraverser::getDefaultComponent (Component* parentComponent)
 std::vector<Component*> FocusTraverser::getAllComponents (Component* parentComponent)
 {
     std::vector<Component*> components;
-    detail::FocusHelpers::findAllComponents (parentComponent,
-                                             components,
-                                             &Component::isFocusContainer,
-                                             skipDisabledComponents);
+    FocusHelpers::findAllComponents (parentComponent,
+                                     components,
+                                     &Component::isFocusContainer);
 
     return components;
 }
@@ -96,7 +163,7 @@ std::vector<Component*> FocusTraverser::getAllComponents (Component* parentCompo
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-struct FocusTraverserTests final : public UnitTest
+struct FocusTraverserTests  : public UnitTest
 {
     FocusTraverserTests()
         : UnitTest ("FocusTraverser", UnitTestCategories::gui)
@@ -126,23 +193,14 @@ struct FocusTraverserTests final : public UnitTest
                                 [] (const Component* c1, const Component& c2) { return c1 == &c2; }));
         }
 
-        beginTest ("Disabled components are not ignored by default");
+        beginTest ("Disabled components are ignored");
         {
-            TestComponent parent;
-            parent.children[2].setEnabled (false);
-            parent.children[5].setEnabled (false);
-            expect (traverser.getAllComponents (&parent).size() == parent.children.size());
-        }
-
-        beginTest ("Disabled components can be ignored");
-        {
-            FocusTraverser ignoringTraverser { FocusTraverser::SkipDisabledComponents::yes };
-            checkIgnored ([] (Component& c) { c.setEnabled (false); }, ignoringTraverser);
+            checkIgnored ([] (Component& c) { c.setEnabled (false); });
         }
 
         beginTest ("Invisible components are ignored");
         {
-            checkIgnored ([] (Component& c) { c.setVisible (false); }, traverser);
+            checkIgnored ([] (Component& c) { c.setVisible (false); });
         }
 
         beginTest ("Explicit focus order comes before unspecified");
@@ -235,7 +293,7 @@ struct FocusTraverserTests final : public UnitTest
     }
 
 private:
-    struct TestComponent final : public Component
+    struct TestComponent  : public Component
     {
         TestComponent()
         {
@@ -272,21 +330,21 @@ private:
         }
     }
 
-    void checkIgnored (const std::function<void (Component&)>& makeIgnored, FocusTraverser& traverserToUse)
+    void checkIgnored (const std::function<void(Component&)>& makeIgnored)
     {
         TestComponent parent;
 
         auto iter = parent.children.begin();
 
         makeIgnored (*iter);
-        expect (traverserToUse.getDefaultComponent (&parent) == std::addressof (*std::next (iter)));
+        expect (traverser.getDefaultComponent (&parent) == std::addressof (*std::next (iter)));
 
         iter += 5;
         makeIgnored (*iter);
-        expect (traverserToUse.getNextComponent (std::addressof (*std::prev (iter))) == std::addressof (*std::next (iter)));
-        expect (traverserToUse.getPreviousComponent (std::addressof (*std::next (iter))) == std::addressof (*std::prev (iter)));
+        expect (traverser.getNextComponent (std::addressof (*std::prev (iter))) == std::addressof (*std::next (iter)));
+        expect (traverser.getPreviousComponent (std::addressof (*std::next (iter))) == std::addressof (*std::prev (iter)));
 
-        auto allComponents = traverserToUse.getAllComponents (&parent);
+        auto allComponents = traverser.getAllComponents (&parent);
 
         expect (std::find (allComponents.cbegin(), allComponents.cend(), &parent.children.front()) == allComponents.cend());
         expect (std::find (allComponents.cbegin(), allComponents.cend(), std::addressof (*iter)) == allComponents.cend());

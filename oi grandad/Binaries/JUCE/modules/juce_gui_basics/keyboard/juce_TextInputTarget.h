@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,6 +26,7 @@
 namespace juce
 {
 
+//==============================================================================
 /**
     An abstract base class which can be implemented by components that function as
     text editors.
@@ -79,32 +71,8 @@ public:
     /** Inserts some text, overwriting the selected text region, if there is one. */
     virtual void insertTextAtCaret (const String& textToInsert) = 0;
 
-    /** Returns the current index of the caret. */
-    virtual int getCaretPosition() const = 0;
-
     /** Returns the position of the caret, relative to the component's origin. */
-    Rectangle<int> getCaretRectangle() const        { return getCaretRectangleForCharIndex (getCaretPosition()); }
-
-    /** Returns the bounding box of the character at the given index. */
-    virtual Rectangle<int> getCaretRectangleForCharIndex (int characterIndex) const = 0;
-
-    /** Returns the total number of codepoints in the string. */
-    virtual int getTotalNumChars() const = 0;
-
-    /** Returns the index closest to the given point.
-
-        This is the location where the cursor might be placed after clicking at the given
-        point in a text field.
-    */
-    virtual int getCharIndexForPoint (Point<int> point) const = 0;
-
-    /** Returns the bounding box for a range of text in the editor. As the range may span
-        multiple lines, this method returns a RectangleList.
-
-        The bounds are relative to the component's top-left and may extend beyond the bounds
-        of the component if the text is long and word wrapping is disabled.
-    */
-    virtual RectangleList<int> getTextBounds (Range<int> textRange) const = 0;
+    virtual Rectangle<int> getCaretRectangle() = 0;
 
     /** A set of possible on-screen keyboard types, for use in the
         getKeyboardType() method.
@@ -116,8 +84,7 @@ public:
         decimalKeyboard,
         urlKeyboard,
         emailAddressKeyboard,
-        phoneNumberKeyboard,
-        passwordKeyboard
+        phoneNumberKeyboard
     };
 
     /** Returns the target's preference for the type of keyboard that would be most appropriate.

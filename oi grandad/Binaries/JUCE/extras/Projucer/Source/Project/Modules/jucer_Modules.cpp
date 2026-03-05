@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -39,7 +30,7 @@
 
 //==============================================================================
 LibraryModule::LibraryModule (const ModuleDescription& d)
-    : moduleDescription (d)
+    : moduleInfo (d)
 {
 }
 
@@ -52,15 +43,15 @@ void LibraryModule::writeIncludes (ProjectSaver& projectSaver, OutputStream& out
 
     if (modules.shouldCopyModuleFilesLocally (moduleID))
     {
-        auto juceModuleFolder = moduleDescription.getFolder();
+        auto juceModuleFolder = moduleInfo.getFolder();
 
         auto localModuleFolder = project.getLocalModuleFolder (moduleID);
         localModuleFolder.createDirectory();
         projectSaver.copyFolder (juceModuleFolder, localModuleFolder);
     }
 
-    out << "#include <" << moduleDescription.getModuleFolder().getFileName() << "/"
-        << moduleDescription.getHeader().getFileName()
+    out << "#include <" << moduleInfo.getModuleFolder().getFileName() << "/"
+        << moduleInfo.getHeader().getFileName()
         << ">" << newLine;
 }
 
@@ -75,6 +66,9 @@ void LibraryModule::addSearchPathsToExporter (ProjectExporter& exporter) const
         if (exporter.isLinux())
             return "Linux";
 
+        if (exporter.isCodeBlocks() && exporter.isWindows())
+            return "MinGW";
+
         return exporter.getTypeInfoForExporter (exporter.getExporterIdentifier()).targetFolder;
     }();
 
@@ -84,7 +78,7 @@ void LibraryModule::addSearchPathsToExporter (ProjectExporter& exporter) const
     if (moduleLibDir.exists())
         exporter.addToModuleLibPaths ({ libSubdirPath, moduleRelativePath.getRoot() });
 
-    auto extraInternalSearchPaths = moduleDescription.getExtraSearchPaths().trim();
+    auto extraInternalSearchPaths = moduleInfo.getExtraSearchPaths().trim();
 
     if (extraInternalSearchPaths.isNotEmpty())
     {
@@ -97,7 +91,7 @@ void LibraryModule::addSearchPathsToExporter (ProjectExporter& exporter) const
 
 void LibraryModule::addDefinesToExporter (ProjectExporter& exporter) const
 {
-    auto extraDefs = moduleDescription.getPreprocessorDefs().trim();
+    auto extraDefs = moduleInfo.getPreprocessorDefs().trim();
 
     if (extraDefs.isNotEmpty())
         exporter.getExporterPreprocessorDefsValue() = exporter.getExporterPreprocessorDefsString() + "\n" + extraDefs;
@@ -111,7 +105,7 @@ void LibraryModule::addCompileUnitsToExporter (ProjectExporter& exporter, Projec
     auto moduleID = getID();
 
     auto localModuleFolder = modules.shouldCopyModuleFilesLocally (moduleID) ? project.getLocalModuleFolder (moduleID)
-                                                                             : moduleDescription.getFolder();
+                                                                             : moduleInfo.getFolder();
 
     Array<File> compiled;
     findAndAddCompiledUnits (exporter, &projectSaver, compiled);
@@ -131,8 +125,6 @@ void LibraryModule::addLibsToExporter (ProjectExporter& exporter) const
 
     auto& project = exporter.getProject();
 
-    auto moduleInfo = moduleDescription.getModuleInfo();
-
     if (exporter.isXcode())
     {
         auto& xcodeExporter = dynamic_cast<XcodeProjectExporter&> (exporter);
@@ -145,26 +137,26 @@ void LibraryModule::addLibsToExporter (ProjectExporter& exporter) const
                 xcodeExporter.xcodeFrameworks.add ("AudioUnit");
         }
 
-        auto frameworks = moduleInfo[xcodeExporter.isOSX() ? "OSXFrameworks" : "iOSFrameworks"].toString();
+        auto frameworks = moduleInfo.getModuleInfo() [xcodeExporter.isOSX() ? "OSXFrameworks" : "iOSFrameworks"].toString();
         xcodeExporter.xcodeFrameworks.addTokens (frameworks, ", ", {});
 
-        auto weakFrameworks = moduleInfo[xcodeExporter.isOSX() ? "WeakOSXFrameworks" : "WeakiOSFrameworks"].toString();
-        xcodeExporter.xcodeWeakFrameworks.addTokens (weakFrameworks, ", ", {});
-
-        parseAndAddLibsToList (xcodeExporter.xcodeLibs, moduleInfo[exporter.isOSX() ? "OSXLibs" : "iOSLibs"].toString());
+        parseAndAddLibsToList (xcodeExporter.xcodeLibs, moduleInfo.getModuleInfo() [exporter.isOSX() ? "OSXLibs" : "iOSLibs"].toString());
     }
     else if (exporter.isLinux())
     {
-        parseAndAddLibsToList (exporter.linuxLibs, moduleInfo["linuxLibs"].toString());
-        parseAndAddLibsToList (exporter.linuxPackages, moduleInfo["linuxPackages"].toString());
+        parseAndAddLibsToList (exporter.linuxLibs, moduleInfo.getModuleInfo() ["linuxLibs"].toString());
+        parseAndAddLibsToList (exporter.linuxPackages, moduleInfo.getModuleInfo() ["linuxPackages"].toString());
     }
     else if (exporter.isWindows())
     {
-        parseAndAddLibsToList (exporter.windowsLibs, moduleInfo["windowsLibs"].toString());
+        if (exporter.isCodeBlocks())
+            parseAndAddLibsToList (exporter.mingwLibs, moduleInfo.getModuleInfo() ["mingwLibs"].toString());
+        else
+            parseAndAddLibsToList (exporter.windowsLibs, moduleInfo.getModuleInfo() ["windowsLibs"].toString());
     }
     else if (exporter.isAndroid())
     {
-        parseAndAddLibsToList (exporter.androidLibs, moduleInfo["androidLibs"].toString());
+        parseAndAddLibsToList (exporter.androidLibs, moduleInfo.getModuleInfo() ["androidLibs"].toString());
     }
 }
 
@@ -178,7 +170,7 @@ void LibraryModule::addSettingsForModuleToExporter (ProjectExporter& exporter, P
 
 void LibraryModule::getConfigFlags (Project& project, OwnedArray<Project::ConfigFlag>& flags) const
 {
-    auto header = moduleDescription.getHeader();
+    auto header = moduleInfo.getHeader();
     jassert (header.exists());
 
     StringArray lines;
@@ -269,20 +261,14 @@ void LibraryModule::findBrowseableFiles (const File& folder, Array<File>& filesF
 
 bool LibraryModule::CompileUnit::isNeededForExporter (ProjectExporter& exporter) const
 {
-    const auto trimmedFileNameLowercase = file.getFileNameWithoutExtension().toLowerCase();
+    if ((hasSuffix (file, "_OSX")        && ! exporter.isOSX())
+     || (hasSuffix (file, "_iOS")        && ! exporter.isiOS())
+     || (hasSuffix (file, "_Windows")    && ! exporter.isWindows())
+     || (hasSuffix (file, "_Linux")      && ! exporter.isLinux())
+     || (hasSuffix (file, "_Android")    && ! exporter.isAndroid()))
+        return false;
 
-    const std::tuple<const char*, bool> shouldBuildForSuffix[] { { "_android", exporter.isAndroid() },
-                                                                 { "_ios",     exporter.isiOS() },
-                                                                 { "_linux",   exporter.isLinux() },
-                                                                 { "_mac",     exporter.isOSX() },
-                                                                 { "_osx",     exporter.isOSX() },
-                                                                 { "_windows", exporter.isWindows() } };
-
-    for (const auto& [suffix, shouldBuild] : shouldBuildForSuffix)
-        if (trimmedFileNameLowercase.endsWith (suffix))
-            return shouldBuild;
-
-    const auto targetType = Project::getTargetTypeFromFilePath (file, false);
+    auto targetType = Project::getTargetTypeFromFilePath (file, false);
 
     if (targetType != build_tools::ProjectType::Target::unspecified && ! exporter.shouldBuildTargetType (targetType))
         return false;
@@ -294,6 +280,14 @@ bool LibraryModule::CompileUnit::isNeededForExporter (ProjectExporter& exporter)
 String LibraryModule::CompileUnit::getFilenameForProxyFile() const
 {
     return "include_" + file.getFileName();
+}
+
+bool LibraryModule::CompileUnit::hasSuffix (const File& f, const char* suffix)
+{
+    auto fileWithoutSuffix = f.getFileNameWithoutExtension() + ".";
+
+    return fileWithoutSuffix.containsIgnoreCase (suffix + String ("."))
+             || fileWithoutSuffix.containsIgnoreCase (suffix + String ("_"));
 }
 
 Array<LibraryModule::CompileUnit> LibraryModule::getAllCompileUnits (build_tools::ProjectType::Target::Type forTarget) const
@@ -361,7 +355,7 @@ void LibraryModule::addBrowseableCode (ProjectExporter& exporter, const Array<Fi
 
     auto sourceGroup       = Project::Item::createGroup (exporter.getProject(), getID(), "__mainsourcegroup" + getID(), false);
     auto moduleFromProject = exporter.getModuleFolderRelativeToProject (getID());
-    auto moduleHeader      = moduleDescription.getHeader();
+    auto moduleHeader      = moduleInfo.getHeader();
 
     auto& project = exporter.getProject();
 
@@ -688,24 +682,19 @@ void EnabledModulesList::addModuleOfferingToCopy (const File& f, bool isFromUser
 
     if (! m.isValid())
     {
-        auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::InfoIcon,
-                                                         "Add Module",
-                                                         "This wasn't a valid module folder!");
-        messageBox = AlertWindow::showScopedAsync (options, nullptr);
+        AlertWindow::showMessageBoxAsync (MessageBoxIconType::InfoIcon,
+                                          "Add Module", "This wasn't a valid module folder!");
         return;
     }
 
     if (isModuleEnabled (m.getID()))
     {
-        auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::InfoIcon,
-                                                         "Add Module",
-                                                         "The project already contains this module!");
-        messageBox = AlertWindow::showScopedAsync (options, nullptr);
+        AlertWindow::showMessageBoxAsync (MessageBoxIconType::InfoIcon,
+                                          "Add Module", "The project already contains this module!");
         return;
     }
 
-    addModule (m.getModuleFolder(),
-               areMostModulesCopiedLocally(),
+    addModule (m.getModuleFolder(), areMostModulesCopiedLocally(),
                isFromUserSpecifiedFolder ? false : areMostModulesUsingGlobalPath());
 }
 
@@ -715,7 +704,7 @@ void EnabledModulesList::removeModule (String moduleID) // must be pass-by-value
         const ScopedLock sl (stateLock);
 
         for (auto i = state.getNumChildren(); --i >= 0;)
-            if (state.getChild (i) [Ids::ID] == moduleID)
+            if (state.getChild(i) [Ids::ID] == moduleID)
                 state.removeChild (i, getUndoManager());
     }
 

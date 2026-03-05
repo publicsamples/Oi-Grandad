@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,7 +26,7 @@
 namespace juce
 {
 
-class ValueTree::SharedObject final : public ReferenceCountedObject
+class ValueTree::SharedObject  : public ReferenceCountedObject
 {
 public:
     using Ptr = ReferenceCountedObjectPtr<SharedObject>;
@@ -55,7 +46,7 @@ public:
 
     SharedObject& operator= (const SharedObject&) = delete;
 
-    ~SharedObject() override
+    ~SharedObject()
     {
         jassert (parent == nullptr); // this should never happen unless something isn't obeying the ref-counting!
 
@@ -76,21 +67,23 @@ public:
     template <typename Function>
     void callListeners (ValueTree::Listener* listenerToExclude, Function fn) const
     {
-        if (valueTreesWithListeners.size() == 0)
-            return;
+        auto numListeners = valueTreesWithListeners.size();
 
-        if (valueTreesWithListeners.size() == 1)
+        if (numListeners == 1)
         {
             valueTreesWithListeners.getUnchecked (0)->listeners.callExcluding (listenerToExclude, fn);
-            return;
         }
-
-        const auto listenersCopy = valueTreesWithListeners;
-
-        for (auto [i, v] : enumerate (listenersCopy, int{}))
+        else if (numListeners > 0)
         {
-            if (valueTreesWithListeners[i] == v || valueTreesWithListeners.contains (v))
-                v->listeners.callExcluding (listenerToExclude, fn);
+            auto listenersCopy = valueTreesWithListeners;
+
+            for (int i = 0; i < numListeners; ++i)
+            {
+                auto* v = listenersCopy.getUnchecked (i);
+
+                if (i == 0 || valueTreesWithListeners.contains (v))
+                    v->listeners.callExcluding (listenerToExclude, fn);
+            }
         }
     }
 
@@ -258,8 +251,8 @@ public:
             if (child != this && ! isAChildOf (child))
             {
                 // You should always make sure that a child is removed from its previous parent before
-                // adding it somewhere else - otherwise, it's ambiguous whether a different
-                // undomanager should be used when removing it from its current parent.
+                // adding it somewhere else - otherwise, it's ambiguous as to whether a different
+                // undomanager should be used when removing it from its current parent..
                 jassert (child->parent == nullptr);
 
                 if (child->parent != nullptr)
@@ -415,7 +408,7 @@ public:
     }
 
     //==============================================================================
-    struct SetPropertyAction final : public UndoableAction
+    struct SetPropertyAction  : public UndoableAction
     {
         SetPropertyAction (Ptr targetObject, const Identifier& propertyName,
                            const var& newVal, const var& oldVal, bool isAdding, bool isDeleting,
@@ -479,7 +472,7 @@ public:
     };
 
     //==============================================================================
-    struct AddOrRemoveChildAction final : public UndoableAction
+    struct AddOrRemoveChildAction  : public UndoableAction
     {
         AddOrRemoveChildAction (Ptr parentObject, int index, SharedObject* newChild)
             : target (std::move (parentObject)),
@@ -531,7 +524,7 @@ public:
     };
 
     //==============================================================================
-    struct MoveChildAction final : public UndoableAction
+    struct MoveChildAction  : public UndoableAction
     {
         MoveChildAction (Ptr parentObject, int fromIndex, int toIndex) noexcept
             : parent (std::move (parentObject)), startIndex (fromIndex), endIndex (toIndex)
@@ -676,9 +669,6 @@ void ValueTree::copyPropertiesFrom (const ValueTree& source, UndoManager* undoMa
 {
     jassert (object != nullptr || source.object == nullptr); // Trying to add properties to a null ValueTree will fail!
 
-    if (source == *this)
-        return;
-
     if (source.object == nullptr)
         removeAllProperties (undoManager);
     else if (object != nullptr)
@@ -688,9 +678,6 @@ void ValueTree::copyPropertiesFrom (const ValueTree& source, UndoManager* undoMa
 void ValueTree::copyPropertiesAndChildrenFrom (const ValueTree& source, UndoManager* undoManager)
 {
     jassert (object != nullptr || source.object == nullptr); // Trying to copy to a null ValueTree will fail!
-
-    if (source == *this)
-        return;
 
     copyPropertiesFrom (source, undoManager);
     removeAllChildren (undoManager);
@@ -816,8 +803,8 @@ int ValueTree::getReferenceCount() const noexcept
 }
 
 //==============================================================================
-struct ValueTreePropertyValueSource final : public Value::ValueSource,
-                                            private ValueTree::Listener
+struct ValueTreePropertyValueSource  : public Value::ValueSource,
+                                       private ValueTree::Listener
 {
     ValueTreePropertyValueSource (const ValueTree& vt, const Identifier& prop, UndoManager* um, bool sync)
         : tree (vt), property (prop), undoManager (um), updateSynchronously (sync)
@@ -880,7 +867,7 @@ ValueTree::Iterator::Iterator (const ValueTree& v, bool isEnd)
 
 ValueTree::Iterator& ValueTree::Iterator::operator++()
 {
-    ++internal;
+    internal = static_cast<SharedObject**> (internal) + 1;
     return *this;
 }
 
@@ -889,7 +876,7 @@ bool ValueTree::Iterator::operator!= (const Iterator& other) const  { return int
 
 ValueTree ValueTree::Iterator::operator*() const
 {
-    return ValueTree (SharedObject::Ptr (*internal));
+    return ValueTree (SharedObject::Ptr (*static_cast<SharedObject**> (internal)));
 }
 
 ValueTree::Iterator ValueTree::begin() const noexcept   { return Iterator (*this, false); }
@@ -1111,11 +1098,13 @@ void ValueTree::Listener::valueTreeRedirected        (ValueTree&)               
 //==============================================================================
 #if JUCE_ALLOW_STATIC_NULL_VARIABLES
 
-JUCE_BEGIN_IGNORE_DEPRECATION_WARNINGS
+JUCE_BEGIN_IGNORE_WARNINGS_GCC_LIKE ("-Wdeprecated-declarations")
+JUCE_BEGIN_IGNORE_WARNINGS_MSVC (4996)
 
 const ValueTree ValueTree::invalid;
 
-JUCE_END_IGNORE_DEPRECATION_WARNINGS
+JUCE_END_IGNORE_WARNINGS_GCC_LIKE
+JUCE_END_IGNORE_WARNINGS_MSVC
 
 #endif
 
@@ -1123,7 +1112,7 @@ JUCE_END_IGNORE_DEPRECATION_WARNINGS
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class ValueTreeTests final : public UnitTest
+class ValueTreeTests  : public UnitTest
 {
 public:
     ValueTreeTests()

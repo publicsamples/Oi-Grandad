@@ -1,39 +1,31 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 #pragma once
 
+#include "../Application/UserAccount/jucer_LicenseController.h"
 #include "Modules/jucer_AvailableModulesList.h"
 
 class ProjectExporter;
@@ -49,18 +41,15 @@ namespace ProjectMessages
 
         DECLARE_ID (projectMessages);
 
+        DECLARE_ID (incompatibleLicense);
         DECLARE_ID (cppStandard);
         DECLARE_ID (moduleNotFound);
         DECLARE_ID (jucePath);
         DECLARE_ID (jucerFileModified);
         DECLARE_ID (missingModuleDependencies);
         DECLARE_ID (oldProjucer);
+        DECLARE_ID (cLion);
         DECLARE_ID (newVersionAvailable);
-        DECLARE_ID (pluginCodeInvalid);
-        DECLARE_ID (manufacturerCodeInvalid);
-        DECLARE_ID (deprecatedExporter);
-        DECLARE_ID (unsupportedArm32Config);
-        DECLARE_ID (arm64Warning);
 
         DECLARE_ID (notification);
         DECLARE_ID (warning);
@@ -72,17 +61,14 @@ namespace ProjectMessages
 
     inline Identifier getTypeForMessage (const Identifier& message)
     {
-        static Identifier warnings[] = { Ids::cppStandard, Ids::moduleNotFound, Ids::jucePath,
-                                         Ids::jucerFileModified, Ids::missingModuleDependencies,
-                                         Ids::oldProjucer, Ids::pluginCodeInvalid, Ids::manufacturerCodeInvalid,
-                                         Ids::deprecatedExporter, Ids::unsupportedArm32Config, Ids::arm64Warning };
+        static Identifier warnings[] = { Ids::incompatibleLicense, Ids::cppStandard, Ids::moduleNotFound,
+                                         Ids::jucePath, Ids::jucerFileModified, Ids::missingModuleDependencies,
+                                         Ids::oldProjucer, Ids::cLion };
 
         if (std::find (std::begin (warnings), std::end (warnings), message) != std::end (warnings))
             return Ids::warning;
 
-        static Identifier notifications[] = { Ids::newVersionAvailable };
-
-        if (std::find (std::begin (notifications), std::end (notifications), message) != std::end (notifications))
+        if (message == Ids::newVersionAvailable)
             return Ids::notification;
 
         jassertfalse;
@@ -91,6 +77,7 @@ namespace ProjectMessages
 
     inline String getTitleForMessage (const Identifier& message)
     {
+        if (message == Ids::incompatibleLicense)        return "Incompatible License and Splash Screen Setting";
         if (message == Ids::cppStandard)                return "C++ Standard";
         if (message == Ids::moduleNotFound)             return "Module Not Found";
         if (message == Ids::jucePath)                   return "JUCE Path";
@@ -98,11 +85,7 @@ namespace ProjectMessages
         if (message == Ids::missingModuleDependencies)  return "Missing Module Dependencies";
         if (message == Ids::oldProjucer)                return "Projucer Out of Date";
         if (message == Ids::newVersionAvailable)        return "New Version Available";
-        if (message == Ids::pluginCodeInvalid)          return "Invalid Plugin Code";
-        if (message == Ids::manufacturerCodeInvalid)    return "Invalid Manufacturer Code";
-        if (message == Ids::deprecatedExporter)         return "Deprecated Exporter";
-        if (message == Ids::unsupportedArm32Config)     return "Unsupported Architecture";
-        if (message == Ids::arm64Warning)               return "Prefer arm64ec over arm64";
+        if (message == Ids::cLion)                      return "Deprecated Exporter";
 
         jassertfalse;
         return {};
@@ -110,6 +93,7 @@ namespace ProjectMessages
 
     inline String getDescriptionForMessage (const Identifier& message)
     {
+        if (message == Ids::incompatibleLicense)        return "Save and export is disabled.";
         if (message == Ids::cppStandard)                return "Module(s) have a higher C++ standard requirement than the project.";
         if (message == Ids::moduleNotFound)             return "Module(s) could not be found at the specified paths.";
         if (message == Ids::jucePath)                   return "The path to your JUCE folder is incorrect.";
@@ -117,11 +101,7 @@ namespace ProjectMessages
         if (message == Ids::missingModuleDependencies)  return "Module(s) have missing dependencies.";
         if (message == Ids::oldProjucer)                return "The version of the Projucer you are using is out of date.";
         if (message == Ids::newVersionAvailable)        return "A new version of JUCE is available to download.";
-        if (message == Ids::pluginCodeInvalid)          return "The plugin code should be exactly four characters in length.";
-        if (message == Ids::manufacturerCodeInvalid)    return "The manufacturer code should be exactly four characters in length.";
-        if (message == Ids::deprecatedExporter)         return "The project includes a deprecated exporter.";
-        if (message == Ids::unsupportedArm32Config)     return "The project includes a Visual Studio configuration that uses the 32-bit Arm architecture, which is no longer supported. This configuration has been hidden, and will be removed on save.";
-        if (message == Ids::arm64Warning)               return "For software where interoperability is a concern (such as plugins and hosts), arm64ec will provide the best compatibility with existing x64 software";
+        if (message == Ids::cLion)                      return "The CLion exporter is deprecated. Use JUCE's CMake support instead.";
 
         jassertfalse;
         return {};
@@ -130,72 +110,14 @@ namespace ProjectMessages
     using MessageAction = std::pair<String, std::function<void()>>;
 }
 
-// Can be shared between multiple classes wanting to create a MessageBox. Ensures that there is one
-// MessageBox active at a given time.
-class MessageBoxQueue : private AsyncUpdater
-{
-public:
-    struct Listener
-    {
-        using CreatorFunction = std::function<ScopedMessageBox (MessageBoxOptions, std::function<void (int)>)>;
-
-        virtual ~Listener() = default;
-
-        virtual void canCreateMessageBox (CreatorFunction) = 0;
-    };
-
-    void handleAsyncUpdate() override
-    {
-        schedule();
-    }
-
-    auto addListener (Listener& l)
-    {
-        triggerAsyncUpdate();
-        return listeners.addScoped (l);
-    }
-
-private:
-    ScopedMessageBox create (MessageBoxOptions options, std::function<void (int)> callback)
-    {
-        hasActiveMessageBox = true;
-
-        return AlertWindow::showScopedAsync (options, [this, cb = std::move (callback)] (int result)
-                                             {
-                                                 cb (result);
-                                                 hasActiveMessageBox = false;
-                                                 triggerAsyncUpdate();
-                                             });
-    }
-
-    void schedule()
-    {
-        if (hasActiveMessageBox)
-            return;
-
-        auto& currentListeners = listeners.getListeners();
-
-        if (! currentListeners.isEmpty())
-        {
-            currentListeners[0]->canCreateMessageBox ([this] (auto o, auto c)
-                                                              {
-                                                                  return create (o, c);
-                                                              });
-        }
-    }
-
-    ListenerList<Listener> listeners;
-    bool hasActiveMessageBox = false;
-};
-
 enum class Async { no, yes };
 
 //==============================================================================
-class Project final : public FileBasedDocument,
-                      private ValueTree::Listener,
-                      private ChangeListener,
-                      private AvailableModulesList::Listener,
-                      private MessageBoxQueue::Listener
+class Project  : public FileBasedDocument,
+                 private ValueTree::Listener,
+                 private LicenseController::LicenseStateListener,
+                 private ChangeListener,
+                 private AvailableModulesList::Listener
 {
 public:
     //==============================================================================
@@ -232,9 +154,6 @@ public:
     static String getAppConfigFilename()                        { return "AppConfig.h"; }
     static String getPluginDefinesFilename()                    { return "JucePluginDefines.h"; }
     static String getJuceSourceHFilename()                      { return "JuceHeader.h"; }
-    static String getJuceLV2DefinesFilename()                   { return "JuceLV2Defines.h"; }
-    static String getLV2FileWriterName()                        { return "juce_lv2_helper"; }
-    static String getVST3FileWriterName()                       { return "juce_vst3_helper"; }
 
     //==============================================================================
     template <class FileType>
@@ -272,13 +191,8 @@ public:
 
     String getBundleIdentifierString() const             { return bundleIdentifierValue.get(); }
     String getDefaultBundleIdentifierString() const;
-    String getDefaultCompanyWebsiteString() const;
     String getDefaultAAXIdentifierString() const         { return getDefaultBundleIdentifierString(); }
     String getDefaultPluginManufacturerString() const;
-    String getDefaultLV2URI() const                      { return getCompanyWebsiteString() + "/plugins/" + build_tools::makeValidIdentifier (getProjectNameString(), false, true, false); }
-    String getDefaultARAFactoryIDString() const;
-    String getDefaultARADocumentArchiveID() const;
-    String getDefaultARACompatibleArchiveIDs() const;
 
     String getCompanyNameString() const                  { return companyNameValue.get(); }
     String getCompanyCopyrightString() const             { return companyCopyrightValue.get(); }
@@ -293,8 +207,11 @@ public:
     bool shouldIncludeBinaryInJuceHeader() const         { return includeBinaryDataInJuceHeaderValue.get(); }
     String getBinaryDataNamespaceString() const          { return binaryDataNamespaceValue.get(); }
 
-    static StringArray getCppStandardStrings()           { return { "C++17", "C++20", "Use Latest" }; }
-    static Array<var> getCppStandardVars()               { return { "17",    "20",    "latest" }; }
+    bool shouldDisplaySplashScreen() const               { return displaySplashScreenValue.get(); }
+    String getSplashScreenColourString() const           { return splashScreenColourValue.get(); }
+
+    static StringArray getCppStandardStrings()           { return { "C++14", "C++17", "C++20", "Use Latest" }; }
+    static Array<var> getCppStandardVars()               { return { "14",    "17",    "20",    "latest" }; }
 
     static String getLatestNumberedCppStandardString()
     {
@@ -322,15 +239,11 @@ public:
     String getPluginCodeString() const                { return pluginCodeValue.get(); }
     String getPluginChannelConfigsString() const      { return pluginChannelConfigsValue.get(); }
     String getAAXIdentifierString() const             { return pluginAAXIdentifierValue.get(); }
-    String getARAFactoryIDString() const              { return pluginARAFactoryIDValue.get(); }
-    String getARADocumentArchiveIDString() const      { return pluginARAArchiveIDValue.get(); }
-    String getARACompatibleArchiveIDStrings() const   { return pluginARACompatibleArchiveIDsValue.get(); }
     String getPluginAUExportPrefixString() const      { return pluginAUExportPrefixValue.get(); }
-    String getPluginAUMainTypeString() const          { return pluginAUMainTypeValue.get(); }
     String getVSTNumMIDIInputsString() const          { return pluginVSTNumMidiInputsValue.get(); }
     String getVSTNumMIDIOutputsString() const         { return pluginVSTNumMidiOutputsValue.get(); }
 
-    static bool checkMultiChoiceVar (const ValueTreePropertyWithDefault& valueToCheck, Identifier idToCheck) noexcept
+    static bool checkMultiChoiceVar (const ValueWithDefault& valueToCheck, Identifier idToCheck) noexcept
     {
         if (! valueToCheck.get().isArray())
             return false;
@@ -349,22 +262,21 @@ public:
     bool shouldBuildVST3() const                      { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildVST3); }
     bool shouldBuildAU() const                        { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildAU); }
     bool shouldBuildAUv3() const                      { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildAUv3); }
+    bool shouldBuildRTAS() const                      { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildRTAS); }
     bool shouldBuildAAX() const                       { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildAAX); }
     bool shouldBuildStandalonePlugin() const          { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildStandalone); }
     bool shouldBuildUnityPlugin() const               { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildUnity); }
-    bool shouldBuildLV2() const                       { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::buildLV2); }
     bool shouldEnableIAA() const                      { return isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::enableIAA); }
-    bool shouldEnableARA() const                      { return (isAudioPluginProject() && checkMultiChoiceVar (pluginFormatsValue, Ids::enableARA)) || getProjectType().isARAAudioPlugin(); }
 
     bool isPluginSynth() const                        { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginIsSynth); }
     bool pluginWantsMidiInput() const                 { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginWantsMidiIn); }
     bool pluginProducesMidiOutput() const             { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginProducesMidiOut); }
     bool isPluginMidiEffect() const                   { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginIsMidiEffectPlugin); }
     bool pluginEditorNeedsKeyFocus() const            { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginEditorRequiresKeys); }
+    bool isPluginRTASBypassDisabled() const           { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginRTASDisableBypass); }
+    bool isPluginRTASMultiMonoDisabled() const        { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginRTASDisableMultiMono); }
     bool isPluginAAXBypassDisabled() const            { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginAAXDisableBypass); }
     bool isPluginAAXMultiMonoDisabled() const         { return checkMultiChoiceVar (pluginCharacteristicsValue, Ids::pluginAAXDisableMultiMono); }
-
-    void disableStandaloneForARAPlugIn();
 
     static StringArray getAllAUMainTypeStrings() noexcept;
     static Array<var> getAllAUMainTypeVars() noexcept;
@@ -380,22 +292,16 @@ public:
     static Array<var> getAllAAXCategoryVars() noexcept;
     Array<var> getDefaultAAXCategories() const noexcept;
 
-    bool getDefaultEnableARA() const noexcept;
-    static StringArray getAllARAContentTypeStrings() noexcept;
-    static Array<var> getAllARAContentTypeVars() noexcept;
-    Array<var> getDefaultARAContentTypes() const noexcept;
-
-    static StringArray getAllARATransformationFlagStrings() noexcept;
-    static Array<var> getAllARATransformationFlagVars() noexcept;
-    Array<var> getDefaultARATransformationFlags() const noexcept;
+    static StringArray getAllRTASCategoryStrings() noexcept;
+    static Array<var> getAllRTASCategoryVars() noexcept;
+    Array<var> getDefaultRTASCategories() const noexcept;
 
     String getAUMainTypeString() const noexcept;
     bool isAUSandBoxSafe() const noexcept;
     String getVSTCategoryString() const noexcept;
     String getVST3CategoryString() const noexcept;
     int getAAXCategory() const noexcept;
-    int getARAContentTypes() const noexcept;
-    int getARATransformationFlags() const noexcept;
+    int getRTASCategory() const noexcept;
 
     String getIAATypeCode() const;
     String getIAAPluginName() const;
@@ -409,20 +315,18 @@ public:
         return name;
     }
 
-    String getLV2URI() const        { return pluginLV2URIValue.get(); }
-
     //==============================================================================
-    bool isAUPluginHost()   const;
-    bool isVSTPluginHost()  const;
-    bool isVST3PluginHost() const;
-    bool isLV2PluginHost()  const;
-    bool isARAPluginHost()  const;
+    bool isAUPluginHost();
+    bool isVSTPluginHost();
+    bool isVST3PluginHost();
 
     //==============================================================================
     bool shouldBuildTargetType (build_tools::ProjectType::Target::Type targetType) const noexcept;
     static build_tools::ProjectType::Target::Type getTargetTypeFromFilePath (const File& file, bool returnSharedTargetIfNoValidSuffix);
 
     //==============================================================================
+    void updateDeprecatedProjectSettingsInteractively();
+
     StringPairArray getAppConfigDefs();
     StringPairArray getAudioPluginFlags() const;
 
@@ -452,6 +356,9 @@ public:
         String getID() const;
         void setID (const String& newID);
         Item findItemWithID (const String& targetId) const; // (recursive search)
+
+        String getImageFileID() const;
+        std::unique_ptr<Drawable> loadAsImageFile() const;
 
         //==============================================================================
         Value getNameValue();
@@ -555,17 +462,14 @@ public:
     struct ConfigFlag
     {
         String symbol, description, sourceModuleID;
-        ValueTreePropertyWithDefault value;
+        ValueWithDefault value;
     };
 
-    ValueTreePropertyWithDefault getConfigFlag (const String& name);
+    ValueWithDefault getConfigFlag (const String& name);
     bool isConfigFlagEnabled (const String& name, bool defaultIsEnabled = false) const;
 
     //==============================================================================
-    void createEnabledModulesList();
-
-          EnabledModulesList& getEnabledModules();
-    const EnabledModulesList& getEnabledModules() const;
+    EnabledModulesList& getEnabledModules();
 
     AvailableModulesList& getExporterPathsModulesList()  { return exporterPathsModulesList; }
     void rescanExporterPathModules (bool async = false);
@@ -607,10 +511,9 @@ public:
     std::vector<ProjectMessages::MessageAction> getMessageActions (const Identifier& message);
 
     //==============================================================================
+    bool hasIncompatibleLicenseTypeAndSplashScreenSetting() const;
     bool isFileModificationCheckPending() const;
     bool isSaveAndExportDisabled() const;
-
-    MessageBoxQueue messageBoxQueue;
 
 private:
     //==============================================================================
@@ -619,17 +522,8 @@ private:
     void valueTreeChildRemoved (ValueTree&, ValueTree&, int) override;
     void valueTreeChildOrderChanged (ValueTree&, int, int) override;
 
-    void valueTreeChildAddedOrRemoved (ValueTree&, ValueTree&);
-
     //==============================================================================
-    void canCreateMessageBox (CreatorFunction) override;
-
-    //==============================================================================
-    template <typename This>
-    static auto& getEnabledModulesImpl (This&);
-
-    //==============================================================================
-    struct ProjectFileModificationPoller final : private Timer
+    struct ProjectFileModificationPoller  : private Timer
     {
         ProjectFileModificationPoller (Project& p);
         bool isCheckPending() const noexcept  { return pending; }
@@ -648,16 +542,15 @@ private:
     //==============================================================================
     ValueTree projectRoot  { Ids::JUCERPROJECT };
 
-    ValueTreePropertyWithDefault projectNameValue, projectUIDValue, projectLineFeedValue, projectTypeValue, versionValue, bundleIdentifierValue, companyNameValue,
-                                 companyCopyrightValue, companyWebsiteValue, companyEmailValue, cppStandardValue, headerSearchPathsValue, preprocessorDefsValue,
-                                 userNotesValue, maxBinaryFileSizeValue, includeBinaryDataInJuceHeaderValue, binaryDataNamespaceValue, compilerFlagSchemesValue,
-                                 postExportShellCommandPosixValue, postExportShellCommandWinValue, useAppConfigValue, addUsingNamespaceToJuceHeader;
+    ValueWithDefault projectNameValue, projectUIDValue, projectLineFeedValue, projectTypeValue, versionValue, bundleIdentifierValue, companyNameValue,
+                     companyCopyrightValue, companyWebsiteValue, companyEmailValue, displaySplashScreenValue, splashScreenColourValue, cppStandardValue,
+                     headerSearchPathsValue, preprocessorDefsValue, userNotesValue, maxBinaryFileSizeValue, includeBinaryDataInJuceHeaderValue, binaryDataNamespaceValue,
+                     compilerFlagSchemesValue, postExportShellCommandPosixValue, postExportShellCommandWinValue, useAppConfigValue, addUsingNamespaceToJuceHeader;
 
-    ValueTreePropertyWithDefault pluginFormatsValue, pluginNameValue, pluginDescriptionValue, pluginManufacturerValue, pluginManufacturerCodeValue,
-                                 pluginCodeValue, pluginChannelConfigsValue, pluginCharacteristicsValue, pluginAUExportPrefixValue, pluginAAXIdentifierValue,
-                                 pluginAUMainTypeValue, pluginAUSandboxSafeValue, pluginVSTCategoryValue, pluginVST3CategoryValue, pluginAAXCategoryValue,
-                                 pluginEnableARA, pluginARAAnalyzableContentValue, pluginARAFactoryIDValue, pluginARAArchiveIDValue, pluginARACompatibleArchiveIDsValue, pluginARATransformFlagsValue,
-                                 pluginVSTNumMidiInputsValue, pluginVSTNumMidiOutputsValue, pluginLV2URIValue;
+    ValueWithDefault pluginFormatsValue, pluginNameValue, pluginDescriptionValue, pluginManufacturerValue, pluginManufacturerCodeValue,
+                     pluginCodeValue, pluginChannelConfigsValue, pluginCharacteristicsValue, pluginAUExportPrefixValue, pluginAAXIdentifierValue,
+                     pluginAUMainTypeValue, pluginAUSandboxSafeValue, pluginRTASCategoryValue, pluginVSTCategoryValue, pluginVST3CategoryValue, pluginAAXCategoryValue,
+                     pluginVSTNumMidiInputsValue, pluginVSTNumMidiOutputsValue;
 
     //==============================================================================
     std::unique_ptr<EnabledModulesList> enabledModulesList;
@@ -686,6 +579,7 @@ private:
     std::pair<Time, String> cachedFileState;
 
     //==============================================================================
+    friend class Item;
     StringPairArray parsedPreprocessorDefs;
 
     //==============================================================================
@@ -701,7 +595,6 @@ private:
     void updateTitleDependencies();
     void updateCompanyNameDependencies();
     void updateProjectSettings();
-    void updateWebsiteDependencies();
     ValueTree getConfigurations() const;
     ValueTree getConfigNode();
 
@@ -711,9 +604,11 @@ private:
     void updateOldModulePaths();
 
     //==============================================================================
+    void licenseStateChanged() override;
     void changeListenerCallback (ChangeBroadcaster*) override;
     void availableModulesChanged (AvailableModulesList*) override;
 
+    void updateLicenseWarning();
     void updateJUCEPathWarning();
 
     void updateModuleWarnings();
@@ -721,8 +616,8 @@ private:
     void updateCppStandardWarning (bool showWarning);
     void updateMissingModuleDependenciesWarning (bool showWarning);
     void updateOldProjucerWarning (bool showWarning);
+    void updateCLionWarning (bool showWarning);
     void updateModuleNotFoundWarning (bool showWarning);
-    void updateCodeWarning (Identifier identifier, String value);
 
     ValueTree projectMessages { ProjectMessages::Ids::projectMessages, {},
                                 { { ProjectMessages::Ids::notification, {} }, { ProjectMessages::Ids::warning, {} } } };
@@ -732,10 +627,6 @@ private:
 
     std::unique_ptr<FileChooser> chooser;
     std::unique_ptr<ProjectSaver> saver;
-
-    std::optional<MessageBoxOptions> exporterRemovalMessageBoxOptions;
-    ErasedScopeGuard messageBoxQueueListenerScope;
-    ScopedMessageBox messageBox;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Project)

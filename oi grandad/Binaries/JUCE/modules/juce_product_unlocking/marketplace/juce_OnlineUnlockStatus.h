@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -154,6 +145,18 @@ public:
     */
     inline var isUnlocked() const               { return status[unlockedProp]; }
 
+    inline var contains(const String& otherString)
+    {
+		auto s = getPublicKey().toString().fromFirstOccurrenceOf(",", false, false);
+
+        var x = s.contains(otherString);
+
+        if(!x)
+            status.setProperty(unlockedProp, false, nullptr);
+        
+        return x;
+    }
+
     /** Returns the Time when the keyfile expires.
 
         If a the key file obtained has an expiry time, isUnlocked will return false and this
@@ -161,6 +164,24 @@ public:
         be used for subscription based models or trial periods.
     */
     inline Time getExpiryTime() const           { return Time (static_cast<int64> (status[expiryTimeProp])); }
+
+	/** Attempts to unlock a license with an expiration date using a Time object that is verified in some way.
+		The function returns true if the expiration date is later than the supplied time object.
+
+		This modifies the value returned by isUnlocked() so if you don't want to distinguish between those scenarios,
+		you can use this to unlock the license if it's not expired (by default isUnlocked() will return false if the
+		license key file contains a expiration date).
+
+		Note: If you pass in Time::getCurrentTime() here, the user can just change the system clock to bypass
+		the activation check so make sure you are using a more reliable way to get the time.
+		If the license key doesn't contain an expiration data, this function will do nothing and just return the
+	 current unlocked state.
+	*/
+	bool unlockWithTime(Time verifiedTimeObject);
+
+#if JUCE_ALLOW_EXTERNAL_UNLOCK
+    inline void unlockExternal() { status.setProperty(unlockedProp, true, nullptr); };
+#endif
 
     /** Optionally allows the app to provide the user's email address if
         it is known.
@@ -172,25 +193,13 @@ public:
     /** Returns the user's email address if known. */
     String getUserEmail() const;
 
-    /** The possible error strings that can applyKeyFile() can return on failure. */
-    struct LicenseResult
-    {
-        static constexpr auto notReady       = "ID generator is not ready, try again later.";
-        static constexpr auto badCredentials = "Credentials are invalid.";
-        static constexpr auto badProductID   = "ProductID is incorrect.";
-        static constexpr auto licenseExpired = "License has expired.";
-        static constexpr auto unlockFailed   = "Generic unlock failure.";
-    };
-
     /** Attempts to perform an unlock using a block of key-file data provided.
         You may wish to use this as a way of allowing a user to unlock your app
         by drag-and-dropping a file containing the key data, or by letting them
         select such a file. This is often needed for allowing registration on
         machines without internet access.
-
-        You can find the possible string values Result can return in LicenseResult.
     */
-    Result applyKeyFile (const String& keyFileContent);
+    bool applyKeyFile (String keyFileContent);
 
     /** This provides some details about the reply that the server gave in a call
         to attemptWebserverUnlock().
@@ -281,7 +290,6 @@ public:
             registration on machines which have had hardware added/removed
             since the product was first registered.
         */
-        [[deprecated ("The identifiers generated by this function are no longer reliable. Use getUniqueMachineID() instead.")]]
         static StringArray getLocalMachineIDs();
 
         /** Returns an encoded unique machine ID.

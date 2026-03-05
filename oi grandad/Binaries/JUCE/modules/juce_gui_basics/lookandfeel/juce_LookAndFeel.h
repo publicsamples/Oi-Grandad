@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -162,9 +153,7 @@ public:
     Colour findColour (int colourId) const noexcept;
 
     /** Registers a colour to be used for a particular purpose.
-
         For more details, see the comments for findColour().
-
         @see findColour, Component::findColour, Component::setColour
     */
     void setColour (int colourId, Colour colour) noexcept;
@@ -176,41 +165,22 @@ public:
 
     //==============================================================================
     /** Returns the typeface that should be used for a given font.
-
         The default implementation just does what you'd expect it to, but you can override
         this if you want to intercept fonts and use your own custom typeface object.
-
         @see setDefaultTypeface
     */
     virtual Typeface::Ptr getTypefaceForFont (const Font&);
 
-    /** Widgets can call this to find out the kind of metrics they should use when creating their
-        own fonts.
-
-        The default implementation returns the portable metrics kind, but you can override this if
-        you want to use the legacy metrics kind instead, to avoid rendering changes in existing
-        projects. Switching between metrics kinds may cause text to render at a different size, so you
-        should check that text in your app still renders at an appropriate size, and potentially adjust
-        font sizes where necessary after overriding this function.
-    */
-    virtual TypefaceMetricsKind getDefaultMetricsKind() const { return TypefaceMetricsKind::portable; }
-
-    /** Returns a copy of the FontOptions with the LookAndFeel's default metrics kind set. */
-    FontOptions withDefaultMetrics (FontOptions opt) const { return opt.withMetricsKind (getDefaultMetricsKind()); }
-
     /** Allows you to supply a default typeface that will be returned as the default
         sans-serif font.
-
         Instead of a typeface object, you can specify a typeface by name using the
         setDefaultSansSerifTypefaceName() method.
-
         You can perform more complex typeface substitutions by overloading
         getTypefaceForFont() but this lets you easily set a global typeface.
     */
     void setDefaultSansSerifTypeface (Typeface::Ptr newDefaultTypeface);
 
     /** Allows you to change the default sans-serif font.
-
         If you need to supply your own Typeface object for any of the default fonts, rather
         than just supplying the name (e.g. if you want to use an embedded font), then
         you can instead call setDefaultSansSerifTypeface() with an object to use.
@@ -218,64 +188,39 @@ public:
     void setDefaultSansSerifTypefaceName (const String& newName);
 
     //==============================================================================
-    /** Sets whether native alert windows (if available) or standard JUCE AlertWindows
-        drawn with AlertWindow::LookAndFeelMethods will be used.
-
-        @see isUsingNativeAlertWindows
+    /** Override this to get the chance to swap a component's mouse cursor for a
+        customised one.
     */
+    virtual MouseCursor getMouseCursorFor (Component&);
+
+    //==============================================================================
+    /** Creates a new graphics context object. */
+    virtual std::unique_ptr<LowLevelGraphicsContext> createGraphicsContext (const Image& imageToRenderOn,
+                                                                            Point<int> origin,
+                                                                            const RectangleList<int>& initialClip);
+
     void setUsingNativeAlertWindows (bool shouldUseNativeAlerts);
-
-    /** Returns true if native alert windows will be used (if available).
-
-        The default setting for this is false.
-
-        @see setUsingNativeAlertWindows
-    */
     bool isUsingNativeAlertWindows();
 
     //==============================================================================
     /** Draws a small image that spins to indicate that something's happening.
-
         This method should use the current time to animate itself, so just keep
         repainting it every so often.
     */
     virtual void drawSpinningWaitAnimation (Graphics&, const Colour& colour,
                                             int x, int y, int w, int h) = 0;
 
+    //==============================================================================
     /** Returns a tick shape for use in yes/no boxes, etc. */
     virtual Path getTickShape (float height) = 0;
-
     /** Returns a cross shape for use in yes/no boxes, etc. */
     virtual Path getCrossShape (float height) = 0;
 
-    /** Creates a drop-shadower for a given component, if required.
-
-        @see DropShadower
-    */
-    virtual std::unique_ptr<DropShadower> createDropShadowerForComponent (Component&) = 0;
-
-    /** Creates a focus outline for a given component, if required.
-
-        @see FocusOutline
-    */
-    virtual std::unique_ptr<FocusOutline> createFocusOutlineForComponent (Component&) = 0;
+    //==============================================================================
+    virtual DropShadower* createDropShadowerForComponent (Component*) = 0;
 
     //==============================================================================
-    /** Override this to get the chance to swap a component's mouse cursor for a
-        customised one.
-
-        @see MouseCursor
-    */
-    virtual MouseCursor getMouseCursorFor (Component&);
-
-    /** Creates a new graphics context object. */
-    virtual std::unique_ptr<LowLevelGraphicsContext> createGraphicsContext (const Image& imageToRenderOn,
-                                                                            Point<int> origin,
-                                                                            const RectangleList<int>& initialClip);
-
-    /** Plays the system's default 'beep' noise, to alert the user about something
-        very important. This is only supported on some platforms.
-    */
+    /** Plays the system's default 'beep' noise, to alert the user about something very important. */
     virtual void playAlertSound();
 
 private:

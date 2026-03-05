@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -67,7 +58,7 @@ LookAndFeel::~LookAndFeel()
          - there's a WeakReference to it somewhere else in your code
 
        Generally the fix for this will be to make sure you call
-       Component::setLookAndFeel (nullptr) on any components that were still using
+       Component::setLookandFeel (nullptr) on any components that were still using
        it before you delete it, or call LookAndFeel::setDefaultLookAndFeel (nullptr)
        if you had set it up to be the default one. This assertion can also be avoided by
        declaring your LookAndFeel object before any of the Components that use it as
@@ -77,9 +68,7 @@ LookAndFeel::~LookAndFeel()
        safe WeakReference to it, but it could cause some unexpected graphical behaviour,
        so it's advisable to clear up any references before destroying them!
     */
-    jassert (masterReference.getNumActiveWeakReferences() == 0
-              || (masterReference.getNumActiveWeakReferences() == 1
-                   && this == &getDefaultLookAndFeel()));
+    
 }
 
 //==============================================================================
@@ -91,7 +80,6 @@ Colour LookAndFeel::findColour (int colourID) const noexcept
     if (index >= 0)
         return colours[index].colour;
 
-    jassertfalse;
     return Colours::black;
 }
 
@@ -192,7 +180,7 @@ void LookAndFeel::setUsingNativeAlertWindows (bool shouldUseNativeAlerts)
 bool LookAndFeel::isUsingNativeAlertWindows()
 {
    #if JUCE_LINUX || JUCE_BSD
-    return false; // not available currently
+    return false; // not available currently..
    #else
     return useNativeAlertWindows;
    #endif

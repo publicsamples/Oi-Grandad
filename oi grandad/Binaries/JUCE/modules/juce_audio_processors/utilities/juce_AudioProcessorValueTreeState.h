@@ -1,95 +1,30 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 namespace juce
 {
-
-/** Advanced properties of an AudioProcessorValueTreeState::Parameter.
-
-    The members here have the same meaning as the similarly-named member functions of
-    AudioParameterFloatAttributes.
-
-    @see AudioParameterFloatAttributes, RangedAudioParameterAttributes
-
-    @tags{Audio}
-*/
-class AudioProcessorValueTreeStateParameterAttributes
-{
-    using This            = AudioProcessorValueTreeStateParameterAttributes;
-    using StringFromValue = AudioParameterFloatAttributes::StringFromValue;
-    using ValueFromString = AudioParameterFloatAttributes::ValueFromString;
-    using Category        = AudioParameterFloatAttributes::Category;
-
-public:
-    /** @see RangedAudioParameterAttributes::withStringFromValueFunction() */
-    [[nodiscard]] auto withStringFromValueFunction (StringFromValue x) const { return withMember (*this, &This::attributes, attributes.withStringFromValueFunction (std::move (x))); }
-    /** @see RangedAudioParameterAttributes::withValueFromStringFunction() */
-    [[nodiscard]] auto withValueFromStringFunction (ValueFromString x) const { return withMember (*this, &This::attributes, attributes.withValueFromStringFunction (std::move (x))); }
-    /** @see RangedAudioParameterAttributes::withLabel() */
-    [[nodiscard]] auto withLabel (String x)                            const { return withMember (*this, &This::attributes, attributes.withLabel                   (std::move (x))); }
-    /** @see RangedAudioParameterAttributes::withCategory() */
-    [[nodiscard]] auto withCategory (Category x)                       const { return withMember (*this, &This::attributes, attributes.withCategory                (std::move (x))); }
-    /** @see RangedAudioParameterAttributes::withMeta() */
-    [[nodiscard]] auto withMeta (bool x)                               const { return withMember (*this, &This::attributes, attributes.withMeta                    (std::move (x))); }
-    /** @see RangedAudioParameterAttributes::withAutomatable() */
-    [[nodiscard]] auto withAutomatable (bool x)                        const { return withMember (*this, &This::attributes, attributes.withAutomatable             (std::move (x))); }
-    /** @see RangedAudioParameterAttributes::withInverted() */
-    [[nodiscard]] auto withInverted (bool x)                           const { return withMember (*this, &This::attributes, attributes.withInverted                (std::move (x))); }
-
-    /** Pass 'true' if this parameter has discrete steps, or 'false' if the parameter is continuous.
-
-        Using an AudioParameterChoice or AudioParameterInt might be a better choice than setting this flag.
-    */
-    [[nodiscard]] auto withDiscrete (bool x)                           const { return withMember (*this, &This::discrete,   std::move (x)); }
-
-    /** Pass 'true' if this parameter only has two valid states.
-
-        Using an AudioParameterBool might be a better choice than setting this flag.
-    */
-    [[nodiscard]] auto withBoolean (bool x)                            const { return withMember (*this, &This::boolean,    std::move (x)); }
-
-    /** @returns all attributes that might also apply to an AudioParameterFloat */
-    [[nodiscard]] const auto& getAudioParameterFloatAttributes()       const { return attributes; }
-    /** @returns 'true' if this parameter has discrete steps, or 'false' if the parameter is continuous. */
-    [[nodiscard]] const auto& getDiscrete()                            const { return discrete; }
-    /** @returns 'true' if this parameter only has two valid states. */
-    [[nodiscard]] const auto& getBoolean()                             const { return boolean; }
-
-private:
-    AudioParameterFloatAttributes attributes;
-    bool discrete = false, boolean = false;
-};
 
 /**
     This class contains a ValueTree that is used to manage an AudioProcessor's entire state.
@@ -146,7 +81,12 @@ public:
         void add (std::unique_ptr<Items>... items)
         {
             parameters.reserve (parameters.size() + sizeof... (items));
-            (parameters.push_back (makeParameterStorage (std::move (items))), ...);
+
+            // We can replace this with some nicer code once generic lambdas become available. A
+            // sequential context like an array initialiser is required to ensure we get the correct
+            // order from the parameter pack.
+            int unused[] { (parameters.emplace_back (MakeContents() (std::move (items))), 0)... };
+            ignoreUnused (unused);
         }
 
         template <typename It, typename = ValidIfIterator<It>>
@@ -156,7 +96,7 @@ public:
             std::transform (std::make_move_iterator (begin),
                             std::make_move_iterator (end),
                             std::back_inserter (parameters),
-                            [] (auto item) { return makeParameterStorage (std::move (item)); });
+                            MakeContents());
         }
 
         ParameterLayout (const ParameterLayout& other) = delete;
@@ -197,11 +137,14 @@ public:
             std::unique_ptr<Contents> contents;
         };
 
-        template <typename Contents>
-        static std::unique_ptr<ParameterStorage<Contents>> makeParameterStorage (std::unique_ptr<Contents> contents)
+        struct MakeContents final
         {
-            return std::make_unique<ParameterStorage<Contents>> (std::move (contents));
-        }
+            template <typename Item>
+            std::unique_ptr<ParameterStorageBase> operator() (std::unique_ptr<Item> item) const
+            {
+                return std::unique_ptr<ParameterStorageBase> (new ParameterStorage<Item> (std::move (item)));
+            }
+        };
 
         void add() {}
 
@@ -232,7 +175,7 @@ public:
                        std::make_unique<AudioParameterInt> ("b", "Parameter B", 0, 5, 2) })
         @endcode
 
-        To add parameters programmatically you can call `add` repeatedly on a
+        To add parameters programatically you can call `add` repeatedly on a
         ParameterLayout instance:
 
         @code
@@ -279,7 +222,7 @@ public:
     ~AudioProcessorValueTreeState() override;
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     /** Previous calls to
 
         @code
@@ -326,7 +269,7 @@ public:
                                                  bool isDiscrete = false,
                                                  AudioProcessorParameter::Category parameterCategory = AudioProcessorParameter::genericParameter,
                                                  bool isBoolean = false);
-    /** @endcond */
+   #endif
 
     /** This function adds a parameter to the attached AudioProcessor and that parameter will
         be managed by this AudioProcessorValueTreeState object.
@@ -455,83 +398,34 @@ public:
     class Parameter final  : public AudioParameterFloat
     {
     public:
-        /** Constructs a parameter instance.
-
-            Example usage:
-            @code
-            using Parameter = AudioProcessorValueTreeState::Parameter;
-            using Attributes = AudioProcessorValueTreeStateParameterAttributes;
-
-            auto parameter = std::make_unique<Parameter> (ParameterID { "uniqueID", 1 },
-                                                          "Name",
-                                                          NormalisableRange<float> { 0.0f, 100.0f },
-                                                          50.0f,
-                                                          Attributes().withStringFromValueFunction (myStringFromValueFunction)
-                                                                      .withValueFromStringFunction (myValueFromStringFunction)
-                                                                      .withLabel ("%"));
-            @endcode
-
-            @param parameterID      The globally-unique identifier of this parameter
-            @param parameterName    The user-facing name of this parameter
-            @param valueRange       The valid range of values for this parameter
-            @param defaultValue     The initial parameter value
-            @param attributes       Further advanced settings to customise the behaviour of this parameter
-        */
-        Parameter (const ParameterID& parameterID,
-                   const String& parameterName,
-                   NormalisableRange<float> valueRange,
-                   float defaultValue,
-                   const AudioProcessorValueTreeStateParameterAttributes& attributes = {});
-
-        [[deprecated ("Prefer the signature taking an Attributes argument")]]
-        Parameter (const ParameterID& parameterID,
+        Parameter (const String& parameterID,
                    const String& parameterName,
                    const String& labelText,
                    NormalisableRange<float> valueRange,
-                   float defaultParameterValue,
+                   float defaultValue,
                    std::function<String (float)> valueToTextFunction,
                    std::function<float (const String&)> textToValueFunction,
                    bool isMetaParameter = false,
                    bool isAutomatableParameter = true,
                    bool isDiscrete = false,
                    AudioProcessorParameter::Category parameterCategory = AudioProcessorParameter::genericParameter,
-                   bool isBoolean = false)
-            : Parameter (parameterID,
-                         parameterName,
-                         valueRange,
-                         defaultParameterValue,
-                         AudioProcessorValueTreeStateParameterAttributes().withLabel (labelText)
-                                                                          .withStringFromValueFunction (adaptSignature (std::move (valueToTextFunction)))
-                                                                          .withValueFromStringFunction (std::move (textToValueFunction))
-                                                                          .withMeta (isMetaParameter)
-                                                                          .withAutomatable (isAutomatableParameter)
-                                                                          .withDiscrete (isDiscrete)
-                                                                          .withCategory (parameterCategory)
-                                                                          .withBoolean (isBoolean))
-        {
-        }
+                   bool isBoolean = false);
 
         float getDefaultValue() const override;
         int getNumSteps() const override;
 
+        bool isMetaParameter() const override;
+        bool isAutomatable() const override;
         bool isDiscrete() const override;
         bool isBoolean() const override;
 
     private:
-        static std::function<String (float, int)> adaptSignature (std::function<String (float)> func)
-        {
-            if (func == nullptr)
-                return nullptr;
-
-            return [f = std::move (func)] (float v, int) { return f (v); };
-        }
-
         void valueChanged (float) override;
 
         std::function<void()> onValueChanged;
 
         const float unsnappedDefault;
-        const bool discrete, boolean;
+        const bool metaParameter, automatable, discrete, boolean;
         std::atomic<float> lastValue { -1.0f };
 
         friend class AudioProcessorValueTreeState::ParameterAdapter;

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -44,12 +35,12 @@
 
   ID:                 juce_dsp
   vendor:             juce
-  version:            8.0.12
+  version:            6.1.3
   name:               JUCE DSP classes
   description:        Classes for audio buffer manipulation, digital audio processing, filtering, oversampling, fast math functions etc.
   website:            http://www.juce.com/juce
-  license:            AGPLv3/Commercial
-  minimumCppStandard: 17
+  license:            GPL/Commercial
+  minimumCppStandard: 14
 
   dependencies:       juce_audio_formats
   OSXFrameworks:      Accelerate
@@ -65,10 +56,11 @@
 #define JUCE_DSP_H_INCLUDED
 
 #include <juce_audio_basics/juce_audio_basics.h>
+#include <juce_audio_formats/juce_audio_formats.h>
 
-#if JUCE_INTEL
+#if defined(_M_X64) || defined(__amd64__) || defined(__SSE2__) || (defined(_M_IX86_FP) && _M_IX86_FP == 2)
 
- #if defined (_M_X64) || defined (__amd64__)
+ #if defined(_M_X64) || defined(__amd64__)
   #ifndef __SSE2__
    #define __SSE2__
   #endif
@@ -82,29 +74,13 @@
   #include <immintrin.h>
  #endif
 
-#elif JUCE_ARM
+#elif defined (__ARM_NEON__) || defined (__ARM_NEON) || defined (__arm64__) || defined (__aarch64__)
 
  #ifndef JUCE_USE_SIMD
-  #if JUCE_USE_ARM_NEON
-   #define JUCE_USE_SIMD 1
-  #else
-   #define JUCE_USE_SIMD 0
-  #endif
+  #define JUCE_USE_SIMD 1
  #endif
 
- #if JUCE_USE_SIMD
-  #if JUCE_WINDOWS
-   #if JUCE_64BIT
-    #if ! JUCE_CLANG
-     #include <arm64_neon.h>
-    #endif
-   #else
-    #include <arm_neon.h>
-   #endif
-  #else
-   #include <arm_neon.h>
-  #endif
- #endif
+ #include <arm_neon.h>
 
 #else
 
@@ -117,8 +93,8 @@
 
 #ifndef JUCE_VECTOR_CALLTYPE
  // __vectorcall does not work on 64-bit due to internal compiler error in
- // release mode VS2017. Re-enable when Microsoft fixes this
- #if _MSC_VER && JUCE_USE_SIMD && ! (defined (_M_X64) || defined (__amd64__))
+ // release mode in both VS2015 and VS2017. Re-enable when Microsoft fixes this
+ #if _MSC_VER && JUCE_USE_SIMD && ! (defined(_M_X64) || defined(__amd64__))
   #define JUCE_VECTOR_CALLTYPE __vectorcall
  #else
   #define JUCE_VECTOR_CALLTYPE
@@ -210,57 +186,54 @@
 #undef Factor
 #undef check
 
-namespace juce::dsp
+namespace juce
 {
+    namespace dsp
+    {
+        template <typename Type>
+        using Complex = std::complex<Type>;
 
-template <typename Type>
-using Complex = std::complex<Type>;
-
-template <size_t len, typename T>
-using FixedSizeFunction = juce::FixedSizeFunction<len, T>;
-
-//==============================================================================
-namespace util
-{
-    /** Use this function to prevent denormals on intel CPUs.
-        This function will work with both primitives and simple containers.
-    */
-   #if JUCE_DSP_ENABLE_SNAP_TO_ZERO
-    inline void snapToZero (float&       x) noexcept            { JUCE_SNAP_TO_ZERO (x); }
-    /** @cond */
-    inline void snapToZero (double&      x) noexcept            { JUCE_SNAP_TO_ZERO (x); }
-    inline void snapToZero (long double& x) noexcept            { JUCE_SNAP_TO_ZERO (x); }
-    /** @endcond */
-   #else
-    inline void snapToZero ([[maybe_unused]] float&       x) noexcept            {}
-    /** @cond */
-    inline void snapToZero ([[maybe_unused]] double&      x) noexcept            {}
-    inline void snapToZero ([[maybe_unused]] long double& x) noexcept            {}
-    /** @endcond */
-   #endif
-}
-
+        //==============================================================================
+        namespace util
+        {
+            /** Use this function to prevent denormals on intel CPUs.
+                This function will work with both primitives and simple containers.
+            */
+          #if JUCE_DSP_ENABLE_SNAP_TO_ZERO
+            inline void snapToZero (float&       x) noexcept            { JUCE_SNAP_TO_ZERO (x); }
+           #ifndef DOXYGEN
+            inline void snapToZero (double&      x) noexcept            { JUCE_SNAP_TO_ZERO (x); }
+            inline void snapToZero (long double& x) noexcept            { JUCE_SNAP_TO_ZERO (x); }
+           #endif
+          #else
+            inline void snapToZero (float&       x) noexcept            { ignoreUnused (x); }
+           #ifndef DOXYGEN
+            inline void snapToZero (double&      x) noexcept            { ignoreUnused (x); }
+            inline void snapToZero (long double& x) noexcept            { ignoreUnused (x); }
+           #endif
+          #endif
+        }
+    }
 }
 
 //==============================================================================
 #if JUCE_USE_SIMD
- #include "native/juce_SIMDNativeOps_fallback.h"
+ #include "native/juce_fallback_SIMDNativeOps.h"
 
  // include the correct native file for this build target CPU
- #if JUCE_INTEL
+ #if defined(__i386__) || defined(__amd64__) || defined(_M_X64) || defined(_X86_) || defined(_M_IX86)
   #ifdef __AVX2__
-   #include "native/juce_SIMDNativeOps_avx.h"
+   #include "native/juce_avx_SIMDNativeOps.h"
   #else
-   #include "native/juce_SIMDNativeOps_sse.h"
+   #include "native/juce_sse_SIMDNativeOps.h"
   #endif
- #elif JUCE_ARM
-  #include "native/juce_SIMDNativeOps_neon.h"
+ #elif defined(__arm__) || defined(_M_ARM) || defined (__arm64__) || defined (__aarch64__)
+  #include "native/juce_neon_SIMDNativeOps.h"
  #else
   #error "SIMD register support not implemented for this platform"
  #endif
 
  #include "containers/juce_SIMDRegister.h"
- #include "containers/juce_SIMDRegister_Impl.h"
 #endif
 
 #include "maths/juce_SpecialFunctions.h"
@@ -271,12 +244,12 @@ namespace util
 #include "maths/juce_LookupTable.h"
 #include "maths/juce_LogRampedValue.h"
 #include "containers/juce_AudioBlock.h"
+#include "containers/juce_FixedSizeFunction.h"
 #include "processors/juce_ProcessContext.h"
 #include "processors/juce_ProcessorWrapper.h"
 #include "processors/juce_ProcessorChain.h"
 #include "processors/juce_ProcessorDuplicator.h"
 #include "processors/juce_IIRFilter.h"
-#include "processors/juce_IIRFilter_Impl.h"
 #include "processors/juce_FIRFilter.h"
 #include "processors/juce_StateVariableFilter.h"
 #include "processors/juce_FirstOrderTPTFilter.h"

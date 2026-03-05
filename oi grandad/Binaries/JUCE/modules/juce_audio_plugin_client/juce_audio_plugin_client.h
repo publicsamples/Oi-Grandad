@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -44,12 +35,12 @@
 
   ID:                 juce_audio_plugin_client
   vendor:             juce
-  version:            8.0.12
+  version:            6.1.3
   name:               JUCE audio plugin wrapper classes
-  description:        Classes for building VST, VST3, AU, AUv3, LV2 and AAX plugins.
+  description:        Classes for building VST, VST3, AudioUnit, AAX and RTAS plugins.
   website:            http://www.juce.com/juce
-  license:            AGPLv3/Commercial
-  minimumCppStandard: 17
+  license:            GPL/Commercial
+  minimumCppStandard: 14
 
   dependencies:       juce_audio_processors
 
@@ -60,17 +51,16 @@
 
 #pragma once
 
+#include <juce_gui_basics/juce_gui_basics.h>
+#include <juce_audio_basics/juce_audio_basics.h>
+#include <juce_audio_processors/juce_audio_processors.h>
+
 /** Config: JUCE_VST3_CAN_REPLACE_VST2
 
     Enable this if you want your VST3 plug-in to load and save VST2 compatible
     state. This allows hosts to replace VST2 plug-ins with VST3 plug-ins. If
-    you change this option then your VST3 plug-in will, by default, be
-    incompatible with previous versions.
-
-    If you've already released a VST2 and VST3 with this flag set to 0, you can
-    still enable migration from VST2 to VST3 on newer hosts by defining the
-    JUCE_VST3_COMPATIBLE_CLASSES preprocessor and implementing the
-    VST3ClientExtensions::getCompatibleParameterIds() method.
+    you change this option then your VST3 plug-in will be incompatible with
+    previous versions.
 */
 #ifndef JUCE_VST3_CAN_REPLACE_VST2
  #define JUCE_VST3_CAN_REPLACE_VST2 1
@@ -78,12 +68,10 @@
 
 /** Config: JUCE_FORCE_USE_LEGACY_PARAM_IDS
 
-    Enable this if you want to force JUCE to use a continuous parameter index to
-    identify a parameter in a DAW (this was the default in old versions of JUCE,
-    and is always the default for VST2 plugins). This index is usually used by
-    the DAW to save automation data. Changing this setting may mess up user's
-    DAW projects, see VST3ClientExtensions::getCompatibleParameterIds() for a
-    way to overcome this issue on newer VST3 hosts.
+    Enable this if you want to force JUCE to use a continuous parameter
+    index to identify a parameter in a DAW (this was the default in old
+    versions of JUCE). This is index is usually used by the DAW to save
+    automation data and enabling this may mess up user's DAW projects.
 */
 #ifndef JUCE_FORCE_USE_LEGACY_PARAM_IDS
  #define JUCE_FORCE_USE_LEGACY_PARAM_IDS 0
@@ -134,15 +122,9 @@
     Enable this if you want your standalone plugin window to use kiosk mode.
     By default, kiosk mode is enabled on iOS and Android.
 */
+
 #ifndef JUCE_STANDALONE_FILTER_WINDOW_USE_KIOSK_MODE
  #define JUCE_STANDALONE_FILTER_WINDOW_USE_KIOSK_MODE (JUCE_IOS || JUCE_ANDROID)
 #endif
 
-/** Config: JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING
-
-    Enable this to ignore a warning caused by enabling JUCE_VST3_CAN_REPLACE_VST2
-    and not enabling JUCE_FORCE_USE_LEGACY_PARAM_IDS.
- */
-#ifndef JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING
- #define JUCE_IGNORE_VST3_MISMATCHED_PARAMETER_ID_WARNING 0
-#endif
+#include "utility/juce_CreatePluginFilter.h"

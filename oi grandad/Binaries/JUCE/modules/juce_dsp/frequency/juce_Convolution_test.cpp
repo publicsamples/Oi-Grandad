@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -38,12 +29,14 @@
 #define JUCE_FAIL_ON_ALLOCATION_IN_SCOPE
 #endif
 
-namespace juce::dsp
+namespace juce
+{
+namespace dsp
 {
 namespace
 {
 
-class ConvolutionTest final : public UnitTest
+class ConvolutionTest  : public UnitTest
 {
     template <typename Callback>
     static void nTimes (int n, Callback&& callback)
@@ -69,7 +62,7 @@ class ConvolutionTest final : public UnitTest
         AudioBuffer<float> result (2, length);
         result.clear();
 
-        auto* const* channels = result.getArrayOfWritePointers();
+        auto** channels = result.getArrayOfWritePointers();
         std::for_each (channels, channels + result.getNumChannels(), [length] (auto* channel)
         {
             std::fill (channel, channel + length, 1.0f);
@@ -104,7 +97,7 @@ class ConvolutionTest final : public UnitTest
 
             expect (std::any_of (channel, channel + block.getNumSamples(), [] (float sample)
             {
-                return ! approximatelyEqual (sample, 0.0f);
+                return sample != 0.0f;
             }));
         }
     }
@@ -200,7 +193,7 @@ class ConvolutionTest final : public UnitTest
                 processBlocksWithDiracImpulse();
 
                 // Check if the impulse response was loaded
-                if (! approximatelyEqual (block.getSample (0, 1), 0.0f))
+                if (block.getSample (0, 1) != 0.0f)
                     break;
             }
         }
@@ -477,7 +470,7 @@ public:
                              Convolution::Stereo::no,
                              Convolution::Trim::yes,
                              Convolution::Normalise::no,
-                             AudioBlock<const float> (channels, numElementsInArray (channels), (size_t) length));
+                             AudioBlock<const float> (channels, numElementsInArray (channels), length));
         }
 
         beginTest ("IRs with extra silence are trimmed appropriately");
@@ -582,6 +575,7 @@ public:
 ConvolutionTest convolutionUnitTest;
 
 }
-} // namespace juce::dsp
+}
+}
 
 #undef JUCE_FAIL_ON_ALLOCATION_IN_SCOPE

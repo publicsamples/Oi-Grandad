@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,14 +26,11 @@
 namespace juce
 {
 
-static const Identifier tableColumnProperty { "_tableColumnId" };
-static const Identifier tableAccessiblePlaceholderProperty { "_accessiblePlaceholder" };
-
-class TableListBox::RowComp final : public TooltipClient,
-                                    public ComponentWithListRowMouseBehaviours<RowComp>
+class TableListBox::RowComp   : public Component,
+                                public TooltipClient
 {
 public:
-    explicit RowComp (TableListBox& tlb)
+    RowComp (TableListBox& tlb) noexcept
         : owner (tlb)
     {
         setFocusContainerType (FocusContainerType::focusContainer);
@@ -50,17 +38,17 @@ public:
 
     void paint (Graphics& g) override
     {
-        if (auto* tableModel = owner.getTableListBoxModel())
+        if (auto* tableModel = owner.getModel())
         {
-            tableModel->paintRowBackground (g, getRow(), getWidth(), getHeight(), isSelected());
+            tableModel->paintRowBackground (g, row, getWidth(), getHeight(), isSelected);
 
             auto& headerComp = owner.getHeader();
-            const auto numColumns = jmin ((int) columnComponents.size(), headerComp.getNumColumns (true));
-            const auto clipBounds = g.getClipBounds();
+            auto numColumns = headerComp.getNumColumns (true);
+            auto clipBounds = g.getClipBounds();
 
             for (int i = 0; i < numColumns; ++i)
             {
-                if (columnComponents[(size_t) i]->getProperties().contains (tableAccessiblePlaceholderProperty))
+                if (columnComponents[i] == nullptr)
                 {
                     auto columnRect = headerComp.getColumnPosition (i).withHeight (getHeight());
 
@@ -74,8 +62,8 @@ public:
                         if (g.reduceClipRegion (columnRect))
                         {
                             g.setOrigin (columnRect.getX(), 0);
-                            tableModel->paintCell (g, getRow(), headerComp.getColumnIdOfIndex (i, true),
-                                                   columnRect.getWidth(), columnRect.getHeight(), isSelected());
+                            tableModel->paintCell (g, row, headerComp.getColumnIdOfIndex (i, true),
+                                                   columnRect.getWidth(), columnRect.getHeight(), isSelected);
                         }
                     }
                 }
@@ -87,68 +75,44 @@ public:
     {
         jassert (newRow >= 0);
 
-        updateRowAndSelection (newRow, isNowSelected);
-
-        auto* tableModel = owner.getTableListBoxModel();
-
-        if (tableModel != nullptr && getRow() < owner.getNumRows())
+        if (newRow != row || isNowSelected != isSelected)
         {
-            const ComponentDeleter deleter { columnForComponent };
-            const auto numColumns = owner.getHeader().getNumColumns (true);
+            row = newRow;
+            isSelected = isNowSelected;
+            repaint();
+        }
 
-            while (numColumns < (int) columnComponents.size())
-                columnComponents.pop_back();
+        auto* tableModel = owner.getModel();
 
-            while ((int) columnComponents.size() < numColumns)
-                columnComponents.emplace_back (nullptr, deleter);
+        if (tableModel != nullptr && row < owner.getNumRows())
+        {
+            const Identifier columnProperty ("_tableColumnId");
+            auto numColumns = owner.getHeader().getNumColumns (true);
 
             for (int i = 0; i < numColumns; ++i)
             {
                 auto columnId = owner.getHeader().getColumnIdOfIndex (i, true);
-                auto originalComp = std::move (columnComponents[(size_t) i]);
-                auto oldCustomComp = originalComp != nullptr && ! originalComp->getProperties().contains (tableAccessiblePlaceholderProperty)
-                                   ? std::move (originalComp)
-                                   : std::unique_ptr<Component, ComponentDeleter> { nullptr, deleter };
-                auto compToRefresh = oldCustomComp != nullptr && columnId == static_cast<int> (oldCustomComp->getProperties()[tableColumnProperty])
-                                   ? std::move (oldCustomComp)
-                                   : std::unique_ptr<Component, ComponentDeleter> { nullptr, deleter };
+                auto* comp = columnComponents[i];
 
-                columnForComponent.erase (compToRefresh.get());
-                std::unique_ptr<Component, ComponentDeleter> newCustomComp { tableModel->refreshComponentForCell (getRow(),
-                                                                                                                  columnId,
-                                                                                                                  isSelected(),
-                                                                                                                  compToRefresh.release()),
-                                                                             deleter };
-
-                auto columnComp = [&]
+                if (comp != nullptr && columnId != static_cast<int> (comp->getProperties() [columnProperty]))
                 {
-                    // We got a result from refreshComponentForCell, so use that
-                    if (newCustomComp != nullptr)
-                        return std::move (newCustomComp);
+                    columnComponents.set (i, nullptr);
+                    comp = nullptr;
+                }
 
-                    // There was already a placeholder component for this column
-                    if (originalComp != nullptr)
-                        return std::move (originalComp);
+                comp = tableModel->refreshComponentForCell (row, columnId, isSelected, comp);
+                columnComponents.set (i, comp, false);
 
-                    // Create a new placeholder component to use
-                    std::unique_ptr<Component, ComponentDeleter> comp { new Component, deleter };
-                    comp->setInterceptsMouseClicks (false, false);
-                    comp->getProperties().set (tableAccessiblePlaceholderProperty, true);
-                    return comp;
-                }();
+                if (comp != nullptr)
+                {
+                    comp->getProperties().set (columnProperty, columnId);
 
-                columnForComponent.emplace (columnComp.get(), i);
-
-                // In order for navigation to work correctly on macOS, the number of child
-                // accessibility elements on each row must match the number of header accessibility
-                // elements.
-                columnComp->setFocusContainerType (FocusContainerType::focusContainer);
-                columnComp->getProperties().set (tableColumnProperty, columnId);
-                addAndMakeVisible (*columnComp);
-
-                columnComponents[(size_t) i] = std::move (columnComp);
-                resizeCustomComp (i);
+                    addAndMakeVisible (comp);
+                    resizeCustomComp (i);
+                }
             }
+
+            columnComponents.removeRange (numColumns, columnComponents.size());
         }
         else
         {
@@ -158,42 +122,89 @@ public:
 
     void resized() override
     {
-        for (auto i = (int) columnComponents.size(); --i >= 0;)
+        for (int i = columnComponents.size(); --i >= 0;)
             resizeCustomComp (i);
     }
 
     void resizeCustomComp (int index)
     {
-        if (auto& c = columnComponents[(size_t) index])
+        if (auto* c = columnComponents.getUnchecked (index))
+            c->setBounds (owner.getHeader().getColumnPosition (index)
+                            .withY (0).withHeight (getHeight()));
+    }
+
+    void mouseDown (const MouseEvent& e) override
+    {
+        isDragging = false;
+        selectRowOnMouseUp = false;
+
+        if (isEnabled())
         {
-            c->setBounds (owner.getHeader()
-                               .getColumnPosition (index)
-                               .withY (0)
-                               .withHeight (getHeight()));
+            if (! isSelected)
+            {
+                owner.selectRowsBasedOnModifierKeys (row, e.mods, false);
+
+                auto columnId = owner.getHeader().getColumnIdAtX (e.x);
+
+                if (columnId != 0)
+                    if (auto* m = owner.getModel())
+                        m->cellClicked (row, columnId, e);
+            }
+            else
+            {
+                selectRowOnMouseUp = true;
+            }
         }
     }
 
-    void performSelection (const MouseEvent& e, bool isMouseUp)
+    void mouseDrag (const MouseEvent& e) override
     {
-        owner.selectRowsBasedOnModifierKeys (getRow(), e.mods, isMouseUp);
+        if (isEnabled()
+             && owner.getModel() != nullptr
+             && e.mouseWasDraggedSinceMouseDown()
+             && ! isDragging)
+        {
+            SparseSet<int> rowsToDrag;
 
-        auto columnId = owner.getHeader().getColumnIdAtX (e.x);
+            if (owner.selectOnMouseDown || owner.isRowSelected (row))
+                rowsToDrag = owner.getSelectedRows();
+            else
+                rowsToDrag.addRange (Range<int>::withStartAndLength (row, 1));
 
-        if (columnId != 0)
-            if (auto* m = owner.getTableListBoxModel())
-                m->cellClicked (getRow(), columnId, e);
+            if (rowsToDrag.size() > 0)
+            {
+                auto dragDescription = owner.getModel()->getDragSourceDescription (rowsToDrag);
+
+                if (! (dragDescription.isVoid() || (dragDescription.isString() && dragDescription.toString().isEmpty())))
+                {
+                    isDragging = true;
+                    owner.startDragAndDrop (e, rowsToDrag, dragDescription, true);
+                }
+            }
+        }
+    }
+
+    void mouseUp (const MouseEvent& e) override
+    {
+        if (selectRowOnMouseUp && e.mouseWasClicked() && isEnabled())
+        {
+            owner.selectRowsBasedOnModifierKeys (row, e.mods, true);
+
+            auto columnId = owner.getHeader().getColumnIdAtX (e.x);
+
+            if (columnId != 0)
+                if (TableListBoxModel* m = owner.getModel())
+                    m->cellClicked (row, columnId, e);
+        }
     }
 
     void mouseDoubleClick (const MouseEvent& e) override
     {
-        if (! isEnabled())
-            return;
-
-        const auto columnId = owner.getHeader().getColumnIdAtX (e.x);
+        auto columnId = owner.getHeader().getColumnIdAtX (e.x);
 
         if (columnId != 0)
-            if (auto* m = owner.getTableListBoxModel())
-                m->cellDoubleClicked (getRow(), columnId, e);
+            if (auto* m = owner.getModel())
+                m->cellDoubleClicked (row, columnId, e);
     }
 
     String getTooltip() override
@@ -201,26 +212,15 @@ public:
         auto columnId = owner.getHeader().getColumnIdAtX (getMouseXYRelative().getX());
 
         if (columnId != 0)
-            if (auto* m = owner.getTableListBoxModel())
-                return m->getCellTooltip (getRow(), columnId);
+            if (auto* m = owner.getModel())
+                return m->getCellTooltip (row, columnId);
 
         return {};
     }
 
     Component* findChildComponentForColumn (int columnId) const
     {
-        const auto index = (size_t) owner.getHeader().getIndexOfColumnId (columnId, true);
-
-        if (isPositiveAndBelow (index, columnComponents.size()))
-            return columnComponents[index].get();
-
-        return nullptr;
-    }
-
-    int getColumnNumberOfComponent (const Component* comp) const
-    {
-        const auto iter = columnForComponent.find (comp);
-        return iter != columnForComponent.cend() ? iter->second : -1;
+        return columnComponents [owner.getHeader().getIndexOfColumnId (columnId, true)];
     }
 
     std::unique_ptr<AccessibilityHandler> createAccessibilityHandler() override
@@ -228,11 +228,8 @@ public:
         return std::make_unique<RowAccessibilityHandler> (*this);
     }
 
-    TableListBox& getOwner() const { return owner; }
-
-private:
     //==============================================================================
-    class RowAccessibilityHandler final : public AccessibilityHandler
+    class RowAccessibilityHandler  : public AccessibilityHandler
     {
     public:
         RowAccessibilityHandler (RowComp& rowComp)
@@ -247,7 +244,7 @@ private:
         String getTitle() const override
         {
             if (auto* m = rowComponent.owner.ListBox::model)
-                return m->getNameForRow (rowComponent.getRow());
+                return m->getNameForRow (rowComponent.row);
 
             return {};
         }
@@ -256,8 +253,11 @@ private:
 
         AccessibleState getCurrentState() const override
         {
-            if (auto* m = rowComponent.owner.getTableListBoxModel())
-                if (rowComponent.getRow() >= m->getNumRows())
+			return {};
+
+#if 0
+            if (auto* m = rowComponent.owner.getModel())
+                if (rowComponent.row >= m->getNumRows())
                     return AccessibleState().withIgnored();
 
             auto state = AccessibilityHandler::getCurrentState();
@@ -267,20 +267,26 @@ private:
             else
                 state = state.withSelectable();
 
-            if (rowComponent.isSelected())
+            if (rowComponent.isSelected)
                 return state.withSelected();
 
             return state;
+#endif
         }
 
-    private:
-        class RowComponentCellInterface final : public AccessibilityCellInterface
+        class RowComponentCellInterface  : public AccessibilityCellInterface
         {
         public:
             RowComponentCellInterface (RowAccessibilityHandler& handler)
                 : owner (handler)
             {
             }
+
+            int getColumnIndex() const override      { return 0; }
+            int getColumnSpan() const override       { return 1; }
+
+            int getRowIndex() const override         { return owner.rowComponent.row; }
+            int getRowSpan() const override          { return 1; }
 
             int getDisclosureLevel() const override  { return 0; }
 
@@ -295,51 +301,34 @@ private:
     };
 
     //==============================================================================
-    class ComponentDeleter
-    {
-    public:
-        explicit ComponentDeleter (std::map<const Component*, int>& locations)
-            : columnForComponent (&locations) {}
-
-        void operator() (Component* comp) const
-        {
-            columnForComponent->erase (comp);
-
-            if (comp != nullptr)
-                delete comp;
-        }
-
-    private:
-        std::map<const Component*, int>* columnForComponent;
-    };
-
     TableListBox& owner;
-    std::map<const Component*, int> columnForComponent;
-    std::vector<std::unique_ptr<Component, ComponentDeleter>> columnComponents;
+    OwnedArray<Component> columnComponents;
+    int row = -1;
+    bool isSelected = false, isDragging = false, selectRowOnMouseUp = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RowComp)
 };
 
 
 //==============================================================================
-class TableListBox::Header final : public TableHeaderComponent
+class TableListBox::Header  : public TableHeaderComponent
 {
 public:
     Header (TableListBox& tlb)  : owner (tlb) {}
 
-    void addMenuItems (PopupMenu& menu, int columnIdClicked) override
+    void addMenuItems (PopupMenu& menu, int columnIdClicked)
     {
         if (owner.isAutoSizeMenuOptionShown())
         {
-            menu.addItem (autoSizeColumnId, TRANS ("Auto-size this column"), columnIdClicked != 0);
-            menu.addItem (autoSizeAllId, TRANS ("Auto-size all columns"), owner.getHeader().getNumColumns (true) > 0);
+            menu.addItem (autoSizeColumnId, TRANS("Auto-size this column"), columnIdClicked != 0);
+            menu.addItem (autoSizeAllId, TRANS("Auto-size all columns"), owner.getHeader().getNumColumns (true) > 0);
             menu.addSeparator();
         }
 
         TableHeaderComponent::addMenuItems (menu, columnIdClicked);
     }
 
-    void reactToMenuItem (int menuReturnId, int columnIdClicked) override
+    void reactToMenuItem (int menuReturnId, int columnIdClicked)
     {
         switch (menuReturnId)
         {
@@ -361,7 +350,7 @@ private:
 TableListBox::TableListBox (const String& name, TableListBoxModel* const m)
     : ListBox (name, nullptr), model (m)
 {
-    ListBox::assignModelPtr (this);
+    ListBox::model = this;
 
     setHeader (std::make_unique<Header> (*this));
 }
@@ -559,25 +548,9 @@ void TableListBox::updateColumnComponents() const
             rowComp->resized();
 }
 
-template <typename FindIndex>
-Optional<AccessibilityTableInterface::Span> findRecursively (const AccessibilityHandler& handler,
-                                                             Component* outermost,
-                                                             FindIndex&& findIndexOfComponent)
-{
-    for (auto* comp = &handler.getComponent(); comp != outermost; comp = comp->getParentComponent())
-    {
-        const auto result = findIndexOfComponent (comp);
-
-        if (result != -1)
-            return AccessibilityTableInterface::Span { result, 1 };
-    }
-
-    return nullopt;
-}
-
 std::unique_ptr<AccessibilityHandler> TableListBox::createAccessibilityHandler()
 {
-    class TableInterface final : public AccessibilityTableInterface
+    class TableInterface  : public AccessibilityTableInterface
     {
     public:
         explicit TableInterface (TableListBox& tableListBoxToWrap)
@@ -587,7 +560,7 @@ std::unique_ptr<AccessibilityHandler> TableListBox::createAccessibilityHandler()
 
         int getNumRows() const override
         {
-            if (auto* tableModel = tableListBox.getTableListBoxModel())
+            if (auto* tableModel = tableListBox.getModel())
                 return tableModel->getNumRows();
 
             return 0;
@@ -595,62 +568,22 @@ std::unique_ptr<AccessibilityHandler> TableListBox::createAccessibilityHandler()
 
         int getNumColumns() const override
         {
-            return tableListBox.getHeader().getNumColumns (true);
-        }
-
-        const AccessibilityHandler* getRowHandler (int row) const override
-        {
-            if (isPositiveAndBelow (row, getNumRows()))
-                if (auto* rowComp = tableListBox.getComponentForRowNumber (row))
-                    return rowComp->getAccessibilityHandler();
-
-            return nullptr;
+            return tableListBox.getHeader().getNumColumns (false);
         }
 
         const AccessibilityHandler* getCellHandler (int row, int column) const override
         {
-            if (isPositiveAndBelow (row, getNumRows()) && isPositiveAndBelow (column, getNumColumns()))
-                if (auto* cellComponent = tableListBox.getCellComponent (tableListBox.getHeader().getColumnIdOfIndex (column, true), row))
-                    return cellComponent->getAccessibilityHandler();
-
-            return nullptr;
-        }
-
-        const AccessibilityHandler* getHeaderHandler() const override
-        {
-            if (tableListBox.hasAccessibleHeaderComponent())
-                return tableListBox.headerComponent->getAccessibilityHandler();
-
-            return nullptr;
-        }
-
-        Optional<Span> getRowSpan (const AccessibilityHandler& handler) const override
-        {
-            if (tableListBox.isParentOf (&handler.getComponent()))
-                return findRecursively (handler, &tableListBox, [&] (auto* c) { return tableListBox.getRowNumberOfComponent (c); });
-
-            return nullopt;
-        }
-
-        Optional<Span> getColumnSpan (const AccessibilityHandler& handler) const override
-        {
-            if (const auto rowSpan = getRowSpan (handler))
-                if (auto* rowComponent = dynamic_cast<RowComp*> (tableListBox.getComponentForRowNumber (rowSpan->begin)))
-                    return findRecursively (handler, &tableListBox, [&] (auto* c) { return rowComponent->getColumnNumberOfComponent (c); });
-
-            return nullopt;
-        }
-
-        void showCell (const AccessibilityHandler& handler) const override
-        {
-            const auto row = getRowSpan (handler);
-            const auto col = getColumnSpan (handler);
-
-            if (row.hasValue() && col.hasValue())
+            if (isPositiveAndBelow (row, getNumRows()))
             {
-                tableListBox.scrollToEnsureRowIsOnscreen (row->begin);
-                tableListBox.scrollToEnsureColumnIsOnscreen (col->begin);
+                if (isPositiveAndBelow (column, getNumColumns()))
+                    if (auto* cellComponent = tableListBox.getCellComponent (tableListBox.getHeader().getColumnIdOfIndex (column, false), row))
+                        return cellComponent->getAccessibilityHandler();
+
+                if (auto* rowComp = tableListBox.getComponentForRowNumber (row))
+                    return rowComp->getAccessibilityHandler();
             }
+
+            return nullptr;
         }
 
     private:
@@ -660,7 +593,7 @@ std::unique_ptr<AccessibilityHandler> TableListBox::createAccessibilityHandler()
     };
 
     return std::make_unique<AccessibilityHandler> (*this,
-                                                   AccessibilityRole::table,
+                                                   AccessibilityRole::list,
                                                    AccessibilityActions{},
                                                    AccessibilityHandler::Interfaces { std::make_unique<TableInterface> (*this) });
 }
@@ -679,8 +612,9 @@ void TableListBoxModel::listWasScrolled()                               {}
 String TableListBoxModel::getCellTooltip (int /*rowNumber*/, int /*columnId*/)    { return {}; }
 var TableListBoxModel::getDragSourceDescription (const SparseSet<int>&)           { return {}; }
 
-Component* TableListBoxModel::refreshComponentForCell (int, int, bool, [[maybe_unused]] Component* existingComponentToUpdate)
+Component* TableListBoxModel::refreshComponentForCell (int, int, bool, Component* existingComponentToUpdate)
 {
+    ignoreUnused (existingComponentToUpdate);
     jassert (existingComponentToUpdate == nullptr); // indicates a failure in the code that recycles the components
     return nullptr;
 }

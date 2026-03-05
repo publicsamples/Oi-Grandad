@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -40,24 +28,67 @@
 #if JUCE_MAC || JUCE_IOS
 
  #if JUCE_IOS
-  #if JUCE_MODULE_AVAILABLE_juce_opengl
+  #if JUCE_MODULE_AVAILABLE_juce_opengl && defined (__IPHONE_12_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_12_0
    #define GLES_SILENCE_DEPRECATION 1
   #endif
 
-  #define Component CarbonDummyCompName
   #import <Foundation/Foundation.h>
-  #undef Component
-
   #import <UIKit/UIKit.h>
   #import <CoreData/CoreData.h>
   #import <MobileCoreServices/MobileCoreServices.h>
   #include <sys/fcntl.h>
  #else
-  #if JUCE_MODULE_AVAILABLE_juce_opengl
+  #if JUCE_MODULE_AVAILABLE_juce_opengl && defined (MAC_OS_X_VERSION_10_14) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_14
    #define GL_SILENCE_DEPRECATION 1
   #endif
 
   #import <Cocoa/Cocoa.h>
+  #if (! defined MAC_OS_X_VERSION_10_12) || MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_12
+   #define NSEventModifierFlagCommand       NSCommandKeyMask
+   #define NSEventModifierFlagControl       NSControlKeyMask
+   #define NSEventModifierFlagHelp          NSHelpKeyMask
+   #define NSEventModifierFlagNumericPad    NSNumericPadKeyMask
+   #define NSEventModifierFlagOption        NSAlternateKeyMask
+   #define NSEventModifierFlagShift         NSShiftKeyMask
+   #define NSCompositingOperationSourceOver NSCompositeSourceOver
+   #define NSEventMaskApplicationDefined    NSApplicationDefinedMask
+   #define NSEventTypeApplicationDefined    NSApplicationDefined
+   #define NSEventTypeCursorUpdate          NSCursorUpdate
+   #define NSEventTypeMouseMoved            NSMouseMoved
+   #define NSEventTypeLeftMouseDown         NSLeftMouseDown
+   #define NSEventTypeRightMouseDown        NSRightMouseDown
+   #define NSEventTypeOtherMouseDown        NSOtherMouseDown
+   #define NSEventTypeLeftMouseUp           NSLeftMouseUp
+   #define NSEventTypeRightMouseUp          NSRightMouseUp
+   #define NSEventTypeOtherMouseUp          NSOtherMouseUp
+   #define NSEventTypeLeftMouseDragged      NSLeftMouseDragged
+   #define NSEventTypeRightMouseDragged     NSRightMouseDragged
+   #define NSEventTypeOtherMouseDragged     NSOtherMouseDragged
+   #define NSEventTypeScrollWheel           NSScrollWheel
+   #define NSEventTypeKeyDown               NSKeyDown
+   #define NSEventTypeKeyUp                 NSKeyUp
+   #define NSEventTypeFlagsChanged          NSFlagsChanged
+   #define NSEventMaskAny                   NSAnyEventMask
+   #define NSWindowStyleMaskBorderless      NSBorderlessWindowMask
+   #define NSWindowStyleMaskClosable        NSClosableWindowMask
+   #define NSWindowStyleMaskFullScreen      NSFullScreenWindowMask
+   #define NSWindowStyleMaskMiniaturizable  NSMiniaturizableWindowMask
+   #define NSWindowStyleMaskResizable       NSResizableWindowMask
+   #define NSWindowStyleMaskTitled          NSTitledWindowMask
+   #define NSAlertStyleCritical             NSCriticalAlertStyle
+   #define NSControlSizeRegular             NSRegularControlSize
+   #define NSEventTypeMouseEntered          NSMouseEntered
+   #define NSEventTypeMouseExited           NSMouseExited
+   #define NSAlertStyleInformational        NSInformationalAlertStyle
+   #define NSEventTypeTabletPoint           NSTabletPoint
+   #define NSEventTypeTabletProximity       NSTabletProximity
+   #define NSEventTypeFlagsChanged          NSFlagsChanged
+   #define NSEventTypeAppKitDefined         NSAppKitDefined
+   #define NSEventTypeSystemDefined         NSSystemDefined
+   #define NSEventTypeApplicationDefined    NSApplicationDefined
+   #define NSEventTypePeriodic              NSPeriodic
+   #define NSEventTypeSmartMagnify          NSEventTypeSmartMagnify
+  #endif
   #import <CoreAudio/HostTime.h>
   #include <sys/dir.h>
  #endif
@@ -100,8 +131,11 @@
  #define _WINSOCK_DEPRECATED_NO_WARNINGS 1
  #define STRICT 1
  #define WIN32_LEAN_AND_MEAN 1
- #define WINVER _WIN32_WINNT_WIN10
- #define _WIN32_WINNT _WIN32_WINNT_WIN10
+ #if JUCE_MINGW
+  #define _WIN32_WINNT 0x0600
+ #else
+  #define _WIN32_WINNT 0x0602
+ #endif
  #define _UNICODE 1
  #define UNICODE 1
  #ifndef _WIN32_IE
@@ -118,8 +152,6 @@
  #include <winsock2.h>
  #include <ws2tcpip.h>
  #include <iphlpapi.h>
- #include <accctrl.h>
- #include <aclapi.h>
  #include <mapi.h>
  #include <float.h>
  #include <process.h>
@@ -128,8 +160,16 @@
  #include <mmsystem.h>
  #include <winioctl.h>
 
- #include <crtdbg.h>
- #include <comutil.h>
+ #if JUCE_MINGW
+  #include <basetyps.h>
+  #include <sys/time.h>
+  #ifndef alloca
+   #define alloca __builtin_alloca
+  #endif
+ #else
+  #include <crtdbg.h>
+  #include <comutil.h>
+ #endif
 
  #ifndef S_FALSE
   #define S_FALSE (1) // (apparently some obscure win32 dev environments don't define this)
@@ -142,7 +182,7 @@
   #pragma warning (4: 4511 4512 4100)
  #endif
 
- #if ! JUCE_DONT_AUTOLINK_TO_WIN32_LIBRARIES
+ #if ! JUCE_MINGW && ! JUCE_DONT_AUTOLINK_TO_WIN32_LIBRARIES
   #pragma comment (lib, "kernel32.lib")
   #pragma comment (lib, "user32.lib")
   #pragma comment (lib, "wininet.lib")
@@ -202,14 +242,11 @@
  #include <sys/ptrace.h>
  #include <sys/socket.h>
  #include <sys/stat.h>
- #include <sys/syscall.h>
  #include <sys/sysinfo.h>
  #include <sys/time.h>
  #include <sys/types.h>
  #include <sys/vfs.h>
  #include <sys/wait.h>
- #include <sys/timerfd.h>
- #include <sys/eventfd.h>
  #include <utime.h>
  #include <poll.h>
 
@@ -266,17 +303,15 @@
  #include <dirent.h>
  #include <fnmatch.h>
  #include <sys/wait.h>
- #include <sys/timerfd.h>
- #include <sys/eventfd.h>
  #include <android/api-level.h>
  #include <poll.h>
 
- // If you are getting include errors here, then you need to re-build
- // the Projucer and re-save your .jucer file.
+ // If you are getting include errors here, then you to re-build the Projucer
+ // and re-save your .jucer file.
  #include <cpu-features.h>
 #endif
 
-// Need to clear various redefinitions made by system headers.
+// Need to clear various moronic redefinitions made by system headers..
 #undef max
 #undef min
 #undef direct

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -84,7 +75,7 @@
 #elif JUCE_WINDOWS
  #include <windowsx.h>
 
- #if ! JUCE_DONT_AUTOLINK_TO_WIN32_LIBRARIES
+ #if ! JUCE_MINGW && ! JUCE_DONT_AUTOLINK_TO_WIN32_LIBRARIES
   #pragma comment(lib, "OpenGL32.Lib")
  #endif
 
@@ -126,7 +117,7 @@ JUCE_GL_EXTENSION_FUNCTIONS
 JUCE_GL_VERTEXBUFFER_FUNCTIONS
 #undef X
 
-#if JUCE_DEBUG && ! JUCE_DISABLE_ASSERTIONS && ! defined (JUCE_CHECK_OPENGL_ERROR)
+#if JUCE_DEBUG && ! defined (JUCE_CHECK_OPENGL_ERROR)
 static const char* getGLErrorMessage (const GLenum e) noexcept
 {
     switch (e)
@@ -172,22 +163,24 @@ static bool checkPeerIsValid (OpenGLContext* context)
     {
         if (auto* comp = context->getTargetComponent())
         {
-            if (auto* peer [[maybe_unused]] = comp->getPeer())
+            if (auto* peer = comp->getPeer())
             {
                #if JUCE_MAC || JUCE_IOS
                 if (auto* nsView = (JUCE_IOS_MAC_VIEW*) peer->getNativeHandle())
                 {
-                    if ([[maybe_unused]] auto nsWindow = [nsView window])
+                    if (auto nsWindow = [nsView window])
                     {
                        #if JUCE_MAC
                         return ([nsWindow isVisible]
                                   && (! [nsWindow hidesOnDeactivate] || [NSApp isActive]));
                        #else
+                        ignoreUnused (nsWindow);
                         return true;
                        #endif
                     }
                 }
                #else
+                ignoreUnused (peer);
                 return true;
                #endif
             }
@@ -197,7 +190,7 @@ static bool checkPeerIsValid (OpenGLContext* context)
     return false;
 }
 
-static void checkGLError ([[maybe_unused]] const char* file, [[maybe_unused]] const int line)
+static void checkGLError (const char* file, const int line)
 {
     for (;;)
     {
@@ -222,31 +215,29 @@ static void checkGLError ([[maybe_unused]] const char* file, [[maybe_unused]] co
 
 static void clearGLError() noexcept
 {
-   #if JUCE_DEBUG
     while (glGetError() != GL_NO_ERROR) {}
-   #endif
 }
 
 struct OpenGLTargetSaver
 {
-    OpenGLTargetSaver() noexcept
-        : oldFramebuffer (OpenGLFrameBuffer::getCurrentFrameBufferTarget())
+    OpenGLTargetSaver (const OpenGLContext& c) noexcept
+        : context (c), oldFramebuffer (OpenGLFrameBuffer::getCurrentFrameBufferTarget())
     {
         glGetIntegerv (GL_VIEWPORT, oldViewport);
     }
 
     ~OpenGLTargetSaver() noexcept
     {
-        gl::glBindFramebuffer (GL_FRAMEBUFFER, oldFramebuffer);
+        context.extensions.glBindFramebuffer (GL_FRAMEBUFFER, oldFramebuffer);
         glViewport (oldViewport[0], oldViewport[1], oldViewport[2], oldViewport[3]);
     }
 
-    JUCE_DECLARE_NON_COPYABLE (OpenGLTargetSaver)
-    JUCE_DECLARE_NON_MOVEABLE (OpenGLTargetSaver)
-
 private:
+    const OpenGLContext& context;
     GLuint oldFramebuffer;
     GLint oldViewport[4];
+
+    OpenGLTargetSaver& operator= (const OpenGLTargetSaver&);
 };
 
 } // namespace juce
@@ -264,14 +255,14 @@ private:
 #if JUCE_MAC || JUCE_IOS
 
  #if JUCE_MAC
-  #include "native/juce_OpenGL_mac.h"
+  #include "native/juce_OpenGL_osx.h"
  #else
   #include "native/juce_OpenGL_ios.h"
  #endif
 
 #elif JUCE_WINDOWS
  #include "opengl/juce_wgl.h"
- #include "native/juce_OpenGL_windows.h"
+ #include "native/juce_OpenGL_win32.h"
 
 #define JUCE_IMPL_WGL_EXTENSION_FUNCTION(name) \
     decltype (juce::OpenGLContext::NativeContext::name) juce::OpenGLContext::NativeContext::name = nullptr;
@@ -284,8 +275,7 @@ JUCE_IMPL_WGL_EXTENSION_FUNCTION (wglCreateContextAttribsARB)
 #undef JUCE_IMPL_WGL_EXTENSION_FUNCTION
 
 #elif JUCE_LINUX || JUCE_BSD
- #include <juce_gui_basics/native/juce_ScopedWindowAssociation_linux.h>
- #include "native/juce_OpenGL_linux.h"
+ #include "native/juce_OpenGL_linux_X11.h"
 
 #elif JUCE_ANDROID
  #include "native/juce_OpenGL_android.h"

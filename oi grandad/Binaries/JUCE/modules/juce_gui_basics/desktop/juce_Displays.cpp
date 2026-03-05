@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,14 +26,14 @@
 namespace juce
 {
 
-Displays::Displays (const Desktop& desktop)
+Displays::Displays (Desktop& desktop)
 {
     init (desktop);
 }
 
-void Displays::init (const Desktop& desktop)
+void Displays::init (Desktop& desktop)
 {
-    findDisplays (desktop);
+    findDisplays (desktop.getGlobalScaleFactor());
 }
 
 const Displays::Display* Displays::getDisplayForRect (Rectangle<int> rect, bool isPhysical) const noexcept
@@ -173,8 +164,11 @@ const Displays::Display* Displays::getPrimaryDisplay() const noexcept
 {
     JUCE_ASSERT_MESSAGE_MANAGER_IS_LOCKED
 
-    const auto iter = std::find_if (displays.begin(), displays.end(), [] (auto& d) { return d.isMain; });
-    return iter != displays.end() ? iter : nullptr;
+    for (auto& d : displays)
+        if (d.isMain)
+            return &d;
+
+    return nullptr;
 }
 
 RectangleList<int> Displays::getRectangleList (bool userAreasOnly) const
@@ -208,22 +202,19 @@ void Displays::refresh()
     }
 }
 
-static auto tie (const Displays::Display& d)
+bool operator== (const Displays::Display& d1, const Displays::Display& d2) noexcept;
+bool operator== (const Displays::Display& d1, const Displays::Display& d2) noexcept
 {
-    return std::tie (d.dpi,
-                     d.isMain,
-                     d.keyboardInsets,
-                     d.safeAreaInsets,
-                     d.scale,
-                     d.topLeftPhysical,
-                     d.totalArea,
-                     d.userArea);
+    return d1.isMain          == d2.isMain
+        && d1.totalArea       == d2.totalArea
+        && d1.userArea        == d2.userArea
+        && d1.topLeftPhysical == d2.topLeftPhysical
+        && d1.scale           == d2.scale
+        && d1.dpi             == d2.dpi;
 }
 
-static bool operator== (const Displays::Display& d1, const Displays::Display& d2) noexcept
-{
-    return tie (d1) == tie (d2);
-}
+bool operator!= (const Displays::Display& d1, const Displays::Display& d2) noexcept;
+bool operator!= (const Displays::Display& d1, const Displays::Display& d2) noexcept    { return ! (d1 == d2); }
 
 //==============================================================================
 // These methods are used for converting the totalArea and userArea Rectangles in Display from physical to logical
@@ -269,10 +260,10 @@ static void processDisplay (DisplayNode* currentNode, Array<DisplayNode>& allNod
 
         Rectangle<double> logicalArea (0.0, 0.0, logicalWidth, logicalHeight);
 
-        if      (approximatelyEqual (physicalArea.getRight(), physicalParentArea.getX()))     logicalArea.setPosition ({ logicalParentArea.getX() - logicalWidth, physicalArea.getY() / parentScale });  // on left
-        else if (approximatelyEqual (physicalArea.getX(), physicalParentArea.getRight()))     logicalArea.setPosition ({ logicalParentArea.getRight(),  physicalArea.getY() / parentScale });            // on right
-        else if (approximatelyEqual (physicalArea.getBottom(), physicalParentArea.getY()))    logicalArea.setPosition ({ physicalArea.getX() / parentScale, logicalParentArea.getY() - logicalHeight }); // on top
-        else if (approximatelyEqual (physicalArea.getY(), physicalParentArea.getBottom()))    logicalArea.setPosition ({ physicalArea.getX() / parentScale, logicalParentArea.getBottom() });            // on bottom
+        if      (physicalArea.getRight() == physicalParentArea.getX())     logicalArea.setPosition ({ logicalParentArea.getX() - logicalWidth, physicalArea.getY() / parentScale });  // on left
+        else if (physicalArea.getX() == physicalParentArea.getRight())     logicalArea.setPosition ({ logicalParentArea.getRight(),  physicalArea.getY() / parentScale });            // on right
+        else if (physicalArea.getBottom() == physicalParentArea.getY())    logicalArea.setPosition ({ physicalArea.getX() / parentScale, logicalParentArea.getY() - logicalHeight }); // on top
+        else if (physicalArea.getY() == physicalParentArea.getBottom())    logicalArea.setPosition ({ physicalArea.getX() / parentScale, logicalParentArea.getBottom() });            // on bottom
         else                                                               jassertfalse;
 
         currentNode->logicalArea = logicalArea;
@@ -295,8 +286,8 @@ static void processDisplay (DisplayNode* currentNode, Array<DisplayNode>& allNod
         const auto otherPhysicalArea = node.display->totalArea.toDouble();
 
         // If the displays are touching on any side
-        if (approximatelyEqual (otherPhysicalArea.getX(), physicalArea.getRight())  || approximatelyEqual (otherPhysicalArea.getRight(),  physicalArea.getX())
-         || approximatelyEqual (otherPhysicalArea.getY(), physicalArea.getBottom()) || approximatelyEqual (otherPhysicalArea.getBottom(), physicalArea.getY()))
+        if (otherPhysicalArea.getX() == physicalArea.getRight()  || otherPhysicalArea.getRight() == physicalArea.getX()
+            || otherPhysicalArea.getY() == physicalArea.getBottom() || otherPhysicalArea.getBottom() == physicalArea.getY())
         {
             node.parent = currentNode;
             children.add (&node);
@@ -383,14 +374,14 @@ void Displays::updateToLogical()
     }
 }
 
-/** @cond */
-// explicit template instantiations
-template Point<int>   Displays::physicalToLogical (Point<int>,   const Display*) const noexcept;
-template Point<float> Displays::physicalToLogical (Point<float>, const Display*) const noexcept;
+#ifndef DOXYGEN
+ // explicit template instantiations
+ template Point<int>   Displays::physicalToLogical (Point<int>,   const Display*) const noexcept;
+ template Point<float> Displays::physicalToLogical (Point<float>, const Display*) const noexcept;
 
-template Point<int>   Displays::logicalToPhysical (Point<int>,   const Display*) const noexcept;
-template Point<float> Displays::logicalToPhysical (Point<float>, const Display*) const noexcept;
-/** @endcond */
+ template Point<int>   Displays::logicalToPhysical (Point<int>,   const Display*) const noexcept;
+ template Point<float> Displays::logicalToPhysical (Point<float>, const Display*) const noexcept;
+#endif
 
 //==============================================================================
 // Deprecated methods

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -44,12 +35,12 @@ AffineTransform::AffineTransform (float m00, float m01, float m02,
 
 bool AffineTransform::operator== (const AffineTransform& other) const noexcept
 {
-    const auto tie = [] (const AffineTransform& a)
-    {
-        return std::tie (a.mat00, a.mat01, a.mat02, a.mat10, a.mat11, a.mat12);
-    };
-
-    return tie (*this) == tie (other);
+    return mat00 == other.mat00
+        && mat01 == other.mat01
+        && mat02 == other.mat02
+        && mat10 == other.mat10
+        && mat11 == other.mat11
+        && mat12 == other.mat12;
 }
 
 bool AffineTransform::operator!= (const AffineTransform& other) const noexcept
@@ -60,7 +51,12 @@ bool AffineTransform::operator!= (const AffineTransform& other) const noexcept
 //==============================================================================
 bool AffineTransform::isIdentity() const noexcept
 {
-    return operator== (AffineTransform());
+    return mat01 == 0.0f
+        && mat02 == 0.0f
+        && mat10 == 0.0f
+        && mat12 == 0.0f
+        && mat00 == 1.0f
+        && mat11 == 1.0f;
 }
 
 const AffineTransform AffineTransform::identity (1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
@@ -188,12 +184,6 @@ AffineTransform AffineTransform::verticalFlip (float height) noexcept
              0.0f, -1.0f, height };
 }
 
-AffineTransform AffineTransform::horizontalFlip (float width) noexcept
-{
-    return { -1.0f, 0.0f, width,
-              0.0f, 1.0f, 0.0f };
-}
-
 AffineTransform AffineTransform::inverted() const noexcept
 {
     double determinant = getDeterminant();
@@ -211,13 +201,13 @@ AffineTransform AffineTransform::inverted() const noexcept
                  dst10, dst11, -mat02 * dst10 - mat12 * dst11 };
     }
 
-    // singularity
+    // singularity..
     return *this;
 }
 
 bool AffineTransform::isSingularity() const noexcept
 {
-    return exactlyEqual (mat00 * mat11 - mat10 * mat01, 0.0f);
+    return (mat00 * mat11 - mat10 * mat01) == 0.0f;
 }
 
 AffineTransform AffineTransform::fromTargetPoints (float x00, float y00,
@@ -239,15 +229,10 @@ AffineTransform AffineTransform::fromTargetPoints (float sx1, float sy1, float t
 
 bool AffineTransform::isOnlyTranslation() const noexcept
 {
-    return exactlyEqual (mat01, 0.0f)
-        && exactlyEqual (mat10, 0.0f)
-        && exactlyEqual (mat00, 1.0f)
-        && exactlyEqual (mat11, 1.0f);
-}
-
-bool AffineTransform::isOnlyTranslationOrScale() const noexcept
-{
-    return exactlyEqual (mat01, 0.0f) && exactlyEqual (mat10, 0.0f);
+    return mat01 == 0.0f
+        && mat10 == 0.0f
+        && mat00 == 1.0f
+        && mat11 == 1.0f;
 }
 
 float AffineTransform::getDeterminant() const noexcept
@@ -265,7 +250,7 @@ float AffineTransform::getScaleFactor() const noexcept
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class AffineTransformTests final : public UnitTest
+class AffineTransformTests  : public UnitTest
 {
 public:
     AffineTransformTests()
@@ -284,24 +269,6 @@ public:
                                              .followedBy (AffineTransform::scale (scale2));
 
             expect (approximatelyEqual (std::sqrt (std::abs (transform.getDeterminant())), scale1 * scale2));
-        }
-
-        beginTest ("fromTargetPoints");
-        {
-            const Point a (0.0f, 0.0f);
-            const Point b (1.0f, 0.0f);
-            const Point c (0.0f, 1.0f);
-            const Point translation (1.0f, 1.0f);
-            const auto transform = AffineTransform::fromTargetPoints (a, a + translation,
-                                                                      b, b + translation,
-                                                                      c, c + translation);
-            expect (exactlyEqual (transform.mat00, 1.0f));
-            expect (exactlyEqual (transform.mat01, 0.0f));
-            expect (exactlyEqual (transform.mat02, translation.x));
-
-            expect (exactlyEqual (transform.mat10, 0.0f));
-            expect (exactlyEqual (transform.mat11, 1.0f));
-            expect (exactlyEqual (transform.mat12, translation.y));
         }
     }
 };

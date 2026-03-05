@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -97,12 +88,12 @@ public:
     }
 
     /** Creates a matrix from a 3D vector translation. */
-    static Matrix3D fromTranslation (Vector3D<Type> vector) noexcept
+    Matrix3D (Vector3D<Type> vector) noexcept
     {
-        return { Type (1), 0,        0,        0,
-                 0,        Type (1), 0,        0,
-                 0,        0,        Type (1), 0,
-                 vector.x, vector.y, vector.z, Type (1) };
+        mat[0]  = Type (1); mat[1]  = 0;        mat[2]  = 0;         mat[3]  = 0;
+        mat[4]  = 0;        mat[5]  = Type (1); mat[6]  = 0;         mat[7]  = 0;
+        mat[8]  = 0;        mat[9]  = 0;        mat[10] = Type (1);  mat[11] = 0;
+        mat[12] = vector.x; mat[13] = vector.y; mat[14] = vector.z;  mat[15] = Type (1);
     }
 
     /** Returns a new matrix from the given frustum values. */
@@ -138,22 +129,22 @@ public:
     {
         auto&& m2 = other.mat;
 
-        return { mat[0] * m2[0]  + mat[4] * m2[1]  + mat[8]  * m2[2]  + mat[12] * m2[3],
-                 mat[1] * m2[0]  + mat[5] * m2[1]  + mat[9]  * m2[2]  + mat[13] * m2[3],
-                 mat[2] * m2[0]  + mat[6] * m2[1]  + mat[10] * m2[2]  + mat[14] * m2[3],
-                 mat[3] * m2[0]  + mat[7] * m2[1]  + mat[11] * m2[2]  + mat[15] * m2[3],
-                 mat[0] * m2[4]  + mat[4] * m2[5]  + mat[8]  * m2[6]  + mat[12] * m2[7],
-                 mat[1] * m2[4]  + mat[5] * m2[5]  + mat[9]  * m2[6]  + mat[13] * m2[7],
-                 mat[2] * m2[4]  + mat[6] * m2[5]  + mat[10] * m2[6]  + mat[14] * m2[7],
-                 mat[3] * m2[4]  + mat[7] * m2[5]  + mat[11] * m2[6]  + mat[15] * m2[7],
-                 mat[0] * m2[8]  + mat[4] * m2[9]  + mat[8]  * m2[10] + mat[12] * m2[11],
-                 mat[1] * m2[8]  + mat[5] * m2[9]  + mat[9]  * m2[10] + mat[13] * m2[11],
-                 mat[2] * m2[8]  + mat[6] * m2[9]  + mat[10] * m2[10] + mat[14] * m2[11],
-                 mat[3] * m2[8]  + mat[7] * m2[9]  + mat[11] * m2[10] + mat[15] * m2[11],
-                 mat[0] * m2[12] + mat[4] * m2[13] + mat[8]  * m2[14] + mat[12] * m2[15],
-                 mat[1] * m2[12] + mat[5] * m2[13] + mat[9]  * m2[14] + mat[13] * m2[15],
-                 mat[2] * m2[12] + mat[6] * m2[13] + mat[10] * m2[14] + mat[14] * m2[15],
-                 mat[3] * m2[12] + mat[7] * m2[13] + mat[11] * m2[14] + mat[15] * m2[15] };
+        return { mat[0]  * m2[0] + mat[1]  * m2[4] + mat[2]  * m2[8]  + mat[3]  * m2[12],
+                 mat[0]  * m2[1] + mat[1]  * m2[5] + mat[2]  * m2[9]  + mat[3]  * m2[13],
+                 mat[0]  * m2[2] + mat[1]  * m2[6] + mat[2]  * m2[10] + mat[3]  * m2[14],
+                 mat[0]  * m2[3] + mat[1]  * m2[7] + mat[2]  * m2[11] + mat[3]  * m2[15],
+                 mat[4]  * m2[0] + mat[5]  * m2[4] + mat[6]  * m2[8]  + mat[7]  * m2[12],
+                 mat[4]  * m2[1] + mat[5]  * m2[5] + mat[6]  * m2[9]  + mat[7]  * m2[13],
+                 mat[4]  * m2[2] + mat[5]  * m2[6] + mat[6]  * m2[10] + mat[7]  * m2[14],
+                 mat[4]  * m2[3] + mat[5]  * m2[7] + mat[6]  * m2[11] + mat[7]  * m2[15],
+                 mat[8]  * m2[0] + mat[9]  * m2[4] + mat[10] * m2[8]  + mat[11] * m2[12],
+                 mat[8]  * m2[1] + mat[9]  * m2[5] + mat[10] * m2[9]  + mat[11] * m2[13],
+                 mat[8]  * m2[2] + mat[9]  * m2[6] + mat[10] * m2[10] + mat[11] * m2[14],
+                 mat[8]  * m2[3] + mat[9]  * m2[7] + mat[10] * m2[11] + mat[11] * m2[15],
+                 mat[12] * m2[0] + mat[13] * m2[4] + mat[14] * m2[8]  + mat[15] * m2[12],
+                 mat[12] * m2[1] + mat[13] * m2[5] + mat[14] * m2[9]  + mat[15] * m2[13],
+                 mat[12] * m2[2] + mat[13] * m2[6] + mat[14] * m2[10] + mat[15] * m2[14],
+                 mat[12] * m2[3] + mat[13] * m2[7] + mat[14] * m2[11] + mat[15] * m2[15] };
     }
 
     /** The 4x4 matrix values. These are stored in the standard OpenGL order. */

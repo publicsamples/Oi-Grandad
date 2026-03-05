@@ -1,39 +1,31 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 #pragma once
 
+#include "UserAccount/jucer_LicenseController.h"
 #include "jucer_MainWindow.h"
 #include "../Project/Modules/jucer_Modules.h"
 #include "jucer_AutoUpdater.h"
@@ -41,8 +33,8 @@
 #include "../Utility/UI/jucer_ProjucerLookAndFeel.h"
 
 //==============================================================================
-class ProjucerApplication final : public JUCEApplication,
-                                  private AsyncUpdater
+class ProjucerApplication   : public JUCEApplication,
+                              private AsyncUpdater
 {
 public:
     ProjucerApplication() = default;
@@ -71,6 +63,8 @@ public:
     void getCommandInfo (CommandID commandID, ApplicationCommandInfo&) override;
     bool perform (const InvocationInfo&) override;
 
+    bool isGUIEditorEnabled() const;
+
     //==============================================================================
     void openFile (const File&, std::function<void (bool)>);
     void showPathsWindow (bool highlightJUCEPath = false);
@@ -83,6 +77,8 @@ public:
 
     AvailableModulesList& getJUCEPathModulesList()     { return jucePathModulesList; }
     AvailableModulesList& getUserPathsModulesList()    { return userPathsModulesList; }
+
+    LicenseController& getLicenseController()          { return *licenseController; }
 
     bool isAutomaticVersionCheckingEnabled() const;
     void setAutomaticVersionCheckingEnabled (bool shouldBeEnabled);
@@ -164,9 +160,14 @@ private:
     void launchClassesBrowser();
     void launchTutorialsBrowser();
 
+    void doLoginOrLogout();
+    void showLoginForm();
+
+    void enableOrDisableGUIEditor();
+
     //==============================================================================
    #if JUCE_MAC
-    class AppleMenuRebuildListener final : private MenuBarModel::Listener
+    class AppleMenuRebuildListener  : private MenuBarModel::Listener
     {
     public:
         AppleMenuRebuildListener()
@@ -198,6 +199,8 @@ private:
    #endif
 
     //==============================================================================
+    std::unique_ptr<LicenseController> licenseController;
+
     std::unique_ptr<TooltipWindow> tooltipWindow;
     AvailableModulesList jucePathModulesList, userPathsModulesList;
 
@@ -214,7 +217,6 @@ private:
     int selectedColourSchemeIndex = 0, selectedEditorColourSchemeIndex = 0;
 
     std::unique_ptr<FileChooser> chooser;
-    ScopedMessageBox messageBox;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ProjucerApplication)

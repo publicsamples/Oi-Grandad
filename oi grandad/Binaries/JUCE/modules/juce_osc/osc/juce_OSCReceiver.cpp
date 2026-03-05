@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -169,7 +160,7 @@ namespace
                 const OSCType type = input.readByte();
 
                 if (type == 0)
-                    break;  // encountered null terminator. list is complete
+                    break;  // encountered null terminator. list is complete.
 
                 if (! OSCTypes::isSupportedType (type))
                     throw OSCFormatError ("OSC input stream format error: encountered unsupported type tag");
@@ -418,11 +409,11 @@ struct OSCReceiver::Pimpl   : private Thread,
     }
 
     //==============================================================================
-    struct CallbackMessage final : public Message
+    struct CallbackMessage   : public Message
     {
         CallbackMessage (OSCBundle::Element oscElement)  : content (oscElement) {}
 
-        // The payload of the message. Can be either an OSCMessage or an OSCBundle.
+        // the payload of the message. Can be either an OSCMessage or an OSCBundle.
         OSCBundle::Element content;
     };
 
@@ -449,7 +440,8 @@ struct OSCReceiver::Pimpl   : private Thread,
         }
         catch (const OSCFormatError&)
         {
-            NullCheckedInvocation::invoke (formatErrorHandler, data, (int) dataSize);
+            if (formatErrorHandler != nullptr)
+                formatErrorHandler (data, (int) dataSize);
         }
     }
 
@@ -582,7 +574,7 @@ private:
 
     //==============================================================================
     ListenerList<OSCReceiver::Listener<OSCReceiver::MessageLoopCallback>> listeners;
-    LightweightListenerList<OSCReceiver::Listener<OSCReceiver::RealtimeCallback>> realtimeListeners;
+    ListenerList<OSCReceiver::Listener<OSCReceiver::RealtimeCallback>>    realtimeListeners;
 
     Array<std::pair<OSCAddress, OSCReceiver::ListenerWithOSCAddress<OSCReceiver::MessageLoopCallback>*>> listenersWithAddress;
     Array<std::pair<OSCAddress, OSCReceiver::ListenerWithOSCAddress<OSCReceiver::RealtimeCallback>*>>    realtimeListenersWithAddress;
@@ -672,14 +664,14 @@ void OSCReceiver::registerFormatErrorHandler (FormatErrorHandler handler)
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class OSCInputStreamTests final : public UnitTest
+class OSCInputStreamTests  : public UnitTest
 {
 public:
     OSCInputStreamTests()
         : UnitTest ("OSCInputStream class", UnitTestCategories::osc)
     {}
 
-    void runTest() override
+    void runTest()
     {
         beginTest ("reading OSC addresses");
         {
@@ -947,7 +939,7 @@ public:
 
         beginTest ("reading OSC messages (contents)");
         {
-            // valid non-empty message
+            // valid non-empty message.
 
             {
                 int32 testInt = -2015;
@@ -1128,7 +1120,7 @@ public:
                 expect (! elements[2].getBundle().getTimeTag().isImmediately());
             }
 
-            // invalid bundles
+            // invalid bundles.
 
             {
                 uint8 data[] = {

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,49 +26,255 @@
 namespace juce
 {
 
-ScopedMessageBox ContentSharer::shareFilesScoped (const Array<URL>& files,
-                                                  Callback callback,
-                                                  Component* parent)
+#if JUCE_CONTENT_SHARING
+//==============================================================================
+class ContentSharer::PrepareImagesThread    : private Thread
 {
-    auto impl = detail::ScopedContentSharerInterface::shareFiles (files, parent);
-    return detail::ConcreteScopedContentSharerImpl::show (std::move (impl), std::move (callback));
+public:
+    PrepareImagesThread (ContentSharer& cs, const Array<Image>& imagesToUse,
+                         ImageFileFormat* imageFileFormatToUse)
+        : Thread ("ContentSharer::PrepareImagesThread"),
+          owner (cs),
+          images (imagesToUse),
+          imageFileFormat (imageFileFormatToUse == nullptr ? new PNGImageFormat()
+                                                           : imageFileFormatToUse),
+          extension (imageFileFormat->getFormatName().toLowerCase())
+    {
+        startThread();
+    }
+
+    ~PrepareImagesThread() override
+    {
+        signalThreadShouldExit();
+        waitForThreadToExit (10000);
+    }
+
+private:
+    void run() override
+    {
+        for (const auto& image : images)
+        {
+            if (threadShouldExit())
+                return;
+
+            File tempFile = File::createTempFile (extension);
+
+            if (! tempFile.create().wasOk())
+                break;
+
+            std::unique_ptr<FileOutputStream> outputStream (tempFile.createOutputStream());
+
+            if (outputStream == nullptr)
+                break;
+
+            if (imageFileFormat->writeImageToStream (image, *outputStream))
+                owner.temporaryFiles.add (tempFile);
+        }
+
+        finish();
+    }
+
+    void finish()
+    {
+        MessageManager::callAsync ([this]() { owner.filesToSharePrepared(); });
+    }
+
+    ContentSharer& owner;
+    const Array<Image> images;
+    std::unique_ptr<ImageFileFormat> imageFileFormat;
+    String extension;
+};
+
+//==============================================================================
+class ContentSharer::PrepareDataThread    : private Thread
+{
+public:
+    PrepareDataThread (ContentSharer& cs, const MemoryBlock& mb)
+        : Thread ("ContentSharer::PrepareDataThread"),
+          owner (cs),
+          data (mb)
+    {
+        startThread();
+    }
+
+    ~PrepareDataThread() override
+    {
+        signalThreadShouldExit();
+        waitForThreadToExit (10000);
+    }
+
+private:
+    void run() override
+    {
+        File tempFile = File::createTempFile ("data");
+
+        if (tempFile.create().wasOk())
+        {
+            if (auto outputStream = std::unique_ptr<FileOutputStream> (tempFile.createOutputStream()))
+            {
+                size_t pos = 0;
+                size_t totalSize = data.getSize();
+
+                while (pos < totalSize)
+                {
+                    if (threadShouldExit())
+                        return;
+
+                    size_t numToWrite = std::min ((size_t) 8192, totalSize - pos);
+
+                    outputStream->write (data.begin() + pos, numToWrite);
+
+                    pos += numToWrite;
+                }
+
+                owner.temporaryFiles.add (tempFile);
+            }
+        }
+
+        finish();
+    }
+
+    void finish()
+    {
+        MessageManager::callAsync ([this]() { owner.filesToSharePrepared(); });
+    }
+
+    ContentSharer& owner;
+    const MemoryBlock data;
+};
+#endif
+
+//==============================================================================
+JUCE_IMPLEMENT_SINGLETON (ContentSharer)
+
+ContentSharer::ContentSharer() {}
+ContentSharer::~ContentSharer() { clearSingletonInstance(); }
+
+void ContentSharer::shareFiles (const Array<URL>& files,
+                                std::function<void (bool, const String&)> callbackToUse)
+{
+  #if JUCE_CONTENT_SHARING
+    startNewShare (callbackToUse);
+    pimpl->shareFiles (files);
+  #else
+    ignoreUnused (files);
+
+    // Content sharing is not available on this platform!
+    jassertfalse;
+
+    if (callbackToUse)
+        callbackToUse (false, "Content sharing is not available on this platform!");
+  #endif
 }
 
-ScopedMessageBox ContentSharer::shareTextScoped (const String& text,
-                                                 Callback callback,
-                                                 Component* parent)
+#if JUCE_CONTENT_SHARING
+void ContentSharer::startNewShare (std::function<void (bool, const String&)> callbackToUse)
 {
-    auto impl = detail::ScopedContentSharerInterface::shareText (text, parent);
-    return detail::ConcreteScopedContentSharerImpl::show (std::move (impl), std::move (callback));
-}
+    // You should not start another sharing operation before the previous one is finished.
+    // Forcibly stopping a previous sharing operation is rarely a good idea!
+    jassert (pimpl == nullptr);
+    pimpl.reset();
 
-ScopedMessageBox ContentSharer::shareImagesScoped (const Array<Image>& images,
-                                                   std::unique_ptr<ImageFileFormat> format,
-                                                   Callback callback,
-                                                   Component* parent)
-{
-    auto impl = detail::ScopedContentSharerInterface::shareImages (images, std::move (format), parent);
-    return detail::ConcreteScopedContentSharerImpl::show (std::move (impl), std::move (callback));
-}
+    prepareDataThread = nullptr;
+    prepareImagesThread = nullptr;
 
-ScopedMessageBox ContentSharer::shareDataScoped (const MemoryBlock& mb,
-                                                 Callback callback,
-                                                 Component* parent)
-{
-    auto impl = detail::ScopedContentSharerInterface::shareData (mb, parent);
-    return detail::ConcreteScopedContentSharerImpl::show (std::move (impl), std::move (callback));
-}
+    deleteTemporaryFiles();
 
-#if ! (JUCE_CONTENT_SHARING && (JUCE_IOS || JUCE_ANDROID))
-auto detail::ScopedContentSharerInterface::shareFiles (const Array<URL>&, Component*) -> std::unique_ptr<ScopedContentSharerInterface>
-{
-    return std::make_unique<detail::ScopedContentSharerInterface>();
-}
+    // You need to pass a valid callback.
+    jassert (callbackToUse);
+    callback = std::move (callbackToUse);
 
-auto detail::ScopedContentSharerInterface::shareText (const String&, Component*) -> std::unique_ptr<ScopedContentSharerInterface>
-{
-    return std::make_unique<detail::ScopedContentSharerInterface>();
+    pimpl.reset (createPimpl());
 }
 #endif
+
+void ContentSharer::shareText (const String& text,
+                               std::function<void (bool, const String&)> callbackToUse)
+{
+  #if JUCE_CONTENT_SHARING
+    startNewShare (callbackToUse);
+    pimpl->shareText (text);
+  #else
+    ignoreUnused (text);
+
+    // Content sharing is not available on this platform!
+    jassertfalse;
+
+    if (callbackToUse)
+        callbackToUse (false, "Content sharing is not available on this platform!");
+  #endif
+}
+
+void ContentSharer::shareImages (const Array<Image>& images,
+                                 std::function<void (bool, const String&)> callbackToUse,
+                                 ImageFileFormat* imageFileFormatToUse)
+{
+  #if JUCE_CONTENT_SHARING
+    startNewShare (callbackToUse);
+    prepareImagesThread.reset (new PrepareImagesThread (*this, images, imageFileFormatToUse));
+  #else
+    ignoreUnused (images, imageFileFormatToUse);
+
+    // Content sharing is not available on this platform!
+    jassertfalse;
+
+    if (callbackToUse)
+        callbackToUse (false, "Content sharing is not available on this platform!");
+  #endif
+}
+
+#if JUCE_CONTENT_SHARING
+void ContentSharer::filesToSharePrepared()
+{
+    Array<URL> urls;
+
+    for (const auto& tempFile : temporaryFiles)
+        urls.add (URL (tempFile));
+
+    prepareImagesThread = nullptr;
+    prepareDataThread = nullptr;
+
+    pimpl->shareFiles (urls);
+}
+#endif
+
+void ContentSharer::shareData (const MemoryBlock& mb,
+                               std::function<void (bool, const String&)> callbackToUse)
+{
+  #if JUCE_CONTENT_SHARING
+    startNewShare (callbackToUse);
+    prepareDataThread.reset (new PrepareDataThread (*this, mb));
+  #else
+    ignoreUnused (mb);
+
+    if (callbackToUse)
+        callbackToUse (false, "Content sharing not available on this platform!");
+  #endif
+}
+
+void ContentSharer::sharingFinished (bool succeeded, const String& errorDescription)
+{
+    deleteTemporaryFiles();
+
+    std::function<void (bool, String)> cb;
+    std::swap (cb, callback);
+
+    String error (errorDescription);
+
+  #if JUCE_CONTENT_SHARING
+    pimpl.reset();
+  #endif
+
+    if (cb)
+        cb (succeeded, error);
+}
+
+void ContentSharer::deleteTemporaryFiles()
+{
+    for (auto& f : temporaryFiles)
+        f.deleteFile();
+
+    temporaryFiles.clear();
+}
 
 } // namespace juce

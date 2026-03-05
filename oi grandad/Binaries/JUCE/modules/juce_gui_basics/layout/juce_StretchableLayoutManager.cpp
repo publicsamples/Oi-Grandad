@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -127,7 +118,7 @@ void StretchableLayoutManager::setItemPosition (const int itemIndex,
 {
     for (int i = items.size(); --i >= 0;)
     {
-        auto* layout = items.getUnchecked (i);
+        auto* layout = items.getUnchecked(i);
 
         if (layout->itemIndex == itemIndex)
         {
@@ -167,7 +158,7 @@ void StretchableLayoutManager::layOutComponents (Component** const components,
             {
                 if (i == numComponents - 1)
                 {
-                    // if it's the last item, crop it to exactly fit the available space
+                    // if it's the last item, crop it to exactly fit the available space..
                     if (resizeOtherDimension)
                     {
                         if (vertically)
@@ -240,7 +231,7 @@ int StretchableLayoutManager::fitComponentsIntoSpace (const int startIndex,
     if (totalIdealSize <= 0)
         totalIdealSize = 1.0;
 
-    // now calc the best sizes
+    // now calc the best sizes..
     int extraSpace = availableSpace - totalMinimums;
 
     while (extraSpace > 0)
@@ -248,7 +239,7 @@ int StretchableLayoutManager::fitComponentsIntoSpace (const int startIndex,
         int numWantingMoreSpace = 0;
         int numHavingTakenExtraSpace = 0;
 
-        // first figure out how many comps want a slice of the extra space
+        // first figure out how many comps want a slice of the extra space..
         for (int i = startIndex; i < endIndex; ++i)
         {
             auto* layout = items.getUnchecked (i);
@@ -264,7 +255,7 @@ int StretchableLayoutManager::fitComponentsIntoSpace (const int startIndex,
                 ++numWantingMoreSpace;
         }
 
-        // share out the extra space
+        // ..share out the extra space..
         for (int i = startIndex; i < endIndex; ++i)
         {
             auto* layout = items.getUnchecked (i);
@@ -297,10 +288,10 @@ int StretchableLayoutManager::fitComponentsIntoSpace (const int startIndex,
             break;
     }
 
-    // calculate the end position
+    // ..and calculate the end position
     for (int i = startIndex; i < endIndex; ++i)
     {
-        auto* layout = items.getUnchecked (i);
+        auto* layout = items.getUnchecked(i);
         startPos += layout->currentSize;
     }
 
@@ -345,7 +336,7 @@ int StretchableLayoutManager::sizeToRealSize (double size, int totalSpace)
     if (size < 0)
         size *= -totalSpace;
 
-    return roundToInt (jmax (1.0, size));
+    return roundToInt (size);
 }
 
 } // namespace juce

@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,8 +23,7 @@
 namespace juce
 {
 
-#if ! JUCE_EXCEPTIONS_DISABLED
-/** @cond */
+#if ! (DOXYGEN || JUCE_EXCEPTIONS_DISABLED)
 namespace HeapBlockHelper
 {
     template <bool shouldThrow>
@@ -45,7 +32,6 @@ namespace HeapBlockHelper
     template <>
     struct ThrowOnFail<true>    { static void checkPointer (void* data) { if (data == nullptr) throw std::bad_alloc(); } };
 }
-/** @endcond */
 #endif
 
 //==============================================================================
@@ -73,7 +59,7 @@ namespace HeapBlockHelper
         free (temp);
     @endcode
 
-    ...you could just write this:
+    ..you could just write this:
     @code
         HeapBlock<int> temp (1024);
         memcpy (temp, xyz, 1024 * sizeof (int));
@@ -101,8 +87,8 @@ class HeapBlock
 {
 private:
     template <class OtherElementType>
-    using AllowConversion = std::enable_if_t<std::is_base_of_v<std::remove_pointer_t<ElementType>,
-                                                               std::remove_pointer_t<OtherElementType>>>;
+    using AllowConversion = typename std::enable_if<std::is_base_of<typename std::remove_pointer<ElementType>::type,
+                                                                    typename std::remove_pointer<OtherElementType>::type>::value>::type;
 
 public:
     //==============================================================================
@@ -111,7 +97,7 @@ public:
         After creation, you can resize the array using the malloc(), calloc(),
         or realloc() methods.
     */
-    HeapBlock() noexcept = default;
+    HeapBlock() = default;
 
     /** Creates a HeapBlock containing a number of elements.
 
@@ -121,10 +107,11 @@ public:
         If you want an array of zero values, you can use the calloc() method or the
         other constructor that takes an InitialisationState parameter.
     */
-    template <typename SizeType, std::enable_if_t<std::is_convertible_v<SizeType, int>, int> = 0>
+    template <typename SizeType, std::enable_if_t<std::is_convertible<SizeType, int>::value, int> = 0>
     explicit HeapBlock (SizeType numElements)
-        : data (mallocWrapper (static_cast<size_t> (numElements) * sizeof (ElementType)))
+        : data (static_cast<ElementType*> (std::malloc (static_cast<size_t> (numElements) * sizeof (ElementType))))
     {
+        throwOnAllocationFailure();
     }
 
     /** Creates a HeapBlock containing a number of elements.
@@ -132,11 +119,13 @@ public:
         The initialiseToZero parameter determines whether the new memory should be cleared,
         or left uninitialised.
     */
-    template <typename SizeType, std::enable_if_t<std::is_convertible_v<SizeType, int>, int> = 0>
+    template <typename SizeType, std::enable_if_t<std::is_convertible<SizeType, int>::value, int> = 0>
     HeapBlock (SizeType numElements, bool initialiseToZero)
-        : data (initialiseToZero ? callocWrapper (static_cast<size_t> (numElements), sizeof (ElementType))
-                                 : mallocWrapper (static_cast<size_t> (numElements) * sizeof (ElementType)))
+        : data (static_cast<ElementType*> (initialiseToZero
+                                               ? std::calloc (static_cast<size_t> (numElements), sizeof (ElementType))
+                                               : std::malloc (static_cast<size_t> (numElements) * sizeof (ElementType))))
     {
+        throwOnAllocationFailure();
     }
 
     /** Destructor.
@@ -163,7 +152,7 @@ public:
 
     /** Converting move constructor.
         Only enabled if this is a HeapBlock<Base*> and the other object is a HeapBlock<Derived*>,
-        where std::is_base_of_v<Base, Derived> == true.
+        where std::is_base_of<Base, Derived>::value == true.
     */
     template <class OtherElementType, bool otherThrowOnFailure, typename = AllowConversion<OtherElementType>>
     HeapBlock (HeapBlock<OtherElementType, otherThrowOnFailure>&& other) noexcept
@@ -174,7 +163,7 @@ public:
 
     /** Converting move assignment operator.
         Only enabled if this is a HeapBlock<Base*> and the other object is a HeapBlock<Derived*>,
-        where std::is_base_of_v<Base, Derived> == true.
+        where std::is_base_of<Base, Derived>::value == true.
     */
     template <class OtherElementType, bool otherThrowOnFailure, typename = AllowConversion<OtherElementType>>
     HeapBlock& operator= (HeapBlock<OtherElementType, otherThrowOnFailure>&& other) noexcept
@@ -263,7 +252,8 @@ public:
     void malloc (SizeType newNumElements, size_t elementSize = sizeof (ElementType))
     {
         std::free (data);
-        data = mallocWrapper (static_cast<size_t> (newNumElements) * elementSize);
+        data = static_cast<ElementType*> (std::malloc (static_cast<size_t> (newNumElements) * elementSize));
+        throwOnAllocationFailure();
     }
 
     /** Allocates a specified amount of memory and clears it.
@@ -273,7 +263,8 @@ public:
     void calloc (SizeType newNumElements, const size_t elementSize = sizeof (ElementType))
     {
         std::free (data);
-        data = callocWrapper (static_cast<size_t> (newNumElements), elementSize);
+        data = static_cast<ElementType*> (std::calloc (static_cast<size_t> (newNumElements), elementSize));
+        throwOnAllocationFailure();
     }
 
     /** Allocates a specified amount of memory and optionally clears it.
@@ -284,8 +275,10 @@ public:
     void allocate (SizeType newNumElements, bool initialiseToZero)
     {
         std::free (data);
-        data = initialiseToZero ? callocWrapper (static_cast<size_t> (newNumElements), sizeof (ElementType))
-                                : mallocWrapper (static_cast<size_t> (newNumElements) * sizeof (ElementType));
+        data = static_cast<ElementType*> (initialiseToZero
+                                             ? std::calloc (static_cast<size_t> (newNumElements), sizeof (ElementType))
+                                             : std::malloc (static_cast<size_t> (newNumElements) * sizeof (ElementType)));
+        throwOnAllocationFailure();
     }
 
     /** Re-allocates a specified amount of memory.
@@ -296,7 +289,9 @@ public:
     template <typename SizeType>
     void realloc (SizeType newNumElements, size_t elementSize = sizeof (ElementType))
     {
-        data = reallocWrapper (data, static_cast<size_t> (newNumElements) * elementSize);
+        data = static_cast<ElementType*> (data == nullptr ? std::malloc (static_cast<size_t> (newNumElements) * elementSize)
+                                                          : std::realloc (data, static_cast<size_t> (newNumElements) * elementSize));
+        throwOnAllocationFailure();
     }
 
     /** Frees any currently-allocated data.
@@ -332,45 +327,19 @@ public:
 
 private:
     //==============================================================================
-    // Calls to malloc, calloc and realloc with zero size have implementation-defined
-    // behaviour where either nullptr or a non-null pointer is returned.
-    template <typename Functor>
-    static ElementType* wrapper (size_t size, Functor&& f)
+    ElementType* data = nullptr;
+
+    void throwOnAllocationFailure() const
     {
-        if (size == 0)
-            return nullptr;
-
-        auto* memory = static_cast<ElementType*> (f());
-
        #if JUCE_EXCEPTIONS_DISABLED
-        jassert (memory != nullptr); // without exceptions, you'll need to find a better way to handle this failure case
+        jassert (data != nullptr); // without exceptions, you'll need to find a better way to handle this failure case.
        #else
-        HeapBlockHelper::ThrowOnFail<throwOnFailure>::checkPointer (memory);
+        HeapBlockHelper::ThrowOnFail<throwOnFailure>::checkPointer (data);
        #endif
-
-        return memory;
-    }
-
-    static ElementType* mallocWrapper (size_t size)
-    {
-        return wrapper (size, [size] { return std::malloc (size); });
-    }
-
-    static ElementType* callocWrapper (size_t num, size_t size)
-    {
-        return wrapper (num * size, [num, size] { return std::calloc (num, size); });
-    }
-
-    static ElementType* reallocWrapper (void* ptr, size_t newSize)
-    {
-        return wrapper (newSize, [ptr, newSize] { return std::realloc (ptr, newSize); });
     }
 
     template <class OtherElementType, bool otherThrowOnFailure>
     friend class HeapBlock;
-
-    //==============================================================================
-    ElementType* data = nullptr;
 
    #if ! (defined (JUCE_DLL) || defined (JUCE_DLL_BUILD))
     JUCE_DECLARE_NON_COPYABLE (HeapBlock)

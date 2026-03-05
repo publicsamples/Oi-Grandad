@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -48,22 +39,20 @@ namespace juce
         m.addItem (1, "item 1");
         m.addItem (2, "item 2");
 
-        m.showMenuAsync (PopupMenu::Options(),
-                         [] (int result)
-                         {
-                             if (result == 0)
-                             {
-                                 // user dismissed the menu without picking anything
-                             }
-                             else if (result == 1)
-                             {
-                                 // user picked item 1
-                             }
-                             else if (result == 2)
-                             {
-                                 // user picked item 2
-                             }
-                         });
+        const int result = m.show();
+
+        if (result == 0)
+        {
+            // user dismissed the menu without picking anything
+        }
+        else if (result == 1)
+        {
+            // user picked item 1
+        }
+        else if (result == 2)
+        {
+            // user picked item 2
+        }
     }
     @endcode
 
@@ -79,7 +68,9 @@ namespace juce
         mainMenu.addItem (3, "item 3");
         mainMenu.addSubMenu ("other choices", subMenu);
 
-        m.showMenuAsync (...);
+        const int result = m.show();
+
+        ...etc
     }
     @endcode
 
@@ -255,6 +246,12 @@ public:
                   bool isEnabled = true,
                   bool isTicked = false);
 
+	void addItemWithShortcut(int itemResultID,
+		String itemText,
+		const KeyPress& k,
+		bool isEnabled = true,
+		bool isTicked = false);
+
     /** Appends a new item with an icon.
 
         @param itemResultID     the number that will be returned from the show() method
@@ -342,15 +339,11 @@ public:
 
         Note that native macOS menus do not support custom components.
 
-        itemTitle will be used as the fallback text for this item, and will
-        be exposed to screen reader clients.
-
         @see CustomComponent
     */
     void addCustomItem (int itemResultID,
                         std::unique_ptr<CustomComponent> customComponent,
-                        std::unique_ptr<const PopupMenu> optionalSubMenu = nullptr,
-                        const String& itemTitle = {});
+                        std::unique_ptr<const PopupMenu> optionalSubMenu = nullptr);
 
     /** Appends a custom menu item that can't be used to trigger a result.
 
@@ -363,9 +356,6 @@ public:
         menu ID specified in itemResultID. If this is false, the menu item can't
         be triggered, so itemResultID is not used.
 
-        itemTitle will be used as the fallback text for this item, and will
-        be exposed to screen reader clients.
-
         Note that native macOS menus do not support custom components.
     */
     void addCustomItem (int itemResultID,
@@ -373,8 +363,7 @@ public:
                         int idealWidth,
                         int idealHeight,
                         bool triggerMenuItemAutomaticallyWhenClicked,
-                        std::unique_ptr<const PopupMenu> optionalSubMenu = nullptr,
-                        const String& itemTitle = {});
+                        std::unique_ptr<const PopupMenu> optionalSubMenu = nullptr);
 
     /** Appends a sub-menu.
 
@@ -492,8 +481,8 @@ public:
 
             @see withTargetComponent, withTargetScreenArea
         */
-        [[nodiscard]] Options withTargetComponent (Component* targetComponent) const;
-        [[nodiscard]] Options withTargetComponent (Component& targetComponent) const;
+        Options withTargetComponent (Component* targetComponent) const;
+        Options withTargetComponent (Component& targetComponent) const;
 
         /** Sets the region of the screen next to which the menu should be displayed.
 
@@ -509,7 +498,7 @@ public:
 
             @see withMousePosition
         */
-        [[nodiscard]] Options withTargetScreenArea (Rectangle<int> targetArea) const;
+        Options withTargetScreenArea (Rectangle<int> targetArea) const;
 
         /** Sets the target screen area to match the current mouse position.
 
@@ -517,7 +506,7 @@ public:
 
             @see withTargetScreenArea
         */
-        [[nodiscard]] Options withMousePosition() const;
+        Options withMousePosition() const;
 
         /** If the passed component has been deleted when the popup menu exits,
             the selected item's action will not be called.
@@ -526,29 +515,26 @@ public:
             callback, in the case that the callback needs to access a component that
             may be deleted.
         */
-        [[nodiscard]] Options withDeletionCheck (Component& componentToWatchForDeletion) const;
+        Options withDeletionCheck (Component& componentToWatchForDeletion) const;
 
         /** Sets the minimum width of the popup window. */
-        [[nodiscard]] Options withMinimumWidth (int minWidth) const;
+        Options withMinimumWidth (int minWidth) const;
 
         /** Sets the minimum number of columns in the popup window. */
-        [[nodiscard]] Options withMinimumNumColumns (int minNumColumns) const;
+        Options withMinimumNumColumns (int minNumColumns) const;
 
         /** Sets the maximum number of columns in the popup window. */
-        [[nodiscard]] Options withMaximumNumColumns (int maxNumColumns) const;
+        Options withMaximumNumColumns (int maxNumColumns) const;
 
         /** Sets the default height of each item in the popup menu. */
-        [[nodiscard]] Options withStandardItemHeight (int standardHeight) const;
+        Options withStandardItemHeight (int standardHeight) const;
 
         /** Sets an item which must be visible when the menu is initially drawn.
 
             This is useful to ensure that a particular item is shown when the menu
             contains too many items to display on a single screen.
-
-            The specified item will be positioned at the target screen area of the
-            menu if possible.
         */
-        [[nodiscard]] Options withItemThatMustBeVisible (int idOfItemToBeVisible) const;
+        Options withItemThatMustBeVisible (int idOfItemToBeVisible) const;
 
         /** Sets a component that the popup menu will be drawn into.
 
@@ -559,10 +545,10 @@ public:
             avoid this unwanted behaviour, but with the downside that the menu size
             will be constrained by the size of the parent component.
         */
-        [[nodiscard]] Options withParentComponent (Component* parentComponent) const;
+        Options withParentComponent (Component* parentComponent) const;
 
         /** Sets the direction of the popup menu relative to the target screen area. */
-        [[nodiscard]] Options withPreferredPopupDirection (PopupDirection direction) const;
+        Options withPreferredPopupDirection (PopupDirection direction) const;
 
         /** Sets an item to select in the menu.
 
@@ -572,14 +558,7 @@ public:
             than needing to move the highlighted row down from the top of the menu each time
             it is opened.
         */
-        [[nodiscard]] Options withInitiallySelectedItem (int idOfItemToBeSelected) const;
-
-        /** Returns a copy of these options with the target component set to null. The value of the
-            top-level target component will not be changed.
-
-            @see getTargetComponent(), getTopLevelTargetComponent()
-        */
-        [[nodiscard]] Options forSubmenu() const;
+        Options withInitiallySelectedItem (int idOfItemToBeSelected) const;
 
         //==============================================================================
         /** Gets the parent component. This may be nullptr if the Component has been deleted.
@@ -593,14 +572,6 @@ public:
             @see withTargetComponent
         */
         Component* getTargetComponent() const noexcept               { return targetComponent; }
-
-        /** Gets the target component that was set for the top-level menu.
-
-            When querying the options of a submenu, getTargetComponent() will always return
-            nullptr, while getTopLevelTargetComponent() will return the target passed to
-            withTargetComponent() when creating the top-level menu.
-        */
-        Component* getTopLevelTargetComponent() const noexcept       { return topLevelTarget; }
 
         /** Returns true if the menu was watching a component, and that component has been deleted, and false otherwise.
 
@@ -659,7 +630,7 @@ public:
     private:
         //==============================================================================
         Rectangle<int> targetArea;
-        WeakReference<Component> targetComponent, parentComponent, componentToWatchForDeletion, topLevelTarget;
+        WeakReference<Component> targetComponent, parentComponent, componentToWatchForDeletion;
         int visibleItemID = 0, minWidth = 0, minColumns = 1, maxColumns = 0, standardHeight = 0, initiallySelectedItemId = 0;
         bool isWatchingForDeletion = false;
         PopupDirection preferredPopupDirection = PopupDirection::downwards;
@@ -855,22 +826,15 @@ public:
                                        public SingleThreadedReferenceCountedObject
     {
     public:
-        /** Creates a custom item that is triggered automatically. */
-        CustomComponent();
-
         /** Creates a custom item.
-
             If isTriggeredAutomatically is true, then the menu will automatically detect
             a mouse-click on this component and use that to invoke the menu item. If it's
             false, then it's up to your class to manually trigger the item when it wants to.
-
-            If isTriggeredAutomatically is true, then an accessibility handler 'wrapper'
-            will be created for the item that allows pressing, focusing, and toggling.
-            If isTriggeredAutomatically is false, and the item has no submenu, then
-            no accessibility wrapper will be created and your component must be
-            independently accessible.
         */
-        explicit CustomComponent (bool isTriggeredAutomatically);
+        CustomComponent (bool isTriggeredAutomatically = true);
+
+        /** Destructor. */
+        ~CustomComponent() override;
 
         /** Returns a rectangle with the size that this component would like to have.
 
@@ -1000,12 +964,6 @@ public:
                                                            int& idealHeight,
                                                            const Options&) = 0;
 
-        virtual void getIdealPopupMenuSectionHeaderSizeWithOptions (const String& text,
-                                                                    int standardMenuItemHeight,
-                                                                    int& idealWidth,
-                                                                    int& idealHeight,
-                                                                    const Options&) = 0;
-
         virtual int getMenuWindowFlags() = 0;
 
         virtual void drawMenuBarBackground (Graphics&, int width, int height,
@@ -1053,10 +1011,10 @@ public:
     };
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     [[deprecated ("Use the new method.")]]
     int drawPopupMenuItem (Graphics&, int, int, bool, bool, bool, bool, bool, const String&, const String&, Image*, const Colour*) { return 0; }
-    /** @endcond */
+   #endif
 
 private:
     //==============================================================================

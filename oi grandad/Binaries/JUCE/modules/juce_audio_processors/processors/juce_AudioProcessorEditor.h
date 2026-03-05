@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -36,7 +27,6 @@ namespace juce
 {
 
 class AudioProcessorEditorListener;
-class AudioProcessor;
 
 //==============================================================================
 /**
@@ -95,20 +85,16 @@ public:
 
         If the given component represents a particular plugin parameter, then this
         method should return the index of that parameter. If not, it should return -1.
-        If not overridden, this will return -1 for all components.
-
-        This function will be called by the host in AAX and VST3 plug-ins in order to map
-        screen locations to parameters. For example, in Steinberg hosts, this enables the
-        "AI Knob" functionality, which enables hardware to control the parameter currently
-        under the mouse.
+        Currently only AAX plugins will call this, and implementing it is optional.
     */
     virtual int getControlParameterIndex (Component&);
 
     /** Override this method to indicate if your editor supports the presence or
         absence of a host-provided MIDI controller.
 
-        Currently only AUv3 plug-ins support this functionality, and even then the
-        host may choose to ignore this information.
+        Currently only AUv3 plug-ins compiled for MacOS 10.13 or iOS 11.0 (or later)
+        support this functionality, and even then the host may choose to ignore this
+        information.
 
         The default behaviour is to report support for both cases.
     */
@@ -120,7 +106,8 @@ public:
         Use this as an opportunity to hide or display your own onscreen keyboard or
         other input component.
 
-        Currently only AUv3 plug-ins support this functionality.
+        Currently only AUv3 plug-ins compiled for MacOS 10.13 or iOS 11.0 (or later)
+        support this functionality.
     */
     virtual void hostMIDIControllerIsAvailable (bool controllerIsAvailable);
 
@@ -187,7 +174,7 @@ public:
         A pointer to the object you pass in will be kept, but it won't be deleted
         by this object, so it's the caller's responsibility to manage it.
 
-        If you pass a nullptr, then no constraints will be placed on the positioning of the window.
+        If you pass a nullptr, then no contraints will be placed on the positioning of the window.
     */
     void setConstrainer (ComponentBoundsConstrainer* newConstrainer);
 
@@ -219,23 +206,6 @@ public:
     */
     std::unique_ptr<ResizableCornerComponent> resizableCorner;
 
-    /** The plugin wrapper will call this function to decide whether to use a layer-backed view to
-        host the editor on macOS and iOS.
-
-        Layer-backed views generally provide better performance, and are recommended in most
-        situations. However, on older macOS versions (confirmed on 10.12 and 10.13), displaying an
-        OpenGL context inside a layer-backed view can lead to deadlocks, so it is recommended to
-        avoid layer-backed views when using OpenGL on these OS versions.
-
-        The default behaviour of this function is to return false if and only if the juce_opengl
-        module is present and the current platform is macOS 10.13 or earlier.
-
-        You may want to override this behaviour if your plugin has an option to enable and disable
-        OpenGL rendering. If you know your plugin editor will never use OpenGL rendering, you can
-        set this function to return true in all situations.
-    */
-    virtual bool wantsLayerBackedView() const;
-
 private:
     //==============================================================================
     struct AudioProcessorEditorListener : public ComponentListener
@@ -265,6 +235,7 @@ private:
     ComponentBoundsConstrainer defaultConstrainer;
     ComponentBoundsConstrainer* constrainer = nullptr;
     AudioProcessorEditorHostContext* hostContext = nullptr;
+    Component::SafePointer<Component> splashScreen;
     AffineTransform hostScaleTransform;
 
     JUCE_DECLARE_NON_COPYABLE (AudioProcessorEditor)

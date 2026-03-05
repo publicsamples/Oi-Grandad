@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -37,10 +25,12 @@ namespace juce
 
 MPESynthesiser::MPESynthesiser()
 {
+    MPEZoneLayout zoneLayout;
+    zoneLayout.setLowerZone (15);
+    setZoneLayout (zoneLayout);
 }
 
-MPESynthesiser::MPESynthesiser (MPEInstrument& mpeInstrument)
-    : MPESynthesiserBase (mpeInstrument)
+MPESynthesiser::MPESynthesiser (MPEInstrument* mpeInstrument)  : MPESynthesiserBase (mpeInstrument)
 {
 }
 
@@ -196,28 +186,24 @@ MPESynthesiserVoice* MPESynthesiser::findVoiceToSteal (MPENote noteToStealVoiceF
     MPESynthesiserVoice* low = nullptr; // Lowest sounding note, might be sustained, but NOT in release phase
     MPESynthesiserVoice* top = nullptr; // Highest sounding note, might be sustained, but NOT in release phase
 
-    // All major OSes use double-locking so this will be lock- and wait-free as long as stealLock is not
-    // contended. This is always the case if you do not call findVoiceToSteal on multiple threads at
-    // the same time.
-    const ScopedLock sl (stealLock);
-
     // this is a list of voices we can steal, sorted by how long they've been running
-    usableVoicesToStealArray.clear();
+    Array<MPESynthesiserVoice*> usableVoices;
+    usableVoices.ensureStorageAllocated (voices.size());
 
     for (auto* voice : voices)
     {
         jassert (voice->isActive()); // We wouldn't be here otherwise
 
-        usableVoicesToStealArray.add (voice);
+        usableVoices.add (voice);
 
         // NB: Using a functor rather than a lambda here due to scare-stories about
-        // compilers generating code containing heap allocations.
+        // compilers generating code containing heap allocations..
         struct Sorter
         {
             bool operator() (const MPESynthesiserVoice* a, const MPESynthesiserVoice* b) const noexcept { return a->noteOnTime < b->noteOnTime; }
         };
 
-        std::sort (usableVoicesToStealArray.begin(), usableVoicesToStealArray.end(), Sorter());
+        std::sort (usableVoices.begin(), usableVoices.end(), Sorter());
 
         if (! voice->isPlayingButReleased()) // Don't protect released notes
         {
@@ -238,24 +224,24 @@ MPESynthesiserVoice* MPESynthesiser::findVoiceToSteal (MPENote noteToStealVoiceF
     // If we want to re-use the voice to trigger a new note,
     // then The oldest note that's playing the same note number is ideal.
     if (noteToStealVoiceFor.isValid())
-        for (auto* voice : usableVoicesToStealArray)
+        for (auto* voice : usableVoices)
             if (voice->getCurrentlyPlayingNote().initialNote == noteToStealVoiceFor.initialNote)
                 return voice;
 
     // Oldest voice that has been released (no finger on it and not held by sustain pedal)
-    for (auto* voice : usableVoicesToStealArray)
+    for (auto* voice : usableVoices)
         if (voice != low && voice != top && voice->isPlayingButReleased())
             return voice;
 
     // Oldest voice that doesn't have a finger on it:
-    for (auto* voice : usableVoicesToStealArray)
+    for (auto* voice : usableVoices)
         if (voice != low && voice != top
              && voice->getCurrentlyPlayingNote().keyState != MPENote::keyDown
              && voice->getCurrentlyPlayingNote().keyState != MPENote::keyDownAndSustained)
             return voice;
 
     // Oldest voice that isn't protected
-    for (auto* voice : usableVoicesToStealArray)
+    for (auto* voice : usableVoices)
         if (voice != low && voice != top)
             return voice;
 
@@ -272,16 +258,9 @@ MPESynthesiserVoice* MPESynthesiser::findVoiceToSteal (MPENote noteToStealVoiceF
 //==============================================================================
 void MPESynthesiser::addVoice (MPESynthesiserVoice* const newVoice)
 {
-    {
-        const ScopedLock sl (voicesLock);
-        newVoice->setCurrentSampleRate (getSampleRate());
-        voices.add (newVoice);
-    }
-
-    {
-        const ScopedLock sl (stealLock);
-        usableVoicesToStealArray.ensureStorageAllocated (voices.size() + 1);
-    }
+    const ScopedLock sl (voicesLock);
+    newVoice->setCurrentSampleRate (getSampleRate());
+    voices.add (newVoice);
 }
 
 void MPESynthesiser::clearVoices()
@@ -334,8 +313,8 @@ void MPESynthesiser::turnOffAllVoices (bool allowTailOff)
         }
     }
 
-    // finally make sure the MPE Instrument also doesn't have any notes anymore
-    instrument.releaseAllNotes();
+    // finally make sure the MPE Instrument also doesn't have any notes anymore.
+    instrument->releaseAllNotes();
 }
 
 //==============================================================================

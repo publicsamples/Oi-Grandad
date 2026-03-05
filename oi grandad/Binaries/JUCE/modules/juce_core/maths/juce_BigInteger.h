@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -81,7 +69,7 @@ public:
     BigInteger& operator= (BigInteger&&) noexcept;
 
     /** Destructor. */
-    ~BigInteger();
+    ~BigInteger() = default;
 
     //==============================================================================
     /** Copies another BigInteger onto this one. */
@@ -114,16 +102,16 @@ public:
 
     //==============================================================================
     /** Resets the value to 0. */
-    BigInteger& clear() noexcept;
+    void clear() noexcept;
 
     /** Clears a particular bit in the number. */
-    BigInteger& clearBit (int bitNumber) noexcept;
+    void clearBit (int bitNumber) noexcept;
 
     /** Sets a specified bit to 1. */
-    BigInteger& setBit (int bitNumber);
+    void setBit (int bitNumber);
 
     /** Sets or clears a specified bit. */
-    BigInteger& setBit (int bitNumber, bool shouldBeSet);
+    void setBit (int bitNumber, bool shouldBeSet);
 
     /** Sets a range of bits to be either on or off.
 
@@ -131,10 +119,10 @@ public:
         @param numBits      the number of bits to change
         @param shouldBeSet  whether to turn these bits on or off
     */
-    BigInteger& setRange (int startBit, int numBits, bool shouldBeSet);
+    void setRange (int startBit, int numBits, bool shouldBeSet);
 
     /** Inserts a bit an a given position, shifting up any bits above it. */
-    BigInteger& insertBit (int bitNumber, bool shouldBeSet);
+    void insertBit (int bitNumber, bool shouldBeSet);
 
     /** Returns a range of bits as a new BigInteger.
 
@@ -157,14 +145,14 @@ public:
         Copies the given integer onto a range of bits, starting at startBit,
         and using up to numBits of the available bits.
     */
-    BigInteger& setBitRangeAsInt (int startBit, int numBits, uint32 valueToSet);
+    void setBitRangeAsInt (int startBit, int numBits, uint32 valueToSet);
 
     /** Shifts a section of bits left or right.
 
         @param howManyBitsLeft  how far to move the bits (+ve numbers shift it left, -ve numbers shift it right).
         @param startBit         the first bit to affect - if this is > 0, only bits above that index will be affected.
     */
-    BigInteger& shiftBits (int howManyBitsLeft, int startBit);
+    void shiftBits (int howManyBitsLeft, int startBit);
 
     /** Returns the total number of set bits in the value. */
     int countNumberOfSetBits() const noexcept;

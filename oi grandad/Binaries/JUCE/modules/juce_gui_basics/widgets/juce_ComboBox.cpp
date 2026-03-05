@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -37,7 +28,7 @@ namespace juce
 
 ComboBox::ComboBox (const String& name)
     : Component (name),
-      noChoicesMessage (TRANS ("(no choices)"))
+      noChoicesMessage (TRANS("(no choices)"))
 {
     setRepaintsOnMouseActivity (true);
     lookAndFeelChanged();
@@ -92,7 +83,7 @@ void ComboBox::setTooltip (const String& newTooltip)
 //==============================================================================
 void ComboBox::addItem (const String& newItemText, int newItemId)
 {
-    // you can't add empty strings to the list
+    // you can't add empty strings to the list..
     jassert (newItemText.isNotEmpty());
 
     // IDs must be non-zero, as zero is used to indicate a lack of selection.
@@ -118,7 +109,7 @@ void ComboBox::addSeparator()
 
 void ComboBox::addSectionHeading (const String& headingName)
 {
-    // you can't add empty strings to the list
+    // you can't add empty strings to the list..
     jassert (headingName.isNotEmpty());
 
     if (headingName.isNotEmpty())
@@ -401,14 +392,7 @@ void ComboBox::enablementChanged()
 
 void ComboBox::colourChanged()
 {
-    label->setColour (Label::backgroundColourId, Colours::transparentBlack);
-    label->setColour (Label::textColourId, findColour (ComboBox::textColourId));
-
-    label->setColour (TextEditor::textColourId, findColour (ComboBox::textColourId));
-    label->setColour (TextEditor::backgroundColourId, Colours::transparentBlack);
-    label->setColour (TextEditor::highlightColourId, findColour (TextEditor::highlightColourId));
-    label->setColour (TextEditor::outlineColourId, Colours::transparentBlack);
-    repaint();
+    lookAndFeelChanged();
 }
 
 void ComboBox::parentHierarchyChanged()
@@ -418,6 +402,8 @@ void ComboBox::parentHierarchyChanged()
 
 void ComboBox::lookAndFeelChanged()
 {
+    repaint();
+
     {
         std::unique_ptr<Label> newLabel (getLookAndFeel().createComboBoxTextBox (*this));
         jassert (newLabel != nullptr);
@@ -447,7 +433,14 @@ void ComboBox::lookAndFeelChanged()
     label->addMouseListener (this, false);
     label->setAccessible (labelEditableState == labelIsEditable);
 
-    colourChanged();
+    label->setColour (Label::backgroundColourId, Colours::transparentBlack);
+    label->setColour (Label::textColourId, findColour (ComboBox::textColourId));
+
+    label->setColour (TextEditor::textColourId, findColour (ComboBox::textColourId));
+    label->setColour (TextEditor::backgroundColourId, Colours::transparentBlack);
+    label->setColour (TextEditor::highlightColourId, findColour (TextEditor::highlightColourId));
+    label->setColour (TextEditor::outlineColourId, Colours::transparentBlack);
+
     resized();
 }
 
@@ -523,17 +516,11 @@ static void comboBoxPopupMenuFinishedCallback (int result, ComboBox* combo)
 
         if (result != 0)
             combo->setSelectedId (result);
-
-        if (auto* handler = combo->getAccessibilityHandler())
-            handler->grabFocus();
     }
 }
 
 void ComboBox::showPopup()
 {
-    if (! isEnabled())
-        return;
-
     if (! menuActive)
         menuActive = true;
 
@@ -601,7 +588,7 @@ void ComboBox::mouseUp (const MouseEvent& e2)
 
 void ComboBox::mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel)
 {
-    if (! menuActive && scrollWheelEnabled && e.eventComponent == this && ! approximatelyEqual (wheel.deltaY, 0.0f))
+    if (! menuActive && scrollWheelEnabled && e.eventComponent == this && wheel.deltaY != 0.0f)
     {
         mouseWheelAccumulator += wheel.deltaY * 5.0f;
 
@@ -640,10 +627,8 @@ void ComboBox::handleAsyncUpdate()
     if (checker.shouldBailOut())
         return;
 
-    NullCheckedInvocation::invoke (onChange);
-
-    if (checker.shouldBailOut())
-        return;
+    if (onChange != nullptr)
+        onChange();
 
     if (auto* handler = getAccessibilityHandler())
         handler->notifyAccessibilityEvent (AccessibilityEvent::valueChanged);
@@ -665,7 +650,7 @@ void ComboBox::setSelectedId (const int newItemId, const bool dontSendChange)   
 void ComboBox::setText (const String& newText, const bool dontSendChange)        { setText (newText, dontSendChange ? dontSendNotification : sendNotification); }
 
 //==============================================================================
-class ComboBoxAccessibilityHandler final : public AccessibilityHandler
+class ComboBoxAccessibilityHandler  : public AccessibilityHandler
 {
 public:
     explicit ComboBoxAccessibilityHandler (ComboBox& comboBoxToWrap)
@@ -684,11 +669,11 @@ public:
         return comboBox.isPopupActive() ? state.withExpanded() : state.withCollapsed();
     }
 
-    String getTitle() const override  { return comboBox.getTitle(); }
+    String getTitle() const override  { return comboBox.getText(); }
     String getHelp() const override   { return comboBox.getTooltip(); }
 
 private:
-    class ComboBoxValueInterface final : public AccessibilityTextValueInterface
+    class ComboBoxValueInterface  : public AccessibilityTextValueInterface
     {
     public:
         explicit ComboBoxValueInterface (ComboBox& comboBoxToWrap)

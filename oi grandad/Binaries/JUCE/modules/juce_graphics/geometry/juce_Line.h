@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -212,8 +203,7 @@ public:
     */
     Point<ValueType> getPointAlongLine (ValueType distanceFromStart) const noexcept
     {
-        const auto length = getLength();
-        return approximatelyEqual (length, (ValueType) 0) ? start : start + (end - start) * (distanceFromStart / length);
+        return start + (end - start) * (distanceFromStart / getLength());
     }
 
     /** Returns a point which is a certain distance along and to the side of this line.
@@ -323,8 +313,7 @@ public:
     */
     Point<ValueType> findNearestPointTo (Point<ValueType> point) const noexcept
     {
-        using FloatType = typename Point<ValueType>::FloatType;
-        return getPointAlongLineProportionally ((FloatType) findNearestProportionalPositionTo (point));
+        return getPointAlongLineProportionally (findNearestProportionalPositionTo (point));
     }
 
     /** Returns true if the given point lies above this line.
@@ -339,16 +328,6 @@ public:
                 && point.y < ((end.y - start.y) * (point.x - start.x)) / (end.x - start.x) + start.y;
     }
 
-    /** Returns a lengthened copy of this line.
-
-        This will extend the line by a certain amount by moving the start away from the end
-        (leaving the end-point the same), and return the new line.
-    */
-    Line withLengthenedStart (ValueType distanceToLengthenBy) const noexcept
-    {
-        return withShortenedStart (-distanceToLengthenBy);
-    }
-
     //==============================================================================
     /** Returns a shortened copy of this line.
 
@@ -358,16 +337,6 @@ public:
     Line withShortenedStart (ValueType distanceToShortenBy) const noexcept
     {
         return { getPointAlongLine (jmin (distanceToShortenBy, getLength())), end };
-    }
-
-    /** Returns a lengthened copy of this line.
-
-        This will extend the line by a certain amount by moving the end away from the start
-        (leaving the start-point the same), and return the new line.
-    */
-    Line withLengthenedEnd (ValueType distanceToLengthenBy) const noexcept
-    {
-        return withShortenedEnd (-distanceToLengthenBy);
     }
 
     /** Returns a shortened copy of this line.
@@ -401,34 +370,32 @@ private:
         auto d2 = p4 - p3;
         auto divisor = d1.x * d2.y - d2.x * d1.y;
 
-        const auto zero = ValueType{};
-
-        if (approximatelyEqual (divisor, zero))
+        if (divisor == 0)
         {
             if (! (d1.isOrigin() || d2.isOrigin()))
             {
-                if (approximatelyEqual (d1.y, zero) && ! approximatelyEqual (d2.y, zero))
+                if (d1.y == 0 && d2.y != 0)
                 {
                     auto along = (p1.y - p3.y) / d2.y;
                     intersection = p1.withX (p3.x + along * d2.x);
                     return isZeroToOne (along);
                 }
 
-                if (approximatelyEqual (d2.y, zero) && ! approximatelyEqual (d1.y, zero))
+                if (d2.y == 0 && d1.y != 0)
                 {
                     auto along = (p3.y - p1.y) / d1.y;
                     intersection = p3.withX (p1.x + along * d1.x);
                     return isZeroToOne (along);
                 }
 
-                if (approximatelyEqual (d1.x, zero) && ! approximatelyEqual (d2.x, zero))
+                if (d1.x == 0 && d2.x != 0)
                 {
                     auto along = (p1.x - p3.x) / d2.x;
                     intersection = p1.withY (p3.y + along * d2.y);
                     return isZeroToOne (along);
                 }
 
-                if (approximatelyEqual (d2.x, zero) && ! approximatelyEqual (d1.x, zero))
+                if (d2.x == 0 && d1.x != 0)
                 {
                     auto along = (p3.x - p1.x) / d1.x;
                     intersection = p3.withY (p1.y + along * d1.y);

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -63,19 +54,14 @@ public:
     /** Copies this point from another one. */
     Point& operator= (const Point&) = default;
 
-    constexpr inline bool operator== (Point other) const noexcept
-    {
-        const auto tie = [] (const Point& p) { return std::tie (p.x, p.y); };
-        return tie (*this) == tie (other);
-    }
-
-    constexpr inline bool operator!= (Point other) const noexcept      { return ! operator== (other); }
+    constexpr inline bool operator== (Point other) const noexcept      { return x == other.x && y == other.y; }
+    constexpr inline bool operator!= (Point other) const noexcept      { return x != other.x || y != other.y; }
 
     /** Returns true if the point is (0, 0). */
-    constexpr bool isOrigin() const noexcept                           { return operator== (Point()); }
+    constexpr bool isOrigin() const noexcept                           { return x == ValueType() && y == ValueType(); }
 
     /** Returns true if the coordinates are finite values. */
-    constexpr inline bool isFinite() const noexcept                    { return juce_isfinite (x) && juce_isfinite (y); }
+    constexpr inline bool isFinite() const noexcept                    { return juce_isfinite(x) && juce_isfinite(y); }
 
     /** Returns the point's x coordinate. */
     constexpr inline ValueType getX() const noexcept                   { return x; }
@@ -137,7 +123,7 @@ public:
     template <typename OtherType>
     constexpr Point operator* (OtherType multiplier) const noexcept
     {
-        using CommonType = std::common_type_t<ValueType, OtherType>;
+        using CommonType = typename std::common_type<ValueType, OtherType>::type;
         return Point ((ValueType) ((CommonType) x * (CommonType) multiplier),
                       (ValueType) ((CommonType) y * (CommonType) multiplier));
     }
@@ -146,7 +132,7 @@ public:
     template <typename OtherType>
     constexpr Point operator/ (OtherType divisor) const noexcept
     {
-        using CommonType = std::common_type_t<ValueType, OtherType>;
+        using CommonType = typename std::common_type<ValueType, OtherType>::type;
         return Point ((ValueType) ((CommonType) x / (CommonType) divisor),
                       (ValueType) ((CommonType) y / (CommonType) divisor));
     }
@@ -164,7 +150,7 @@ public:
 
     //==============================================================================
     /** This type will be double if the Point's type is double, otherwise it will be float. */
-    using FloatType = TypeHelpers::SmallestFloatType<ValueType>;
+    using FloatType = typename TypeHelpers::SmallestFloatType<ValueType>::type;
 
     //==============================================================================
     /** Returns the straight-line distance between this point and the origin. */
@@ -195,7 +181,6 @@ public:
     /** Returns the point that would be reached by rotating this point clockwise
         about the origin by the specified angle.
     */
-    template <typename T = ValueType, std::enable_if_t<std::is_floating_point_v<T>, int> = 0>
     Point rotatedAboutOrigin (ValueType angleRadians) const noexcept
     {
         return Point (x * std::cos (angleRadians) - y * std::sin (angleRadians),
@@ -224,7 +209,7 @@ public:
     }
 
     /** Returns the dot-product of two points (x1 * x2 + y1 * y2). */
-    constexpr FloatType getDotProduct (Point other) const noexcept     { return (FloatType) (x * other.x + y * other.y); }
+    constexpr FloatType getDotProduct (Point other) const noexcept     { return x * other.x + y * other.y; }
 
     //==============================================================================
     /** Uses a transform to change the point's coordinates.

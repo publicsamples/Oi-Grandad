@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -80,15 +68,13 @@ public:
         MacOS_14        = MacOSX | 19,
         MacOS_15        = MacOSX | 20,
         MacOS_26        = MacOSX | 21,
-
         Win2000         = Windows | 1,
         WinXP           = Windows | 2,
         WinVista        = Windows | 3,
         Windows7        = Windows | 4,
         Windows8_0      = Windows | 5,
         Windows8_1      = Windows | 6,
-        Windows10       = Windows | 7,
-        Windows11       = Windows | 8
+        Windows10       = Windows | 7
     };
 
     /** Returns the type of operating system we're running on.
@@ -161,50 +147,18 @@ public:
         The first choice for an ID is a filesystem ID for the user's home folder or
         windows directory. If that fails then this function returns the MAC addresses.
     */
-    [[deprecated ("The identifiers produced by this function are not reliable. Use getUniqueDeviceID() instead.")]]
     static StringArray getDeviceIdentifiers();
 
     /** This method returns a machine unique ID unaffected by storage or peripheral
         changes.
 
         This ID will be invalidated by changes to the motherboard and CPU on non-mobile
-        platforms, or performing a system restore on an Android device.
-
-        There are some extra caveats on iOS: The returned ID is unique to the vendor part of
-        your  'Bundle Identifier' and is stable for all associated apps. The key is invalidated
-        once all associated apps are uninstalled. This function can return an empty string
-        under certain conditions, for example, If the device has not been unlocked since a
-        restart.
+        platforms, or resetting an Android device.
     */
     static String getUniqueDeviceID();
 
-    /** Kinds of identifier that are passed to getMachineIdentifiers(). */
-    enum class MachineIdFlags
-    {
-        macAddresses    = 1 << 0, ///< All Mac addresses of the machine.
-        fileSystemId    = 1 << 1, ///< The filesystem id of the user's home directory (or system directory on Windows).
-        legacyUniqueId  = 1 << 2, ///< Only implemented on Windows. A hash of the full smbios table, may be unstable on certain machines.
-        uniqueId        = 1 << 3, ///< The most stable kind of machine identifier. A good default to use.
-    };
-
-    /** Returns a list of strings that can be used to uniquely identify a machine.
-
-        To get multiple kinds of identifier at once, you can combine flags using
-        bitwise-or, e.g. `uniqueId | legacyUniqueId`.
-
-        If a particular kind of identifier isn't available, it will be omitted from
-        the StringArray of results, so passing `uniqueId | legacyUniqueId`
-        may return 0, 1, or 2 results, depending on the platform and whether any
-        errors are encountered.
-
-        If you've previously generated a machine ID and just want to check it against
-        all possible identifiers, you can enable all of the flags and check whether
-        the stored identifier matches any of the results.
-    */
-    static StringArray getMachineIdentifiers (MachineIdFlags flags);
-
     //==============================================================================
-    // CPU and memory information
+    // CPU and memory information..
 
     /** Returns the number of logical CPU cores. */
     static int getNumCpus() noexcept;
@@ -274,7 +228,7 @@ public:
     /** A function type for use in setApplicationCrashHandler().
         When called, its void* argument will contain platform-specific data about the crash.
     */
-    using CrashHandlerFunction = void (*) (void*);
+    using CrashHandlerFunction = void(*)(void*);
 
     /** Sets up a global callback function that will be called if the application
         executes some kind of illegal instruction.
@@ -289,21 +243,16 @@ public:
     */
     static bool isRunningInAppExtensionSandbox() noexcept;
 
-   #if JUCE_MAC
-    static bool isAppSandboxEnabled();
-   #endif
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     [[deprecated ("This method was spelt wrong! Please change your code to use getCpuSpeedInMegahertz instead.")]]
     static int getCpuSpeedInMegaherz() { return getCpuSpeedInMegahertz(); }
-    /** @endcond */
+   #endif
 
 private:
     SystemStats() = delete; // uses only static methods
     JUCE_DECLARE_NON_COPYABLE (SystemStats)
 };
-
-JUCE_DECLARE_SCOPED_ENUM_BITWISE_OPERATORS (SystemStats::MachineIdFlags)
 
 } // namespace juce

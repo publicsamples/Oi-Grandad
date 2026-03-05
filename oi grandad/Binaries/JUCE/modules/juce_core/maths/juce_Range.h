@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -75,14 +63,14 @@ public:
     }
 
     /** Returns a range with a given start and length. */
-    [[nodiscard]] static Range withStartAndLength (const ValueType startValue, const ValueType length) noexcept
+    static Range withStartAndLength (const ValueType startValue, const ValueType length) noexcept
     {
         jassert (length >= ValueType());
         return Range (startValue, startValue + length);
     }
 
     /** Returns a range with the specified start position and a length of zero. */
-    [[nodiscard]] constexpr static Range emptyRange (const ValueType start) noexcept
+    constexpr static Range emptyRange (const ValueType start) noexcept
     {
         return Range (start, start);
     }
@@ -98,7 +86,7 @@ public:
     constexpr inline ValueType getEnd() const noexcept            { return end; }
 
     /** Returns true if the range has a length of zero. */
-    constexpr inline bool isEmpty() const noexcept                { return exactlyEqual (start, end); }
+    constexpr inline bool isEmpty() const noexcept                { return start == end; }
 
     //==============================================================================
     /** Changes the start position of the range, leaving the end position unchanged.
@@ -116,13 +104,13 @@ public:
         If the new start position is higher than the current end of the range, the end point
         will be pushed along to equal it, returning an empty range at the new position.
     */
-    [[nodiscard]] constexpr Range withStart (const ValueType newStart) const noexcept
+    constexpr Range withStart (const ValueType newStart) const noexcept
     {
         return Range (newStart, jmax (newStart, end));
     }
 
     /** Returns a range with the same length as this one, but moved to have the given start position. */
-    [[nodiscard]] constexpr Range movedToStartAt (const ValueType newStart) const noexcept
+    constexpr Range movedToStartAt (const ValueType newStart) const noexcept
     {
         return Range (newStart, end + (newStart - start));
     }
@@ -142,13 +130,13 @@ public:
         If the new end position is below the current start of the range, the start point
         will be pushed back to equal the new end point.
     */
-    [[nodiscard]] constexpr Range withEnd (const ValueType newEnd) const noexcept
+    constexpr Range withEnd (const ValueType newEnd) const noexcept
     {
         return Range (jmin (start, newEnd), newEnd);
     }
 
     /** Returns a range with the same length as this one, but moved to have the given end position. */
-    [[nodiscard]] constexpr Range movedToEndAt (const ValueType newEnd) const noexcept
+    constexpr Range movedToEndAt (const ValueType newEnd) const noexcept
     {
         return Range (start + (newEnd - end), newEnd);
     }
@@ -164,7 +152,7 @@ public:
     /** Returns a range with the same start as this one, but a different length.
         Lengths less than zero are treated as zero.
     */
-    [[nodiscard]] constexpr Range withLength (const ValueType newLength) const noexcept
+    constexpr Range withLength (const ValueType newLength) const noexcept
     {
         return Range (start, start + newLength);
     }
@@ -173,7 +161,7 @@ public:
         given amount.
         @returns The returned range will be (start - amount, end + amount)
     */
-    [[nodiscard]] constexpr Range expanded (ValueType amount) const noexcept
+    constexpr Range expanded (ValueType amount) const noexcept
     {
         return Range (start - amount, end + amount);
     }
@@ -210,13 +198,8 @@ public:
         return Range (start - amountToSubtract, end - amountToSubtract);
     }
 
-    constexpr bool operator== (Range other) const noexcept
-    {
-        const auto tie = [] (const Range& r) { return std::tie (r.start, r.end); };
-        return tie (*this) == tie (other);
-    }
-
-    constexpr bool operator!= (Range other) const noexcept     { return ! operator== (other); }
+    constexpr bool operator== (Range other) const noexcept     { return start == other.start && end == other.end; }
+    constexpr bool operator!= (Range other) const noexcept     { return start != other.start || end != other.end; }
 
     //==============================================================================
     /** Returns true if the given position lies inside this range.
@@ -248,21 +231,21 @@ public:
 
     /** Returns the range that is the intersection of the two ranges, or an empty range
         with an undefined start position if they don't overlap. */
-    [[nodiscard]] constexpr Range getIntersectionWith (Range other) const noexcept
+    constexpr Range getIntersectionWith (Range other) const noexcept
     {
         return Range (jmax (start, other.start),
                       jmin (end, other.end));
     }
 
     /** Returns the smallest range that contains both this one and the other one. */
-    [[nodiscard]] constexpr Range getUnionWith (Range other) const noexcept
+    constexpr Range getUnionWith (Range other) const noexcept
     {
         return Range (jmin (start, other.start),
                       jmax (end, other.end));
     }
 
     /** Returns the smallest range that contains both this one and the given value. */
-    [[nodiscard]] constexpr Range getUnionWith (const ValueType valueToInclude) const noexcept
+    constexpr Range getUnionWith (const ValueType valueToInclude) const noexcept
     {
         return Range (jmin (valueToInclude, start),
                       jmax (valueToInclude, end));
@@ -287,8 +270,7 @@ public:
     }
 
     /** Scans an array of values for its min and max, and returns these as a Range. */
-    template <typename Integral, std::enable_if_t<std::is_integral_v<Integral>, int> = 0>
-    static Range findMinAndMax (const ValueType* values, Integral numValues) noexcept
+    static Range findMinAndMax (const ValueType* values, int numValues) noexcept
     {
         if (numValues <= 0)
             return Range();

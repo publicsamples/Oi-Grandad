@@ -1,63 +1,49 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
-namespace juce::build_tools
+namespace juce
 {
-
+namespace build_tools
+{
     //==============================================================================
-    static XmlElement* getKeyWithName (XmlElement& xml, const String& key)
-    {
-        for (auto* element : xml.getChildWithTagNameIterator ("key"))
-            if (element->getAllSubText().trim().equalsIgnoreCase (key))
-                return element;
-
-        return nullptr;
-    }
-
     static bool keyFoundAndNotSequentialDuplicate (XmlElement& xml, const String& key)
     {
-        if (auto* element = getKeyWithName (xml, key))
+        for (auto* element : xml.getChildWithTagNameIterator ("key"))
         {
-            if (element->getNextElement() != nullptr && element->getNextElement()->hasTagName ("key"))
+            if (element->getAllSubText().trim().equalsIgnoreCase (key))
             {
-                // found broken plist format (sequential duplicate), fix by removing
-                xml.removeChildElement (element, true);
-                return false;
-            }
+                if (element->getNextElement() != nullptr && element->getNextElement()->hasTagName ("key"))
+                {
+                    // found broken plist format (sequential duplicate), fix by removing
+                    xml.removeChildElement (element, true);
+                    return false;
+                }
 
-            // key found (not sequential duplicate)
-            return true;
+                // key found (not sequential duplicate)
+                return true;
+            }
         }
 
         // key not found
@@ -99,11 +85,9 @@ namespace juce::build_tools
             xml.createNewChildElement ("integer")->addTextElement (String (value));
     }
 
+    //==============================================================================
     static void addArrayToPlist (XmlElement& dict, String arrayKey, const StringArray& arrayElements)
     {
-        if (getKeyWithName (dict, arrayKey) != nullptr)
-            return;
-
         dict.createNewChildElement ("key")->addTextElement (arrayKey);
         auto* plistStringArray = dict.createNewChildElement ("array");
 
@@ -111,14 +95,6 @@ namespace juce::build_tools
             plistStringArray->createNewChildElement ("string")->addTextElement (e);
     }
 
-    static int getAUVersionAsHexInteger (const PlistOptions& opts)
-    {
-        const auto segments = getVersionSegments (opts.marketingVersion);
-        const StringArray trimmed (segments.strings.getRawDataPointer(), jmin (segments.size(), 3));
-        return getVersionAsHexIntegerFromParts (trimmed);
-    }
-
-    //==============================================================================
     void PlistOptions::write (const File& infoPlistFile) const
     {
         writeStreamToFile (infoPlistFile, [&] (MemoryOutputStream& mo) { write (mo); });
@@ -152,9 +128,6 @@ namespace juce::build_tools
         if (bluetoothPermissionEnabled)
             addPlistDictionaryKey (*dict, "NSBluetoothAlwaysUsageDescription", bluetoothPermissionText);
 
-        if (localNetworkPermissionEnabled)
-            addPlistDictionaryKey (*dict, "NSLocalNetworkUsageDescription", localNetworkPermissionText);
-
         if (iOS)
         {
             if (bluetoothPermissionEnabled)
@@ -165,15 +138,6 @@ namespace juce::build_tools
 
             if (shouldAddStoryboardToProject)
                 addPlistDictionaryKey (*dict, "UILaunchStoryboardName", storyboardName);
-
-            XmlElement sceneManifestKey ("key");
-            sceneManifestKey.addTextElement ("UIApplicationSceneManifest");
-            dict->addChildElement (new XmlElement (sceneManifestKey));
-
-            auto* sceneManifestDict = dict->createNewChildElement ("dict");
-            addPlistDictionaryKey (*sceneManifestDict, "UIApplicationSupportsMultipleScenes", false);
-            addKeyIfNotFound (*sceneManifestDict, "UISceneConfigurations");
-            sceneManifestDict->createNewChildElement ("dict");
         }
         else
         {
@@ -193,13 +157,10 @@ namespace juce::build_tools
         addPlistDictionaryKey (*dict, "CFBundleDisplayName",         projectName);
         addPlistDictionaryKey (*dict, "CFBundlePackageType",         getXcodePackageType (type));
         addPlistDictionaryKey (*dict, "CFBundleSignature",           getXcodeBundleSignature (type));
-        addPlistDictionaryKey (*dict, "CFBundleShortVersionString",  marketingVersion);
-        addPlistDictionaryKey (*dict, "CFBundleVersion",             currentProjectVersion);
+        addPlistDictionaryKey (*dict, "CFBundleShortVersionString",  version);
+        addPlistDictionaryKey (*dict, "CFBundleVersion",             version);
         addPlistDictionaryKey (*dict, "NSHumanReadableCopyright",    companyCopyright);
-        addPlistDictionaryKey (*dict, "NSHighResolutionCapable",     true);
-
-        if (applicationCategory.isNotEmpty())
-            addPlistDictionaryKey (*dict, "LSApplicationCategoryType", applicationCategory);
+        addPlistDictionaryKey (*dict, "NSHighResolutionCapable", true);
 
         auto replacedDocExtensions = StringArray::fromTokens (replacePreprocessorDefs (allPreprocessorDefs,
                                                                                        documentExtensions), ",", {});
@@ -226,7 +187,6 @@ namespace juce::build_tools
                     addPlistDictionaryKey (*dict2, "CFBundleTypeRole", "Editor");
                     addPlistDictionaryKey (*dict2, "CFBundleTypeIconFile", "Icon");
                     addPlistDictionaryKey (*dict2, "NSPersistentStoreTypeKey", "XML");
-                    addPlistDictionaryKey (*dict2, "LSHandlerRank", "Default");
                 }
 
                 arrayTag->createNewChildElement ("string")->addTextElement (ex);
@@ -266,7 +226,7 @@ namespace juce::build_tools
                 addPlistDictionaryKey (*audioComponentsDict, "manufacturer", pluginManufacturerCode.substring (0, 4));
                 addPlistDictionaryKey (*audioComponentsDict, "type",         IAATypeCode);
                 addPlistDictionaryKey (*audioComponentsDict, "subtype",      pluginCode.substring (0, 4));
-                addPlistDictionaryKey (*audioComponentsDict, "version",      getVersionAsHexInteger (marketingVersion));
+                addPlistDictionaryKey (*audioComponentsDict, "version",      versionAsHex);
 
                 dict->addChildElement (new XmlElement (audioComponentsPlistEntry));
             }
@@ -332,7 +292,7 @@ namespace juce::build_tools
         addPlistDictionaryKey (*dict, "manufacturer", truncatedCode);
         addPlistDictionaryKey (*dict, "type", auMainType.removeCharacters ("'"));
         addPlistDictionaryKey (*dict, "subtype", pluginSubType);
-        addPlistDictionaryKey (*dict, "version", getAUVersionAsHexInteger (*this));
+        addPlistDictionaryKey (*dict, "version", versionAsHex);
 
         if (isAuSandboxSafe)
         {
@@ -345,13 +305,6 @@ namespace juce::build_tools
 
             addPlistDictionaryKey (*resourceUsageDict, "network.client", true);
             addPlistDictionaryKey (*resourceUsageDict, "temporary-exception.files.all.read-write", true);
-        }
-
-        if (isPluginARAEffect)
-        {
-            dict->createNewChildElement ("key")->addTextElement ("tags");
-            auto* tagsArray = dict->createNewChildElement ("array");
-            tagsArray->createNewChildElement ("string")->addTextElement ("ARA");
         }
 
         return { plistKey, plistEntry };
@@ -380,19 +333,16 @@ namespace juce::build_tools
         addPlistDictionaryKey (*componentDict, "manufacturer", pluginManufacturerCode.substring (0, 4));
         addPlistDictionaryKey (*componentDict, "type", auMainType.removeCharacters ("'"));
         addPlistDictionaryKey (*componentDict, "subtype", pluginCode.substring (0, 4));
-        addPlistDictionaryKey (*componentDict, "version", getAUVersionAsHexInteger (*this));
+        addPlistDictionaryKey (*componentDict, "version", versionAsHex);
         addPlistDictionaryKey (*componentDict, "sandboxSafe", true);
 
         componentDict->createNewChildElement ("key")->addTextElement ("tags");
         auto* tagsArray = componentDict->createNewChildElement ("array");
 
         tagsArray->createNewChildElement ("string")
-                 ->addTextElement (isPluginSynth ? "Synth" : "Effects");
-
-        if (auMainType.removeCharacters ("'") == "aumi")
-            tagsArray->createNewChildElement ("string")->addTextElement ("MIDI");
+            ->addTextElement (isPluginSynth ? "Synth" : "Effects");
 
         return { plistKey, plistEntry };
     }
-
-} // namespace juce::build_tools
+}
+}

@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,10 +23,32 @@
 namespace juce
 {
 
-DynamicObject::DynamicObject() = default;
+std::array<std::pair<char, ObjectWithJSONConverter::StreamCreatorFunctions>, 32> ObjectWithJSONConverter::streamCreators = {};
+
+std::pair<char, ObjectWithJSONConverter*> ObjectWithJSONConverter::createFromMarker(::juce::InputStream& os)
+{
+	auto marker = os.readByte();
+
+	for(auto& f: streamCreators)
+	{
+		if(f.first == marker)
+            return { marker, f.second(os) };
+	}
+
+    return { 0, nullptr };
+}
+
+DynamicObject::DynamicObject()
+{
+    registerStreamCreator(this);
+}
 
 DynamicObject::DynamicObject (const DynamicObject& other)
    : ReferenceCountedObject(), properties (other.properties)
+{
+}
+
+DynamicObject::~DynamicObject()
 {
 }
 
@@ -56,13 +66,11 @@ const var& DynamicObject::getProperty (const Identifier& propertyName) const
 void DynamicObject::setProperty (const Identifier& propertyName, const var& newValue)
 {
     properties.set (propertyName, newValue);
-    didModifyProperty (propertyName, newValue);
 }
 
 void DynamicObject::removeProperty (const Identifier& propertyName)
 {
     properties.remove (propertyName);
-    didModifyProperty (propertyName, std::nullopt);
 }
 
 bool DynamicObject::hasMethod (const Identifier& methodName) const
@@ -80,16 +88,20 @@ var DynamicObject::invokeMethod (Identifier method, const var::NativeFunctionArg
 
 void DynamicObject::setMethod (Identifier name, var::NativeFunction function)
 {
-    setProperty (name, var (function));
+    properties.set (name, var (function));
 }
 
 void DynamicObject::clear()
 {
-    auto copy = properties;
     properties.clear();
+}
 
-    for (auto& prop : copy)
-        didModifyProperty (prop.name, std::nullopt);
+NamedValueSet& DynamicObject::getProperties() noexcept
+{ return properties; }
+
+void DynamicObject::swapProperties(NamedValueSet&& other)
+{
+	std::swap(properties, other);
 }
 
 void DynamicObject::cloneAllProperties()
@@ -99,180 +111,78 @@ void DynamicObject::cloneAllProperties()
             *v = v->clone();
 }
 
-std::unique_ptr<DynamicObject> DynamicObject::clone() const
+DynamicObject::Ptr DynamicObject::clone() const
 {
-    auto result = std::make_unique<DynamicObject> (*this);
-    result->cloneAllProperties();
-    return result;
+    Ptr d (new DynamicObject (*this));
+    d->cloneAllProperties();
+    return d;
 }
 
-void DynamicObject::writeAsJSON (OutputStream& out, const JSON::FormatOptions& format)
+void DynamicObject::writeAsJSON (OutputStream& out, const int indentLevel, const bool allOnOneLine, int maximumDecimalPlaces)
 {
     out << '{';
-    if (format.getSpacing() == JSON::Spacing::multiLine)
+    if (! allOnOneLine)
         out << newLine;
 
     const int numValues = properties.size();
 
     for (int i = 0; i < numValues; ++i)
     {
-        if (format.getSpacing() == JSON::Spacing::multiLine)
-            JSONFormatter::writeSpaces (out, format.getIndentLevel() + JSONFormatter::indentSize);
+        if (! allOnOneLine)
+            JSONFormatter::writeSpaces (out, indentLevel + JSONFormatter::indentSize);
 
         out << '"';
-        JSONFormatter::writeString (out, properties.getName (i), format.getEncoding());
-        out << "\":";
-
-        if (format.getSpacing() != JSON::Spacing::none)
-            out << ' ';
-
-        JSON::writeToStream (out,
-                             properties.getValueAt (i),
-                             format.withIndentLevel (format.getIndentLevel() + JSONFormatter::indentSize));
+        JSONFormatter::writeString (out, properties.getName (i));
+        out << "\": ";
+        JSONFormatter::write (out, properties.getValueAt (i), indentLevel + JSONFormatter::indentSize, allOnOneLine, maximumDecimalPlaces);
 
         if (i < numValues - 1)
         {
-            out << ",";
-
-            switch (format.getSpacing())
-            {
-                case JSON::Spacing::none: break;
-                case JSON::Spacing::singleLine: out << ' '; break;
-                case JSON::Spacing::multiLine: out << newLine; break;
-            }
+            if (allOnOneLine)
+                out << ", ";
+            else
+                out << ',' << newLine;
         }
-        else if (format.getSpacing() == JSON::Spacing::multiLine)
+        else if (! allOnOneLine)
             out << newLine;
     }
 
-    if (format.getSpacing() == JSON::Spacing::multiLine)
-        JSONFormatter::writeSpaces (out, format.getIndentLevel());
+    if (! allOnOneLine)
+        JSONFormatter::writeSpaces (out, indentLevel);
 
     out << '}';
 }
 
-//==============================================================================
-//==============================================================================
-
-#if JUCE_UNIT_TESTS
-
-class DynamicObjectTests : public UnitTest
+void DynamicObject::writeToStream(OutputStream& os)
 {
-public:
-    DynamicObjectTests() : UnitTest { "DynamicObject", UnitTestCategories::containers } {}
+    JUCE_WRITE_STREAMABLE_OBJECT_MARKERS(os);
 
-    void runTest() override
-    {
-        struct Action
-        {
-            Identifier key;
-            std::optional<var> value;
+	auto size = properties.size();
 
-            bool operator== (const Action& other) const
-            {
-                return other.key == key && other.value == value;
-            }
-        };
+	os.writeInt(size);
 
-        using Actions = std::vector<Action>;
+	for(const auto& nv: properties)
+	{
 
-        struct DerivedObject : public DynamicObject
-        {
-            explicit DerivedObject (Actions& a) : actions (a) {}
+		os.writeString(nv.name.toString());
+		nv.value.writeToStream(os);
+	}
+}
 
-            void didModifyProperty (const Identifier& key, const std::optional<var>& value) override
-            {
-                actions.push_back (Action { key, value });
-            }
+ObjectWithJSONConverter* DynamicObject::createFromStream(InputStream& os)
+{
+	auto numProperties = os.readInt();
 
-            Actions& actions;
-        };
+	auto no = new DynamicObject();
 
-        Actions actions;
-        DerivedObject object { actions };
+	while(--numProperties >= 0 && !os.isExhausted())
+	{
+		auto id = os.readString();
+		auto value = var::readFromStream(os);
 
-        beginTest ("didModifyProperty is emitted on setProperty");
-        {
-            expect (object.getProperties().isEmpty());
+		no->setProperty(id, value);
+	}
 
-            const Identifier key = "foo";
-            const var value = 123;
-            object.setProperty (key, value);
-
-            expect (actions == Actions { Action { key, value } });
-            expect (object.getProperties() == NamedValueSet { { key, value } });
-        }
-
-        object.clear();
-        actions.clear();
-
-        beginTest ("didModifyProperty is emitted on setMethod");
-        {
-            expect (object.getProperties().isEmpty());
-
-            const Identifier key = "foo";
-            const var::NativeFunction value = [] (const var::NativeFunctionArgs&) { return var{}; };
-            object.setMethod (key, value);
-
-            expect (actions.size() == 1);
-            expect (actions.back().key == key);
-
-            expect (object.getProperties().size() == 1);
-            expect (object.hasMethod (key));
-        }
-
-        object.clear();
-        actions.clear();
-
-        beginTest ("didModifyProperty is emitted on removeProperty");
-        {
-            expect (object.getProperties().isEmpty());
-
-            const Identifier key = "bar";
-            object.removeProperty (key);
-
-            expect (actions == Actions { Action { key, std::nullopt } });
-            expect (object.getProperties().isEmpty());
-        }
-
-        object.clear();
-        actions.clear();
-
-        beginTest ("didModifyProperty is emitted on clear");
-        {
-            expect (object.getProperties().isEmpty());
-
-            object.clear();
-
-            expect (actions.empty());
-
-            const Identifier keys[] { "foo", "bar", "baz" };
-
-            for (auto [index, key] : enumerate (keys, int{}))
-                object.setProperty (key, index);
-
-            for (auto& key : keys)
-                expect (object.hasProperty (key));
-
-            actions.clear();
-
-            object.clear();
-
-            expect (actions.size() == std::size (keys));
-
-            for (auto& key : keys)
-            {
-                expect (std::find_if (actions.begin(), actions.end(), [&key] (auto& action)
-                {
-                    return action.key == key && action.value == std::nullopt;
-                }) != actions.end());
-            }
-        }
-    }
-};
-
-static DynamicObjectTests dynamicObjectTests;
-
-#endif
-
+	return no;
+}
 } // namespace juce

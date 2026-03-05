@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -44,12 +32,12 @@
 
   ID:                 juce_audio_basics
   vendor:             juce
-  version:            8.0.12
+  version:            6.1.3
   name:               JUCE audio and MIDI data classes
   description:        Classes for audio buffer manipulation, midi message handling, synthesis, etc.
   website:            http://www.juce.com/juce
-  license:            AGPLv3/Commercial
-  minimumCppStandard: 17
+  license:            ISC
+  minimumCppStandard: 14
 
   dependencies:       juce_core
   OSXFrameworks:      Accelerate
@@ -70,6 +58,10 @@
 #undef Factor
 
 //==============================================================================
+#if JUCE_MINGW && ! defined (__SSE2__)
+ #define JUCE_USE_SSE_INTRINSICS 0
+#endif
+
 #ifndef JUCE_USE_SSE_INTRINSICS
  #define JUCE_USE_SSE_INTRINSICS 1
 #endif
@@ -91,9 +83,7 @@
 
 //==============================================================================
 #include "buffers/juce_AudioDataConverters.h"
-JUCE_BEGIN_IGNORE_WARNINGS_MSVC (4661)
 #include "buffers/juce_FloatVectorOperations.h"
-JUCE_END_IGNORE_WARNINGS_MSVC
 #include "buffers/juce_AudioSampleBuffer.h"
 #include "buffers/juce_AudioChannelSet.h"
 #include "buffers/juce_AudioProcessLoadMeasurer.h"
@@ -110,7 +100,6 @@ JUCE_END_IGNORE_WARNINGS_MSVC
 #include "midi/juce_MidiFile.h"
 #include "midi/juce_MidiKeyboardState.h"
 #include "midi/juce_MidiRPN.h"
-#include "midi/juce_MidiDataConcatenator.h"
 #include "mpe/juce_MPEValue.h"
 #include "mpe/juce_MPENote.h"
 #include "mpe/juce_MPEZoneLayout.h"
@@ -132,12 +121,3 @@ JUCE_END_IGNORE_WARNINGS_MSVC
 #include "sources/juce_ToneGeneratorAudioSource.h"
 #include "synthesisers/juce_Synthesiser.h"
 #include "audio_play_head/juce_AudioPlayHead.h"
-#include "utilities/juce_AudioWorkgroup.h"
-#include "midi/ump/juce_UMPBytesOnGroup.h"
-#include "midi/ump/juce_UMPDeviceInfo.h"
-#include "midi/ump/juce_UMP.h"
-
-namespace juce
-{
-    namespace ump = universal_midi_packets;
-}

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -74,6 +65,9 @@ static void doBasicProjectSetup (Project& project, const NewProjectTemplates::Pr
     project.getConfigFlag ("JUCE_STRICT_REFCOUNTEDPOINTER") = true;
     project.getProjectValue (Ids::useAppConfig) = false;
     project.getProjectValue (Ids::addUsingNamespaceToJuceHeader) = false;
+
+    if (! ProjucerApplication::getApp().getLicenseController().getCurrentState().canUnlockFullFeatures())
+        project.getProjectValue (Ids::displaySplashScreen) = true;
 
     if (NewProjectTemplates::isPlugin (projectTemplate))
         project.getConfigFlag ("JUCE_VST3_CAN_REPLACE_VST2") = 0;
@@ -127,28 +121,11 @@ static std::map<String, String> getPluginFileTokenReplacements (const String& na
     processorClassName = processorClassName.substring (0, 1).toUpperCase() + processorClassName.substring (1);
     auto editorClassName = processorClassName + "Editor";
 
-    const auto araDocumentControllerCppFile = sourceFolder.getChildFile ("PluginARADocumentController.cpp");
-    const auto araDocumentControllerHFile   = araDocumentControllerCppFile.withFileExtension (".h");
-    const auto araPlaybackRendererCppFile = sourceFolder.getChildFile ("PluginARAPlaybackRenderer.cpp");
-    const auto araPlaybackRendererHFile   = araPlaybackRendererCppFile.withFileExtension (".h");
-
-    const auto araDocumentControllerHInclude = CodeHelpers::createIncludeStatement (araDocumentControllerHFile, araDocumentControllerCppFile);
-    const auto araPlaybackRendererHInclude = CodeHelpers::createIncludeStatement (araPlaybackRendererHFile, araPlaybackRendererCppFile);
-
-    auto araDocumentControllerClassName = build_tools::makeValidIdentifier (name, true, true, false) + "DocumentController";
-    araDocumentControllerClassName = araDocumentControllerClassName.substring (0, 1).toUpperCase() + araDocumentControllerClassName.substring (1);
-    auto araPlaybackRendererClassName = build_tools::makeValidIdentifier (name, true, true, false) + "PlaybackRenderer";
-    araPlaybackRendererClassName = araPlaybackRendererClassName.substring (0, 1).toUpperCase() + araPlaybackRendererClassName.substring (1);
-
     tokenReplacements.insert ({"%%filter_headers%%",     processorHInclude + newLine + editorHInclude });
     tokenReplacements.insert ({"%%filter_class_name%%",  processorClassName });
     tokenReplacements.insert ({"%%editor_class_name%%",  editorClassName });
     tokenReplacements.insert ({"%%editor_cpp_headers%%", processorHInclude + newLine + editorHInclude });
     tokenReplacements.insert ({"%%editor_headers%%",     getJuceHeaderInclude() + newLine + processorHInclude });
-    tokenReplacements.insert ({"%%aradocumentcontroller_headers%%",     araDocumentControllerHInclude });
-    tokenReplacements.insert ({"%%aradocumentcontroller_class_name%%",  araDocumentControllerClassName });
-    tokenReplacements.insert ({"%%araplaybackrenderer_headers%%",       araPlaybackRendererHInclude });
-    tokenReplacements.insert ({"%%araplaybackrenderer_class_name%%",    araPlaybackRendererClassName });
 
     return tokenReplacements;
 }
@@ -243,51 +220,57 @@ File NewProjectWizard::getLastWizardFolder()
     return lastFolderFallback;
 }
 
-static ScopedMessageBox displayFailedFilesMessage (const StringArray& failedFiles)
+static void displayFailedFilesMessage (const StringArray& failedFiles)
 {
-    auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::WarningIcon,
-                                                     TRANS ("Errors in Creating Project!"),
-                                                     TRANS ("The following files couldn't be written:")
-                                                       + "\n\n"
-                                                       + failedFiles.joinIntoString ("\n", 0, 10));
-    return AlertWindow::showScopedAsync (options, nullptr);
+    AlertWindow::showMessageBoxAsync (MessageBoxIconType::WarningIcon,
+                                      TRANS("Errors in Creating Project!"),
+                                      TRANS("The following files couldn't be written:")
+                                        + "\n\n"
+                                        + failedFiles.joinIntoString ("\n", 0, 10));
 }
 
 template <typename Callback>
-static ScopedMessageBox prepareDirectory (const File& targetFolder, Callback&& callback)
+static void prepareDirectory (const File& targetFolder, Callback&& callback)
 {
     StringArray failedFiles;
 
     if (! targetFolder.exists())
     {
         if (! targetFolder.createDirectory())
-            return displayFailedFilesMessage ({ targetFolder.getFullPathName() });
+        {
+            displayFailedFilesMessage ({ targetFolder.getFullPathName() });
+            return;
+        }
     }
     else if (FileHelpers::containsAnyNonHiddenFiles (targetFolder))
     {
-        auto options = MessageBoxOptions::makeOptionsOkCancel (MessageBoxIconType::InfoIcon,
-                                                               TRANS ("New JUCE Project"),
-                                                               TRANS ("You chose the folder:\n\nXFLDRX\n\n").replace ("XFLDRX", targetFolder.getFullPathName())
-                                                                 + TRANS ("This folder isn't empty - are you sure you want to create the project there?")
-                                                                 + "\n\n"
-                                                                 + TRANS ("Any existing files with the same names may be overwritten by the new files."));
-        return AlertWindow::showScopedAsync (options, [callback] (int result)
-        {
-            if (result != 0)
-                callback();
-        });
+        AlertWindow::showOkCancelBox (MessageBoxIconType::InfoIcon,
+                                      TRANS("New JUCE Project"),
+                                      TRANS("You chose the folder:\n\nXFLDRX\n\n").replace ("XFLDRX", targetFolder.getFullPathName())
+                                        + TRANS("This folder isn't empty - are you sure you want to create the project there?")
+                                        + "\n\n"
+                                        + TRANS("Any existing files with the same names may be overwritten by the new files."),
+                                      {},
+                                      {},
+                                      nullptr,
+                                      ModalCallbackFunction::create ([callback] (int result)
+                                      {
+                                          if (result != 0)
+                                              callback();
+                                      }));
+
+        return;
     }
 
     callback();
-    return ScopedMessageBox();
 }
 
-ScopedMessageBox NewProjectWizard::createNewProject (const NewProjectTemplates::ProjectTemplate& projectTemplate,
-                                                     const File& targetFolder, const String& name, var modules, var exporters, var fileOptions,
-                                                     const String& modulePath, bool useGlobalModulePath,
-                                                     std::function<void (ScopedMessageBox, std::unique_ptr<Project>)> callback)
+void NewProjectWizard::createNewProject (const NewProjectTemplates::ProjectTemplate& projectTemplate,
+                                         const File& targetFolder, const String& name, var modules, var exporters, var fileOptions,
+                                         const String& modulePath, bool useGlobalModulePath,
+                                         std::function<void (std::unique_ptr<Project>)> callback)
 {
-    return prepareDirectory (targetFolder, [=]
+    prepareDirectory (targetFolder, [=]
     {
         auto project = std::make_unique<Project> (targetFolder.getChildFile (File::createLegalFileName (name))
                                                               .withFileExtension (Project::projectFileExtension));
@@ -310,18 +293,18 @@ ScopedMessageBox NewProjectWizard::createNewProject (const NewProjectTemplates::
                 {
                     uniqueProject->setChangedFlag (false);
                     uniqueProject->loadFrom (uniqueProject->getFile(), true);
-                    callback ({}, std::move (uniqueProject));
+                    callback (std::move (uniqueProject));
                     return;
                 }
 
                 auto failedFilesCopy = failedFiles;
                 failedFilesCopy.add (uniqueProject->getFile().getFullPathName());
-                callback (displayFailedFilesMessage (failedFilesCopy), {});
+                displayFailedFilesMessage (failedFilesCopy);
             });
 
             return;
         }
 
-        callback (displayFailedFilesMessage (failedFiles), {});
+        displayFailedFilesMessage (failedFiles);
     });
 }

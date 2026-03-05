@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -56,6 +47,13 @@ public:
     PositionedGlyph (const Font& font, juce_wchar character, int glyphNumber,
                      float anchorX, float baselineY, float width, bool isWhitespace);
 
+    PositionedGlyph (const PositionedGlyph&) = default;
+    PositionedGlyph& operator= (const PositionedGlyph&) = default;
+    PositionedGlyph (PositionedGlyph&&) noexcept = default;
+    PositionedGlyph& operator= (PositionedGlyph&&) noexcept = default;
+
+    ~PositionedGlyph();
+
     /** Returns the character the glyph represents. */
     juce_wchar getCharacter() const noexcept    { return character; }
     /** Checks whether the glyph is actually empty. */
@@ -73,8 +71,6 @@ public:
     float getBottom() const                     { return y + font.getDescent(); }
     /** Returns the bounds of the glyph. */
     Rectangle<float> getBounds() const          { return { x, getTop(), w, font.getHeight() }; }
-    /** Returns the typeface glyph index for the glyph. */
-    int getGlyphIndex() const                   { return glyph; }
 
     //==============================================================================
     /** Shifts the glyph's position by a relative amount. */
@@ -99,10 +95,12 @@ public:
     /** Checks to see if a point lies within this glyph. */
     bool hitTest (float x, float y) const;
 
+    int getGlyphNumber() const noexcept { return glyph; }
+    
 private:
     //==============================================================================
     friend class GlyphArrangement;
-    Font font { FontOptions{} };
+    Font font;
     juce_wchar character;
     int glyph;
     float x, y, w;
@@ -127,8 +125,6 @@ private:
 class JUCE_API  GlyphArrangement  final
 {
 public:
-    using Options = GlyphArrangementOptions;
-
     //==============================================================================
     /** Creates an empty arrangement. */
     GlyphArrangement();
@@ -228,8 +224,7 @@ public:
                         float x, float y, float width, float height,
                         Justification layout,
                         int maximumLinesToUse,
-                        float minimumHorizontalScale = 0.0f,
-                        GlyphArrangementOptions options = {});
+                        float minimumHorizontalScale = 0.0f);
 
     /** Appends another glyph arrangement to this one. */
     void addGlyphArrangement (const GlyphArrangement&);
@@ -315,42 +310,19 @@ public:
                         float x, float y, float width, float height,
                         Justification justification);
 
-    /** This convenience function adds text to a GlyphArrangement using the specified font
-        and returns the bounding box of the text after shaping.
-
-        The returned bounding box is positioned with its origin at the left end of the text's
-        baseline.
-    */
-    static Rectangle<float> getStringBounds (const Font& font, StringRef text)
-    {
-        GlyphArrangement arrangement;
-        arrangement.addLineOfText (font, text, 0.0f, 0.0f);
-        return arrangement.getBoundingBox (0, arrangement.getNumGlyphs(), true);
-    }
-
-    /** This convenience function adds text to a GlyphArrangement using the specified font
-        and returns the width of the bounding box of the text after shaping.
-    */
-    static float getStringWidth (const Font& font, StringRef text)
-    {
-        return getStringBounds (font, text).getWidth();
-    }
-
-    /** This convenience function adds text to a GlyphArrangement using the specified font
-        and returns the width of the bounding box of the text after shaping, rounded up to the
-        next integer.
-    */
-    static int getStringWidthInt (const Font& font, StringRef text)
-    {
-        return (int) std::ceil (getStringWidth (font, text));
-    }
 
 private:
     //==============================================================================
     Array<PositionedGlyph> glyphs;
 
+    int insertEllipsis (const Font&, float maxXPos, int startIndex, int endIndex);
+    int fitLineIntoSpace (int start, int numGlyphs, float x, float y, float w, float h, const Font&,
+                          Justification, float minimumHorizontalScale);
     void spreadOutLine (int start, int numGlyphs, float targetWidth);
-    void drawGlyphUnderline (const Graphics&, int, AffineTransform) const;
+    void splitLines (const String&, Font, int start, float x, float y, float w, float h, int maxLines,
+                     float lineWidth, Justification, float minimumHorizontalScale);
+    void addLinesWithLineBreaks (const String&, const Font&, float x, float y, float width, float height, Justification);
+    void drawGlyphUnderline (const Graphics&, const PositionedGlyph&, int, AffineTransform) const;
 
     JUCE_LEAK_DETECTOR (GlyphArrangement)
 };

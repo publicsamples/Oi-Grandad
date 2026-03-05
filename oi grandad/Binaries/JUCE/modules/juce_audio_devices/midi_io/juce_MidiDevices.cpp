@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,368 +23,131 @@
 namespace juce
 {
 
-MidiDeviceListConnection MidiDeviceListConnection::make (std::function<void()> callback)
+MidiOutput::MidiOutput (const String& deviceName, const String& deviceIdentifier)
+    : Thread ("midi out"), deviceInfo (deviceName, deviceIdentifier)
 {
-    auto& broadcaster = MidiDeviceListConnectionBroadcaster::get();
-
-    const auto key = broadcaster.add (std::move (callback));
-
-    MidiDeviceListConnection result;
-    result.token = ErasedScopeGuard { [&broadcaster, key] { broadcaster.remove (key); } };
-    return result;
 }
 
-//==============================================================================
-static std::shared_ptr<ump::Session> getLegacySession()
+void MidiOutput::sendBlockOfMessagesNow (const MidiBuffer& buffer)
 {
-    static std::weak_ptr<ump::Session> weak;
-
-    if (auto strong = weak.lock())
-        return strong;
-
-    if (auto session = ump::Endpoints::getInstance()->makeSession (ump::Endpoints::Impl::getGlobalMidiClientName()))
-    {
-        auto strong = std::make_shared<ump::Session> (std::move (session));
-        weak = strong;
-        return strong;
-    }
-
-    return nullptr;
+    for (const auto metadata : buffer)
+        sendMessageNow (metadata.getMessage());
 }
 
-class MidiInput::Impl : private ump::Consumer
+void MidiOutput::sendBlockOfMessages (const MidiBuffer& buffer,
+                                      double millisecondCounterToStartAt,
+                                      double samplesPerSecondForBuffer)
 {
-public:
-    void start()
+    // You've got to call startBackgroundThread() for this to actually work..
+    jassert (isThreadRunning());
+
+    // this needs to be a value in the future - RTFM for this method!
+    jassert (millisecondCounterToStartAt > 0);
+
+    auto timeScaleFactor = 1000.0 / samplesPerSecondForBuffer;
+
+    for (const auto metadata : buffer)
     {
-        const SpinLock::ScopedLockType lock { spinLock };
-        active = true;
-    }
+        auto eventTime = millisecondCounterToStartAt + timeScaleFactor * metadata.samplePosition;
+        auto* m = new PendingMessage (metadata.data, metadata.numBytes, eventTime);
 
-    void stop()
-    {
-        const SpinLock::ScopedLockType lock { spinLock };
-        active = false;
-    }
+        const ScopedLock sl (lock);
 
-    MidiDeviceInfo getDeviceInfo() const noexcept
-    {
-        return customName.has_value() ? storedInfo.withName (*customName) : storedInfo;
-    }
-
-    void setName (String x)
-    {
-        customName = std::move (x);
-    }
-
-    void addCallback (MidiInputCallback& cb)
-    {
-        callbacks.add (cb);
-    }
-
-    void removeCallback (MidiInputCallback& cb)
-    {
-        callbacks.remove (cb);
-    }
-
-    /*  session may be null, in which case it's up to the caller to ensure that the session lives
-        long enough for the connection to be useful.
-    */
-    static std::unique_ptr<MidiInput> make (std::shared_ptr<ump::Session> session,
-                                            ump::Input connection,
-                                            uint8_t group,
-                                            const MidiDeviceInfo& info,
-                                            MidiInputCallback* cb,
-                                            ump::LegacyVirtualInput virtualEndpoint)
-    {
-        auto result = rawToUniquePtr (new MidiInput);
-        result->pimpl = rawToUniquePtr (new Impl (session,
-                                                  std::move (connection),
-                                                  group,
-                                                  result.get(),
-                                                  info,
-                                                  std::move (virtualEndpoint)));
-
-        if (cb != nullptr)
-            result->addCallback (*cb);
-
-        return result;
-    }
-
-    uint8_t getGroup() const
-    {
-        return group;
-    }
-
-    ump::EndpointId getEndpointId() const
-    {
-        return connection.getEndpointId();
-    }
-
-    ~Impl() override
-    {
-        connection.removeConsumer (*this);
-    }
-
-private:
-    Impl (std::shared_ptr<ump::Session> s,
-          ump::Input x,
-          uint8_t g,
-          MidiInput* o,
-          MidiDeviceInfo i,
-          ump::LegacyVirtualInput v)
-        : session (s),
-          virtualEndpoint (std::move (v)),
-          connection (std::move (x)),
-          storedInfo (i),
-          group (g),
-          owner (o)
-    {
-        connection.addConsumer (*this);
-    }
-
-    void consume (ump::Iterator b, ump::Iterator e, double time) override
-    {
-        const SpinLock::ScopedTryLockType lock { spinLock };
-
-        if (! lock.isLocked() || ! active)
-            return;
-
-        for (const auto& view : makeRange (b, e))
+        if (firstMessage == nullptr || firstMessage->message.getTimeStamp() > eventTime)
         {
-            if (ump::Utils::getGroup (view[0]) != group)
-                continue;
+            m->next = firstMessage;
+            firstMessage = m;
+        }
+        else
+        {
+            auto* mm = firstMessage;
 
-            converter.convert (view, time, [this] (ump::BytesOnGroup v, double t)
-            {
-                const MidiMessage msg { v.bytes.data(), (int) v.bytes.size(), t };
+            while (mm->next != nullptr && mm->next->message.getTimeStamp() <= eventTime)
+                mm = mm->next;
 
-                callbacks.call ([&] (MidiInputCallback& l)
-                {
-                    l.handleIncomingMidiMessage (owner, msg);
-                });
-            });
+            m->next = mm->next;
+            mm->next = m;
         }
     }
 
-    std::shared_ptr<ump::Session> session;
-    ump::LegacyVirtualInput virtualEndpoint;
-    std::optional<String> customName;
-    ump::Input connection;
-    MidiDeviceInfo storedInfo;
-    ump::ToBytestreamConverter converter { 4096 };
-    WaitFreeListeners<MidiInputCallback> callbacks;
-    uint8_t group{};
-    MidiInput* owner = nullptr;
-    SpinLock spinLock;
-    bool active = false;
-};
-
-MidiInput::MidiInput() = default;
-MidiInput::~MidiInput() = default;
-
-Array<MidiDeviceInfo> MidiInput::getAvailableDevices()
-{
-    Array<MidiDeviceInfo> result;
-    MidiDeviceListConnectionBroadcaster::get().getAllMidiDeviceInfo (ump::IOKind::src, result);
-    return result;
+    notify();
 }
 
-MidiDeviceInfo MidiInput::getDefaultDevice()
+void MidiOutput::clearAllPendingMessages()
 {
-    return getAvailableDevices().getFirst();
-}
+    const ScopedLock sl (lock);
 
-std::unique_ptr<MidiInput> MidiInput::openDevice (const String& deviceIdentifier, MidiInputCallback* callback)
-{
-    const auto address = MidiDeviceListConnectionBroadcaster::get().getEndpointGroupForId (ump::IOKind::src, deviceIdentifier);
-
-    if (! address.has_value())
-        return {};
-
-    const auto info = MidiDeviceListConnectionBroadcaster::get().getInfoForId (ump::IOKind::src, deviceIdentifier);
-
-    if (! info.has_value())
-        return {};
-
-    auto session = getLegacySession();
-
-    if (session == nullptr)
-        return {};
-
-    auto connection = session->connectInput (address->endpointId, ump::PacketProtocol::MIDI_1_0);
-
-    if (! connection.isAlive())
-        return {};
-
-    return Impl::make (session, std::move (connection), address->group, *info, callback, {});
-}
-
-static inline bool isValidMidi1VirtualEndpoint (const std::optional<ump::Endpoint>& ep,
-                                                ump::BlockDirection dir)
-{
-    if (! ep.has_value())
-        return false;
-
-    if (! ep->hasMidi1Support())
-        return false;
-
-    if (ep->getProtocol() != ump::PacketProtocol::MIDI_1_0)
-        return false;
-
-    if (! ep->hasStaticBlocks())
-        return false;
-
-    auto blocks = ep->getBlocks();
-    const auto iter = std::find_if (blocks.begin(), blocks.end(), [&] (const ump::Block& b)
+    while (firstMessage != nullptr)
     {
-        return b.getDirection() == dir
-               && b.getNumGroups() == 1
-               && b.isEnabled()
-               && b.getMIDI1ProxyKind() != ump::BlockMIDI1ProxyKind::inapplicable;
-    });
-
-    if (iter == blocks.end())
-        return false;
-
-    return true;
+        auto* m = firstMessage;
+        firstMessage = firstMessage->next;
+        delete m;
+    }
 }
 
-std::unique_ptr<MidiInput> MidiInput::createNewDevice (const String& name, MidiInputCallback* callback)
+void MidiOutput::startBackgroundThread()
 {
-    auto session = getLegacySession();
-
-    if (! session)
-        return {};
-
-    auto port = session->createLegacyVirtualInput (name);
-
-    if (! port)
-        return {};
-
-    jassert (isValidMidi1VirtualEndpoint (ump::Endpoints::getInstance()->getEndpoint (port.getId()),
-                                          ump::BlockDirection::receiver));
-
-    auto connection = session->connectInput (port.getId(), ump::PacketProtocol::MIDI_1_0);
-
-    if (! connection)
-        return {};
-
-    return Impl::make (session, std::move (connection), 0, { name, {} }, callback, std::move (port));
+    startThread (9);
 }
 
-void MidiInput::start()
+void MidiOutput::stopBackgroundThread()
 {
-    pimpl->start();
+    stopThread (5000);
 }
 
-void MidiInput::stop()
+void MidiOutput::run()
 {
-    pimpl->stop();
-}
+    while (! threadShouldExit())
+    {
+        auto now = Time::getMillisecondCounter();
+        uint32 eventTime = 0;
+        uint32 timeToWait = 500;
 
-MidiDeviceInfo MidiInput::getDeviceInfo() const noexcept
-{
-    return pimpl->getDeviceInfo();
-}
+        PendingMessage* message;
 
-void MidiInput::setName (const String& newName) noexcept
-{
-    pimpl->setName (newName);
-}
+        {
+            const ScopedLock sl (lock);
+            message = firstMessage;
 
-uint8_t MidiInput::getGroup() const
-{
-    return pimpl->getGroup();
-}
+            if (message != nullptr)
+            {
+                eventTime = (uint32) roundToInt (message->message.getTimeStamp());
 
-ump::EndpointId MidiInput::getEndpointId() const
-{
-    return pimpl->getEndpointId();
-}
+                if (eventTime > now + 20)
+                {
+                    timeToWait = eventTime - (now + 20);
+                    message = nullptr;
+                }
+                else
+                {
+                    firstMessage = message->next;
+                }
+            }
+        }
 
-void MidiInput::addCallback (MidiInputCallback& callback)
-{
-    pimpl->addCallback (callback);
-}
+        if (message != nullptr)
+        {
+            std::unique_ptr<PendingMessage> messageDeleter (message);
 
-void MidiInput::removeCallback (MidiInputCallback& callback)
-{
-    pimpl->removeCallback (callback);
-}
+            if (eventTime > now)
+            {
+                Time::waitForMillisecondCounter (eventTime);
 
-//==============================================================================
-MidiOutput::MidiOutput (std::shared_ptr<ump::Session> s,
-                        ump::Output x,
-                        uint8_t g,
-                        const MidiDeviceInfo& i,
-                        ump::LegacyVirtualOutput v)
-    : session (s),
-      virtualEndpoint (std::move (v)),
-      connection (std::move (x)),
-      storedInfo (i),
-      group (g)
-{
-}
+                if (threadShouldExit())
+                    break;
+            }
 
-Array<MidiDeviceInfo> MidiOutput::getAvailableDevices()
-{
-    Array<MidiDeviceInfo> result;
-    MidiDeviceListConnectionBroadcaster::get().getAllMidiDeviceInfo (ump::IOKind::dst, result);
-    return result;
-}
+            if (eventTime > now - 200)
+                sendMessageNow (message->message);
+        }
+        else
+        {
+            jassert (timeToWait < 1000 * 30);
+            wait ((int) timeToWait);
+        }
+    }
 
-std::unique_ptr<MidiOutput> MidiOutput::openDevice (const String& deviceIdentifier)
-{
-    const auto address = MidiDeviceListConnectionBroadcaster::get().getEndpointGroupForId (ump::IOKind::dst, deviceIdentifier);
-
-    if (! address.has_value())
-        return {};
-
-    const auto info = MidiDeviceListConnectionBroadcaster::get().getInfoForId (ump::IOKind::dst, deviceIdentifier);
-
-    if (! info.has_value())
-        return {};
-
-    auto session = getLegacySession();
-
-    if (session == nullptr)
-        return {};
-
-    auto connection = session->connectOutput (address->endpointId);
-
-    if (! connection.isAlive())
-        return {};
-
-    return rawToUniquePtr (new MidiOutput (session, std::move (connection), address->group, *info, {}));
-}
-
-std::unique_ptr<MidiOutput> MidiOutput::createNewDevice (const String& name)
-{
-    auto session = getLegacySession();
-
-    if (! session)
-        return {};
-
-    auto port = session->createLegacyVirtualOutput (name);
-
-    if (! port)
-        return {};
-
-    jassert (isValidMidi1VirtualEndpoint (ump::Endpoints::getInstance()->getEndpoint (port.getId()),
-                                          ump::BlockDirection::sender));
-
-    auto connection = session->connectOutput (port.getId());
-
-    if (! connection)
-        return {};
-
-    return rawToUniquePtr (new MidiOutput (session, std::move (connection), 0, { name, {} }, std::move (port)));
-}
-
-MidiDeviceInfo MidiOutput::getDeviceInfo() const noexcept
-{
-    return customName.has_value() ? storedInfo.withName (*customName) : storedInfo;
+    clearAllPendingMessages();
 }
 
 } // namespace juce

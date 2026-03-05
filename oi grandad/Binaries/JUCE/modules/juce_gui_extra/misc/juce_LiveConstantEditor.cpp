@@ -1,51 +1,45 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
+namespace juce
+{
+
 #if JUCE_ENABLE_LIVE_CONSTANT_EDITOR
 
-namespace juce::LiveConstantEditor
+namespace LiveConstantEditor
 {
 
 //==============================================================================
-class AllComponentRepainter final : private Timer,
-                                    private DeletedAtShutdown
+class AllComponentRepainter  : private Timer,
+                               private DeletedAtShutdown
 {
 public:
     AllComponentRepainter()  {}
     ~AllComponentRepainter() override  { clearSingletonInstance(); }
 
-    JUCE_DECLARE_SINGLETON_INLINE (AllComponentRepainter, false)
+    JUCE_DECLARE_SINGLETON (AllComponentRepainter, false)
 
     void trigger()
     {
@@ -61,13 +55,13 @@ private:
         Array<Component*> alreadyDone;
 
         for (int i = TopLevelWindow::getNumTopLevelWindows(); --i >= 0;)
-            if (auto* c = TopLevelWindow::getTopLevelWindow (i))
+            if (auto* c = TopLevelWindow::getTopLevelWindow(i))
                 repaintAndResizeAllComps (c, alreadyDone);
 
         auto& desktop = Desktop::getInstance();
 
         for (int i = desktop.getNumComponents(); --i >= 0;)
-            if (auto* c = desktop.getComponent (i))
+            if (auto* c = desktop.getComponent(i))
                 repaintAndResizeAllComps (c, alreadyDone);
     }
 
@@ -81,7 +75,7 @@ private:
 
             for (int i = c->getNumChildComponents(); --i >= 0;)
             {
-                if (auto* child = c->getChildComponent (i))
+                if (auto* child = c->getChildComponent(i))
                 {
                     repaintAndResizeAllComps (child, alreadyDone);
                     alreadyDone.add (child);
@@ -94,6 +88,9 @@ private:
     }
 };
 
+JUCE_IMPLEMENT_SINGLETON (AllComponentRepainter)
+JUCE_IMPLEMENT_SINGLETON (ValueList)
+
 //==============================================================================
 int64 parseInt (String s)
 {
@@ -103,7 +100,7 @@ int64 parseInt (String s)
         return -parseInt (s.substring (1));
 
     if (s.startsWith ("0x"))
-        return s.substring (2).getHexValue64();
+        return s.substring(2).getHexValue64();
 
     return s.getLargeIntValue();
 }
@@ -141,7 +138,7 @@ LivePropertyEditorBase::LivePropertyEditorBase (LiveValueBase& v, CodeDocument& 
     findOriginalValueInCode();
     selectOriginalValue();
 
-    name.setFont (withDefaultMetrics (FontOptions { 13.0f }));
+    name.setFont (13.0f);
     name.setText (v.name, dontSendNotification);
     valueEditor.setMultiLine (v.isString());
     valueEditor.setReturnKeyStartsNewLine (v.isString());
@@ -210,7 +207,7 @@ void LivePropertyEditorBase::findOriginalValueInCode()
 
     if (p.isEmpty())
     {
-        // Not sure how this would happen - some kind of mix-up between source code and line numbers.
+        // Not sure how this would happen - some kind of mix-up between source code and line numbers..
         jassertfalse;
         return;
     }
@@ -260,7 +257,7 @@ void LivePropertyEditorBase::findOriginalValueInCode()
 }
 
 //==============================================================================
-class ValueListHolderComponent final : public Component
+class ValueListHolderComponent  : public Component
 {
 public:
     ValueListHolderComponent (ValueList& l) : valueList (l)
@@ -285,7 +282,7 @@ public:
         auto r = getLocalBounds().reduced (2, 0);
 
         for (int i = 0; i < editors.size(); ++i)
-            editors.getUnchecked (i)->setBounds (r.removeFromTop (itemHeight));
+            editors.getUnchecked(i)->setBounds (r.removeFromTop (itemHeight));
     }
 
     enum { itemHeight = 120 };
@@ -295,8 +292,8 @@ public:
 };
 
 //==============================================================================
-class ValueList::EditorWindow final : public DocumentWindow,
-                                      private DeletedAtShutdown
+class ValueList::EditorWindow  : public DocumentWindow,
+                                 private DeletedAtShutdown
 {
 public:
     EditorWindow (ValueList& list)
@@ -387,8 +384,8 @@ CodeDocument& ValueList::getDocument (const File& file)
 }
 
 //==============================================================================
-struct ColourEditorComp final : public Component,
-                                private ChangeListener
+struct ColourEditorComp  : public Component,
+                           private ChangeListener
 {
     ColourEditorComp (LivePropertyEditorBase& e)  : editor (e)
     {
@@ -436,7 +433,7 @@ Component* createColourEditor (LivePropertyEditorBase& editor)
 }
 
 //==============================================================================
-struct SliderComp : public Component
+struct SliderComp   : public Component
 {
     SliderComp (LivePropertyEditorBase& e, bool useFloat)
         : editor (e), isFloat (useFloat)
@@ -474,7 +471,7 @@ struct SliderComp : public Component
 };
 
 //==============================================================================
-struct BoolSliderComp final : public SliderComp
+struct BoolSliderComp  : public SliderComp
 {
     BoolSliderComp (LivePropertyEditorBase& e)
         : SliderComp (e, false)
@@ -493,6 +490,8 @@ Component* createIntegerSlider (LivePropertyEditorBase& editor)  { return new Sl
 Component* createFloatSlider   (LivePropertyEditorBase& editor)  { return new SliderComp (editor, true);  }
 Component* createBoolSlider    (LivePropertyEditorBase& editor)  { return new BoolSliderComp (editor); }
 
-} // namespace juce::LiveConstantEditor
+}
 
 #endif
+
+} // namespace juce

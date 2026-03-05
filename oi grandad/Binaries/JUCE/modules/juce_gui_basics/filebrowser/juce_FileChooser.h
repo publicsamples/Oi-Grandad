@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -55,7 +46,7 @@ namespace juce
             File mooseFile (chooser.getResult());
 
             loadMoose (mooseFile);
-        });
+        }
     }
     @endcode
 
@@ -189,6 +180,13 @@ public:
     */
     bool browseForMultipleFilesOrDirectories (FilePreviewComponent* previewComponent = nullptr);
 
+    /** Same as browseForFileToOpen, but allows the user to select multiple directories.
+
+        The files that are returned can be obtained by calling getResults(). See
+        browseForFileToOpen() for more info about the behaviour of this method.
+    */
+    bool browseForMultipleDirectories(FilePreviewComponent* previewComponent = nullptr);
+
     //==============================================================================
     /** Runs a dialog box for the given set of option flags.
         The flag values used are those in FileBrowserComponent::FileChooserFlags.
@@ -302,23 +300,10 @@ public:
     */
     static bool isPlatformDialogAvailable();
 
-    /** Associate a particular file-extension to a mime-type
-
-        On Android, JUCE needs to convert common file extensions to mime-types when using
-        wildcard filters in native file chooser dialog boxes. JUCE has an extensive conversion
-        table to convert between the most common file-types and mime-types transparently, but
-        some more obscure file-types may be missing. Use this method to register your own
-        mime-type to file extension conversions. Please contact the JUCE team if you think
-        that a common mime-type/file-extension entry is missing in JUCE's internal tables.
-        Does nothing on other platforms.
-    */
-    static void registerCustomMimeTypeForFileExtension (const String& mimeType,
-                                                        const String& fileExtension);
-
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     class Native;
-    /** @endcond */
+   #endif
 
 private:
     //==============================================================================

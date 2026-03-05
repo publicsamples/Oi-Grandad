@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -36,7 +24,6 @@
 
 #include "juce_TargetPlatform.h"
 
-/** @cond */
 /** Return the Nth argument. By passing a variadic pack followed by N other
     parameters, we can select one of those N parameter based on the length of
     the parameter pack.
@@ -44,8 +31,7 @@
 #define JUCE_NTH_ARG_(_00, _01, _02, _03, _04, _05, _06, _07, _08, _09,        \
                       _10, _11, _12, _13, _14, _15, _16, _17, _18, _19,        \
                       _20, _21, _22, _23, _24, _25, _26, _27, _28, _29,        \
-                      _30, _31, _32, _33, _34, _35, _36, _37, _38, _39,        \
-                      _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, N, ...)\
+                      _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, N, ...)\
     N
 
 #define JUCE_EACH_00_(FN)
@@ -88,30 +74,10 @@
 #define JUCE_EACH_37_(FN, X, ...) FN(X) JUCE_EACH_36_(FN, __VA_ARGS__)
 #define JUCE_EACH_38_(FN, X, ...) FN(X) JUCE_EACH_37_(FN, __VA_ARGS__)
 #define JUCE_EACH_39_(FN, X, ...) FN(X) JUCE_EACH_38_(FN, __VA_ARGS__)
-#define JUCE_EACH_40_(FN, X, ...) FN(X) JUCE_EACH_39_(FN, __VA_ARGS__)
-#define JUCE_EACH_41_(FN, X, ...) FN(X) JUCE_EACH_40_(FN, __VA_ARGS__)
-#define JUCE_EACH_42_(FN, X, ...) FN(X) JUCE_EACH_41_(FN, __VA_ARGS__)
-#define JUCE_EACH_43_(FN, X, ...) FN(X) JUCE_EACH_42_(FN, __VA_ARGS__)
-#define JUCE_EACH_44_(FN, X, ...) FN(X) JUCE_EACH_43_(FN, __VA_ARGS__)
-#define JUCE_EACH_45_(FN, X, ...) FN(X) JUCE_EACH_44_(FN, __VA_ARGS__)
-#define JUCE_EACH_46_(FN, X, ...) FN(X) JUCE_EACH_45_(FN, __VA_ARGS__)
-#define JUCE_EACH_47_(FN, X, ...) FN(X) JUCE_EACH_46_(FN, __VA_ARGS__)
-#define JUCE_EACH_48_(FN, X, ...) FN(X) JUCE_EACH_47_(FN, __VA_ARGS__)
-#define JUCE_EACH_49_(FN, X, ...) FN(X) JUCE_EACH_48_(FN, __VA_ARGS__)
 
 /** Apply the macro FN to each of the other arguments. */
 #define JUCE_EACH(FN, ...)                                                     \
     JUCE_NTH_ARG_(, __VA_ARGS__,                                               \
-                  JUCE_EACH_49_,                                               \
-                  JUCE_EACH_48_,                                               \
-                  JUCE_EACH_47_,                                               \
-                  JUCE_EACH_46_,                                               \
-                  JUCE_EACH_45_,                                               \
-                  JUCE_EACH_44_,                                               \
-                  JUCE_EACH_43_,                                               \
-                  JUCE_EACH_42_,                                               \
-                  JUCE_EACH_41_,                                               \
-                  JUCE_EACH_40_,                                               \
                   JUCE_EACH_39_,                                               \
                   JUCE_EACH_38_,                                               \
                   JUCE_EACH_37_,                                               \
@@ -161,8 +127,7 @@
 /** Quote the argument, turning it into a string. */
 #define JUCE_TO_STRING(x) #x
 
-/** @endcond */
-#if JUCE_CLANG || JUCE_GCC
+#if JUCE_CLANG || JUCE_GCC || JUCE_MINGW
     #define JUCE_IGNORE_GCC_IMPL_(compiler, warning)
     #define JUCE_IGNORE_GCC_IMPL_0(compiler, warning)
     #define JUCE_IGNORE_GCC_IMPL_1(compiler, warning)                          \
@@ -240,22 +205,14 @@
     #define JUCE_SANITIZER_ATTRIBUTE_MINIMUM_CLANG_VERSION 9
 #endif
 
-#define JUCE_BEGIN_IGNORE_DEPRECATION_WARNINGS                                  \
-    JUCE_BEGIN_IGNORE_WARNINGS_GCC_LIKE ("-Wdeprecated-declarations")           \
-    JUCE_BEGIN_IGNORE_WARNINGS_MSVC (4996)
-
-#define JUCE_END_IGNORE_DEPRECATION_WARNINGS                                    \
-    JUCE_END_IGNORE_WARNINGS_MSVC                                               \
-    JUCE_END_IGNORE_WARNINGS_GCC_LIKE
-
 /** Disable sanitizers for a range of functions.
 
     This functionality doesn't seem to exist on GCC yet, so at the moment this only works for clang.
 */
 #if JUCE_CLANG && __clang_major__ >= JUCE_SANITIZER_ATTRIBUTE_MINIMUM_CLANG_VERSION
     #define JUCE_BEGIN_NO_SANITIZE(warnings)                                    \
-        _Pragma (JUCE_TO_STRING (clang attribute push (__attribute__ ((no_sanitize (warnings))), apply_to=function)))
-    #define JUCE_END_NO_SANITIZE _Pragma (JUCE_TO_STRING (clang attribute pop))
+        _Pragma(JUCE_TO_STRING(clang attribute push(__attribute__((no_sanitize(warnings))), apply_to=function)))
+    #define JUCE_END_NO_SANITIZE _Pragma(JUCE_TO_STRING(clang attribute pop))
 #else
     #define JUCE_BEGIN_NO_SANITIZE(warnings)
     #define JUCE_END_NO_SANITIZE

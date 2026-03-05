@@ -89,14 +89,9 @@ bool AudioStreamBuilder::isCompatible(AudioStreamBase &other) {
 }
 
 Result AudioStreamBuilder::openStream(AudioStream **streamPP) {
-    LOGW("Passing AudioStream pointer deprecated, Use openStream(std::shared_ptr<oboe::AudioStream> &stream) instead.");
-    return openStreamInternal(streamPP);
-}
-
-Result AudioStreamBuilder::openStreamInternal(AudioStream **streamPP) {
     auto result = isValidConfig();
     if (result != Result::OK) {
-        LOGW("%s() invalid config. Error %s", __func__, oboe::convertToText(result));
+        LOGW("%s() invalid config %d", __func__, result);
         return result;
     }
 
@@ -117,7 +112,7 @@ Result AudioStreamBuilder::openStreamInternal(AudioStream **streamPP) {
     // Do we need to make a child stream and convert.
     if (conversionNeeded) {
         AudioStream *tempStream;
-        result = childBuilder.openStreamInternal(&tempStream);
+        result = childBuilder.openStream(&tempStream);
         if (result != Result::OK) {
             return result;
         }
@@ -144,9 +139,7 @@ Result AudioStreamBuilder::openStreamInternal(AudioStream **streamPP) {
 
             // Use childStream in a FilterAudioStream.
             LOGI("%s() create a FilterAudioStream for data conversion.", __func__);
-            std::shared_ptr<AudioStream> childStream(tempStream);
-            FilterAudioStream *filterStream = new FilterAudioStream(parentBuilder, childStream);
-            childStream->setWeakThis(childStream);
+            FilterAudioStream *filterStream = new FilterAudioStream(parentBuilder, tempStream);
             result = filterStream->configureFlowGraph();
             if (result !=  Result::OK) {
                 filterStream->close();
@@ -209,7 +202,6 @@ Result AudioStreamBuilder::openStreamInternal(AudioStream **streamPP) {
 }
 
 Result AudioStreamBuilder::openManagedStream(oboe::ManagedStream &stream) {
-    LOGW("`openManagedStream` is deprecated. Use openStream(std::shared_ptr<oboe::AudioStream> &stream) instead.");
     stream.reset();
     AudioStream *streamptr;
     auto result = openStream(&streamptr);
@@ -220,7 +212,7 @@ Result AudioStreamBuilder::openManagedStream(oboe::ManagedStream &stream) {
 Result AudioStreamBuilder::openStream(std::shared_ptr<AudioStream> &sharedStream) {
     sharedStream.reset();
     AudioStream *streamptr;
-    auto result = openStreamInternal(&streamptr);
+    auto result = openStream(&streamptr);
     if (result == Result::OK) {
         sharedStream.reset(streamptr);
         // Save a weak_ptr in the stream for use with callbacks.

@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -44,7 +32,7 @@ namespace juce
 
     Declare it in the form:  OwnedArray<MyObjectClass>
 
-    ...and then add new objects, e.g.   myOwnedArray.add (new MyObjectClass());
+    ..and then add new objects, e.g.   myOwnedArray.add (new MyObjectClass());
 
     After adding objects, they are 'owned' by the array and will be deleted when
     removed or replaced.
@@ -58,6 +46,7 @@ namespace juce
 */
 template <class ObjectClass,
           class TypeOfCriticalSectionToUse = DummyCriticalSection>
+
 class OwnedArray
 {
 public:
@@ -440,7 +429,7 @@ public:
         else
         {
             jassertfalse; // you're trying to set an object at a negative index, which doesn't have
-                          // any effect - but since the object is not being added, it may be leaking
+                          // any effect - but since the object is not being added, it may be leaking..
         }
 
         return newObject;
@@ -542,7 +531,17 @@ public:
         @see add, sort, indexOfSorted
     */
     template <class ElementComparator>
-    int addSorted (ElementComparator& comparator, ObjectClass* newObject) noexcept;
+    int addSorted (ElementComparator& comparator, ObjectClass* newObject) noexcept
+    {
+        // If you pass in an object with a static compareElements() method, this
+        // avoids getting warning messages about the parameter being unused
+        ignoreUnused (comparator);
+
+        const ScopedLockType lock (getLock());
+        auto index = findInsertIndexInSortedArray (comparator, values.begin(), newObject, 0, values.size());
+        insert (index, newObject);
+        return index;
+    }
 
     /** Finds the index of an object in the array, assuming that the array is sorted.
 
@@ -557,7 +556,33 @@ public:
         @see addSorted, sort
     */
     template <typename ElementComparator>
-    int indexOfSorted (ElementComparator& comparator, const ObjectClass* objectToLookFor) const noexcept;
+    int indexOfSorted (ElementComparator& comparator, const ObjectClass* objectToLookFor) const noexcept
+    {
+        // If you pass in an object with a static compareElements() method, this
+        // avoids getting warning messages about the parameter being unused
+        ignoreUnused (comparator);
+
+        const ScopedLockType lock (getLock());
+        int s = 0, e = values.size();
+
+        while (s < e)
+        {
+            if (comparator.compareElements (objectToLookFor, values[s]) == 0)
+                return s;
+
+            auto halfway = (s + e) / 2;
+
+            if (halfway == s)
+                break;
+
+            if (comparator.compareElements (objectToLookFor, values[halfway]) >= 0)
+                s = halfway;
+            else
+                e = halfway;
+        }
+
+        return -1;
+    }
 
     //==============================================================================
     /** Removes an object from the array.
@@ -775,7 +800,7 @@ public:
         int compareElements (ElementType* first, ElementType* second);
         @endcode
 
-        ...and this method must return:
+        ..and this method must return:
           - a value of < 0 if the first comes before the second
           - a value of 0 if the two objects are equivalent
           - a value of > 0 if the second comes before the first
@@ -793,7 +818,18 @@ public:
         @see sortArray, indexOfSorted
     */
     template <class ElementComparator>
-    void sort (ElementComparator& comparator, bool retainOrderOfEquivalentItems = false) noexcept;
+    void sort (ElementComparator& comparator,
+               bool retainOrderOfEquivalentItems = false) noexcept
+    {
+        // If you pass in an object with a static compareElements() method, this
+        // avoids getting warning messages about the parameter being unused
+        ignoreUnused (comparator);
+
+        const ScopedLockType lock (getLock());
+
+        if (size() > 1)
+            sortArray (comparator, values.begin(), 0, size() - 1, retainOrderOfEquivalentItems);
+    }
 
     //==============================================================================
     /** Returns the CriticalSection that locks this array.
@@ -806,11 +842,11 @@ public:
     using ScopedLockType = typename TypeOfCriticalSectionToUse::ScopedLockType;
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     [[deprecated ("This method has been replaced by a more flexible templated version and renamed "
                  "to swapWith to be more consistent with the names used in other classes.")]]
     void swapWithArray (OwnedArray& other) noexcept { swapWith (other); }
-    /** @endcond */
+   #endif
 
 private:
     //==============================================================================
@@ -833,58 +869,5 @@ private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OwnedArray)
 };
-
-//==============================================================================
-template <class ObjectClass, class TypeOfCriticalSectionToUse>
-template <class ElementComparator>
-int OwnedArray<ObjectClass, TypeOfCriticalSectionToUse>::addSorted (
-    [[maybe_unused]] ElementComparator& comparator,
-    ObjectClass* newObject) noexcept
-{
-    const ScopedLockType lock (getLock());
-    auto index = findInsertIndexInSortedArray (comparator, values.begin(), newObject, 0, values.size());
-    insert (index, newObject);
-    return index;
-}
-
-template <class ObjectClass, class TypeOfCriticalSectionToUse>
-template <typename ElementComparator>
-int OwnedArray<ObjectClass, TypeOfCriticalSectionToUse>::indexOfSorted (
-    [[maybe_unused]] ElementComparator& comparator,
-    const ObjectClass* objectToLookFor) const noexcept
-{
-    const ScopedLockType lock (getLock());
-    int s = 0, e = values.size();
-
-    while (s < e)
-    {
-        if (comparator.compareElements (objectToLookFor, values[s]) == 0)
-            return s;
-
-        auto halfway = (s + e) / 2;
-
-        if (halfway == s)
-            break;
-
-        if (comparator.compareElements (objectToLookFor, values[halfway]) >= 0)
-            s = halfway;
-        else
-            e = halfway;
-    }
-
-    return -1;
-}
-
-template <class ObjectClass, class TypeOfCriticalSectionToUse>
-template <typename ElementComparator>
-void OwnedArray<ObjectClass, TypeOfCriticalSectionToUse>::sort (
-    [[maybe_unused]] ElementComparator& comparator,
-    bool retainOrderOfEquivalentItems) noexcept
-{
-    const ScopedLockType lock (getLock());
-
-    if (size() > 1)
-        sortArray (comparator, values.begin(), 0, size() - 1, retainOrderOfEquivalentItems);
-}
 
 } // namespace juce

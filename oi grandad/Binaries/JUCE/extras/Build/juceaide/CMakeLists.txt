@@ -1,32 +1,23 @@
 # ==============================================================================
 #
-#  This file is part of the JUCE framework.
-#  Copyright (c) Raw Material Software Limited
+#  This file is part of the JUCE library.
+#  Copyright (c) 2020 - Raw Material Software Limited
 #
-#  JUCE is an open source framework subject to commercial or open source
+#  JUCE is an open source library subject to commercial or open-source
 #  licensing.
 #
-#  By downloading, installing, or using the JUCE framework, or combining the
-#  JUCE framework with any other source code, object code, content or any other
-#  copyrightable work, you agree to the terms of the JUCE End User Licence
-#  Agreement, and all incorporated terms including the JUCE Privacy Policy and
-#  the JUCE Website Terms of Service, as applicable, which will bind you. If you
-#  do not agree to the terms of these agreements, we will not license the JUCE
-#  framework to you, and you must discontinue the installation or download
-#  process and cease use of the JUCE framework.
+#  By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+#  Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 #
-#  JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-#  JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-#  JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+#  End User License Agreement: www.juce.com/juce-6-licence
+#  Privacy Policy: www.juce.com/juce-privacy-policy
 #
-#  Or:
+#  Or: You may also use this code under the terms of the GPL v3 (see
+#  www.gnu.org/licenses).
 #
-#  You may also use this code under the terms of the AGPLv3:
-#  https://www.gnu.org/licenses/agpl-3.0.en.html
-#
-#  THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-#  WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-#  MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+#  JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+#  EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+#  DISCLAIMED.
 #
 # ==============================================================================
 
@@ -37,17 +28,13 @@
 
 if(JUCE_BUILD_HELPER_TOOLS)
     # Build the tool for the current system
-    juce_add_console_app(juceaide _NO_RESOURCERC)
+    juce_add_console_app(juceaide)
 
     target_sources(juceaide PRIVATE Main.cpp)
 
     target_compile_definitions(juceaide PRIVATE
         JUCE_DISABLE_JUCE_VERSION_PRINTING=1
-        JUCE_USE_CURL=0
-        # This is a temporary workaround to allow builds to complete on Xcode 15.
-        # Add -Wl,-ld_classic to the OTHER_LDFLAGS build setting if you need to
-        # deploy to older versions of macOS.
-        JUCE_SILENCE_XCODE_15_LINKER_WARNING=1)
+        JUCE_USE_CURL=0)
 
     target_link_libraries(juceaide PRIVATE
         juce::juce_build_tools
@@ -55,86 +42,28 @@ if(JUCE_BUILD_HELPER_TOOLS)
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags)
 
-    set_target_properties(juceaide PROPERTIES MSVC_RUNTIME_LIBRARY "MultiThreaded")
-
     export(TARGETS juceaide
            NAMESPACE juce_tools::
            FILE "${JUCE_BINARY_DIR}/JUCEToolsExport.cmake")
 else()
+    # If we're building using the NDK, the gradle wrapper will try to inject its own compiler using
+    # environment variables, which is unfortunate because we really don't want to cross-compile
+    # juceaide. If you really want to set the compilers for juceaide, pass the appropriate
+    # CMAKE_<lang>_COMPILER flags when configuring CMake.
+    unset(ENV{ASM})
+    unset(ENV{CC})
+    unset(ENV{CXX})
+
     message(STATUS "Configuring juceaide")
 
-    if(CMAKE_CROSSCOMPILING)
-        unset(ENV{ADDR2LINE})
-        unset(ENV{AR})
-        unset(ENV{ASM})
-        unset(ENV{AS})
-        unset(ENV{CC})
-        unset(ENV{CPP})
-        unset(ENV{CXXFILT})
-        unset(ENV{CXX})
-        unset(ENV{DLLTOOL})
-        unset(ENV{DLLWRAP})
-        unset(ENV{ELFEDIT})
-        unset(ENV{GCC})
-        unset(ENV{GCOV_DUMP})
-        unset(ENV{GCOV_TOOL})
-        unset(ENV{GCOV})
-        unset(ENV{GPROF})
-        unset(ENV{GXX})
-        unset(ENV{LDFLAGS})
-        unset(ENV{LD_BFD})
-        unset(ENV{LD})
-        unset(ENV{LTO_DUMP})
-        unset(ENV{NM})
-        unset(ENV{OBJCOPY})
-        unset(ENV{OBJDUMP})
-        unset(ENV{PKG_CONFIG_LIBDIR})
-        unset(ENV{PKG_CONFIG})
-        unset(ENV{RANLIB})
-        unset(ENV{RC})
-        unset(ENV{READELF})
-        unset(ENV{SIZE})
-        unset(ENV{STRINGS})
-        unset(ENV{STRIP})
-        unset(ENV{WIDL})
-        unset(ENV{WINDMC})
-        unset(ENV{WINDRES})
-
-        if(DEFINED ENV{PATH_ORIG})
-            set(ENV{PATH} "$ENV{PATH_ORIG}")
-        endif()
-    endif()
-
-    # Generator platform is only supported on specific generators
-    if(CMAKE_GENERATOR MATCHES "^Visual Studio.*$")
-        set(ENV{CMAKE_GENERATOR_PLATFORM} "${CMAKE_HOST_SYSTEM_PROCESSOR}")
-    endif()
-
-    set(PASSTHROUGH_ARGS "")
-
-    if(CMAKE_OSX_DEPLOYMENT_TARGET)
-        list(APPEND PASSTHROUGH_ARGS "-DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}")
-    endif()
-
-    if(CMAKE_C_COMPILER_LAUNCHER)
-        list(APPEND PASSTHROUGH_ARGS "-DCMAKE_C_COMPILER_LAUNCHER=${CMAKE_C_COMPILER_LAUNCHER}")
-    endif()
-
-    if(CMAKE_CXX_COMPILER_LAUNCHER)
-        list(APPEND PASSTHROUGH_ARGS "-DCMAKE_CXX_COMPILER_LAUNCHER=${CMAKE_CXX_COMPILER_LAUNCHER}")
-    endif()
-
-    # Looks like we're bootstrapping, reinvoke CMake
+    # Looks like we're boostrapping, reinvoke CMake
     execute_process(COMMAND "${CMAKE_COMMAND}"
             "."
             "-B${JUCE_BINARY_DIR}/tools"
             "-G${CMAKE_GENERATOR}"
-            "-DCMAKE_MAKE_PROGRAM=${CMAKE_MAKE_PROGRAM}"
-            "-DCMAKE_CONFIGURATION_TYPES=Custom"
-            "-DCMAKE_BUILD_TYPE=Custom"
+            "-DCMAKE_BUILD_TYPE=Debug"
             "-DJUCE_BUILD_HELPER_TOOLS=ON"
             "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}"
-            ${PASSTHROUGH_ARGS}
         WORKING_DIRECTORY "${JUCE_SOURCE_DIR}"
         OUTPUT_VARIABLE command_output
         ERROR_VARIABLE command_output
@@ -148,7 +77,7 @@ else()
 
     execute_process(COMMAND "${CMAKE_COMMAND}"
             --build "${JUCE_BINARY_DIR}/tools"
-            --config Custom
+            --config Debug
         OUTPUT_VARIABLE command_output
         ERROR_VARIABLE command_output
         RESULT_VARIABLE result_variable)
@@ -163,7 +92,7 @@ else()
     include("${JUCE_BINARY_DIR}/tools/JUCEToolsExport.cmake")
 
     add_executable(juceaide IMPORTED GLOBAL)
-    get_target_property(imported_location juce_tools::juceaide IMPORTED_LOCATION_CUSTOM)
+    get_target_property(imported_location juce_tools::juceaide IMPORTED_LOCATION_DEBUG)
     set_target_properties(juceaide PROPERTIES IMPORTED_LOCATION "${imported_location}")
 
     add_executable(juce::juceaide ALIAS juceaide)
@@ -175,17 +104,4 @@ else()
 
     get_filename_component(binary_name "${imported_location}" NAME)
     set(JUCE_JUCEAIDE_NAME "${binary_name}" CACHE INTERNAL "The name of the juceaide program")
-
-    message(STATUS "Testing juceaide")
-
-    execute_process(COMMAND "${imported_location}" version
-        RESULT_VARIABLE result_variable
-        OUTPUT_VARIABLE output
-        ERROR_VARIABLE output)
-
-    if(result_variable)
-        message(FATAL_ERROR "Testing juceaide failed:\noutput: ${output}")
-    endif()
-
-    message(STATUS "Finished setting up juceaide")
 endif()

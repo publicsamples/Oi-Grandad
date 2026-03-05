@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -136,17 +127,6 @@ public:
                            float brightness,
                            float alpha) noexcept;
 
-    /** Creates a colour using floating point hue, saturation, brightness values, and an 8-bit alpha.
-
-        All values must be between 0.0 and 1.0.
-        An alpha of 0x00 is completely transparent, alpha of 0xff is opaque.
-        Numbers outside the valid range will be clipped.
-    */
-    static Colour fromHSV (float hue,
-                           float saturation,
-                           float brightness,
-                           uint8 alpha) noexcept;
-
     /** Creates a colour using floating point hue, saturation, lightness and alpha values.
 
         All values must be between 0.0 and 1.0.
@@ -156,17 +136,6 @@ public:
                            float saturation,
                            float lightness,
                            float alpha) noexcept;
-
-    /** Creates a colour using floating point hue, saturation, lightness values, and an 8-bit alpha.
-
-        All values must be between 0.0 and 1.0.
-        An alpha of 0x00 is completely transparent, alpha of 0xff is opaque.
-        Numbers outside the valid range will be clipped.
-    */
-    static Colour fromHSL (float hue,
-                           float saturation,
-                           float lightness,
-                           uint8 alpha) noexcept;
 
     /** Creates a colour using a PixelARGB object. This function assumes that the argb pixel is
         not premultiplied.
@@ -225,11 +194,7 @@ public:
 
     /** Returns a premultiplied ARGB pixel object that represents this colour.
     */
-    PixelARGB getPixelARGB() const noexcept;
-
-    /** Returns an ARGB pixel object that represents this colour.
-    */
-    PixelARGB getNonPremultipliedPixelARGB() const noexcept;
+    const PixelARGB getPixelARGB() const noexcept;
 
     /** Returns a 32-bit integer that represents this colour.
 
@@ -334,35 +299,35 @@ public:
 
     //==============================================================================
     /** Returns a copy of this colour with a different hue. */
-    [[nodiscard]] Colour withHue (float newHue) const noexcept;
+    Colour withHue (float newHue) const noexcept;
 
     /** Returns a copy of this colour with a different saturation. */
-    [[nodiscard]] Colour withSaturation (float newSaturation) const noexcept;
+    Colour withSaturation (float newSaturation) const noexcept;
 
     /** Returns a copy of this colour with a different saturation in the HSL colour space. */
-    [[nodiscard]] Colour withSaturationHSL (float newSaturation) const noexcept;
+    Colour withSaturationHSL (float newSaturation) const noexcept;
 
     /** Returns a copy of this colour with a different brightness.
         @see brighter, darker, withMultipliedBrightness
     */
-    [[nodiscard]] Colour withBrightness (float newBrightness) const noexcept;
+    Colour withBrightness (float newBrightness) const noexcept;
 
     /** Returns a copy of this colour with a different lightness.
         @see lighter, darker, withMultipliedLightness
     */
-    [[nodiscard]] Colour withLightness (float newLightness) const noexcept;
+    Colour withLightness (float newLightness) const noexcept;
 
     /** Returns a copy of this colour with its hue rotated.
         The new colour's hue is ((this->getHue() + amountToRotate) % 1.0)
         @see brighter, darker, withMultipliedBrightness
     */
-    [[nodiscard]] Colour withRotatedHue (float amountToRotate) const noexcept;
+    Colour withRotatedHue (float amountToRotate) const noexcept;
 
     /** Returns a copy of this colour with its saturation multiplied by the given value.
         The new colour's saturation is (this->getSaturation() * multiplier)
         (the result is clipped to legal limits).
     */
-    [[nodiscard]] Colour withMultipliedSaturation (float multiplier) const noexcept;
+    Colour withMultipliedSaturation (float multiplier) const noexcept;
 
     /** Returns a copy of this colour with its saturation multiplied by the given value.
         The new colour's saturation is (this->getSaturation() * multiplier)
@@ -370,19 +335,19 @@ public:
 
         This will be in the HSL colour space.
     */
-    [[nodiscard]] Colour withMultipliedSaturationHSL (float multiplier) const noexcept;
+    Colour withMultipliedSaturationHSL (float multiplier) const noexcept;
 
     /** Returns a copy of this colour with its brightness multiplied by the given value.
         The new colour's brightness is (this->getBrightness() * multiplier)
         (the result is clipped to legal limits).
     */
-    [[nodiscard]] Colour withMultipliedBrightness (float amount) const noexcept;
+    Colour withMultipliedBrightness (float amount) const noexcept;
 
     /** Returns a copy of this colour with its lightness multiplied by the given value.
         The new colour's lightness is (this->lightness() * multiplier)
         (the result is clipped to legal limits).
     */
-    [[nodiscard]] Colour withMultipliedLightness (float amount) const noexcept;
+    Colour withMultipliedLightness (float amount) const noexcept;
 
     //==============================================================================
     /** Returns a brighter version of this colour.
@@ -390,14 +355,14 @@ public:
                                 where 0 is unchanged, and higher values make it brighter
         @see withMultipliedBrightness
     */
-    [[nodiscard]] Colour brighter (float amountBrighter = 0.4f) const noexcept;
+    Colour brighter (float amountBrighter = 0.4f) const noexcept;
 
     /** Returns a darker version of this colour.
         @param amountDarker     how much darker to make it - a value greater than or equal to 0,
                                 where 0 is unchanged, and higher values make it darker
         @see withMultipliedBrightness
     */
-    [[nodiscard]] Colour darker (float amountDarker = 0.4f) const noexcept;
+    Colour darker (float amountDarker = 0.4f) const noexcept;
 
     //==============================================================================
     /** Returns a colour that will be clearly visible against this colour.
@@ -407,7 +372,7 @@ public:
         that's just a little bit lighter; Colours::black.contrasting (1.0f) will
         return white; Colours::white.contrasting (1.0f) will return black, etc.
     */
-    [[nodiscard]] Colour contrasting (float amount = 1.0f) const noexcept;
+    Colour contrasting (float amount = 1.0f) const noexcept;
 
     /** Returns a colour that is as close as possible to a target colour whilst
         still being in contrast to this one.
@@ -416,20 +381,20 @@ public:
         nudged up or down so that it differs from the luminosity of this colour
         by at least the amount specified by minLuminosityDiff.
     */
-    [[nodiscard]] Colour contrasting (Colour targetColour, float minLuminosityDiff) const noexcept;
+    Colour contrasting (Colour targetColour, float minLuminosityDiff) const noexcept;
 
     /** Returns a colour that contrasts against two colours.
         Looks for a colour that contrasts with both of the colours passed-in.
         Handy for things like choosing a highlight colour in text editors, etc.
     */
-    [[nodiscard]] static Colour contrasting (Colour colour1,
-                                              Colour colour2) noexcept;
+    static Colour contrasting (Colour colour1,
+                               Colour colour2) noexcept;
 
     //==============================================================================
     /** Returns an opaque shade of grey.
         @param brightness the level of grey to return - 0 is black, 1.0 is white
     */
-    [[nodiscard]] static Colour greyLevel (float brightness) noexcept;
+    static Colour greyLevel (float brightness) noexcept;
 
     //==============================================================================
     /** Returns a stringified version of this colour.
@@ -438,7 +403,7 @@ public:
     String toString() const;
 
     /** Reads the colour from a string that was created with toString(). */
-    [[nodiscard]] static Colour fromString (StringRef encodedColourString);
+    static Colour fromString (StringRef encodedColourString);
 
     /** Returns the colour as a hex string in the form RRGGBB or AARRGGBB. */
     String toDisplayString (bool includeAlphaValue) const;

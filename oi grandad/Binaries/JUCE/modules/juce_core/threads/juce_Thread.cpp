@@ -1,42 +1,30 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
 namespace juce
 {
-//==============================================================================
-Thread::Thread (const String& name, size_t stackSize) : threadName (name),
-                                                        threadStackSize (stackSize)
+
+Thread::Thread (const String& name, size_t stackSize)
+   : threadName (name), threadStackSize (stackSize)
 {
 }
 
@@ -60,7 +48,7 @@ Thread::~Thread()
 //==============================================================================
 // Use a ref-counted object to hold this shared data, so that it can outlive its static
 // shared pointer when threads are still running during static shutdown.
-struct CurrentThreadHolder final : public ReferenceCountedObject
+struct CurrentThreadHolder   : public ReferenceCountedObject
 {
     CurrentThreadHolder() noexcept {}
 
@@ -96,11 +84,9 @@ void Thread::threadEntryPoint()
     if (threadName.isNotEmpty())
         setCurrentThreadName (threadName);
 
-    // This 'startSuspensionEvent' protects 'threadId' which is initialised after the platform's native 'CreateThread' method.
-    // This ensures it has been initialised correctly before it reaches this point.
     if (startSuspensionEvent.wait (10000))
     {
-        jassert (getCurrentThreadId() == threadId);
+        jassert (getCurrentThreadId() == threadId.get());
 
         if (affinityMask != 0)
             setCurrentThreadAffinityMask (affinityMask);
@@ -133,65 +119,42 @@ void JUCE_API juce_threadEntryPoint (void* userData)
 }
 
 //==============================================================================
-bool Thread::startThreadInternal (Priority threadPriority)
+void Thread::startThread()
 {
-    shouldExit = false;
+    const ScopedLock sl (startStopLock);
 
-    // 'priority' is essentially useless on Linux as only realtime
-    // has any options but we need to set this here to satisfy
-    // later queries, otherwise we get inconsistent results across
-    // platforms.
-   #if JUCE_ANDROID || JUCE_LINUX || JUCE_BSD
-    priority = threadPriority;
-   #endif
+    shouldExit = 0;
 
-    if (createNativeThread (threadPriority))
+    if (threadHandle.get() == nullptr)
     {
+        launchThread();
+        setThreadPriority (threadHandle.get(), threadPriority);
         startSuspensionEvent.signal();
-        return true;
     }
-
-    return false;
 }
 
-bool Thread::startThread()
-{
-    return startThread (Priority::normal);
-}
-
-bool Thread::startThread (Priority threadPriority)
+void Thread::startThread (int priority)
 {
     const ScopedLock sl (startStopLock);
 
-    if (threadHandle == nullptr)
+    if (threadHandle.get() == nullptr)
     {
-        realtimeOptions.reset();
-        return startThreadInternal (threadPriority);
+       #if JUCE_ANDROID
+        isAndroidRealtimeThread = (priority == realtimeAudioPriority);
+       #endif
+
+        threadPriority = getAdjustedPriority (priority);
+        startThread();
     }
-
-    return false;
-}
-
-bool Thread::startRealtimeThread (const RealtimeOptions& options)
-{
-    const ScopedLock sl (startStopLock);
-
-    if (threadHandle == nullptr)
+    else
     {
-        realtimeOptions = std::make_optional (options);
-
-        if (startThreadInternal (Priority::normal))
-            return true;
-
-        realtimeOptions.reset();
+        setPriority (priority);
     }
-
-    return false;
 }
 
 bool Thread::isThreadRunning() const
 {
-    return threadHandle != nullptr;
+    return threadHandle.get() != nullptr;
 }
 
 Thread* JUCE_CALLTYPE Thread::getCurrentThread()
@@ -201,19 +164,19 @@ Thread* JUCE_CALLTYPE Thread::getCurrentThread()
 
 Thread::ThreadID Thread::getThreadId() const noexcept
 {
-    return threadId;
+    return threadId.get();
 }
 
 //==============================================================================
 void Thread::signalThreadShouldExit()
 {
-    shouldExit = true;
+    shouldExit = 1;
     listeners.call ([] (Listener& l) { l.exitSignalSent(); });
 }
 
 bool Thread::threadShouldExit() const
 {
-    return shouldExit;
+    return shouldExit.get() != 0;
 }
 
 bool Thread::currentThreadShouldExit()
@@ -261,7 +224,7 @@ bool Thread::stopThread (const int timeOutMilliseconds)
         if (isThreadRunning())
         {
             // very bad karma if this point is reached, as there are bound to be
-            // locks and events left in silly states when a thread is killed by force
+            // locks and events left in silly states when a thread is killed by force..
             jassertfalse;
             Logger::writeToLog ("!! killing thread by force !!");
 
@@ -286,9 +249,40 @@ void Thread::removeListener (Listener* listener)
     listeners.remove (listener);
 }
 
-bool Thread::isRealtime() const
+//==============================================================================
+bool Thread::setPriority (int newPriority)
 {
-    return realtimeOptions.has_value();
+    newPriority = getAdjustedPriority (newPriority);
+
+    // NB: deadlock possible if you try to set the thread prio from the thread itself,
+    // so using setCurrentThreadPriority instead in that case.
+    if (getCurrentThreadId() == getThreadId())
+        return setCurrentThreadPriority (newPriority);
+
+    const ScopedLock sl (startStopLock);
+
+   #if JUCE_ANDROID
+    bool isRealtime = (newPriority == realtimeAudioPriority);
+
+    // you cannot switch from or to an Android realtime thread once the
+    // thread is already running!
+    jassert (isThreadRunning() && (isRealtime == isAndroidRealtimeThread));
+
+    isAndroidRealtimeThread = isRealtime;
+   #endif
+
+    if ((! isThreadRunning()) || setThreadPriority (threadHandle.get(), newPriority))
+    {
+        threadPriority = newPriority;
+        return true;
+    }
+
+    return false;
+}
+
+bool Thread::setCurrentThreadPriority (const int newPriority)
+{
+    return setThreadPriority ({}, getAdjustedPriority (newPriority));
 }
 
 void Thread::setAffinityMask (const uint32 newAffinityMask)
@@ -296,8 +290,13 @@ void Thread::setAffinityMask (const uint32 newAffinityMask)
     affinityMask = newAffinityMask;
 }
 
+int Thread::getAdjustedPriority (int newPriority)
+{
+    return jlimit (0, 10, newPriority == realtimeAudioPriority ? 9 : newPriority);
+}
+
 //==============================================================================
-bool Thread::wait (double timeOutMilliseconds) const
+bool Thread::wait (const int timeOutMilliseconds) const
 {
     return defaultEvent.wait (timeOutMilliseconds);
 }
@@ -308,9 +307,9 @@ void Thread::notify() const
 }
 
 //==============================================================================
-struct LambdaThread final : public Thread
+struct LambdaThread  : public Thread
 {
-    LambdaThread (std::function<void()>&& f) : Thread (SystemStats::getJUCEVersion() + ": anonymous"), fn (std::move (f)) {}
+    LambdaThread (std::function<void()> f) : Thread ("anonymous"), fn (f) {}
 
     void run() override
     {
@@ -323,23 +322,11 @@ struct LambdaThread final : public Thread
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LambdaThread)
 };
 
-bool Thread::launch (std::function<void()> functionToRun)
+void Thread::launch (std::function<void()> functionToRun)
 {
-    return launch (Priority::normal, std::move (functionToRun));
-}
-
-bool Thread::launch (Priority priority, std::function<void()> functionToRun)
-{
-    auto anon = std::make_unique<LambdaThread> (std::move (functionToRun));
+    auto anon = new LambdaThread (functionToRun);
     anon->deleteOnThreadEnd = true;
-
-    if (anon->startThread (priority))
-    {
-        anon.release();
-        return true;
-    }
-
-    return false;
+    anon->startThread();
 }
 
 //==============================================================================
@@ -362,11 +349,12 @@ bool JUCE_CALLTYPE Process::isRunningUnderDebugger() noexcept
     return juce_isRunningUnderDebugger();
 }
 
+
 //==============================================================================
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class AtomicTests final : public UnitTest
+class AtomicTests  : public UnitTest
 {
 public:
     AtomicTests()
@@ -378,9 +366,9 @@ public:
         beginTest ("Misc");
 
         char a1[7];
-        expect (numElementsInArray (a1) == 7);
+        expect (numElementsInArray(a1) == 7);
         int a2[3];
-        expect (numElementsInArray (a2) == 3);
+        expect (numElementsInArray(a2) == 3);
 
         expect (ByteOrder::swap ((uint16) 0x1122) == 0x2211);
         expect (ByteOrder::swap ((uint32) 0x11223344) == 0x44332211);
@@ -429,7 +417,7 @@ public:
     class AtomicTester
     {
     public:
-        AtomicTester() = default;
+        AtomicTester() {}
 
         static void testInteger (UnitTest& test)
         {
@@ -472,17 +460,17 @@ public:
             /*  These are some simple test cases to check the atomics - let me know
                 if any of these assertions fail on your system!
             */
-            test.expect (exactlyEqual (a.get(), (Type) 101));
+            test.expect (a.get() == (Type) 101);
             test.expect (! a.compareAndSetBool ((Type) 300, (Type) 200));
-            test.expect (exactlyEqual (a.get(), (Type) 101));
+            test.expect (a.get() == (Type) 101);
             test.expect (a.compareAndSetBool ((Type) 200, a.get()));
-            test.expect (exactlyEqual (a.get(), (Type) 200));
+            test.expect (a.get() == (Type) 200);
 
-            test.expect (exactlyEqual (a.exchange ((Type) 300), (Type) 200));
-            test.expect (exactlyEqual (a.get(), (Type) 300));
+            test.expect (a.exchange ((Type) 300) == (Type) 200);
+            test.expect (a.get() == (Type) 300);
 
             b = a;
-            test.expect (exactlyEqual (b.get(), a.get()));
+            test.expect (b.get() == a.get());
         }
     };
 };
@@ -490,13 +478,13 @@ public:
 static AtomicTests atomicUnitTests;
 
 //==============================================================================
-class ThreadLocalValueUnitTest final : public UnitTest,
-                                       private Thread
+class ThreadLocalValueUnitTest  : public UnitTest,
+                                  private Thread
 {
 public:
     ThreadLocalValueUnitTest()
         : UnitTest ("ThreadLocalValue", UnitTestCategories::threads),
-          Thread (SystemStats::getJUCEVersion() + ": ThreadLocalValue Thread")
+          Thread ("ThreadLocalValue Thread")
     {}
 
     void runTest() override

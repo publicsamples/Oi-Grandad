@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -35,17 +23,7 @@
 namespace juce
 {
 
-MPEZoneLayout::MPEZoneLayout (MPEZone lower, MPEZone upper)
-    : lowerZone (lower), upperZone (upper)
-{
-}
-
-MPEZoneLayout::MPEZoneLayout (MPEZone zone)
-    : lowerZone (zone.isLowerZone() ? zone : MPEZone()),
-      upperZone (! zone.isLowerZone() ? zone : MPEZone())
-{
-}
-
+MPEZoneLayout::MPEZoneLayout() noexcept {}
 
 MPEZoneLayout::MPEZoneLayout (const MPEZoneLayout& other)
     : lowerZone (other.lowerZone),
@@ -76,9 +54,9 @@ void MPEZoneLayout::setZone (bool isLower, int numMemberChannels, int perNotePit
     checkAndLimitZoneParameters (0, 96,  masterPitchbendRange);
 
     if (isLower)
-        lowerZone = { MPEZone::Type::lower, numMemberChannels, perNotePitchbendRange, masterPitchbendRange };
+        lowerZone = { true, numMemberChannels, perNotePitchbendRange, masterPitchbendRange };
     else
-        upperZone = { MPEZone::Type::upper, numMemberChannels, perNotePitchbendRange, masterPitchbendRange };
+        upperZone = { false, numMemberChannels, perNotePitchbendRange, masterPitchbendRange };
 
     if (numMemberChannels > 0)
     {
@@ -108,8 +86,8 @@ void MPEZoneLayout::setUpperZone (int numMemberChannels, int perNotePitchbendRan
 
 void MPEZoneLayout::clearAllZones()
 {
-    lowerZone = { MPEZone::Type::lower, 0 };
-    upperZone = { MPEZone::Type::upper, 0 };
+    lowerZone = { true, 0 };
+    upperZone = { false, 0 };
 
     sendLayoutChangeMessage();
 }
@@ -120,11 +98,14 @@ void MPEZoneLayout::processNextMidiEvent (const MidiMessage& message)
     if (! message.isController())
         return;
 
-    if (auto parsed = rpnDetector.tryParse (message.getChannel(),
+    MidiRPNMessage rpn;
+
+    if (rpnDetector.parseControllerMessage (message.getChannel(),
                                             message.getControllerNumber(),
-                                            message.getControllerValue()))
+                                            message.getControllerValue(),
+                                            rpn))
     {
-        processRpnMessage (*parsed);
+        processRpnMessage (rpn);
     }
 }
 
@@ -147,7 +128,7 @@ void MPEZoneLayout::processZoneLayoutRpnMessage (MidiRPNMessage rpn)
     }
 }
 
-void MPEZoneLayout::updateMasterPitchbend (MPEZone& zone, int value)
+void MPEZoneLayout::updateMasterPitchbend (Zone& zone, int value)
 {
     if (zone.masterPitchbendRange != value)
     {
@@ -157,7 +138,7 @@ void MPEZoneLayout::updateMasterPitchbend (MPEZone& zone, int value)
     }
 }
 
-void MPEZoneLayout::updatePerNotePitchbendRange (MPEZone& zone, int value)
+void MPEZoneLayout::updatePerNotePitchbendRange (Zone& zone, int value)
 {
     if (zone.perNotePitchbendRange != value)
     {
@@ -225,7 +206,7 @@ void MPEZoneLayout::checkAndLimitZoneParameters (int minValue, int maxValue,
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class MPEZoneLayoutTests final : public UnitTest
+class MPEZoneLayoutTests  : public UnitTest
 {
 public:
     MPEZoneLayoutTests()
@@ -393,17 +374,6 @@ public:
             expectEquals (layout.getLowerZone().numMemberChannels, 3);
             expectEquals (layout.getLowerZone().perNotePitchbendRange, 48);
             expectEquals (layout.getLowerZone().masterPitchbendRange, 2);
-
-            const auto masterPitchBend = 0x0c;
-            layout.processNextMidiEvent ({ 0xb0, 0x64, 0x00 });
-            layout.processNextMidiEvent ({ 0xb0, 0x06, masterPitchBend });
-
-            expectEquals (layout.getLowerZone().masterPitchbendRange, masterPitchBend);
-
-            const auto newPitchBend = 0x0d;
-            layout.processNextMidiEvent ({ 0xb0, 0x06, newPitchBend });
-
-            expectEquals (layout.getLowerZone().masterPitchbendRange, newPitchBend);
         }
     }
 };

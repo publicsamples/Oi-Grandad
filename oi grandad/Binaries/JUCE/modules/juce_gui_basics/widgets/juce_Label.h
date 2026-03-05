@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -89,15 +80,13 @@ public:
 
     //==============================================================================
     /** Changes the font to use to draw the text.
-        Note that when drawing, the label's LookAndFeel may override the font set here.
-        @see getFont, LookAndFeelMethods
+        @see getFont
     */
     void setFont (const Font& newFont);
 
-    /** Returns the Label's current font.
-        Note that this method will always return the font set by setFont(), even if
-        the LookAndFeel is overriding the label's font during drawing.
-        @see setFont, LookAndFeelMethods
+    /** Returns the font currently being used.
+        This may be the one set by setFont(), unless it has been overridden by the current LookAndFeel
+        @see setFont
     */
     Font getFont() const noexcept;
 
@@ -293,9 +282,6 @@ public:
         virtual BorderSize<int> getLabelBorderSize (Label&) = 0;
     };
 
-    /** @internal */
-    std::unique_ptr<AccessibilityHandler> createAccessibilityHandler() override;
-
 protected:
     //==============================================================================
     /** Creates the TextEditor component that will be used when the user has clicked on the label.
@@ -357,7 +343,7 @@ private:
     //==============================================================================
     Value textValue;
     String lastTextValue;
-    Font font { withDefaultMetrics (FontOptions { 15.0f }) };
+    Font font { 15.0f };
     Justification justification = Justification::centredLeft;
     std::unique_ptr<TextEditor> editor;
     ListenerList<Listener> listeners;
@@ -370,6 +356,7 @@ private:
     bool lossOfFocusDiscardsChanges = false;
     bool leftOfOwnerComp = false;
 
+    std::unique_ptr<AccessibilityHandler> createAccessibilityHandler() override;
     bool updateFromTextEditorContents (TextEditor&);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Label)

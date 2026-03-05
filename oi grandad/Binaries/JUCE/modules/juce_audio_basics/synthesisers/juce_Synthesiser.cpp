@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -110,20 +98,9 @@ void Synthesiser::clearVoices()
 
 SynthesiserVoice* Synthesiser::addVoice (SynthesiserVoice* const newVoice)
 {
-    SynthesiserVoice* voice;
-
-    {
-        const ScopedLock sl (lock);
-        newVoice->setCurrentPlaybackSampleRate (sampleRate);
-        voice = voices.add (newVoice);
-    }
-
-    {
-        const ScopedLock sl (stealLock);
-        usableVoicesToStealArray.ensureStorageAllocated (voices.size() + 1);
-    }
-
-    return voice;
+    const ScopedLock sl (lock);
+    newVoice->setCurrentPlaybackSampleRate (sampleRate);
+    return voices.add (newVoice);
 }
 
 void Synthesiser::removeVoice (const int index)
@@ -165,7 +142,7 @@ void Synthesiser::setMinimumRenderingSubdivisionSize (int numSamples, bool shoul
 //==============================================================================
 void Synthesiser::setCurrentPlaybackSampleRate (const double newRate)
 {
-    if (! approximatelyEqual (sampleRate, newRate))
+    if (sampleRate != newRate)
     {
         const ScopedLock sl (lock);
         allNotesOff (0, false);
@@ -183,7 +160,7 @@ void Synthesiser::processNextBlock (AudioBuffer<floatType>& outputAudio,
                                     int numSamples)
 {
     // must set the sample rate before using this!
-    jassert (! exactlyEqual (sampleRate, 0.0));
+    jassert (sampleRate != 0);
     const int targetChannels = outputAudio.getNumChannels();
 
     auto midiIterator = midiData.findNextSamplePosition (startSample);
@@ -494,14 +471,15 @@ void Synthesiser::handleSostenutoPedal (int midiChannel, bool isDown)
     }
 }
 
-void Synthesiser::handleSoftPedal ([[maybe_unused]] int midiChannel, bool /*isDown*/)
+void Synthesiser::handleSoftPedal (int midiChannel, bool /*isDown*/)
 {
+    ignoreUnused (midiChannel);
     jassert (midiChannel > 0 && midiChannel <= 16);
 }
 
-void Synthesiser::handleProgramChange ([[maybe_unused]] int midiChannel,
-                                       [[maybe_unused]] int programNumber)
+void Synthesiser::handleProgramChange (int midiChannel, int programNumber)
 {
+    ignoreUnused (midiChannel, programNumber);
     jassert (midiChannel > 0 && midiChannel <= 16);
 }
 
@@ -536,13 +514,9 @@ SynthesiserVoice* Synthesiser::findVoiceToSteal (SynthesiserSound* soundToPlay,
     SynthesiserVoice* low = nullptr; // Lowest sounding note, might be sustained, but NOT in release phase
     SynthesiserVoice* top = nullptr; // Highest sounding note, might be sustained, but NOT in release phase
 
-    // All major OSes use double-locking so this will be lock- and wait-free as long as the lock is not
-    // contended. This is always the case if you do not call findVoiceToSteal on multiple threads at
-    // the same time.
-    const ScopedLock sl (stealLock);
-
     // this is a list of voices we can steal, sorted by how long they've been running
-    usableVoicesToStealArray.clear();
+    Array<SynthesiserVoice*> usableVoices;
+    usableVoices.ensureStorageAllocated (voices.size());
 
     for (auto* voice : voices)
     {
@@ -550,16 +524,16 @@ SynthesiserVoice* Synthesiser::findVoiceToSteal (SynthesiserSound* soundToPlay,
         {
             jassert (voice->isVoiceActive()); // We wouldn't be here otherwise
 
-            usableVoicesToStealArray.add (voice);
+            usableVoices.add (voice);
 
             // NB: Using a functor rather than a lambda here due to scare-stories about
-            // compilers generating code containing heap allocations.
+            // compilers generating code containing heap allocations..
             struct Sorter
             {
                 bool operator() (const SynthesiserVoice* a, const SynthesiserVoice* b) const noexcept { return a->wasStartedBefore (*b); }
             };
 
-            std::sort (usableVoicesToStealArray.begin(), usableVoicesToStealArray.end(), Sorter());
+            std::sort (usableVoices.begin(), usableVoices.end(), Sorter());
 
             if (! voice->isPlayingButReleased()) // Don't protect released notes
             {
@@ -578,23 +552,23 @@ SynthesiserVoice* Synthesiser::findVoiceToSteal (SynthesiserSound* soundToPlay,
     if (top == low)
         top = nullptr;
 
-    // The oldest note that's playing with the target pitch is ideal.
-    for (auto* voice : usableVoicesToStealArray)
+    // The oldest note that's playing with the target pitch is ideal..
+    for (auto* voice : usableVoices)
         if (voice->getCurrentlyPlayingNote() == midiNoteNumber)
             return voice;
 
     // Oldest voice that has been released (no finger on it and not held by sustain pedal)
-    for (auto* voice : usableVoicesToStealArray)
+    for (auto* voice : usableVoices)
         if (voice != low && voice != top && voice->isPlayingButReleased())
             return voice;
 
     // Oldest voice that doesn't have a finger on it:
-    for (auto* voice : usableVoicesToStealArray)
+    for (auto* voice : usableVoices)
         if (voice != low && voice != top && ! voice->isKeyDown())
             return voice;
 
     // Oldest voice that isn't protected
-    for (auto* voice : usableVoicesToStealArray)
+    for (auto* voice : usableVoices)
         if (voice != low && voice != top)
             return voice;
 

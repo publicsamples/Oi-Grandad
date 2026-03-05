@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -50,8 +38,10 @@ namespace juce
     MPE. If you pass it a message, it will know what notes on what
     channels (if any) should be affected by that message.
 
-    The class has a Listener class that can be used to react to note and
-    state changes and trigger some functionality for your application.
+    The class has a Listener class with the three callbacks MPENoteAdded,
+    MPENoteChanged, and MPENoteFinished. Implement such a
+    Listener class to react to note changes and trigger some functionality for
+    your application that depends on the MPE note state.
     For example, you can use this class to write an MPE visualiser.
 
     If you want to write a real-time audio synth with MPE functionality,
@@ -69,13 +59,10 @@ public:
 
         This will construct an MPE instrument with inactive lower and upper zones.
 
-        In order to process incoming MIDI messages call setZoneLayout, use the MPEZoneLayout
-        constructor, define the layout via MIDI RPN messages, or set the instrument to legacy mode.
+        In order to process incoming MIDI, call setZoneLayout, define the layout
+        via MIDI RPN messages, or set the instrument to legacy mode.
     */
     MPEInstrument() noexcept;
-
-    /** Constructs an MPE instrument with the specified zone layout. */
-    MPEInstrument (MPEZoneLayout layout);
 
     /** Destructor. */
     virtual ~MPEInstrument();
@@ -242,9 +229,6 @@ public:
     */
     MPENote getNote (int midiChannel, int midiNoteNumber) const noexcept;
 
-    /** Returns the note with a given ID. */
-    MPENote getNoteWithID (uint16 noteID) const noexcept;
-
     /** Returns the most recent note that is playing on the given midiChannel
         (this will be the note which has received the most recent note-on without
         a corresponding note-off), if there is such a note. Otherwise, this returns an
@@ -260,8 +244,8 @@ public:
     MPENote getMostRecentNoteOtherThan (MPENote otherThanThisNote) const noexcept;
 
     //==============================================================================
-    /** Derive from this class to be informed about any changes in the MPE notes played
-        by this instrument, and any changes to its zone layout.
+    /** Derive from this class to be informed about any changes in the expressive
+        MIDI notes played by this instrument.
 
         Note: This listener type receives its callbacks immediately, and not
         via the message thread (so you might be for example in the MIDI thread).
@@ -277,12 +261,12 @@ public:
         /** Implement this callback to be informed whenever a new expressive MIDI
             note is triggered.
         */
-        virtual void noteAdded (MPENote newNote);
+        virtual void noteAdded (MPENote newNote)                 { ignoreUnused (newNote); }
 
         /** Implement this callback to be informed whenever a currently playing
             MPE note's pressure value changes.
         */
-        virtual void notePressureChanged (MPENote changedNote);
+        virtual void notePressureChanged (MPENote changedNote)   { ignoreUnused (changedNote); }
 
         /** Implement this callback to be informed whenever a currently playing
             MPE note's pitchbend value changes.
@@ -291,12 +275,12 @@ public:
             master channel pitchbend event, or if both occur simultaneously.
             Call MPENote::getFrequencyInHertz to get the effective note frequency.
         */
-        virtual void notePitchbendChanged (MPENote changedNote);
+        virtual void notePitchbendChanged (MPENote changedNote)  { ignoreUnused (changedNote); }
 
         /** Implement this callback to be informed whenever a currently playing
             MPE note's timbre value changes.
         */
-        virtual void noteTimbreChanged (MPENote changedNote);
+        virtual void noteTimbreChanged (MPENote changedNote)     { ignoreUnused (changedNote); }
 
         /** Implement this callback to be informed whether a currently playing
             MPE note's key state (whether the key is down and/or the note is
@@ -305,19 +289,14 @@ public:
             Note: If the key state changes to MPENote::off, noteReleased is
             called instead.
         */
-        virtual void noteKeyStateChanged (MPENote changedNote);
+        virtual void noteKeyStateChanged (MPENote changedNote)   { ignoreUnused (changedNote); }
 
         /** Implement this callback to be informed whenever an MPE note
             is released (either by a note-off message, or by a sustain/sostenuto
             pedal release for a note that already received a note-off),
             and should therefore stop playing.
         */
-        virtual void noteReleased (MPENote finishedNote);
-
-        /** Implement this callback to be informed whenever the MPE zone layout
-            or legacy mode settings of this instrument have been changed.
-        */
-        virtual void zoneLayoutChanged();
+        virtual void noteReleased (MPENote finishedNote)         { ignoreUnused (finishedNote); }
     };
 
     //==============================================================================
@@ -328,9 +307,7 @@ public:
     void removeListener (Listener* listenerToRemove);
 
     //==============================================================================
-    /** Puts the instrument into legacy mode. If legacy mode is already enabled this method
-        does nothing.
-
+    /** Puts the instrument into legacy mode.
         As a side effect, this will discard all currently playing notes,
         and call noteReleased for all of them.
 
@@ -383,9 +360,9 @@ private:
 
     struct LegacyMode
     {
-        bool isEnabled = false;
+        bool isEnabled;
         Range<int> channelRange;
-        int pitchbendRange = 2;
+        int pitchbendRange;
     };
 
     struct MPEDimension

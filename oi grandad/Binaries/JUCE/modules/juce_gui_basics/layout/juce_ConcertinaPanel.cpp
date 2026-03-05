@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -104,7 +95,7 @@ struct ConcertinaPanel::PanelSizes
 
         if (totalSpace <= 0)
         {
-            newSizes.get (index).size = panelHeight;
+            newSizes.get(index).size = panelHeight;
         }
         else
         {
@@ -112,7 +103,7 @@ struct ConcertinaPanel::PanelSizes
             auto minSize = getMinimumSize (0, num);
             totalSpace = jmax (totalSpace, minSize);
 
-            newSizes.get (index).setSize (panelHeight);
+            newSizes.get(index).setSize (panelHeight);
             newSizes.stretchRange (0, index,   totalSpace - newSizes.getTotalSize (0, num), stretchLast);
             newSizes.stretchRange (index, num, totalSpace - newSizes.getTotalSize (0, num), stretchLast);
             newSizes = newSizes.fittedInto (totalSpace);
@@ -148,12 +139,12 @@ private:
         Array<Panel*> expandableItems;
 
         for (int i = start; i < end; ++i)
-            if (get (i).canExpand() && ! get (i).isMinimised())
-                expandableItems.add (& get (i));
+            if (get(i).canExpand() && ! get(i).isMinimised())
+                expandableItems.add (& get(i));
 
         for (int attempts = 4; --attempts >= 0 && spaceDiff > 0;)
             for (int i = expandableItems.size(); --i >= 0 && spaceDiff > 0;)
-                spaceDiff -= expandableItems.getUnchecked (i)->expand (spaceDiff / (i + 1));
+                spaceDiff -= expandableItems.getUnchecked(i)->expand (spaceDiff / (i + 1));
 
         growRangeLast (start, end, spaceDiff);
     }
@@ -161,13 +152,13 @@ private:
     void shrinkRangeFirst (int start, int end, int spaceDiff) noexcept
     {
         for (int i = start; i < end && spaceDiff > 0; ++i)
-            spaceDiff -= get (i).reduce (spaceDiff);
+            spaceDiff -= get(i).reduce (spaceDiff);
     }
 
     void shrinkRangeLast (int start, int end, int spaceDiff) noexcept
     {
         for (int i = end; --i >= start && spaceDiff > 0;)
-            spaceDiff -= get (i).reduce (spaceDiff);
+            spaceDiff -= get(i).reduce (spaceDiff);
     }
 
     void stretchRange (int start, int end, int amountToAdd, ExpandMode expandMode) noexcept
@@ -221,7 +212,7 @@ private:
 };
 
 //==============================================================================
-class ConcertinaPanel::PanelHolder final : public Component
+class ConcertinaPanel::PanelHolder  : public Component
 {
 public:
     PanelHolder (Component* comp, bool takeOwnership)
@@ -234,14 +225,14 @@ public:
 
     void paint (Graphics& g) override
     {
-        if (customHeader.get() != nullptr)
-            return;
+        if (customHeaderComponent == nullptr)
+        {
+            const Rectangle<int> area (getWidth(), getHeaderSize());
+            g.reduceClipRegion (area);
 
-        const Rectangle<int> area (getWidth(), getHeaderSize());
-        g.reduceClipRegion (area);
-
-        getLookAndFeel().drawConcertinaPanelHeader (g, area, isMouseOver(), isMouseButtonDown(),
-                                                    getPanel(), *component);
+            getLookAndFeel().drawConcertinaPanelHeader (g, area, isMouseOver(), isMouseButtonDown(),
+                                                        getPanel(), *component);
+        }
     }
 
     void resized() override
@@ -249,8 +240,8 @@ public:
         auto bounds = getLocalBounds();
         auto headerBounds = bounds.removeFromTop (getHeaderSize());
 
-        if (customHeader.get() != nullptr)
-            customHeader.get()->setBounds (headerBounds);
+        if (customHeaderComponent != nullptr)
+            customHeaderComponent->setBounds (headerBounds);
 
         component->setBounds (bounds);
     }
@@ -279,8 +270,13 @@ public:
 
     void setCustomHeaderComponent (Component* headerComponent, bool shouldTakeOwnership)
     {
-        customHeader = CustomHeader (this, OptionalScopedPointer (headerComponent, shouldTakeOwnership));
-        addAndMakeVisible (headerComponent);
+        customHeaderComponent.set (headerComponent, shouldTakeOwnership);
+
+        if (headerComponent != nullptr)
+        {
+            addAndMakeVisible (customHeaderComponent);
+            customHeaderComponent->addMouseListener (this, false);
+        }
     }
 
     OptionalScopedPointer<Component> component;
@@ -288,53 +284,13 @@ public:
 private:
     PanelSizes dragStartSizes;
     int mouseDownY;
-
-    struct CustomHeader
-    {
-        CustomHeader() = default;
-
-        CustomHeader (MouseListener* l, OptionalScopedPointer<Component> c)
-            : listener (l),
-              customHeaderComponent (std::move (c))
-        {
-            if (customHeaderComponent != nullptr)
-                customHeaderComponent->addMouseListener (listener, false);
-        }
-
-        CustomHeader (CustomHeader&& other) noexcept
-            : listener (std::exchange (other.listener, nullptr)),
-              customHeaderComponent (std::exchange (other.customHeaderComponent, {})) {}
-
-        CustomHeader& operator= (CustomHeader&& other) noexcept
-        {
-            std::swap (other.listener, listener);
-            std::swap (other.customHeaderComponent, customHeaderComponent);
-            return *this;
-        }
-
-        CustomHeader (const CustomHeader& other) = delete;
-        CustomHeader& operator= (const CustomHeader& other) = delete;
-
-        ~CustomHeader() noexcept
-        {
-            if (customHeaderComponent != nullptr)
-                customHeaderComponent->removeMouseListener (listener);
-        }
-
-        Component* get() const { return customHeaderComponent.get(); }
-
-    private:
-        MouseListener* listener = nullptr;
-        OptionalScopedPointer<Component> customHeaderComponent;
-    };
-
-    CustomHeader customHeader;
+    OptionalScopedPointer<Component> customHeaderComponent;
 
     int getHeaderSize() const noexcept
     {
         ConcertinaPanel& panel = getPanel();
         auto ourIndex = panel.holders.indexOf (this);
-        return panel.currentSizes->get (ourIndex).minSize;
+        return panel.currentSizes->get(ourIndex).minSize;
     }
 
     ConcertinaPanel& getPanel() const
@@ -354,7 +310,7 @@ ConcertinaPanel::ConcertinaPanel()
 {
 }
 
-ConcertinaPanel::~ConcertinaPanel() = default;
+ConcertinaPanel::~ConcertinaPanel() {}
 
 int ConcertinaPanel::getNumPanels() const noexcept
 {
@@ -398,10 +354,10 @@ bool ConcertinaPanel::setPanelSize (Component* panelComponent, int height, bool 
     auto index = indexOfComp (panelComponent);
     jassert (index >= 0); // The specified component doesn't seem to have been added!
 
-    height += currentSizes->get (index).minSize;
-    auto oldSize = currentSizes->get (index).size;
+    height += currentSizes->get(index).minSize;
+    auto oldSize = currentSizes->get(index).size;
     setLayout (currentSizes->withResizedPanel (index, height, getHeight()), animate);
-    return oldSize != currentSizes->get (index).size;
+    return oldSize != currentSizes->get(index).size;
 }
 
 bool ConcertinaPanel::expandPanelFully (Component* component, bool animate)
@@ -416,7 +372,7 @@ void ConcertinaPanel::setMaximumPanelSize (Component* component, int maximumSize
 
     if (index >= 0)
     {
-        currentSizes->get (index).maxSize = currentSizes->get (index).minSize + maximumSize;
+        currentSizes->get(index).maxSize = currentSizes->get(index).minSize + maximumSize;
         resized();
     }
 }
@@ -455,7 +411,7 @@ void ConcertinaPanel::resized()
 int ConcertinaPanel::indexOfComp (Component* comp) const noexcept
 {
     for (int i = 0; i < holders.size(); ++i)
-        if (holders.getUnchecked (i)->component == comp)
+        if (holders.getUnchecked(i)->component == comp)
             return i;
 
     return -1;

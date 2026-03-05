@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -39,80 +30,51 @@ namespace juce
 // This byte-code is generated from native/java/com/rmsl/juce/JuceOpenGLView.java with min sdk version 16
 // See juce_core/native/java/README.txt on how to generate this byte-code.
 static const uint8 javaJuceOpenGLView[] =
+{31,139,8,8,95,114,161,94,0,3,74,117,99,101,79,112,101,110,71,76,86,105,101,119,83,117,114,102,97,99,101,46,100,101,120,0,109,
+84,75,107,19,81,20,62,119,230,38,169,105,76,99,218,138,86,144,32,5,55,173,83,53,98,33,173,86,90,170,196,193,34,173,81,106,93,
+12,147,169,153,210,204,196,100,154,22,65,40,110,234,170,43,23,34,46,93,22,87,62,138,27,65,168,235,174,213,133,11,23,254,129,
+162,136,130,223,125,196,164,208,129,239,126,231,125,206,188,78,217,91,75,142,156,191,64,151,223,190,187,182,183,251,251,212,240,
+247,216,223,197,205,174,170,255,233,209,230,135,123,183,222,252,225,68,53,34,90,43,229,179,164,175,5,216,142,145,178,199,129,
+93,205,63,0,6,140,224,72,129,71,153,210,159,225,152,50,137,182,193,239,13,162,143,192,14,240,25,216,3,50,240,13,1,54,48,3,204,
+2,119,128,5,192,1,124,224,1,240,16,120,2,108,2,207,129,87,192,14,240,5,248,9,196,184,234,7,145,32,82,76,207,149,208,136,233,
+249,187,180,252,20,189,15,105,249,5,228,164,150,95,66,238,214,242,86,135,253,181,161,234,102,100,15,83,214,50,225,233,209,61,179,
+154,251,100,127,46,253,226,76,73,86,113,92,199,113,76,218,171,245,62,173,247,75,54,232,168,182,183,238,69,92,134,230,188,42,139,
+251,226,210,214,205,213,124,181,28,209,57,153,57,15,105,126,144,40,141,92,38,99,251,185,154,191,229,77,203,124,67,246,56,129,
+227,8,56,204,49,154,163,217,9,68,161,236,89,52,28,197,51,19,122,109,162,155,248,205,180,124,6,76,206,51,216,202,201,136,26,7,
+230,140,116,17,103,157,57,67,58,231,224,232,36,162,67,124,6,92,206,198,246,221,179,33,117,166,245,182,28,31,243,3,63,186,68,172,
+72,189,197,21,215,155,169,121,193,85,187,228,123,171,103,150,156,166,67,199,109,39,40,215,67,191,108,185,97,16,121,65,100,77,
+10,94,139,10,29,174,251,117,167,86,241,221,134,53,233,4,77,167,81,160,129,255,174,38,42,89,179,43,245,69,199,245,68,213,2,157,
+180,221,176,106,213,171,141,101,107,9,13,173,253,93,11,196,74,100,148,138,100,150,138,54,4,27,130,93,164,184,235,4,174,183,44,
+25,29,40,225,170,41,40,85,246,27,53,39,114,43,83,117,103,149,120,37,108,68,148,12,156,200,111,122,115,21,191,65,217,48,184,18,
+69,142,91,241,202,115,225,109,63,40,135,171,212,47,109,194,164,12,55,100,56,245,133,193,148,167,66,167,235,97,85,7,15,28,100,
+213,25,41,248,208,86,107,60,18,13,79,27,61,217,68,250,226,204,48,13,83,34,125,157,166,89,58,145,30,223,152,167,60,41,30,7,111,
+220,29,195,11,224,248,248,248,250,58,223,54,249,99,131,12,128,1,49,246,213,100,252,23,176,197,13,254,141,31,214,239,145,117,
+112,107,111,24,29,187,195,236,216,31,173,239,94,236,144,24,181,247,72,156,218,187,132,229,148,79,236,19,150,105,255,203,70,78,
+213,23,59,198,212,49,226,255,160,156,202,205,235,159,87,200,98,135,253,3,40,26,5,36,252,4,0,0,0,0};
+
+//==============================================================================
+struct AndroidGLCallbacks
 {
-    0x1f, 0x8b, 0x08, 0x08, 0x7e, 0xb3, 0x66, 0x68, 0x00, 0x03, 0x63, 0x6c,
-    0x61, 0x73, 0x73, 0x65, 0x73, 0x2e, 0x64, 0x65, 0x78, 0x00, 0x6d, 0x94,
-    0xbd, 0x6f, 0xd3, 0x50, 0x10, 0xc0, 0xef, 0x3d, 0xbb, 0xa1, 0x5f, 0xb4,
-    0x69, 0x4b, 0xa9, 0xe8, 0x50, 0x05, 0x33, 0x20, 0xa1, 0xa4, 0x4e, 0xda,
-    0xb4, 0x49, 0x9a, 0x82, 0x8a, 0x1a, 0xbe, 0x42, 0x04, 0x82, 0x56, 0x01,
-    0x45, 0x0c, 0xbc, 0xd8, 0x2f, 0x8d, 0xdb, 0xc4, 0xb6, 0x6c, 0x27, 0x8d,
-    0x84, 0x68, 0x2b, 0x84, 0x04, 0x62, 0x42, 0x62, 0x64, 0x60, 0x62, 0x60,
-    0xeb, 0x9f, 0xd0, 0x81, 0x09, 0x21, 0x31, 0x31, 0xb1, 0xb0, 0xb0, 0x21,
-    0x56, 0x24, 0x40, 0x88, 0xb3, 0xfd, 0x42, 0x53, 0x84, 0xa5, 0x9f, 0xef,
-    0xde, 0xdd, 0xbd, 0xbb, 0x7b, 0xb2, 0xdf, 0xe9, 0xbc, 0x33, 0x98, 0x9c,
-    0xcf, 0xc0, 0xdd, 0x0f, 0x3f, 0xde, 0x7d, 0x23, 0xab, 0x3f, 0xb7, 0x9e,
-    0x7e, 0x19, 0x1a, 0x39, 0xd8, 0xfd, 0xfd, 0xe2, 0xe3, 0x7e, 0xf5, 0x71,
-    0xf9, 0xe3, 0xe9, 0x68, 0x1f, 0x80, 0x0d, 0x00, 0x9d, 0x72, 0x7a, 0x1c,
-    0xc4, 0x63, 0xcb, 0x00, 0x53, 0x10, 0xda, 0xfb, 0x91, 0xf7, 0xc8, 0x31,
-    0xe4, 0x2b, 0x42, 0x90, 0x15, 0x7c, 0x0d, 0xa0, 0xbc, 0x4a, 0xc2, 0xf5,
-    0x73, 0x7c, 0xdd, 0x97, 0x00, 0xf6, 0x51, 0x6e, 0x52, 0x00, 0x07, 0x69,
-    0x21, 0xcf, 0x90, 0xd7, 0xc8, 0x01, 0xf2, 0x09, 0xf9, 0x8e, 0x4c, 0x61,
-    0xdc, 0x34, 0x32, 0x83, 0x9c, 0x41, 0xce, 0x22, 0x71, 0x44, 0x45, 0xe6,
-    0x91, 0x3c, 0x72, 0x0d, 0xa9, 0x22, 0x75, 0x64, 0x17, 0x79, 0x89, 0xbc,
-    0x91, 0xc2, 0x5a, 0x28, 0x00, 0xdb, 0x03, 0x6c, 0x1b, 0x22, 0xa2, 0x2f,
-    0xbf, 0xc7, 0xe3, 0x42, 0x46, 0xc4, 0x19, 0x06, 0x84, 0xbe, 0x8c, 0x35,
-    0x07, 0x85, 0x5e, 0x40, 0x7d, 0x48, 0xe8, 0x25, 0xd4, 0x87, 0x85, 0xbe,
-    0xde, 0x63, 0xbf, 0x87, 0xfa, 0x88, 0xc8, 0xab, 0xd3, 0xb0, 0xce, 0x78,
-    0x50, 0x53, 0x0a, 0xf2, 0xca, 0x68, 0x89, 0x06, 0xf5, 0xe5, 0x60, 0xed,
-    0xfb, 0x47, 0x03, 0xd9, 0xb5, 0x47, 0x60, 0x2c, 0x90, 0x04, 0x26, 0x84,
-    0x3c, 0x11, 0x48, 0x0a, 0x93, 0x22, 0x9e, 0x88, 0x33, 0xf8, 0x0f, 0x15,
-    0xf2, 0xba, 0xdc, 0x5d, 0x77, 0x2d, 0xa1, 0x6f, 0x7c, 0x6c, 0x94, 0xc8,
-    0x18, 0xed, 0xeb, 0xe7, 0x68, 0xd8, 0xa3, 0x1d, 0x03, 0xac, 0x55, 0x09,
-    0x3a, 0x95, 0x82, 0x6c, 0x00, 0x29, 0xd1, 0xeb, 0x49, 0xa4, 0x12, 0x0b,
-    0xcf, 0x10, 0xc1, 0x5d, 0x7e, 0xda, 0x05, 0x1a, 0xf6, 0x68, 0xc5, 0x08,
-    0xac, 0xc3, 0xda, 0x0a, 0x46, 0xd1, 0x60, 0x07, 0xcd, 0xd2, 0x3e, 0xb0,
-    0x57, 0xfa, 0x41, 0xbe, 0x35, 0x02, 0x49, 0x3f, 0xdf, 0x32, 0x2c, 0x42,
-    0x1c, 0x2e, 0x11, 0x18, 0x39, 0xff, 0x44, 0x64, 0xee, 0xf6, 0x48, 0x83,
-    0x35, 0x11, 0xeb, 0x7f, 0x75, 0x09, 0x22, 0xcb, 0x86, 0x69, 0x78, 0x17,
-    0x80, 0x14, 0x61, 0xa2, 0xd8, 0xd2, 0xf8, 0x4d, 0x9b, 0x9b, 0x57, 0x4a,
-    0x65, 0x83, 0x6f, 0xcf, 0x6e, 0xb2, 0x36, 0x83, 0x53, 0x25, 0x66, 0xea,
-    0x8e, 0x65, 0xe8, 0xaa, 0x66, 0x99, 0x1e, 0x37, 0x3d, 0x75, 0xd5, 0x97,
-    0x1d, 0x2f, 0xdf, 0xe3, 0xda, 0x70, 0x98, 0x5d, 0x37, 0x34, 0x57, 0x5d,
-    0x65, 0x66, 0x9b, 0xb9, 0xff, 0x75, 0xdd, 0xe6, 0x1b, 0x86, 0x65, 0xe6,
-    0x61, 0xfa, 0xaf, 0xab, 0x8d, 0x45, 0xd4, 0xb5, 0x96, 0x53, 0x63, 0x1a,
-    0xf7, 0x0b, 0xe6, 0x61, 0xa6, 0xa4, 0x59, 0x4d, 0xd5, 0x69, 0xba, 0x0d,
-    0x75, 0x13, 0x7b, 0x51, 0x8f, 0x36, 0x94, 0x07, 0x52, 0x06, 0x5a, 0x2e,
-    0x82, 0x54, 0x2e, 0x96, 0x50, 0x29, 0xa1, 0x52, 0x2a, 0x02, 0xa9, 0x00,
-    0xad, 0x94, 0x20, 0xa2, 0x31, 0x53, 0xe3, 0x0d, 0x18, 0xd6, 0x0d, 0xd7,
-    0x66, 0x9e, 0x56, 0x2f, 0x38, 0x6c, 0x1b, 0xa6, 0x36, 0x98, 0x57, 0xe7,
-    0xce, 0xba, 0xc3, 0x4c, 0xb4, 0x3a, 0xd8, 0x7f, 0xd8, 0x07, 0xc8, 0x75,
-    0xcb, 0xf5, 0x60, 0xd2, 0x32, 0x2f, 0x7a, 0x18, 0xcb, 0xf5, 0x3b, 0x86,
-    0xa9, 0x5b, 0xdb, 0x37, 0x98, 0x67, 0xb4, 0x39, 0x4c, 0x5b, 0x66, 0x81,
-    0x7b, 0xcc, 0xb7, 0x5f, 0x76, 0xac, 0xe6, 0x11, 0xdf, 0x30, 0xfa, 0x30,
-    0xb3, 0x58, 0xbd, 0x22, 0x3b, 0x3b, 0x85, 0xec, 0x03, 0xa5, 0xca, 0xb4,
-    0x2d, 0x6e, 0xea, 0xca, 0x92, 0xa2, 0xf3, 0x8e, 0x12, 0x57, 0xf0, 0x1c,
-    0xb6, 0xd1, 0xc0, 0x18, 0xcb, 0x4c, 0x34, 0x2d, 0x9d, 0xa3, 0xc3, 0xe1,
-    0x0d, 0xce, 0x5c, 0x8e, 0xce, 0x3a, 0x73, 0x13, 0x98, 0x5b, 0xdb, 0x72,
-    0x5b, 0x4d, 0x57, 0x59, 0xaa, 0xb1, 0x86, 0xcb, 0xe3, 0x4a, 0xd3, 0x30,
-    0x13, 0xcc, 0x36, 0x94, 0xa5, 0xb9, 0x74, 0x5c, 0x71, 0xeb, 0x2c, 0x91,
-    0xc2, 0x4d, 0x2c, 0xc3, 0xf4, 0x54, 0x96, 0x65, 0x92, 0xe9, 0xc5, 0x64,
-    0x35, 0x93, 0xcb, 0xe9, 0xc9, 0x74, 0x76, 0x8e, 0xa7, 0x73, 0x19, 0x2d,
-    0x95, 0xcc, 0xb1, 0xcc, 0x42, 0xb5, 0x96, 0xa9, 0xe5, 0x52, 0xba, 0x9f,
-    0xb5, 0xcd, 0x1d, 0x17, 0xcb, 0xe1, 0xa6, 0xec, 0x6c, 0x2a, 0x39, 0x9b,
-    0x4b, 0xe8, 0xbc, 0xad, 0x3c, 0xc4, 0xef, 0x2c, 0x4b, 0x40, 0xe9, 0xde,
-    0x9e, 0xfc, 0x56, 0x92, 0x1f, 0xe1, 0xef, 0x20, 0x90, 0xc8, 0x67, 0x89,
-    0xc8, 0xbf, 0x24, 0x42, 0xf6, 0xa5, 0xe0, 0x1e, 0x82, 0xf8, 0x27, 0xba,
-    0xb2, 0x3b, 0x4b, 0x68, 0xcf, 0x3c, 0x91, 0x7a, 0x66, 0x8a, 0xdc, 0x33,
-    0x57, 0xfa, 0xe0, 0x70, 0xb6, 0x44, 0xe0, 0x70, 0xbe, 0x90, 0x58, 0x18,
-    0xe7, 0xcf, 0x18, 0x29, 0x16, 0xee, 0xf7, 0xef, 0x03, 0x89, 0x1e, 0xde,
-    0x73, 0x1a, 0x0b, 0x6b, 0xf9, 0x33, 0x08, 0x62, 0xe1, 0xde, 0xe0, 0x5e,
-    0x45, 0x43, 0xdd, 0x9f, 0x6b, 0x7f, 0x00, 0xa1, 0xe3, 0x13, 0x23, 0x10,
-    0x05, 0x00, 0x00
+    static void attachedToWindow   (JNIEnv*, jobject, jlong);
+    static void detachedFromWindow (JNIEnv*, jobject, jlong);
+    static void dispatchDraw       (JNIEnv*, jobject, jlong, jobject);
 };
 
 //==============================================================================
+#define JNI_CLASS_MEMBERS(METHOD, STATICMETHOD, FIELD, STATICFIELD, CALLBACK) \
+ METHOD (constructor, "<init>",    "(Landroid/content/Context;J)V") \
+ METHOD (getParent,   "getParent", "()Landroid/view/ViewParent;") \
+ METHOD (getHolder,   "getHolder", "()Landroid/view/SurfaceHolder;") \
+ METHOD (layout,      "layout",    "(IIII)V" ) \
+ CALLBACK (AndroidGLCallbacks::attachedToWindow,   "onAttchedWindowNative",      "(J)V") \
+ CALLBACK (AndroidGLCallbacks::detachedFromWindow, "onDetachedFromWindowNative", "(J)V") \
+ CALLBACK (AndroidGLCallbacks::dispatchDraw,       "onDrawNative",               "(JLandroid/graphics/Canvas;)V")
+
+DECLARE_JNI_CLASS_WITH_BYTECODE (JuceOpenGLViewSurface, "com/rmsl/juce/JuceOpenGLView", 16, javaJuceOpenGLView, sizeof(javaJuceOpenGLView))
+#undef JNI_CLASS_MEMBERS
+
 //==============================================================================
-class OpenGLContext::NativeContext : private SurfaceHolderCallback
+class OpenGLContext::NativeContext   : private SurfaceHolderCallback
 {
 public:
     NativeContext (Component& comp,
@@ -120,7 +82,8 @@ public:
                    void* /*contextToShareWith*/,
                    bool useMultisamplingIn,
                    OpenGLVersion)
-        : component (comp)
+        : component (comp),
+          surface (EGL_NO_SURFACE), context (EGL_NO_CONTEXT)
     {
         auto env = getEnv();
 
@@ -133,29 +96,23 @@ public:
             return;
 
         // create a native surface view
-        surfaceView = GlobalRef (LocalRef<jobject> (env->NewObject (JuceOpenGLViewSurface,
-                                                                    JuceOpenGLViewSurface.constructor,
-                                                                    getAppContext().get(),
-                                                                    reinterpret_cast<jlong> (this))));
+        surfaceView = GlobalRef (LocalRef<jobject>(env->NewObject (JuceOpenGLViewSurface,
+                                                                   JuceOpenGLViewSurface.constructor,
+                                                                   getAppContext().get(),
+                                                                   reinterpret_cast<jlong> (this))));
         if (surfaceView.get() == nullptr)
             return;
-
-        surfaceHolderCallback = GlobalRef (CreateJavaInterface (this, "android/view/SurfaceHolder$Callback"));
-
-        if (surfaceHolderCallback == nullptr)
-            return;
-
-        if (LocalRef<jobject> holder { env->CallObjectMethod (surfaceView, AndroidSurfaceView.getHolder) })
-            env->CallVoidMethod (holder, AndroidSurfaceHolder.addCallback, surfaceHolderCallback.get());
 
         // add the view to the view hierarchy
         // after this the nativecontext can receive callbacks
         env->CallVoidMethod ((jobject) component.getPeer()->getNativeHandle(),
-                             AndroidViewGroup.addView,
-                             surfaceView.get());
+                             AndroidViewGroup.addView, surfaceView.get());
 
         // initialise the geometry of the view
-        updateWindowPosition (component.localAreaToGlobal (component.getLocalBounds()));
+        auto bounds = component.getTopLevelComponent()->getLocalArea (&component, component.getLocalBounds());
+        bounds *= component.getDesktopScaleFactor();
+
+        updateWindowPosition (bounds);
         hasInitialised = true;
     }
 
@@ -163,54 +120,93 @@ public:
     {
         auto env = getEnv();
 
-        if (surfaceView != nullptr && surfaceHolderCallback != nullptr)
-            if (LocalRef<jobject> holder { env->CallObjectMethod (surfaceView, AndroidSurfaceView.getHolder) })
-                env->CallVoidMethod (holder, AndroidSurfaceHolder.removeCallback, surfaceHolderCallback.get());
-
         if (jobject viewParent = env->CallObjectMethod (surfaceView.get(), JuceOpenGLViewSurface.getParent))
             env->CallVoidMethod (viewParent, AndroidViewGroup.removeView, surfaceView.get());
     }
 
     //==============================================================================
-    InitResult initialiseOnRenderThread (OpenGLContext& ctx)
+    bool initialiseOnRenderThread (OpenGLContext& aContext)
     {
-        // The "real" initialisation happens when the surface is created. Here, we'll
-        // just return true if the initialisation happened successfully, or false if
-        // it hasn't happened yet, or was unsuccessful.
-        const std::lock_guard lock { nativeHandleMutex };
+        jassert (hasInitialised);
 
-        if (! hasInitialised)
-            return InitResult::fatal;
+        // has the context already attached?
+        jassert (surface == EGL_NO_SURFACE && context == EGL_NO_CONTEXT);
 
-        if (context.get() == EGL_NO_CONTEXT && surface.get() == EGL_NO_SURFACE)
-            return InitResult::retry;
+        auto env = getEnv();
 
-        juceContext = &ctx;
-        return InitResult::success;
+        ANativeWindow* window = nullptr;
+
+        LocalRef<jobject> holder (env->CallObjectMethod (surfaceView.get(), JuceOpenGLViewSurface.getHolder));
+
+        if (holder != nullptr)
+        {
+            LocalRef<jobject> jSurface (env->CallObjectMethod (holder.get(), AndroidSurfaceHolder.getSurface));
+
+            if (jSurface != nullptr)
+            {
+                window = ANativeWindow_fromSurface(env, jSurface.get());
+
+                // if we didn't succeed the first time, wait 25ms and try again
+                if (window == nullptr)
+                {
+                    Thread::sleep (200);
+                    window = ANativeWindow_fromSurface (env, jSurface.get());
+                }
+            }
+        }
+
+        if (window == nullptr)
+        {
+            // failed to get a pointer to the native window after second try so bail out
+            jassertfalse;
+            return false;
+        }
+
+        // create the surface
+        surface = eglCreateWindowSurface (display, config, window, nullptr);
+        jassert (surface != EGL_NO_SURFACE);
+
+        ANativeWindow_release (window);
+
+        // create the OpenGL context
+        EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
+        context = eglCreateContext (display, config, EGL_NO_CONTEXT, contextAttribs);
+        jassert (context != EGL_NO_CONTEXT);
+
+        juceContext = &aContext;
+        return true;
     }
 
     void shutdownOnRenderThread()
     {
-        const std::lock_guard lock { nativeHandleMutex };
-        juceContext = nullptr;
+        jassert (hasInitialised);
+
+        // is there a context available to detach?
+        jassert (surface != EGL_NO_SURFACE && context != EGL_NO_CONTEXT);
+
+        eglDestroyContext (display, context);
+        context = EGL_NO_CONTEXT;
+
+        eglDestroySurface (display, surface);
+        surface = EGL_NO_SURFACE;
     }
 
     //==============================================================================
     bool makeActive() const noexcept
     {
-        const std::lock_guard lock { nativeHandleMutex };
+        if (! hasInitialised)
+            return false;
 
-        return hasInitialised
-            && surface.get() != EGL_NO_SURFACE
-            && context.get() != EGL_NO_CONTEXT
-            && eglMakeCurrent (display, surface.get(), surface.get(), context.get());
+        if (surface == EGL_NO_SURFACE || context == EGL_NO_CONTEXT)
+            return false;
+
+        if (! eglMakeCurrent (display, surface, surface, context))
+            return false;
+
+        return true;
     }
 
-    bool isActive() const noexcept
-    {
-        const std::lock_guard lock { nativeHandleMutex };
-        return eglGetCurrentContext() == context.get();
-    }
+    bool isActive() const noexcept              { return eglGetCurrentContext() == context; }
 
     static void deactivateCurrentContext()
     {
@@ -218,8 +214,8 @@ public:
     }
 
     //==============================================================================
-    void swapBuffers() const noexcept           { eglSwapBuffers (display, surface.get()); }
-    bool setSwapInterval (int)                  { return false; }
+    void swapBuffers() const noexcept           { eglSwapBuffers (display, surface); }
+    bool setSwapInterval (const int)            { return false; }
     int getSwapInterval() const                 { return 0; }
 
     //==============================================================================
@@ -230,77 +226,66 @@ public:
     //==============================================================================
     void updateWindowPosition (Rectangle<int> bounds)
     {
-        const auto physical = Desktop::getInstance().getDisplays().logicalToPhysical (bounds.toFloat()).toNearestInt();
+        if (lastBounds != bounds)
+        {
+            auto env = getEnv();
 
-        if (std::exchange (physicalBounds, physical) == physical)
-            return;
+            lastBounds = bounds;
+            auto r = bounds * Desktop::getInstance().getDisplays().getPrimaryDisplay()->scale;
 
-        getEnv()->CallVoidMethod (surfaceView.get(),
-                                  JuceOpenGLViewSurface.layout,
-                                  (jint) physical.getX(),
-                                  (jint) physical.getY(),
-                                  (jint) physical.getRight(),
-                                  (jint) physical.getBottom());
+            env->CallVoidMethod (surfaceView.get(), JuceOpenGLViewSurface.layout,
+                                 (jint) r.getX(), (jint) r.getY(), (jint) r.getRight(), (jint) r.getBottom());
+        }
     }
 
     //==============================================================================
     // Android Surface Callbacks:
-    void surfaceChanged ([[maybe_unused]] LocalRef<jobject> holder,
-                         [[maybe_unused]] int format,
-                         [[maybe_unused]] int width,
-                         [[maybe_unused]] int height) override
+    void surfaceChanged (LocalRef<jobject> holder, int format, int width, int height) override
     {
+        ignoreUnused (holder, format, width, height);
     }
 
-    void surfaceCreated (LocalRef<jobject>) override;
-    void surfaceDestroyed (LocalRef<jobject>) override;
+    void surfaceCreated (LocalRef<jobject> holder) override;
+    void surfaceDestroyed (LocalRef<jobject> holder) override;
 
     //==============================================================================
-    struct Locker
-    {
-        explicit Locker (NativeContext& ctx) : lock (ctx.mutex) {}
-        const ScopedLock lock;
-    };
-
-    void addListener (NativeContextListener& l)
-    {
-        listeners.add (&l);
-    }
-
-    void removeListener (NativeContextListener& l)
-    {
-        listeners.remove (&l);
-    }
-
-    void notifyWillPause()
-    {
-        listeners.call ([&] (auto& l) { l.contextWillPause(); });
-    }
-
-    void notifyDidResume()
-    {
-        listeners.call ([&] (auto& l) { l.contextDidResume(); });
-    }
+    struct Locker { Locker (NativeContext&) {} };
 
     Component& component;
 
 private:
-    #define JNI_CLASS_MEMBERS(METHOD, STATICMETHOD, FIELD, STATICFIELD, CALLBACK) \
-     METHOD (constructor, "<init>",    "(Landroid/content/Context;J)V") \
-     METHOD (getParent,   "getParent", "()Landroid/view/ViewParent;") \
-     METHOD (layout,      "layout",    "(IIII)V" ) \
-     CALLBACK (generatedCallback<&NativeContext::dispatchDraw>,       "onDrawNative",               "(JLandroid/graphics/Canvas;)V")
-
-     DECLARE_JNI_CLASS_WITH_BYTECODE (JuceOpenGLViewSurface, "com/rmsl/juce/JuceOpenGLView", 24, javaJuceOpenGLView)
-    #undef JNI_CLASS_MEMBERS
-
     //==============================================================================
-    static void dispatchDraw (JNIEnv*, NativeContext& t, jobject /*canvas*/)
-    {
-        const std::lock_guard lock { t.nativeHandleMutex };
+    friend struct AndroidGLCallbacks;
 
-        if (t.juceContext != nullptr)
-            t.juceContext->triggerRepaint();
+    void attachedToWindow()
+    {
+        auto* env = getEnv();
+
+        LocalRef<jobject> holder (env->CallObjectMethod (surfaceView.get(), JuceOpenGLViewSurface.getHolder));
+
+        if (surfaceHolderCallback == nullptr)
+            surfaceHolderCallback = GlobalRef (CreateJavaInterface (this, "android/view/SurfaceHolder$Callback"));
+
+        env->CallVoidMethod (holder, AndroidSurfaceHolder.addCallback, surfaceHolderCallback.get());
+    }
+
+    void detachedFromWindow()
+    {
+        if (surfaceHolderCallback != nullptr)
+        {
+            auto* env = getEnv();
+
+            LocalRef<jobject> holder (env->CallObjectMethod (surfaceView.get(), JuceOpenGLViewSurface.getHolder));
+
+            env->CallVoidMethod (holder.get(), AndroidSurfaceHolder.removeCallback, surfaceHolderCallback.get());
+            surfaceHolderCallback.clear();
+        }
+    }
+
+    void dispatchDraw (jobject /*canvas*/)
+    {
+        if (juceContext != nullptr)
+            juceContext->triggerRepaint();
     }
 
     bool tryChooseConfig (const std::vector<EGLint>& optionalAttribs)
@@ -354,62 +339,42 @@ private:
         return false;
     }
 
-    struct NativeWindowReleaser
-    {
-        void operator() (ANativeWindow* ptr) const { if (ptr != nullptr) ANativeWindow_release (ptr); }
-    };
-
-    static std::unique_ptr<ANativeWindow, NativeWindowReleaser> getNativeWindowFromSurfaceHolder (jobject holder)
-    {
-        auto* env = getEnv();
-
-        if (holder == nullptr)
-            return nullptr;
-
-        const LocalRef<jobject> jSurface (env->CallObjectMethod (holder, AndroidSurfaceHolder.getSurface));
-
-        if (jSurface == nullptr)
-            return nullptr;
-
-        constexpr auto numAttempts = 2;
-
-        for (auto i = 0; i < numAttempts; Thread::sleep (200), ++i)
-            if (auto* ptr = ANativeWindow_fromSurface (env, jSurface.get()))
-                return std::unique_ptr<ANativeWindow, NativeWindowReleaser> { ptr };
-
-        return nullptr;
-    }
-
     //==============================================================================
-    CriticalSection mutex;
     bool hasInitialised = false;
 
     GlobalRef surfaceView;
-    Rectangle<int> physicalBounds;
+    Rectangle<int> lastBounds;
 
-    struct SurfaceDestructor
-    {
-        void operator() (EGLSurface x) const { if (x != EGL_NO_SURFACE) eglDestroySurface (display, x); }
-    };
-
-    struct ContextDestructor
-    {
-        void operator() (EGLContext x) const { if (x != EGL_NO_CONTEXT) eglDestroyContext (display, x); }
-    };
-
-    mutable std::mutex nativeHandleMutex;
     OpenGLContext* juceContext = nullptr;
-    ListenerList<NativeContextListener> listeners;
-    std::unique_ptr<std::remove_pointer_t<EGLSurface>, SurfaceDestructor> surface { EGL_NO_SURFACE };
-    std::unique_ptr<std::remove_pointer_t<EGLContext>, ContextDestructor> context { EGL_NO_CONTEXT };
+    EGLSurface surface;
+    EGLContext context;
 
     GlobalRef surfaceHolderCallback;
 
-    inline static EGLDisplay display = EGL_NO_DISPLAY;
-    inline static EGLConfig config;
+    static EGLDisplay display;
+    static EGLConfig config;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NativeContext)
 };
+
+//==============================================================================
+void AndroidGLCallbacks::attachedToWindow (JNIEnv*, jobject /*this*/, jlong host)
+{
+    if (auto* nativeContext = reinterpret_cast<OpenGLContext::NativeContext*> (host))
+        nativeContext->attachedToWindow();
+}
+
+void AndroidGLCallbacks::detachedFromWindow (JNIEnv*, jobject /*this*/, jlong host)
+{
+    if (auto* nativeContext = reinterpret_cast<OpenGLContext::NativeContext*> (host))
+        nativeContext->detachedFromWindow();
+}
+
+void AndroidGLCallbacks::dispatchDraw (JNIEnv*, jobject /*this*/, jlong host, jobject canvas)
+{
+    if (auto* nativeContext = reinterpret_cast<OpenGLContext::NativeContext*> (host))
+        nativeContext->dispatchDraw (canvas);
+}
 
 //==============================================================================
 bool OpenGLHelpers::isContextActive()

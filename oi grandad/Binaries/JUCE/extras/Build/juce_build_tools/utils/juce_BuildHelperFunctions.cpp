@@ -1,40 +1,32 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
-namespace juce::build_tools
+namespace juce
 {
-
+namespace build_tools
+{
     void overwriteFileIfDifferentOrThrow (const File& file, const MemoryOutputStream& newData)
     {
         if (! overwriteFileWithNewDataIfDifferent (file, newData))
@@ -62,35 +54,31 @@ namespace juce::build_tools
 
     String getXcodePackageType (ProjectType::Target::Type type)
     {
-        using Type = ProjectType::Target::Type;
-
         switch (type)
         {
-            case Type::GUIApp:
-            case Type::StandalonePlugIn:
+            case ProjectType::Target::Type::GUIApp:
+            case ProjectType::Target::Type::StandalonePlugIn:
                 return "APPL";
 
-            case Type::VSTPlugIn:
-            case Type::VST3PlugIn:
-            case Type::AudioUnitPlugIn:
-            case Type::UnityPlugIn:
+            case ProjectType::Target::Type::VSTPlugIn:
+            case ProjectType::Target::Type::VST3PlugIn:
+            case ProjectType::Target::Type::AudioUnitPlugIn:
+            case ProjectType::Target::Type::UnityPlugIn:
                 return "BNDL";
 
-            case Type::AudioUnitv3PlugIn:
+            case ProjectType::Target::Type::AudioUnitv3PlugIn:
                 return "XPC!";
 
-            case Type::AAXPlugIn:
+            case ProjectType::Target::Type::AAXPlugIn:
+            case ProjectType::Target::Type::RTASPlugIn:
                 return "TDMw";
 
-            case Type::ConsoleApp:
-            case Type::StaticLibrary:
-            case Type::DynamicLibrary:
-            case Type::LV2PlugIn:
-            case Type::LV2Helper:
-            case Type::VST3Helper:
-            case Type::SharedCodeTarget:
-            case Type::AggregateTarget:
-            case Type::unspecified:
+            case ProjectType::Target::Type::ConsoleApp:
+            case ProjectType::Target::Type::StaticLibrary:
+            case ProjectType::Target::Type::DynamicLibrary:
+            case ProjectType::Target::Type::SharedCodeTarget:
+            case ProjectType::Target::Type::AggregateTarget:
+            case ProjectType::Target::Type::unspecified:
             default:
                 return {};
         }
@@ -98,31 +86,27 @@ namespace juce::build_tools
 
     String getXcodeBundleSignature (ProjectType::Target::Type type)
     {
-        using Type = ProjectType::Target::Type;
-
         switch (type)
         {
-            case Type::GUIApp:
-            case Type::VSTPlugIn:
-            case Type::VST3PlugIn:
-            case Type::AudioUnitPlugIn:
-            case Type::StandalonePlugIn:
-            case Type::AudioUnitv3PlugIn:
-            case Type::UnityPlugIn:
+            case ProjectType::Target::Type::GUIApp:
+            case ProjectType::Target::Type::VSTPlugIn:
+            case ProjectType::Target::Type::VST3PlugIn:
+            case ProjectType::Target::Type::AudioUnitPlugIn:
+            case ProjectType::Target::Type::StandalonePlugIn:
+            case ProjectType::Target::Type::AudioUnitv3PlugIn:
+            case ProjectType::Target::Type::UnityPlugIn:
                 return "????";
 
-            case Type::AAXPlugIn:
+            case ProjectType::Target::Type::AAXPlugIn:
+            case ProjectType::Target::Type::RTASPlugIn:
                 return "PTul";
 
-            case Type::ConsoleApp:
-            case Type::StaticLibrary:
-            case Type::DynamicLibrary:
-            case Type::LV2PlugIn:
-            case Type::LV2Helper:
-            case Type::VST3Helper:
-            case Type::SharedCodeTarget:
-            case Type::AggregateTarget:
-            case Type::unspecified:
+            case ProjectType::Target::Type::ConsoleApp:
+            case ProjectType::Target::Type::StaticLibrary:
+            case ProjectType::Target::Type::DynamicLibrary:
+            case ProjectType::Target::Type::SharedCodeTarget:
+            case ProjectType::Target::Type::AggregateTarget:
+            case ProjectType::Target::Type::unspecified:
             default:
                 return {};
         }
@@ -363,5 +347,5 @@ namespace juce::build_tools
         writer (mo);
         overwriteFileIfDifferentOrThrow (file, mo);
     }
-
-} // namespace juce::build_tools
+}
+}

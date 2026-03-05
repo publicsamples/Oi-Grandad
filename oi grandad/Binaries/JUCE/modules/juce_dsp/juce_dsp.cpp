@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -42,8 +33,6 @@
 #endif
 
 #include "juce_dsp.h"
-
-#include <juce_audio_formats/juce_audio_formats.h>
 
 #ifndef JUCE_USE_VDSP_FRAMEWORK
  #define JUCE_USE_VDSP_FRAMEWORK 1
@@ -60,8 +49,15 @@
 #endif
 
 #if _IPP_SEQUENTIAL_STATIC || _IPP_SEQUENTIAL_DYNAMIC || _IPP_PARALLEL_STATIC || _IPP_PARALLEL_DYNAMIC
+#include <ipp.h>
+
+#if (IPP_VERSION_MAJOR >= 2021 && IPP_VERSION_MINOR >= 10) || IPP_VERSION_MAJOR >= 2022
+#include <ipp/ippcore.h>
+#include <ipp/ipps.h>
+#else
  #include <ippcore.h>
  #include <ipps.h>
+#endif
  #define JUCE_IPP_AVAILABLE 1
 #endif
 
@@ -90,14 +86,14 @@
 #include "widgets/juce_Chorus.cpp"
 
 #if JUCE_USE_SIMD
- #if JUCE_INTEL
+ #if defined(__i386__) || defined(__amd64__) || defined(_M_X64) || defined(_X86_) || defined(_M_IX86)
   #ifdef __AVX2__
-   #include "native/juce_SIMDNativeOps_avx.cpp"
+   #include "native/juce_avx_SIMDNativeOps.cpp"
   #else
-   #include "native/juce_SIMDNativeOps_sse.cpp"
+   #include "native/juce_sse_SIMDNativeOps.cpp"
   #endif
- #elif JUCE_ARM
-  #include "native/juce_SIMDNativeOps_neon.cpp"
+ #elif defined(__arm__) || defined(_M_ARM) || defined (__arm64__) || defined (__aarch64__)
+  #include "native/juce_neon_SIMDNativeOps.cpp"
  #else
   #error "SIMD register support not implemented for this platform"
  #endif
@@ -112,6 +108,7 @@
  #endif
 
  #include "containers/juce_AudioBlock_test.cpp"
+ #include "containers/juce_FixedSizeFunction_test.cpp"
  #include "frequency/juce_Convolution_test.cpp"
  #include "frequency/juce_FFT_test.cpp"
  #include "processors/juce_FIRFilter_test.cpp"

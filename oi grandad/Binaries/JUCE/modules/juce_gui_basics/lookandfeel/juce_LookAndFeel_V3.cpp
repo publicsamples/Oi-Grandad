@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -59,7 +50,7 @@ LookAndFeel_V3::~LookAndFeel_V3() {}
 
 bool LookAndFeel_V3::areScrollbarButtonsVisible()        { return false; }
 
-void LookAndFeel_V3::drawStretchableLayoutResizerBar (Graphics& g, int /*w*/, int /*h*/, bool /*isVerticalBar*/,
+void LookAndFeel_V3::drawStretchableLayoutResizerBar (Graphics& g, Component&, int /*w*/, int /*h*/, bool /*isVerticalBar*/,
                                                       bool isMouseOver, bool isMouseDragging)
 {
     if (isMouseOver || isMouseDragging)
@@ -111,7 +102,7 @@ void LookAndFeel_V3::drawConcertinaPanelHeader (Graphics& g, const Rectangle<int
     g.fillRect (area.withTop (area.getBottom() - 1));
 
     g.setColour (bkg.contrasting());
-    g.setFont (Font (withDefaultMetrics (FontOptions { (float) area.getHeight() * 0.6f })).boldened());
+    g.setFont (Font ((float) area.getHeight() * 0.6f).boldened());
     g.drawFittedText (panel.getName(), 4, 0, area.getWidth() - 6, area.getHeight(), Justification::centredLeft, 1);
 }
 
@@ -187,7 +178,7 @@ int LookAndFeel_V3::getTabButtonSpaceAroundImage()                    { return 0
 void LookAndFeel_V3::createTabTextLayout (const TabBarButton& button, float length, float depth,
                                           Colour colour, TextLayout& textLayout)
 {
-    Font font (button.withDefaultMetrics (FontOptions { depth * 0.5f }));
+    Font font (depth * 0.5f);
     font.setUnderline (button.hasKeyboardFocus (false));
 
     AttributedString s;
@@ -347,7 +338,7 @@ void LookAndFeel_V3::drawTreeviewPlusMinusBox (Graphics& g, const Rectangle<floa
     Path p;
     p.addTriangle (0.0f, 0.0f, 1.0f, isOpen ? 0.0f : 0.5f, isOpen ? 0.5f : 0.0f, 1.0f);
 
-    g.setColour (backgroundColour.contrasting().withAlpha (isMouseOver ? 0.5f : 0.3f));
+    g.setColour (Colour(0xFF888888).withMultipliedBrightness(isMouseOver ? 1.1f : 1.0f));
     g.fillPath (p, p.getTransformToScaleToFit (area.reduced (2, area.getHeight() / 4), true));
 }
 
@@ -429,8 +420,6 @@ void LookAndFeel_V3::drawLinearSlider (Graphics& g, int x, int y, int width, int
             g.fillRect (fx, sliderPos, fw, 1.0f);
         else
             g.fillRect (sliderPos, fy, 1.0f, fh);
-
-        drawLinearSliderOutline (g, x, y, width, height, style, slider);
     }
     else
     {
@@ -475,9 +464,10 @@ void LookAndFeel_V3::drawLinearSliderBackground (Graphics& g, int x, int y, int 
     g.strokePath (indent, PathStrokeType (0.5f));
 }
 
-void LookAndFeel_V3::drawPopupMenuBackground (Graphics& g, [[maybe_unused]] int width, [[maybe_unused]] int height)
+void LookAndFeel_V3::drawPopupMenuBackground (Graphics& g, int width, int height)
 {
     g.fillAll (findColour (PopupMenu::backgroundColourId));
+    ignoreUnused (width, height);
 
    #if ! JUCE_MAC
     g.setColour (findColour (PopupMenu::textColourId).withAlpha (0.6f));
@@ -530,7 +520,7 @@ void LookAndFeel_V3::drawKeymapChangeButton (Graphics& g, int width, int height,
         p.addRectangle (50.0f - thickness, 50.0f + thickness, thickness * 2.0f, 50.0f - indent - thickness);
         p.setUsingNonZeroWinding (false);
 
-        g.setColour (textColour.darker (0.1f).withAlpha (button.isDown() ? 0.7f : (button.isOver() ? 0.5f : 0.3f)));
+        g.setColour (textColour.darker(0.1f).withAlpha (button.isDown() ? 0.7f : (button.isOver() ? 0.5f : 0.3f)));
         g.fillPath (p, p.getTransformToScaleToFit (2.0f, 2.0f, (float) width - 4.0f, (float) height - 4.0f, true));
     }
 
@@ -542,7 +532,7 @@ void LookAndFeel_V3::drawKeymapChangeButton (Graphics& g, int width, int height,
 }
 
 
-class LookAndFeel_V3_DocumentWindowButton final : public Button
+class LookAndFeel_V3_DocumentWindowButton   : public Button
 {
 public:
     LookAndFeel_V3_DocumentWindowButton (const String& name, Colour c, const Path& normal, const Path& toggled)

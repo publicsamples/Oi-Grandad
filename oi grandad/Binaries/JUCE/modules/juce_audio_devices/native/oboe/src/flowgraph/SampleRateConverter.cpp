@@ -17,10 +17,9 @@
 #include "SampleRateConverter.h"
 
 using namespace FLOWGRAPH_OUTER_NAMESPACE::flowgraph;
-using namespace RESAMPLER_OUTER_NAMESPACE::resampler;
+using namespace resampler;
 
-SampleRateConverter::SampleRateConverter(int32_t channelCount,
-                                         MultiChannelResampler &resampler)
+SampleRateConverter::SampleRateConverter(int32_t channelCount, MultiChannelResampler &resampler)
         : FlowGraphFilter(channelCount)
         , mResampler(resampler) {
     setDataPulledAutomatically(false);
@@ -28,8 +27,7 @@ SampleRateConverter::SampleRateConverter(int32_t channelCount,
 
 void SampleRateConverter::reset() {
     FlowGraphNode::reset();
-    mInputCallCount = kInitialCallCount;
-    mInputCursor = 0;
+    mInputCursor = kInitialCallCount;
 }
 
 // Return true if there is a sample available.

@@ -18,8 +18,10 @@
 #define AUDIO_OUTPUT_STREAM_OPENSL_ES_H_
 
 
+#include <SLES/OpenSLES.h>
+#include <SLES/OpenSLES_Android.h>
+
 #include "oboe/Oboe.h"
-#include "EngineOpenSLES.h"
 #include "AudioStreamOpenSLES.h"
 
 namespace oboe {
@@ -58,8 +60,6 @@ private:
     Result onAfterDestroy() override;
 
     Result requestFlush_l();
-
-    Result requestStop_l();
 
     /**
      * Set OpenSL ES PLAYSTATE.

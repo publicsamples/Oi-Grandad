@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -94,52 +82,24 @@ namespace SocketHelpers
         return setOption (handle, SOL_SOCKET, property, value);
     }
 
-    static std::optional<int> getBufferSize (SocketHandle handle, int property)
+    static bool resetSocketOptions (SocketHandle handle, bool isDatagram, bool allowBroadcast) noexcept
     {
-        int result;
-        auto outParamSize = (socklen_t) sizeof (result);
-
-        if (getsockopt (handle, SOL_SOCKET, property, reinterpret_cast<char*> (&result), &outParamSize) != 0
-            || outParamSize != (socklen_t) sizeof (result))
-        {
-            return std::nullopt;
-        }
-
-        return result;
-    }
-
-    static bool resetSocketOptions (SocketHandle handle, bool isDatagram, bool allowBroadcast, const SocketOptions& options) noexcept
-    {
-        auto getCurrentBufferSizeWithMinimum = [handle] (int property)
-        {
-            constexpr auto minBufferSize = 65536;
-
-            if (auto currentBufferSize = getBufferSize (handle, property))
-                return std::max (*currentBufferSize, minBufferSize);
-
-            return minBufferSize;
-        };
-
-        const auto receiveBufferSize = options.getReceiveBufferSize().value_or (getCurrentBufferSizeWithMinimum (SO_RCVBUF));
-        const auto sendBufferSize    = options.getSendBufferSize()   .value_or (getCurrentBufferSizeWithMinimum (SO_SNDBUF));
-
         return handle != invalidSocket
-                && setOption (handle, SO_RCVBUF, receiveBufferSize)
-                && setOption (handle, SO_SNDBUF, sendBufferSize)
+                && setOption (handle, SO_RCVBUF, (int) 65536)
+                && setOption (handle, SO_SNDBUF, (int) 65536)
                 && (isDatagram ? ((! allowBroadcast) || setOption (handle, SO_BROADCAST, (int) 1))
                                : setOption (handle, IPPROTO_TCP, TCP_NODELAY, (int) 1));
     }
 
-    static void closeSocket (std::atomic<int>& handle,
-                             [[maybe_unused]] CriticalSection& readLock,
-                             [[maybe_unused]] bool isListener,
-                             [[maybe_unused]] int portNumber,
-                             std::atomic<bool>& connected) noexcept
+    static void closeSocket (std::atomic<int>& handle, CriticalSection& readLock,
+                             bool isListener, int portNumber, std::atomic<bool>& connected) noexcept
     {
         const auto h = (SocketHandle) handle.load();
         handle = -1;
 
        #if JUCE_WINDOWS
+        ignoreUnused (portNumber, isListener, readLock);
+
         if (h != invalidSocket || connected)
             closesocket (h);
 
@@ -153,7 +113,7 @@ namespace SocketHelpers
 
             if (isListener)
             {
-                // need to do this to interrupt the accept() function
+                // need to do this to interrupt the accept() function..
                 StreamingSocket temp;
                 temp.connect (IPAddress::local().toString(), portNumber, 1000);
             }
@@ -338,7 +298,7 @@ namespace SocketHelpers
 
         auto h = handle.load();
 
-       #if JUCE_WINDOWS
+       #if JUCE_WINDOWS || JUCE_MINGW
         struct timeval timeout;
         struct timeval* timeoutp;
 
@@ -409,8 +369,7 @@ namespace SocketHelpers
                                CriticalSection& readLock,
                                const String& hostName,
                                int portNumber,
-                               int timeOutMillisecs,
-                               const SocketOptions& options) noexcept
+                               int timeOutMillisecs) noexcept
     {
         bool success = false;
 
@@ -461,7 +420,7 @@ namespace SocketHelpers
             {
                 auto h = (SocketHandle) handle.load();
                 setSocketBlockingState (h, true);
-                resetSocketOptions (h, false, false, options);
+                resetSocketOptions (h, false, false);
             }
         }
 
@@ -498,9 +457,8 @@ StreamingSocket::StreamingSocket()
     SocketHelpers::initSockets();
 }
 
-StreamingSocket::StreamingSocket (const String& host, int portNum, int h, const SocketOptions& optionsIn)
-    : options (optionsIn),
-      hostName (host),
+StreamingSocket::StreamingSocket (const String& host, int portNum, int h)
+    : hostName (host),
       portNumber (portNum),
       handle (h),
       connected (true)
@@ -508,7 +466,7 @@ StreamingSocket::StreamingSocket (const String& host, int portNum, int h, const 
     jassert (SocketHelpers::isValidPortNumber (portNum));
 
     SocketHelpers::initSockets();
-    SocketHelpers::resetSocketOptions ((SocketHandle) h, false, false, options);
+    SocketHelpers::resetSocketOptions ((SocketHandle) h, false, false);
 }
 
 StreamingSocket::~StreamingSocket()
@@ -576,12 +534,12 @@ bool StreamingSocket::connect (const String& remoteHostName, int remotePortNumbe
     isListener = false;
 
     connected = SocketHelpers::connectSocket (handle, readLock, remoteHostName,
-                                              remotePortNumber, timeOutMillisecs, options);
+                                              remotePortNumber, timeOutMillisecs);
 
     if (! connected)
         return false;
 
-    if (! SocketHelpers::resetSocketOptions ((SocketHandle) handle.load(), false, false, options))
+    if (! SocketHelpers::resetSocketOptions ((SocketHandle) handle.load(), false, false))
     {
         close();
         return false;
@@ -647,7 +605,7 @@ StreamingSocket* StreamingSocket::waitForNextConnection() const
 
         if (newSocket >= 0 && connected)
             return new StreamingSocket (inet_ntoa (((struct sockaddr_in*) &address)->sin_addr),
-                                        portNumber, newSocket, options);
+                                        portNumber, newSocket);
     }
 
     return nullptr;
@@ -670,8 +628,7 @@ bool StreamingSocket::isLocal() const noexcept
 
 //==============================================================================
 //==============================================================================
-DatagramSocket::DatagramSocket (bool canBroadcast, const SocketOptions& optionsIn)
-    : options { optionsIn }
+DatagramSocket::DatagramSocket (bool canBroadcast)
 {
     SocketHelpers::initSockets();
 
@@ -679,7 +636,7 @@ DatagramSocket::DatagramSocket (bool canBroadcast, const SocketOptions& optionsI
 
     if (handle >= 0)
     {
-        SocketHelpers::resetSocketOptions ((SocketHandle) handle.load(), true, canBroadcast, options);
+        SocketHelpers::resetSocketOptions ((SocketHandle) handle.load(), true, canBroadcast);
         SocketHelpers::makeReusable (handle);
     }
 }
@@ -814,9 +771,11 @@ bool DatagramSocket::setMulticastLoopbackEnabled (bool enable)
     return SocketHelpers::setOption<bool> ((SocketHandle) handle.load(), IPPROTO_IP, IP_MULTICAST_LOOP, enable);
 }
 
-bool DatagramSocket::setEnablePortReuse ([[maybe_unused]] bool enabled)
+bool DatagramSocket::setEnablePortReuse (bool enabled)
 {
-   #if ! JUCE_ANDROID
+   #if JUCE_ANDROID
+    ignoreUnused (enabled);
+   #else
     if (handle >= 0)
         return SocketHelpers::setOption ((SocketHandle) handle.load(),
                                         #if JUCE_WINDOWS || JUCE_LINUX || JUCE_BSD
@@ -836,7 +795,7 @@ JUCE_END_IGNORE_WARNINGS_MSVC
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-struct SocketTests final : public UnitTest
+struct SocketTests : public UnitTest
 {
     SocketTests()
         : UnitTest ("Sockets", UnitTestCategories::networking)

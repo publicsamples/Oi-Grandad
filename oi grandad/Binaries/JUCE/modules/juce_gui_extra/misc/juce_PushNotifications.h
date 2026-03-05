@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -54,9 +45,9 @@ namespace juce
 class JUCE_API PushNotifications    : private DeletedAtShutdown
 {
 public:
-    /** @cond */
-    JUCE_DECLARE_SINGLETON_INLINE (PushNotifications, false)
-    /** @endcond */
+   #ifndef DOXYGEN
+    JUCE_DECLARE_SINGLETON (PushNotifications, false)
+   #endif
 
     //==============================================================================
     /** Represents a notification that can be sent or received. */
@@ -97,7 +88,7 @@ public:
             bool    triggerInBackground = false;   /**< Whether the app can process the action in background. */
             bool    destructive = false;           /**< Whether to display the action as destructive. */
             String  textInputButtonText;           /**< Optional: Text displayed on text input notification
-                                                        button.
+                                                        button (from iOS 10 only).
                                                         Note that it will be ignored if style is set to Style::button. */
             /**@}*/
 
@@ -130,7 +121,8 @@ public:
                                   judiciously. On iOS available from version 10. On Android available from API 16. */
 
         String groupId;      /**< Optional: allows the OS to visually group, collapse, and expand a set of notifications,
-                                  note that OS may automatically group notifications if no groupId is specified. */
+                                  note that OS may automatically group notifications if no groupId is specified.
+                                  Available on Android API 20 or above and iOS 10 or above. */
 
         int badgeNumber = 0; /**< Optional: on platforms that support it, can set a number this notification represents. */
         URL soundToPlay;     /**< Optional: empty when the notification should be silent. When the name is set to
@@ -164,7 +156,7 @@ public:
                                              in requestPermissionsWithSettings()). */
         double triggerIntervalSec = 0.; /**< Optional: specifies number of seconds before the notification should trigger. */
         bool   repeat = false;          /**< Optional: allows the notification to continuously retrigger after
-                                             triggerIntervalSec seconds. */
+                                             triggerIntervalSec seconds. Available from iOS 10. */
 
         /**@}*/
 
@@ -403,9 +395,9 @@ public:
         */
         struct Category
         {
-            String identifier;               /**< unique identifier */
-            Array<Action> actions;           /**< optional list of actions within this category */
-            bool sendDismissAction = false;  /**< whether dismiss action will be sent to the app */
+            juce::String identifier;         /**< unique identifier */
+            juce::Array<Action> actions;     /**< optional list of actions within this category */
+            bool sendDismissAction = false;  /**< whether dismiss action will be sent to the app (from iOS 10 only) */
         };
 
         bool allowSound = false;      /**< whether the app should play a sound upon notification */
@@ -506,7 +498,7 @@ public:
     */
     void getPendingLocalNotifications() const;
 
-    /** Unschedules a pending local notification with a given identifier. */
+    /** Unschedules a pending local notification with a given identifier. Available from iOS 10. */
     void removePendingLocalNotification (const String& identifier);
 
     /** Unschedules all pending local notifications. iOS only. */
@@ -519,8 +511,9 @@ public:
     bool areNotificationsEnabled() const;
 
     /** On iOS as well as on Android, sends a local notification.
-        This will refresh an existing notification if the same identifier is used as in
-        a notification that was already sent and not yet responded by a user.
+        On Android and iOS 10 or above, this will refresh an existing notification
+        if the same identifier is used as in a notification that was already sent
+        and not yet responded by a user.
     */
     void sendLocalNotification (const Notification& notification);
 
@@ -608,16 +601,18 @@ public:
             with no categories and all allow flags set to true will be received in
             Listener::notificationSettingsReceived().
         */
-        virtual void notificationSettingsReceived (const Settings& settings);
+        virtual void notificationSettingsReceived (const Settings& settings) { ignoreUnused (settings); }
 
         /** Called when the list of pending notifications, requested by calling
-            getPendingLocalNotifications() is returned.
+            getPendingLocalNotifications() is returned. iOS 10 or above only.
         */
-        virtual void pendingLocalNotificationsListReceived (const Array<Notification>& notifications);
+        virtual void pendingLocalNotificationsListReceived (const Array<Notification>& notifications) { ignoreUnused (notifications); }
 
         /** This can be called in multiple different situations, depending on the OS and the situation.
 
-            This will be called when a user presses on a notification
+            On pre iOS 10 device it will be called when a user presses on a notification or when a
+            notification was received when the app was in the foreground already. On iOS 10 it will be
+            called when a user presses on a notification
 
             Note: On Android, if remote notification was received while the app was in the background and
             then user pressed on it, the notification object received in this callback will contain only
@@ -627,7 +622,7 @@ public:
 
             Note you can receive this callback on startup, if the application was launched from a notification.
         */
-        virtual void handleNotification (bool isLocalNotification, const Notification& notification);
+        virtual void handleNotification (bool isLocalNotification, const Notification& notification) { ignoreUnused (isLocalNotification); ignoreUnused (notification); }
 
         /** This can be called when a user performs some action on the notification such as
             pressing on an action button or responding with a text input.
@@ -646,12 +641,18 @@ public:
         virtual void handleNotificationAction (bool isLocalNotification,
                                                const Notification& notification,
                                                const String& actionIdentifier,
-                                               const String& optionalResponse);
+                                               const String& optionalResponse)
+        {
+            ignoreUnused (isLocalNotification);
+            ignoreUnused (notification);
+            ignoreUnused (actionIdentifier);
+            ignoreUnused (optionalResponse);
+        }
 
         /** For iOS10 and Android, this can be also called when a user dismissed the notification before
             responding to it.
         */
-        virtual void localNotificationDismissedByUser (const Notification& notification);
+        virtual void localNotificationDismissedByUser (const Notification& notification) { ignoreUnused (notification); }
 
         /** Called after getDeliveredNotifications() request is fulfilled. Returns notifications
             that are visible in the notification area on the device and that are still waiting
@@ -660,31 +661,31 @@ public:
             On iOS, iOS version 10 or higher is required. On Android, API level 18 or higher is required.
             For unsupported platforms, an empty array will be returned.
          */
-        virtual void deliveredNotificationsListReceived (const Array<Notification>& notifications);
+        virtual void deliveredNotificationsListReceived (const Array<Notification>& notifications) { ignoreUnused (notifications); }
 
         /** Called whenever a token gets refreshed. You should monitor any token updates, because
             only the last token that is assigned to device is valid and can be used.
         */
-        virtual void deviceTokenRefreshed (const String& token);
+        virtual void deviceTokenRefreshed (const String& token) { ignoreUnused (token); }
 
         /** Called when Firebase Cloud Messaging server deletes pending messages. This can happen when
             1) too many messages were sent to the server (hint: use collapsible messages).
             2) the devices hasn't been online in a long time (refer to Firebase documentation for
                the maximum time a message can be stored on FCM before expiring).
         */
-        virtual void remoteNotificationsDeleted();
+        virtual void remoteNotificationsDeleted() {}
 
         /** Called when an upstream message sent with PushNotifications::sendUpstreamMessage() has been
             sent successfully.
             Bear in mind that in may take several minutes or more to receive this callback.
         */
-        virtual void upstreamMessageSent (const String& messageId);
+        virtual void upstreamMessageSent (const String& messageId) { ignoreUnused (messageId); }
 
         /** Called when there was an error sending an upstream message with
             PushNotifications::sendUpstreamMessage().
             Bear in mind that in may take several minutes or more to receive this callback.
         */
-        virtual void upstreamMessageSendingError (const String& messageId, const String& error);
+        virtual void upstreamMessageSendingError (const String& messageId, const String& error) {  ignoreUnused (messageId); ignoreUnused (error); }
     };
 
     void addListener (Listener* l);
@@ -703,8 +704,12 @@ private:
     friend struct JuceFirebaseMessagingService;
    #endif
 
-    struct Impl;
-    std::unique_ptr<Impl> pimpl;
+  #if JUCE_PUSH_NOTIFICATIONS
+    struct Pimpl;
+    friend struct Pimpl;
+
+    std::unique_ptr<Pimpl> pimpl;
+  #endif
 };
 
 } // namespace juce

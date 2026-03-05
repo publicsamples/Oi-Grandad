@@ -20,7 +20,8 @@
 #include <atomic>
 #include <mutex>
 
-#include "EngineOpenSLES.h"
+#include <SLES/OpenSLES.h>
+#include <SLES/OpenSLES_Android.h>
 
 namespace oboe {
 

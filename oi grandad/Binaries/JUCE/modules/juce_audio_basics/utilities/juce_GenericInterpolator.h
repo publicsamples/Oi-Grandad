@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -51,16 +42,6 @@ namespace juce
 template <class InterpolatorTraits, int memorySize>
 class JUCE_API  GenericInterpolator
 {
-    static auto processReplacingCallback()
-    {
-        return [] (auto, auto newValue) { return newValue; };
-    }
-
-    static auto processAddingCallback (float gain)
-    {
-        return [gain] (auto oldValue, auto newValue) { return oldValue + gain * newValue; };
-    }
-
 public:
     GenericInterpolator() noexcept                        { reset(); }
 
@@ -103,11 +84,7 @@ public:
                  float* outputSamples,
                  int numOutputSamplesToProduce) noexcept
     {
-        return interpolateImpl (speedRatio,
-                                inputSamples,
-                                outputSamples,
-                                numOutputSamplesToProduce,
-                                processReplacingCallback());
+        return interpolate (speedRatio, inputSamples, outputSamples, numOutputSamplesToProduce);
     }
 
     /** Resamples a stream of samples.
@@ -132,13 +109,8 @@ public:
                  int numInputSamplesAvailable,
                  int wrapAround) noexcept
     {
-        return interpolateImpl (speedRatio,
-                                inputSamples,
-                                outputSamples,
-                                numOutputSamplesToProduce,
-                                numInputSamplesAvailable,
-                                wrapAround,
-                                processReplacingCallback());
+        return interpolate (speedRatio, inputSamples, outputSamples,
+                            numOutputSamplesToProduce, numInputSamplesAvailable, wrapAround);
     }
 
     /** Resamples a stream of samples, adding the results to the output data
@@ -162,11 +134,7 @@ public:
                        int numOutputSamplesToProduce,
                        float gain) noexcept
     {
-        return interpolateImpl (speedRatio,
-                                inputSamples,
-                                outputSamples,
-                                numOutputSamplesToProduce,
-                                processAddingCallback (gain));
+        return interpolateAdding (speedRatio, inputSamples, outputSamples, numOutputSamplesToProduce, gain);
     }
 
     /** Resamples a stream of samples, adding the results to the output data
@@ -197,13 +165,8 @@ public:
                        int wrapAround,
                        float gain) noexcept
     {
-        return interpolateImpl (speedRatio,
-                                inputSamples,
-                                outputSamples,
-                                numOutputSamplesToProduce,
-                                numInputSamplesAvailable,
-                                wrapAround,
-                                processAddingCallback (gain));
+        return interpolateAdding (speedRatio, inputSamples, outputSamples,
+                                  numOutputSamplesToProduce, numInputSamplesAvailable, wrapAround, gain);
     }
 
 private:
@@ -295,48 +258,113 @@ private:
     }
 
     //==============================================================================
-    template <typename Process>
-    int interpolateImpl (double speedRatio,
-                         const float* input,
-                         float* output,
-                         int numOutputSamplesToProduce,
-                         int numInputSamplesAvailable,
-                         int wrap,
-                         Process process)
+    int interpolate (double speedRatio,
+                     const float* input,
+                     float* output,
+                     int numOutputSamplesToProduce) noexcept
+    {
+        auto pos = subSamplePos;
+        int numUsed = 0;
+
+        while (numOutputSamplesToProduce > 0)
+        {
+            while (pos >= 1.0)
+            {
+                pushInterpolationSample (input[numUsed++]);
+                pos -= 1.0;
+            }
+
+            *output++ = InterpolatorTraits::valueAtOffset (lastInputSamples, (float) pos, indexBuffer);
+            pos += speedRatio;
+            --numOutputSamplesToProduce;
+        }
+
+        subSamplePos = pos;
+        return numUsed;
+    }
+
+    int interpolate (double speedRatio,
+                     const float* input, float* output,
+                     int numOutputSamplesToProduce,
+                     int numInputSamplesAvailable,
+                     int wrap) noexcept
     {
         auto originalIn = input;
+        auto pos = subSamplePos;
         bool exceeded = false;
 
-        const auto pushSample = [&]
+        if (speedRatio < 1.0)
         {
-            if (exceeded)
+            for (int i = numOutputSamplesToProduce; --i >= 0;)
             {
-                pushInterpolationSample (0.0);
-            }
-            else
-            {
-                pushInterpolationSample (*input++);
-
-                if (--numInputSamplesAvailable <= 0)
+                if (pos >= 1.0)
                 {
-                    if (wrap > 0)
+                    if (exceeded)
                     {
-                        input -= wrap;
-                        numInputSamplesAvailable += wrap;
+                        pushInterpolationSample (0.0f);
                     }
                     else
                     {
-                        exceeded = true;
-                    }
-                }
-            }
-        };
+                        pushInterpolationSample (*input++);
 
-        interpolateImpl (speedRatio,
-                         output,
-                         numOutputSamplesToProduce,
-                         process,
-                         pushSample);
+                        if (--numInputSamplesAvailable <= 0)
+                        {
+                            if (wrap > 0)
+                            {
+                                input -= wrap;
+                                numInputSamplesAvailable += wrap;
+                            }
+                            else
+                            {
+                                exceeded = true;
+                            }
+                        }
+                    }
+
+                    pos -= 1.0;
+                }
+
+                *output++ = InterpolatorTraits::valueAtOffset (lastInputSamples, (float) pos, indexBuffer);
+                pos += speedRatio;
+            }
+        }
+        else
+        {
+            for (int i = numOutputSamplesToProduce; --i >= 0;)
+            {
+                while (pos < speedRatio)
+                {
+                    if (exceeded)
+                    {
+                        pushInterpolationSample (0);
+                    }
+                    else
+                    {
+                        pushInterpolationSample (*input++);
+
+                        if (--numInputSamplesAvailable <= 0)
+                        {
+                            if (wrap > 0)
+                            {
+                                input -= wrap;
+                                numInputSamplesAvailable += wrap;
+                            }
+                            else
+                            {
+                                exceeded = true;
+                            }
+                        }
+                    }
+
+                    pos += 1.0;
+                }
+
+                pos -= speedRatio;
+                *output++ = InterpolatorTraits::valueAtOffset (lastInputSamples, jmax (0.0f, 1.0f - (float) pos), indexBuffer);
+            }
+        }
+
+        subSamplePos = pos;
 
         if (wrap == 0)
             return (int) (input - originalIn);
@@ -344,47 +372,121 @@ private:
         return ((int) (input - originalIn) + wrap) % wrap;
     }
 
-    template <typename Process>
-    int interpolateImpl (double speedRatio,
-                         const float* input,
-                         float* output,
-                         int numOutputSamplesToProduce,
-                         Process process)
+    int interpolateAdding (double speedRatio,
+                           const float* input,
+                           float* output,
+                           int numOutputSamplesToProduce,
+                           int numInputSamplesAvailable,
+                           int wrap,
+                           float gain) noexcept
     {
-        int numUsed = 0;
-
-        interpolateImpl (speedRatio,
-                         output,
-                         numOutputSamplesToProduce,
-                         process,
-                         [this, input, &numUsed] { pushInterpolationSample (input[numUsed++]); });
-
-        return numUsed;
-    }
-
-    template <typename Process, typename PushSample>
-    void interpolateImpl (double speedRatio,
-                          float* output,
-                          int numOutputSamplesToProduce,
-                          Process process,
-                          PushSample pushSample)
-    {
+        auto originalIn = input;
         auto pos = subSamplePos;
+        bool exceeded = false;
 
-        for (auto i = 0; i < numOutputSamplesToProduce; ++i)
+        if (speedRatio < 1.0)
         {
-            while (pos >= 1.0)
+            for (int i = numOutputSamplesToProduce; --i >= 0;)
             {
-                pushSample();
-                pos -= 1.0;
-            }
+                if (pos >= 1.0)
+                {
+                    if (exceeded)
+                    {
+                        pushInterpolationSample (0.0);
+                    }
+                    else
+                    {
+                        pushInterpolationSample (*input++);
 
-            *output = process (*output, InterpolatorTraits::valueAtOffset (lastInputSamples, (float) pos, indexBuffer));
-            ++output;
-            pos += speedRatio;
+                        if (--numInputSamplesAvailable <= 0)
+                        {
+                            if (wrap > 0)
+                            {
+                                input -= wrap;
+                                numInputSamplesAvailable += wrap;
+                            }
+                            else
+                            {
+                                numInputSamplesAvailable = true;
+                            }
+                        }
+                    }
+
+                    pos -= 1.0;
+                }
+
+                *output++ += gain * InterpolatorTraits::valueAtOffset (lastInputSamples, (float) pos, indexBuffer);
+                pos += speedRatio;
+            }
+        }
+        else
+        {
+            for (int i = numOutputSamplesToProduce; --i >= 0;)
+            {
+                while (pos < speedRatio)
+                {
+                    if (exceeded)
+                    {
+                        pushInterpolationSample (0.0);
+                    }
+                    else
+                    {
+                        pushInterpolationSample (*input++);
+
+                        if (--numInputSamplesAvailable <= 0)
+                        {
+                            if (wrap > 0)
+                            {
+                                input -= wrap;
+                                numInputSamplesAvailable += wrap;
+                            }
+                            else
+                            {
+                                exceeded = true;
+                            }
+                        }
+                    }
+
+                    pos += 1.0;
+                }
+
+                pos -= speedRatio;
+                *output++ += gain * InterpolatorTraits::valueAtOffset (lastInputSamples, jmax (0.0f, 1.0f - (float) pos), indexBuffer);
+            }
         }
 
         subSamplePos = pos;
+
+        if (wrap == 0)
+            return (int) (input - originalIn);
+
+        return ((int) (input - originalIn) + wrap) % wrap;
+    }
+
+    int interpolateAdding (double speedRatio,
+                           const float* input,
+                           float* output,
+                           int numOutputSamplesToProduce,
+                           float gain) noexcept
+    {
+        auto pos = subSamplePos;
+        int numUsed = 0;
+
+        while (numOutputSamplesToProduce > 0)
+        {
+            while (pos >= 1.0)
+            {
+                pushInterpolationSample (input[numUsed++]);
+                pos -= 1.0;
+            }
+
+            *output++ += gain * InterpolatorTraits::valueAtOffset (lastInputSamples, (float) pos, indexBuffer);
+            pos += speedRatio;
+            --numOutputSamplesToProduce;
+        }
+
+        subSamplePos = pos;
+        return numUsed;
     }
 
     //==============================================================================

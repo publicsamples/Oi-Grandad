@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -72,7 +60,7 @@ private:
 public:
     //==============================================================================
     /** Creates an empty array. */
-    Array() noexcept = default;
+    Array() = default;
 
     /** Creates a copy of another array.
         @param other    the array to copy
@@ -88,7 +76,7 @@ public:
     {
     }
 
-    /** Initialises from a null-terminated raw array of values.
+    /** Initalises from a null-terminated raw array of values.
         @param data   the data to copy from
     */
     template <typename TypeToCreateFrom>
@@ -98,7 +86,7 @@ public:
             add (*data++);
     }
 
-    /** Initialises from a raw array of values.
+    /** Initalises from a raw array of values.
         @param data         the data to copy from
         @param numValues    the number of values in the array
     */
@@ -108,26 +96,26 @@ public:
         values.addArray (data, numValues);
     }
 
-    /** Initialises an Array of size 1 containing a single element. */
+    /** Initalises an Array of size 1 containing a single element. */
     Array (const ElementType& singleElementToAdd)
     {
         add (singleElementToAdd);
     }
 
-    /** Initialises an Array of size 1 containing a single element. */
+    /** Initalises an Array of size 1 containing a single element. */
     Array (ElementType&& singleElementToAdd)
     {
         add (std::move (singleElementToAdd));
     }
 
-    /** Initialises an Array from a list of items. */
+    /** Initalises an Array from a list of items. */
     template <typename... OtherElements>
     Array (const ElementType& firstNewElement, OtherElements&&... otherElements)
     {
         values.add (firstNewElement, std::forward<OtherElements> (otherElements)...);
     }
 
-    /** Initialises an Array from a list of items. */
+    /** Initalises an Array from a list of items. */
     template <typename... OtherElements>
     Array (ElementType&& firstNewElement, OtherElements&&... otherElements)
     {
@@ -398,7 +386,7 @@ public:
         auto endPtr = values.end();
 
         for (; e != endPtr; ++e)
-            if (exactlyEqual (elementToLookFor, *e))
+            if (elementToLookFor == *e)
                 return static_cast<int> (e - values.begin());
 
         return -1;
@@ -416,7 +404,7 @@ public:
         auto endPtr = values.end();
 
         for (; e != endPtr; ++e)
-            if (exactlyEqual (elementToLookFor, *e))
+            if (elementToLookFor == *e)
                 return true;
 
         return false;
@@ -661,7 +649,7 @@ public:
         @see add
     */
     template <class OtherArrayType>
-    std::enable_if_t<! std::is_pointer_v<OtherArrayType>, void>
+    typename std::enable_if<! std::is_pointer<OtherArrayType>::value, void>::type
     addArray (const OtherArrayType& arrayToAddFrom,
               int startIndex,
               int numElementsToAdd = -1)
@@ -739,7 +727,32 @@ public:
         @see addSorted, sort
     */
     template <typename ElementComparator, typename TargetValueType>
-    int indexOfSorted (ElementComparator& comparator, TargetValueType elementToLookFor) const;
+    int indexOfSorted (ElementComparator& comparator, TargetValueType elementToLookFor) const
+    {
+        ignoreUnused (comparator); // if you pass in an object with a static compareElements() method, this
+                                   // avoids getting warning messages about the parameter being unused
+
+        const ScopedLockType lock (getLock());
+
+        for (int s = 0, e = values.size();;)
+        {
+            if (s >= e)
+                return -1;
+
+            if (comparator.compareElements (elementToLookFor, values[s]) == 0)
+                return s;
+
+            auto halfway = (s + e) / 2;
+
+            if (halfway == s)
+                return -1;
+
+            if (comparator.compareElements (elementToLookFor, values[halfway]) >= 0)
+                s = halfway;
+            else
+                e = halfway;
+        }
+    }
 
     //==============================================================================
     /** Removes an element from the array.
@@ -816,10 +829,9 @@ public:
         If the item isn't found, no action is taken.
 
         @param valueToRemove   the object to try to remove
-        @returns               the index of the removed item, or -1 if the item isn't found
         @see remove, removeRange, removeIf
     */
-    int removeFirstMatchingValue (ParameterType valueToRemove)
+    void removeFirstMatchingValue (ParameterType valueToRemove)
     {
         const ScopedLockType lock (getLock());
         auto* e = values.begin();
@@ -829,11 +841,9 @@ public:
             if (valueToRemove == e[i])
             {
                 removeInternal (i);
-                return i;
+                break;
             }
         }
-
-        return -1;
     }
 
     /** Removes items from the array.
@@ -1055,6 +1065,11 @@ public:
         values.ensureAllocatedSize (minNumElements);
     }
 
+	int getNumAllocated() const
+	{
+		return values.getNumAllocated();
+	}
+
     //==============================================================================
     /** Sorts the array using a default comparison operation.
         If the type of your elements isn't supported by the DefaultElementComparator class
@@ -1074,7 +1089,7 @@ public:
         int compareElements (ElementType first, ElementType second);
         @endcode
 
-        ...and this method must return:
+        ..and this method must return:
           - a value of < 0 if the first comes before the second
           - a value of 0 if the two objects are equivalent
           - a value of > 0 if the second comes before the first
@@ -1093,7 +1108,14 @@ public:
         @see addSorted, indexOfSorted, sortArray
     */
     template <class ElementComparator>
-    void sort (ElementComparator& comparator, bool retainOrderOfEquivalentItems = false);
+    void sort (ElementComparator& comparator,
+               bool retainOrderOfEquivalentItems = false)
+    {
+        const ScopedLockType lock (getLock());
+        ignoreUnused (comparator); // if you pass in an object with a static compareElements() method, this
+                                   // avoids getting warning messages about the parameter being unused
+        sortArray (comparator, values.begin(), 0, size() - 1, retainOrderOfEquivalentItems);
+    }
 
     //==============================================================================
     /** Returns the CriticalSection that locks this array.
@@ -1107,11 +1129,11 @@ public:
 
 
     //==============================================================================
-    /** @cond */
+   #ifndef DOXYGEN
     [[deprecated ("This method has been replaced by a more flexible templated version and renamed "
                  "to swapWith to be more consistent with the names used in other classes.")]]
     void swapWithArray (Array& other) noexcept { swapWith (other); }
-    /** @endcond */
+   #endif
 
 private:
     //==============================================================================
@@ -1129,44 +1151,5 @@ private:
             values.shrinkToNoMoreThan (jmax (values.size(), jmax (minimumAllocatedSize, 64 / (int) sizeof (ElementType))));
     }
 };
-
-//==============================================================================
-template <typename ElementType, typename TypeOfCriticalSectionToUse, int minimumAllocatedSize>
-template <typename ElementComparator, typename TargetValueType>
-int Array<ElementType, TypeOfCriticalSectionToUse, minimumAllocatedSize>::indexOfSorted (
-    [[maybe_unused]] ElementComparator& comparator,
-    TargetValueType elementToLookFor) const
-{
-    const ScopedLockType lock (getLock());
-
-    for (int s = 0, e = values.size();;)
-    {
-        if (s >= e)
-            return -1;
-
-        if (comparator.compareElements (elementToLookFor, values[s]) == 0)
-            return s;
-
-        auto halfway = (s + e) / 2;
-
-        if (halfway == s)
-            return -1;
-
-        if (comparator.compareElements (elementToLookFor, values[halfway]) >= 0)
-            s = halfway;
-        else
-            e = halfway;
-    }
-}
-
-template <typename ElementType, typename TypeOfCriticalSectionToUse, int minimumAllocatedSize>
-template <class ElementComparator>
-void Array<ElementType, TypeOfCriticalSectionToUse, minimumAllocatedSize>::sort (
-    [[maybe_unused]] ElementComparator& comparator,
-    bool retainOrderOfEquivalentItems)
-{
-    const ScopedLockType lock (getLock());
-    sortArray (comparator, values.begin(), 0, size() - 1, retainOrderOfEquivalentItems);
-}
 
 } // namespace juce

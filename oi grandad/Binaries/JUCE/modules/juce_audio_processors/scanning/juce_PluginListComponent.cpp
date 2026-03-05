@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -73,7 +64,7 @@ public:
             if (columnId == nameCol)
                 text = list.getBlacklistedFiles() [row - list.getNumTypes()];
             else if (columnId == descCol)
-                text = TRANS ("Deactivated after failing to initialise correctly");
+                text = TRANS("Deactivated after failing to initialise correctly");
         }
         else
         {
@@ -97,22 +88,17 @@ public:
             g.setColour (isBlacklisted ? Colours::red
                                        : columnId == nameCol ? defaultTextColour
                                                              : defaultTextColour.interpolatedWith (Colours::transparentBlack, 0.3f));
-            g.setFont (owner.withDefaultMetrics (FontOptions ((float) height * 0.7f, Font::bold)));
+            g.setFont (Font ((float) height * 0.7f, Font::bold));
             g.drawFittedText (text, 4, 0, width - 6, height, Justification::centredLeft, 1, 0.9f);
         }
     }
 
-    void cellClicked (int rowNumber, int columnId, const MouseEvent& e) override
+    void cellClicked (int rowNumber, int columnId, const juce::MouseEvent& e) override
     {
         TableListBoxModel::cellClicked (rowNumber, columnId, e);
 
         if (rowNumber >= 0 && rowNumber < getNumRows() && e.mods.isPopupMenu())
-        {
-            owner.createMenuForRow (rowNumber)
-                 .showMenuAsync (PopupMenu::Options().withTargetComponent (e.originalComponent)
-                                                     .withMousePosition()
-                                                     .withDeletionCheck (owner));
-        }
+            owner.createMenuForRow (rowNumber).showMenuAsync (PopupMenu::Options().withDeletionCheck (owner));
     }
 
     void deleteKeyPressed (int) override
@@ -154,263 +140,13 @@ public:
 };
 
 //==============================================================================
-class PluginListComponent::Scanner final : public std::enable_shared_from_this<Scanner>,
-                                           private Timer
-{
-public:
-    Scanner (PluginListComponent& plc, AudioPluginFormat& format, const StringArray& filesOrIdentifiers,
-             PropertiesFile* properties, bool allowPluginsWhichRequireAsynchronousInstantiation, int threads,
-             const String& title, const String& text)
-        : owner (plc),
-          formatToScan (format),
-          filesOrIdentifiersToScan (filesOrIdentifiers),
-          propertiesToUse (properties),
-          pathChooserWindow (TRANS ("Select folders to scan..."), String(), MessageBoxIconType::NoIcon, &plc),
-          progressWindow (title, text, MessageBoxIconType::NoIcon, &plc),
-          numThreads (threads),
-          allowAsync (allowPluginsWhichRequireAsynchronousInstantiation)
-    {
-        const auto blacklisted = owner.list.getBlacklistedFiles();
-        initiallyBlacklistedFiles = std::set<String> (blacklisted.begin(), blacklisted.end());
-
-        FileSearchPath path (formatToScan.getDefaultLocationsToSearch());
-
-        // You need to use at least one thread when scanning plug-ins asynchronously
-        jassert (! allowAsync || (numThreads > 0));
-
-        // If the filesOrIdentifiersToScan argument isn't empty, we should only scan these
-        // If the path is empty, then paths aren't used for this format.
-        if (filesOrIdentifiersToScan.isEmpty() && path.getNumPaths() > 0)
-        {
-           #if ! JUCE_IOS
-            if (propertiesToUse != nullptr)
-                path = getLastSearchPath (*propertiesToUse, formatToScan);
-           #endif
-
-            pathList.setSize (500, 300);
-            pathList.setPath (path);
-
-            pathChooserWindow.addCustomComponent (&pathList);
-            pathChooserWindow.addButton (TRANS ("Scan"),   1, KeyPress (KeyPress::returnKey));
-            pathChooserWindow.addButton (TRANS ("Cancel"), 0, KeyPress (KeyPress::escapeKey));
-
-            pathChooserWindow.enterModalState (true,
-                                               ModalCallbackFunction::create ([this] (auto result)
-                                               {
-                                                   if (result != 0)
-                                                       warnUserAboutUnsuitablePaths();
-                                                   else
-                                                       finishedScan();
-                                               }));
-        }
-        else
-        {
-            startScan();
-        }
-    }
-
-    ~Scanner() override
-    {
-        if (pool != nullptr)
-        {
-            pool->removeAllJobs (true, 60000);
-            pool.reset();
-        }
-    }
-
-private:
-    enum Flags
-    {
-        stopRequested   = 1 << 0,   // Set to indicate to the background scanner that it should stop asap
-        finished        = 1 << 1,   // Set by the scanner to indicate that it's done
-    };
-
-    PluginListComponent& owner;
-    AudioPluginFormat& formatToScan;
-    StringArray filesOrIdentifiersToScan;
-    PropertiesFile* propertiesToUse;
-    std::unique_ptr<PluginDirectoryScanner> scanner;
-    AlertWindow pathChooserWindow, progressWindow;
-    FileSearchPathListComponent pathList;
-    String pluginBeingScanned;
-    double progress = 0;
-    const int numThreads;
-    bool allowAsync, timerReentrancyCheck = false;
-    std::atomic<int> flags { 0 };
-    std::unique_ptr<ThreadPool> pool;
-    std::set<String> initiallyBlacklistedFiles;
-    ScopedMessageBox messageBox;
-
-    // Try to dissuade people from to scanning their entire C: drive, or other system folders.
-    void warnUserAboutUnsuitablePaths()
-    {
-        for (int i = 0; i < pathList.getPath().getNumPaths(); ++i)
-        {
-            auto f = pathList.getPath().getRawString (i);
-
-            if (File::isAbsolutePath (f) && isUnsuitablePath (File (f)))
-            {
-                auto options = MessageBoxOptions::makeOptionsOkCancel (MessageBoxIconType::WarningIcon,
-                                                                       TRANS ("Plugin Scanning"),
-                                                                       TRANS ("If you choose to scan folders that contain non-plugin files, "
-                                                                              "then scanning may take a long time, and can cause crashes when "
-                                                                              "attempting to load unsuitable files.")
-                                                                         + newLine
-                                                                         + TRANS ("Are you sure you want to scan the folder \"XYZ\"?")
-                                                                            .replace ("XYZ", f),
-                                                                       TRANS ("Scan"));
-                messageBox = AlertWindow::showScopedAsync (options, [this] (int result)
-                {
-                    if (result != 0)
-                        startScan();
-                    else
-                        finishedScan();
-                });
-
-                return;
-            }
-        }
-
-        startScan();
-    }
-
-    static bool isUnsuitablePath (const File& f)
-    {
-        Array<File> roots;
-        File::findFileSystemRoots (roots);
-
-        if (roots.contains (f))
-            return true;
-
-        File::SpecialLocationType pathsThatWouldBeUnsuitableToScan[]
-            = { File::globalApplicationsDirectory,
-                File::userHomeDirectory,
-                File::userDocumentsDirectory,
-                File::userDesktopDirectory,
-                File::tempDirectory,
-                File::userMusicDirectory,
-                File::userMoviesDirectory,
-                File::userPicturesDirectory };
-
-        for (auto location : pathsThatWouldBeUnsuitableToScan)
-        {
-            auto sillyFolder = File::getSpecialLocation (location);
-
-            if (f == sillyFolder || sillyFolder.isAChildOf (f))
-                return true;
-        }
-
-        return false;
-    }
-
-    void startScan()
-    {
-        pathChooserWindow.setVisible (false);
-
-        scanner.reset (new PluginDirectoryScanner (owner.list, formatToScan, pathList.getPath(),
-                                                   true, owner.deadMansPedalFile, allowAsync));
-
-        if (! filesOrIdentifiersToScan.isEmpty())
-        {
-            scanner->setFilesOrIdentifiersToScan (filesOrIdentifiersToScan);
-        }
-        else if (propertiesToUse != nullptr)
-        {
-            setLastSearchPath (*propertiesToUse, formatToScan, pathList.getPath());
-            propertiesToUse->saveIfNeeded();
-        }
-
-        progressWindow.addButton (TRANS ("Cancel"), 0, KeyPress (KeyPress::escapeKey));
-        progressWindow.addProgressBarComponent (progress);
-        progressWindow.enterModalState (true, ModalCallbackFunction::create ([weak = weak_from_this()] (auto)
-        {
-            if (const auto strong = weak.lock())
-                strong->flags |= stopRequested;
-        }));
-
-        if (numThreads > 0)
-        {
-            pool.reset (new ThreadPool (ThreadPoolOptions{}.withNumberOfThreads (numThreads)));
-
-            for (int i = numThreads; --i >= 0;)
-                pool->addJob (new ScanJob (*this), true);
-        }
-
-        startTimer (20);
-    }
-
-    void finishedScan()
-    {
-        const auto blacklisted = owner.list.getBlacklistedFiles();
-        std::set<String> allBlacklistedFiles (blacklisted.begin(), blacklisted.end());
-
-        std::vector<String> newBlacklistedFiles;
-        std::set_difference (allBlacklistedFiles.begin(), allBlacklistedFiles.end(),
-                             initiallyBlacklistedFiles.begin(), initiallyBlacklistedFiles.end(),
-                             std::back_inserter (newBlacklistedFiles));
-
-        owner.scanFinished (scanner != nullptr ? scanner->getFailedFiles() : StringArray(),
-                            newBlacklistedFiles);
-    }
-
-    void timerCallback() override
-    {
-        if (timerReentrancyCheck)
-            return;
-
-        progress = scanner->getProgress();
-
-        if (pool == nullptr)
-        {
-            const ScopedValueSetter<bool> setter (timerReentrancyCheck, true);
-
-            if (doNextScan())
-                startTimer (20);
-        }
-
-        if ((flags & finished) != 0)
-            finishedScan();
-        else
-            progressWindow.setMessage (TRANS ("Testing") + ":\n\n" + pluginBeingScanned);
-    }
-
-    bool doNextScan()
-    {
-        if ((flags & stopRequested) == 0 && scanner->scanNextFile (true, pluginBeingScanned))
-            return true;
-
-        flags |= finished;
-        return false;
-    }
-
-    struct ScanJob final : public ThreadPoolJob
-    {
-        explicit ScanJob (Scanner& s)  : ThreadPoolJob ("pluginscan"), scanner (s) {}
-
-        JobStatus runJob() override
-        {
-            while (scanner.doNextScan() && ! shouldExit())
-            {}
-
-            return jobHasFinished;
-        }
-
-        Scanner& scanner;
-
-        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScanJob)
-    };
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Scanner)
-};
-
-//==============================================================================
 PluginListComponent::PluginListComponent (AudioPluginFormatManager& manager, KnownPluginList& listToEdit,
                                           const File& deadMansPedal, PropertiesFile* const props,
                                           bool allowPluginsWhichRequireAsynchronousInstantiation)
     : formatManager (manager),
       list (listToEdit),
       deadMansPedalFile (deadMansPedal),
-      optionsButton (TRANS ("Options...")),
+      optionsButton ("Options..."),
       propertiesToUse (props),
       allowAsync (allowPluginsWhichRequireAsynchronousInstantiation),
       numThreads (allowAsync ? 1 : 0)
@@ -419,11 +155,11 @@ PluginListComponent::PluginListComponent (AudioPluginFormatManager& manager, Kno
 
     TableHeaderComponent& header = table.getHeader();
 
-    header.addColumn (TRANS ("Name"),         TableModel::nameCol,         200, 100, 700, TableHeaderComponent::defaultFlags | TableHeaderComponent::sortedForwards);
-    header.addColumn (TRANS ("Format"),       TableModel::typeCol,         80, 80, 80,    TableHeaderComponent::notResizable);
-    header.addColumn (TRANS ("Category"),     TableModel::categoryCol,     100, 100, 200);
-    header.addColumn (TRANS ("Manufacturer"), TableModel::manufacturerCol, 200, 100, 300);
-    header.addColumn (TRANS ("Description"),  TableModel::descCol,         300, 100, 500, TableHeaderComponent::notSortable);
+    header.addColumn (TRANS("Name"),         TableModel::nameCol,         200, 100, 700, TableHeaderComponent::defaultFlags | TableHeaderComponent::sortedForwards);
+    header.addColumn (TRANS("Format"),       TableModel::typeCol,         80, 80, 80,    TableHeaderComponent::notResizable);
+    header.addColumn (TRANS("Category"),     TableModel::categoryCol,     100, 100, 200);
+    header.addColumn (TRANS("Manufacturer"), TableModel::manufacturerCol, 200, 100, 300);
+    header.addColumn (TRANS("Description"),  TableModel::descCol,         300, 100, 500, TableHeaderComponent::notSortable);
 
     table.setHeaderHeight (22);
     table.setRowHeight (20);
@@ -553,14 +289,14 @@ void PluginListComponent::removePluginItem (int index)
 PopupMenu PluginListComponent::createOptionsMenu()
 {
     PopupMenu menu;
-    menu.addItem (PopupMenu::Item (TRANS ("Clear list"))
+    menu.addItem (PopupMenu::Item (TRANS("Clear list"))
                     .setAction ([this] { list.clear(); }));
 
     menu.addSeparator();
 
     for (auto format : formatManager.getFormats())
         if (format->canScanForPlugins())
-            menu.addItem (PopupMenu::Item (TRANS ("Remove all XFMTX plug-ins").replace ("XFMTX", format->getName()))
+            menu.addItem (PopupMenu::Item ("Remove all " + format->getName() + " plug-ins")
                             .setEnabled (! list.getTypesForFormat (*format).isEmpty())
                             .setAction ([this, format]
                                         {
@@ -570,18 +306,18 @@ PopupMenu PluginListComponent::createOptionsMenu()
 
     menu.addSeparator();
 
-    menu.addItem (PopupMenu::Item (TRANS ("Remove selected plug-in from list"))
+    menu.addItem (PopupMenu::Item (TRANS("Remove selected plug-in from list"))
                     .setEnabled (table.getNumSelectedRows() > 0)
                     .setAction ([this] { removeSelectedPlugins(); }));
 
-    menu.addItem (PopupMenu::Item (TRANS ("Remove any plug-ins whose files no longer exist"))
+    menu.addItem (PopupMenu::Item (TRANS("Remove any plug-ins whose files no longer exist"))
                     .setAction ([this] { removeMissingPlugins(); }));
 
     menu.addSeparator();
 
     auto selectedRow = table.getSelectedRow();
 
-    menu.addItem (PopupMenu::Item (TRANS ("Show folder containing selected plug-in"))
+    menu.addItem (PopupMenu::Item (TRANS("Show folder containing selected plug-in"))
                     .setEnabled (canShowFolderForPlugin (list, selectedRow))
                     .setAction ([this, selectedRow] { showFolderForPlugin (list, selectedRow); }));
 
@@ -589,7 +325,7 @@ PopupMenu PluginListComponent::createOptionsMenu()
 
     for (auto format : formatManager.getFormats())
         if (format->canScanForPlugins())
-            menu.addItem (PopupMenu::Item (TRANS ("Scan for new or updated XFMTX plug-ins").replace ("XFMTX", format->getName()))
+            menu.addItem (PopupMenu::Item ("Scan for new or updated " + format->getName() + " plug-ins")
                             .setAction ([this, format]  { scanFor (*format); }));
 
     return menu;
@@ -601,10 +337,10 @@ PopupMenu PluginListComponent::createMenuForRow (int rowNumber)
 
     if (rowNumber >= 0 && rowNumber < tableModel->getNumRows())
     {
-        menu.addItem (PopupMenu::Item (TRANS ("Remove plug-in from list"))
+        menu.addItem (PopupMenu::Item (TRANS("Remove plug-in from list"))
                         .setAction ([this, rowNumber] { removePluginItem (rowNumber); }));
 
-        menu.addItem (PopupMenu::Item (TRANS ("Show folder containing plug-in"))
+        menu.addItem (PopupMenu::Item (TRANS("Show folder containing plug-in"))
                         .setEnabled (canShowFolderForPlugin (list, rowNumber))
                         .setAction ([this, rowNumber] { showFolderForPlugin (list, rowNumber); }));
     }
@@ -645,6 +381,256 @@ void PluginListComponent::setLastSearchPath (PropertiesFile& properties, AudioPl
 }
 
 //==============================================================================
+class PluginListComponent::Scanner    : private Timer
+{
+public:
+    Scanner (PluginListComponent& plc, AudioPluginFormat& format, const StringArray& filesOrIdentifiers,
+             PropertiesFile* properties, bool allowPluginsWhichRequireAsynchronousInstantiation, int threads,
+             const String& title, const String& text)
+        : owner (plc),
+          formatToScan (format),
+          filesOrIdentifiersToScan (filesOrIdentifiers),
+          propertiesToUse (properties),
+          pathChooserWindow (TRANS("Select folders to scan..."), String(), MessageBoxIconType::NoIcon),
+          progressWindow (title, text, MessageBoxIconType::NoIcon),
+          numThreads (threads),
+          allowAsync (allowPluginsWhichRequireAsynchronousInstantiation)
+    {
+        const auto blacklisted = owner.list.getBlacklistedFiles();
+        initiallyBlacklistedFiles = std::set<String> (blacklisted.begin(), blacklisted.end());
+
+        FileSearchPath path (formatToScan.getDefaultLocationsToSearch());
+
+        // You need to use at least one thread when scanning plug-ins asynchronously
+        jassert (! allowAsync || (numThreads > 0));
+
+        // If the filesOrIdentifiersToScan argument isn't empty, we should only scan these
+        // If the path is empty, then paths aren't used for this format.
+        if (filesOrIdentifiersToScan.isEmpty() && path.getNumPaths() > 0)
+        {
+           #if ! JUCE_IOS
+            if (propertiesToUse != nullptr)
+                path = getLastSearchPath (*propertiesToUse, formatToScan);
+           #endif
+
+            pathList.setSize (500, 300);
+            pathList.setPath (path);
+
+            pathChooserWindow.addCustomComponent (&pathList);
+            pathChooserWindow.addButton (TRANS("Scan"),   1, KeyPress (KeyPress::returnKey));
+            pathChooserWindow.addButton (TRANS("Cancel"), 0, KeyPress (KeyPress::escapeKey));
+
+            pathChooserWindow.enterModalState (true,
+                                               ModalCallbackFunction::forComponent (startScanCallback,
+                                                                                    &pathChooserWindow, this),
+                                               false);
+        }
+        else
+        {
+            startScan();
+        }
+    }
+
+    ~Scanner() override
+    {
+        if (pool != nullptr)
+        {
+            pool->removeAllJobs (true, 60000);
+            pool.reset();
+        }
+    }
+
+private:
+    PluginListComponent& owner;
+    AudioPluginFormat& formatToScan;
+    StringArray filesOrIdentifiersToScan;
+    PropertiesFile* propertiesToUse;
+    std::unique_ptr<PluginDirectoryScanner> scanner;
+    AlertWindow pathChooserWindow, progressWindow;
+    FileSearchPathListComponent pathList;
+    String pluginBeingScanned;
+    double progress = 0;
+    const int numThreads;
+    bool allowAsync, finished = false, timerReentrancyCheck = false;
+    std::unique_ptr<ThreadPool> pool;
+    std::set<String> initiallyBlacklistedFiles;
+
+    static void startScanCallback (int result, AlertWindow* alert, Scanner* scanner)
+    {
+        if (alert != nullptr && scanner != nullptr)
+        {
+            if (result != 0)
+                scanner->warnUserAboutStupidPaths();
+            else
+                scanner->finishedScan();
+        }
+    }
+
+    // Try to dissuade people from to scanning their entire C: drive, or other system folders.
+    void warnUserAboutStupidPaths()
+    {
+        for (int i = 0; i < pathList.getPath().getNumPaths(); ++i)
+        {
+            auto f = pathList.getPath()[i];
+
+            if (isStupidPath (f))
+            {
+                AlertWindow::showOkCancelBox (MessageBoxIconType::WarningIcon,
+                                              TRANS("Plugin Scanning"),
+                                              TRANS("If you choose to scan folders that contain non-plugin files, "
+                                                    "then scanning may take a long time, and can cause crashes when "
+                                                    "attempting to load unsuitable files.")
+                                                + newLine
+                                                + TRANS ("Are you sure you want to scan the folder \"XYZ\"?")
+                                                   .replace ("XYZ", f.getFullPathName()),
+                                              TRANS ("Scan"),
+                                              String(),
+                                              nullptr,
+                                              ModalCallbackFunction::create (warnAboutStupidPathsCallback, this));
+                return;
+            }
+        }
+
+        startScan();
+    }
+
+    static bool isStupidPath (const File& f)
+    {
+        Array<File> roots;
+        File::findFileSystemRoots (roots);
+
+        if (roots.contains (f))
+            return true;
+
+        File::SpecialLocationType pathsThatWouldBeStupidToScan[]
+            = { File::globalApplicationsDirectory,
+                File::userHomeDirectory,
+                File::userDocumentsDirectory,
+                File::userDesktopDirectory,
+                File::tempDirectory,
+                File::userMusicDirectory,
+                File::userMoviesDirectory,
+                File::userPicturesDirectory };
+
+        for (auto location : pathsThatWouldBeStupidToScan)
+        {
+            auto sillyFolder = File::getSpecialLocation (location);
+
+            if (f == sillyFolder || sillyFolder.isAChildOf (f))
+                return true;
+        }
+
+        return false;
+    }
+
+    static void warnAboutStupidPathsCallback (int result, Scanner* scanner)
+    {
+        if (result != 0)
+            scanner->startScan();
+        else
+            scanner->finishedScan();
+    }
+
+    void startScan()
+    {
+        pathChooserWindow.setVisible (false);
+
+        scanner.reset (new PluginDirectoryScanner (owner.list, formatToScan, pathList.getPath(),
+                                                   true, owner.deadMansPedalFile, allowAsync));
+
+        if (! filesOrIdentifiersToScan.isEmpty())
+        {
+            scanner->setFilesOrIdentifiersToScan (filesOrIdentifiersToScan);
+        }
+        else if (propertiesToUse != nullptr)
+        {
+            setLastSearchPath (*propertiesToUse, formatToScan, pathList.getPath());
+            propertiesToUse->saveIfNeeded();
+        }
+
+        progressWindow.addButton (TRANS("Cancel"), 0, KeyPress (KeyPress::escapeKey));
+        progressWindow.addProgressBarComponent (progress);
+        progressWindow.enterModalState();
+
+        if (numThreads > 0)
+        {
+            pool.reset (new ThreadPool (numThreads));
+
+            for (int i = numThreads; --i >= 0;)
+                pool->addJob (new ScanJob (*this), true);
+        }
+
+        startTimer (20);
+    }
+
+    void finishedScan()
+    {
+        const auto blacklisted = owner.list.getBlacklistedFiles();
+        std::set<String> allBlacklistedFiles (blacklisted.begin(), blacklisted.end());
+
+        std::vector<String> newBlacklistedFiles;
+        std::set_difference (allBlacklistedFiles.begin(), allBlacklistedFiles.end(),
+                             initiallyBlacklistedFiles.begin(), initiallyBlacklistedFiles.end(),
+                             std::back_inserter (newBlacklistedFiles));
+
+        owner.scanFinished (scanner != nullptr ? scanner->getFailedFiles() : StringArray(),
+                            newBlacklistedFiles);
+    }
+
+    void timerCallback() override
+    {
+        if (timerReentrancyCheck)
+            return;
+
+        if (pool == nullptr)
+        {
+            const ScopedValueSetter<bool> setter (timerReentrancyCheck, true);
+
+            if (doNextScan())
+                startTimer (20);
+        }
+
+        if (! progressWindow.isCurrentlyModal())
+            finished = true;
+
+        if (finished)
+            finishedScan();
+        else
+            progressWindow.setMessage (TRANS("Testing") + ":\n\n" + pluginBeingScanned);
+    }
+
+    bool doNextScan()
+    {
+        if (scanner->scanNextFile (true, pluginBeingScanned))
+        {
+            progress = scanner->getProgress();
+            return true;
+        }
+
+        finished = true;
+        return false;
+    }
+
+    struct ScanJob  : public ThreadPoolJob
+    {
+        ScanJob (Scanner& s)  : ThreadPoolJob ("pluginscan"), scanner (s) {}
+
+        JobStatus runJob()
+        {
+            while (scanner.doNextScan() && ! shouldExit())
+            {}
+
+            return jobHasFinished;
+        }
+
+        Scanner& scanner;
+
+        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScanJob)
+    };
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Scanner)
+};
+
 void PluginListComponent::scanFor (AudioPluginFormat& format)
 {
     scanFor (format, StringArray());
@@ -652,14 +638,9 @@ void PluginListComponent::scanFor (AudioPluginFormat& format)
 
 void PluginListComponent::scanFor (AudioPluginFormat& format, const StringArray& filesOrIdentifiersToScan)
 {
-    currentScanner = std::make_shared<Scanner> (*this,
-                                                format,
-                                                filesOrIdentifiersToScan,
-                                                propertiesToUse,
-                                                allowAsync,
-                                                numThreads,
-                                                dialogTitle.isNotEmpty() ? dialogTitle : TRANS ("Scanning for plug-ins..."),
-                                                dialogText.isNotEmpty()  ? dialogText  : TRANS ("Searching for all possible plug-in files..."));
+    currentScanner.reset (new Scanner (*this, format, filesOrIdentifiersToScan, propertiesToUse, allowAsync, numThreads,
+                                       dialogTitle.isNotEmpty() ? dialogTitle : TRANS("Scanning for plug-ins..."),
+                                       dialogText.isNotEmpty()  ? dialogText  : TRANS("Searching for all possible plug-in files...")));
 }
 
 bool PluginListComponent::isScanning() const noexcept
@@ -691,12 +672,9 @@ void PluginListComponent::scanFinished (const StringArray& failedFiles,
     currentScanner.reset(); // mustn't delete this before using the failed files array
 
     if (! warnings.isEmpty())
-    {
-        auto options = MessageBoxOptions::makeOptionsOk (MessageBoxIconType::InfoIcon,
-                                                         TRANS ("Scan complete"),
-                                                         warnings.joinIntoString ("\n\n"));
-        messageBox = AlertWindow::showScopedAsync (options, nullptr);
-    }
+        AlertWindow::showMessageBoxAsync (MessageBoxIconType::InfoIcon,
+                                          TRANS("Scan complete"),
+                                          warnings.joinIntoString ("\n\n"));
 }
 
 } // namespace juce

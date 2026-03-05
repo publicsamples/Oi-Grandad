@@ -44,16 +44,12 @@
 
   ID:                 juce_audio_processors_headless
   vendor:             juce
-  version:            8.0.12
-  name:               JUCE audio processor classes without UI
-  description:        Classes for loading and playing VST, AU, LADSPA, or internally-generated audio processors without UI.
+  version:            6.1.3
+  name:               stub with nothing
+  description:        just there to ensure compatibility with JUCE8 module structure
   website:            http://www.juce.com/juce
-  license:            AGPLv3/Commercial
+  license:            none
   minimumCppStandard: 17
-
-  dependencies:       juce_audio_basics juce_events
-  OSXFrameworks:      CoreAudio CoreMIDI AudioToolbox
-  iOSFrameworks:      AudioToolbox
 
  END_JUCE_MODULE_DECLARATION
 
@@ -63,102 +59,10 @@
 #pragma once
 #define JUCE_AUDIO_PROCESSORS_HEADLESS_H_INCLUDED
 
-#include <juce_audio_basics/juce_audio_basics.h>
-#include <juce_events/juce_events.h>
-
 //==============================================================================
-/** Config: JUCE_PLUGINHOST_VST
-    Enables the VST audio plugin hosting classes. You will need to have the VST2 SDK files in your header search paths. You can obtain the VST2 SDK files from on older version of the VST3 SDK.
-
-    @see VSTPluginFormat, VST3PluginFormat, AudioPluginFormat, AudioPluginFormatManager, JUCE_PLUGINHOST_AU, JUCE_PLUGINHOST_VST3, JUCE_PLUGINHOST_LADSPA
+/** Config: JUCE_RANDOM_SETTING_2000
+    Must be there to show up in the projucer lol...
 */
-#ifndef JUCE_PLUGINHOST_VST
- #define JUCE_PLUGINHOST_VST 0
+#ifndef JUCE_RANDOM_SETTING_2000
+ #define JUCE_RANDOM_SETTING_2000 0
 #endif
-
-/** Config: JUCE_PLUGINHOST_VST3
-    Enables the VST3 audio plugin hosting classes.
-
-    @see VSTPluginFormat, VST3PluginFormat, AudioPluginFormat, AudioPluginFormatManager, JUCE_PLUGINHOST_VST, JUCE_PLUGINHOST_AU, JUCE_PLUGINHOST_LADSPA
-*/
-#ifndef JUCE_PLUGINHOST_VST3
- #define JUCE_PLUGINHOST_VST3 0
-#endif
-
-/** Config: JUCE_PLUGINHOST_AU
-    Enables the AudioUnit plugin hosting classes. This is Mac-only, of course.
-
-    @see AudioUnitPluginFormat, AudioPluginFormat, AudioPluginFormatManager, JUCE_PLUGINHOST_VST, JUCE_PLUGINHOST_VST3, JUCE_PLUGINHOST_LADSPA
-*/
-#ifndef JUCE_PLUGINHOST_AU
- #define JUCE_PLUGINHOST_AU 0
-#endif
-
-/** Config: JUCE_PLUGINHOST_LADSPA
-    Enables the LADSPA plugin hosting classes. This is Linux-only, of course.
-
-    @see LADSPAPluginFormat, AudioPluginFormat, AudioPluginFormatManager, JUCE_PLUGINHOST_VST, JUCE_PLUGINHOST_VST3, JUCE_PLUGINHOST_AU
- */
-#ifndef JUCE_PLUGINHOST_LADSPA
- #define JUCE_PLUGINHOST_LADSPA 0
-#endif
-
-/** Config: JUCE_PLUGINHOST_LV2
-    Enables the LV2 plugin hosting classes.
- */
-#ifndef JUCE_PLUGINHOST_LV2
- #define JUCE_PLUGINHOST_LV2 0
-#endif
-
-/** Config: JUCE_PLUGINHOST_ARA
-    Enables the ARA plugin extension hosting classes. You will need to download the ARA SDK and specify the
-    path to it either in the Projucer, using juce_set_ara_sdk_path() in your CMake project file.
-
-    The directory can be obtained by recursively cloning https://github.com/Celemony/ARA_SDK and checking out
-    the tag releases/2.1.0.
-*/
-#ifndef JUCE_PLUGINHOST_ARA
- #define JUCE_PLUGINHOST_ARA 0
-#endif
-
-/** Config: JUCE_CUSTOM_VST3_SDK
-    If enabled, the embedded VST3 SDK in JUCE will not be added to the project and instead you should
-    add the path to your custom VST3 SDK to the project's header search paths. Most users shouldn't
-    need to enable this and should just use the version of the SDK included with JUCE.
-*/
-#ifndef JUCE_CUSTOM_VST3_SDK
- #define JUCE_CUSTOM_VST3_SDK 0
-#endif
-
-//==============================================================================
-#include <juce_audio_processors_headless/format/juce_PluginFormatDefs.h>
-#include <juce_audio_processors_headless/processors/juce_AudioProcessorListener.h>
-#include <juce_audio_processors_headless/utilities/juce_AAXClientExtensions.h>
-#include <juce_audio_processors_headless/utilities/juce_VST2ClientExtensions.h>
-#include <juce_audio_processors_headless/utilities/juce_VST3Interface.h>
-#include <juce_audio_processors_headless/utilities/juce_VST3ClientExtensions.h>
-#include <juce_audio_processors_headless/format_types/juce_ARACommon.h>
-#include <juce_audio_processors_headless/utilities/juce_ExtensionsVisitor.h>
-#include <juce_audio_processors_headless/processors/juce_AudioProcessorParameter.h>
-#include <juce_audio_processors_headless/processors/juce_HostedAudioProcessorParameter.h>
-#include <juce_audio_processors_headless/processors/juce_AudioProcessorParameterGroup.h>
-#include <juce_audio_processors_headless/processors/juce_AudioProcessor.h>
-#include <juce_audio_processors_headless/processors/juce_PluginDescription.h>
-#include <juce_audio_processors_headless/processors/juce_AudioPluginInstance.h>
-#include <juce_audio_processors_headless/processors/juce_AudioProcessorGraph.h>
-#include <juce_audio_processors_headless/format/juce_AudioPluginFormat.h>
-#include <juce_audio_processors_headless/utilities/juce_AudioProcessorParameterWithID.h>
-#include <juce_audio_processors_headless/utilities/juce_RangedAudioParameter.h>
-#include <juce_audio_processors_headless/utilities/juce_AudioParameterFloat.h>
-#include <juce_audio_processors_headless/utilities/juce_AudioParameterInt.h>
-#include <juce_audio_processors_headless/utilities/juce_AudioParameterBool.h>
-#include <juce_audio_processors_headless/utilities/juce_AudioParameterChoice.h>
-#include <juce_audio_processors_headless/utilities/ARA/juce_ARADebug.h>
-#include <juce_audio_processors_headless/utilities/ARA/juce_ARA_utils.h>
-#include <juce_audio_processors_headless/format_types/juce_AudioUnitPluginFormatHeadless.h>
-#include <juce_audio_processors_headless/format_types/juce_LADSPAPluginFormatHeadless.h>
-#include <juce_audio_processors_headless/format_types/juce_LV2PluginFormatHeadless.h>
-#include <juce_audio_processors_headless/format_types/juce_VST3PluginFormatHeadless.h>
-#include <juce_audio_processors_headless/format_types/juce_VSTPluginFormatHeadless.h>
-#include <juce_audio_processors_headless/format_types/juce_ARAHosting.h>
-#include <juce_audio_processors_headless/format/juce_AudioPluginFormatManager.h>

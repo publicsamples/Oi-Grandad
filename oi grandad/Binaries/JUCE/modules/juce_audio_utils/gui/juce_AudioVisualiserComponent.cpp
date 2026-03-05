@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -37,96 +28,81 @@ namespace juce
 
 struct AudioVisualiserComponent::ChannelInfo
 {
-    void setFifoSize (int numBlocks)
+    ChannelInfo (AudioVisualiserComponent& o, int bufferSize) : owner (o)
     {
-        fifoStorage.clear();
-        fifoStorage.resize ((size_t) numBlocks);
-        fifo.setTotalSize (numBlocks);
+        setBufferSize (bufferSize);
+        clear();
     }
 
-    void setBufferSize (int numBlocks)
+    void clear() noexcept
     {
-        levels.clear();
-        levels.resize ((size_t) numBlocks);
-        nextSample = 0;
-    }
-
-    void clear()
-    {
-        for (auto& c : levels)
-            c = {};
-
-        counter = 0;
+        levels.fill ({});
         value = {};
+        subSample = 0;
     }
 
-    void pushSamples (int blockSize, Span<const float> samples)
+    void pushSamples (const float* inputSamples, int num) noexcept
     {
-        for (const auto& sample : samples)
-            pushSample (blockSize, sample);
+        for (int i = 0; i < num; ++i)
+            pushSample (inputSamples[i]);
     }
 
-    void pushSample (int blockSize, float sample)
+    void pushSample (float newSample) noexcept
     {
-        if (++counter < blockSize)
+        if (--subSample <= 0)
         {
-            value = value.getUnionWith (sample);
-            return;
+            if (++nextSample == levels.size())
+                nextSample = 0;
+
+            levels.getReference (nextSample) = value;
+            subSample = owner.getSamplesPerBlock();
+            value = Range<float> (newSample, newSample);
         }
-
-        fifo.write (1).forEach ([this] (auto index)
+        else
         {
-            fifoStorage[(size_t) index] = value;
-        });
-
-        counter = 0;
-        value = Range (sample, sample);
+            value = value.getUnionWith (newSample);
+        }
     }
 
-    void popPending()
+    void setBufferSize (int newSize)
     {
-        fifo.read (fifo.getNumReady()).forEach ([this] (auto index)
-        {
-            levels[nextSample] = fifoStorage[(size_t) index];
-            nextSample = (nextSample + 1) % levels.size();
-        });
+        levels.removeRange (newSize, levels.size());
+        levels.insertMultiple (-1, {}, newSize - levels.size());
+
+        if (nextSample >= newSize)
+            nextSample = 0;
     }
 
+    AudioVisualiserComponent& owner;
+    Array<Range<float>> levels;
     Range<float> value;
-    int counter = 0;
+    std::atomic<int> nextSample { 0 }, subSample { 0 };
 
-    std::vector<Range<float>> fifoStorage;
-    AbstractFifo fifo { 1 };
-
-    std::vector<Range<float>> levels;
-    size_t nextSample = 0;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChannelInfo)
 };
 
 //==============================================================================
 AudioVisualiserComponent::AudioVisualiserComponent (int initialNumChannels)
-    : numSamples (1024),
-      inputSamplesPerBlock (256),
-      backgroundColour (Colours::black),
-      waveformColour (Colours::white)
+  : numSamples (1024),
+    inputSamplesPerBlock (256),
+    backgroundColour (Colours::black),
+    waveformColour (Colours::white)
 {
     setOpaque (true);
     setNumChannels (initialNumChannels);
     setRepaintRate (60);
 }
 
-AudioVisualiserComponent::~AudioVisualiserComponent() = default;
+AudioVisualiserComponent::~AudioVisualiserComponent()
+{
+}
 
 void AudioVisualiserComponent::setNumChannels (int numChannels)
 {
     channels.clear();
 
     for (int i = 0; i < numChannels; ++i)
-        channels.add (new ChannelInfo);
-
-    for (auto* channel : channels)
-        channel->setBufferSize (numSamples);
-
-    updateChannelFifoSizes();
+        channels.add (new ChannelInfo (*this, numSamples));
 }
 
 void AudioVisualiserComponent::setBufferSize (int newNumSamples)
@@ -143,12 +119,12 @@ void AudioVisualiserComponent::clear()
         c->clear();
 }
 
-void AudioVisualiserComponent::pushBuffer (const float* const* d, int numChannels, int num)
+void AudioVisualiserComponent::pushBuffer (const float** d, int numChannels, int num)
 {
     numChannels = jmin (numChannels, channels.size());
 
-    for (auto i = 0; i < numChannels; ++i)
-        channels.getUnchecked (i)->pushSamples (inputSamplesPerBlock, { d[i], (size_t) num });
+    for (int i = 0; i < numChannels; ++i)
+        channels.getUnchecked(i)->pushSamples (d[i], num);
 }
 
 void AudioVisualiserComponent::pushBuffer (const AudioBuffer<float>& buffer)
@@ -162,38 +138,31 @@ void AudioVisualiserComponent::pushBuffer (const AudioSourceChannelInfo& buffer)
 {
     auto numChannels = jmin (buffer.buffer->getNumChannels(), channels.size());
 
-    for (auto i = 0; i < numChannels; ++i)
-    {
-        channels.getUnchecked (i)->pushSamples (inputSamplesPerBlock,
-                                                { buffer.buffer->getReadPointer (i, buffer.startSample), (size_t) buffer.numSamples });
-    }
+    for (int i = 0; i < numChannels; ++i)
+        channels.getUnchecked(i)->pushSamples (buffer.buffer->getReadPointer (i, buffer.startSample),
+                                               buffer.numSamples);
 }
 
 void AudioVisualiserComponent::pushSample (const float* d, int numChannels)
 {
     numChannels = jmin (numChannels, channels.size());
 
-    for (auto i = 0; i < numChannels; ++i)
-        channels.getUnchecked (i)->pushSample (inputSamplesPerBlock, d[i]);
+    for (int i = 0; i < numChannels; ++i)
+        channels.getUnchecked(i)->pushSample (d[i]);
 }
 
 void AudioVisualiserComponent::setSamplesPerBlock (int newSamplesPerPixel) noexcept
 {
-    jassert (newSamplesPerPixel > 0);
     inputSamplesPerBlock = newSamplesPerPixel;
 }
 
 void AudioVisualiserComponent::setRepaintRate (int frequencyInHz)
 {
     startTimerHz (frequencyInHz);
-    updateChannelFifoSizes();
 }
 
 void AudioVisualiserComponent::timerCallback()
 {
-    for (auto* channel : channels)
-        channel->popPending();
-
     repaint();
 }
 
@@ -214,13 +183,8 @@ void AudioVisualiserComponent::paint (Graphics& g)
     g.setColour (waveformColour);
 
     for (auto* c : channels)
-    {
-        paintChannel (g,
-                      r.removeFromTop (channelHeight),
-                      c->levels.data(),
-                      (int) c->levels.size(),
-                      (int) c->nextSample);
-    }
+        paintChannel (g, r.removeFromTop (channelHeight),
+                      c->levels.begin(), c->levels.size(), c->nextSample);
 }
 
 void AudioVisualiserComponent::getChannelAsPath (Path& path, const Range<float>* levels,
@@ -253,23 +217,6 @@ void AudioVisualiserComponent::paintChannel (Graphics& g, Rectangle<float> area,
     g.fillPath (p, AffineTransform::fromTargetPoints (0.0f, -1.0f,               area.getX(), area.getY(),
                                                       0.0f, 1.0f,                area.getX(), area.getBottom(),
                                                       (float) numLevels, -1.0f,  area.getRight(), area.getY()));
-}
-
-void AudioVisualiserComponent::updateChannelFifoSizes()
-{
-    // This is intended to make sure that the fifo for each channel is large enough to store
-    // at least one frame's incoming blocks with some extra padding to avoid dropping too much info
-    // if a frame is delayed.
-
-    const auto maxSampleRate = 192'000;
-    const auto maxBlocksPerSecond = inputSamplesPerBlock > 0
-                                  ? ((maxSampleRate + inputSamplesPerBlock - 1) / inputSamplesPerBlock)
-                                  : 1;
-    const auto maxBlocksPerRepaint = (maxBlocksPerSecond * getTimerInterval() + 999) / 1000;
-    const auto paddedBlocksPerRepaint = 10 + maxBlocksPerRepaint;
-
-    for (auto* channel : channels)
-        channel->setFifoSize (paddedBlocksPerRepaint);
 }
 
 } // namespace juce

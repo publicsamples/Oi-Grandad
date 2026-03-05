@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -42,20 +33,18 @@
 
  BEGIN_JUCE_MODULE_DECLARATION
 
-  ID:                     juce_gui_extra
-  vendor:                 juce
-  version:                8.0.12
-  name:                   JUCE extended GUI classes
-  description:            Miscellaneous GUI classes for specialised tasks.
-  website:                http://www.juce.com/juce
-  license:                AGPLv3/Commercial
-  minimumCppStandard:     17
+  ID:                 juce_gui_extra
+  vendor:             juce
+  version:            6.1.3
+  name:               JUCE extended GUI classes
+  description:        Miscellaneous GUI classes for specialised tasks.
+  website:            http://www.juce.com/juce
+  license:            GPL/Commercial
+  minimumCppStandard: 14
 
-  dependencies:           juce_gui_basics
-  OSXFrameworks:          WebKit
-  iOSFrameworks:          WebKit
-  WeakiOSFrameworks:      UserNotifications
-  WeakMacOSFrameworks:    UserNotifications
+  dependencies:       juce_gui_basics
+  OSXFrameworks:      WebKit
+  iOSFrameworks:      WebKit
 
  END_JUCE_MODULE_DECLARATION
 
@@ -76,43 +65,17 @@
  #define JUCE_WEB_BROWSER 1
 #endif
 
-/** Config: JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING
-    Enables the use of the Microsoft Edge (Chromium) WebView2 browser on Windows.
-
-    If using the Projucer, the Microsoft.Web.WebView2 package will be added to the
-    project solution if this flag is enabled. If you are building using CMake you
-    will need to manually add the package via the NuGet package manager.
-
-    Using this flag requires statically linking against WebView2LoaderStatic.lib,
-    which at this time is only available through the NuGet package, but is missing
-    in VCPKG.
-
-    In addition to enabling this macro, you will need to use the
-    WebBrowserComponent::Options::Backend::webview2 option when instantiating the
-    WebBrowserComponent.
-*/
-#ifndef JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING
- #define JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING 0
-#else
- #define JUCE_USE_WIN_WEBVIEW2 1
-#endif
-
 /** Config: JUCE_USE_WIN_WEBVIEW2
-    Enables the use of the Microsoft Edge (Chromium) WebView2 browser on Windows.
+    Enables the use of the Microsoft Edge (Chromium) WebView2 browser on Windows,
+    currently in developer preview.
 
     If using the Projucer, the Microsoft.Web.WebView2 package will be added to the
     project solution if this flag is enabled. If you are building using CMake you
     will need to manually add the package via the Visual Studio package manager.
 
-    If the WITH_STATIC_LINKING variant of this flag is also set, you must statically
-    link against WebView2LoaderStatic.lib, otherwise dynamic loading will be used.
-
-    See more about dynamic linking in the documentation of
-    WebBrowserComponent::Options::WinWebView2::withDLLLocation().
-
     In addition to enabling this macro, you will need to use the
-    WebBrowserComponent::Options::Backend::webview2 option when instantiating the
-    WebBrowserComponent.
+    WindowsWebView2WebBrowserComponent wrapper - see the documentation of that
+    class for more details.
 */
 #ifndef JUCE_USE_WIN_WEBVIEW2
  #define JUCE_USE_WIN_WEBVIEW2 0
@@ -156,6 +119,3 @@
 #include "misc/juce_WebBrowserComponent.h"
 #include "misc/juce_LiveConstantEditor.h"
 #include "misc/juce_AnimatedAppComponent.h"
-#include "detail/juce_WebControlRelayEvents.h"
-#include "misc/juce_WebControlRelays.h"
-#include "misc/juce_WebControlParameterIndexReceiver.h"

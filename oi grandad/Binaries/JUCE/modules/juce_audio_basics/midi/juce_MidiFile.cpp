@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -57,6 +45,18 @@ namespace MidiFileHelpers
                 break;
         }
     }
+
+    template <typename Value>
+    struct Optional
+    {
+        Optional() = default;
+
+        Optional (const Value& v)
+            : value (v), valid (true) {}
+
+        Value value = Value();
+        bool valid = false;
+    };
 
     template <typename Integral>
     struct ReadTrait;
@@ -100,23 +100,23 @@ namespace MidiFileHelpers
 
         auto ch = tryRead<uint32> (data, remaining);
 
-        if (! ch.hasValue())
+        if (! ch.valid)
             return {};
 
-        if (*ch != ByteOrder::bigEndianInt ("MThd"))
+        if (ch.value != ByteOrder::bigEndianInt ("MThd"))
         {
             auto ok = false;
 
-            if (*ch == ByteOrder::bigEndianInt ("RIFF"))
+            if (ch.value == ByteOrder::bigEndianInt ("RIFF"))
             {
                 for (int i = 0; i < 8; ++i)
                 {
                     ch = tryRead<uint32> (data, remaining);
 
-                    if (! ch.hasValue())
+                    if (! ch.valid)
                         return {};
 
-                    if (*ch == ByteOrder::bigEndianInt ("MThd"))
+                    if (ch.value == ByteOrder::bigEndianInt ("MThd"))
                     {
                         ok = true;
                         break;
@@ -130,29 +130,29 @@ namespace MidiFileHelpers
 
         const auto bytesRemaining = tryRead<uint32> (data, remaining);
 
-        if (! bytesRemaining.hasValue() || *bytesRemaining > remaining)
+        if (! bytesRemaining.valid || bytesRemaining.value > remaining)
             return {};
 
         const auto optFileType = tryRead<uint16> (data, remaining);
 
-        if (! optFileType.hasValue() || 2 < *optFileType)
+        if (! optFileType.valid || 2 < optFileType.value)
             return {};
 
         const auto optNumTracks = tryRead<uint16> (data, remaining);
 
-        if (! optNumTracks.hasValue() || (*optFileType == 0 && *optNumTracks != 1))
+        if (! optNumTracks.valid || (optFileType.value == 0 && optNumTracks.value != 1))
             return {};
 
         const auto optTimeFormat = tryRead<uint16> (data, remaining);
 
-        if (! optTimeFormat.hasValue())
+        if (! optTimeFormat.valid)
             return {};
 
         HeaderDetails result;
 
-        result.fileType = (short) *optFileType;
-        result.timeFormat = (short) *optTimeFormat;
-        result.numberOfTracks = (short) *optNumTracks;
+        result.fileType = (short) optFileType.value;
+        result.timeFormat = (short) optTimeFormat.value;
+        result.numberOfTracks = (short) optNumTracks.value;
         result.bytesRead = maxSize - remaining;
 
         return { result };
@@ -172,7 +172,7 @@ namespace MidiFileHelpers
 
         for (int i = 0; i < numEvents; ++i)
         {
-            auto& m = tempoEvents.getEventPointer (i)->message;
+            auto& m = tempoEvents.getEventPointer(i)->message;
             auto eventTime = m.getTimeStamp();
 
             if (eventTime >= time)
@@ -186,9 +186,9 @@ namespace MidiFileHelpers
 
             while (i + 1 < numEvents)
             {
-                auto& m2 = tempoEvents.getEventPointer (i + 1)->message;
+                auto& m2 = tempoEvents.getEventPointer(i + 1)->message;
 
-                if (! approximatelyEqual (m2.getTimeStamp(), eventTime))
+                if (m2.getTimeStamp() != eventTime)
                     break;
 
                 if (m2.isTempoMetaEvent())
@@ -212,7 +212,7 @@ namespace MidiFileHelpers
 
             for (int j = 0; j < numEvents; ++j)
             {
-                auto& m = track->getEventPointer (j)->message;
+                auto& m = track->getEventPointer(j)->message;
 
                 if ((m.*method)())
                     results.addEvent (m);
@@ -373,10 +373,10 @@ bool MidiFile::readFrom (InputStream& sourceStream,
 
     const auto optHeader = MidiFileHelpers::parseMidiHeader (d, size);
 
-    if (! optHeader.hasValue())
+    if (! optHeader.valid)
         return false;
 
-    const auto header = *optHeader;
+    const auto header = optHeader.value;
     timeFormat = header.timeFormat;
 
     d += header.bytesRead;
@@ -386,20 +386,20 @@ bool MidiFile::readFrom (InputStream& sourceStream,
     {
         const auto optChunkType = MidiFileHelpers::tryRead<uint32> (d, size);
 
-        if (! optChunkType.hasValue())
+        if (! optChunkType.valid)
             return false;
 
         const auto optChunkSize = MidiFileHelpers::tryRead<uint32> (d, size);
 
-        if (! optChunkSize.hasValue())
+        if (! optChunkSize.valid)
             return false;
 
-        const auto chunkSize = *optChunkSize;
+        const auto chunkSize = optChunkSize.value;
 
         if (size < chunkSize)
             return false;
 
-        if (*optChunkType == ByteOrder::bigEndianInt ("MTrk"))
+        if (optChunkType.value == ByteOrder::bigEndianInt ("MTrk"))
             readNextTrack (d, (int) chunkSize, createMatchingNoteOffs);
 
         size -= chunkSize;
@@ -414,55 +414,23 @@ bool MidiFile::readFrom (InputStream& sourceStream,
     return successful;
 }
 
-template <typename It>
-static void reorderNoteOnsAfterNoteOffs (const It begin, const It end)
-{
-    for (auto it = begin; it != end;)
-    {
-        const auto firstNoteOn = std::find_if (it, end, [] (const auto& x)
-        {
-            return x->message.isNoteOn();
-        });
-
-        if (firstNoteOn == end)
-            return;
-
-        const auto channel = (*firstNoteOn)->message.getChannel();
-        const auto noteNumber = (*firstNoteOn)->message.getNoteNumber();
-        const auto rEnd = std::make_reverse_iterator (firstNoteOn);
-        const auto lastNoteOff = std::find_if (std::make_reverse_iterator (end), rEnd, [&] (const auto& x)
-        {
-            return x->message.getChannel() == channel
-                   && x->message.getNoteNumber() == noteNumber
-                   && x->message.isNoteOff();
-        });
-
-        if (lastNoteOff == rEnd)
-            return;
-
-        std::iter_swap (firstNoteOn, std::prev (lastNoteOff.base()));
-
-        it = std::next (firstNoteOn);
-    }
-}
-
 void MidiFile::readNextTrack (const uint8* data, int size, bool createMatchingNoteOffs)
 {
     auto sequence = MidiFileHelpers::readTrack (data, size);
-    sequence.sort();
 
-    for (auto it = sequence.begin(); it != sequence.end();)
+    // sort so that we put all the note-offs before note-ons that have the same time
+    std::stable_sort (sequence.list.begin(), sequence.list.end(),
+                      [] (const MidiMessageSequence::MidiEventHolder* a,
+                          const MidiMessageSequence::MidiEventHolder* b)
     {
-        const auto stamp = (*it)->message.getTimeStamp();
-        const auto nextTime = std::find_if (it, sequence.end(), [stamp] (const auto& x)
-        {
-            return ! exactlyEqual (x->message.getTimeStamp(), stamp);
-        });
+        auto t1 = a->message.getTimeStamp();
+        auto t2 = b->message.getTimeStamp();
 
-        reorderNoteOnsAfterNoteOffs (it, nextTime);
+        if (t1 < t2)  return true;
+        if (t2 < t1)  return false;
 
-        it = nextTime;
-    }
+        return a->message.isNoteOff() && b->message.isNoteOn();
+    });
 
     if (createMatchingNoteOffs)
         sequence.updateMatchedPairs();
@@ -483,7 +451,7 @@ void MidiFile::convertTimestampTicksToSeconds()
         {
             for (int j = ms->getNumEvents(); --j >= 0;)
             {
-                auto& m = ms->getEventPointer (j)->message;
+                auto& m = ms->getEventPointer(j)->message;
                 m.setTimeStamp (MidiFileHelpers::convertTicksToSeconds (m.getTimeStamp(), tempoEvents, timeFormat));
             }
         }
@@ -519,7 +487,7 @@ bool MidiFile::writeTrack (OutputStream& mainOut, const MidiMessageSequence& ms)
 
     for (int i = 0; i < ms.getNumEvents(); ++i)
     {
-        auto& mm = ms.getEventPointer (i)->message;
+        auto& mm = ms.getEventPointer(i)->message;
 
         if (mm.isEndOfTrackMetaEvent())
             endOfTrackEventWritten = true;
@@ -574,7 +542,7 @@ bool MidiFile::writeTrack (OutputStream& mainOut, const MidiMessageSequence& ms)
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-struct MidiFileTest final : public UnitTest
+struct MidiFileTest  : public UnitTest
 {
     MidiFileTest()
         : UnitTest ("MidiFile", UnitTestCategories::midi)
@@ -642,7 +610,7 @@ struct MidiFileTest final : public UnitTest
             {
                 // No data
                 const auto header = parseHeader ([] (OutputStream&) {});
-                expect (! header.hasValue());
+                expect (! header.valid);
             }
 
             {
@@ -652,7 +620,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 0xff });
                 });
 
-                expect (! header.hasValue());
+                expect (! header.valid);
             }
 
             {
@@ -662,7 +630,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'h', 'd' });
                 });
 
-                expect (! header.hasValue());
+                expect (! header.valid);
             }
 
             {
@@ -672,7 +640,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'h', 'd', 0, 0, 0, 6, 0, 0, 0, 16, 0, 1 });
                 });
 
-                expect (! header.hasValue());
+                expect (! header.valid);
             }
 
             {
@@ -682,7 +650,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'h', 'd', 0, 0, 0, 6, 0, 5, 0, 16, 0, 1 });
                 });
 
-                expect (! header.hasValue());
+                expect (! header.valid);
             }
 
             {
@@ -692,12 +660,12 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'h', 'd', 0, 0, 0, 6, 0, 1, 0, 16, 0, 1 });
                 });
 
-                expect (header.hasValue());
+                expect (header.valid);
 
-                expectEquals (header->fileType, (short) 1);
-                expectEquals (header->numberOfTracks, (short) 16);
-                expectEquals (header->timeFormat, (short) 1);
-                expectEquals ((int) header->bytesRead, 14);
+                expectEquals (header.value.fileType, (short) 1);
+                expectEquals (header.value.numberOfTracks, (short) 16);
+                expectEquals (header.value.timeFormat, (short) 1);
+                expectEquals ((int) header.value.bytesRead, 14);
             }
         }
 
@@ -706,7 +674,7 @@ struct MidiFileTest final : public UnitTest
             {
                 // Empty input
                 const auto file = parseFile ([] (OutputStream&) {});
-                expect (! file.hasValue());
+                expect (! file.valid);
             }
 
             {
@@ -716,7 +684,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'h', 'd' });
                 });
 
-                expect (! file.hasValue());
+                expect (! file.valid);
             }
 
             {
@@ -726,8 +694,8 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'h', 'd', 0, 0, 0, 6, 0, 1, 0, 0, 0, 1 });
                 });
 
-                expect (file.hasValue());
-                expectEquals (file->getNumTracks(), 0);
+                expect (file.valid);
+                expectEquals (file.value.getNumTracks(), 0);
             }
 
             {
@@ -738,7 +706,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'r', '?' });
                 });
 
-                expect (! file.hasValue());
+                expect (! file.valid);
             }
 
             {
@@ -749,9 +717,9 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'r', 'k', 0, 0, 0, 1, 0xff });
                 });
 
-                expect (file.hasValue());
-                expectEquals (file->getNumTracks(), 1);
-                expectEquals (file->getTrack (0)->getNumEvents(), 0);
+                expect (file.valid);
+                expectEquals (file.value.getNumTracks(), 1);
+                expectEquals (file.value.getTrack (0)->getNumEvents(), 0);
             }
 
             {
@@ -762,7 +730,7 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 'M', 'T', 'r', 'k', 0x0f, 0, 0, 0, 0xff });
                 });
 
-                expect (! file.hasValue());
+                expect (! file.valid);
             }
 
             {
@@ -776,93 +744,13 @@ struct MidiFileTest final : public UnitTest
                     writeBytes (os, { 0x80, 0x00, 0x00 });
                 });
 
-                expect (file.hasValue());
-                expectEquals (file->getNumTracks(), 1);
+                expect (file.valid);
+                expectEquals (file.value.getNumTracks(), 1);
 
-                auto& track = *file->getTrack (0);
+                auto& track = *file.value.getTrack (0);
                 expectEquals (track.getNumEvents(), 1);
                 expect (track.getEventPointer (0)->message.isNoteOff());
                 expectEquals (track.getEventPointer (0)->message.getTimeStamp(), (double) 0x0f);
-            }
-        }
-
-        beginTest ("Reorder note on/off");
-        {
-            // Note off before note on does not get reordered
-            {
-                const auto channel = 1;
-                const auto noteNumber = 64;
-                MidiMessageSequence sequence;
-                sequence.addEvent (MidiMessage::noteOff (channel, noteNumber).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOn (channel, noteNumber, 0.5f).withTimeStamp (0));
-
-                reorderNoteOnsAfterNoteOffs (sequence.begin(), sequence.end());
-
-                expect (sequence.getEventPointer (0)->message.isNoteOff());
-                expect (sequence.getEventPointer (1)->message.isNoteOn());
-            }
-
-            // Note on before note off gets swapped
-            {
-                const auto channel = 1;
-                const auto noteNumber = 64;
-                MidiMessageSequence sequence;
-                sequence.addEvent (MidiMessage::noteOn (channel, noteNumber, 0.5f).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOff (channel, noteNumber).withTimeStamp (0));
-
-                reorderNoteOnsAfterNoteOffs (sequence.begin(), sequence.end());
-
-                expect (sequence.getEventPointer (0)->message.isNoteOff());
-                expect (sequence.getEventPointer (1)->message.isNoteOn());
-            }
-
-            // Note on before note off is not swapped if note numbers differ
-            {
-                const auto channel = 1;
-                MidiMessageSequence sequence;
-                sequence.addEvent (MidiMessage::noteOn (channel, 64, 0.5f).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOff (channel, 65).withTimeStamp (0));
-
-                reorderNoteOnsAfterNoteOffs (sequence.begin(), sequence.end());
-
-                expect (sequence.getEventPointer (0)->message.isNoteOn());
-                expect (sequence.getEventPointer (1)->message.isNoteOff());
-            }
-
-            // Note on before note off is not swapped if channel numbers differ
-            {
-                const auto noteNumber = 64;
-                MidiMessageSequence sequence;
-                sequence.addEvent (MidiMessage::noteOn (1, noteNumber, 0.5f).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOff (2, noteNumber).withTimeStamp (0));
-
-                reorderNoteOnsAfterNoteOffs (sequence.begin(), sequence.end());
-
-                expect (sequence.getEventPointer (0)->message.isNoteOn());
-                expect (sequence.getEventPointer (1)->message.isNoteOff());
-            }
-
-            // If there are several note ons/offs, all offs come before all ons
-            {
-                const auto channel = 1;
-                const auto noteNumber = 64;
-                MidiMessageSequence sequence;
-                sequence.addEvent (MidiMessage::noteOn (channel, noteNumber, 0.5f).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOff (channel, noteNumber).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOn (channel, noteNumber, 0.5f).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOff (channel, noteNumber).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOn (channel, noteNumber, 0.5f).withTimeStamp (0));
-                sequence.addEvent (MidiMessage::noteOff (channel, noteNumber).withTimeStamp (0));
-
-                reorderNoteOnsAfterNoteOffs (sequence.begin(), sequence.end());
-
-                expect (sequence.getEventPointer (0)->message.isNoteOff());
-                expect (sequence.getEventPointer (1)->message.isNoteOff());
-                expect (sequence.getEventPointer (2)->message.isNoteOff());
-
-                expect (sequence.getEventPointer (3)->message.isNoteOn());
-                expect (sequence.getEventPointer (4)->message.isNoteOn());
-                expect (sequence.getEventPointer (5)->message.isNoteOn());
             }
         }
     }
@@ -878,7 +766,7 @@ struct MidiFileTest final : public UnitTest
     }
 
     template <typename Fn>
-    static Optional<MidiFileHelpers::HeaderDetails> parseHeader (Fn&& fn)
+    static MidiFileHelpers::Optional<MidiFileHelpers::HeaderDetails> parseHeader (Fn&& fn)
     {
         MemoryOutputStream os;
         fn (os);
@@ -888,7 +776,7 @@ struct MidiFileTest final : public UnitTest
     }
 
     template <typename Fn>
-    static Optional<MidiFile> parseFile (Fn&& fn)
+    static MidiFileHelpers::Optional<MidiFile> parseFile (Fn&& fn)
     {
         MemoryOutputStream os;
         fn (os);

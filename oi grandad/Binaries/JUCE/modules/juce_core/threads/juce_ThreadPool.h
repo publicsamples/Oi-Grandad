@@ -1,33 +1,21 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
-
-   Or:
-
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -82,10 +70,10 @@ public:
     enum JobStatus
     {
         jobHasFinished = 0,     /**< indicates that the job has finished and can be
-                                     removed from the pool */
+                                     removed from the pool. */
 
         jobNeedsRunningAgain    /**< indicates that the job would like to be called
-                                     again when a thread is free */
+                                     again when a thread is free. */
     };
 
     /** Performs the actual work that this job needs to do.
@@ -147,54 +135,9 @@ private:
     String jobName;
     ThreadPool* pool = nullptr;
     std::atomic<bool> shouldStop { false }, isActive { false }, shouldBeDeleted { false };
-    ThreadSafeListenerList<Thread::Listener> listeners;
+    ListenerList<Thread::Listener, Array<Thread::Listener*, CriticalSection>> listeners;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ThreadPoolJob)
-};
-
-//==============================================================================
-/**
-    A set of threads that will run a list of jobs.
-
-    When a ThreadPoolJob object is added to the ThreadPool's list, its runJob() method
-    will be called by the next pooled thread that becomes free.
-
-    @see ThreadPoolJob, Thread
-
-    @tags{Core}
-*/
-struct ThreadPoolOptions
-{
-    /** The name to give each thread in the pool. */
-    [[nodiscard]] ThreadPoolOptions withThreadName (String newThreadName) const
-    {
-        return withMember (*this, &ThreadPoolOptions::threadName, newThreadName);
-    }
-
-    /** The number of threads to run.
-        These will be started when a pool is created, and run until the pool is destroyed.
-    */
-    [[nodiscard]] ThreadPoolOptions withNumberOfThreads (int newNumberOfThreads) const
-    {
-        return withMember (*this, &ThreadPoolOptions::numberOfThreads, newNumberOfThreads);
-    }
-
-    /** The size of the stack of each thread in the pool. */
-    [[nodiscard]] ThreadPoolOptions withThreadStackSizeBytes (size_t newThreadStackSizeBytes) const
-    {
-        return withMember (*this, &ThreadPoolOptions::threadStackSizeBytes, newThreadStackSizeBytes);
-    }
-
-    /** The desired priority of each thread in the pool. */
-    [[nodiscard]] ThreadPoolOptions withDesiredThreadPriority (Thread::Priority newDesiredThreadPriority) const
-    {
-        return withMember (*this, &ThreadPoolOptions::desiredThreadPriority, newDesiredThreadPriority);
-    }
-
-    String threadName { "Pool" };
-    int numberOfThreads { SystemStats::getNumCpus() };
-    size_t threadStackSizeBytes { Thread::osDefaultStackSize };
-    Thread::Priority desiredThreadPriority { Thread::Priority::normal };
 };
 
 
@@ -212,38 +155,25 @@ struct ThreadPoolOptions
 class JUCE_API  ThreadPool
 {
 public:
-    using Options = ThreadPoolOptions;
-
     //==============================================================================
-    /** Creates a thread pool based on the provided options.
-        Once you've created a pool, you can give it some jobs by calling addJob().
-
-        @see ThreadPool::ThreadPoolOptions
-    */
-    explicit ThreadPool (const Options& options);
-
-    /** Creates a thread pool based using the default arguments provided by
-        ThreadPoolOptions.
-
-        Once you've created a pool, you can give it some jobs by calling addJob().
-
-        @see ThreadPoolOptions
-    */
-    ThreadPool() : ThreadPool { Options{} } {}
-
     /** Creates a thread pool.
         Once you've created a pool, you can give it some jobs by calling addJob().
 
-        @param numberOfThreads       the number of threads to run. These will be started
-                                     immediately, and will run until the pool is deleted.
-        @param threadStackSizeBytes  the size of the stack of each thread. If this value
-                                     is zero then the default stack size of the OS will
-                                     be used.
-        @param desiredThreadPriority the desired priority of each thread in the pool.
+        @param numberOfThreads  the number of threads to run. These will be started
+                                immediately, and will run until the pool is deleted.
+        @param threadStackSize  the size of the stack of each thread. If this value
+                                is zero then the default stack size of the OS will
+                                be used.
     */
-    ThreadPool (int numberOfThreads,
-                size_t threadStackSizeBytes = Thread::osDefaultStackSize,
-                Thread::Priority desiredThreadPriority = Thread::Priority::normal);
+    ThreadPool (int numberOfThreads, size_t threadStackSize = 0);
+
+    /** Creates a thread pool with one thread per CPU core.
+        Once you've created a pool, you can give it some jobs by calling addJob().
+        If you want to specify the number of threads, use the other constructor; this
+        one creates a pool which has one thread for each CPU core.
+        @see SystemStats::getNumCpus()
+    */
+    ThreadPool();
 
     /** Destructor.
 
@@ -379,6 +309,13 @@ public:
     */
     StringArray getNamesOfAllJobs (bool onlyReturnActiveJobs) const;
 
+    /** Changes the priority of all the threads.
+        This will call Thread::setPriority() for each thread in the pool.
+        May return false if for some reason the priority can't be changed.
+    */
+    bool setThreadPriorities (int newPriority);
+
+
 private:
     //==============================================================================
     Array<ThreadPoolJob*> jobs;
@@ -393,6 +330,7 @@ private:
     bool runNextJob (ThreadPoolThread&);
     ThreadPoolJob* pickNextJobToRun();
     void addToDeleteList (OwnedArray<ThreadPoolJob>&, ThreadPoolJob*) const;
+    void createThreads (int numThreads, size_t threadStackSize = 0);
     void stopThreads();
 
     // Note that this method has changed, and no longer has a parameter to indicate

@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -40,7 +31,7 @@ DrawableText::DrawableText()
       justification (Justification::centredLeft)
 {
     setBoundingBox (Parallelogram<float> ({ 0.0f, 0.0f, 50.0f, 20.0f }));
-    setFont (withDefaultMetrics (FontOptions (15.0f)), true);
+    setFont (Font (15.0f), true);
 }
 
 DrawableText::DrawableText (const DrawableText& other)
@@ -73,12 +64,6 @@ void DrawableText::setText (const String& newText)
         text = newText;
         refreshBounds();
     }
-}
-
-void DrawableText::setPreserveWhitespace (bool shouldPreserveWhitespace)
-{
-    if (std::exchange (preserveWhitespace, shouldPreserveWhitespace) != shouldPreserveWhitespace)
-        refreshBounds();
 }
 
 void DrawableText::setColour (Colour newColour)
@@ -123,7 +108,7 @@ void DrawableText::setBoundingBox (Parallelogram<float> newBounds)
 
 void DrawableText::setFontHeight (float newHeight)
 {
-    if (! approximatelyEqual (fontHeight, newHeight))
+    if (fontHeight != newHeight)
     {
         fontHeight = newHeight;
         refreshBounds();
@@ -132,7 +117,7 @@ void DrawableText::setFontHeight (float newHeight)
 
 void DrawableText::setFontHorizontalScale (float newScale)
 {
-    if (! approximatelyEqual (fontHScale, newScale))
+    if (fontHScale != newScale)
     {
         fontHScale = newScale;
         refreshBounds();
@@ -179,11 +164,7 @@ void DrawableText::paint (Graphics& g)
     g.setFont (scaledFont);
     g.setColour (colour);
 
-    if (preserveWhitespace)
-        g.drawText (text, getTextArea (w, h), justification, false);
-    else
-        g.drawFittedText (text, getTextArea (w, h), justification, 0x100000);
-
+    g.drawFittedText (text, getTextArea (w, h), justification, 0x100000);
 }
 
 Rectangle<float> DrawableText::getDrawableBounds() const
@@ -198,27 +179,11 @@ Path DrawableText::getOutlineAsPath() const
     auto area = getTextArea (w, h).toFloat();
 
     GlyphArrangement arr;
-
-    if (preserveWhitespace)
-    {
-        arr.addJustifiedText (scaledFont,
-                              text,
-                              area.getX(),
-                              area.getY() + scaledFont.getAscent(),
-                              area.getWidth(),
-                              justification);
-    }
-    else
-    {
-        arr.addFittedText (scaledFont,
-                           text,
-                           area.getX(),
-                           area.getY(),
-                           area.getWidth(),
-                           area.getHeight(),
-                           justification,
-                           0x100000);
-    }
+    arr.addFittedText (scaledFont, text,
+                       area.getX(), area.getY(),
+                       area.getWidth(), area.getHeight(),
+                       justification,
+                       0x100000);
 
     Path pathOfAllGlyphs;
 
@@ -229,7 +194,7 @@ Path DrawableText::getOutlineAsPath() const
         pathOfAllGlyphs.addPath (gylphPath);
     }
 
-    pathOfAllGlyphs.applyTransform (getTextTransform (w, h).followedBy (drawableTransform));
+    pathOfAllGlyphs.applyTransform (getTextTransform (w, h).followedBy (getTransform()));
 
     return pathOfAllGlyphs;
 }
@@ -246,7 +211,7 @@ bool DrawableText::replaceColour (Colour originalColour, Colour replacementColou
 //==============================================================================
 std::unique_ptr<AccessibilityHandler> DrawableText::createAccessibilityHandler()
 {
-    class DrawableTextAccessibilityHandler final : public AccessibilityHandler
+    class DrawableTextAccessibilityHandler  : public AccessibilityHandler
     {
     public:
         DrawableTextAccessibilityHandler (DrawableText& drawableTextToWrap)

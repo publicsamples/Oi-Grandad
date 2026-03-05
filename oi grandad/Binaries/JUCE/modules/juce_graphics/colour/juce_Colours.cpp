@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -47,7 +38,6 @@ Colour Colours::findColourForName (const String& colourName,
         { 0x06bdcc29, 0xffffffff }, /* white */
         { 0x002e305a, 0xff0000ff }, /* blue */
         { 0x00308adf, 0xff808080 }, /* grey */
-        { 0x00308a63, 0xff808080 }, /* gray */
         { 0x05e0cf03, 0xff008000 }, /* green */
         { 0x0001b891, 0xffff0000 }, /* red */
         { 0xd43c6474, 0xffffff00 }, /* yellow */
@@ -74,7 +64,6 @@ Colour Colours::findColourForName (const String& colourName,
         { 0x67cd1799, 0xff008b8b }, /* darkcyan */
         { 0x31bbd168, 0xffb8860b }, /* darkgoldenrod */
         { 0x67cecf55, 0xff555555 }, /* darkgrey */
-        { 0x67ceced9, 0xff555555 }, /* darkgray */
         { 0x920b194d, 0xff006400 }, /* darkgreen */
         { 0x923edd4c, 0xffbdb76b }, /* darkkhaki */
         { 0x5c293873, 0xff8b008b }, /* darkmagenta */
@@ -86,13 +75,11 @@ Colour Colours::findColourForName (const String& colourName,
         { 0x61be858a, 0xff8fbc8f }, /* darkseagreen */
         { 0xc2b0f2bd, 0xff483d8b }, /* darkslateblue */
         { 0xc2b34d42, 0xff2f4f4f }, /* darkslategrey */
-        { 0xc2b34cc6, 0xff2f4f4f }, /* darkslategray */
         { 0x7cf2b06b, 0xff00ced1 }, /* darkturquoise */
         { 0xc8769375, 0xff9400d3 }, /* darkviolet */
         { 0x25832862, 0xffff1493 }, /* deeppink */
         { 0xfcad568f, 0xff00bfff }, /* deepskyblue */
         { 0x634c8b67, 0xff696969 }, /* dimgrey */
-        { 0x634c8aeb, 0xff696969 }, /* dimgray */
         { 0x45c1ce55, 0xff1e90ff }, /* dodgerblue */
         { 0xef19e3cb, 0xffb22222 }, /* firebrick */
         { 0xb852b195, 0xfffffaf0 }, /* floralwhite */
@@ -119,13 +106,11 @@ Colour Colours::findColourForName (const String& colourName,
         { 0x21234e3c, 0xfffafad2 }, /* lightgoldenrodyellow */
         { 0xf40157ad, 0xff90ee90 }, /* lightgreen */
         { 0x28e744f5, 0xffd3d3d3 }, /* lightgrey */
-        { 0x28e74479, 0xffd3d3d3 }, /* lightgray */
         { 0x28eb3b8c, 0xffffb6c1 }, /* lightpink */
         { 0x9fb78304, 0xffffa07a }, /* lightsalmon */
         { 0x50632b2a, 0xff20b2aa }, /* lightseagreen */
         { 0x68fb7b25, 0xff87cefa }, /* lightskyblue */
         { 0xa8a35ba2, 0xff778899 }, /* lightslategrey */
-        { 0xa8a35b26, 0xff778899 }, /* lightslategray */
         { 0xa20d484f, 0xffb0c4de }, /* lightsteelblue */
         { 0xaa2cf10a, 0xffffffe0 }, /* lightyellow */
         { 0x0032afd5, 0xff00ff00 }, /* lime */
@@ -178,7 +163,6 @@ Colour Colours::findColourForName (const String& colourName,
         { 0x80da74fb, 0xff87ceeb }, /* skyblue */
         { 0x44a8dd73, 0xff6a5acd }, /* slateblue */
         { 0x44ab37f8, 0xff708090 }, /* slategrey */
-        { 0x44ab377c, 0xff708090 }, /* slategray */
         { 0x0035f183, 0xfffffafa }, /* snow */
         { 0xd5440d16, 0xff00ff7f }, /* springgreen */
         { 0x3e1524a5, 0xff4682b4 }, /* steelblue */

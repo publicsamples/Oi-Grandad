@@ -1,33 +1,24 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE framework.
-   Copyright (c) Raw Material Software Limited
+   This file is part of the JUCE library.
+   Copyright (c) 2020 - Raw Material Software Limited
 
-   JUCE is an open source framework subject to commercial or open source
+   JUCE is an open source library subject to commercial or open-source
    licensing.
 
-   By downloading, installing, or using the JUCE framework, or combining the
-   JUCE framework with any other source code, object code, content or any other
-   copyrightable work, you agree to the terms of the JUCE End User Licence
-   Agreement, and all incorporated terms including the JUCE Privacy Policy and
-   the JUCE Website Terms of Service, as applicable, which will bind you. If you
-   do not agree to the terms of these agreements, we will not license the JUCE
-   framework to you, and you must discontinue the installation or download
-   process and cease use of the JUCE framework.
+   By using JUCE, you agree to the terms of both the JUCE 6 End-User License
+   Agreement and JUCE Privacy Policy (both effective as of the 16th June 2020).
 
-   JUCE End User Licence Agreement: https://juce.com/legal/juce-8-licence/
-   JUCE Privacy Policy: https://juce.com/juce-privacy-policy
-   JUCE Website Terms of Service: https://juce.com/juce-website-terms-of-service/
+   End User License Agreement: www.juce.com/juce-6-licence
+   Privacy Policy: www.juce.com/juce-privacy-policy
 
-   Or:
+   Or: You may also use this code under the terms of the GPL v3 (see
+   www.gnu.org/licenses).
 
-   You may also use this code under the terms of the AGPLv3:
-   https://www.gnu.org/licenses/agpl-3.0.en.html
-
-   THE JUCE FRAMEWORK IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL
-   WARRANTIES, WHETHER EXPRESSED OR IMPLIED, INCLUDING WARRANTY OF
-   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
@@ -53,7 +44,7 @@ namespace ColourHelpers
 
         float hue = 0.0f;
 
-        if (hi > 0 && ! exactlyEqual (hi, lo))
+        if (hi > 0 && ! approximatelyEqual (hi, lo))
         {
             auto invDiff = 1.0f / (float) (hi - lo);
 
@@ -271,20 +262,10 @@ Colour Colour::fromHSV (float hue, float saturation, float brightness, float alp
     return Colour (hue, saturation, brightness, alpha);
 }
 
-Colour Colour::fromHSV (float hue, float saturation, float brightness, uint8 alpha) noexcept
-{
-    return Colour (hue, saturation, brightness, alpha);
-}
-
 Colour Colour::fromHSL (float hue, float saturation, float lightness, float alpha) noexcept
 {
-    return fromHSL (hue, saturation, lightness, ColourHelpers::floatToUInt8 (alpha));
-}
-
-Colour Colour::fromHSL (float hue, float saturation, float lightness, uint8 alpha) noexcept
-{
     Colour hslColour;
-    hslColour.argb = ColourHelpers::HSL::toRGB (hue, saturation, lightness, alpha);
+    hslColour.argb = ColourHelpers::HSL::toRGB (hue, saturation, lightness, ColourHelpers::floatToUInt8 (alpha));
 
     return hslColour;
 }
@@ -310,16 +291,11 @@ Colour::Colour (PixelAlpha alpha) noexcept
 }
 
 //==============================================================================
-PixelARGB Colour::getPixelARGB() const noexcept
+const PixelARGB Colour::getPixelARGB() const noexcept
 {
     PixelARGB p (argb);
     p.premultiply();
     return p;
-}
-
-PixelARGB Colour::getNonPremultipliedPixelARGB() const noexcept
-{
-    return argb;
 }
 
 uint32 Colour::getARGB() const noexcept
@@ -581,7 +557,7 @@ String Colour::toDisplayString (const bool includeAlphaValue) const
 //==============================================================================
 #if JUCE_UNIT_TESTS
 
-class ColourTests final : public UnitTest
+class ColourTests  : public UnitTest
 {
 public:
     ColourTests()
@@ -592,150 +568,117 @@ public:
     {
         auto testColour = [this] (Colour colour,
                                   uint8 expectedRed, uint8 expectedGreen, uint8 expectedBlue,
-                                  uint8 expectedAlpha = 255)
+                                  uint8 expectedAlpha = 255, float expectedFloatAlpha = 1.0f)
         {
-            expectEquals (colour.getRed(),   expectedRed);
-            expectEquals (colour.getGreen(), expectedGreen);
-            expectEquals (colour.getBlue(),  expectedBlue);
-            expectEquals (colour.getAlpha(), expectedAlpha);
+            expectEquals (colour.getRed(),        expectedRed);
+            expectEquals (colour.getGreen(),      expectedGreen);
+            expectEquals (colour.getBlue(),       expectedBlue);
+            expectEquals (colour.getAlpha(),      expectedAlpha);
+            expectEquals (colour.getFloatAlpha(), expectedFloatAlpha);
         };
 
         beginTest ("Constructors");
         {
             Colour c1;
-            testColour (c1, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0);
+            testColour (c1, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0, 0.0f);
 
             Colour c2 ((uint32) 0);
-            testColour (c2, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0);
+            testColour (c2, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0, 0.0f);
 
             Colour c3 ((uint32) 0xffffffff);
-            testColour (c3, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255);
+            testColour (c3, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255, 1.0f);
 
             Colour c4 (0, 0, 0);
-            testColour (c4, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 255);
+            testColour (c4, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 255, 1.0f);
 
             Colour c5 (255, 255, 255);
-            testColour (c5, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255);
+            testColour (c5, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255, 1.0f);
 
             Colour c6 ((uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0);
-            testColour (c6, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0);
+            testColour (c6, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0, 0.0f);
 
             Colour c7 ((uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255);
-            testColour (c7, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255);
+            testColour (c7, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255, 1.0f);
 
             Colour c8 ((uint8) 0, (uint8) 0, (uint8) 0, 0.0f);
-            testColour (c8, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0);
+            testColour (c8, (uint8) 0, (uint8) 0, (uint8) 0, (uint8) 0, 0.0f);
 
             Colour c9 ((uint8) 255, (uint8) 255, (uint8) 255, 1.0f);
-            testColour (c9, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255);
+            testColour (c9, (uint8) 255, (uint8) 255, (uint8) 255, (uint8) 255, 1.0f);
         }
 
         beginTest ("HSV");
         {
             // black
             testColour (Colour::fromHSV (0.0f, 0.0f, 0.0f, 1.0f), 0, 0, 0);
-            testColour (Colour::fromHSV (0.0f, 0.0f, 0.0f, 0.5f), 0, 0, 0, 128);
             // white
             testColour (Colour::fromHSV (0.0f, 0.0f, 1.0f, 1.0f), 255, 255, 255);
-            testColour (Colour::fromHSV (0.0f, 0.0f, 1.0f, 0.5f), 255, 255, 255, 128);
             // red
             testColour (Colour::fromHSV (0.0f, 1.0f, 1.0f, 1.0f), 255, 0, 0);
-            testColour (Colour::fromHSV (0.0f, 1.0f, 1.0f, 0.5f), 255, 0, 0, 128);
             testColour (Colour::fromHSV (1.0f, 1.0f, 1.0f, 1.0f), 255, 0, 0);
-            testColour (Colour::fromHSV (1.0f, 1.0f, 1.0f, 0.5f), 255, 0, 0, 128);
             // lime
             testColour (Colour::fromHSV (120 / 360.0f, 1.0f, 1.0f, 1.0f), 0, 255, 0);
-            testColour (Colour::fromHSV (120 / 360.0f, 1.0f, 1.0f, 0.5f), 0, 255, 0, 128);
             // blue
             testColour (Colour::fromHSV (240 / 360.0f, 1.0f, 1.0f, 1.0f), 0, 0, 255);
-            testColour (Colour::fromHSV (240 / 360.0f, 1.0f, 1.0f, 0.5f), 0, 0, 255, 128);
             // yellow
             testColour (Colour::fromHSV (60 / 360.0f, 1.0f, 1.0f, 1.0f), 255, 255, 0);
-            testColour (Colour::fromHSV (60 / 360.0f, 1.0f, 1.0f, 0.5f), 255, 255, 0, 128);
             // cyan
             testColour (Colour::fromHSV (180 / 360.0f, 1.0f, 1.0f, 1.0f), 0, 255, 255);
-            testColour (Colour::fromHSV (180 / 360.0f, 1.0f, 1.0f, 0.5f), 0, 255, 255, 128);
             // magenta
             testColour (Colour::fromHSV (300 / 360.0f, 1.0f, 1.0f, 1.0f), 255, 0, 255);
-            testColour (Colour::fromHSV (300 / 360.0f, 1.0f, 1.0f, 0.5f), 255, 0, 255, 128);
             // silver
             testColour (Colour::fromHSV (0.0f, 0.0f, 0.75f, 1.0f), 191, 191, 191);
-            testColour (Colour::fromHSV (0.0f, 0.0f, 0.75f, 0.5f), 191, 191, 191, 128);
             // grey
             testColour (Colour::fromHSV (0.0f, 0.0f, 0.5f, 1.0f), 128, 128, 128);
-            testColour (Colour::fromHSV (0.0f, 0.0f, 0.5f, 0.5f), 128, 128, 128, 128);
             // maroon
             testColour (Colour::fromHSV (0.0f, 1.0f, 0.5f, 1.0f), 128, 0, 0);
-            testColour (Colour::fromHSV (0.0f, 1.0f, 0.5f, 0.5f), 128, 0, 0, 128);
             // olive
             testColour (Colour::fromHSV (60 / 360.0f, 1.0f, 0.5f, 1.0f), 128, 128, 0);
-            testColour (Colour::fromHSV (60 / 360.0f, 1.0f, 0.5f, 0.5f), 128, 128, 0, 128);
             // green
             testColour (Colour::fromHSV (120 / 360.0f, 1.0f, 0.5f, 1.0f), 0, 128, 0);
-            testColour (Colour::fromHSV (120 / 360.0f, 1.0f, 0.5f, 0.5f), 0, 128, 0, 128);
             // purple
             testColour (Colour::fromHSV (300 / 360.0f, 1.0f, 0.5f, 1.0f), 128, 0, 128);
-            testColour (Colour::fromHSV (300 / 360.0f, 1.0f, 0.5f, 0.5f), 128, 0, 128, 128);
             // teal
             testColour (Colour::fromHSV (180 / 360.0f, 1.0f, 0.5f, 1.0f), 0, 128, 128);
-            testColour (Colour::fromHSV (180 / 360.0f, 1.0f, 0.5f, 0.5f), 0, 128, 128, 128);
             // navy
             testColour (Colour::fromHSV (240 / 360.0f, 1.0f, 0.5f, 1.0f), 0, 0, 128);
-            testColour (Colour::fromHSV (240 / 360.0f, 1.0f, 0.5f, 0.5f), 0, 0, 128, 128);
         }
 
         beginTest ("HSL");
         {
             // black
             testColour (Colour::fromHSL (0.0f, 0.0f, 0.0f, 1.0f), 0, 0, 0);
-            testColour (Colour::fromHSL (0.0f, 0.0f, 0.0f, 0.5f), 0, 0, 0, 128);
             // white
             testColour (Colour::fromHSL (0.0f, 0.0f, 1.0f, 1.0f), 255, 255, 255);
-            testColour (Colour::fromHSL (0.0f, 0.0f, 1.0f, 0.5f), 255, 255, 255, 128);
             // red
             testColour (Colour::fromHSL (0.0f, 1.0f, 0.5f, 1.0f), 255, 0, 0);
-            testColour (Colour::fromHSL (0.0f, 1.0f, 0.5f, 0.5f), 255, 0, 0, 128);
             testColour (Colour::fromHSL (1.0f, 1.0f, 0.5f, 1.0f), 255, 0, 0);
-            testColour (Colour::fromHSL (1.0f, 1.0f, 0.5f, 0.5f), 255, 0, 0, 128);
             // lime
             testColour (Colour::fromHSL (120 / 360.0f, 1.0f, 0.5f, 1.0f), 0, 255, 0);
-            testColour (Colour::fromHSL (120 / 360.0f, 1.0f, 0.5f, 0.5f), 0, 255, 0, 128);
             // blue
             testColour (Colour::fromHSL (240 / 360.0f, 1.0f, 0.5f, 1.0f), 0, 0, 255);
-            testColour (Colour::fromHSL (240 / 360.0f, 1.0f, 0.5f, 0.5f), 0, 0, 255, 128);
             // yellow
             testColour (Colour::fromHSL (60 / 360.0f, 1.0f, 0.5f, 1.0f), 255, 255, 0);
-            testColour (Colour::fromHSL (60 / 360.0f, 1.0f, 0.5f, 0.5f), 255, 255, 0, 128);
             // cyan
             testColour (Colour::fromHSL (180 / 360.0f, 1.0f, 0.5f, 1.0f), 0, 255, 255);
-            testColour (Colour::fromHSL (180 / 360.0f, 1.0f, 0.5f, 0.5f), 0, 255, 255, 128);
             // magenta
             testColour (Colour::fromHSL (300 / 360.0f, 1.0f, 0.5f, 1.0f), 255, 0, 255);
-            testColour (Colour::fromHSL (300 / 360.0f, 1.0f, 0.5f, 0.5f), 255, 0, 255, 128);
             // silver
             testColour (Colour::fromHSL (0.0f, 0.0f, 0.75f, 1.0f), 191, 191, 191);
-            testColour (Colour::fromHSL (0.0f, 0.0f, 0.75f, 0.5f), 191, 191, 191, 128);
             // grey
             testColour (Colour::fromHSL (0.0f, 0.0f, 0.5f, 1.0f), 128, 128, 128);
-            testColour (Colour::fromHSL (0.0f, 0.0f, 0.5f, 0.5f), 128, 128, 128, 128);
             // maroon
             testColour (Colour::fromHSL (0.0f, 1.0f, 0.25f, 1.0f), 128, 0, 0);
-            testColour (Colour::fromHSL (0.0f, 1.0f, 0.25f, 0.5f), 128, 0, 0, 128);
             // olive
             testColour (Colour::fromHSL (60 / 360.0f, 1.0f, 0.25f, 1.0f), 128, 128, 0);
-            testColour (Colour::fromHSL (60 / 360.0f, 1.0f, 0.25f, 0.5f), 128, 128, 0, 128);
             // green
             testColour (Colour::fromHSL (120 / 360.0f, 1.0f, 0.25f, 1.0f), 0, 128, 0);
-            testColour (Colour::fromHSL (120 / 360.0f, 1.0f, 0.25f, 0.5f), 0, 128, 0, 128);
             // purple
             testColour (Colour::fromHSL (300 / 360.0f, 1.0f, 0.25f, 1.0f), 128, 0, 128);
-            testColour (Colour::fromHSL (300 / 360.0f, 1.0f, 0.25f, 0.5f), 128, 0, 128, 128);
             // teal
             testColour (Colour::fromHSL (180 / 360.0f, 1.0f, 0.25f, 1.0f), 0, 128, 128);
-            testColour (Colour::fromHSL (180 / 360.0f, 1.0f, 0.25f, 0.5f), 0, 128, 128, 128);
             // navy
             testColour (Colour::fromHSL (240 / 360.0f, 1.0f, 0.25f, 1.0f), 0, 0, 128);
-            testColour (Colour::fromHSL (240 / 360.0f, 1.0f, 0.25f, 0.5f), 0, 0, 128, 128);
         }
 
         beginTest ("Modifiers");
@@ -758,8 +701,6 @@ public:
             testColour (red.withMultipliedLightness (2.0f), 255, 255, 255);
             testColour (red.withMultipliedLightness (1.0f), 255, 0, 0);
             testColour (red.withLightness (red.getLightness()), 255, 0, 0);
-            testColour (red.withAlpha ((uint8) 128), 255, 0, 0, 128);
-            testColour (red.withAlpha (0.5f), 255, 0, 0, 128);
         }
     }
 };
