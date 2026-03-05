@@ -17,3 +17,5 @@ oi grandad/DspNetworks/CodeLibrary/snex_node/granular_player_spec.xml
 oi grandad/AudioFiles/Chords, Drone & FX/Stick in the Mud.aiff
 *.aiff
 /oi grandad/AudioFilesX
+oi grandad/Binaries/Builds/MacOSX/build/Release/oi grandad.vst3/Contents/PkgInfo
+/oi grandad/Binaries/Builds/MacOSX/build

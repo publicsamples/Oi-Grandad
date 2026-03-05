@@ -1,0 +1,136 @@
+name: Build (Mac/Win/Linux) - Unsigned
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build VST3 (macOS)
+        run: |
+          xcodebuild \
+            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
+            -scheme "oi grandad - VST3" \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Build AU (macOS)
+        run: |
+          xcodebuild \
+            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
+            -scheme "oi grandad - AU" \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package (macOS)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          echo "Searching for .vst3 and .component bundles..."
+          find . -type d \( -name "*.vst3" -o -name "*.component" \) -print > bundles.txt
+          cat bundles.txt
+
+          if [ ! -s bundles.txt ]; then
+            echo "ERROR: No .vst3 or .component bundles found."
+            exit 1
+          fi
+
+          while IFS= read -r bundle; do
+            name="$(basename "$bundle")"
+            echo "Zipping $bundle -> dist/$name.zip"
+            ditto -c -k --sequesterRsrc --keepParent "$bundle" "dist/$name.zip"
+          done < bundles.txt
+
+          ls -la dist
+
+      - name: Upload artifacts (macOS)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-au-vst3-unsigned
+          path: dist/*.zip
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build VST3 (Windows)
+        shell: pwsh
+        run: |
+          $sln = "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad.sln"
+          if (-not (Test-Path $sln)) {
+            throw "Solution not found: $sln"
+          }
+          msbuild $sln /m /p:Configuration=Release /p:Platform=x64
+
+      - name: Package (Windows)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist | Out-Null
+          $bundles = Get-ChildItem -Recurse -Directory -Filter *.vst3
+          if (-not $bundles) { throw "No .vst3 bundles found after build." }
+
+          $bundles | ForEach-Object {
+            $zipName = "dist\$($_.Name)-windows.zip"
+            Write-Host "Zipping $($_.FullName) -> $zipName"
+            Compress-Archive -Path $_.FullName -DestinationPath $zipName -Force
+          }
+
+          Get-ChildItem dist
+
+      - name: Upload artifacts (Windows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-vst3-unsigned
+          path: dist/*.zip
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build VST3 (Linux)
+        shell: bash
+        run: |
+          set -e
+          cd "oi grandad/Binaries/Builds/LinuxMakefile"
+          make CONFIG=Release -j"$(nproc)"
+
+      - name: Package (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          echo "Searching for .vst3 bundles..."
+          find . -type d -name "*.vst3" -print > bundles.txt
+          cat bundles.txt
+
+          if [ ! -s bundles.txt ]; then
+            echo "ERROR: No .vst3 bundles found after build."
+            exit 1
+          fi
+
+          while IFS= read -r bundle; do
+            name="$(basename "$bundle")"
+            echo "Zipping $bundle -> dist/$name-linux.zip"
+            (cd "$(dirname "$bundle")" && zip -r "$OLDPWD/dist/$name-linux.zip" "$name" >/dev/null)
+          done < bundles.txt
+
+          ls -la dist
+
+      - name: Upload artifacts (Linux)
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-vst3-unsigned
+          path: dist/*.zip
