@@ -26,6 +26,11 @@ jobs:
             s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
           ' "$pbxproj"
 
+          # JUCE's VST3 client pulls ObjC syntax on macOS; ensure this TU is compiled as ObjC++.
+          perl -0pi -e '
+            s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
+          ' "$pbxproj"
+
       - name: Sanity check JUCE modules path
         run: |
           ls -la "oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client" || exit 1
