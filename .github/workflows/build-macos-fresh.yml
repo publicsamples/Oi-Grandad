@@ -28,32 +28,13 @@ jobs:
           sdk_parent="$(dirname "$sdk_dir")"
 
           if [[ ! -f "$sdk_header" ]]; then
-            echo "VST3 SDK is missing required files. Preparing SDK..."
+            echo "VST3 SDK is missing required files. Extracting bundled sdk.zip..."
             mkdir -p "$sdk_parent"
-
-            # Prefer a modern SDK snapshot (contains base/source/flock.cpp).
-            rm -rf "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" "$GITHUB_WORKSPACE"/vst3sdk-* "$GITHUB_WORKSPACE"/steinbergmedia-vst3sdk-*
-            fetch_ok=0
-            for ref in master main; do
-              url="https://codeload.github.com/steinbergmedia/vst3sdk/tar.gz/refs/heads/$ref"
-              echo "Downloading $url"
-              if curl --fail --location --retry 3 --retry-delay 2 --output "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" "$url"; then
-                tar -xzf "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" -C "$GITHUB_WORKSPACE"
-                extracted="$(find "$GITHUB_WORKSPACE" -maxdepth 1 -type d \( -name 'vst3sdk-*' -o -name 'steinbergmedia-vst3sdk-*' \) | head -n1)"
-                if [[ -n "${extracted:-}" && -f "$extracted/base/source/flock.cpp" ]]; then
-                  rm -rf "$sdk_dir"
-                  mv "$extracted" "$sdk_dir"
-                  fetch_ok=1
-                  break
-                fi
-              fi
-            done
-
-            # Fallback for offline runs: use bundled legacy sdk.zip.
-            if [[ "$fetch_ok" -ne 1 && -f "$sdk_zip" ]]; then
-              echo "Modern SDK download unavailable. Extracting bundled $sdk_zip"
-              unzip -q -o "$sdk_zip" -d "$sdk_parent"
+            if [[ ! -f "$sdk_zip" ]]; then
+              echo "ERROR: Missing $sdk_zip"
+              exit 1
             fi
+            unzip -q -o "$sdk_zip" -d "$sdk_parent"
           fi
 
           if [[ ! -e "$headless_sdk_dir" ]]; then
@@ -81,9 +62,7 @@ jobs:
               if [[ ! -f "$target" ]]; then
                 echo "Creating VST3 SDK compatibility stub: $rel_cpp"
                 mkdir -p "$(dirname "$target")"
-                cat > "$target" <<'EOF'
-                /* CI compatibility stub for missing VST3 SDK translation unit. */
-                EOF
+                printf '%s\n' '/* CI compatibility stub for missing VST3 SDK translation unit. */' > "$target"
               fi
             done < <(sed -n 's/^[[:space:]]*#include[[:space:]]*<\([^>]*\.cpp\)>.*/\1/p' "$juce_vst3_headers" | sort -u)
           fi
@@ -111,13 +90,8 @@ jobs:
             s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
           ' "$pbxproj"
 
-          cat > "$client_utils_cpp" <<'EOF'
-          #include "AppConfig.h"
-          EOF
-
-          cat > "$vst_utils_mm" <<'EOF'
-          #include "AppConfig.h"
-          EOF
+          printf '%s\n' '#include "AppConfig.h"' > "$client_utils_cpp"
+          printf '%s\n' '#include "AppConfig.h"' > "$vst_utils_mm"
 
       - name: Build VST3
         shell: bash
