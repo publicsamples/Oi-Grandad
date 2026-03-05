@@ -43,14 +43,16 @@ jobs:
           hise="$ws/HISE"
           makefile="$ws/oi grandad/Binaries/Builds/LinuxMakefile/Makefile"
           sdk_dir="$ws/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          sdk_dir_escaped="${sdk_dir// /\\ }"
 
           test -f "$makefile"
           test -d "$sdk_dir"
 
           # Rewrite local absolute paths and remove unresolved exporter placeholders.
-          HISE_ROOT="$hise" SDK_ROOT="$sdk_dir" perl -0pi -e '
+          HISE_ROOT="$hise" SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
             s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
-            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#$ENV{SDK_ROOT}#g;
+            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#$ENV{SDK_ROOT_ESC}#g;
+            s#/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\\ SDK#$ENV{SDK_ROOT_ESC}#g;
             s#%FFT_HEADER_PATH%;##g;
             s#%FFT_LINKER_FLAGS%##g;
           ' "$makefile"
