@@ -10,6 +10,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      with:
+    submodules: recursive
 
       - name: Build VST3 (macOS)
         run: |
@@ -61,6 +63,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      with:
+    submodules: recursive
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
@@ -99,6 +103,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      with:
+    submodules: recursive
 
       - name: Build VST3 (Linux)
         shell: bash
