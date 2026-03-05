@@ -121,35 +121,11 @@ jobs:
             fi
           done
 
-          if [[ -n "$vst3_common" ]] && ! grep -q "CI_VST3_LEGACY_SPEAKER_ALIASES" "$vst3_common"; then
-            tmp_common="$(mktemp)"
-            {
-              echo "// CI_VST3_LEGACY_SPEAKER_ALIASES"
-              echo "#ifndef kSpeakerACN0"
-              echo "#define kSpeakerACN0 0"
-              echo "#define kSpeakerACN1 0"
-              echo "#define kSpeakerACN2 0"
-              echo "#define kSpeakerACN3 0"
-              echo "#define kSpeakerACN4 0"
-              echo "#define kSpeakerACN5 0"
-              echo "#define kSpeakerACN6 0"
-              echo "#define kSpeakerACN7 0"
-              echo "#define kSpeakerACN8 0"
-              echo "#define kSpeakerACN9 0"
-              echo "#define kSpeakerACN10 0"
-              echo "#define kSpeakerACN11 0"
-              echo "#define kSpeakerACN12 0"
-              echo "#define kSpeakerACN13 0"
-              echo "#define kSpeakerACN14 0"
-              echo "#define kSpeakerACN15 0"
-              echo "#define kSpeakerBsl 0"
-              echo "#define kSpeakerBsr 0"
-              echo "#define kSpeakerBrl 0"
-              echo "#define kSpeakerBrr 0"
-              echo "#endif"
-              cat "$vst3_common"
-            } > "$tmp_common"
-            mv "$tmp_common" "$vst3_common"
+          if [[ -n "$vst3_common" ]]; then
+            perl -0pi -e '
+              s/return\s+Steinberg::Vst::kSpeakerACN\d+;/return 0;/g;
+              s/return\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr);/return 0;/g;
+            ' "$vst3_common"
           fi
 
       - name: Sanity check JUCE modules path
