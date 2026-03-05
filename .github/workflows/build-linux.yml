@@ -44,6 +44,8 @@ jobs:
           makefile="$ws/oi grandad/Binaries/Builds/LinuxMakefile/Makefile"
           sdk_dir="$ws/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
           sdk_dir_escaped="${sdk_dir// /\\ }"
+          legacy_sdk_dir="$hise/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
+          headless_hise_sdk_dir="$hise/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
 
           test -f "$makefile"
           test -d "$sdk_dir"
@@ -56,6 +58,19 @@ jobs:
             s#%FFT_HEADER_PATH%;##g;
             s#%FFT_LINKER_FLAGS%##g;
           ' "$makefile"
+
+          # Force-include SDK root in JUCE_CPPFLAGS to avoid include resolution drift.
+          if ! grep -Fq -- "-I$sdk_dir_escaped" "$makefile"; then
+            SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
+              s/\$\(CPPFLAGS\)/-I$ENV{SDK_ROOT_ESC} \$\(CPPFLAGS\)/g;
+            ' "$makefile"
+          fi
+
+          # Ensure HISE JUCE paths resolve to the bundled SDK used by this repository.
+          mkdir -p "$(dirname "$legacy_sdk_dir")" "$(dirname "$headless_hise_sdk_dir")"
+          rm -rf "$legacy_sdk_dir" "$headless_hise_sdk_dir"
+          ln -s "$sdk_dir" "$legacy_sdk_dir"
+          ln -s "$sdk_dir" "$headless_hise_sdk_dir"
 
           # HISE JUCE snapshot compatibility: IPtr must be unwrapped before assigning to auto*.
           wrapper="$hise/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3_Wrapper.cpp"
