@@ -23,40 +23,37 @@ jobs:
           set -euo pipefail
           sdk_dir="$GITHUB_WORKSPACE/HISE/tools/SDK/VST3 SDK"
           sdk_header="$sdk_dir/pluginterfaces/vst/vsttypes.h"
+          sdk_flock="$sdk_dir/base/source/flock.cpp"
           headless_sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          sdk_zip="$GITHUB_WORKSPACE/HISE/tools/SDK/sdk.zip"
+          sdk_parent="$(dirname "$sdk_dir")"
 
-          if [[ ! -f "$sdk_header" ]]; then
-            echo "VST3 SDK headers not found in HISE checkout. Preparing SDK..."
-            sdk_zip="$GITHUB_WORKSPACE/HISE/tools/SDK/sdk.zip"
-            sdk_parent="$(dirname "$sdk_dir")"
+          if [[ ! -f "$sdk_header" || ! -f "$sdk_flock" ]]; then
+            echo "VST3 SDK is missing required files. Preparing SDK..."
             mkdir -p "$sdk_parent"
 
-            if [[ -f "$sdk_zip" ]]; then
-              echo "Extracting SDK from $sdk_zip"
-              unzip -q -o "$sdk_zip" -d "$sdk_parent"
-            else
-              echo "Local sdk.zip missing; falling back to codeload tarballs"
-              tmp_sdk="$GITHUB_WORKSPACE/_vst3sdk"
-              rm -rf "$tmp_sdk" "$GITHUB_WORKSPACE/_vst3sdk.tar.gz"
-              fetch_ok=0
-              for ref in master main; do
-                url="https://codeload.github.com/steinbergmedia/vst3sdk/tar.gz/refs/heads/$ref"
-                echo "Downloading $url"
-                if curl --fail --location --retry 3 --retry-delay 2 --output "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" "$url"; then
-                  tar -xzf "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" -C "$GITHUB_WORKSPACE"
-                  extracted="$GITHUB_WORKSPACE/vst3sdk-$ref"
-                  if [[ -d "$extracted" ]]; then
-                    rm -rf "$sdk_dir"
-                    mv "$extracted" "$sdk_dir"
-                    fetch_ok=1
-                    break
-                  fi
+            # Prefer a modern SDK snapshot (contains base/source/flock.cpp).
+            rm -rf "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" "$GITHUB_WORKSPACE"/vst3sdk-* "$GITHUB_WORKSPACE"/steinbergmedia-vst3sdk-*
+            fetch_ok=0
+            for ref in master main; do
+              url="https://codeload.github.com/steinbergmedia/vst3sdk/tar.gz/refs/heads/$ref"
+              echo "Downloading $url"
+              if curl --fail --location --retry 3 --retry-delay 2 --output "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" "$url"; then
+                tar -xzf "$GITHUB_WORKSPACE/_vst3sdk.tar.gz" -C "$GITHUB_WORKSPACE"
+                extracted="$(find "$GITHUB_WORKSPACE" -maxdepth 1 -type d \( -name 'vst3sdk-*' -o -name 'steinbergmedia-vst3sdk-*' \) | head -n1)"
+                if [[ -n "${extracted:-}" && -f "$extracted/base/source/flock.cpp" ]]; then
+                  rm -rf "$sdk_dir"
+                  mv "$extracted" "$sdk_dir"
+                  fetch_ok=1
+                  break
                 fi
-              done
-              if [[ "$fetch_ok" -ne 1 ]]; then
-                echo "ERROR: Could not provide VST3 SDK headers (local zip missing and network fetch failed)."
-                exit 1
               fi
+            done
+
+            # Fallback for offline runs: use bundled legacy sdk.zip.
+            if [[ "$fetch_ok" -ne 1 && -f "$sdk_zip" ]]; then
+              echo "Modern SDK download unavailable. Extracting bundled $sdk_zip"
+              unzip -q -o "$sdk_zip" -d "$sdk_parent"
             fi
           fi
 
@@ -66,6 +63,7 @@ jobs:
           fi
 
           test -f "$sdk_header"
+          test -f "$sdk_flock"
           test -f "$headless_sdk_dir/pluginterfaces/vst/vsttypes.h"
 
       - name: Rewrite hardcoded paths for CI (macOS)
