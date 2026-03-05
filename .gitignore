@@ -7,7 +7,6 @@ oi grandad/Images/blueish.png
 *.ndx
 .DS_Store
 .DS_Store
-/oi grandad/DspNetworks/Binaries
 /oi grandad/AudioFiles x
 /oi grandad/
 oi grandad/PooledResources/AudioResources.dat
