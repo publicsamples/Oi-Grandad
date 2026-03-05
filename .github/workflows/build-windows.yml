@@ -147,15 +147,8 @@ jobs:
             if ($vc -notmatch "public\.sdk/source/vst/utility/stringconvert\.cpp") {
               $vc += "`r`n#include <public.sdk/source/vst/utility/stringconvert.cpp>"
             }
-            if ($vc -notmatch "StringConvertCIShim") {
-              $vc += "`r`n// StringConvertCIShim: provides the legacy 2-arg overload if this SDK/JUCE combo misses it."
-              $vc += "`r`nnamespace Steinberg { namespace Vst { namespace StringConvert {"
-              $vc += "`r`nbool convert (const std::string& utf8Str, Steinberg::Vst::TChar* str)"
-              $vc += "`r`n{"
-              $vc += "`r`n    return convert (utf8Str, str, 128);"
-              $vc += "`r`n}"
-              $vc += "`r`n}}}"
-            }
+            # If an old shim exists from a previous CI run, remove it to avoid duplicate definitions.
+            $vc = [regex]::Replace($vc, '(?s)\r?\n// StringConvertCIShim:.*?\r?\n\}\}\}', '')
             Set-Content -Path $clientVst3 -Value $vc -NoNewline
           }
 
