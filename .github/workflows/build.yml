@@ -13,6 +13,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Sanity check JUCE modules path
+        run: |
+          ls -la "oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client" || exit 1
+          test -f "oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp" || exit 1
+
       - name: Build VST3 (macOS)
         run: |
           xcodebuild \
@@ -21,7 +26,7 @@ jobs:
             -configuration Release \
             CODE_SIGNING_ALLOWED=NO \
             build
-
+			
       - name: Build AU (macOS)
         run: |
           xcodebuild \
