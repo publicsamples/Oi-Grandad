@@ -10,7 +10,7 @@ const var VoiceParamB3 = Content.getComponent("PosParamB3");
 inline function onStgSel3Control(component, value)
 {
 
-if(value == 0)
+if(value == 1)
   {
 
   	VoiceParam3.showControl(1);
@@ -26,7 +26,7 @@ if(value == 0)
                    
 	}
 	
-if(value == 1)
+if(value == 2)
   {
 	VoiceParam3.showControl(0);
 	VoiceParamB3.showControl(1);
@@ -39,6 +39,34 @@ if(value == 1)
               
 	}
 	
+	if(value == 3)
+	  {
+	
+	  	VoiceParam3.showControl(1);
+	  	VoiceParamB3.showControl(0);
+	             
+	        gran2.setAttribute(gran2.scrubMode, 3);  
+	       // gran2.setAttribute(gran2.PositionModMode, 0);
+	
+	      
+	
+	       for(s in StackItem3)
+	            s.showControl(0);
+	                   
+		}
+		
+	if(value == 4)
+	  {
+		VoiceParam3.showControl(0);
+		VoiceParamB3.showControl(1);
+		  	
+		  	
+	          gran2.setAttribute(gran2.scrubMode, 4);  
+	
+	              for(s in StackItem3)
+	                  s.showControl(1);
+	              
+		}
 
 };
 

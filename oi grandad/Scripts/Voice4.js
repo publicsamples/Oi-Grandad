@@ -10,7 +10,8 @@ const var VoiceParamB4 = Content.getComponent("PosParamB4");
 inline function onStgSel4Control(component, value)
 {
 
-if(value == 0)
+
+if(value == 1)
   {
 
   	VoiceParam4.showControl(1);
@@ -26,7 +27,7 @@ if(value == 0)
                    
 	}
 	
-if(value == 1)
+if(value == 2)
   {
 	VoiceParam4.showControl(0);
 	VoiceParamB4.showControl(1);
@@ -38,7 +39,34 @@ if(value == 1)
                   s.showControl(1);
               
 	}
+if(value == 3)
+  {
+
+  	VoiceParam4.showControl(1);
+  	VoiceParamB4.showControl(0);
+             
+        gran3.setAttribute(gran3.scrubMode, 3);  
+       // gran3.setAttribute(gran3.PositionModMode, 0);
+
+      
+
+       for(s in StackItem4)
+            s.showControl(0);
+                   
+	}
 	
+if(value == 4)
+  {
+	VoiceParam4.showControl(0);
+	VoiceParamB4.showControl(1);
+	  	
+	  	
+          gran3.setAttribute(gran3.scrubMode, 4);  
+
+              for(s in StackItem4)
+                  s.showControl(1);
+              
+	}	
 
 };
 

@@ -9,10 +9,11 @@ oi grandad/Images/blueish.png
 .DS_Store
 /oi grandad/DspNetworks/Binaries
 /oi grandad/AudioFiles x
-/oi grandad/Binaries
+/oi grandad/
 oi grandad/PooledResources/AudioResources.dat
 *.wav
 *.aif
 oi grandad/AudioFiles/Loops/
 oi grandad/DspNetworks/CodeLibrary/snex_node/granular_player_spec.h
 oi grandad/DspNetworks/CodeLibrary/snex_node/granular_player_spec.xml
+oi grandad/AudioFiles/Chords, Drone & FX/Stick in the Mud.aiff

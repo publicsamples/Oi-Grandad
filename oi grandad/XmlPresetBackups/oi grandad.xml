@@ -37,8 +37,8 @@
             <Control type="ScriptSlider" id="decay0" value="20000.0"/>
             <Control type="ScriptSlider" id="sustain0" value="0.0"/>
             <Control type="ScriptSlider" id="release0" value="2635.030029296875"/>
-            <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data="{PROJECT_FOLDER}Loops/STBELL-130-04.wav"
-                     rangeStart="0" rangeEnd="325662"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data=""
+                     rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="posmod" value="-0.5400000214576721"/>
             <Control type="ScriptComboBox" id="pos1modsel" value="3.0"/>
             <Control type="ScriptSlider" id="pos" value="0.3600000143051147"/>
@@ -99,8 +99,8 @@
             <Control type="ScriptSlider" id="resB1" value="0.6299999952316284"/>
             <Control type="ScriptSlider" id="FmixB1" value="0.0"/>
             <Control type="ScriptComboBox" id="StgSel2" value="1.0"/>
-            <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data="{PROJECT_FOLDER}Loops/FmSilly85-03.wav"
-                     rangeStart="0" rangeEnd="529200"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
+                     rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="posmod1" value="0.0"/>
             <Control type="ScriptComboBox" id="pos1modsel1" value="13.0"/>
             <Control type="ScriptSlider" id="pos1" value="0.2800000011920929"/>
@@ -275,8 +275,8 @@
             <Control type="ScriptSlider" id="resB3" value="0.0"/>
             <Control type="ScriptSlider" id="FmixB3" value="0.0"/>
             <Control type="ScriptComboBox" id="StgSel4" value="1.0"/>
-            <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data="{PROJECT_FOLDER}Loops/bugs-perc-100-01.wav"
-                     rangeStart="0" rangeEnd="846720"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data=""
+                     rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="posmod3" value="0.0"/>
             <Control type="ScriptComboBox" id="pos1modsel3" value="0.0"/>
             <Control type="ScriptSlider" id="pos3" value="0.0"/>
@@ -1286,8 +1286,7 @@
         <Table EmbeddedData="24...............vO...f+.........vO"/>
       </Tables>
       <AudioFiles>
-        <AudioFile EmbeddedData="{PROJECT_FOLDER}Loops/STBELL-130-04.wav" MinValue="0"
-                   MaxValue="325662"/>
+        <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
     <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="0" Gain="1.0"
@@ -1407,8 +1406,7 @@
         <Table EmbeddedData="24...............vO...f+.........vO"/>
       </Tables>
       <AudioFiles>
-        <AudioFile EmbeddedData="{PROJECT_FOLDER}Loops/FmSilly85-03.wav" MinValue="0"
-                   MaxValue="529200"/>
+        <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
     <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="0" Gain="1.0"
@@ -1494,7 +1492,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain3" Bypassed="1" Gain="-100.0"
+            <Processor Type="SimpleGain" ID="Simple Gain3" Bypassed="0" Gain="-100.0"
                        Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
@@ -1615,7 +1613,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain4" Bypassed="1" Gain="-100.0"
+            <Processor Type="SimpleGain" ID="Simple Gain4" Bypassed="0" Gain="-100.0"
                        Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
@@ -1650,8 +1648,7 @@
         <Table EmbeddedData="24...............vO...f+.........vO"/>
       </Tables>
       <AudioFiles>
-        <AudioFile EmbeddedData="{PROJECT_FOLDER}Loops/bugs-perc-100-01.wav" MinValue="0"
-                   MaxValue="846720"/>
+        <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
     <Processor Type="ScriptSynth" ID="Granular1xx" Bypassed="1" Gain="0.4570881724357605"
@@ -1702,18 +1699,18 @@
                  Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
                  Send7="-1" Channel8="0" Send8="-1" Channel9="1" Send9="-1"/>
   <macro_controls>
-    <macro name="Slot 1" value="67.96672058105469" midi_cc="-1">
+    <macro name="Slot 1" value="8.072075843811035" midi_cc="-1">
       <controlled_parameter id="Macro Control Modulator1" parameter="3" parameter_name="MacroValue"
                             min="0.0" max="1.0" low="0.0" high="1.0" skew="1.0" step="0.01"
                             inverted="0" readonly="1" converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADv..."/>
     </macro>
-    <macro name="Slot 2" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 3" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 4" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 5" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 6" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 7" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 8" value="127.0" midi_cc="-1"/>
+    <macro name="Slot 2" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 3" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 4" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 5" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 6" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 7" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 8" value="0.0" midi_cc="-1"/>
   </macro_controls>
   <MidiAutomation/>
   <MPEData Enabled="0"/>

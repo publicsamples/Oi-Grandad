@@ -7237,7 +7237,7 @@
           <Tables/>
           <SliderPacks/>
           <AudioFiles>
-            <AudioFile Index="0" EmbeddedData="" MinValue="0" MaxValue="325662"/>
+            <AudioFile Index="0" EmbeddedData="" MinValue="0" MaxValue="2228211"/>
           </AudioFiles>
           <Filters/>
           <DisplayBuffers/>
@@ -7264,7 +7264,7 @@
                      Automated="1"/>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="scrubBlend" DefaultValue="0.0"
                      Automated="1"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1" ID="reverse" DefaultValue="0.0"
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0" ID="reverse" DefaultValue="0.0"
                      Automated="1"/>
           <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="0" ID="phaseScatter"
                      DefaultValue="0.0" Automated="1"/>

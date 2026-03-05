@@ -169,7 +169,7 @@ for(s in ModMenus2)
        
        
 const var ModeMenus2 = [Content.getComponent("maxGrains2"),
-                        Content.getComponent("Voices2"),
+                       
                         Content.getComponent("OutputSelector1"),
                         Content.getComponent("type5"),
                         Content.getComponent("PitchMode2"),
@@ -203,7 +203,7 @@ const var ModMenus3 = [Content.getComponent("PosHeadSrcA9"),
               s.setLocalLookAndFeel(cBLaf);      
 
 const var ModeMenus3 = [Content.getComponent("maxGrains3"),
-                        Content.getComponent("Voices3"),
+                        
                         Content.getComponent("OutputSelector2"),
                         Content.getComponent("PitchMode3"),
                         Content.getComponent("type6"),
@@ -236,7 +236,7 @@ for(s in ModMenus4)
        s.setLocalLookAndFeel(cBLaf);
 
 const var ModeMenus4 = [Content.getComponent("maxGrains4"),
-                        Content.getComponent("Voices4"),
+                       
                         Content.getComponent("type7"),
                         Content.getComponent("type3"),
                         Content.getComponent("PitchMode4"),
@@ -282,6 +282,31 @@ const var Dir = [Content.getComponent("Dir1"),
                       Content.getComponent("Dir3"),
                       Content.getComponent("Dir4")];
                       
-//for(s in Dir)
-     //      s.setLocalLookAndFeel(cBLaf);      
+ 
+ const var Pb = [Content.getComponent("StgSel1"),
+            Content.getComponent("StgSel2"),
+            Content.getComponent("StgSel3"),
+            Content.getComponent("StgSel4")];    
+
+const var V2StageMods = [Content.getComponent("PosHeadSrcA5"),
+                         Content.getComponent("PosHeadSrcA6"),
+                         Content.getComponent("PosHeadSrcA8"),
+                         Content.getComponent("PosHeadSrcA7")];
+  
+  
+  for(s in V2StageMods)
+         s.setLocalLookAndFeel(cBLaf);              
+            
+            
+for(s in Pb)
+       s.setLocalLookAndFeel(cBLaf);                        
+                      
+for(s in Dir)
+       s.setLocalLookAndFeel(cBLaf);  
+       
+const var xfSel = [Content.getComponent("ComboBox26"),
+                   Content.getComponent("ComboBox1")];
+     
+    for(s in xfSel)
+           s.setLocalLookAndFeel(cBLaf);   
                             

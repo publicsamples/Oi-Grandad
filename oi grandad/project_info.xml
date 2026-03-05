@@ -12,8 +12,8 @@
   <AdditionalDspLibraries value=""/>
   <OSXStaticLibs value=""/>
   <WindowsStaticLibFolder value=""/>
-  <ExtraDefinitionsWindows value="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
-  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=2&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
+  <ExtraDefinitionsWindows value="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10"/>
+  <ExtraDefinitionsOSX value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"/>
   <ExtraDefinitionsIOS value="HISE_NUM_PLUGIN_CHANNELS=10&#10;"/>
   <ExtraDefinitionsLinux value="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;"/>
   <AppGroupID value=""/>
@@ -28,7 +28,7 @@
   <EncryptionKey value=""/>
   <LinkExpansionsToProject value="No"/>
   <ReadOnlyFactoryPresets value="No"/>
-  <ForceStereoOutput value="1"/>
+  <ForceStereoOutput value="0"/>
   <EnableMidiOut value="No"/>
   <AdminPermissions value="No"/>
   <EmbedUserPresets value="0"/>

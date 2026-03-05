@@ -234,6 +234,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 	double scrubMode = 0.0;     // 0 = normal, 1 = xfade
 	double scrubBlend = 0.0;    // 0–1 shaping
 	double directionMode = 0.0;   // 3-way menu packed into 0..1
+	bool directionSawMid = false; // detects 3-state controllers vs 0/1 toggles
 	double phaseScatter = 0.0;   // startSpraySamples (raw sample-domain amount)
 	// Subtle density-linked grain start spread. Tweak this to taste.
 	// Final spread in samples = maxStart * densityPositionSpreadRange * density.
@@ -245,6 +246,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double delta   = 1.0;
 		int noteNumber = 60;
 		double scrubQ = 0.0;
+		double densityMorphSmoothed = -1.0;
 		double speedPhase = 0.0;
 		double schedPhase = 0.0;
 		double schedStart = 0.0;
@@ -351,6 +353,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		{
 			scanPos = 0.0;
 			scrubQ  = 0.0;
+			densityMorphSmoothed = -1.0;
 			speedPhase = 0.0;
 			schedPhase = 0.0;
 			schedStart = 0.0;
@@ -467,7 +470,8 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		for (auto& v : voiceData)
 			v.reset();
 		formantRatioSmoothed = 1.0;
-		}
+			directionSawMid = false;
+	}
 	inline double getTailPhase(const VoiceData& v, int i)
 	{
 		if (i == 16) return v.schedPhase17;
@@ -1031,6 +1035,22 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			if (g > MAX_GRAINS) g = MAX_GRAINS;
 			int densitySlots = g;
 		bool isStackMode = (scrubBlend < 0.5);
+		double morphDensity = clamp01(density);
+		if (!isStackMode)
+		{
+			if (v.densityMorphSmoothed < 0.0)
+				v.densityMorphSmoothed = morphDensity;
+			double densitySmoothCoeff = 1.0;
+			if (sr > 0.0)
+				densitySmoothCoeff = 1.0 - Math.exp(-1.0 / (0.01 * sr)); // ~10ms
+			v.densityMorphSmoothed += (morphDensity - v.densityMorphSmoothed) * densitySmoothCoeff;
+			morphDensity = v.densityMorphSmoothed;
+		}
+		else
+		{
+			// Keep stack mode behavior unchanged while avoiding a jump when re-entering morph.
+			v.densityMorphSmoothed = morphDensity;
+		}
 		// =========================================================
 		// 16-GRAIN NORMALISATION  (APPLY BEFORE MIXING)
 		// =========================================================
@@ -1332,9 +1352,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		// --- Morph calculation (shared by all grains) ---
 		int baseIndex = 0;
 		double frac = 0.0;
-		if (scrubBlend > 0.5)
+		if (!isStackMode)
 		{
-			double pos = density * (double)(g - 1);
+			double pos = morphDensity * (double)(g - 1);
 			if (pos < 0.0) pos = 0.0;
 				if (pos > (double)(g - 1)) pos = (double)(g - 1);
 				baseIndex = (int)Math.floor(pos);
@@ -1393,7 +1413,7 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			w_raw15 *= m15;
 			w_raw16 *= m16;
 		}
-		double spreadNorm = isStackMode ? 1.0 : density;
+		double spreadNorm = isStackMode ? 1.0 : morphDensity;
 		double Lsum = 0.0;
 		double Rsum = 0.0;
 		int directionState = 0;
@@ -2321,9 +2341,22 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		// 19 — direction menu (3 slots mapped across 0..1)
 		if (P == 11)
 		{
-			if (v < 0.0) v = 0.0;
-				if (v > 1.0) v = 1.0;
-				directionMode = v;
+			// Accept both menu-style values (1..3) and normalized values (0..1).
+			// If only 0/1 values are ever seen, treat it like a legacy reverse toggle.
+			if (v > 1.0)
+			{
+				if (v > 3.0) v = 3.0;
+					directionMode = (v - 1.0) * 0.5; // 1,2,3 -> 0,0.5,1
+				directionSawMid = true;
+			}
+			else
+			{
+				if (v < 0.0) v = 0.0;
+					if (v > 1.0) v = 1.0;
+					if (v > 0.0001 && v < 0.9999)
+					directionSawMid = true;
+				directionMode = directionSawMid ? v : (v >= 0.5 ? 0.5 : 0.0);
+			}
 		}
 		// startSpraySamples (raw samples)
 		if (P == 12)
@@ -6299,18 +6332,10 @@ DECLARE_PARAMETER_RANGE_STEP(reverse_InputRange,
                              1., 
                              3., 
                              1.);
-DECLARE_PARAMETER_RANGE_STEP(reverse_0Range, 
-                             0., 
-                             1., 
-                             1.);
 
 template <int NV>
-using reverse_0 = parameter::from0To1<sn_impl::snex_node_t<NV>, 
-                                      11, 
-                                      reverse_0Range>;
-
-template <int NV>
-using reverse = parameter::chain<reverse_InputRange, reverse_0<NV>>;
+using reverse = parameter::chain<reverse_InputRange, 
+                                 parameter::plain<sn_impl::snex_node_t<NV>, 11>>;
 
 DECLARE_PARAMETER_RANGE_STEP(PositionSrc_InputRange, 
                              1., 
@@ -6486,10 +6511,15 @@ template <int NV>
 using GrainTempo = parameter::chain<GrainTempo_InputRange, 
                                     parameter::plain<sn_impl::pma7_t<NV>, 2>>;
 
+DECLARE_PARAMETER_RANGE_STEP(GrainSyncRange, 
+                             0., 
+                             1., 
+                             1.);
+
 template <int NV>
 using GrainSync = parameter::from0To1<sn_impl::tempo_sync_t<NV>, 
                                       2, 
-                                      reverse_0Range>;
+                                      GrainSyncRange>;
 
 template <int NV>
 using PreCutSrc = parameter::from0To1<sn_impl::branch13_t<NV>, 
