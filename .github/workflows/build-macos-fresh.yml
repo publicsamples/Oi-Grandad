@@ -117,7 +117,24 @@ jobs:
             s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
           ' "$pbxproj"
 
-          printf '%s\n' '#include "AppConfig.h"' > "$client_utils_cpp"
+          printf '%s\n' \
+            '/* CI patch: compatibility shims for legacy JUCE/HISE VST symbols. */' \
+            '#include "AppConfig.h"' \
+            '#if JUCE_MAC' \
+            '#include <juce_audio_plugin_client/detail/juce_VSTWindowUtilities.h>' \
+            'namespace juce {' \
+            'void initialiseMacVST() {}' \
+            'void* attachComponentToWindowRefVST (Component* c, void* parent, bool shouldIgnoreKeyPresses)' \
+            '{' \
+            '    auto flags = shouldIgnoreKeyPresses ? ComponentPeer::windowIgnoresKeyPresses : 0;' \
+            '    return detail::VSTWindowUtilities::attachComponentToWindowRefVST (c, flags, parent);' \
+            '}' \
+            'void detachComponentFromWindowRefVST (Component* c, void* parent, bool)' \
+            '{' \
+            '    detail::VSTWindowUtilities::detachComponentFromWindowRefVST (c, parent);' \
+            '}' \
+            '}' \
+            '#endif' > "$client_utils_cpp"
           printf '%s\n' '#include "AppConfig.h"' > "$vst_utils_mm"
 
           # Legacy VST3 SDK compatibility: older SDKs don't define newer speaker constants
