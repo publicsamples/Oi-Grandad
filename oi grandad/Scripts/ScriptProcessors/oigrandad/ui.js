@@ -1,6 +1,27 @@
 Content.makeFrontInterface(860, 690);
 
-Engine.setMaximumBlockSize(512);
+Engine.loadAudioFilesIntoPool();
+
+const var defaultRef = "{PROJECT_FOLDER}ClimA76-04.wav";
+
+const var g1 = Synth.getAudioSampleProcessor("Granular1");
+const var g2 = Synth.getAudioSampleProcessor("Granular2");
+const var g3 = Synth.getAudioSampleProcessor("Granular3");
+const var g4 = Synth.getAudioSampleProcessor("Granular4");
+
+const var slot1 = g1.getAudioFile(0);
+const var slot2 = g2.getAudioFile(0);
+const var slot3 = g3.getAudioFile(0);
+const var slot4 = g4.getAudioFile(0);
+
+// Delay ensures processors exist after compile
+Content.callAfterDelay(10, function()
+{
+    slot1.loadFile(defaultRef);
+    slot2.loadFile(defaultRef);
+    slot3.loadFile(defaultRef);
+    slot4.loadFile(defaultRef);
+});
 
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
 
@@ -136,16 +157,13 @@ const var LedPanel = Content.getComponent("LedPanel");
 const var Playback = Content.getComponent("Playback");
 
 const var XFcont = Content.getComponent("XFcont");
+
 const var xf1 = Synth.getEffect("Xf1");
 const var xf2 = Synth.getEffect("Xf2");
 const var xf3 = Synth.getEffect("Xf3");
 const var xf4 = Synth.getEffect("Xf4");
-const var xfade = Synth.getModulator("xfade");
 
-const var Voices1 = Content.getComponent("Voices1");
-const var Voices2 = Content.getComponent("Voices2");
-const var Voices3 = Content.getComponent("Voices3");
-const var Voices4 = Content.getComponent("Voices4");
+const var xfade = Synth.getModulator("xfade");
 
 const var VOICE0 = Content.getComponent("VOICE0");
 const var VOICE1 = Content.getComponent("VOICE1");
@@ -155,7 +173,7 @@ const var VOICE3 = Content.getComponent("VOICE3");
 
 inline function onPlaybackControl(component, value)
 {
-
+	//standard
 	if(value == 1)
 	{
 	XFcont.showControl(0); 
@@ -173,16 +191,18 @@ inline function onPlaybackControl(component, value)
 	VOICE1.showControl(1); 
 	VOICE2.showControl(1); 
 	VOICE3.showControl(1); 
-	Voices1.setValue(1);
-	Voices2.setValue(1);
-	Voices3.setValue(1);
-	Voices4.setValue(1);
 	gran.setBypassed(0);
 	gran1.setBypassed(0);
 	gran2.setBypassed(0);
 	gran3.setBypassed(0);
+	gran.setAttribute(gran.VoiceLimit, 1);
+	gran1.setAttribute(gran1.VoiceLimit, 1);
+	gran2.setAttribute(gran2.VoiceLimit, 1);
+	gran3.setAttribute(gran3.VoiceLimit, 1);
 	
 	}
+	
+	//Round Robin
 	
 		if(value == 2)
 	{
@@ -201,16 +221,17 @@ inline function onPlaybackControl(component, value)
 		VOICE1.showControl(1); 
 		VOICE2.showControl(1); 
 		VOICE3.showControl(1); 
-		Voices1.setValue(1);
-		Voices2.setValue(1);
-		Voices3.setValue(1);
-		Voices4.setValue(1);
 		gran.setBypassed(0);
 		gran1.setBypassed(0);
 		gran2.setBypassed(0);
 		gran3.setBypassed(0);
+		gran.setAttribute(gran.VoiceLimit, 1);
+		gran1.setAttribute(gran1.VoiceLimit, 1);
+		gran2.setAttribute(gran2.VoiceLimit, 1);
+		gran3.setAttribute(gran3.VoiceLimit, 1);
 	}
 	
+	//xfade
 	
 		if(value == 3)
 	{
@@ -229,16 +250,18 @@ inline function onPlaybackControl(component, value)
 		VOICE1.showControl(1); 
 		VOICE2.showControl(1); 
 		VOICE3.showControl(1); 
-		Voices1.setValue(1);
-		Voices2.setValue(1);
-		Voices3.setValue(1);
-		Voices4.setValue(1);
 		gran.setBypassed(0);
 		gran1.setBypassed(0);
 		gran2.setBypassed(0);
 		gran3.setBypassed(0);
+		gran.setAttribute(gran.VoiceLimit, 1);
+		gran1.setAttribute(gran1.VoiceLimit, 1);
+		gran2.setAttribute(gran2.VoiceLimit, 1);
+		gran3.setAttribute(gran3.VoiceLimit, 1);
 
 	}
+	
+	
 
 	if(value == 4)
 	{
@@ -257,20 +280,17 @@ inline function onPlaybackControl(component, value)
 	VOICE0.setValue(1); 
 	VOICE0.changed(); 
 	VOICE1.showControl(1); 
-	VOICE2.showControl(0); 
-	VOICE3.showControl(0); 
-	Voices1.setValue(4);
-	Voices2.setValue(4);
-	Voices3.setValue(1);
-	Voices4.setValue(1);
-	Voices1.changed();
-		Voices2.changed();
-		Voices3.changed();
-		Voices4.changed();
+	VOICE2.showControl(1); 
+	VOICE3.showControl(1); 
 	gran.setBypassed(0);
 	gran1.setBypassed(0);
-	gran2.setBypassed(1);
-	gran3.setBypassed(1);
+	gran2.setBypassed(0);
+	gran3.setBypassed(0);
+	gran.setAttribute(gran.VoiceLimit, 4);
+	gran1.setAttribute(gran1.VoiceLimit, 4);
+	gran2.setAttribute(gran2.VoiceLimit, 4);
+	gran3.setAttribute(gran3.VoiceLimit, 4);
+	
 	
 	}
 	
@@ -290,23 +310,49 @@ inline function onPlaybackControl(component, value)
 	VOICE0.showControl(1); 
 	VOICE0.setValue(1); 
 	VOICE0.changed(); 
-	VOICE1.showControl(0); 
+	VOICE1.showControl(1); 
 	VOICE2.showControl(0); 
 	VOICE3.showControl(0); 
-	Voices1.setValue(8);
-	Voices2.setValue(1);
-	Voices3.setValue(1);
-	Voices4.setValue(1);
-	Voices1.changed();
-	Voices2.changed();
-	Voices3.changed();
-	Voices4.changed();
 	gran.setBypassed(0);
-	gran1.setBypassed(1);
+	gran1.setBypassed(0);
 	gran2.setBypassed(1);
 	gran3.setBypassed(1);
+	gran.setAttribute(gran.VoiceLimit, 8);
+	gran1.setAttribute(gran1.VoiceLimit, 8);
+	gran2.setAttribute(gran2.VoiceLimit, 1);
+	gran3.setAttribute(gran3.VoiceLimit, 1);
 	
 	}
+	
+	if(value == 6)
+		{
+		XFcont.showControl(0); 
+		LedPanel.showControl(0); 
+		xf1.setBypassed(1);
+		xf2.setBypassed(1);
+		xf3.setBypassed(1);
+		xf4.setBypassed(1);
+		xfade.setBypassed(1);
+		Filter1.setBypassed(1);
+		Filter2.setBypassed(1);
+		Filter3.setBypassed(1);
+		Filter4.setBypassed(1);
+		VOICE0.showControl(1); 
+		VOICE0.setValue(1); 
+		VOICE0.changed(); 
+		VOICE1.showControl(0); 
+		VOICE2.showControl(0); 
+		VOICE3.showControl(0); 
+		gran.setBypassed(0);
+		gran1.setBypassed(1);
+		gran2.setBypassed(1);
+		gran3.setBypassed(1);
+		gran.setAttribute(gran.VoiceLimit, 16);
+		gran1.setAttribute(gran1.VoiceLimit, 1);
+		gran2.setAttribute(gran2.VoiceLimit, 1);
+		gran3.setAttribute(gran3.VoiceLimit, 1);
+		
+		}
 	
 };
 
