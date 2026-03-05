@@ -13,6 +13,18 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Rewrite hardcoded paths for CI (macOS)
+        shell: bash
+        run: |
+          set -euo pipefail
+          pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          test -f "$pbxproj"
+
+          HISE_ROOT="$GITHUB_WORKSPACE/oi grandad/Binaries" perl -0pi -e '
+            s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
+          ' "$pbxproj"
+
       - name: Sanity check JUCE modules path
         run: |
           ls -la "oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client" || exit 1
@@ -71,6 +83,27 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Rewrite hardcoded paths for CI (Windows)
+        shell: pwsh
+        run: |
+          $hiseRootPosix = "$env:GITHUB_WORKSPACE/oi grandad/Binaries"
+          $hiseRootWin = ($hiseRootPosix -replace '/', '\')
+
+          $files = @(
+            "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj",
+            "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
+          )
+
+          foreach ($file in $files) {
+            if (-not (Test-Path $file)) { throw "Missing file: $file" }
+            $content = Get-Content -Raw $file
+            $content = $content.Replace('\Users\rick\Documents\GitHub\HISE', $hiseRootWin)
+            $content = $content.Replace('/Users/rick/Documents/GitHub/HISE', $hiseRootPosix)
+            $content = $content.Replace('JUCE\modules\juce_audio_processors\format_types\VST3_SDK', 'JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK')
+            $content = $content.Replace('JUCE/modules/juce_audio_processors/format_types/VST3_SDK', 'JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK')
+            Set-Content -Path $file -Value $content -NoNewline
+          }
+
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
@@ -110,6 +143,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Rewrite hardcoded paths for CI (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          makefile="oi grandad/Binaries/Builds/LinuxMakefile/Makefile"
+          test -f "$makefile"
+
+          HISE_ROOT="$GITHUB_WORKSPACE/oi grandad/Binaries" perl -0pi -e '
+            s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
+          ' "$makefile"
 
       - name: Build VST3 (Linux)
         shell: bash
