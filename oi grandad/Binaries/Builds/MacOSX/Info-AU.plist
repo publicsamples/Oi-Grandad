@@ -41,7 +41,7 @@
         <key>subtype</key>
         <string>Msog</string>
         <key>version</key>
-        <integer>131842</integer>
+        <integer>0</integer>
         <key>resourceUsage</key>
         <dict>
           <key>network.client</key>
