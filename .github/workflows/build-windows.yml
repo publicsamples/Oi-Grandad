@@ -75,6 +75,16 @@ jobs:
               Set-Content -Path $_.FullName -Value $hc -NoNewline
             }
           }
+          $asciiHdr = Join-Path $juceTextDir "juce_CharPointer_ASCII.h"
+          if (Test-Path $asciiHdr) {
+            $ac = Get-Content -Raw -Path $asciiHdr
+            $ac = [regex]::Replace($ac, '\bstricmp\b', '_stricmp')
+            $ac = [regex]::Replace($ac, '\bstrnicmp\b', '_strnicmp')
+            Set-Content -Path $asciiHdr -Value $ac -NoNewline
+            if (Select-String -Path $asciiHdr -Pattern '\bstricmp\b' -Quiet) {
+              throw "Failed to patch stricmp in $asciiHdr"
+            }
+          }
 
           # Ensure FAUST headers exist at include path expected by HISE/JUCE.
           $faustRoot = Join-Path $faustInclude "faust"
