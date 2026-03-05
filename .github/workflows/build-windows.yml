@@ -127,8 +127,10 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $proj = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
-          msbuild $proj /m /t:Build /p:Configuration=Release /p:Platform=x64
+          $shared = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
+          $vst3 = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
+          msbuild $shared /m /t:Build /p:Configuration=Release /p:Platform=x64
+          msbuild $vst3 /m /t:Build /p:Configuration=Release /p:Platform=x64
 
       - name: Package (Windows)
         shell: pwsh
