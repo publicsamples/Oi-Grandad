@@ -43,6 +43,7 @@ jobs:
             -scheme "oi grandad - VST3" \
             -configuration Release \
             MACOSX_DEPLOYMENT_TARGET=10.13 \
+            OTHER_CPLUSPLUSFLAGS="-x objective-c++" \
             CODE_SIGNING_ALLOWED=NO \
             build
 
@@ -53,6 +54,7 @@ jobs:
             -scheme "oi grandad - AU" \
             -configuration Release \
             MACOSX_DEPLOYMENT_TARGET=10.13 \
+            OTHER_CPLUSPLUSFLAGS="-x objective-c++" \
             CODE_SIGNING_ALLOWED=NO \
             build
 
