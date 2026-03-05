@@ -1,6 +1,6 @@
 ## Oi, Grandad!
 
-Oi, Grandad! is a 4 voice granular synthesiser inspired by modular synthesis and certain, "lazy" DAW composition workflows.
+Oi, Grandad! is a granular synthesiser inspired by modular synthesis and certain, "lazy" DAW composition workflows.
 
 Two versions of Oi, Grandad! are currently maintained. **V1**, my first real attempt at making a plug-in, is generally more stable and can be considered feature complete. **V2** expands on the original idea with new features, a different approach to the user interface and is probably a bit buggier. 
 
