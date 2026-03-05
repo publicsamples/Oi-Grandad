@@ -37,6 +37,7 @@ jobs:
             -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
             -scheme "oi grandad - VST3" \
             -configuration Release \
+            MACOSX_DEPLOYMENT_TARGET=10.13 \
             CODE_SIGNING_ALLOWED=NO \
             build
 
@@ -46,6 +47,7 @@ jobs:
             -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
             -scheme "oi grandad - AU" \
             -configuration Release \
+            MACOSX_DEPLOYMENT_TARGET=10.13 \
             CODE_SIGNING_ALLOWED=NO \
             build
 
