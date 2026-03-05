@@ -63,6 +63,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # CI preflight: fail fast when generated shim includes cannot be resolved.
           base="$GITHUB_WORKSPACE/oi grandad/Binaries"
           cd "$base"
 
