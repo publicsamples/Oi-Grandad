@@ -94,6 +94,26 @@ jobs:
             fi
           done
 
+          # Ensure FAUST headers exist at the include path expected by HISE/JUCE.
+          faust_include="$GITHUB_WORKSPACE/HISE/tools/faust/include/faust"
+          mkdir -p "$faust_include/dsp" "$faust_include/gui"
+
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/dsp/dsp.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/dsp/dsp.h" "$faust_include/dsp/dsp.h"
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/UI.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/UI.h" "$faust_include/gui/UI.h"
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/meta.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/meta.h" "$faust_include/gui/meta.h"
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_lib/faust_wrap/dsp/libfaust.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_lib/faust_wrap/dsp/libfaust.h" "$faust_include/dsp/libfaust.h"
+
+          cat > "$faust_include/export.h" <<'EOF'
+          #pragma once
+          #ifndef FAUST_API
+          #define FAUST_API
+          #endif
+          EOF
+
           # JUCE's VST3 client pulls ObjC syntax on macOS; ensure this TU is compiled as ObjC++.
           perl -0pi -e '
             s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
