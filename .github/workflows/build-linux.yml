@@ -77,6 +77,8 @@ jobs:
           if [[ -f "$wrapper" ]]; then
             perl -0pi -e '
               s/if\s*\(\s*auto\*\s+handler\s*=\s*componentHandler\s*\)/if (auto* handler = componentHandler.get())/g;
+              s/list->getInt\s*\(\s*Vst::ChannelContext::kChannelColorKey\s*,\s*colour\s*\)/list->getInt (Vst::ChannelContext::kChannelColorKey, (Steinberg::int64&) colour)/g;
+              s/jmax\s*\(\s*\(juce::int64\)\s*0\s*,\s*processContext\.projectTimeSamples\s*\)/jmax ((juce::int64) 0, (juce::int64) processContext.projectTimeSamples)/g;
             ' "$wrapper"
           fi
 
