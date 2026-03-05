@@ -83,6 +83,17 @@ jobs:
             s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
           ' "$pbxproj"
 
+          # HISE JUCE snapshot compatibility: older wrapper uses IPtr directly in auto* init.
+          for wrapper in \
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3_Wrapper.cpp" \
+            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3_Wrapper.cpp"; do
+            if [[ -f "$wrapper" ]]; then
+              perl -0pi -e '
+                s/if\s*\(\s*auto\*\s+handler\s*=\s*componentHandler\s*\)/if (auto* handler = componentHandler.get())/g;
+              ' "$wrapper"
+            fi
+          done
+
           # JUCE's VST3 client pulls ObjC syntax on macOS; ensure this TU is compiled as ObjC++.
           perl -0pi -e '
             s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
