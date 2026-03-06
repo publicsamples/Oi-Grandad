@@ -12,6 +12,10 @@ concurrency:
 jobs:
   linux:
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu:20.04
+    env:
+      DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,10 +23,11 @@ jobs:
 
       - name: Install dependencies (Linux)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
+          apt-get update
+          apt-get install -y \
             build-essential \
             pkg-config \
+            zip \
             libasound2-dev \
             libfreetype6-dev \
             libcurl4-openssl-dev \
@@ -114,6 +119,19 @@ jobs:
       - name: Build VST3 (Linux)
         run: |
           make -C "oi grandad/Binaries/Builds/LinuxMakefile" CONFIG=Release VST3 -j"$(nproc)"
+
+      - name: Inspect runtime deps (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          so_file="$(find . -type f -path "*.vst3/Contents/*-linux/*.so" | head -n1)"
+          if [[ -z "${so_file:-}" ]]; then
+            echo "No Linux VST3 .so found for dependency inspection"
+            exit 1
+          fi
+          echo "Inspecting: $so_file"
+          ldd "$so_file" || true
+          strings "$so_file" | grep -E 'GLIBC_[0-9]+\.[0-9]+' | sort -u | tail -n 10 || true
 
       - name: Package (Linux)
         shell: bash
