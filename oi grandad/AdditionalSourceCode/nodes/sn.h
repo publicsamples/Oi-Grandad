@@ -3986,206 +3986,6 @@ using chain185_t = container::chain<parameter::empty,
                                     math::clear<NV>, 
                                     pma12_t<NV>, 
                                     pma21_t<NV>>;
-using global_cable190_t_index = global_cable_t_index;
-
-template <int NV>
-using global_cable190_t = routing::global_cable<global_cable190_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain203_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable190_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable191_t_index = global_cable2_t_index;
-
-template <int NV>
-using global_cable191_t = routing::global_cable<global_cable191_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain204_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable191_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable192_t_index = global_cable1_t_index;
-
-template <int NV>
-using global_cable192_t = routing::global_cable<global_cable192_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain205_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable192_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable193_t_index = global_cable14_t_index;
-
-template <int NV>
-using global_cable193_t = routing::global_cable<global_cable193_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain206_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable193_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable194_t_index = global_cable13_t_index;
-
-template <int NV>
-using global_cable194_t = routing::global_cable<global_cable194_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain207_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable194_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable195_t_index = global_cable12_t_index;
-
-template <int NV>
-using global_cable195_t = routing::global_cable<global_cable195_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain208_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable195_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable196_t_index = global_cable11_t_index;
-
-template <int NV>
-using global_cable196_t = routing::global_cable<global_cable196_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain209_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable196_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable197_t_index = global_cable10_t_index;
-
-template <int NV>
-using global_cable197_t = routing::global_cable<global_cable197_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain210_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable197_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable198_t_index = global_cable9_t_index;
-
-template <int NV>
-using global_cable198_t = routing::global_cable<global_cable198_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain211_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable198_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable199_t_index = global_cable8_t_index;
-
-template <int NV>
-using global_cable199_t = routing::global_cable<global_cable199_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain212_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable199_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable200_t_index = global_cable7_t_index;
-
-template <int NV>
-using global_cable200_t = routing::global_cable<global_cable200_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain213_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable200_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable201_t_index = global_cable6_t_index;
-
-template <int NV>
-using global_cable201_t = routing::global_cable<global_cable201_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain214_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable201_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable202_t_index = global_cable5_t_index;
-
-template <int NV>
-using global_cable202_t = routing::global_cable<global_cable202_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain215_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable202_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable203_t_index = global_cable4_t_index;
-
-template <int NV>
-using global_cable203_t = routing::global_cable<global_cable203_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain216_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable203_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable204_t_index = global_cable3_t_index;
-
-template <int NV>
-using global_cable204_t = routing::global_cable<global_cable204_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain217_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable204_t<NV>>, 
-                                    math::add<NV>>;
-using global_cable205_t_index = global_cable45_t_index;
-
-template <int NV>
-using global_cable205_t = routing::global_cable<global_cable205_t_index, 
-                                                parameter::plain<math::add<NV>, 0>>;
-
-template <int NV>
-using chain218_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, global_cable205_t<NV>>, 
-                                    math::add<NV>>;
-template <int NV>
-using branch12_t = container::branch<parameter::empty, 
-                                     wrap::fix<1, chain203_t<NV>>, 
-                                     chain204_t<NV>, 
-                                     chain205_t<NV>, 
-                                     chain206_t<NV>, 
-                                     chain207_t<NV>, 
-                                     chain208_t<NV>, 
-                                     chain209_t<NV>, 
-                                     chain210_t<NV>, 
-                                     chain211_t<NV>, 
-                                     chain212_t<NV>, 
-                                     chain213_t<NV>, 
-                                     chain214_t<NV>, 
-                                     chain215_t<NV>, 
-                                     chain216_t<NV>, 
-                                     chain217_t<NV>, 
-                                     chain218_t<NV>>;
-
-DECLARE_PARAMETER_RANGE(pma2_modRange, 
-                        0., 
-                        3200.);
-
-template <int NV>
-using pma2_mod = parameter::from0To1<snex_node_t<NV>, 
-                                     12, 
-                                     pma2_modRange>;
-
-template <int NV>
-using pma2_t = control::pma<NV, pma2_mod<NV>>;
-template <int NV>
-using peak12_t = wrap::mod<parameter::plain<pma2_t<NV>, 0>, 
-                           wrap::no_data<core::peak>>;
-
-template <int NV>
-using chain202_t = container::chain<parameter::empty, 
-                                    wrap::fix<1, branch12_t<NV>>, 
-                                    peak12_t<NV>, 
-                                    math::clear<NV>, 
-                                    pma2_t<NV>>;
 using global_cable206_t_index = global_cable_t_index;
 
 template <int NV>
@@ -4387,6 +4187,228 @@ using chain219_t = container::chain<parameter::empty,
                                     peak13_t<NV>, 
                                     math::clear<NV>, 
                                     pma14_t<NV>>;
+using global_cable318_t_index = global_cable_t_index;
+
+template <int NV>
+using global_cable318_t = routing::global_cable<global_cable318_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain339_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable318_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable319_t_index = global_cable2_t_index;
+
+template <int NV>
+using global_cable319_t = routing::global_cable<global_cable319_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain340_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable319_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable320_t_index = global_cable1_t_index;
+
+template <int NV>
+using global_cable320_t = routing::global_cable<global_cable320_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain341_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable320_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable321_t_index = global_cable14_t_index;
+
+template <int NV>
+using global_cable321_t = routing::global_cable<global_cable321_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain342_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable321_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable322_t_index = global_cable13_t_index;
+
+template <int NV>
+using global_cable322_t = routing::global_cable<global_cable322_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain343_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable322_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable323_t_index = global_cable12_t_index;
+
+template <int NV>
+using global_cable323_t = routing::global_cable<global_cable323_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain344_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable323_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable324_t_index = global_cable11_t_index;
+
+template <int NV>
+using global_cable324_t = routing::global_cable<global_cable324_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain345_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable324_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable325_t_index = global_cable10_t_index;
+
+template <int NV>
+using global_cable325_t = routing::global_cable<global_cable325_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain346_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable325_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable326_t_index = global_cable9_t_index;
+
+template <int NV>
+using global_cable326_t = routing::global_cable<global_cable326_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain347_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable326_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable327_t_index = global_cable8_t_index;
+
+template <int NV>
+using global_cable327_t = routing::global_cable<global_cable327_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain348_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable327_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable328_t_index = global_cable7_t_index;
+
+template <int NV>
+using global_cable328_t = routing::global_cable<global_cable328_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain349_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable328_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable329_t_index = global_cable6_t_index;
+
+template <int NV>
+using global_cable329_t = routing::global_cable<global_cable329_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain350_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable329_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable330_t_index = global_cable5_t_index;
+
+template <int NV>
+using global_cable330_t = routing::global_cable<global_cable330_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain351_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable330_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable331_t_index = global_cable4_t_index;
+
+template <int NV>
+using global_cable331_t = routing::global_cable<global_cable331_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain352_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable331_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable332_t_index = global_cable3_t_index;
+
+template <int NV>
+using global_cable332_t = routing::global_cable<global_cable332_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain353_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable332_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable333_t_index = global_cable45_t_index;
+
+template <int NV>
+using global_cable333_t = routing::global_cable<global_cable333_t_index, 
+                                                parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain354_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable333_t<NV>>, 
+                                    math::add<NV>>;
+template <int NV>
+using branch21_t = container::branch<parameter::empty, 
+                                     wrap::fix<1, chain339_t<NV>>, 
+                                     chain340_t<NV>, 
+                                     chain341_t<NV>, 
+                                     chain342_t<NV>, 
+                                     chain343_t<NV>, 
+                                     chain344_t<NV>, 
+                                     chain345_t<NV>, 
+                                     chain346_t<NV>, 
+                                     chain347_t<NV>, 
+                                     chain348_t<NV>, 
+                                     chain349_t<NV>, 
+                                     chain350_t<NV>, 
+                                     chain351_t<NV>, 
+                                     chain352_t<NV>, 
+                                     chain353_t<NV>, 
+                                     chain354_t<NV>>;
+
+template <int NV>
+using converter_t = control::converter<parameter::plain<snex_node_t<NV>, 12>, 
+                                       conversion_logic::ms2samples>;
+template <int NV>
+using tempo_sync2_t = wrap::mod<parameter::plain<converter_t<NV>, 0>, 
+                                control::tempo_sync<NV>>;
+DECLARE_PARAMETER_RANGE_STEP(pma22_modRange, 
+                             0., 
+                             1000., 
+                             0.1);
+
+template <int NV>
+using pma22_mod = parameter::from0To1<tempo_sync2_t<NV>, 
+                                      3, 
+                                      pma22_modRange>;
+
+template <int NV>
+using pma22_t = control::pma<NV, pma22_mod<NV>>;
+
+template <int NV>
+using pma23_mod = parameter::from0To1<tempo_sync2_t<NV>, 
+                                      0, 
+                                      pma21_modRange>;
+
+template <int NV>
+using pma23_t = control::pma<NV, pma23_mod<NV>>;
+
+template <int NV>
+using peak26_mod = parameter::chain<ranges::Identity, 
+                                    parameter::plain<pma22_t<NV>, 0>, 
+                                    parameter::plain<pma23_t<NV>, 0>>;
+
+template <int NV>
+using peak26_t = wrap::mod<peak26_mod<NV>, 
+                           wrap::no_data<core::peak>>;
+
+template <int NV>
+using chain338_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, branch21_t<NV>>, 
+                                    peak26_t<NV>, 
+                                    math::clear<NV>, 
+                                    pma22_t<NV>, 
+                                    pma23_t<NV>>;
 using global_cable222_t_index = global_cable_t_index;
 
 template <int NV>
@@ -5955,8 +5977,8 @@ using split_t = container::split<parameter::empty,
                                  chain151_t<NV>, 
                                  chain168_t<NV>, 
                                  chain185_t<NV>, 
-                                 chain202_t<NV>, 
                                  chain219_t<NV>, 
+                                 chain338_t<NV>, 
                                  chain236_t<NV>, 
                                  chain253_t<NV>, 
                                  chain287_t<NV>, 
@@ -6074,7 +6096,9 @@ using fix8_block_t = container::chain<parameter::empty,
                                       wrap::fix<2, modchain_t<NV>>, 
                                       tempo_sync1_t<NV>, 
                                       cable_table4_t<NV>, 
-                                      input_toggle_t<NV>>;
+                                      input_toggle_t<NV>, 
+                                      tempo_sync2_t<NV>, 
+                                      converter_t<NV>>;
 
 using global_cable15_t_index = runtime_target::indexers::fix_hash<162771259>;
 using peak1_mod = parameter::plain<routing::global_cable<global_cable15_t_index, parameter::empty>, 
@@ -6464,19 +6488,6 @@ template <int NV>
 using PitchSprdSrc = parameter::chain<PitchSprdSrc_InputRange, 
                                       PitchSprdSrc_0<NV>>;
 
-DECLARE_PARAMETER_RANGE_STEP(phaseScatterSrc_InputRange, 
-                             1., 
-                             16., 
-                             1.);
-template <int NV>
-using phaseScatterSrc_0 = parameter::from0To1<sn_impl::branch12_t<NV>, 
-                                              0, 
-                                              PositionSrc_0Range>;
-
-template <int NV>
-using phaseScatterSrc = parameter::chain<phaseScatterSrc_InputRange, 
-                                         phaseScatterSrc_0<NV>>;
-
 DECLARE_PARAMETER_RANGE(GrainSize_InputRange, 
                         5., 
                         1000.);
@@ -6673,6 +6684,37 @@ template <int NV>
 using delMode = parameter::chain<delMode_InputRange, delMode_0<NV>>;
 
 template <int NV>
+using JitSync = parameter::from0To1<sn_impl::tempo_sync2_t<NV>, 
+                                    2, 
+                                    GrainSyncRange>;
+
+template <int NV>
+using ScatterMod = parameter::chain<ranges::Identity, 
+                                    parameter::plain<sn_impl::pma22_t<NV>, 1>, 
+                                    parameter::plain<sn_impl::pma23_t<NV>, 1>>;
+
+DECLARE_PARAMETER_RANGE_STEP(ScatterSrc_InputRange, 
+                             1., 
+                             16., 
+                             1.);
+template <int NV>
+using ScatterSrc_0 = parameter::from0To1<sn_impl::branch21_t<NV>, 
+                                         0, 
+                                         PositionSrc_0Range>;
+
+template <int NV>
+using ScatterSrc = parameter::chain<ScatterSrc_InputRange, ScatterSrc_0<NV>>;
+
+DECLARE_PARAMETER_RANGE_STEP(ScatterTempo_InputRange, 
+                             0., 
+                             18., 
+                             1.);
+
+template <int NV>
+using ScatterTempo = parameter::chain<ScatterTempo_InputRange, 
+                                      parameter::plain<sn_impl::pma23_t<NV>, 2>>;
+
+template <int NV>
 using MaxGrains = parameter::plain<sn_impl::snex_node_t<NV>, 
                                    8>;
 template <int NV>
@@ -6708,10 +6750,6 @@ template <int NV>
 using PanSpreadMod = parameter::plain<sn_impl::pma11_t<NV>, 1>;
 template <int NV>
 using PitchSprd = parameter::plain<sn_impl::pma12_t<NV>, 2>;
-template <int NV>
-using phaseScatter = parameter::plain<sn_impl::pma2_t<NV>, 2>;
-template <int NV>
-using phaseScatterMod = parameter::plain<sn_impl::pma2_t<NV>, 1>;
 template <int NV>
 using GrainDiv = parameter::plain<sn_impl::tempo_sync_t<NV>, 
                                   1>;
@@ -6752,7 +6790,11 @@ using Fmix2 = parameter::plain<sn_impl::xfader2_t<NV>, 0>;
 template <int NV>
 using PitchDiv = parameter::plain<sn_impl::tempo_sync1_t<NV>, 
                                   1>;
-using JitSync = parameter::empty;
+template <int NV>
+using Scatter = parameter::plain<sn_impl::pma22_t<NV>, 2>;
+template <int NV>
+using ScatterDiv = parameter::plain<sn_impl::tempo_sync2_t<NV>, 
+                                    1>;
 template <int NV>
 using sn_t_plist = parameter::list<PitchMode<NV>, 
                                    MaxGrains<NV>, 
@@ -6785,9 +6827,6 @@ using sn_t_plist = parameter::list<PitchMode<NV>,
                                    PitchSprd<NV>, 
                                    PitchSprdMod<NV>, 
                                    PitchSprdSrc<NV>, 
-                                   phaseScatter<NV>, 
-                                   phaseScatterMod<NV>, 
-                                   phaseScatterSrc<NV>, 
                                    GrainSize<NV>, 
                                    GrainMod<NV>, 
                                    GrainSrc<NV>, 
@@ -6828,7 +6867,12 @@ using sn_t_plist = parameter::list<PitchMode<NV>,
                                    PitchTempo<NV>, 
                                    PitchDiv<NV>, 
                                    delMode<NV>, 
-                                   JitSync>;
+                                   JitSync<NV>, 
+                                   Scatter<NV>, 
+                                   ScatterMod<NV>, 
+                                   ScatterSrc<NV>, 
+                                   ScatterTempo<NV>, 
+                                   ScatterDiv<NV>>;
 }
 
 template <int NV>
@@ -6859,7 +6903,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		
 		SNEX_METADATA_ID(sn);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(1354)
+		SNEX_METADATA_ENCODED_PARAMETERS(1386)
 		{
 			0x005C, 0x0000, 0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0065, 
             0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 0x4000, 0x0040, 0x8000, 
@@ -6927,110 +6971,114 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x5000, 0x7469, 0x6863, 0x7053, 0x6472, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x7AE1, 0x3F14, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x001D, 0x0000, 0x6950, 0x6374, 0x5368, 0x7270, 0x4D64, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x3E19, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001E, 0x0000, 0x6950, 
             0x6374, 0x5368, 0x7270, 0x5364, 0x6372, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x4180, 0x0000, 0x40E0, 0x0000, 0x3F80, 0x0000, 0x3F80, 
-            0x005C, 0x001F, 0x0000, 0x6870, 0x7361, 0x5365, 0x6163, 0x7474, 
-            0x7265, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0020, 0x0000, 0x6870, 
-            0x7361, 0x5365, 0x6163, 0x7474, 0x7265, 0x6F4D, 0x0064, 0x0000, 
-            0x8000, 0x00BF, 0x8000, 0x663F, 0x2A66, 0x00BD, 0x8000, 0x003F, 
-            0x0000, 0x5C00, 0x2100, 0x0000, 0x7000, 0x6168, 0x6573, 0x6353, 
-            0x7461, 0x6574, 0x5372, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 
-            0x4180, 0x0000, 0x40C0, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
-            0x0022, 0x0000, 0x7247, 0x6961, 0x536E, 0x7A69, 0x0065, 0x0000, 
-            0xA000, 0x0040, 0x7A00, 0x0044, 0xE800, 0x0043, 0x8000, 0x003F, 
-            0x0000, 0x5C00, 0x2300, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6F4D, 
-            0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 
-            0x8000, 0x003F, 0x0000, 0x5C00, 0x2400, 0x0000, 0x4700, 0x6172, 
-            0x6E69, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
-            0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2500, 0x0000, 
-            0x4700, 0x6172, 0x6E69, 0x6554, 0x706D, 0x006F, 0x0000, 0x0000, 
-            0x0000, 0x9000, 0x0041, 0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 
-            0x5C3F, 0x2600, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6944, 0x0076, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x0042, 0x8000, 0x003F, 0x8000, 
-            0x003F, 0x8000, 0x5C3F, 0x2700, 0x0000, 0x4700, 0x6172, 0x6E69, 
-            0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x0000, 0x4180, 0x0000, 0x4100, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x005C, 0x001F, 0x0000, 0x7247, 0x6961, 0x536E, 0x7A69, 0x0065, 
+            0x0000, 0xA000, 0x0040, 0x7A00, 0x0044, 0x69EA, 0x0041, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x2000, 0x0000, 0x4700, 0x6172, 0x6E69, 
+            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2100, 0x0000, 0x4700, 
+            0x6172, 0x6E69, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
+            0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2200, 
+            0x0000, 0x4700, 0x6172, 0x6E69, 0x6554, 0x706D, 0x006F, 0x0000, 
+            0x0000, 0x0000, 0x9000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 
+            0x8000, 0x5C3F, 0x2300, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6944, 
+            0x0076, 0x0000, 0x8000, 0x003F, 0x0000, 0x0042, 0x8000, 0x003F, 
+            0x8000, 0x003F, 0x8000, 0x5C3F, 0x2400, 0x0000, 0x4700, 0x6172, 
+            0x6E69, 0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0025, 
+            0x0000, 0x6957, 0x536E, 0x6168, 0x6570, 0x6F4D, 0x0064, 0x0000, 
+            0x8000, 0x00BF, 0x8000, 0x0A3F, 0xA3D7, 0x003E, 0x8000, 0x003F, 
+            0x0000, 0x5C00, 0x2600, 0x0000, 0x5000, 0x6572, 0x7543, 0x0074, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x2700, 0x0000, 0x5000, 0x6572, 0x7543, 
+            0x4D74, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0028, 0x0000, 
-            0x6957, 0x536E, 0x6168, 0x6570, 0x6F4D, 0x0064, 0x0000, 0x8000, 
-            0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
-            0x5C00, 0x2900, 0x0000, 0x5000, 0x6572, 0x7543, 0x0074, 0x0000, 
+            0x7250, 0x4365, 0x7475, 0x7253, 0x0063, 0x0000, 0x0000, 0x0000, 
+            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x2900, 0x0000, 0x5000, 0x6572, 0x7543, 0x4D74, 0x646F, 0x0065, 
+            0x0000, 0x8000, 0x003F, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x5C3F, 0x2A00, 0x0000, 0x5000, 0x6572, 0x7543, 
+            0x5174, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x002B, 0x0000, 0x6552, 
+            0x6F73, 0x694D, 0x0078, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
+            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2C00, 0x0000, 
+            0x5200, 0x7365, 0x4D6F, 0x7869, 0x6F4D, 0x0064, 0x0000, 0x8000, 
+            0x00BF, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 
+            0x5C00, 0x2D00, 0x0000, 0x5200, 0x7365, 0x536F, 0x6372, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x005C, 0x002E, 0x0000, 0x6552, 0x5073, 0x7469, 
+            0x6863, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x002F, 0x0000, 0x6552, 
+            0x7073, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x005C, 0x0030, 0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x7253, 
+            0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x8000, 0x003F, 
+            0x8000, 0x003F, 0x8000, 0x5C3F, 0x3100, 0x0000, 0x5200, 0x7365, 
+            0x704C, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0032, 0x0000, 0x6552, 
+            0x4C73, 0x4D70, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0033, 
+            0x0000, 0x6552, 0x4C73, 0x5370, 0x6372, 0x0000, 0x0000, 0x3F80, 
+            0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x005C, 0x0034, 0x0000, 0x6F50, 0x7473, 0x7543, 0x0074, 0x0000, 
             0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 
-            0x0000, 0x5C00, 0x2A00, 0x0000, 0x5000, 0x6572, 0x7543, 0x4D74, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0xD70A, 0x3EA3, 
-            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x002B, 0x0000, 0x7250, 
-            0x4365, 0x7475, 0x7253, 0x0063, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2C00, 
-            0x0000, 0x5000, 0x6572, 0x7543, 0x4D74, 0x646F, 0x0065, 0x0000, 
-            0x8000, 0x003F, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 
-            0x8000, 0x5C3F, 0x2D00, 0x0000, 0x5000, 0x6572, 0x7543, 0x5174, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x3333, 0x3F33, 0x0000, 
-            0x3F80, 0x0000, 0x0000, 0x005C, 0x002E, 0x0000, 0x6552, 0x6F73, 
-            0x694D, 0x0078, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2F00, 0x0000, 0x5200, 
-            0x7365, 0x4D6F, 0x7869, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 
-            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
-            0x3000, 0x0000, 0x5200, 0x7365, 0x536F, 0x6372, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 0x0000, 
-            0x3F80, 0x005C, 0x0031, 0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0A3D, 0x3E57, 0x0000, 
-            0x3F80, 0x0000, 0x0000, 0x005C, 0x0032, 0x0000, 0x6552, 0x7073, 
-            0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 
-            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
-            0x0033, 0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x7253, 0x0063, 
-            0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x4000, 0x0040, 0x8000, 
-            0x003F, 0x8000, 0x5C3F, 0x3400, 0x0000, 0x5200, 0x7365, 0x704C, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
-            0x3F80, 0x0000, 0x0000, 0x005C, 0x0035, 0x0000, 0x6552, 0x4C73, 
-            0x4D70, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0036, 0x0000, 
-            0x6552, 0x4C73, 0x5370, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 
-            0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
-            0x0037, 0x0000, 0x6F50, 0x7473, 0x7543, 0x0074, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x5C3F, 0x428F, 0x003E, 0x8000, 0x003F, 0x0000, 
-            0x5C00, 0x3800, 0x0000, 0x5000, 0x736F, 0x4374, 0x7475, 0x6F4D, 
-            0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x7B3F, 0x2E14, 0x003E, 
-            0x8000, 0x003F, 0x0000, 0x5C00, 0x3900, 0x0000, 0x5000, 0x736F, 
-            0x4374, 0x7475, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3A00, 
-            0x0000, 0x5000, 0x736F, 0x5174, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x3F80, 0x47AE, 0x3F21, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
-            0x003B, 0x0000, 0x6F50, 0x7473, 0x6F4D, 0x6564, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x40A0, 0x0000, 0x4040, 0x0000, 0x3F80, 0x0000, 
-            0x3F80, 0x005C, 0x003C, 0x0000, 0x7247, 0x6961, 0x4F6E, 0x7475, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x3F80, 0x005C, 0x003D, 0x0000, 0x6552, 0x4F73, 
+            0x0000, 0x5C00, 0x3500, 0x0000, 0x5000, 0x736F, 0x4374, 0x7475, 
+            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3600, 0x0000, 0x5000, 
+            0x736F, 0x4374, 0x7475, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
+            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x3700, 0x0000, 0x5000, 0x736F, 0x5174, 0x0000, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x005C, 0x0038, 0x0000, 0x6F50, 0x7473, 0x6F4D, 0x6564, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x40A0, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x005C, 0x0039, 0x0000, 0x7247, 0x6961, 0x4F6E, 
             0x7475, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003E, 0x0000, 0x6147, 
-            0x6E69, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3F00, 0x0000, 
-            0x6700, 0x6961, 0x536E, 0x6372, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
-            0x0040, 0x0000, 0x6F56, 0x006C, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4100, 
-            0x0000, 0x5000, 0x7261, 0x006E, 0x0000, 0x8000, 0x00BF, 0x8000, 
-            0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4200, 
-            0x0000, 0x5000, 0x6E61, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003A, 0x0000, 0x6552, 
+            0x4F73, 0x7475, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 
+            0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003B, 0x0000, 
+            0x6147, 0x6E69, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3C00, 
+            0x0000, 0x6700, 0x6961, 0x536E, 0x6372, 0x0000, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x005C, 0x003D, 0x0000, 0x6F56, 0x006C, 0x0000, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
-            0x4300, 0x0000, 0x5000, 0x6E61, 0x7253, 0x0063, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x0041, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 
-            0x5C3F, 0x4400, 0x0000, 0x4600, 0x696D, 0x3178, 0x0000, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x005C, 0x0045, 0x0000, 0x6D46, 0x7869, 0x0032, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x5C00, 0x4600, 0x0000, 0x6600, 0x6565, 0x0064, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x263F, 0x6BD5, 0x003F, 0x8000, 0x003F, 
-            0x0000, 0x5C00, 0x4700, 0x0000, 0x5000, 0x7469, 0x6863, 0x6554, 
-            0x706D, 0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 0x2000, 
-            0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4800, 0x0000, 0x5000, 
-            0x7469, 0x6863, 0x6944, 0x0076, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4900, 
-            0x0000, 0x6400, 0x6C65, 0x6F4D, 0x6564, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x4040, 0x0000, 0x4040, 0x0000, 0x3F80, 0x0000, 0x3F80, 
-            0x005C, 0x004A, 0x0000, 0x694A, 0x5374, 0x6E79, 0x0063, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x0000
+            0x3E00, 0x0000, 0x5000, 0x7261, 0x006E, 0x0000, 0x8000, 0x00BF, 
+            0x8000, 0x4E3F, 0xBA6F, 0x00BC, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x3F00, 0x0000, 0x5000, 0x6E61, 0x6F4D, 0x0064, 0x0000, 0x8000, 
+            0x00BF, 0x8000, 0x913F, 0xA485, 0x003D, 0x8000, 0x003F, 0x0000, 
+            0x5C00, 0x4000, 0x0000, 0x5000, 0x6E61, 0x7253, 0x0063, 0x0000, 
+            0x8000, 0x003F, 0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 
+            0x8000, 0x5C3F, 0x4100, 0x0000, 0x4600, 0x696D, 0x3178, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0xD526, 0x3F6B, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x005C, 0x0042, 0x0000, 0x6D46, 0x7869, 0x0032, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x4300, 0x0000, 0x6600, 0x6565, 0x0064, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x4400, 0x0000, 0x5000, 0x7469, 0x6863, 
+            0x6554, 0x706D, 0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 
+            0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4500, 0x0000, 
+            0x5000, 0x7469, 0x6863, 0x6944, 0x0076, 0x0000, 0x8000, 0x003F, 
+            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x4600, 0x0000, 0x6400, 0x6C65, 0x6F4D, 0x6564, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x4040, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x005C, 0x0047, 0x0000, 0x694A, 0x5374, 0x6E79, 0x0063, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x4800, 0x0000, 0x5300, 0x6163, 0x7474, 
+            0x7265, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0049, 0x0000, 0x6353, 
+            0x7461, 0x6574, 0x4D72, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 
+            0x3F80, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x004A, 0x0000, 0x6353, 0x7461, 0x6574, 0x5372, 0x6372, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x005C, 0x004B, 0x0000, 0x6353, 0x7461, 0x6574, 
+            0x5472, 0x6D65, 0x6F70, 0x0000, 0x0000, 0x0000, 0x0000, 0x4190, 
+            0x0000, 0x4170, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x004C, 
+            0x0000, 0x6353, 0x7461, 0x6574, 0x4472, 0x7669, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x4180, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(2)
 		{
@@ -7527,112 +7575,113 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		auto& clear11 = this->getT(0).getT(0).getT(0).getT(8).getT(2);                           // math::clear<NV>
 		auto& pma12 = this->getT(0).getT(0).getT(0).getT(8).getT(3);                             // sn_impl::pma12_t<NV>
 		auto& pma21 = this->getT(0).getT(0).getT(0).getT(8).getT(4);                             // sn_impl::pma21_t<NV>
-		auto& chain202 = this->getT(0).getT(0).getT(0).getT(9);                                  // sn_impl::chain202_t<NV>
-		auto& branch12 = this->getT(0).getT(0).getT(0).getT(9).getT(0);                          // sn_impl::branch12_t<NV>
-		auto& chain203 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0);                  // sn_impl::chain203_t<NV>
-		auto& global_cable190 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0).getT(0);   // sn_impl::global_cable190_t<NV>
-		auto& add190 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0).getT(1);            // math::add<NV>
-		auto& chain204 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1);                  // sn_impl::chain204_t<NV>
-		auto& global_cable191 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1).getT(0);   // sn_impl::global_cable191_t<NV>
-		auto& add191 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1).getT(1);            // math::add<NV>
-		auto& chain205 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2);                  // sn_impl::chain205_t<NV>
-		auto& global_cable192 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2).getT(0);   // sn_impl::global_cable192_t<NV>
-		auto& add192 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2).getT(1);            // math::add<NV>
-		auto& chain206 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3);                  // sn_impl::chain206_t<NV>
-		auto& global_cable193 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3).getT(0);   // sn_impl::global_cable193_t<NV>
-		auto& add193 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3).getT(1);            // math::add<NV>
-		auto& chain207 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4);                  // sn_impl::chain207_t<NV>
-		auto& global_cable194 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4).getT(0);   // sn_impl::global_cable194_t<NV>
-		auto& add194 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4).getT(1);            // math::add<NV>
-		auto& chain208 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5);                  // sn_impl::chain208_t<NV>
-		auto& global_cable195 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5).getT(0);   // sn_impl::global_cable195_t<NV>
-		auto& add195 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5).getT(1);            // math::add<NV>
-		auto& chain209 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6);                  // sn_impl::chain209_t<NV>
-		auto& global_cable196 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6).getT(0);   // sn_impl::global_cable196_t<NV>
-		auto& add196 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6).getT(1);            // math::add<NV>
-		auto& chain210 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7);                  // sn_impl::chain210_t<NV>
-		auto& global_cable197 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7).getT(0);   // sn_impl::global_cable197_t<NV>
-		auto& add197 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7).getT(1);            // math::add<NV>
-		auto& chain211 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8);                  // sn_impl::chain211_t<NV>
-		auto& global_cable198 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8).getT(0);   // sn_impl::global_cable198_t<NV>
-		auto& add198 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8).getT(1);            // math::add<NV>
-		auto& chain212 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9);                  // sn_impl::chain212_t<NV>
-		auto& global_cable199 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9).getT(0);   // sn_impl::global_cable199_t<NV>
-		auto& add199 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9).getT(1);            // math::add<NV>
-		auto& chain213 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10);                 // sn_impl::chain213_t<NV>
-		auto& global_cable200 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10).getT(0);  // sn_impl::global_cable200_t<NV>
-		auto& add200 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10).getT(1);           // math::add<NV>
-		auto& chain214 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11);                 // sn_impl::chain214_t<NV>
-		auto& global_cable201 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11).getT(0);  // sn_impl::global_cable201_t<NV>
-		auto& add201 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11).getT(1);           // math::add<NV>
-		auto& chain215 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12);                 // sn_impl::chain215_t<NV>
-		auto& global_cable202 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12).getT(0);  // sn_impl::global_cable202_t<NV>
-		auto& add202 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12).getT(1);           // math::add<NV>
-		auto& chain216 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13);                 // sn_impl::chain216_t<NV>
-		auto& global_cable203 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13).getT(0);  // sn_impl::global_cable203_t<NV>
-		auto& add203 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13).getT(1);           // math::add<NV>
-		auto& chain217 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14);                 // sn_impl::chain217_t<NV>
-		auto& global_cable204 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14).getT(0);  // sn_impl::global_cable204_t<NV>
-		auto& add204 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14).getT(1);           // math::add<NV>
-		auto& chain218 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15);                 // sn_impl::chain218_t<NV>
-		auto& global_cable205 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15).getT(0);  // sn_impl::global_cable205_t<NV>
-		auto& add205 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15).getT(1);           // math::add<NV>
-		auto& peak12 = this->getT(0).getT(0).getT(0).getT(9).getT(1);                            // sn_impl::peak12_t<NV>
-		auto& clear12 = this->getT(0).getT(0).getT(0).getT(9).getT(2);                           // math::clear<NV>
-		auto& pma2 = this->getT(0).getT(0).getT(0).getT(9).getT(3);                              // sn_impl::pma2_t<NV>
-		auto& chain219 = this->getT(0).getT(0).getT(0).getT(10);                                 // sn_impl::chain219_t<NV>
-		auto& branch13 = this->getT(0).getT(0).getT(0).getT(10).getT(0);                         // sn_impl::branch13_t<NV>
-		auto& chain220 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0);                 // sn_impl::chain220_t<NV>
-		auto& global_cable206 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0).getT(0);  // sn_impl::global_cable206_t<NV>
-		auto& add206 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0).getT(1);           // math::add<NV>
-		auto& chain221 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1);                 // sn_impl::chain221_t<NV>
-		auto& global_cable207 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1).getT(0);  // sn_impl::global_cable207_t<NV>
-		auto& add207 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1).getT(1);           // math::add<NV>
-		auto& chain222 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2);                 // sn_impl::chain222_t<NV>
-		auto& global_cable208 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2).getT(0);  // sn_impl::global_cable208_t<NV>
-		auto& add208 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2).getT(1);           // math::add<NV>
-		auto& chain223 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3);                 // sn_impl::chain223_t<NV>
-		auto& global_cable209 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3).getT(0);  // sn_impl::global_cable209_t<NV>
-		auto& add209 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3).getT(1);           // math::add<NV>
-		auto& chain224 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4);                 // sn_impl::chain224_t<NV>
-		auto& global_cable210 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4).getT(0);  // sn_impl::global_cable210_t<NV>
-		auto& add210 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4).getT(1);           // math::add<NV>
-		auto& chain225 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5);                 // sn_impl::chain225_t<NV>
-		auto& global_cable211 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5).getT(0);  // sn_impl::global_cable211_t<NV>
-		auto& add211 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5).getT(1);           // math::add<NV>
-		auto& chain226 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6);                 // sn_impl::chain226_t<NV>
-		auto& global_cable212 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6).getT(0);  // sn_impl::global_cable212_t<NV>
-		auto& add212 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6).getT(1);           // math::add<NV>
-		auto& chain227 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7);                 // sn_impl::chain227_t<NV>
-		auto& global_cable213 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7).getT(0);  // sn_impl::global_cable213_t<NV>
-		auto& add213 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7).getT(1);           // math::add<NV>
-		auto& chain228 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8);                 // sn_impl::chain228_t<NV>
-		auto& global_cable214 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8).getT(0);  // sn_impl::global_cable214_t<NV>
-		auto& add214 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8).getT(1);           // math::add<NV>
-		auto& chain229 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9);                 // sn_impl::chain229_t<NV>
-		auto& global_cable215 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9).getT(0);  // sn_impl::global_cable215_t<NV>
-		auto& add215 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9).getT(1);           // math::add<NV>
-		auto& chain230 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10);                // sn_impl::chain230_t<NV>
-		auto& global_cable216 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10).getT(0); // sn_impl::global_cable216_t<NV>
-		auto& add216 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10).getT(1);          // math::add<NV>
-		auto& chain231 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11);                // sn_impl::chain231_t<NV>
-		auto& global_cable217 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11).getT(0); // sn_impl::global_cable217_t<NV>
-		auto& add217 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11).getT(1);          // math::add<NV>
-		auto& chain232 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12);                // sn_impl::chain232_t<NV>
-		auto& global_cable218 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12).getT(0); // sn_impl::global_cable218_t<NV>
-		auto& add218 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12).getT(1);          // math::add<NV>
-		auto& chain233 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13);                // sn_impl::chain233_t<NV>
-		auto& global_cable219 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13).getT(0); // sn_impl::global_cable219_t<NV>
-		auto& add219 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13).getT(1);          // math::add<NV>
-		auto& chain234 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14);                // sn_impl::chain234_t<NV>
-		auto& global_cable220 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14).getT(0); // sn_impl::global_cable220_t<NV>
-		auto& add220 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14).getT(1);          // math::add<NV>
-		auto& chain235 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15);                // sn_impl::chain235_t<NV>
-		auto& global_cable221 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15).getT(0); // sn_impl::global_cable221_t<NV>
-		auto& add221 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15).getT(1);          // math::add<NV>
-		auto& peak13 = this->getT(0).getT(0).getT(0).getT(10).getT(1);                           // sn_impl::peak13_t<NV>
-		auto& clear13 = this->getT(0).getT(0).getT(0).getT(10).getT(2);                          // math::clear<NV>
-		auto& pma14 = this->getT(0).getT(0).getT(0).getT(10).getT(3);                            // sn_impl::pma14_t<NV>
+		auto& chain219 = this->getT(0).getT(0).getT(0).getT(9);                                  // sn_impl::chain219_t<NV>
+		auto& branch13 = this->getT(0).getT(0).getT(0).getT(9).getT(0);                          // sn_impl::branch13_t<NV>
+		auto& chain220 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0);                  // sn_impl::chain220_t<NV>
+		auto& global_cable206 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0).getT(0);   // sn_impl::global_cable206_t<NV>
+		auto& add206 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0).getT(1);            // math::add<NV>
+		auto& chain221 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1);                  // sn_impl::chain221_t<NV>
+		auto& global_cable207 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1).getT(0);   // sn_impl::global_cable207_t<NV>
+		auto& add207 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1).getT(1);            // math::add<NV>
+		auto& chain222 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2);                  // sn_impl::chain222_t<NV>
+		auto& global_cable208 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2).getT(0);   // sn_impl::global_cable208_t<NV>
+		auto& add208 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2).getT(1);            // math::add<NV>
+		auto& chain223 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3);                  // sn_impl::chain223_t<NV>
+		auto& global_cable209 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3).getT(0);   // sn_impl::global_cable209_t<NV>
+		auto& add209 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3).getT(1);            // math::add<NV>
+		auto& chain224 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4);                  // sn_impl::chain224_t<NV>
+		auto& global_cable210 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4).getT(0);   // sn_impl::global_cable210_t<NV>
+		auto& add210 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4).getT(1);            // math::add<NV>
+		auto& chain225 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5);                  // sn_impl::chain225_t<NV>
+		auto& global_cable211 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5).getT(0);   // sn_impl::global_cable211_t<NV>
+		auto& add211 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5).getT(1);            // math::add<NV>
+		auto& chain226 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6);                  // sn_impl::chain226_t<NV>
+		auto& global_cable212 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6).getT(0);   // sn_impl::global_cable212_t<NV>
+		auto& add212 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6).getT(1);            // math::add<NV>
+		auto& chain227 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7);                  // sn_impl::chain227_t<NV>
+		auto& global_cable213 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7).getT(0);   // sn_impl::global_cable213_t<NV>
+		auto& add213 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7).getT(1);            // math::add<NV>
+		auto& chain228 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8);                  // sn_impl::chain228_t<NV>
+		auto& global_cable214 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8).getT(0);   // sn_impl::global_cable214_t<NV>
+		auto& add214 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8).getT(1);            // math::add<NV>
+		auto& chain229 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9);                  // sn_impl::chain229_t<NV>
+		auto& global_cable215 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9).getT(0);   // sn_impl::global_cable215_t<NV>
+		auto& add215 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9).getT(1);            // math::add<NV>
+		auto& chain230 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10);                 // sn_impl::chain230_t<NV>
+		auto& global_cable216 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10).getT(0);  // sn_impl::global_cable216_t<NV>
+		auto& add216 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10).getT(1);           // math::add<NV>
+		auto& chain231 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11);                 // sn_impl::chain231_t<NV>
+		auto& global_cable217 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11).getT(0);  // sn_impl::global_cable217_t<NV>
+		auto& add217 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11).getT(1);           // math::add<NV>
+		auto& chain232 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12);                 // sn_impl::chain232_t<NV>
+		auto& global_cable218 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12).getT(0);  // sn_impl::global_cable218_t<NV>
+		auto& add218 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12).getT(1);           // math::add<NV>
+		auto& chain233 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13);                 // sn_impl::chain233_t<NV>
+		auto& global_cable219 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13).getT(0);  // sn_impl::global_cable219_t<NV>
+		auto& add219 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13).getT(1);           // math::add<NV>
+		auto& chain234 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14);                 // sn_impl::chain234_t<NV>
+		auto& global_cable220 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14).getT(0);  // sn_impl::global_cable220_t<NV>
+		auto& add220 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14).getT(1);           // math::add<NV>
+		auto& chain235 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15);                 // sn_impl::chain235_t<NV>
+		auto& global_cable221 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15).getT(0);  // sn_impl::global_cable221_t<NV>
+		auto& add221 = this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15).getT(1);           // math::add<NV>
+		auto& peak13 = this->getT(0).getT(0).getT(0).getT(9).getT(1);                            // sn_impl::peak13_t<NV>
+		auto& clear13 = this->getT(0).getT(0).getT(0).getT(9).getT(2);                           // math::clear<NV>
+		auto& pma14 = this->getT(0).getT(0).getT(0).getT(9).getT(3);                             // sn_impl::pma14_t<NV>
+		auto& chain338 = this->getT(0).getT(0).getT(0).getT(10);                                 // sn_impl::chain338_t<NV>
+		auto& branch21 = this->getT(0).getT(0).getT(0).getT(10).getT(0);                         // sn_impl::branch21_t<NV>
+		auto& chain339 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0);                 // sn_impl::chain339_t<NV>
+		auto& global_cable318 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0).getT(0);  // sn_impl::global_cable318_t<NV>
+		auto& add318 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0).getT(1);           // math::add<NV>
+		auto& chain340 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1);                 // sn_impl::chain340_t<NV>
+		auto& global_cable319 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1).getT(0);  // sn_impl::global_cable319_t<NV>
+		auto& add319 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1).getT(1);           // math::add<NV>
+		auto& chain341 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2);                 // sn_impl::chain341_t<NV>
+		auto& global_cable320 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2).getT(0);  // sn_impl::global_cable320_t<NV>
+		auto& add320 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2).getT(1);           // math::add<NV>
+		auto& chain342 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3);                 // sn_impl::chain342_t<NV>
+		auto& global_cable321 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3).getT(0);  // sn_impl::global_cable321_t<NV>
+		auto& add321 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3).getT(1);           // math::add<NV>
+		auto& chain343 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4);                 // sn_impl::chain343_t<NV>
+		auto& global_cable322 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4).getT(0);  // sn_impl::global_cable322_t<NV>
+		auto& add322 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4).getT(1);           // math::add<NV>
+		auto& chain344 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5);                 // sn_impl::chain344_t<NV>
+		auto& global_cable323 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5).getT(0);  // sn_impl::global_cable323_t<NV>
+		auto& add323 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5).getT(1);           // math::add<NV>
+		auto& chain345 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6);                 // sn_impl::chain345_t<NV>
+		auto& global_cable324 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6).getT(0);  // sn_impl::global_cable324_t<NV>
+		auto& add324 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6).getT(1);           // math::add<NV>
+		auto& chain346 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7);                 // sn_impl::chain346_t<NV>
+		auto& global_cable325 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7).getT(0);  // sn_impl::global_cable325_t<NV>
+		auto& add325 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7).getT(1);           // math::add<NV>
+		auto& chain347 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8);                 // sn_impl::chain347_t<NV>
+		auto& global_cable326 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8).getT(0);  // sn_impl::global_cable326_t<NV>
+		auto& add326 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8).getT(1);           // math::add<NV>
+		auto& chain348 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9);                 // sn_impl::chain348_t<NV>
+		auto& global_cable327 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9).getT(0);  // sn_impl::global_cable327_t<NV>
+		auto& add327 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9).getT(1);           // math::add<NV>
+		auto& chain349 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10);                // sn_impl::chain349_t<NV>
+		auto& global_cable328 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10).getT(0); // sn_impl::global_cable328_t<NV>
+		auto& add328 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10).getT(1);          // math::add<NV>
+		auto& chain350 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11);                // sn_impl::chain350_t<NV>
+		auto& global_cable329 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11).getT(0); // sn_impl::global_cable329_t<NV>
+		auto& add329 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11).getT(1);          // math::add<NV>
+		auto& chain351 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12);                // sn_impl::chain351_t<NV>
+		auto& global_cable330 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12).getT(0); // sn_impl::global_cable330_t<NV>
+		auto& add330 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12).getT(1);          // math::add<NV>
+		auto& chain352 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13);                // sn_impl::chain352_t<NV>
+		auto& global_cable331 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13).getT(0); // sn_impl::global_cable331_t<NV>
+		auto& add331 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13).getT(1);          // math::add<NV>
+		auto& chain353 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14);                // sn_impl::chain353_t<NV>
+		auto& global_cable332 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14).getT(0); // sn_impl::global_cable332_t<NV>
+		auto& add332 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14).getT(1);          // math::add<NV>
+		auto& chain354 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15);                // sn_impl::chain354_t<NV>
+		auto& global_cable333 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15).getT(0); // sn_impl::global_cable333_t<NV>
+		auto& add333 = this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15).getT(1);          // math::add<NV>
+		auto& peak26 = this->getT(0).getT(0).getT(0).getT(10).getT(1);                           // sn_impl::peak26_t<NV>
+		auto& clear20 = this->getT(0).getT(0).getT(0).getT(10).getT(2);                          // math::clear<NV>
+		auto& pma22 = this->getT(0).getT(0).getT(0).getT(10).getT(3);                            // sn_impl::pma22_t<NV>
+		auto& pma23 = this->getT(0).getT(0).getT(0).getT(10).getT(4);                            // sn_impl::pma23_t<NV>
 		auto& chain236 = this->getT(0).getT(0).getT(0).getT(11);                                 // sn_impl::chain236_t<NV>
 		auto& branch14 = this->getT(0).getT(0).getT(0).getT(11).getT(0);                         // sn_impl::branch14_t<NV>
 		auto& chain237 = this->getT(0).getT(0).getT(0).getT(11).getT(0).getT(0);                 // sn_impl::chain237_t<NV>
@@ -8009,6 +8058,8 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		auto& tempo_sync1 = this->getT(0).getT(1);                                               // sn_impl::tempo_sync1_t<NV>
 		auto& cable_table4 = this->getT(0).getT(2);                                              // sn_impl::cable_table4_t<NV>
 		auto& input_toggle = this->getT(0).getT(3);                                              // sn_impl::input_toggle_t<NV>
+		auto& tempo_sync2 = this->getT(0).getT(4);                                               // sn_impl::tempo_sync2_t<NV>
+		auto& converter = this->getT(0).getT(5);                                                 // sn_impl::converter_t<NV>
 		auto& snex_node = this->getT(1);                                                         // sn_impl::snex_node_t<NV>
 		auto& branch2 = this->getT(2);                                                           // sn_impl::branch2_t
 		auto& chain25 = this->getT(2).getT(0);                                                   // sn_impl::chain25_t
@@ -8169,93 +8220,101 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		
 		this->getParameterT(30).connectT(0, branch11); // PitchSprdSrc -> branch11::Index
 		
-		this->getParameterT(31).connectT(0, pma2); // phaseScatter -> pma2::Add
+		this->getParameterT(31).connectT(0, pma8); // GrainSize -> pma8::Add
 		
-		this->getParameterT(32).connectT(0, pma2); // phaseScatterMod -> pma2::Multiply
-		
-		this->getParameterT(33).connectT(0, branch12); // phaseScatterSrc -> branch12::Index
-		
-		this->getParameterT(34).connectT(0, pma8); // GrainSize -> pma8::Add
-		
-		auto& GrainMod_p = this->getParameterT(35);
+		auto& GrainMod_p = this->getParameterT(32);
 		GrainMod_p.connectT(0, pma7); // GrainMod -> pma7::Multiply
 		GrainMod_p.connectT(1, pma8); // GrainMod -> pma8::Multiply
 		
-		this->getParameterT(36).connectT(0, branch7); // GrainSrc -> branch7::Index
+		this->getParameterT(33).connectT(0, branch7); // GrainSrc -> branch7::Index
 		
-		this->getParameterT(37).connectT(0, pma7); // GrainTempo -> pma7::Add
+		this->getParameterT(34).connectT(0, pma7); // GrainTempo -> pma7::Add
 		
-		this->getParameterT(38).connectT(0, tempo_sync); // GrainDiv -> tempo_sync::Multiplier
+		this->getParameterT(35).connectT(0, tempo_sync); // GrainDiv -> tempo_sync::Multiplier
 		
-		this->getParameterT(39).connectT(0, tempo_sync); // GrainSync -> tempo_sync::Enabled
+		this->getParameterT(36).connectT(0, tempo_sync); // GrainSync -> tempo_sync::Enabled
 		
-		this->getParameterT(40).connectT(0, pma10); // WinShapeMod -> pma10::Multiply
+		this->getParameterT(37).connectT(0, pma10); // WinShapeMod -> pma10::Multiply
 		
-		this->getParameterT(41).connectT(0, pma14); // PreCut -> pma14::Add
+		this->getParameterT(38).connectT(0, pma14); // PreCut -> pma14::Add
 		
-		this->getParameterT(42).connectT(0, pma14); // PreCutMod -> pma14::Multiply
+		this->getParameterT(39).connectT(0, pma14); // PreCutMod -> pma14::Multiply
 		
-		this->getParameterT(43).connectT(0, branch13); // PreCutSrc -> branch13::Index
+		this->getParameterT(40).connectT(0, branch13); // PreCutSrc -> branch13::Index
 		
-		this->getParameterT(44).connectT(0, svf1); // PreCutMode -> svf1::Mode
+		this->getParameterT(41).connectT(0, svf1); // PreCutMode -> svf1::Mode
 		
-		this->getParameterT(45).connectT(0, svf1); // PreCutQ -> svf1::Q
+		this->getParameterT(42).connectT(0, svf1); // PreCutQ -> svf1::Q
 		
-		this->getParameterT(46).connectT(0, pma15); // ResoMix -> pma15::Add
+		this->getParameterT(43).connectT(0, pma15); // ResoMix -> pma15::Add
 		
-		this->getParameterT(47).connectT(0, pma15); // ResoMixMod -> pma15::Multiply
+		this->getParameterT(44).connectT(0, pma15); // ResoMixMod -> pma15::Multiply
 		
-		this->getParameterT(48).connectT(0, branch14); // ResoSrc -> branch14::Index
+		this->getParameterT(45).connectT(0, branch14); // ResoSrc -> branch14::Index
 		
-		this->getParameterT(49).connectT(0, pma16); // ResPitch -> pma16::Add
+		this->getParameterT(46).connectT(0, pma16); // ResPitch -> pma16::Add
 		
-		this->getParameterT(50).connectT(0, pma16); // RespPitchMod -> pma16::Multiply
+		this->getParameterT(47).connectT(0, pma16); // RespPitchMod -> pma16::Multiply
 		
-		this->getParameterT(51).connectT(0, branch15); // ResPitchSrc -> branch15::Index
+		this->getParameterT(48).connectT(0, branch15); // ResPitchSrc -> branch15::Index
 		
-		this->getParameterT(52).connectT(0, pma18); // ResLp -> pma18::Add
+		this->getParameterT(49).connectT(0, pma18); // ResLp -> pma18::Add
 		
-		this->getParameterT(53).connectT(0, pma18); // ResLpMod -> pma18::Multiply
+		this->getParameterT(50).connectT(0, pma18); // ResLpMod -> pma18::Multiply
 		
-		this->getParameterT(54).connectT(0, branch17); // ResLpSrc -> branch17::Index
+		this->getParameterT(51).connectT(0, branch17); // ResLpSrc -> branch17::Index
 		
-		this->getParameterT(55).connectT(0, pma17); // PostCut -> pma17::Add
+		this->getParameterT(52).connectT(0, pma17); // PostCut -> pma17::Add
 		
-		this->getParameterT(56).connectT(0, pma17); // PostCutMod -> pma17::Multiply
+		this->getParameterT(53).connectT(0, pma17); // PostCutMod -> pma17::Multiply
 		
-		this->getParameterT(57).connectT(0, branch16); // PostCutSrc -> branch16::Index
+		this->getParameterT(54).connectT(0, branch16); // PostCutSrc -> branch16::Index
 		
-		this->getParameterT(58).connectT(0, svf2); // PostQ -> svf2::Q
+		this->getParameterT(55).connectT(0, svf2); // PostQ -> svf2::Q
 		
-		this->getParameterT(59).connectT(0, svf2); // PostMode -> svf2::Mode
+		this->getParameterT(56).connectT(0, svf2); // PostMode -> svf2::Mode
 		
-		this->getParameterT(60).connectT(0, branch2); // GrainOut -> branch2::Index
+		this->getParameterT(57).connectT(0, branch2); // GrainOut -> branch2::Index
 		
-		this->getParameterT(61).connectT(0, branch18); // ResOut -> branch18::Index
+		this->getParameterT(58).connectT(0, branch18); // ResOut -> branch18::Index
 		
-		this->getParameterT(62).connectT(0, pma19); // GainMod -> pma19::Multiply
+		this->getParameterT(59).connectT(0, pma19); // GainMod -> pma19::Multiply
 		
-		this->getParameterT(63).connectT(0, branch19); // gainSrc -> branch19::Index
+		this->getParameterT(60).connectT(0, branch19); // gainSrc -> branch19::Index
 		
-		this->getParameterT(64).connectT(0, pma19); // Vol -> pma19::Add
+		this->getParameterT(61).connectT(0, pma19); // Vol -> pma19::Add
 		
-		this->getParameterT(65).connectT(0, pma20); // Parn -> pma20::Add
+		this->getParameterT(62).connectT(0, pma20); // Parn -> pma20::Add
 		
-		this->getParameterT(66).connectT(0, pma20); // PanMod -> pma20::Multiply
+		this->getParameterT(63).connectT(0, pma20); // PanMod -> pma20::Multiply
 		
-		this->getParameterT(67).connectT(0, branch20); // PanSrc -> branch20::Index
+		this->getParameterT(64).connectT(0, branch20); // PanSrc -> branch20::Index
 		
-		this->getParameterT(68).connectT(0, xfader1); // Fmix1 -> xfader1::Value
+		this->getParameterT(65).connectT(0, xfader1); // Fmix1 -> xfader1::Value
 		
-		this->getParameterT(69).connectT(0, xfader2); // Fmix2 -> xfader2::Value
+		this->getParameterT(66).connectT(0, xfader2); // Fmix2 -> xfader2::Value
 		
-		this->getParameterT(70).connectT(0, receive3); // feed -> receive3::Feedback
+		this->getParameterT(67).connectT(0, receive3); // feed -> receive3::Feedback
 		
-		this->getParameterT(71).connectT(0, pma21); // PitchTempo -> pma21::Add
+		this->getParameterT(68).connectT(0, pma21); // PitchTempo -> pma21::Add
 		
-		this->getParameterT(72).connectT(0, tempo_sync1); // PitchDiv -> tempo_sync1::Multiplier
+		this->getParameterT(69).connectT(0, tempo_sync1); // PitchDiv -> tempo_sync1::Multiplier
 		
-		this->getParameterT(73).connectT(0, branch1); // delMode -> branch1::Index
+		this->getParameterT(70).connectT(0, branch1); // delMode -> branch1::Index
+		
+		this->getParameterT(71).connectT(0, tempo_sync2); // JitSync -> tempo_sync2::Enabled
+		
+		this->getParameterT(72).connectT(0, pma22); // Scatter -> pma22::Add
+		
+		auto& ScatterMod_p = this->getParameterT(73);
+		ScatterMod_p.connectT(0, pma22); // ScatterMod -> pma22::Multiply
+		ScatterMod_p.connectT(1, pma23); // ScatterMod -> pma23::Multiply
+		
+		this->getParameterT(74).connectT(0, branch21); // ScatterSrc -> branch21::Index
+		
+		this->getParameterT(75).connectT(0, pma23); // ScatterTempo -> pma23::Add
+		
+		this->getParameterT(76).connectT(0, tempo_sync2); // ScatterDiv -> tempo_sync2::Multiplier
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -8429,24 +8488,6 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		pma21.getWrappedObject().getParameter().connectT(0, tempo_sync1);         // pma21 -> tempo_sync1::Tempo
 		peak11.getParameter().connectT(0, pma12);                                 // peak11 -> pma12::Value
 		peak11.getParameter().connectT(1, pma21);                                 // peak11 -> pma21::Value
-		global_cable190.getWrappedObject().getParameter().connectT(0, add190);    // global_cable190 -> add190::Value
-		global_cable191.getWrappedObject().getParameter().connectT(0, add191);    // global_cable191 -> add191::Value
-		global_cable192.getWrappedObject().getParameter().connectT(0, add192);    // global_cable192 -> add192::Value
-		global_cable193.getWrappedObject().getParameter().connectT(0, add193);    // global_cable193 -> add193::Value
-		global_cable194.getWrappedObject().getParameter().connectT(0, add194);    // global_cable194 -> add194::Value
-		global_cable195.getWrappedObject().getParameter().connectT(0, add195);    // global_cable195 -> add195::Value
-		global_cable196.getWrappedObject().getParameter().connectT(0, add196);    // global_cable196 -> add196::Value
-		global_cable197.getWrappedObject().getParameter().connectT(0, add197);    // global_cable197 -> add197::Value
-		global_cable198.getWrappedObject().getParameter().connectT(0, add198);    // global_cable198 -> add198::Value
-		global_cable199.getWrappedObject().getParameter().connectT(0, add199);    // global_cable199 -> add199::Value
-		global_cable200.getWrappedObject().getParameter().connectT(0, add200);    // global_cable200 -> add200::Value
-		global_cable201.getWrappedObject().getParameter().connectT(0, add201);    // global_cable201 -> add201::Value
-		global_cable202.getWrappedObject().getParameter().connectT(0, add202);    // global_cable202 -> add202::Value
-		global_cable203.getWrappedObject().getParameter().connectT(0, add203);    // global_cable203 -> add203::Value
-		global_cable204.getWrappedObject().getParameter().connectT(0, add204);    // global_cable204 -> add204::Value
-		global_cable205.getWrappedObject().getParameter().connectT(0, add205);    // global_cable205 -> add205::Value
-		pma2.getWrappedObject().getParameter().connectT(0, snex_node);            // pma2 -> snex_node::phaseScatter
-		peak12.getParameter().connectT(0, pma2);                                  // peak12 -> pma2::Value
 		global_cable206.getWrappedObject().getParameter().connectT(0, add206);    // global_cable206 -> add206::Value
 		global_cable207.getWrappedObject().getParameter().connectT(0, add207);    // global_cable207 -> add207::Value
 		global_cable208.getWrappedObject().getParameter().connectT(0, add208);    // global_cable208 -> add208::Value
@@ -8465,6 +8506,28 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		global_cable221.getWrappedObject().getParameter().connectT(0, add221);    // global_cable221 -> add221::Value
 		pma14.getWrappedObject().getParameter().connectT(0, svf1);                // pma14 -> svf1::Frequency
 		peak13.getParameter().connectT(0, pma14);                                 // peak13 -> pma14::Value
+		global_cable318.getWrappedObject().getParameter().connectT(0, add318);    // global_cable318 -> add318::Value
+		global_cable319.getWrappedObject().getParameter().connectT(0, add319);    // global_cable319 -> add319::Value
+		global_cable320.getWrappedObject().getParameter().connectT(0, add320);    // global_cable320 -> add320::Value
+		global_cable321.getWrappedObject().getParameter().connectT(0, add321);    // global_cable321 -> add321::Value
+		global_cable322.getWrappedObject().getParameter().connectT(0, add322);    // global_cable322 -> add322::Value
+		global_cable323.getWrappedObject().getParameter().connectT(0, add323);    // global_cable323 -> add323::Value
+		global_cable324.getWrappedObject().getParameter().connectT(0, add324);    // global_cable324 -> add324::Value
+		global_cable325.getWrappedObject().getParameter().connectT(0, add325);    // global_cable325 -> add325::Value
+		global_cable326.getWrappedObject().getParameter().connectT(0, add326);    // global_cable326 -> add326::Value
+		global_cable327.getWrappedObject().getParameter().connectT(0, add327);    // global_cable327 -> add327::Value
+		global_cable328.getWrappedObject().getParameter().connectT(0, add328);    // global_cable328 -> add328::Value
+		global_cable329.getWrappedObject().getParameter().connectT(0, add329);    // global_cable329 -> add329::Value
+		global_cable330.getWrappedObject().getParameter().connectT(0, add330);    // global_cable330 -> add330::Value
+		global_cable331.getWrappedObject().getParameter().connectT(0, add331);    // global_cable331 -> add331::Value
+		global_cable332.getWrappedObject().getParameter().connectT(0, add332);    // global_cable332 -> add332::Value
+		global_cable333.getWrappedObject().getParameter().connectT(0, add333);    // global_cable333 -> add333::Value
+		converter.getWrappedObject().getParameter().connectT(0, snex_node);       // converter -> snex_node::phaseScatter
+		tempo_sync2.getParameter().connectT(0, converter);                        // tempo_sync2 -> converter::Value
+		pma22.getWrappedObject().getParameter().connectT(0, tempo_sync2);         // pma22 -> tempo_sync2::UnsyncedTime
+		pma23.getWrappedObject().getParameter().connectT(0, tempo_sync2);         // pma23 -> tempo_sync2::Tempo
+		peak26.getParameter().connectT(0, pma22);                                 // peak26 -> pma22::Value
+		peak26.getParameter().connectT(1, pma23);                                 // peak26 -> pma23::Value
 		global_cable222.getWrappedObject().getParameter().connectT(0, add222);    // global_cable222 -> add222::Value
 		global_cable223.getWrappedObject().getParameter().connectT(0, add223);    // global_cable223 -> add223::Value
 		global_cable224.getWrappedObject().getParameter().connectT(0, add224);    // global_cable224 -> add224::Value
@@ -9291,78 +9354,6 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // pma21::Multiply is automated
 		; // pma21::Add is automated
 		
-		; // branch12::Index is automated
-		
-		global_cable190.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add190::Value is automated
-		
-		global_cable191.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add191::Value is automated
-		
-		global_cable192.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add192::Value is automated
-		
-		global_cable193.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add193::Value is automated
-		
-		global_cable194.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add194::Value is automated
-		
-		global_cable195.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add195::Value is automated
-		
-		global_cable196.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add196::Value is automated
-		
-		global_cable197.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add197::Value is automated
-		
-		global_cable198.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add198::Value is automated
-		
-		global_cable199.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add199::Value is automated
-		
-		global_cable200.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add200::Value is automated
-		
-		global_cable201.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add201::Value is automated
-		
-		global_cable202.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add202::Value is automated
-		
-		global_cable203.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add203::Value is automated
-		
-		global_cable204.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add204::Value is automated
-		
-		global_cable205.setParameterT(0, 1.); // routing::global_cable::Value
-		
-		; // add205::Value is automated
-		
-		clear12.setParameterT(0, 0.); // math::clear::Value
-		
-		; // pma2::Value is automated
-		; // pma2::Multiply is automated
-		; // pma2::Add is automated
-		
 		; // branch13::Index is automated
 		
 		global_cable206.setParameterT(0, 1.); // routing::global_cable::Value
@@ -9434,6 +9425,82 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // pma14::Value is automated
 		; // pma14::Multiply is automated
 		; // pma14::Add is automated
+		
+		; // branch21::Index is automated
+		
+		global_cable318.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add318::Value is automated
+		
+		global_cable319.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add319::Value is automated
+		
+		global_cable320.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add320::Value is automated
+		
+		global_cable321.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add321::Value is automated
+		
+		global_cable322.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add322::Value is automated
+		
+		global_cable323.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add323::Value is automated
+		
+		global_cable324.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add324::Value is automated
+		
+		global_cable325.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add325::Value is automated
+		
+		global_cable326.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add326::Value is automated
+		
+		global_cable327.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add327::Value is automated
+		
+		global_cable328.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add328::Value is automated
+		
+		global_cable329.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add329::Value is automated
+		
+		global_cable330.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add330::Value is automated
+		
+		global_cable331.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add331::Value is automated
+		
+		global_cable332.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add332::Value is automated
+		
+		global_cable333.setParameterT(0, 1.); // routing::global_cable::Value
+		
+		; // add333::Value is automated
+		
+		clear20.setParameterT(0, 0.); // math::clear::Value
+		
+		; // pma22::Value is automated
+		; // pma22::Multiply is automated
+		; // pma22::Add is automated
+		
+		; // pma23::Value is automated
+		; // pma23::Multiply is automated
+		; // pma23::Add is automated
 		
 		; // branch14::Index is automated
 		
@@ -9959,6 +10026,13 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // input_toggle::Value1 is automated
 		; // input_toggle::Value2 is automated
 		
+		; // tempo_sync2::Tempo is automated
+		; // tempo_sync2::Multiplier is automated
+		; // tempo_sync2::Enabled is automated
+		; // tempo_sync2::UnsyncedTime is automated
+		
+		; // converter::Value is automated
+		
 		;                                       // snex_node::pitch is automated
 		;                                       // snex_node::scrub is automated
 		;                                       // snex_node::grainMs is automated
@@ -10142,52 +10216,54 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(26, 0.);
 		this->setParameterT(27, 14.);
 		this->setParameterT(28, 0.58);
-		this->setParameterT(29, 0.);
-		this->setParameterT(30, 7.);
-		this->setParameterT(31, 0.);
-		this->setParameterT(32, -0.0416016);
-		this->setParameterT(33, 6.);
-		this->setParameterT(34, 464.);
-		this->setParameterT(35, 0.);
-		this->setParameterT(36, 2.);
-		this->setParameterT(37, 10.);
+		this->setParameterT(29, 0.149414);
+		this->setParameterT(30, 8.);
+		this->setParameterT(31, 14.6196);
+		this->setParameterT(32, 1.);
+		this->setParameterT(33, 2.);
+		this->setParameterT(34, 1.);
+		this->setParameterT(35, 1.);
+		this->setParameterT(36, 1.);
+		this->setParameterT(37, 0.32);
 		this->setParameterT(38, 1.);
 		this->setParameterT(39, 1.);
-		this->setParameterT(40, 0.);
+		this->setParameterT(40, 1.);
 		this->setParameterT(41, 1.);
-		this->setParameterT(42, 0.32);
+		this->setParameterT(42, 0.);
 		this->setParameterT(43, 1.);
 		this->setParameterT(44, 1.);
-		this->setParameterT(45, 0.7);
-		this->setParameterT(46, 0.);
-		this->setParameterT(47, 0.);
-		this->setParameterT(48, 13.);
-		this->setParameterT(49, 0.21);
-		this->setParameterT(50, 0.);
-		this->setParameterT(51, 3.);
+		this->setParameterT(45, 1.);
+		this->setParameterT(46, 1.);
+		this->setParameterT(47, 1.);
+		this->setParameterT(48, 1.);
+		this->setParameterT(49, 1.);
+		this->setParameterT(50, 1.);
+		this->setParameterT(51, 1.);
 		this->setParameterT(52, 1.);
-		this->setParameterT(53, 0.);
-		this->setParameterT(54, 13.);
-		this->setParameterT(55, 0.19);
-		this->setParameterT(56, 0.17);
-		this->setParameterT(57, 4.);
-		this->setParameterT(58, 0.63);
-		this->setParameterT(59, 3.);
+		this->setParameterT(53, 1.);
+		this->setParameterT(54, 1.);
+		this->setParameterT(55, 1.);
+		this->setParameterT(56, 1.);
+		this->setParameterT(57, 0.);
+		this->setParameterT(58, 1.);
+		this->setParameterT(59, 1.);
 		this->setParameterT(60, 0.);
 		this->setParameterT(61, 0.);
-		this->setParameterT(62, 0.);
-		this->setParameterT(63, 1.);
+		this->setParameterT(62, -0.0227582);
+		this->setParameterT(63, 0.0803329);
 		this->setParameterT(64, 1.);
-		this->setParameterT(65, 0.);
-		this->setParameterT(66, 0.);
-		this->setParameterT(67, 4.);
-		this->setParameterT(68, 1.);
-		this->setParameterT(69, 0.);
-		this->setParameterT(70, 0.921221);
-		this->setParameterT(71, 10.);
-		this->setParameterT(72, 1.);
-		this->setParameterT(73, 3.);
-		this->setParameterT(74, 0.);
+		this->setParameterT(65, 0.921221);
+		this->setParameterT(66, 1.);
+		this->setParameterT(67, 1.);
+		this->setParameterT(68, 3.);
+		this->setParameterT(69, 1.);
+		this->setParameterT(70, 1.);
+		this->setParameterT(71, 1.);
+		this->setParameterT(72, 0.);
+		this->setParameterT(73, -1.);
+		this->setParameterT(74, 1.);
+		this->setParameterT(75, 15.);
+		this->setParameterT(76, 16.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
@@ -10353,38 +10429,38 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(8).getT(0).getT(13).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable187_t<NV>
 		this->getT(0).getT(0).getT(0).getT(8).getT(0).getT(14).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable188_t<NV>
 		this->getT(0).getT(0).getT(0).getT(8).getT(0).getT(15).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable189_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable190_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable191_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable192_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable193_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable194_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable195_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable196_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable197_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable198_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable199_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable200_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable201_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable202_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable203_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable204_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable205_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable206_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable207_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable208_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable209_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable210_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable211_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable212_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable213_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable214_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable215_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable216_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable217_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable218_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable219_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable220_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable221_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable206_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable207_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable208_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable209_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(4).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable210_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(5).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable211_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(6).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable212_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(7).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable213_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(8).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable214_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);   // sn_impl::global_cable215_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(10).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable216_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(11).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable217_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(12).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable218_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(13).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable219_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(14).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable220_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(0).getT(15).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable221_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable318_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable319_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable320_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable321_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(4).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable322_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(5).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable323_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(6).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable324_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(7).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable325_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(8).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable326_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable327_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(10).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable328_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(11).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable329_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(12).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable330_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(13).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable331_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(14).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable332_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(0).getT(15).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable333_t<NV>
 		this->getT(0).getT(0).getT(0).getT(11).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable222_t<NV>
 		this->getT(0).getT(0).getT(0).getT(11).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable223_t<NV>
 		this->getT(0).getT(0).getT(0).getT(11).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);  // sn_impl::global_cable224_t<NV>
@@ -10524,8 +10600,8 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(6).getT(1).setExternalData(b, index);         // sn_impl::peak9_t<NV>
 		this->getT(0).getT(0).getT(0).getT(7).getT(1).setExternalData(b, index);         // sn_impl::peak10_t<NV>
 		this->getT(0).getT(0).getT(0).getT(8).getT(1).setExternalData(b, index);         // sn_impl::peak11_t<NV>
-		this->getT(0).getT(0).getT(0).getT(9).getT(1).setExternalData(b, index);         // sn_impl::peak12_t<NV>
-		this->getT(0).getT(0).getT(0).getT(10).getT(1).setExternalData(b, index);        // sn_impl::peak13_t<NV>
+		this->getT(0).getT(0).getT(0).getT(9).getT(1).setExternalData(b, index);         // sn_impl::peak13_t<NV>
+		this->getT(0).getT(0).getT(0).getT(10).getT(1).setExternalData(b, index);        // sn_impl::peak26_t<NV>
 		this->getT(0).getT(0).getT(0).getT(11).getT(1).setExternalData(b, index);        // sn_impl::peak14_t<NV>
 		this->getT(0).getT(0).getT(0).getT(12).getT(1).setExternalData(b, index);        // sn_impl::peak15_t<NV>
 		this->getT(0).getT(0).getT(0).getT(13).getT(1).setExternalData(b, index);        // sn_impl::peak17_t<NV>

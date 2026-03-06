@@ -1,4 +1,4 @@
-name: Build (Windows) - Unsigned
+name: Windows
 
 on:
   workflow_dispatch:

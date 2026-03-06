@@ -1,4 +1,4 @@
-name: Build (Linux) - Unsigned
+name: Linux
 
 on:
   workflow_dispatch:

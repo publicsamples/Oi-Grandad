@@ -324,7 +324,7 @@ const var RecEnableLaf = Content.getComponent("RecEnable1").setLocalLookAndFeel(
 
 const var GrainXf =[];
 
-for (i = 1; i < 4; i++)
+for (i = 1; i < 5; i++)
 {
     GrainXf[i] = Content.getComponent("GrainXf"+(i)).setLocalLookAndFeel(LAF_Button);
 
