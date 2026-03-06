@@ -11,9 +11,7 @@ concurrency:
 
 jobs:
   linux:
-    runs-on: ubuntu-latest
-    container:
-      image: ubuntu:20.04
+    runs-on: ubuntu-20.04
     env:
       DEBIAN_FRONTEND: noninteractive
     steps:
@@ -23,8 +21,8 @@ jobs:
 
       - name: Install dependencies (Linux)
         run: |
-          apt-get update
-          apt-get install -y \
+          sudo apt-get update
+          sudo apt-get install -y \
             build-essential \
             pkg-config \
             zip \
