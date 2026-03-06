@@ -36,7 +36,6 @@ struct granular_player_stepquant_density_hybrid: public data::base
   double scrubMode = 0.0;     // 0 = normal, 1 = xfade
   double scrubBlend = 0.0;    // 0–1 shaping
   double directionMode = 0.0;   // 3-way menu packed into 0..1
-  bool directionSawMid = false; // detects 3-state controllers vs 0/1 toggles
   double phaseScatter = 0.0;   // startSpraySamples (raw sample-domain amount)
   // Subtle density-linked grain start spread. Tweak this to taste.
   // Final spread in samples = maxStart * densityPositionSpreadRange * density.
@@ -305,7 +304,6 @@ void reset()
     for (auto& v : voiceData)
         v.reset();
     formantRatioSmoothed = 1.0;
-    directionSawMid = false;
 }
 
 inline double getTailPhase(const VoiceData& v, int i)
@@ -2571,22 +2569,27 @@ if (P == 10)
 // 19 — direction menu (3 slots mapped across 0..1)
 if (P == 11)
 {
-    // Accept both menu-style values (1..3) and normalized values (0..1).
-    // If only 0/1 values are ever seen, treat it like a legacy reverse toggle.
-    if (v > 1.0)
+    // Explicit 3-state decode:
+    // - menu style: 1..3  (1=fwd, 2=rev, 3=alt)
+    // - normalized: 0..1 mapped into thirds
+    int directionSlot = 0;
+    if (v >= 1.0)
     {
-        if (v > 3.0) v = 3.0;
-        directionMode = (v - 1.0) * 0.5; // 1,2,3 -> 0,0.5,1
-        directionSawMid = true;
+        if (v < 1.5) directionSlot = 0;
+        else if (v < 2.5) directionSlot = 1;
+        else directionSlot = 2;
     }
     else
     {
         if (v < 0.0) v = 0.0;
         if (v > 1.0) v = 1.0;
-        if (v > 0.0001 && v < 0.9999)
-            directionSawMid = true;
-        directionMode = directionSawMid ? v : (v >= 0.5 ? 0.5 : 0.0);
+        if (v < (1.0 / 3.0)) directionSlot = 0;
+        else if (v < (2.0 / 3.0)) directionSlot = 1;
+        else directionSlot = 2;
     }
+    if (directionSlot == 0) directionMode = 0.0;
+    else if (directionSlot == 1) directionMode = 0.5;
+    else directionMode = 1.0;
 }
 // startSpraySamples (raw samples)
 if (P == 12)
