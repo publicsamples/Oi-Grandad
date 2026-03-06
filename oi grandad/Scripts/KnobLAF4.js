@@ -115,6 +115,13 @@ for (i = 0; i < 4; i++)
 
 } 
 
+const var GrainDir =[];
+
+for (i = 0; i < 4; i++)
+{
+    GrainDir[i] = Content.getComponent("GrainDir"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
 
 
 

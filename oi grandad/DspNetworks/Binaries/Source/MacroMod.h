@@ -201,15 +201,6 @@ namespace MacroMod_t_parameters
 {
 // Parameter list for MacroMod_impl::MacroMod_t ----------------------------------------------------
 
-DECLARE_PARAMETER_RANGE(modRange, 
-                        -1., 
-                        1.);
-
-template <int NV>
-using mod = parameter::from0To1<MacroMod_impl::pma12_t<NV>, 
-                                1, 
-                                modRange>;
-
 DECLARE_PARAMETER_RANGE_STEP(src_InputRange, 
                              1., 
                              16., 
@@ -228,6 +219,9 @@ template <int NV>
 using src = parameter::chain<src_InputRange, src_0<NV>>;
 
 template <int NV>
+using mod = parameter::plain<MacroMod_impl::pma12_t<NV>, 
+                             1>;
+template <int NV>
 using macro = parameter::plain<MacroMod_impl::pma12_t<NV>, 
                                2>;
 template <int NV>
@@ -241,6 +235,7 @@ using MacroMod_t_ = container::chain<MacroMod_t_parameters::MacroMod_t_plist<NV>
                                      wrap::fix<1, math::clear<NV>>, 
                                      branch4_t<NV>, 
                                      peak6_t<NV>, 
+                                     math::clear<NV>, 
                                      pma12_t<NV>, 
                                      math::add<NV>>;
 
@@ -261,8 +256,8 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 		SNEX_METADATA_NUM_CHANNELS(1);
 		SNEX_METADATA_ENCODED_PARAMETERS(48)
 		{
-			0x005C, 0x0000, 0x0000, 0x6F6D, 0x0064, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
+			0x005C, 0x0000, 0x0000, 0x6F6D, 0x0064, 0x0000, 0x8000, 0x00BF, 
+            0x8000, 0xFA3F, 0x448B, 0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x0100, 0x0000, 0x7300, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
             0x0002, 0x0000, 0x616D, 0x7263, 0x006F, 0x0000, 0x4000, 0x0026, 
@@ -329,8 +324,9 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 		auto& global_cable79 = this->getT(1).getT(15).getT(0); // MacroMod_impl::global_cable79_t<NV>
 		auto& add73 = this->getT(1).getT(15).getT(1);          // math::add<NV>
 		auto& peak6 = this->getT(2);                           // MacroMod_impl::peak6_t<NV>
-		auto& pma12 = this->getT(3);                           // MacroMod_impl::pma12_t<NV>
-		auto& add = this->getT(4);                             // math::add<NV>
+		auto& clear = this->getT(3);                           // math::clear<NV>
+		auto& pma12 = this->getT(4);                           // MacroMod_impl::pma12_t<NV>
+		auto& add = this->getT(5);                             // math::add<NV>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -430,13 +426,15 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 		
 		; // add73::Value is automated
 		
+		clear.setParameterT(0, 0.); // math::clear::Value
+		
 		; // pma12::Value is automated
 		; // pma12::Multiply is automated
 		; // pma12::Add is automated
 		
 		; // add::Value is automated
 		
-		this->setParameterT(0, 0.);
+		this->setParameterT(0, 0.0479851);
 		this->setParameterT(1, 1.);
 		this->setParameterT(2, 6.66134e-16);
 		this->setExternalData({}, -1);

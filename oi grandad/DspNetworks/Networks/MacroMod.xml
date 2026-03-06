@@ -378,6 +378,11 @@
           <Connection NodeId="pma12" ParameterId="Value"/>
         </ModulationTargets>
       </Node>
+      <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+        </Parameters>
+      </Node>
       <Node ID="pma12" FactoryPath="control.pma" Bypassed="0" Name="pma12">
         <ModulationTargets>
           <Connection NodeId="add" ParameterId="Value"/>
@@ -397,7 +402,8 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="mod" Value="0.0">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="mod" Value="0.04798505434782602"
+                 DefaultValue="0.0" TextToValueConverter="">
         <Connections>
           <Connection NodeId="pma12" ParameterId="Multiply"/>
         </Connections>

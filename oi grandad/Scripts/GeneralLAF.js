@@ -277,11 +277,7 @@ const var ResMode = [Content.getComponent("ResMode1"),
    for(s in ResMode)
            s.setLocalLookAndFeel(cBLaf);      
            
-const var Dir = [Content.getComponent("Dir1"),
-                      Content.getComponent("Dir2"),
-                      Content.getComponent("Dir3"),
-                      Content.getComponent("Dir4")];
-                      
+
  
  const var Pb = [Content.getComponent("StgSel1"),
             Content.getComponent("StgSel2"),
@@ -301,8 +297,6 @@ const var V2StageMods = [Content.getComponent("PosHeadSrcA5"),
 for(s in Pb)
        s.setLocalLookAndFeel(cBLaf);                        
                       
-for(s in Dir)
-       s.setLocalLookAndFeel(cBLaf);  
        
 const var xfSel = [Content.getComponent("ComboBox26"),
                    Content.getComponent("ComboBox1")];

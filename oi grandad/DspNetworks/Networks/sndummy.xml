@@ -8134,7 +8134,8 @@
           <Connection NodeId="pma" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="PositionMod" Value="0.0" TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="PositionMod" Value="0.4560600519180298"
+                 TextToValueConverter="" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>

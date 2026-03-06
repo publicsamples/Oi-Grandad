@@ -677,6 +677,19 @@ inline void setTailActive(VoiceData& v, int i, bool x)
         return warped;
     }
 
+    // Time-invariant mode drives a normalized grain clock (carrierPhase)
+    // and applies read-rate separately. Wrap the resulting read phase back
+    // into one grain to avoid discontinuities and boundary clamping crackle.
+    inline double getTimelinePhaseForRead(double carrierPhase, bool timeInvariant, double readRate)
+    {
+        if (!timeInvariant)
+            return carrierPhase;
+        if (grainSize <= 0.0)
+            return 0.0;
+        double ph = carrierPhase * readRate;
+        return wrap01(ph / grainSize) * grainSize;
+    }
+
     // -----------------------------------------------------
     void updateDelta(VoiceData& v)
     {
@@ -1463,7 +1476,7 @@ if (v.schedPhase < 0.0)
 }
 
 // absolute playback position
-double pos1 = v.schedStart + getReadPhaseForMode((timeInvariant ? (v.schedPhase * (v.delta * grainPitchMul1)) : v.schedPhase), pitchState, grainPitchMul1);
+double pos1 = v.schedStart + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase, timeInvariant, (v.delta * grainPitchMul1)), pitchState, grainPitchMul1);
 
 // bounds check
 if (pos1 < 0.0) pos1 = 0.0;
@@ -1520,7 +1533,7 @@ if (v.schedPhase2 < 0.0)
         v.schedStart2 = base2;
 }
 
-double pos2 = v.schedStart2 + getReadPhaseForMode((timeInvariant ? (v.schedPhase2 * (v.delta * grainPitchMul2)) : v.schedPhase2), pitchState, grainPitchMul2);
+double pos2 = v.schedStart2 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase2, timeInvariant, (v.delta * grainPitchMul2)), pitchState, grainPitchMul2);
 if (pos2 < 0.0) pos2 = 0.0;
 if (pos2 >= audioData.numSamples - 1.0)
     pos2 = audioData.numSamples - 2.0;
@@ -1571,7 +1584,7 @@ if (v.schedPhase3 < 0.0)
         v.schedStart3 = base3;
 }
 
-double pos3 = v.schedStart3 + getReadPhaseForMode((timeInvariant ? (v.schedPhase3 * (v.delta * grainPitchMul3)) : v.schedPhase3), pitchState, grainPitchMul3);
+double pos3 = v.schedStart3 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase3, timeInvariant, (v.delta * grainPitchMul3)), pitchState, grainPitchMul3);
 if (pos3 < 0.0) pos3 = 0.0;
 if (pos3 >= audioData.numSamples - 1.0)
     pos3 = audioData.numSamples - 2.0;
@@ -1622,7 +1635,7 @@ if (v.schedPhase4 < 0.0)
         v.schedStart4 = base4;
 }
 
-double pos4 = v.schedStart4 + getReadPhaseForMode((timeInvariant ? (v.schedPhase4 * (v.delta * grainPitchMul4)) : v.schedPhase4), pitchState, grainPitchMul4);
+double pos4 = v.schedStart4 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase4, timeInvariant, (v.delta * grainPitchMul4)), pitchState, grainPitchMul4);
 if (pos4 < 0.0) pos4 = 0.0;
 if (pos4 >= audioData.numSamples - 1.0)
     pos4 = audioData.numSamples - 2.0;
@@ -1673,7 +1686,7 @@ if (v.schedPhase5 < 0.0)
         v.schedStart5 = base5;
 }
 
-double pos5 = v.schedStart5 + getReadPhaseForMode((timeInvariant ? (v.schedPhase5 * (v.delta * grainPitchMul5)) : v.schedPhase5), pitchState, grainPitchMul5);
+double pos5 = v.schedStart5 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase5, timeInvariant, (v.delta * grainPitchMul5)), pitchState, grainPitchMul5);
 if (pos5 < 0.0) pos5 = 0.0;
 if (pos5 >= audioData.numSamples - 1.0)
     pos5 = audioData.numSamples - 2.0;
@@ -1724,7 +1737,7 @@ if (v.schedPhase6 < 0.0)
         v.schedStart6 = base6;
 }
 
-double pos6 = v.schedStart6 + getReadPhaseForMode((timeInvariant ? (v.schedPhase6 * (v.delta * grainPitchMul6)) : v.schedPhase6), pitchState, grainPitchMul6);
+double pos6 = v.schedStart6 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase6, timeInvariant, (v.delta * grainPitchMul6)), pitchState, grainPitchMul6);
 if (pos6 < 0.0) pos6 = 0.0;
 if (pos6 >= audioData.numSamples - 1.0)
     pos6 = audioData.numSamples - 2.0;
@@ -1775,7 +1788,7 @@ if (v.schedPhase7 < 0.0)
         v.schedStart7 = base7;
 }
 
-double pos7 = v.schedStart7 + getReadPhaseForMode((timeInvariant ? (v.schedPhase7 * (v.delta * grainPitchMul7)) : v.schedPhase7), pitchState, grainPitchMul7);
+double pos7 = v.schedStart7 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase7, timeInvariant, (v.delta * grainPitchMul7)), pitchState, grainPitchMul7);
 if (pos7 < 0.0) pos7 = 0.0;
 if (pos7 >= audioData.numSamples - 1.0)
     pos7 = audioData.numSamples - 2.0;
@@ -1826,7 +1839,7 @@ if (v.schedPhase8 < 0.0)
         v.schedStart8 = base8;
 }
 
-double pos8 = v.schedStart8 + getReadPhaseForMode((timeInvariant ? (v.schedPhase8 * (v.delta * grainPitchMul8)) : v.schedPhase8), pitchState, grainPitchMul8);
+double pos8 = v.schedStart8 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase8, timeInvariant, (v.delta * grainPitchMul8)), pitchState, grainPitchMul8);
 if (pos8 < 0.0) pos8 = 0.0;
 if (pos8 >= audioData.numSamples - 1.0)
     pos8 = audioData.numSamples - 2.0;
@@ -1877,7 +1890,7 @@ if (v.schedPhase9 < 0.0)
         v.schedStart9 = base9;
 }
 
-double pos9 = v.schedStart9 + getReadPhaseForMode((timeInvariant ? (v.schedPhase9 * (v.delta * grainPitchMul9)) : v.schedPhase9), pitchState, grainPitchMul9);
+double pos9 = v.schedStart9 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase9, timeInvariant, (v.delta * grainPitchMul9)), pitchState, grainPitchMul9);
 if (pos9 < 0.0) pos9 = 0.0;
 if (pos9 >= audioData.numSamples - 1.0)
     pos9 = audioData.numSamples - 2.0;
@@ -1928,7 +1941,7 @@ if (v.schedPhase10 < 0.0)
         v.schedStart10 = base10;
 }
 
-double pos10 = v.schedStart10 + getReadPhaseForMode((timeInvariant ? (v.schedPhase10 * (v.delta * grainPitchMul10)) : v.schedPhase10), pitchState, grainPitchMul10);
+double pos10 = v.schedStart10 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase10, timeInvariant, (v.delta * grainPitchMul10)), pitchState, grainPitchMul10);
 if (pos10 < 0.0) pos10 = 0.0;
 if (pos10 >= audioData.numSamples - 1.0)
     pos10 = audioData.numSamples - 2.0;
@@ -1979,7 +1992,7 @@ if (v.schedPhase11 < 0.0)
         v.schedStart11 = base11;
 }
 
-double pos11 = v.schedStart11 + getReadPhaseForMode((timeInvariant ? (v.schedPhase11 * (v.delta * grainPitchMul11)) : v.schedPhase11), pitchState, grainPitchMul11);
+double pos11 = v.schedStart11 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase11, timeInvariant, (v.delta * grainPitchMul11)), pitchState, grainPitchMul11);
 if (pos11 < 0.0) pos11 = 0.0;
 if (pos11 >= audioData.numSamples - 1.0)
     pos11 = audioData.numSamples - 2.0;
@@ -2030,7 +2043,7 @@ if (v.schedPhase12 < 0.0)
         v.schedStart12 = base12;
 }
 
-double pos12 = v.schedStart12 + getReadPhaseForMode((timeInvariant ? (v.schedPhase12 * (v.delta * grainPitchMul12)) : v.schedPhase12), pitchState, grainPitchMul12);
+double pos12 = v.schedStart12 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase12, timeInvariant, (v.delta * grainPitchMul12)), pitchState, grainPitchMul12);
 if (pos12 < 0.0) pos12 = 0.0;
 if (pos12 >= audioData.numSamples - 1.0)
     pos12 = audioData.numSamples - 2.0;
@@ -2081,7 +2094,7 @@ if (v.schedPhase13 < 0.0)
         v.schedStart13 = base13;
 }
 
-double pos13 = v.schedStart13 + getReadPhaseForMode((timeInvariant ? (v.schedPhase13 * (v.delta * grainPitchMul13)) : v.schedPhase13), pitchState, grainPitchMul13);
+double pos13 = v.schedStart13 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase13, timeInvariant, (v.delta * grainPitchMul13)), pitchState, grainPitchMul13);
 if (pos13 < 0.0) pos13 = 0.0;
 if (pos13 >= audioData.numSamples - 1.0)
     pos13 = audioData.numSamples - 2.0;
@@ -2132,7 +2145,7 @@ if (v.schedPhase14 < 0.0)
         v.schedStart14 = base14;
 }
 
-double pos14 = v.schedStart14 + getReadPhaseForMode((timeInvariant ? (v.schedPhase14 * (v.delta * grainPitchMul14)) : v.schedPhase14), pitchState, grainPitchMul14);
+double pos14 = v.schedStart14 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase14, timeInvariant, (v.delta * grainPitchMul14)), pitchState, grainPitchMul14);
 if (pos14 < 0.0) pos14 = 0.0;
 if (pos14 >= audioData.numSamples - 1.0)
     pos14 = audioData.numSamples - 2.0;
@@ -2183,7 +2196,7 @@ if (v.schedPhase15 < 0.0)
         v.schedStart15 = base15;
 }
 
-double pos15 = v.schedStart15 + getReadPhaseForMode((timeInvariant ? (v.schedPhase15 * (v.delta * grainPitchMul15)) : v.schedPhase15), pitchState, grainPitchMul15);
+double pos15 = v.schedStart15 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase15, timeInvariant, (v.delta * grainPitchMul15)), pitchState, grainPitchMul15);
 if (pos15 < 0.0) pos15 = 0.0;
 if (pos15 >= audioData.numSamples - 1.0)
     pos15 = audioData.numSamples - 2.0;
@@ -2234,7 +2247,7 @@ if (v.schedPhase16 < 0.0)
         v.schedStart16 = base16;
 }
 
-double pos16 = v.schedStart16 + getReadPhaseForMode((timeInvariant ? (v.schedPhase16 * (v.delta * grainPitchMul16)) : v.schedPhase16), pitchState, grainPitchMul16);
+double pos16 = v.schedStart16 + getReadPhaseForMode(getTimelinePhaseForRead(v.schedPhase16, timeInvariant, (v.delta * grainPitchMul16)), pitchState, grainPitchMul16);
 if (pos16 < 0.0) pos16 = 0.0;
 if (pos16 >= audioData.numSamples - 1.0)
     pos16 = audioData.numSamples - 2.0;
@@ -2349,7 +2362,7 @@ if (g > 16)
                 startN = baseN;
         }
 
-        double posN = startN + getReadPhaseForMode((timeInvariant ? (phaseN * (v.delta * grainPitchMulN)) : phaseN), pitchState, grainPitchMulN);
+        double posN = startN + getReadPhaseForMode(getTimelinePhaseForRead(phaseN, timeInvariant, (v.delta * grainPitchMulN)), pitchState, grainPitchMulN);
         if (posN < 0.0) posN = 0.0;
         if (posN >= audioData.numSamples - 1.0)
             posN = audioData.numSamples - 2.0;
@@ -2566,29 +2579,13 @@ if (P == 10)
     scrubBlend = v;
 }
 
-// 19 — direction menu (3 slots mapped across 0..1)
+// 19 — direction (0=fwd, 0.5=rev, 1=pingpong)
 if (P == 11)
 {
-    // Explicit 3-state decode:
-    // - menu style: 1..3  (1=fwd, 2=rev, 3=alt)
-    // - normalized: 0..1 mapped into thirds
-    int directionSlot = 0;
-    if (v >= 1.0)
-    {
-        if (v < 1.5) directionSlot = 0;
-        else if (v < 2.5) directionSlot = 1;
-        else directionSlot = 2;
-    }
-    else
-    {
-        if (v < 0.0) v = 0.0;
-        if (v > 1.0) v = 1.0;
-        if (v < (1.0 / 3.0)) directionSlot = 0;
-        else if (v < (2.0 / 3.0)) directionSlot = 1;
-        else directionSlot = 2;
-    }
-    if (directionSlot == 0) directionMode = 0.0;
-    else if (directionSlot == 1) directionMode = 0.5;
+    if (v < 0.0) v = 0.0;
+    if (v > 1.0) v = 1.0;
+    if (v < 0.25) directionMode = 0.0;
+    else if (v < 0.75) directionMode = 0.5;
     else directionMode = 1.0;
 }
 // startSpraySamples (raw samples)

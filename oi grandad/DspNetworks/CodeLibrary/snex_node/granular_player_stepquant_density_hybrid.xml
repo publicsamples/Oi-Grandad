@@ -34,7 +34,7 @@
   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0.0" SkewFactor="1.0"
              ID="scrubBlend" TextToValueConverter="Undefined" Page="" SubGroup=""
              Value="0.0" DefaultValue="0.0"/>
-  <Parameter MinValue="1.0" MaxValue="3.0" StepSize="0" SkewFactor="1.0" ID="reverse"
+  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="0" SkewFactor="1.0" ID="reverse"
              TextToValueConverter="Undefined" Page="" SubGroup="" Value="0.0"
              DefaultValue="0.0"/>
   <Parameter MinValue="0.0" MaxValue="3200.0" StepSize="0" SkewFactor="1.0"
