@@ -5,10 +5,14 @@ struct granular_player_stepquant_density_hybrid: public data::base
 
     static const int NUM_CHANNELS = 2;
     static const int MAX_GRAINS   = 32;
+    static const int MAX_SOURCE_CHANNELS = 32; // up to 16 stereo pairs
+    static const int MAX_STEREO_PAIRS = 16;
   
     
     ExternalData audioData;
-    span<dyn<float>, NUM_CHANNELS> sample;
+    span<dyn<float>, MAX_SOURCE_CHANNELS> sourceSample;
+    int sourceChannelCount = 2;
+    int sourcePairCount = 1;
 
     double sr = 0.0;
 
@@ -690,6 +694,78 @@ inline void setTailActive(VoiceData& v, int i, bool x)
         return wrap01(ph / grainSize) * grainSize;
     }
 
+    inline void readStereoPairAt(int pairIndex, double pos, double& outL, double& outR)
+    {
+        int chL = pairIndex + pairIndex;
+        int chR = chL + 1;
+        if (sourceChannelCount <= 1)
+        {
+            chL = 0;
+            chR = 0;
+        }
+        else if (chL < 0 || chR >= sourceChannelCount)
+        {
+            chL = 0;
+            chR = 1;
+        }
+        int i = (int)pos;
+        double f = pos - (double)i;
+        if (sourceSample[chL].size() <= i + 1)
+            chL = 0;
+        if (sourceSample[chR].size() <= i + 1)
+            chR = chL;
+        outL = (1.0 - f) * sourceSample[chL][i] + f * sourceSample[chL][i + 1];
+        outR = (1.0 - f) * sourceSample[chR][i] + f * sourceSample[chR][i + 1];
+    }
+
+    inline void readGrainStereo(int grainIndex, int grainCount, double pos, double& outL, double& outR)
+    {
+        int pairCount = sourcePairCount;
+        if (pairCount < 1)
+            pairCount = 1;
+        if (pairCount > MAX_STEREO_PAIRS)
+            pairCount = MAX_STEREO_PAIRS;
+        if (grainCount < 1)
+            grainCount = 1;
+
+        if (pairCount == 1 || grainCount >= pairCount)
+        {
+            int pairIndex = (grainIndex * pairCount) / grainCount;
+            if (pairIndex < 0) pairIndex = 0;
+            if (pairIndex > pairCount - 1) pairIndex = pairCount - 1;
+            readStereoPairAt(pairIndex, pos, outL, outR);
+            return;
+        }
+
+        int startPair = (grainIndex * pairCount) / grainCount;
+        int endPair = ((grainIndex + 1) * pairCount) / grainCount;
+        if (endPair <= startPair)
+            endPair = startPair + 1;
+        if (startPair < 0) startPair = 0;
+        if (endPair > pairCount) endPair = pairCount;
+
+        double sumL = 0.0;
+        double sumR = 0.0;
+        int count = 0;
+        for (int p = startPair; p < endPair; ++p)
+        {
+            double l = 0.0;
+            double r = 0.0;
+            readStereoPairAt(p, pos, l, r);
+            sumL += l;
+            sumR += r;
+            ++count;
+        }
+        if (count <= 0)
+        {
+            readStereoPairAt(0, pos, outL, outR);
+            return;
+        }
+        double inv = 1.0 / Math.sqrt((double)count);
+        outL = sumL * inv;
+        outR = sumR * inv;
+    }
+
     // -----------------------------------------------------
     void updateDelta(VoiceData& v)
     {
@@ -1368,10 +1444,10 @@ if (!isStackMode)
     if (idxA > g - 1) idxA = g - 1;
     if (idxB > g - 1) idxB = g - 1;
 
-    // Equal-power blend between adjacent active grains.
+    // RMS / equal-power blend between adjacent active grains.
     double t = clamp01(frac);
-    double gA = Math.cos(0.5 * Math.PI * t);
-    double gB = Math.sin(0.5 * Math.PI * t);
+    double gA = Math.sqrt(1.0 - t);
+    double gB = Math.sqrt(t);
 
     if (g <= 1)
     {
@@ -1492,8 +1568,9 @@ double w1 = morphedWindow(
 );
 
 // sample fetch
-double monoL1 = (1.0 - f1) * sample[0][i1] + f1 * sample[0][i1 + 1];
-double monoR1 = (1.0 - f1) * sample[1][i1] + f1 * sample[1][i1 + 1];
+double monoL1 = 0.0;
+    double monoR1 = 0.0;
+    readGrainStereo(0, g, pos1, monoL1, monoR1);
 
 // panning
 double normPan1 = ((panSlot1 - center) * invDenom);
@@ -1545,8 +1622,9 @@ double w2 = morphedWindow(
     cloudWindowPhase(v.schedPhase2 / grainSize, 1)
 );
 
-double monoL2 = (1.0 - f2) * sample[0][i2] + f2 * sample[0][i2 + 1];
-double monoR2 = (1.0 - f2) * sample[1][i2] + f2 * sample[1][i2 + 1];
+double monoL2 = 0.0;
+    double monoR2 = 0.0;
+    readGrainStereo(1, g, pos2, monoL2, monoR2);
 
 double normPan2 = ((panSlot2 - center) * invDenom);
 double pan2 = panSpread * normPan2 * 2.0;
@@ -1596,8 +1674,9 @@ double w3 = morphedWindow(
     cloudWindowPhase(v.schedPhase3 / grainSize, 2)
 );
 
-double monoL3 = (1.0 - f3) * sample[0][i3] + f3 * sample[0][i3 + 1];
-double monoR3 = (1.0 - f3) * sample[1][i3] + f3 * sample[1][i3 + 1];
+double monoL3 = 0.0;
+    double monoR3 = 0.0;
+    readGrainStereo(2, g, pos3, monoL3, monoR3);
 
 double normPan3 = ((panSlot3 - center) * invDenom);
 double pan3 = panSpread * normPan3 * 2.0;
@@ -1647,8 +1726,9 @@ double w4 = morphedWindow(
     cloudWindowPhase(v.schedPhase4 / grainSize, 3)
 );
 
-double monoL4 = (1.0 - f4) * sample[0][i4] + f4 * sample[0][i4 + 1];
-double monoR4 = (1.0 - f4) * sample[1][i4] + f4 * sample[1][i4 + 1];
+double monoL4 = 0.0;
+    double monoR4 = 0.0;
+    readGrainStereo(3, g, pos4, monoL4, monoR4);
 
 double normPan4 = ((panSlot4 - center) * invDenom);
 double pan4 = panSpread * normPan4 * 2.0;
@@ -1698,8 +1778,9 @@ double w5 = morphedWindow(
     cloudWindowPhase(v.schedPhase5 / grainSize, 4)
 );
 
-double monoL5 = (1.0 - f5) * sample[0][i5] + f5 * sample[0][i5 + 1];
-double monoR5 = (1.0 - f5) * sample[1][i5] + f5 * sample[1][i5 + 1];
+double monoL5 = 0.0;
+    double monoR5 = 0.0;
+    readGrainStereo(4, g, pos5, monoL5, monoR5);
 
 double normPan5 = ((panSlot5 - center) * invDenom);
 double pan5 = panSpread * normPan5 * 2.0;
@@ -1749,8 +1830,9 @@ double w6 = morphedWindow(
     cloudWindowPhase(v.schedPhase6 / grainSize, 5)
 );
 
-double monoL6 = (1.0 - f6) * sample[0][i6] + f6 * sample[0][i6 + 1];
-double monoR6 = (1.0 - f6) * sample[1][i6] + f6 * sample[1][i6 + 1];
+double monoL6 = 0.0;
+    double monoR6 = 0.0;
+    readGrainStereo(5, g, pos6, monoL6, monoR6);
 
 double normPan6 = ((panSlot6 - center) * invDenom);
 double pan6 = panSpread * normPan6 * 2.0;
@@ -1800,8 +1882,9 @@ double w7 = morphedWindow(
     cloudWindowPhase(v.schedPhase7 / grainSize, 6)
 );
 
-double monoL7 = (1.0 - f7) * sample[0][i7] + f7 * sample[0][i7 + 1];
-double monoR7 = (1.0 - f7) * sample[1][i7] + f7 * sample[1][i7 + 1];
+double monoL7 = 0.0;
+    double monoR7 = 0.0;
+    readGrainStereo(6, g, pos7, monoL7, monoR7);
 
 double normPan7 = ((panSlot7 - center) * invDenom);
 double pan7 = panSpread * normPan7 * 2.0;
@@ -1851,8 +1934,9 @@ double w8 = morphedWindow(
     cloudWindowPhase(v.schedPhase8 / grainSize, 7)
 );
 
-double monoL8 = (1.0 - f8) * sample[0][i8] + f8 * sample[0][i8 + 1];
-double monoR8 = (1.0 - f8) * sample[1][i8] + f8 * sample[1][i8 + 1];
+double monoL8 = 0.0;
+    double monoR8 = 0.0;
+    readGrainStereo(7, g, pos8, monoL8, monoR8);
 
 double normPan8 = ((panSlot8 - center) * invDenom);
 double pan8 = panSpread * normPan8 * 2.0;
@@ -1902,8 +1986,9 @@ double w9 = morphedWindow(
     cloudWindowPhase(v.schedPhase9 / grainSize, 8)
 );
 
-double monoL9 = (1.0 - f9) * sample[0][i9] + f9 * sample[0][i9 + 1];
-double monoR9 = (1.0 - f9) * sample[1][i9] + f9 * sample[1][i9 + 1];
+double monoL9 = 0.0;
+    double monoR9 = 0.0;
+    readGrainStereo(8, g, pos9, monoL9, monoR9);
 
 double normPan9 = ((panSlot9 - center) * invDenom);
 double pan9 = panSpread * normPan9 * 2.0;
@@ -1953,8 +2038,9 @@ double w10 = morphedWindow(
     cloudWindowPhase(v.schedPhase10 / grainSize, 9)
 );
 
-double monoL10 = (1.0 - f10) * sample[0][i10] + f10 * sample[0][i10 + 1];
-double monoR10 = (1.0 - f10) * sample[1][i10] + f10 * sample[1][i10 + 1];
+double monoL10 = 0.0;
+    double monoR10 = 0.0;
+    readGrainStereo(9, g, pos10, monoL10, monoR10);
 
 double normPan10 = ((panSlot10 - center) * invDenom);
 double pan10 = panSpread * normPan10 * 2.0;
@@ -2004,8 +2090,9 @@ double w11 = morphedWindow(
     cloudWindowPhase(v.schedPhase11 / grainSize, 10)
 );
 
-double monoL11 = (1.0 - f11) * sample[0][i11] + f11 * sample[0][i11 + 1];
-double monoR11 = (1.0 - f11) * sample[1][i11] + f11 * sample[1][i11 + 1];
+double monoL11 = 0.0;
+    double monoR11 = 0.0;
+    readGrainStereo(10, g, pos11, monoL11, monoR11);
 
 double normPan11 = ((panSlot11 - center) * invDenom);
 double pan11 = panSpread * normPan11 * 2.0;
@@ -2055,8 +2142,9 @@ double w12 = morphedWindow(
     cloudWindowPhase(v.schedPhase12 / grainSize, 11)
 );
 
-double monoL12 = (1.0 - f12) * sample[0][i12] + f12 * sample[0][i12 + 1];
-double monoR12 = (1.0 - f12) * sample[1][i12] + f12 * sample[1][i12 + 1];
+double monoL12 = 0.0;
+    double monoR12 = 0.0;
+    readGrainStereo(11, g, pos12, monoL12, monoR12);
 
 double normPan12 = ((panSlot12 - center) * invDenom);
 double pan12 = panSpread * normPan12 * 2.0;
@@ -2106,8 +2194,9 @@ double w13 = morphedWindow(
     cloudWindowPhase(v.schedPhase13 / grainSize, 12)
 );
 
-double monoL13 = (1.0 - f13) * sample[0][i13] + f13 * sample[0][i13 + 1];
-double monoR13 = (1.0 - f13) * sample[1][i13] + f13 * sample[1][i13 + 1];
+double monoL13 = 0.0;
+    double monoR13 = 0.0;
+    readGrainStereo(12, g, pos13, monoL13, monoR13);
 
 double normPan13 = ((panSlot13 - center) * invDenom);
 double pan13 = panSpread * normPan13 * 2.0;
@@ -2157,8 +2246,9 @@ double w14 = morphedWindow(
     cloudWindowPhase(v.schedPhase14 / grainSize, 13)
 );
 
-double monoL14 = (1.0 - f14) * sample[0][i14] + f14 * sample[0][i14 + 1];
-double monoR14 = (1.0 - f14) * sample[1][i14] + f14 * sample[1][i14 + 1];
+double monoL14 = 0.0;
+    double monoR14 = 0.0;
+    readGrainStereo(13, g, pos14, monoL14, monoR14);
 
 double normPan14 = ((panSlot14 - center) * invDenom);
 double pan14 = panSpread * normPan14 * 2.0;
@@ -2208,8 +2298,9 @@ double w15 = morphedWindow(
     cloudWindowPhase(v.schedPhase15 / grainSize, 14)
 );
 
-double monoL15 = (1.0 - f15) * sample[0][i15] + f15 * sample[0][i15 + 1];
-double monoR15 = (1.0 - f15) * sample[1][i15] + f15 * sample[1][i15 + 1];
+double monoL15 = 0.0;
+    double monoR15 = 0.0;
+    readGrainStereo(14, g, pos15, monoL15, monoR15);
 
 double normPan15 = ((panSlot15 - center) * invDenom);
 double pan15 = panSpread * normPan15 * 2.0;
@@ -2259,8 +2350,9 @@ double w16 = morphedWindow(
     cloudWindowPhase(v.schedPhase16 / grainSize, 15)
 );
 
-double monoL16 = (1.0 - f16) * sample[0][i16] + f16 * sample[0][i16 + 1];
-double monoR16 = (1.0 - f16) * sample[1][i16] + f16 * sample[1][i16 + 1];
+double monoL16 = 0.0;
+    double monoR16 = 0.0;
+    readGrainStereo(15, g, pos16, monoL16, monoR16);
 
 double normPan16 = ((panSlot16 - center) * invDenom);
 double pan16 = panSpread * normPan16 * 2.0;
@@ -2285,8 +2377,8 @@ if (g > 16)
             if (idxB > g - 1) idxB = g - 1;
 
             double t = clamp01(frac);
-            double gA = Math.cos(0.5 * Math.PI * t);
-            double gB = Math.sin(0.5 * Math.PI * t);
+                        double gA = Math.sqrt(1.0 - t);
+                        double gB = Math.sqrt(t);
             double mN = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
             weightNRaw *= mN;
         }
@@ -2370,8 +2462,9 @@ if (g > 16)
         int iN = (int)posN;
         double fN = posN - (double)iN;
         double wN = morphedWindow(cloudWindowPhase(phaseN / grainSize, i));
-        double monoLN = (1.0 - fN) * sample[0][iN] + fN * sample[0][iN + 1];
-        double monoRN = (1.0 - fN) * sample[1][iN] + fN * sample[1][iN + 1];
+        double monoLN = 0.0;
+        double monoRN = 0.0;
+        readGrainStereo(i, g, posN, monoLN, monoRN);
 
         double panSlotN = panOrderIndex(i, g);
         double normPanN = ((panSlotN - center) * invDenom);
@@ -2487,8 +2580,23 @@ void setExternalData(const ExternalData& ed, int index)
     // At this point, we know the data belongs to the audio file input.
     audioData = ed;
 
-    ed.referBlockTo(sample[0], 0);
-    ed.referBlockTo(sample[1], 1);
+    int detectedChannels = 0;
+    for (int ch = 0; ch < MAX_SOURCE_CHANNELS; ++ch)
+    {
+        ed.referBlockTo(sourceSample[ch], ch);
+        if (sourceSample[ch].size() > 1)
+            detectedChannels = ch + 1;
+    }
+    if (detectedChannels < 1)
+        detectedChannels = 1;
+    if (detectedChannels > 1 && (detectedChannels % 2) != 0)
+        detectedChannels -= 1;
+    sourceChannelCount = detectedChannels;
+    sourcePairCount = (sourceChannelCount > 1) ? (sourceChannelCount / 2) : 1;
+    if (sourcePairCount < 1)
+        sourcePairCount = 1;
+    if (sourcePairCount > MAX_STEREO_PAIRS)
+        sourcePairCount = MAX_STEREO_PAIRS;
 
     updateGrainSize();
     reset();
