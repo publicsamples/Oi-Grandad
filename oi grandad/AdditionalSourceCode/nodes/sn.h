@@ -210,8 +210,12 @@ struct granular_player_stepquant_density_hybrid: public data::base
 	SNEX_NODE(granular_player_stepquant_density_hybrid);
 	static const int NUM_CHANNELS = 2;
 	static const int MAX_GRAINS   = 32;
+	static const int MAX_SOURCE_CHANNELS = 32; // up to 16 stereo pairs
+	static const int MAX_STEREO_PAIRS = 16;
 	ExternalData audioData;
-	span<dyn<float>, NUM_CHANNELS> sample;
+	span<dyn<float>, MAX_SOURCE_CHANNELS> sourceSample;
+	int sourceChannelCount = 2;
+	int sourcePairCount = 1;
 	double sr = 0.0;
 	// Parameters
 	double scrub = 0.0;       // 0..1 UI
@@ -802,6 +806,73 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double ph = carrierPhase * readRate;
 		return wrap01(ph / grainSize) * grainSize;
 	}
+	inline void readStereoPairAt(int pairIndex, double pos, double& outL, double& outR)
+	{
+		int chL = pairIndex + pairIndex;
+		int chR = chL + 1;
+		if (sourceChannelCount <= 1)
+		{
+			chL = 0;
+			chR = 0;
+		}
+		else if (chL < 0 || chR >= sourceChannelCount)
+		{
+			chL = 0;
+			chR = 1;
+		}
+		int i = (int)pos;
+		double f = pos - (double)i;
+		if (sourceSample[chL].size() <= i + 1)
+			chL = 0;
+		if (sourceSample[chR].size() <= i + 1)
+			chR = chL;
+		outL = (1.0 - f) * sourceSample[chL][i] + f * sourceSample[chL][i + 1];
+		outR = (1.0 - f) * sourceSample[chR][i] + f * sourceSample[chR][i + 1];
+	}
+	inline void readGrainStereo(int grainIndex, int grainCount, double pos, double& outL, double& outR)
+	{
+		int pairCount = sourcePairCount;
+		if (pairCount < 1)
+			pairCount = 1;
+		if (pairCount > MAX_STEREO_PAIRS)
+			pairCount = MAX_STEREO_PAIRS;
+		if (grainCount < 1)
+			grainCount = 1;
+		if (pairCount == 1 || grainCount >= pairCount)
+		{
+			int pairIndex = (grainIndex * pairCount) / grainCount;
+			if (pairIndex < 0) pairIndex = 0;
+				if (pairIndex > pairCount - 1) pairIndex = pairCount - 1;
+				readStereoPairAt(pairIndex, pos, outL, outR);
+			return;
+		}
+		int startPair = (grainIndex * pairCount) / grainCount;
+		int endPair = ((grainIndex + 1) * pairCount) / grainCount;
+		if (endPair <= startPair)
+			endPair = startPair + 1;
+		if (startPair < 0) startPair = 0;
+			if (endPair > pairCount) endPair = pairCount;
+			double sumL = 0.0;
+		double sumR = 0.0;
+		int count = 0;
+		for (int p = startPair; p < endPair; ++p)
+		{
+			double l = 0.0;
+			double r = 0.0;
+			readStereoPairAt(p, pos, l, r);
+			sumL += l;
+			sumR += r;
+			++count;
+		}
+		if (count <= 0)
+		{
+			readStereoPairAt(0, pos, outL, outR);
+			return;
+		}
+		double inv = 1.0 / Math.sqrt((double)count);
+		outL = sumL * inv;
+		outR = sumR * inv;
+	}
 	// -----------------------------------------------------
 	void updateDelta(VoiceData& v)
 	{
@@ -1379,10 +1450,18 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			if (idxA < 0) idxA = 0;
 				if (idxA > g - 1) idxA = g - 1;
 				if (idxB > g - 1) idxB = g - 1;
-				// Equal-power blend between adjacent active grains.
+				// RMS / equal-power blend between adjacent active grains.
+			// Keep a small floor so endpoint stages don't collapse to one fully-muted
+			// neighbour, which can create audible dropouts with windowed grains.
 			double t = clamp01(frac);
-			double gA = Math.cos(0.5 * Math.PI * t);
-			double gB = Math.sin(0.5 * Math.PI * t);
+			double gA = Math.sqrt(1.0 - t);
+			double gB = Math.sqrt(t);
+			const double morphMin = 0.12;
+			if (gA < morphMin) gA = morphMin;
+				if (gB < morphMin) gB = morphMin;
+				double gNorm = 1.0 / Math.sqrt(gA * gA + gB * gB);
+			gA *= gNorm;
+			gB *= gNorm;
 			if (g <= 1)
 			{
 				idxA = 0;
@@ -1481,8 +1560,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		cloudWindowPhase(v.schedPhase / grainSize, 0)
 		);
 		// sample fetch
-		double monoL1 = (1.0 - f1) * sample[0][i1] + f1 * sample[0][i1 + 1];
-		double monoR1 = (1.0 - f1) * sample[1][i1] + f1 * sample[1][i1 + 1];
+		double monoL1 = 0.0;
+		double monoR1 = 0.0;
+		readGrainStereo(0, g, pos1, monoL1, monoR1);
 		// panning
 		double normPan1 = ((panSlot1 - center) * invDenom);
 		double pan1 = panSpread * normPan1 * 2.0;
@@ -1523,8 +1603,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w2 = morphedWindow(
 		cloudWindowPhase(v.schedPhase2 / grainSize, 1)
 		);
-		double monoL2 = (1.0 - f2) * sample[0][i2] + f2 * sample[0][i2 + 1];
-		double monoR2 = (1.0 - f2) * sample[1][i2] + f2 * sample[1][i2 + 1];
+		double monoL2 = 0.0;
+		double monoR2 = 0.0;
+		readGrainStereo(1, g, pos2, monoL2, monoR2);
 		double normPan2 = ((panSlot2 - center) * invDenom);
 		double pan2 = panSpread * normPan2 * 2.0;
 		Lsum += monoL2 * w2 * (0.5 * (1.0 - pan2)) * weight2;
@@ -1563,8 +1644,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w3 = morphedWindow(
 		cloudWindowPhase(v.schedPhase3 / grainSize, 2)
 		);
-		double monoL3 = (1.0 - f3) * sample[0][i3] + f3 * sample[0][i3 + 1];
-		double monoR3 = (1.0 - f3) * sample[1][i3] + f3 * sample[1][i3 + 1];
+		double monoL3 = 0.0;
+		double monoR3 = 0.0;
+		readGrainStereo(2, g, pos3, monoL3, monoR3);
 		double normPan3 = ((panSlot3 - center) * invDenom);
 		double pan3 = panSpread * normPan3 * 2.0;
 		Lsum += monoL3 * w3 * (0.5 * (1.0 - pan3)) * weight3;
@@ -1603,8 +1685,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w4 = morphedWindow(
 		cloudWindowPhase(v.schedPhase4 / grainSize, 3)
 		);
-		double monoL4 = (1.0 - f4) * sample[0][i4] + f4 * sample[0][i4 + 1];
-		double monoR4 = (1.0 - f4) * sample[1][i4] + f4 * sample[1][i4 + 1];
+		double monoL4 = 0.0;
+		double monoR4 = 0.0;
+		readGrainStereo(3, g, pos4, monoL4, monoR4);
 		double normPan4 = ((panSlot4 - center) * invDenom);
 		double pan4 = panSpread * normPan4 * 2.0;
 		Lsum += monoL4 * w4 * (0.5 * (1.0 - pan4)) * weight4;
@@ -1643,8 +1726,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w5 = morphedWindow(
 		cloudWindowPhase(v.schedPhase5 / grainSize, 4)
 		);
-		double monoL5 = (1.0 - f5) * sample[0][i5] + f5 * sample[0][i5 + 1];
-		double monoR5 = (1.0 - f5) * sample[1][i5] + f5 * sample[1][i5 + 1];
+		double monoL5 = 0.0;
+		double monoR5 = 0.0;
+		readGrainStereo(4, g, pos5, monoL5, monoR5);
 		double normPan5 = ((panSlot5 - center) * invDenom);
 		double pan5 = panSpread * normPan5 * 2.0;
 		Lsum += monoL5 * w5 * (0.5 * (1.0 - pan5)) * weight5;
@@ -1683,8 +1767,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w6 = morphedWindow(
 		cloudWindowPhase(v.schedPhase6 / grainSize, 5)
 		);
-		double monoL6 = (1.0 - f6) * sample[0][i6] + f6 * sample[0][i6 + 1];
-		double monoR6 = (1.0 - f6) * sample[1][i6] + f6 * sample[1][i6 + 1];
+		double monoL6 = 0.0;
+		double monoR6 = 0.0;
+		readGrainStereo(5, g, pos6, monoL6, monoR6);
 		double normPan6 = ((panSlot6 - center) * invDenom);
 		double pan6 = panSpread * normPan6 * 2.0;
 		Lsum += monoL6 * w6 * (0.5 * (1.0 - pan6)) * weight6;
@@ -1723,8 +1808,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w7 = morphedWindow(
 		cloudWindowPhase(v.schedPhase7 / grainSize, 6)
 		);
-		double monoL7 = (1.0 - f7) * sample[0][i7] + f7 * sample[0][i7 + 1];
-		double monoR7 = (1.0 - f7) * sample[1][i7] + f7 * sample[1][i7 + 1];
+		double monoL7 = 0.0;
+		double monoR7 = 0.0;
+		readGrainStereo(6, g, pos7, monoL7, monoR7);
 		double normPan7 = ((panSlot7 - center) * invDenom);
 		double pan7 = panSpread * normPan7 * 2.0;
 		Lsum += monoL7 * w7 * (0.5 * (1.0 - pan7)) * weight7;
@@ -1763,8 +1849,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w8 = morphedWindow(
 		cloudWindowPhase(v.schedPhase8 / grainSize, 7)
 		);
-		double monoL8 = (1.0 - f8) * sample[0][i8] + f8 * sample[0][i8 + 1];
-		double monoR8 = (1.0 - f8) * sample[1][i8] + f8 * sample[1][i8 + 1];
+		double monoL8 = 0.0;
+		double monoR8 = 0.0;
+		readGrainStereo(7, g, pos8, monoL8, monoR8);
 		double normPan8 = ((panSlot8 - center) * invDenom);
 		double pan8 = panSpread * normPan8 * 2.0;
 		Lsum += monoL8 * w8 * (0.5 * (1.0 - pan8)) * weight8;
@@ -1803,8 +1890,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w9 = morphedWindow(
 		cloudWindowPhase(v.schedPhase9 / grainSize, 8)
 		);
-		double monoL9 = (1.0 - f9) * sample[0][i9] + f9 * sample[0][i9 + 1];
-		double monoR9 = (1.0 - f9) * sample[1][i9] + f9 * sample[1][i9 + 1];
+		double monoL9 = 0.0;
+		double monoR9 = 0.0;
+		readGrainStereo(8, g, pos9, monoL9, monoR9);
 		double normPan9 = ((panSlot9 - center) * invDenom);
 		double pan9 = panSpread * normPan9 * 2.0;
 		Lsum += monoL9 * w9 * (0.5 * (1.0 - pan9)) * weight9;
@@ -1843,8 +1931,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w10 = morphedWindow(
 		cloudWindowPhase(v.schedPhase10 / grainSize, 9)
 		);
-		double monoL10 = (1.0 - f10) * sample[0][i10] + f10 * sample[0][i10 + 1];
-		double monoR10 = (1.0 - f10) * sample[1][i10] + f10 * sample[1][i10 + 1];
+		double monoL10 = 0.0;
+		double monoR10 = 0.0;
+		readGrainStereo(9, g, pos10, monoL10, monoR10);
 		double normPan10 = ((panSlot10 - center) * invDenom);
 		double pan10 = panSpread * normPan10 * 2.0;
 		Lsum += monoL10 * w10 * (0.5 * (1.0 - pan10)) * weight10;
@@ -1883,8 +1972,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w11 = morphedWindow(
 		cloudWindowPhase(v.schedPhase11 / grainSize, 10)
 		);
-		double monoL11 = (1.0 - f11) * sample[0][i11] + f11 * sample[0][i11 + 1];
-		double monoR11 = (1.0 - f11) * sample[1][i11] + f11 * sample[1][i11 + 1];
+		double monoL11 = 0.0;
+		double monoR11 = 0.0;
+		readGrainStereo(10, g, pos11, monoL11, monoR11);
 		double normPan11 = ((panSlot11 - center) * invDenom);
 		double pan11 = panSpread * normPan11 * 2.0;
 		Lsum += monoL11 * w11 * (0.5 * (1.0 - pan11)) * weight11;
@@ -1923,8 +2013,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w12 = morphedWindow(
 		cloudWindowPhase(v.schedPhase12 / grainSize, 11)
 		);
-		double monoL12 = (1.0 - f12) * sample[0][i12] + f12 * sample[0][i12 + 1];
-		double monoR12 = (1.0 - f12) * sample[1][i12] + f12 * sample[1][i12 + 1];
+		double monoL12 = 0.0;
+		double monoR12 = 0.0;
+		readGrainStereo(11, g, pos12, monoL12, monoR12);
 		double normPan12 = ((panSlot12 - center) * invDenom);
 		double pan12 = panSpread * normPan12 * 2.0;
 		Lsum += monoL12 * w12 * (0.5 * (1.0 - pan12)) * weight12;
@@ -1963,8 +2054,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w13 = morphedWindow(
 		cloudWindowPhase(v.schedPhase13 / grainSize, 12)
 		);
-		double monoL13 = (1.0 - f13) * sample[0][i13] + f13 * sample[0][i13 + 1];
-		double monoR13 = (1.0 - f13) * sample[1][i13] + f13 * sample[1][i13 + 1];
+		double monoL13 = 0.0;
+		double monoR13 = 0.0;
+		readGrainStereo(12, g, pos13, monoL13, monoR13);
 		double normPan13 = ((panSlot13 - center) * invDenom);
 		double pan13 = panSpread * normPan13 * 2.0;
 		Lsum += monoL13 * w13 * (0.5 * (1.0 - pan13)) * weight13;
@@ -2003,8 +2095,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w14 = morphedWindow(
 		cloudWindowPhase(v.schedPhase14 / grainSize, 13)
 		);
-		double monoL14 = (1.0 - f14) * sample[0][i14] + f14 * sample[0][i14 + 1];
-		double monoR14 = (1.0 - f14) * sample[1][i14] + f14 * sample[1][i14 + 1];
+		double monoL14 = 0.0;
+		double monoR14 = 0.0;
+		readGrainStereo(13, g, pos14, monoL14, monoR14);
 		double normPan14 = ((panSlot14 - center) * invDenom);
 		double pan14 = panSpread * normPan14 * 2.0;
 		Lsum += monoL14 * w14 * (0.5 * (1.0 - pan14)) * weight14;
@@ -2043,8 +2136,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w15 = morphedWindow(
 		cloudWindowPhase(v.schedPhase15 / grainSize, 14)
 		);
-		double monoL15 = (1.0 - f15) * sample[0][i15] + f15 * sample[0][i15 + 1];
-		double monoR15 = (1.0 - f15) * sample[1][i15] + f15 * sample[1][i15 + 1];
+		double monoL15 = 0.0;
+		double monoR15 = 0.0;
+		readGrainStereo(14, g, pos15, monoL15, monoR15);
 		double normPan15 = ((panSlot15 - center) * invDenom);
 		double pan15 = panSpread * normPan15 * 2.0;
 		Lsum += monoL15 * w15 * (0.5 * (1.0 - pan15)) * weight15;
@@ -2083,8 +2177,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 		double w16 = morphedWindow(
 		cloudWindowPhase(v.schedPhase16 / grainSize, 15)
 		);
-		double monoL16 = (1.0 - f16) * sample[0][i16] + f16 * sample[0][i16 + 1];
-		double monoR16 = (1.0 - f16) * sample[1][i16] + f16 * sample[1][i16 + 1];
+		double monoL16 = 0.0;
+		double monoR16 = 0.0;
+		readGrainStereo(15, g, pos16, monoL16, monoR16);
 		double normPan16 = ((panSlot16 - center) * invDenom);
 		double pan16 = panSpread * normPan16 * 2.0;
 		Lsum += monoL16 * w16 * (0.5 * (1.0 - pan16)) * weight16;
@@ -2105,8 +2200,14 @@ struct granular_player_stepquant_density_hybrid: public data::base
 						if (idxA > g - 1) idxA = g - 1;
 						if (idxB > g - 1) idxB = g - 1;
 						double t = clamp01(frac);
-					double gA = Math.cos(0.5 * Math.PI * t);
-					double gB = Math.sin(0.5 * Math.PI * t);
+					double gA = Math.sqrt(1.0 - t);
+					double gB = Math.sqrt(t);
+					const double morphMinN = 0.12;
+					if (gA < morphMinN) gA = morphMinN;
+						if (gB < morphMinN) gB = morphMinN;
+						double gNormN = 1.0 / Math.sqrt(gA * gA + gB * gB);
+					gA *= gNormN;
+					gB *= gNormN;
 					double mN = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
 					weightNRaw *= mN;
 				}
@@ -2180,8 +2281,9 @@ struct granular_player_stepquant_density_hybrid: public data::base
 				int iN = (int)posN;
 				double fN = posN - (double)iN;
 				double wN = morphedWindow(cloudWindowPhase(phaseN / grainSize, i));
-				double monoLN = (1.0 - fN) * sample[0][iN] + fN * sample[0][iN + 1];
-				double monoRN = (1.0 - fN) * sample[1][iN] + fN * sample[1][iN + 1];
+				double monoLN = 0.0;
+				double monoRN = 0.0;
+				readGrainStereo(i, g, posN, monoLN, monoRN);
 				double panSlotN = panOrderIndex(i, g);
 				double normPanN = ((panSlotN - center) * invDenom);
 				double panN = panSpread * normPanN * 2.0;
@@ -2269,8 +2371,23 @@ struct granular_player_stepquant_density_hybrid: public data::base
 			return;   // ignore all other slots
 		// At this point, we know the data belongs to the audio file input.
 		audioData = ed;
-		ed.referBlockTo(sample[0], 0);
-		ed.referBlockTo(sample[1], 1);
+		int detectedChannels = 0;
+		for (int ch = 0; ch < MAX_SOURCE_CHANNELS; ++ch)
+		{
+			ed.referBlockTo(sourceSample[ch], ch);
+			if (sourceSample[ch].size() > 1)
+				detectedChannels = ch + 1;
+		}
+		if (detectedChannels < 1)
+			detectedChannels = 1;
+		if (detectedChannels > 1 && (detectedChannels % 2) != 0)
+			detectedChannels -= 1;
+		sourceChannelCount = detectedChannels;
+		sourcePairCount = (sourceChannelCount > 1) ? (sourceChannelCount / 2) : 1;
+		if (sourcePairCount < 1)
+			sourcePairCount = 1;
+		if (sourcePairCount > MAX_STEREO_PAIRS)
+			sourcePairCount = MAX_STEREO_PAIRS;
 		updateGrainSize();
 		reset();
 	}
@@ -4927,6 +5044,12 @@ using clone_cable_mod = parameter::from0To1<project::res2<NV>,
 template <int NV>
 using clone_cable_t = control::clone_cable<parameter::cloned<clone_cable_mod<NV>>, 
                                            duplilogic::spread>;
+
+// Apply the pitch modulation to the delay time ----------------------------------------------------
+
+template <int NV>
+using pma_unscaled4_t = control::pma_unscaled<NV, 
+                                              parameter::plain<filters::allpass<NV>, 0>>;
 DECLARE_PARAMETER_RANGE_SKEW(pma16_mod_0Range, 
                              0.5, 
                              2., 
@@ -4938,9 +5061,15 @@ using pma16_mod_0 = parameter::from0To1<pma_unscaled3_t<NV>,
                                         pma16_mod_0Range>;
 
 template <int NV>
+using pma16_mod_2 = parameter::from0To1<pma_unscaled4_t<NV>, 
+                                        1, 
+                                        pma16_mod_0Range>;
+
+template <int NV>
 using pma16_mod = parameter::chain<ranges::Identity, 
                                    pma16_mod_0<NV>, 
-                                   parameter::plain<clone_cable_t<NV>, 1>>;
+                                   parameter::plain<clone_cable_t<NV>, 1>, 
+                                   pma16_mod_2<NV>>;
 
 template <int NV>
 using pma16_t = control::pma<NV, pma16_mod<NV>>;
@@ -5141,10 +5270,21 @@ using pma18_mod_0 = parameter::from0To1<filters::one_pole<NV>,
                                         0, 
                                         pma14_modRange>;
 
+DECLARE_PARAMETER_RANGE_SKEW(pma18_mod_2Range, 
+                             0.3, 
+                             9.9, 
+                             0.264718);
+
+template <int NV>
+using pma18_mod_2 = parameter::from0To1<filters::allpass<NV>, 
+                                        1, 
+                                        pma18_mod_2Range>;
+
 template <int NV>
 using pma18_mod = parameter::chain<ranges::Identity, 
                                    pma18_mod_0<NV>, 
-                                   parameter::plain<clone_cable1_t<NV>, 1>>;
+                                   parameter::plain<clone_cable1_t<NV>, 1>, 
+                                   pma18_mod_2<NV>>;
 
 template <int NV>
 using pma18_t = control::pma<NV, pma18_mod<NV>>;
@@ -6091,13 +6231,18 @@ using cable_table4_t = wrap::data<control::cable_table<parameter::plain<input_to
                                   data::embedded::table<cable_table4_t_data>>;
 
 template <int NV>
+using chain37_t = container::chain<parameter::empty, 
+                                   wrap::fix<2, tempo_sync1_t<NV>>, 
+                                   cable_table4_t<NV>, 
+                                   input_toggle_t<NV>, 
+                                   tempo_sync2_t<NV>, 
+                                   converter_t<NV>, 
+                                   snex_node_t<NV>>;
+
+template <int NV>
 using fix8_block_t = container::chain<parameter::empty, 
                                       wrap::fix<2, modchain_t<NV>>, 
-                                      tempo_sync1_t<NV>, 
-                                      cable_table4_t<NV>, 
-                                      input_toggle_t<NV>, 
-                                      tempo_sync2_t<NV>, 
-                                      converter_t<NV>>;
+                                      chain37_t<NV>>;
 
 using global_cable15_t_index = runtime_target::indexers::fix_hash<162771259>;
 using peak1_mod = parameter::plain<routing::global_cable<global_cable15_t_index, parameter::empty>, 
@@ -6239,11 +6384,55 @@ using chain17_t = container::chain<parameter::empty,
                                    clone_cable2_t<NV>, 
                                    clone_t<NV>, 
                                    filters::one_pole<NV>>;
+
+template <int NV>
+using converter8_t = control::converter<parameter::plain<pma_unscaled4_t<NV>, 0>, 
+                                        conversion_logic::midi2freq>;
+template <int NV>
+using midi4_t = wrap::mod<parameter::plain<converter8_t<NV>, 0>, 
+                          control::midi<midi_logic::notenumber<NV>>>;
+
+template <int NV>
+using offline3_t_ = container::chain<parameter::empty, 
+                                     wrap::fix<2, converter8_t<NV>>>;
+
+template <int NV>
+using offline3_t = wrap::offline<offline3_t_<NV>>;
+
+// Calculate the delay time from the incoming note number ------------------------------------------
+
+template <int NV>
+using chain42_t = container::chain<parameter::empty, 
+                                   wrap::fix<2, midi4_t<NV>>, 
+                                   offline3_t<NV>>;
+
+template <int NV>
+using frame2_block2_t_ = container::chain<parameter::empty, 
+                                          wrap::fix<2, filters::allpass<NV>>, 
+                                          filters::one_pole<NV>>;
+
+template <int NV>
+using frame2_block2_t = wrap::frame<2, frame2_block2_t_<NV>>;
+
+template <int NV>
+using split2_t = container::split<parameter::empty, 
+                                  wrap::fix<2, frame2_block2_t<NV>>>;
+
+template <int NV>
+using chain21_t = container::chain<parameter::empty, 
+                                   wrap::fix<2, chain42_t<NV>>, 
+                                   pma_unscaled4_t<NV>, 
+                                   split2_t<NV>>;
+
+template <int NV>
+using fix8_block2_t = container::chain<parameter::empty, 
+                                       wrap::fix<2, chain21_t<NV>>>;
 template <int NV>
 using branch1_t = container::branch<parameter::empty, 
                                     wrap::fix<2, chain20_t>, 
                                     fix8_block1_t<NV>, 
-                                    chain17_t<NV>>;
+                                    chain17_t<NV>, 
+                                    fix8_block2_t<NV>>;
 
 template <int NV>
 using chain19_t = container::chain<parameter::empty, 
@@ -6553,15 +6742,10 @@ using PreCutMode_0 = parameter::from0To1<filters::svf<NV>,
 template <int NV>
 using PreCutMode = parameter::chain<PreCutMode_InputRange, PreCutMode_0<NV>>;
 
-DECLARE_PARAMETER_RANGE_SKEW(PreCutQRange, 
-                             0.3, 
-                             9.9, 
-                             0.264718);
-
 template <int NV>
 using PreCutQ = parameter::from0To1<filters::svf<NV>, 
                                     1, 
-                                    PreCutQRange>;
+                                    sn_impl::pma18_mod_2Range>;
 
 DECLARE_PARAMETER_RANGE_STEP(ResoSrc_InputRange, 
                              1., 
@@ -6674,11 +6858,11 @@ using PitchTempo = parameter::chain<PitchTempo_InputRange,
 
 DECLARE_PARAMETER_RANGE_STEP(delMode_InputRange, 
                              1., 
-                             3., 
+                             4., 
                              1.);
 DECLARE_PARAMETER_RANGE_STEP(delMode_0Range, 
                              0., 
-                             2., 
+                             3., 
                              1.);
 
 template <int NV>
@@ -6884,7 +7068,6 @@ using sn_t_plist = parameter::list<PitchMode<NV>,
 template <int NV>
 using sn_t_ = container::chain<sn_t_parameters::sn_t_plist<NV>, 
                                wrap::fix<2, fix8_block_t<NV>>, 
-                               snex_node_t<NV>, 
                                branch2_t, 
                                chain23_t<NV>, 
                                xfader_t<NV>, 
@@ -6915,37 +7098,37 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 0x4000, 0x0040, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x0100, 0x0000, 0x4D00, 0x7861, 0x7247, 
             0x6961, 0x736E, 0x0000, 0x0000, 0x4080, 0x0000, 0x4200, 0x0000, 
-            0x4120, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0002, 0x0000, 
+            0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0002, 0x0000, 
             0x6373, 0x7572, 0x4D62, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0300, 0x0000, 0x7300, 0x7263, 0x6275, 0x6C42, 0x6E65, 0x0000, 
-            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0004, 0x0000, 0x6572, 0x6576, 0x7372, 
             0x0065, 0x0000, 0x8000, 0x003F, 0x4000, 0x0040, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x0500, 0x0000, 0x5000, 0x736F, 
-            0x7469, 0x6F69, 0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0x5C3F, 
-            0x028F, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 
+            0x7469, 0x6F69, 0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 
             0x5000, 0x736F, 0x7469, 0x6F69, 0x4D6E, 0x646F, 0x0000, 0x0000, 
-            0xBF80, 0x0000, 0x3F80, 0xCCCD, 0x3E4C, 0x0000, 0x3F80, 0x0000, 
+            0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x0007, 0x0000, 0x6F50, 0x6973, 0x6974, 0x6E6F, 
             0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x8000, 
             0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0800, 0x0000, 0x5000, 
-            0x736F, 0x0032, 0x0000, 0x0000, 0x0000, 0x8000, 0x143F, 0xC7AE, 
-            0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0900, 0x0000, 0x5000, 
+            0x736F, 0x0032, 0x0000, 0x0000, 0x0000, 0x8000, 0xF63F, 0x5C28, 
+            0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0900, 0x0000, 0x5000, 
             0x736F, 0x4D32, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
-            0x147B, 0xBF2E, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000A, 
+            0xC28F, 0x3DF5, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000A, 
             0x0000, 0x6F50, 0x3273, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x0041, 0xC000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0B00, 0x0000, 0x5000, 0x736F, 0x0033, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0xB83F, 0x851E, 0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x0C00, 0x0000, 0x5000, 0x736F, 0x4D33, 0x646F, 0x0000, 0x0000, 
-            0xBF80, 0x0000, 0x3F80, 0xC28F, 0x3D75, 0x0000, 0x3F80, 0x0000, 
+            0xBF80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x000D, 0x0000, 0x6F50, 0x3373, 0x7253, 0x0063, 
-            0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x1000, 0x0041, 0x8000, 
+            0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x0000, 0x0040, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x0E00, 0x0000, 0x5000, 0x736F, 0x0034, 
-            0x0000, 0x0000, 0x0000, 0x8000, 0x0A3F, 0x23D7, 0x003F, 0x8000, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x0F00, 0x0000, 0x5000, 0x736F, 0x4D34, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x28F6, 0x3EDC, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0010, 0x0000, 0x6F50, 
             0x3473, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0xC000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1100, 0x0000, 
@@ -6954,56 +7137,56 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0013, 0x0000, 0x6950, 0x6374, 0x5368, 0x6372, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x40C0, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4040, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x0014, 0x0000, 0x6544, 0x736E, 0x0065, 
-            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x1500, 0x0000, 0x4400, 0x6E65, 0x6573, 
-            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1600, 0x0000, 0x4400, 
+            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1600, 0x0000, 0x4400, 
             0x6E65, 0x6573, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
             0x0041, 0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1700, 
             0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x0065, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x043F, 0x73D6, 0x003F, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0xCF3F, 0x4F77, 0x003F, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x1800, 0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x5365, 
-            0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 
+            0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4040, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0019, 0x0000, 0x6150, 
             0x536E, 0x7270, 0x6165, 0x0064, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x003F, 0x0000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1A00, 
+            0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1A00, 
             0x0000, 0x5000, 0x6E61, 0x7053, 0x6572, 0x6461, 0x6F4D, 0x0064, 
             0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x1B00, 0x0000, 0x5000, 0x6E61, 0x7053, 
             0x6472, 0x7273, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
-            0x6000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1C00, 0x0000, 
+            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1C00, 0x0000, 
             0x5000, 0x7469, 0x6863, 0x7053, 0x6472, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x999A, 0x3CD5, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x001D, 0x0000, 0x6950, 0x6374, 0x5368, 0x7270, 0x4D64, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x3C70, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001E, 0x0000, 0x6950, 
             0x6374, 0x5368, 0x7270, 0x5364, 0x6372, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x4180, 0x0000, 0x40E0, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x4180, 0x0000, 0x4170, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x001F, 0x0000, 0x7247, 0x6961, 0x536E, 0x7A69, 0x0065, 
-            0x0000, 0xA000, 0x0040, 0x7A00, 0x0044, 0xC080, 0x0043, 0x8000, 
+            0x0000, 0xA000, 0x0040, 0x7A00, 0x6044, 0x2DA3, 0x0043, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x2000, 0x0000, 0x4700, 0x6172, 0x6E69, 
-            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2100, 0x0000, 0x4700, 
+            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0xE280, 
+            0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2100, 0x0000, 0x4700, 
             0x6172, 0x6E69, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2200, 
+            0x0041, 0x0000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2200, 
             0x0000, 0x4700, 0x6172, 0x6E69, 0x6554, 0x706D, 0x006F, 0x0000, 
-            0x0000, 0x0000, 0x9000, 0x0041, 0x2000, 0x0041, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x9000, 0x0041, 0x9000, 0x0041, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x2300, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6944, 
             0x0076, 0x0000, 0x8000, 0x003F, 0x0000, 0x0042, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x2400, 0x0000, 0x4700, 0x6172, 
             0x6E69, 0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0025, 
             0x0000, 0x6957, 0x536E, 0x6168, 0x6570, 0x6F4D, 0x0064, 0x0000, 
-            0x8000, 0x00BF, 0x8000, 0x8F3F, 0xF5C2, 0x00BC, 0x8000, 0x003F, 
+            0x8000, 0x00BF, 0x8000, 0xF53F, 0xD428, 0x00BC, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x2600, 0x0000, 0x5000, 0x6572, 0x7543, 0x0074, 
             0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x2700, 0x0000, 0x5000, 0x6572, 0x7543, 
-            0x4D74, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0028, 0x0000, 
+            0x4D74, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0xCCCD, 
+            0x3D44, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0028, 0x0000, 
             0x7250, 0x4365, 0x7475, 0x7253, 0x0063, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0x663F, 0x7FC6, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x2900, 0x0000, 0x5000, 0x6572, 0x7543, 0x4D74, 0x646F, 0x0065, 
             0x0000, 0x8000, 0x003F, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x2A00, 0x0000, 0x5000, 0x6572, 0x7543, 
@@ -7016,43 +7199,43 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x5C00, 0x2D00, 0x0000, 0x5200, 0x7365, 0x536F, 0x6372, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x002E, 0x0000, 0x6552, 0x5073, 0x7469, 
-            0x6863, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x6863, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x6666, 0x3EE6, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x002F, 0x0000, 0x6552, 
             0x7073, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0030, 0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x7253, 
             0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x4000, 0x0040, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x3100, 0x0000, 0x5200, 0x7365, 
-            0x704C, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0xE625, 0x3F10, 
+            0x704C, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0032, 0x0000, 0x6552, 
             0x4C73, 0x4D70, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0033, 
             0x0000, 0x6552, 0x4C73, 0x5370, 0x6372, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x0034, 0x0000, 0x6F50, 0x7473, 0x7543, 0x0074, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x523F, 0x5EB8, 0x003F, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x8000, 0x0A3F, 0x23D7, 0x003E, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x3500, 0x0000, 0x5000, 0x736F, 0x4374, 0x7475, 
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3600, 0x0000, 0x5000, 
             0x736F, 0x4374, 0x7475, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x0041, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x3700, 0x0000, 0x5000, 0x736F, 0x5174, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x47AE, 0x3F21, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0038, 0x0000, 0x6F50, 0x7473, 0x6F4D, 0x6564, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x40A0, 0x0000, 0x4040, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x40A0, 0x0000, 0x4000, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x0039, 0x0000, 0x7247, 0x6961, 0x4F6E, 
             0x7475, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003A, 0x0000, 0x6552, 
             0x4F73, 0x7475, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 
-            0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003B, 0x0000, 
+            0x4040, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003B, 0x0000, 
             0x6147, 0x6E69, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 
-            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3C00, 
+            0x003F, 0x1C00, 0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 0x3C00, 
             0x0000, 0x6700, 0x6961, 0x536E, 0x6372, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x003D, 0x0000, 0x6F56, 0x006C, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0xA43F, 0x7490, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x3E00, 0x0000, 0x5000, 0x7261, 0x006E, 0x0000, 0x8000, 0x00BF, 
-            0x8000, 0xEC3F, 0xB851, 0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x3F00, 0x0000, 0x5000, 0x6E61, 0x6F4D, 0x0064, 0x0000, 0x8000, 
             0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x4000, 0x0000, 0x5000, 0x6E61, 0x7253, 0x0063, 0x0000, 
@@ -7065,18 +7248,18 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x4400, 0x0000, 0x5000, 0x7469, 0x6863, 
             0x6554, 0x706D, 0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 
-            0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4500, 0x0000, 
+            0x1000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4500, 0x0000, 
             0x5000, 0x7469, 0x6863, 0x6944, 0x0076, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0041, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x4600, 0x0000, 0x6400, 0x6C65, 0x6F4D, 0x6564, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x4040, 0x0000, 0x4040, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000, 0x4080, 0x0000, 0x4080, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x005C, 0x0047, 0x0000, 0x694A, 0x5374, 0x6E79, 0x0063, 
             0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x4800, 0x0000, 0x5300, 0x6163, 0x7474, 
-            0x7265, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0A3D, 0x3F57, 
+            0x7265, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0049, 0x0000, 0x6353, 
             0x7461, 0x6574, 0x4D72, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 
-            0x3F80, 0x51EC, 0xBDB8, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
             0x004A, 0x0000, 0x6353, 0x7461, 0x6574, 0x5372, 0x6372, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x004B, 0x0000, 0x6353, 0x7461, 0x6574, 
@@ -8061,102 +8244,123 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		auto& pma8 = this->getT(0).getT(0).getT(0).getT(17).getT(3);                             // sn_impl::pma8_t<NV>
 		auto& pma7 = this->getT(0).getT(0).getT(0).getT(17).getT(4);                             // sn_impl::pma7_t<NV>
 		auto& tempo_sync = this->getT(0).getT(0).getT(0).getT(17).getT(5);                       // sn_impl::tempo_sync_t<NV>
-		auto& tempo_sync1 = this->getT(0).getT(1);                                               // sn_impl::tempo_sync1_t<NV>
-		auto& cable_table4 = this->getT(0).getT(2);                                              // sn_impl::cable_table4_t<NV>
-		auto& input_toggle = this->getT(0).getT(3);                                              // sn_impl::input_toggle_t<NV>
-		auto& tempo_sync2 = this->getT(0).getT(4);                                               // sn_impl::tempo_sync2_t<NV>
-		auto& converter = this->getT(0).getT(5);                                                 // sn_impl::converter_t<NV>
-		auto& snex_node = this->getT(1);                                                         // sn_impl::snex_node_t<NV>
-		auto& branch2 = this->getT(2);                                                           // sn_impl::branch2_t
-		auto& chain25 = this->getT(2).getT(0);                                                   // sn_impl::chain25_t
-		auto& peak1 = this->getT(2).getT(0).getT(0);                                             // sn_impl::peak1_t
-		auto& global_cable15 = this->getT(2).getT(0).getT(1);                                    // routing::global_cable<global_cable15_t_index, parameter::empty>
-		auto& chain28 = this->getT(2).getT(1);                                                   // sn_impl::chain28_t
-		auto& peak19 = this->getT(2).getT(1).getT(0);                                            // sn_impl::peak19_t
-		auto& global_cable18 = this->getT(2).getT(1).getT(1);                                    // routing::global_cable<global_cable18_t_index, parameter::empty>
-		auto& chain27 = this->getT(2).getT(2);                                                   // sn_impl::chain27_t
-		auto& peak18 = this->getT(2).getT(2).getT(0);                                            // sn_impl::peak18_t
-		auto& global_cable17 = this->getT(2).getT(2).getT(1);                                    // routing::global_cable<global_cable17_t_index, parameter::empty>
-		auto& chain26 = this->getT(2).getT(3);                                                   // sn_impl::chain26_t
-		auto& peak2 = this->getT(2).getT(3).getT(0);                                             // sn_impl::peak2_t
-		auto& global_cable16 = this->getT(2).getT(3).getT(1);                                    // routing::global_cable<global_cable16_t_index, parameter::empty>
-		auto& chain23 = this->getT(3);                                                           // sn_impl::chain23_t<NV>
-		auto& xfader1 = this->getT(3).getT(0);                                                   // sn_impl::xfader1_t<NV>
-		auto& split3 = this->getT(3).getT(1);                                                    // sn_impl::split3_t<NV>
-		auto& chain24 = this->getT(3).getT(1).getT(0);                                           // sn_impl::chain24_t<NV>
-		auto& gain4 = this->getT(3).getT(1).getT(0).getT(0);                                     // core::gain<NV>
-		auto& chain33 = this->getT(3).getT(1).getT(1);                                           // sn_impl::chain33_t<NV>
-		auto& svf1 = this->getT(3).getT(1).getT(1).getT(0);                                      // filters::svf<NV>
-		auto& gain5 = this->getT(3).getT(1).getT(1).getT(1);                                     // core::gain<NV>
-		auto& xfader = this->getT(4);                                                            // sn_impl::xfader_t<NV>
-		auto& chain16 = this->getT(5);                                                           // sn_impl::chain16_t<NV>
-		auto& split1 = this->getT(5).getT(0);                                                    // sn_impl::split1_t<NV>
-		auto& chain22 = this->getT(5).getT(0).getT(0);                                           // sn_impl::chain22_t<NV>
-		auto& gain = this->getT(5).getT(0).getT(0).getT(0);                                      // core::gain<NV>
-		auto& chain19 = this->getT(5).getT(0).getT(1);                                           // sn_impl::chain19_t<NV>
-		auto& branch1 = this->getT(5).getT(0).getT(1).getT(0);                                   // sn_impl::branch1_t<NV>
-		auto& chain20 = this->getT(5).getT(0).getT(1).getT(0).getT(0);                           // sn_impl::chain20_t
-		auto& fix8_block1 = this->getT(5).getT(0).getT(1).getT(0).getT(1);                       // sn_impl::fix8_block1_t<NV>
-		auto& chain18 = this->getT(5).getT(0).getT(1).getT(0).getT(1).getT(0);                   // sn_impl::chain18_t<NV>
-		auto& chain41 = this->getT(5).getT(0).getT(1).getT(0).getT(1).getT(0).getT(0);           // sn_impl::chain41_t<NV>
-		auto& midi3 = this->getT(5).getT(0).getT(1).getT(0).                                     // sn_impl::midi3_t<NV>
+		auto& chain37 = this->getT(0).getT(1);                                                   // sn_impl::chain37_t<NV>
+		auto& tempo_sync1 = this->getT(0).getT(1).getT(0);                                       // sn_impl::tempo_sync1_t<NV>
+		auto& cable_table4 = this->getT(0).getT(1).getT(1);                                      // sn_impl::cable_table4_t<NV>
+		auto& input_toggle = this->getT(0).getT(1).getT(2);                                      // sn_impl::input_toggle_t<NV>
+		auto& tempo_sync2 = this->getT(0).getT(1).getT(3);                                       // sn_impl::tempo_sync2_t<NV>
+		auto& converter = this->getT(0).getT(1).getT(4);                                         // sn_impl::converter_t<NV>
+		auto& snex_node = this->getT(0).getT(1).getT(5);                                         // sn_impl::snex_node_t<NV>
+		auto& branch2 = this->getT(1);                                                           // sn_impl::branch2_t
+		auto& chain25 = this->getT(1).getT(0);                                                   // sn_impl::chain25_t
+		auto& peak1 = this->getT(1).getT(0).getT(0);                                             // sn_impl::peak1_t
+		auto& global_cable15 = this->getT(1).getT(0).getT(1);                                    // routing::global_cable<global_cable15_t_index, parameter::empty>
+		auto& chain28 = this->getT(1).getT(1);                                                   // sn_impl::chain28_t
+		auto& peak19 = this->getT(1).getT(1).getT(0);                                            // sn_impl::peak19_t
+		auto& global_cable18 = this->getT(1).getT(1).getT(1);                                    // routing::global_cable<global_cable18_t_index, parameter::empty>
+		auto& chain27 = this->getT(1).getT(2);                                                   // sn_impl::chain27_t
+		auto& peak18 = this->getT(1).getT(2).getT(0);                                            // sn_impl::peak18_t
+		auto& global_cable17 = this->getT(1).getT(2).getT(1);                                    // routing::global_cable<global_cable17_t_index, parameter::empty>
+		auto& chain26 = this->getT(1).getT(3);                                                   // sn_impl::chain26_t
+		auto& peak2 = this->getT(1).getT(3).getT(0);                                             // sn_impl::peak2_t
+		auto& global_cable16 = this->getT(1).getT(3).getT(1);                                    // routing::global_cable<global_cable16_t_index, parameter::empty>
+		auto& chain23 = this->getT(2);                                                           // sn_impl::chain23_t<NV>
+		auto& xfader1 = this->getT(2).getT(0);                                                   // sn_impl::xfader1_t<NV>
+		auto& split3 = this->getT(2).getT(1);                                                    // sn_impl::split3_t<NV>
+		auto& chain24 = this->getT(2).getT(1).getT(0);                                           // sn_impl::chain24_t<NV>
+		auto& gain4 = this->getT(2).getT(1).getT(0).getT(0);                                     // core::gain<NV>
+		auto& chain33 = this->getT(2).getT(1).getT(1);                                           // sn_impl::chain33_t<NV>
+		auto& svf1 = this->getT(2).getT(1).getT(1).getT(0);                                      // filters::svf<NV>
+		auto& gain5 = this->getT(2).getT(1).getT(1).getT(1);                                     // core::gain<NV>
+		auto& xfader = this->getT(3);                                                            // sn_impl::xfader_t<NV>
+		auto& chain16 = this->getT(4);                                                           // sn_impl::chain16_t<NV>
+		auto& split1 = this->getT(4).getT(0);                                                    // sn_impl::split1_t<NV>
+		auto& chain22 = this->getT(4).getT(0).getT(0);                                           // sn_impl::chain22_t<NV>
+		auto& gain = this->getT(4).getT(0).getT(0).getT(0);                                      // core::gain<NV>
+		auto& chain19 = this->getT(4).getT(0).getT(1);                                           // sn_impl::chain19_t<NV>
+		auto& branch1 = this->getT(4).getT(0).getT(1).getT(0);                                   // sn_impl::branch1_t<NV>
+		auto& chain20 = this->getT(4).getT(0).getT(1).getT(0).getT(0);                           // sn_impl::chain20_t
+		auto& fix8_block1 = this->getT(4).getT(0).getT(1).getT(0).getT(1);                       // sn_impl::fix8_block1_t<NV>
+		auto& chain18 = this->getT(4).getT(0).getT(1).getT(0).getT(1).getT(0);                   // sn_impl::chain18_t<NV>
+		auto& chain41 = this->getT(4).getT(0).getT(1).getT(0).getT(1).getT(0).getT(0);           // sn_impl::chain41_t<NV>
+		auto& midi3 = this->getT(4).getT(0).getT(1).getT(0).                                     // sn_impl::midi3_t<NV>
                       getT(1).getT(0).getT(0).getT(0);
-		auto& offline2 = this->getT(5).getT(0).getT(1).getT(0).                              // sn_impl::offline2_t<NV>
+		auto& offline2 = this->getT(4).getT(0).getT(1).getT(0).                              // sn_impl::offline2_t<NV>
                          getT(1).getT(0).getT(0).getT(1);
-		auto& converter6 = this->getT(5).getT(0).getT(1).getT(0).                            // sn_impl::converter6_t<NV>
+		auto& converter6 = this->getT(4).getT(0).getT(1).getT(0).                            // sn_impl::converter6_t<NV>
                            getT(1).getT(0).getT(0).getT(1).
                            getT(0);
-		auto& converter7 = this->getT(5).getT(0).getT(1).getT(0).                            // sn_impl::converter7_t<NV>
+		auto& converter7 = this->getT(4).getT(0).getT(1).getT(0).                            // sn_impl::converter7_t<NV>
                            getT(1).getT(0).getT(0).getT(1).
                            getT(1);
-		auto& frame2_block1 = this->getT(5).getT(0).getT(1).getT(0).getT(1).getT(0).getT(1); // sn_impl::frame2_block1_t<NV>
-		auto& pma_unscaled3 = this->getT(5).getT(0).getT(1).getT(0).                         // sn_impl::pma_unscaled3_t<NV>
+		auto& frame2_block1 = this->getT(4).getT(0).getT(1).getT(0).getT(1).getT(0).getT(1); // sn_impl::frame2_block1_t<NV>
+		auto& pma_unscaled3 = this->getT(4).getT(0).getT(1).getT(0).                         // sn_impl::pma_unscaled3_t<NV>
                               getT(1).getT(0).getT(1).getT(0);
-		auto& receive3 = this->getT(5).getT(0).getT(1).getT(0).                     // routing::receive<NV, stereo_frame_cable<NV>>
+		auto& receive3 = this->getT(4).getT(0).getT(1).getT(0).                              // routing::receive<NV, stereo_frame_cable<NV>>
                          getT(1).getT(0).getT(1).getT(1);
-		auto& one_pole5 = this->getT(5).getT(0).getT(1).getT(0).                    // filters::one_pole<NV>
+		auto& one_pole5 = this->getT(4).getT(0).getT(1).getT(0).                             // filters::one_pole<NV>
                           getT(1).getT(0).getT(1).getT(2);
-		auto& fix_delay = this->getT(5).getT(0).getT(1).getT(0).                    // wrap::no_process<core::fix_delay>
+		auto& fix_delay = this->getT(4).getT(0).getT(1).getT(0).                             // wrap::no_process<core::fix_delay>
                           getT(1).getT(0).getT(1).getT(3);
-		auto& jdelay_thiran3 = this->getT(5).getT(0).getT(1).getT(0).               // jdsp::jdelay_thiran<NV>
+		auto& jdelay_thiran3 = this->getT(4).getT(0).getT(1).getT(0).                        // jdsp::jdelay_thiran<NV>
                                getT(1).getT(0).getT(1).getT(4);
-		auto& send3 = this->getT(5).getT(0).getT(1).getT(0).                        // routing::send<NV, stereo_frame_cable<NV>>
+		auto& send3 = this->getT(4).getT(0).getT(1).getT(0).                                 // routing::send<NV, stereo_frame_cable<NV>>
                       getT(1).getT(0).getT(1).getT(5);
-		auto& one_pole3 = this->getT(5).getT(0).getT(1).getT(0).                    // filters::one_pole<NV>
+		auto& one_pole3 = this->getT(4).getT(0).getT(1).getT(0).                             // filters::one_pole<NV>
                           getT(1).getT(0).getT(1).getT(6);
-		auto& chain17 = this->getT(5).getT(0).getT(1).getT(0).getT(2);              // sn_impl::chain17_t<NV>
-		auto& clone_cable = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(0);  // sn_impl::clone_cable_t<NV>
-		auto& clone_cable1 = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(1); // sn_impl::clone_cable1_t<NV>
-		auto& cable_table6 = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(2); // sn_impl::cable_table6_t<NV>
-		auto& clone_cable2 = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(3); // sn_impl::clone_cable2_t<NV>
-		auto& clone = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(4);        // sn_impl::clone_t<NV>        // sn_impl::clone_child_t<NV>
-		auto res2 = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(4).getT(0);  // project::res2<NV>
-		auto gain2 = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(4).getT(1); // core::gain<NV>
-		auto& one_pole2 = this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(5);    // filters::one_pole<NV>
-		auto& gain1 = this->getT(5).getT(0).getT(1).getT(1);                        // core::gain<NV>
-		auto& chain34 = this->getT(6);                                              // sn_impl::chain34_t<NV>
-		auto& xfader2 = this->getT(6).getT(0);                                      // sn_impl::xfader2_t<NV>
-		auto& split4 = this->getT(6).getT(1);                                       // sn_impl::split4_t<NV>
-		auto& chain35 = this->getT(6).getT(1).getT(0);                              // sn_impl::chain35_t<NV>
-		auto& gain6 = this->getT(6).getT(1).getT(0).getT(0);                        // core::gain<NV>
-		auto& chain36 = this->getT(6).getT(1).getT(1);                              // sn_impl::chain36_t<NV>
-		auto& svf2 = this->getT(6).getT(1).getT(1).getT(0);                         // filters::svf<NV>
-		auto& gain7 = this->getT(6).getT(1).getT(1).getT(1);                        // core::gain<NV>
-		auto& gain3 = this->getT(7);                                                // core::gain<NV>
-		auto& jpanner = this->getT(8);                                              // jdsp::jpanner<NV>
-		auto& branch18 = this->getT(9);                                             // sn_impl::branch18_t
-		auto& chain29 = this->getT(9).getT(0);                                      // sn_impl::chain29_t
-		auto& peak20 = this->getT(9).getT(0).getT(0);                               // sn_impl::peak20_t
-		auto& global_cable19 = this->getT(9).getT(0).getT(1);                       // routing::global_cable<global_cable19_t_index, parameter::empty>
-		auto& chain30 = this->getT(9).getT(1);                                      // sn_impl::chain30_t
-		auto& peak21 = this->getT(9).getT(1).getT(0);                               // sn_impl::peak21_t
-		auto& global_cable20 = this->getT(9).getT(1).getT(1);                       // routing::global_cable<global_cable20_t_index, parameter::empty>
-		auto& chain31 = this->getT(9).getT(2);                                      // sn_impl::chain31_t
-		auto& peak22 = this->getT(9).getT(2).getT(0);                               // sn_impl::peak22_t
-		auto& global_cable21 = this->getT(9).getT(2).getT(1);                       // routing::global_cable<global_cable21_t_index, parameter::empty>
-		auto& chain32 = this->getT(9).getT(3);                                      // sn_impl::chain32_t
-		auto& peak23 = this->getT(9).getT(3).getT(0);                               // sn_impl::peak23_t
-		auto& global_cable22 = this->getT(9).getT(3).getT(1);                       // routing::global_cable<global_cable22_t_index, parameter::empty>
+		auto& chain17 = this->getT(4).getT(0).getT(1).getT(0).getT(2);                       // sn_impl::chain17_t<NV>
+		auto& clone_cable = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(0);           // sn_impl::clone_cable_t<NV>
+		auto& clone_cable1 = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(1);          // sn_impl::clone_cable1_t<NV>
+		auto& cable_table6 = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(2);          // sn_impl::cable_table6_t<NV>
+		auto& clone_cable2 = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(3);          // sn_impl::clone_cable2_t<NV>
+		auto& clone = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(4);                 // sn_impl::clone_t<NV>                 // sn_impl::clone_child_t<NV>
+		auto res2 = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(4).getT(0);           // project::res2<NV>
+		auto gain2 = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(4).getT(1);          // core::gain<NV>
+		auto& one_pole2 = this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(5);             // filters::one_pole<NV>
+		auto& fix8_block2 = this->getT(4).getT(0).getT(1).getT(0).getT(3);                   // sn_impl::fix8_block2_t<NV>
+		auto& chain21 = this->getT(4).getT(0).getT(1).getT(0).getT(3).getT(0);               // sn_impl::chain21_t<NV>
+		auto& chain42 = this->getT(4).getT(0).getT(1).getT(0).getT(3).getT(0).getT(0);       // sn_impl::chain42_t<NV>
+		auto& midi4 = this->getT(4).getT(0).getT(1).getT(0).                                 // sn_impl::midi4_t<NV>
+                      getT(3).getT(0).getT(0).getT(0);
+		auto& offline3 = this->getT(4).getT(0).getT(1).getT(0).                              // sn_impl::offline3_t<NV>
+                         getT(3).getT(0).getT(0).getT(1);
+		auto& converter8 = this->getT(4).getT(0).getT(1).getT(0).                            // sn_impl::converter8_t<NV>
+                           getT(3).getT(0).getT(0).getT(1).
+                           getT(0);
+		auto& pma_unscaled4 = this->getT(4).getT(0).getT(1).getT(0).getT(3).getT(0).getT(1); // sn_impl::pma_unscaled4_t<NV>
+		auto& split2 = this->getT(4).getT(0).getT(1).getT(0).getT(3).getT(0).getT(2);        // sn_impl::split2_t<NV>
+		auto& frame2_block2 = this->getT(4).getT(0).getT(1).getT(0).                         // sn_impl::frame2_block2_t<NV>
+                              getT(3).getT(0).getT(2).getT(0);
+		auto& allpass = this->getT(4).getT(0).getT(1).getT(0).    // filters::allpass<NV>
+                        getT(3).getT(0).getT(2).getT(0).
+                        getT(0);
+		auto& one_pole4 = this->getT(4).getT(0).getT(1).getT(0).  // filters::one_pole<NV>
+                          getT(3).getT(0).getT(2).getT(0).
+                          getT(1);
+		auto& gain1 = this->getT(4).getT(0).getT(1).getT(1);  // core::gain<NV>
+		auto& chain34 = this->getT(5);                        // sn_impl::chain34_t<NV>
+		auto& xfader2 = this->getT(5).getT(0);                // sn_impl::xfader2_t<NV>
+		auto& split4 = this->getT(5).getT(1);                 // sn_impl::split4_t<NV>
+		auto& chain35 = this->getT(5).getT(1).getT(0);        // sn_impl::chain35_t<NV>
+		auto& gain6 = this->getT(5).getT(1).getT(0).getT(0);  // core::gain<NV>
+		auto& chain36 = this->getT(5).getT(1).getT(1);        // sn_impl::chain36_t<NV>
+		auto& svf2 = this->getT(5).getT(1).getT(1).getT(0);   // filters::svf<NV>
+		auto& gain7 = this->getT(5).getT(1).getT(1).getT(1);  // core::gain<NV>
+		auto& gain3 = this->getT(6);                          // core::gain<NV>
+		auto& jpanner = this->getT(7);                        // jdsp::jpanner<NV>
+		auto& branch18 = this->getT(8);                       // sn_impl::branch18_t
+		auto& chain29 = this->getT(8).getT(0);                // sn_impl::chain29_t
+		auto& peak20 = this->getT(8).getT(0).getT(0);         // sn_impl::peak20_t
+		auto& global_cable19 = this->getT(8).getT(0).getT(1); // routing::global_cable<global_cable19_t_index, parameter::empty>
+		auto& chain30 = this->getT(8).getT(1);                // sn_impl::chain30_t
+		auto& peak21 = this->getT(8).getT(1).getT(0);         // sn_impl::peak21_t
+		auto& global_cable20 = this->getT(8).getT(1).getT(1); // routing::global_cable<global_cable20_t_index, parameter::empty>
+		auto& chain31 = this->getT(8).getT(2);                // sn_impl::chain31_t
+		auto& peak22 = this->getT(8).getT(2).getT(0);         // sn_impl::peak22_t
+		auto& global_cable21 = this->getT(8).getT(2).getT(1); // routing::global_cable<global_cable21_t_index, parameter::empty>
+		auto& chain32 = this->getT(8).getT(3);                // sn_impl::chain32_t
+		auto& peak23 = this->getT(8).getT(3).getT(0);         // sn_impl::peak23_t
+		auto& global_cable22 = this->getT(8).getT(3).getT(1); // routing::global_cable<global_cable22_t_index, parameter::empty>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -8578,8 +8782,10 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		converter7.getWrappedObject().getParameter().connectT(1, fix_delay);      // converter7 -> fix_delay::DelayTime
 		pma_unscaled3.getWrappedObject().getParameter().connectT(0, converter7);  // pma_unscaled3 -> converter7::Value
 		clone_cable.getWrappedObject().getParameter().connectT(0, res2);          // clone_cable -> res2::DELAY
+		pma_unscaled4.getWrappedObject().getParameter().connectT(0, allpass);     // pma_unscaled4 -> allpass::Frequency
 		pma16.getWrappedObject().getParameter().connectT(0, pma_unscaled3);       // pma16 -> pma_unscaled3::Multiply
 		pma16.getWrappedObject().getParameter().connectT(1, clone_cable);         // pma16 -> clone_cable::Value
+		pma16.getWrappedObject().getParameter().connectT(2, pma_unscaled4);       // pma16 -> pma_unscaled4::Multiply
 		peak15.getParameter().connectT(0, pma16);                                 // peak15 -> pma16::Value
 		global_cable270.getWrappedObject().getParameter().connectT(0, add270);    // global_cable270 -> add270::Value
 		global_cable271.getWrappedObject().getParameter().connectT(0, add271);    // global_cable271 -> add271::Value
@@ -8600,6 +8806,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		clone_cable1.getWrappedObject().getParameter().connectT(0, res2);         // clone_cable1 -> res2::lp
 		pma18.getWrappedObject().getParameter().connectT(0, one_pole5);           // pma18 -> one_pole5::Frequency
 		pma18.getWrappedObject().getParameter().connectT(1, clone_cable1);        // pma18 -> clone_cable1::Value
+		pma18.getWrappedObject().getParameter().connectT(2, allpass);             // pma18 -> allpass::Q
 		peak17.getParameter().connectT(0, pma18);                                 // peak17 -> pma18::Value
 		global_cable254.getWrappedObject().getParameter().connectT(0, add254);    // global_cable254 -> add254::Value
 		global_cable255.getWrappedObject().getParameter().connectT(0, add255);    // global_cable255 -> add255::Value
@@ -8686,6 +8893,8 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		xfader1_p.getParameterT(1).connectT(0, gain5);                           // xfader1 -> gain5::Gain
 		converter6.getWrappedObject().getParameter().connectT(0, pma_unscaled3); // converter6 -> pma_unscaled3::Value
 		midi3.getParameter().connectT(0, converter6);                            // midi3 -> converter6::Value
+		converter8.getWrappedObject().getParameter().connectT(0, pma_unscaled4); // converter8 -> pma_unscaled4::Value
+		midi4.getParameter().connectT(0, converter8);                            // midi4 -> converter8::Value
 		auto& xfader2_p = xfader2.getWrappedObject().getParameter();
 		xfader2_p.getParameterT(0).connectT(0, gain6);     // xfader2 -> gain6::Gain
 		xfader2_p.getParameterT(1).connectT(0, gain7);     // xfader2 -> gain7::Gain
@@ -10103,14 +10312,14 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // receive3::Feedback is automated
 		
 		;                                 // one_pole5::Frequency is automated
-		one_pole5.setParameterT(1, 1.);   // filters::one_pole::Q
+		one_pole5.setParameterT(1, 9.9);  // filters::one_pole::Q
 		one_pole5.setParameterT(2, 0.);   // filters::one_pole::Gain
 		one_pole5.setParameterT(3, 0.01); // filters::one_pole::Smoothing
 		one_pole5.setParameterT(4, 0.);   // filters::one_pole::Mode
 		one_pole5.setParameterT(5, 1.);   // filters::one_pole::Enabled
 		
-		;                                 // fix_delay::DelayTime is automated
-		fix_delay.setParameterT(1, 621.); // core::fix_delay::FadeTime
+		;                                  // fix_delay::DelayTime is automated
+		fix_delay.setParameterT(1, 1024.); // core::fix_delay::FadeTime
 		
 		jdelay_thiran3.setParameterT(0, 30.); // jdsp::jdelay_thiran::Limit
 		;                                     // jdelay_thiran3::DelayTime is automated
@@ -10155,6 +10364,26 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		one_pole2.setParameterT(4, 1.);   // filters::one_pole::Mode
 		one_pole2.setParameterT(5, 1.);   // filters::one_pole::Enabled
 		
+		; // converter8::Value is automated
+		
+		;                                   // pma_unscaled4::Value is automated
+		;                                   // pma_unscaled4::Multiply is automated
+		pma_unscaled4.setParameterT(2, 0.); // control::pma_unscaled::Add
+		
+		;                               // allpass::Frequency is automated
+		;                               // allpass::Q is automated
+		allpass.setParameterT(2, 0.);   // filters::allpass::Gain
+		allpass.setParameterT(3, 0.01); // filters::allpass::Smoothing
+		allpass.setParameterT(4, 0.);   // filters::allpass::Mode
+		allpass.setParameterT(5, 1.);   // filters::allpass::Enabled
+		
+		one_pole4.setParameterT(0, 50.);  // filters::one_pole::Frequency
+		one_pole4.setParameterT(1, 1.);   // filters::one_pole::Q
+		one_pole4.setParameterT(2, 0.);   // filters::one_pole::Gain
+		one_pole4.setParameterT(3, 0.01); // filters::one_pole::Smoothing
+		one_pole4.setParameterT(4, 1.);   // filters::one_pole::Mode
+		one_pole4.setParameterT(5, 1.);   // filters::one_pole::Enabled
+		
 		;                              // gain1::Gain is automated
 		gain1.setParameterT(1, 11.6);  // core::gain::Smoothing
 		gain1.setParameterT(2, -100.); // core::gain::ResetValue
@@ -10194,79 +10423,79 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // global_cable22::Value is automated
 		
 		this->setParameterT(0, 3.);
-		this->setParameterT(1, 10.);
+		this->setParameterT(1, 16.);
 		this->setParameterT(2, 1.);
-		this->setParameterT(3, 0.);
+		this->setParameterT(3, 1.);
 		this->setParameterT(4, 1.);
-		this->setParameterT(5, 0.51);
-		this->setParameterT(6, 0.2);
+		this->setParameterT(5, 0.);
+		this->setParameterT(6, 0.);
 		this->setParameterT(7, 1.);
-		this->setParameterT(8, 0.39);
-		this->setParameterT(9, -0.68);
+		this->setParameterT(8, 0.86);
+		this->setParameterT(9, 0.12);
 		this->setParameterT(10, 6.);
-		this->setParameterT(11, 0.26);
-		this->setParameterT(12, 0.06);
-		this->setParameterT(13, 9.);
-		this->setParameterT(14, 0.64);
-		this->setParameterT(15, 0.);
+		this->setParameterT(11, 0.);
+		this->setParameterT(12, 1.);
+		this->setParameterT(13, 2.);
+		this->setParameterT(14, 0.);
+		this->setParameterT(15, 0.43);
 		this->setParameterT(16, 6.);
 		this->setParameterT(17, 0.);
 		this->setParameterT(18, 0.);
-		this->setParameterT(19, 6.);
-		this->setParameterT(20, 1.);
-		this->setParameterT(21, 0.);
+		this->setParameterT(19, 3.);
+		this->setParameterT(20, 0.);
+		this->setParameterT(21, 1.);
 		this->setParameterT(22, 3.);
-		this->setParameterT(23, 0.952484);
-		this->setParameterT(24, 1.);
-		this->setParameterT(25, 0.5);
+		this->setParameterT(23, 0.810422);
+		this->setParameterT(24, 3.);
+		this->setParameterT(25, 0.);
 		this->setParameterT(26, 0.);
-		this->setParameterT(27, 14.);
-		this->setParameterT(28, 0.);
-		this->setParameterT(29, 0.);
-		this->setParameterT(30, 7.);
-		this->setParameterT(31, 385.);
-		this->setParameterT(32, 0.);
-		this->setParameterT(33, 2.);
-		this->setParameterT(34, 10.);
+		this->setParameterT(27, 16.);
+		this->setParameterT(28, 0.0260742);
+		this->setParameterT(29, 0.0146484);
+		this->setParameterT(30, 15.);
+		this->setParameterT(31, 173.638);
+		this->setParameterT(32, 0.442383);
+		this->setParameterT(33, 8.);
+		this->setParameterT(34, 18.);
 		this->setParameterT(35, 1.);
 		this->setParameterT(36, 1.);
-		this->setParameterT(37, -0.03);
+		this->setParameterT(37, -0.0258984);
 		this->setParameterT(38, 1.);
-		this->setParameterT(39, 0.);
-		this->setParameterT(40, 1.);
+		this->setParameterT(39, 0.0480469);
+		this->setParameterT(40, 0.999121);
 		this->setParameterT(41, 1.);
 		this->setParameterT(42, 0.);
 		this->setParameterT(43, 0.);
 		this->setParameterT(44, 0.);
 		this->setParameterT(45, 13.);
-		this->setParameterT(46, 0.);
+		this->setParameterT(46, 0.45);
 		this->setParameterT(47, 0.);
 		this->setParameterT(48, 3.);
-		this->setParameterT(49, 0.566012);
+		this->setParameterT(49, 1.);
 		this->setParameterT(50, 0.);
 		this->setParameterT(51, 13.);
-		this->setParameterT(52, 0.87);
+		this->setParameterT(52, 0.16);
 		this->setParameterT(53, 0.);
 		this->setParameterT(54, 4.);
-		this->setParameterT(55, 0.63);
-		this->setParameterT(56, 3.);
+		this->setParameterT(55, 1.);
+		this->setParameterT(56, 2.);
 		this->setParameterT(57, 0.);
-		this->setParameterT(58, 1.);
-		this->setParameterT(59, 1.);
+		this->setParameterT(58, 3.);
+		this->setParameterT(59, 0.0380859);
 		this->setParameterT(60, 1.);
-		this->setParameterT(61, 0.);
-		this->setParameterT(62, 0.09);
+		this->setParameterT(61, 0.955332);
+		this->setParameterT(62, 0.);
 		this->setParameterT(63, 0.);
 		this->setParameterT(64, 4.);
 		this->setParameterT(65, 1.);
 		this->setParameterT(66, 0.);
 		this->setParameterT(67, 1.);
-		this->setParameterT(68, 10.);
-		this->setParameterT(69, 4.);
-		this->setParameterT(70, 3.);
+		this->setParameterT(68, 9.);
+		this->setParameterT(69, 1.);
+		this->setParameterT(70, 4.);
 		this->setParameterT(71, 1.);
-		this->setParameterT(72, 0.84);
-		this->setParameterT(73, -0.09);
+		this->setParameterT(72, 0.);
+		this->setParameterT(73, 0.);
 		this->setParameterT(74, 1.);
 		this->setParameterT(75, 3.);
 		this->setParameterT(76, 7.);
@@ -10579,14 +10808,14 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(17).getT(0).getT(13).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable123_t<NV>
 		this->getT(0).getT(0).getT(0).getT(17).getT(0).getT(14).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable124_t<NV>
 		this->getT(0).getT(0).getT(0).getT(17).getT(0).getT(15).getT(0).connectToRuntimeTarget(addConnection, c); // sn_impl::global_cable125_t<NV>
-		this->getT(2).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable15_t_index, parameter::empty>
-		this->getT(2).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable18_t_index, parameter::empty>
-		this->getT(2).getT(2).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable17_t_index, parameter::empty>
-		this->getT(2).getT(3).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable16_t_index, parameter::empty>
-		this->getT(9).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable19_t_index, parameter::empty>
-		this->getT(9).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable20_t_index, parameter::empty>
-		this->getT(9).getT(2).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable21_t_index, parameter::empty>
-		this->getT(9).getT(3).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable22_t_index, parameter::empty>
+		this->getT(1).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable15_t_index, parameter::empty>
+		this->getT(1).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable18_t_index, parameter::empty>
+		this->getT(1).getT(2).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable17_t_index, parameter::empty>
+		this->getT(1).getT(3).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable16_t_index, parameter::empty>
+		this->getT(8).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable19_t_index, parameter::empty>
+		this->getT(8).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable20_t_index, parameter::empty>
+		this->getT(8).getT(2).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable21_t_index, parameter::empty>
+		this->getT(8).getT(3).getT(1).connectToRuntimeTarget(addConnection, c);                                   // routing::global_cable<global_cable22_t_index, parameter::empty>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)
@@ -10615,17 +10844,17 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(15).getT(1).setExternalData(b, index);        // sn_impl::peak24_t<NV>
 		this->getT(0).getT(0).getT(0).getT(16).getT(1).setExternalData(b, index);        // sn_impl::peak25_t<NV>
 		this->getT(0).getT(0).getT(0).getT(17).getT(1).setExternalData(b, index);        // sn_impl::peak7_t<NV>
-		this->getT(0).getT(2).setExternalData(b, index);                                 // sn_impl::cable_table4_t<NV>
-		this->getT(1).setExternalData(b, index);                                         // sn_impl::snex_node_t<NV>
-		this->getT(2).getT(0).getT(0).setExternalData(b, index);                         // sn_impl::peak1_t
-		this->getT(2).getT(1).getT(0).setExternalData(b, index);                         // sn_impl::peak19_t
-		this->getT(2).getT(2).getT(0).setExternalData(b, index);                         // sn_impl::peak18_t
-		this->getT(2).getT(3).getT(0).setExternalData(b, index);                         // sn_impl::peak2_t
-		this->getT(5).getT(0).getT(1).getT(0).getT(2).getT(2).setExternalData(b, index); // sn_impl::cable_table6_t<NV>
-		this->getT(9).getT(0).getT(0).setExternalData(b, index);                         // sn_impl::peak20_t
-		this->getT(9).getT(1).getT(0).setExternalData(b, index);                         // sn_impl::peak21_t
-		this->getT(9).getT(2).getT(0).setExternalData(b, index);                         // sn_impl::peak22_t
-		this->getT(9).getT(3).getT(0).setExternalData(b, index);                         // sn_impl::peak23_t
+		this->getT(0).getT(1).getT(1).setExternalData(b, index);                         // sn_impl::cable_table4_t<NV>
+		this->getT(0).getT(1).getT(5).setExternalData(b, index);                         // sn_impl::snex_node_t<NV>
+		this->getT(1).getT(0).getT(0).setExternalData(b, index);                         // sn_impl::peak1_t
+		this->getT(1).getT(1).getT(0).setExternalData(b, index);                         // sn_impl::peak19_t
+		this->getT(1).getT(2).getT(0).setExternalData(b, index);                         // sn_impl::peak18_t
+		this->getT(1).getT(3).getT(0).setExternalData(b, index);                         // sn_impl::peak2_t
+		this->getT(4).getT(0).getT(1).getT(0).getT(2).getT(2).setExternalData(b, index); // sn_impl::cable_table6_t<NV>
+		this->getT(8).getT(0).getT(0).setExternalData(b, index);                         // sn_impl::peak20_t
+		this->getT(8).getT(1).getT(0).setExternalData(b, index);                         // sn_impl::peak21_t
+		this->getT(8).getT(2).getT(0).setExternalData(b, index);                         // sn_impl::peak22_t
+		this->getT(8).getT(3).getT(0).setExternalData(b, index);                         // sn_impl::peak23_t
 	}
 };
 }

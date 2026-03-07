@@ -331,8 +331,8 @@ inline function onPlaybackControl(component, value)
 	gran1.setBypassed(0);
 	gran2.setBypassed(1);
 	gran3.setBypassed(1);
-	gran.setAttribute(gran.VoiceLimit, 8);
-	gran1.setAttribute(gran1.VoiceLimit, 8);
+	gran.setAttribute(gran.VoiceLimit, 6);
+	gran1.setAttribute(gran1.VoiceLimit, 6);
 	gran2.setAttribute(gran2.VoiceLimit, 1);
 	gran3.setAttribute(gran3.VoiceLimit, 1);
 	
@@ -361,7 +361,7 @@ inline function onPlaybackControl(component, value)
 		gran1.setBypassed(1);
 		gran2.setBypassed(1);
 		gran3.setBypassed(1);
-		gran.setAttribute(gran.VoiceLimit, 16);
+		gran.setAttribute(gran.VoiceLimit, 8);
 		gran1.setAttribute(gran1.VoiceLimit, 1);
 		gran2.setAttribute(gran2.VoiceLimit, 1);
 		gran3.setAttribute(gran3.VoiceLimit, 1);

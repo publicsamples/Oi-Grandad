@@ -1445,9 +1445,17 @@ if (!isStackMode)
     if (idxB > g - 1) idxB = g - 1;
 
     // RMS / equal-power blend between adjacent active grains.
+    // Keep a small floor so endpoint stages don't collapse to one fully-muted
+    // neighbour, which can create audible dropouts with windowed grains.
     double t = clamp01(frac);
     double gA = Math.sqrt(1.0 - t);
     double gB = Math.sqrt(t);
+    const double morphMin = 0.12;
+    if (gA < morphMin) gA = morphMin;
+    if (gB < morphMin) gB = morphMin;
+    double gNorm = 1.0 / Math.sqrt(gA * gA + gB * gB);
+    gA *= gNorm;
+    gB *= gNorm;
 
     if (g <= 1)
     {
@@ -2379,6 +2387,12 @@ if (g > 16)
             double t = clamp01(frac);
                         double gA = Math.sqrt(1.0 - t);
                         double gB = Math.sqrt(t);
+                        const double morphMinN = 0.12;
+                        if (gA < morphMinN) gA = morphMinN;
+                        if (gB < morphMinN) gB = morphMinN;
+                        double gNormN = 1.0 / Math.sqrt(gA * gA + gB * gB);
+                        gA *= gNormN;
+                        gB *= gNormN;
             double mN = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
             weightNRaw *= mN;
         }

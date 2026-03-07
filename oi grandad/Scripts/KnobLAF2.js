@@ -248,4 +248,21 @@ const var MacroSliders = [Content.getComponent("MacroPos1"),
 for(s in MacroSliders)
       s.setLocalLookAndFeel(KnobLaf2);
       
+  const var outMods = [Content.getComponent("Macro20"),
+                     Content.getComponent("Macro19"),
+                     Content.getComponent("Macro18"),
+                     Content.getComponent("Macro17"),
+                     Content.getComponent("Macro16"),
+                     Content.getComponent("Macro15"),
+                     Content.getComponent("Macro14"),
+                     Content.getComponent("Macro13"),
+                     Content.getComponent("Macro12"),
+                     Content.getComponent("Macro11"),
+                     Content.getComponent("Macro10"),
+                     Content.getComponent("Macro9")];
+
+
+for(s in outMods)
+      s.setLocalLookAndFeel(KnobLaf2);
+      
       
