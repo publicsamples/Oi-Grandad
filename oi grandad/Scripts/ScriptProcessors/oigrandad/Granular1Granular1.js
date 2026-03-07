@@ -1,5 +1,0 @@
- function onControl(number, value)
-{
-	
-}
- 

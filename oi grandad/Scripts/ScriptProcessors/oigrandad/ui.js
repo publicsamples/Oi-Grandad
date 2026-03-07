@@ -2,7 +2,9 @@ Content.makeFrontInterface(860, 690);
 
 Engine.loadAudioFilesIntoPool();
 
-const var defaultRef = "{PROJECT_FOLDER}ClimA76-04.wav";
+////Engine.setMaximumBlockSize(512);
+
+const var defaultRef = "{PROJECT_FOLDER}OGInit.wav";
 
 const var g1 = Synth.getAudioSampleProcessor("Granular1");
 const var g2 = Synth.getAudioSampleProcessor("Granular2");
