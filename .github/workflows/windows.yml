@@ -17,6 +17,29 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Source fingerprint (Windows)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          Write-Host "Commit: $env:GITHUB_SHA"
+          $files = @(
+            "oi grandad\Binaries\Source\Plugin.cpp",
+            "oi grandad\Binaries\Source\PresetData.cpp",
+            "oi grandad\Binaries\Source\CopyProtection.cpp",
+            "oi grandad\AdditionalSourceCode\nodes\factory.cpp",
+            "oi grandad\AdditionalSourceCode\nodes\RNBO.cpp",
+            "oi grandad\Binaries\JuceLibraryCode\include_juce_audio_plugin_client_VST3.cpp",
+            "oi grandad\Binaries\JuceLibraryCode\include_juce_audio_plugin_client_utils.cpp"
+          )
+          foreach ($f in $files) {
+            if (Test-Path $f) {
+              $h = Get-FileHash -Algorithm SHA256 -Path $f
+              Write-Host "$($h.Hash.ToLower())  $f"
+            } else {
+              Write-Host "MISSING  $f"
+            }
+          }
+
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 

@@ -26,6 +26,28 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Source fingerprint (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Commit: $GITHUB_SHA"
+          files=(
+            "oi grandad/Binaries/Source/Plugin.cpp"
+            "oi grandad/Binaries/Source/PresetData.cpp"
+            "oi grandad/Binaries/Source/CopyProtection.cpp"
+            "oi grandad/AdditionalSourceCode/nodes/factory.cpp"
+            "oi grandad/AdditionalSourceCode/nodes/RNBO.cpp"
+            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
+            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+          )
+          for f in "${files[@]}"; do
+            if [[ -f "$f" ]]; then
+              sha256sum "$f"
+            else
+              echo "MISSING  $f"
+            fi
+          done
+
       - name: Install dependencies (Linux)
         run: |
           apt-get update
