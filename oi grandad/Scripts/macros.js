@@ -37,6 +37,7 @@ reg currentMacroConnections;
 // This will be executed before a preset is loaded
 uph.setPreCallback(function(presetData)
 {
+	g_isPresetLoadInProgress = true;
 	// checks if the preset load is coming from a user trying to load a preset
 	// (as opposed to the DAW restoring the project session)
 	if(!uph.isInternalPresetLoad())
@@ -54,6 +55,12 @@ uph.setPostCallback(function(presetFile)
 	{
 		mh.setMacroDataFromObject(currentMacroConnections);
 	}
+
+	// Keep load lock slightly longer to catch delayed UI state restore callbacks.
+	Content.callAfterDelay(250, function()
+	{
+		g_isPresetLoadInProgress = false;
+	});
 });
 	
 }
@@ -61,6 +68,9 @@ uph.setPostCallback(function(presetFile)
 
 inline function onMacroPos2Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos1.setValue(value);
 	pos1.changed();
 	posoffset2.setValue(value);
@@ -72,6 +82,9 @@ Content.getComponent("MacroPos2").setControlCallback(onMacroPos2Control);
 
 inline function onMacroPos3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos2.setValue(value);
 	pos2.changed();
 	posoffset3.setValue(value);
@@ -83,6 +96,9 @@ Content.getComponent("MacroPos3").setControlCallback(onMacroPos3Control);
 
 inline function onMacroPos4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos3.setValue(value);
 	pos3.changed();
 	posoffset4.setValue(value);
@@ -99,6 +115,9 @@ const var pitchoffset4 = Content.getComponent("pitchoffset4");
 
 inline function onMacroPitch1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 		pitchoffset1.setValue(value);
 		pitchoffset1.changed();
 		pitch.setValueNormalized(value);
@@ -110,6 +129,9 @@ Content.getComponent("MacroPitch1").setControlCallback(onMacroPitch1Control);
 
 inline function onMacroPitch2Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pitchoffset2.setValue(value);
 		pitchoffset2.changed();
 		pitch1.setValueNormalized(value);
@@ -121,6 +143,9 @@ Content.getComponent("MacroPitch2").setControlCallback(onMacroPitch2Control);
 
 inline function onMacroPitch3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 		pitchoffset3.setValue(value);
 		pitchoffset3.changed();
 		pitch2.setValueNormalized(value);
@@ -132,6 +157,9 @@ Content.getComponent("MacroPitch3").setControlCallback(onMacroPitch3Control);
 
 inline function onMacroPitch4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 		pitchoffset4.setValue(value);
 		pitchoffset4.changed();
 		pitch3.setValueNormalized(value);
@@ -148,6 +176,9 @@ const var Vol3 = Content.getComponent("Vol3");
 
 inline function onMacroGainControl(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	Vol0.setValueNormalized(value);
 	Vol0.changed();
 };
@@ -157,6 +188,9 @@ Content.getComponent("MacroGain").setControlCallback(onMacroGainControl);
 
 inline function onMacroGain1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	Vol1.setValueNormalized(value);
 	Vol1.changed();
 };
@@ -166,6 +200,9 @@ Content.getComponent("MacroGain1").setControlCallback(onMacroGain1Control);
 
 inline function onMacroGain2Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	Vol2.setValueNormalized(value);
 	Vol2.changed();
 };
@@ -175,12 +212,11 @@ Content.getComponent("MacroGain2").setControlCallback(onMacroGain2Control);
 
 inline function onMacroGain3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	Vol3.setValueNormalized(value);
 	Vol3.changed();
 };
 
 Content.getComponent("MacroGain3").setControlCallback(onMacroGain3Control);
-
-
-
-

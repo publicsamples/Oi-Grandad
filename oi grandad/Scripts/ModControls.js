@@ -8,6 +8,9 @@ const var s1 = Synth.getModulator("s1");
 
 inline function onModType1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	   step1.showControl(value);
         table1.showControl(1-value); 
           
@@ -45,6 +48,9 @@ const var Stage1 = Content.getComponent("Stage1");
 
 inline function onStage1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod1tables.length; i++)
         mod1tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -65,6 +71,9 @@ const var s2 = Synth.getModulator("s2");
 
 inline function onModType2Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         step2.showControl(value);
         table2.showControl(1-value); 
 
@@ -105,6 +114,9 @@ const var Stage2 = Content.getComponent("Stage2");
 
 inline function onStage2Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod2tables.length; i++)
         mod2tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -125,6 +137,9 @@ const var s3 = Synth.getModulator("s3");
 
 inline function onModType3Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         step3.showControl(value);
         table3.showControl(1-value); 
             if(value == 0)
@@ -162,6 +177,9 @@ const var Stage3 = Content.getComponent("Stage3");
 
 inline function onStage3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod3tables.length; i++)
         mod3tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -181,6 +199,9 @@ const var s4 = Synth.getModulator("s4");
 
 inline function onModType4Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step4.showControl(value);
         Table4.showControl(1-value); 
            
@@ -218,6 +239,9 @@ const var Stage4 = Content.getComponent("Stage4");
 
 inline function onStage4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod4tables.length; i++)
         mod4tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -237,6 +261,9 @@ const var s5 = Synth.getModulator("s5");
 
 inline function onModType5Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step5.showControl(value);
         Table5.showControl(1-value); 
           if(value == 0)
@@ -273,6 +300,9 @@ const var Stage5 = Content.getComponent("Stage5");
 
 inline function onStage5Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod5tables.length; i++)
         mod5tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -292,6 +322,9 @@ const var s6 = Synth.getModulator("s6");
 
 inline function onModType6Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step6.showControl(value);
         Table6.showControl(1-value); 
            if(value == 0)
@@ -328,6 +361,9 @@ const var Stage6 = Content.getComponent("Stage6");
 
 inline function onStage6Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod6tables.length; i++)
         mod6tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -347,6 +383,9 @@ const var s7 = Synth.getModulator("s7");
 
 inline function onModType7Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step7.showControl(value);
         Table7.showControl(1-value); 
            if(value == 0)
@@ -383,6 +422,9 @@ const var Stage7 = Content.getComponent("Stage7");
 
 inline function onStage7Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod7tables.length; i++)
         mod7tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -402,6 +444,9 @@ const var s8 = Synth.getModulator("s8");
 
 inline function onModType8Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step8.showControl(value);
         Table8.showControl(1-value); 
        if(value == 0)
@@ -438,6 +483,9 @@ const var Stage8 = Content.getComponent("Stage8");
 
 inline function onStage8Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod8tables.length; i++)
         mod8tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -456,6 +504,9 @@ const var s9 = Synth.getModulator("s9");
 
 inline function onModType9Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step9.showControl(value);
         Table9.showControl(1-value); 
           if(value == 0)
@@ -492,6 +543,9 @@ const var Stage9 = Content.getComponent("Stage9");
 
 inline function onStage9Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod9tables.length; i++)
         mod9tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -511,6 +565,9 @@ const var s10 = Synth.getModulator("s10");
 
 inline function onModType10Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step10.showControl(value);
         Table10.showControl(1-value); 
             if(value == 0)
@@ -547,6 +604,9 @@ const var Stage10 = Content.getComponent("Stage10");
 
 inline function onStage10Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod10tables.length; i++)
         mod10tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -566,6 +626,9 @@ const var s11 = Synth.getModulator("s11");
 
 inline function onModType11Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step11.showControl(value);
         Table11.showControl(1-value); 
        if(value == 0)
@@ -602,6 +665,9 @@ const var Stage11 = Content.getComponent("Stage11");
 
 inline function onStage11Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod11tables.length; i++)
         mod11tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -620,6 +686,9 @@ const var s12 = Synth.getModulator("s12");
 
 inline function onModType12Control(number, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
         Step12.showControl(value);
         Table12.showControl(1-value); 
           if(value == 0)
@@ -656,6 +725,9 @@ const var Stage12 = Content.getComponent("Stage12");
 
 inline function onStage12Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
  for (i = 0; i < mod12tables.length; i++)
         mod12tables[i].fadeComponent(value - 1 == i, 500);
         
@@ -680,6 +752,9 @@ ModPages[5] = Content.getComponent("MOD6");
 
 inline function onModPageControl(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 for (i = 0; i < ModPages.length; i++)
         ModPages[i].fadeComponent(value - 1 == i, 500);
 };

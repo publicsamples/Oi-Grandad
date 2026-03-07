@@ -9,6 +9,9 @@ const var VoiceParamB1 = Content.getComponent("PosParamB1");
 
 inline function onStgSel1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 
 if(value == 1)
   {
@@ -79,6 +82,9 @@ const var PosHeadSrcA1 = Content.getComponent("PosHeadSrcA1");
 
 inline function onMultPosA1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos.setValue(value);
 	MacroPos1.setValue(value);
 	pos.changed();
@@ -89,6 +95,9 @@ Content.getComponent("MultPosA1").setControlCallback(onMultPosA1Control);
 
 inline function onposControl(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	 gran.setAttribute(gran.Position, value); 
 	 MultPosA1.setValue(value);
 	 MacroPos1.setValue(value);
@@ -98,6 +107,9 @@ Content.getComponent("pos").setControlCallback(onposControl);
 
 inline function onMacroPos1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos.setValue(value);
 	pos.changed();
 	MultPosA1.setValue(value);
@@ -110,6 +122,9 @@ Content.getComponent("MacroPos1").setControlCallback(onMacroPos1Control);
 
 inline function onposmodControl(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	gran.setAttribute(gran.PositionMod, value); 
 	PosHeadModA1.setValue(value);
 };
@@ -118,6 +133,9 @@ Content.getComponent("posmod").setControlCallback(onposmodControl);
 
 inline function onPosHeadModA1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	posmod.setValue(value);
 	posmod.changed();
 };
@@ -127,6 +145,9 @@ Content.getComponent("PosHeadModA1").setControlCallback(onPosHeadModA1Control);
 
 inline function onpos1modselControl(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	gran.setAttribute(gran.PositionSrc, value); 
 	PosHeadSrcA1.setValue(value);
 };
@@ -136,6 +157,9 @@ Content.getComponent("pos1modsel").setControlCallback(onpos1modselControl);
 
 inline function onPosHeadSrcA1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos1modsel.setValue(value);
 	pos1modsel.changed();
 };
@@ -149,6 +173,9 @@ const var DenseLabelB1 = Content.getComponent("DenseLabelB1");
 
 inline function onGrainXf1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	gran.setAttribute(gran.scrubBlen, value); 
 	
 	if(value == 0)
@@ -174,6 +201,9 @@ const var pitchCont1 = Content.getComponent("pitch");
 
 inline function onpitchoffset1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 		pitchCont1.setValue(value);
 		pitchCont1.changed();
 };
@@ -190,6 +220,9 @@ const var grainsize1 = Content.getComponent("grainsize1");
 
 inline function onGrainSync1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	graindiv1.showControl(value);
 	graintempo1.showControl(value);
 	grainsize1.showControl(value-1);
@@ -203,6 +236,9 @@ const var maxGrains1 = Content.getComponent("maxGrains1");
 
 inline function onmaxGrains1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 if(value == 1)
 	  {
 	 gran.setAttribute(gran.MaxGrains, 4);
@@ -236,6 +272,9 @@ const var det = Content.getComponent("det");
 
 inline function onPitchMode1Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	if(value == 1)
 	  {
 	 gran.setAttribute(gran.PitchMode, 1);

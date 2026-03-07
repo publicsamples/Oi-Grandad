@@ -9,6 +9,9 @@ const var VoiceParamB4 = Content.getComponent("PosParamB4");
 
 inline function onStgSel4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 
 
 if(value == 1)
@@ -84,6 +87,9 @@ const var PosHeadSrcA4 = Content.getComponent("PosHeadSrcA4");
 
 inline function onMultPosA4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos3.setValue(value);
 	MacroPos4.setValue(value);
 	pos3.changed();
@@ -94,6 +100,9 @@ Content.getComponent("MultPosA4").setControlCallback(onMultPosA4Control);
 
 inline function onpos3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	 gran3.setAttribute(gran3.Position, value); 
 	 MultPosA4.setValue(value);
 	 MacroPos4.setValue(value);
@@ -103,6 +112,9 @@ Content.getComponent("pos3").setControlCallback(onpos3Control);
 
 inline function onMacroPos4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos3.setValue(value);
 	pos3.changed();
 	MultPosA4.setValue(value);
@@ -115,6 +127,9 @@ Content.getComponent("MacroPos4").setControlCallback(onMacroPos4Control);
 
 inline function onposmod3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	gran3.setAttribute(gran3.PositionMod, value); 
 	PosHeadModA4.setValue(value);
 };
@@ -123,6 +138,9 @@ Content.getComponent("posmod3").setControlCallback(onposmod3Control);
 
 inline function onPosHeadModA4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	posmod3.setValue(value);
 	posmod3.changed();
 };
@@ -132,6 +150,9 @@ Content.getComponent("PosHeadModA4").setControlCallback(onPosHeadModA4Control);
 
 inline function onpos1modsel3Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	gran3.setAttribute(gran3.PositionSrc, value); 
 	PosHeadSrcA4.setValue(value);
 };
@@ -141,6 +162,9 @@ Content.getComponent("pos1modsel3").setControlCallback(onpos1modsel3Control);
 
 inline function onPosHeadSrcA4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	pos1modsel3.setValue(value);
 	pos1modsel3.changed();
 };
@@ -154,6 +178,9 @@ const var DenseLabelB4 = Content.getComponent("DenseLabelB4");
 
 inline function onGrainXf4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	gran3.setAttribute(gran3.scrubBlen, value); 
 	
 	if(value == 0)
@@ -178,6 +205,9 @@ const var grainsize4 = Content.getComponent("grainsize4");
 
 inline function onGrainSync4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	graindiv4.showControl(value);
 	graintempo4.showControl(value);
 	grainsize4.showControl(value-1);
@@ -191,6 +221,9 @@ const var maxGrains4 = Content.getComponent("maxGrains4");
 
 inline function onmaxGrains4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 if(value == 1)
 	  {
 	 gran3.setAttribute(gran3.MaxGrains, 4);
@@ -224,6 +257,9 @@ const var det3 = Content.getComponent("det3");
 
 inline function onPitchMode4Control(component, value)
 {
+	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
+		return;
+
 	if(value == 1)
 	  {
 	 gran3.setAttribute(gran3.PitchMode, 1);

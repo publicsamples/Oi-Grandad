@@ -2,6 +2,9 @@ Content.makeFrontInterface(860, 690);
 
 Engine.loadAudioFilesIntoPool();
 
+reg g_isPresetLoadInProgress = false;
+reg g_isUpdatingTabButtons = false;
+
 ////Engine.setMaximumBlockSize(512);
 
 const var defaultRef = "{PROJECT_FOLDER}OGInit.wav";
@@ -78,13 +81,22 @@ for (i = 0; i < NUM_BUTTONS; i++)
 
 inline function onButtonControl(component, value)
 {
+	if (g_isPresetLoadInProgress || g_isUpdatingTabButtons)
+		return;
+
+	g_isUpdatingTabButtons = true;
+
 	local idx = buttons.indexOf(component);
 		
 	for (i = 0; i < panels.length; i++)
     {
         panels[i].showControl(idx == i);
-        buttons[i].setValue(i == idx && value);
+		local shouldBeOn = (i == idx && value);
+		if (buttons[i].getValue() != shouldBeOn)
+        	buttons[i].setValue(shouldBeOn);
     }
+
+	g_isUpdatingTabButtons = false;
 }
 
 onButtonControl(buttons[0], true);
@@ -379,6 +391,9 @@ global g_accumulator = []; // will be reserved for a 30sec length in prepareToPl
 inline function onHoldControl(component, value)
 
  {
+	 if (g_isPresetLoadInProgress)
+	 	return;
+
      if (value)
  	    Synth.playNote(MidiNote.getValue()+23, 127);
  	  else
@@ -391,6 +406,9 @@ Content.getComponent("Hold").setControlCallback(onHoldControl);
 
 inline function onRecordControl(component, value)
 {
+	if (g_isPresetLoadInProgress)
+		return;
+
 	g_record = value;
 	
 	if (value == 1)
@@ -477,6 +495,9 @@ const var ShowFolder = Content.getComponent("ShowFolder");
 
 inline function onRecEnable1Control(component, value)
 {
+	if (g_isPresetLoadInProgress)
+		return;
+
 	Record.showControl(value);
 	Record.setValue(0);
 	Record.changed();
@@ -493,6 +514,9 @@ Content.getComponent("RecEnable1").setControlCallback(onRecEnable1Control);
 
 inline function onShowFolderControl(component, value)
 {
+	if (g_isPresetLoadInProgress)
+		return;
+
 	if (value)
 		return;
 		
