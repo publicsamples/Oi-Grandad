@@ -26,7 +26,7 @@ String hise::FrontendHandler::getProjectName() { return "oi grandad"; };
 String hise::FrontendHandler::getCompanyName() { return "modularsamples"; };
 String hise::FrontendHandler::getCompanyWebsiteName() { return "http://modularsamples.com"; };
 String hise::FrontendHandler::getCompanyCopyright() { return "2024 MS"; };
-String hise::FrontendHandler::getVersionString() { return "2.3.2"; };
+String hise::FrontendHandler::getVersionString() { return "2.3.3"; };
 String hise::FrontendHandler::getAppGroupId() { return ""; };
 String hise::FrontendHandler::getExpansionKey() { return ""; };
 String hise::FrontendHandler::getExpansionType() { return "Disabled"; };

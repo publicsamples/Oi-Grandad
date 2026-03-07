@@ -8,7 +8,7 @@
              textColour="955443169" processorId="Granular2">
     <Component type="ScriptPanel" id="V0" x="9" y="47" width="820" height="620"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Filter1" x="612" y="13" width="200" height="100"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V0">
         <Component type="ScriptComboBox" id="type" x="113" y="4" max="3" width="30"
@@ -607,8 +607,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DenseLabel1" x="5" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam4"
-                     fontStyle="Regular" fontSize="15.0" text="DENSE" alignment="left"
-                     visible="0"/>
+                     fontStyle="Regular" fontSize="15.0" text="DENSE" alignment="left"/>
           <Component type="ScriptSlider" id="Dense1" x="4" y="8" parentComponent="VoiceParam4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" showTextBox="0"
@@ -619,7 +618,8 @@
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
           <Component type="ScriptLabel" id="DenseLabelB1" x="6" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam4"
-                     fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"/>
+                     fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"
+                     visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceParam5" x="469" y="131" width="110"
                    height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
@@ -688,7 +688,7 @@
                    bgColour="1442779923" text="XF">
           <Component type="ScriptLabel" id="ScriptLabel123" x="16" y="22" width="40"
                      height="10" parentComponent="GrainXf1" text="xfade" fontName="Montserrat"
-                     fontSize="12.0" textColour="4278190080"/>
+                     fontSize="12.0" textColour="4278190080" editable="0"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceParam6" x="352" y="230" width="110"
                    height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
@@ -810,7 +810,7 @@
     </Component>
     <Component type="ScriptPanel" id="V1" x="9" y="47" width="820" height="620"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Grain1" x="7" y="13" width="600" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V1"
@@ -1174,8 +1174,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DenseLabel2" x="5" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam7"
-                     fontStyle="Regular" fontSize="15.0" text="DENSE" alignment="left"
-                     visible="0"/>
+                     fontStyle="Regular" fontSize="15.0" text="DENSE" alignment="left"/>
           <Component type="ScriptSlider" id="Dense2" x="4" y="8" parentComponent="VoiceParam7"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" showTextBox="0"
@@ -1186,7 +1185,8 @@
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
           <Component type="ScriptLabel" id="DenseLabelB2" x="6" y="66" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam7"
-                     fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"/>
+                     fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"
+                     visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceParam8" x="469" y="131" width="110"
                    height="90" parentComponent="Grain1" borderRadius="0.0" itemColour="4293781205"
@@ -3979,10 +3979,10 @@
                    fontStyle="Regular" fontSize="20.0" text="OUT MODS"/>
         <Component type="ScriptSlider" id="Macro9" x="106" y="48" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Attack1"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Attack1" mode="Time"/>
         <Component type="ScriptLabel" id="ParamLabel270" x="4" y="53" textColour="4278190080"
                    width="50" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont5"
                    fontStyle="Regular" fontSize="12.0" text="VOICE 1" alignment="left"/>
@@ -4022,19 +4022,19 @@
                    fontStyle="Regular" fontSize="12.0" text="THRESH." alignment="left"/>
         <Component type="ScriptSlider" id="Macro10" x="64" y="48" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="-56.0"
-                   max="-12.0" stepSize="1.0" processorId="OutMods" parameterId="thresh1"
-                   mode="Decibel" min="-100.0"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="-56.0" max="-12.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="thresh1" mode="Decibel" min="-100.0"/>
         <Component type="ScriptLabel" id="ParamLabel276" x="98" y="25" textColour="4278190080"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont5"
                    fontStyle="Regular" fontSize="12.0" text="ATTACK" alignment="left"/>
         <Component type="ScriptSlider" id="Macro11" x="148" y="48" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Rel1"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Rel1" mode="Time"/>
         <Component type="ScriptLabel" id="ParamLabel279" x="134" y="25" textColour="4278190080"
                    width="50" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont5"
                    fontStyle="Regular" fontSize="12.0" text="RELEASE" alignment="left"/>
@@ -4043,64 +4043,64 @@
                    fontStyle="Regular" fontSize="12.0" text="VOICE 2" alignment="left"/>
         <Component type="ScriptSlider" id="Macro12" x="64" y="83" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="-56.0"
-                   max="-12.0" stepSize="1.0" processorId="OutMods" parameterId="thresh"
-                   mode="Decibel" min="-100.0"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="-56.0" max="-12.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="thresh" mode="Decibel" min="-100.0"/>
         <Component type="ScriptSlider" id="Macro13" x="106" y="83" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Attack2"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Attack2" mode="Time"/>
         <Component type="ScriptSlider" id="Macro14" x="148" y="83" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Rel2"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Rel2" mode="Time"/>
         <Component type="ScriptLabel" id="ParamLabel281" x="3" y="123" textColour="4278190080"
                    width="50" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont5"
                    fontStyle="Regular" fontSize="12.0" text="VOICE 3" alignment="left"/>
         <Component type="ScriptSlider" id="Macro15" x="64" y="118" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="-56.0"
-                   max="-12.0" stepSize="1.0" processorId="OutMods" parameterId="thresh3"
-                   mode="Decibel" min="-100.0"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="-56.0" max="-12.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="thresh3" mode="Decibel" min="-100.0"/>
         <Component type="ScriptSlider" id="Macro16" x="106" y="118" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="29" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Attack3"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="29" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Attack3" mode="Time"/>
         <Component type="ScriptSlider" id="Macro17" x="148" y="118" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Rel3"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Rel3" mode="Time"/>
         <Component type="ScriptLabel" id="ParamLabel282" x="3" y="157" textColour="4278190080"
                    width="50" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont5"
                    fontStyle="Regular" fontSize="12.0" text="VOICE 4" alignment="left"/>
         <Component type="ScriptSlider" id="Macro18" x="64" y="153" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="-56.0"
-                   max="-12.0" stepSize="1.0" processorId="OutMods" parameterId="thresh4"
-                   mode="Decibel" min="-100.0"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="-56.0" max="-12.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="thresh4" mode="Decibel" min="-100.0"/>
         <Component type="ScriptSlider" id="Macro19" x="106" y="153" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Attack4"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Attack4" mode="Time"/>
         <Component type="ScriptSlider" id="Macro20" x="148" y="153" parentComponent="MacroCont5"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.12" width="30" height="30" showTextBox="0" showValuePopup="Below"
-                   bgColour="8301749" macroControl="No MacroControl" middlePosition="50.0"
-                   max="250.0" stepSize="1.0" processorId="OutMods" parameterId="Rel4"
-                   mode="Time"/>
+                   scaleFactor="0.119999997317791" width="30" height="30" showTextBox="0"
+                   showValuePopup="Below" bgColour="8301749" macroControl="No MacroControl"
+                   middlePosition="50.0" max="250.0" stepSize="1.0" processorId="OutMods"
+                   parameterId="Rel4" mode="Time"/>
       </Component>
     </Component>
     <Component type="ScriptButton" id="VOICE5" x="519" y="10" width="95" height="30"
@@ -4139,8 +4139,7 @@
                  bgColour="3001935573" itemColour="3001935573" textColour="3001935573"/>
       <Component type="ScriptPanel" id="MOD1" x="-1" y="0" width="620" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
-                 visible="0">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
         <Component type="ScriptPanel" id="seq1" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
@@ -5295,7 +5294,8 @@
       </Component>
       <Component type="ScriptPanel" id="MOD5" x="-1" y="0" width="620" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
+                 visible="0">
         <Component type="ScriptPanel" id="seq9" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD5">

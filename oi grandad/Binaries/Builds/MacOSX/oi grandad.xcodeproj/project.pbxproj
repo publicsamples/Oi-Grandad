@@ -376,7 +376,7 @@
 				951334B791C1FF380FD35A27,
 				2AF52B3774EB3E0F56F38808,
 				375D2628F72A796397A4AFAF,
-				EEB2D83CC64B73D1A2C558E0,
+				8AD1CCC817A3831C6719F7E7,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -539,7 +539,7 @@
 			name = "JUCE Library Code";
 			sourceTree = "<group>";
 		};
-		EEB2D83CC64B73D1A2C558E0 /* nodes */ = {
+		8AD1CCC817A3831C6719F7E7 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
 				14B6050A1F860A16398D4FE9,
@@ -994,8 +994,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.3.2",
-					"JUCE_APP_VERSION_HEX=0x20302",
+					"JUCE_APP_VERSION=2.3.3",
+					"JUCE_APP_VERSION_HEX=0x20303",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=1",
@@ -1059,8 +1059,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.3.2",
-					"JUCE_APP_VERSION_HEX=0x20302",
+					"JUCE_APP_VERSION=2.3.3",
+					"JUCE_APP_VERSION_HEX=0x20303",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=1",
@@ -1127,8 +1127,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.3.2",
-					"JUCE_APP_VERSION_HEX=0x20302",
+					"JUCE_APP_VERSION=2.3.3",
+					"JUCE_APP_VERSION_HEX=0x20303",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=0",
@@ -1193,8 +1193,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.3.2",
-					"JUCE_APP_VERSION_HEX=0x20302",
+					"JUCE_APP_VERSION=2.3.3",
+					"JUCE_APP_VERSION_HEX=0x20303",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=0",
@@ -1256,8 +1256,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.3.2",
-					"JUCE_APP_VERSION_HEX=0x20302",
+					"JUCE_APP_VERSION=2.3.3",
+					"JUCE_APP_VERSION_HEX=0x20303",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=1",
@@ -1365,8 +1365,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.3.2",
-					"JUCE_APP_VERSION_HEX=0x20302",
+					"JUCE_APP_VERSION=2.3.3",
+					"JUCE_APP_VERSION_HEX=0x20303",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=1",

@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := 
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) "-DLINUX=1" "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DJUCE_DISABLE_NATIVE_FILECHOOSERS=1" "-DJUCER_LINUX_MAKE_6D53C8B4=1" "-DJUCE_APP_VERSION=2.3.2" "-DJUCE_APP_VERSION_HEX=0x20302" $(shell pkg-config --cflags alsa freetype2 libcurl) -pthread -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I$(HOME)/modules -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) "-DLINUX=1" "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DJUCE_DISABLE_NATIVE_FILECHOOSERS=1" "-DJUCER_LINUX_MAKE_6D53C8B4=1" "-DJUCE_APP_VERSION=2.3.3" "-DJUCE_APP_VERSION_HEX=0x20303" $(shell pkg-config --cflags alsa freetype2 libcurl) -pthread -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I$(HOME)/modules -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST3 :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=1" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_VST3 := -fPIC -fvisibility=hidden
@@ -67,7 +67,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := 
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) "-DLINUX=1" "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DJUCE_DISABLE_NATIVE_FILECHOOSERS=1" "-DJUCER_LINUX_MAKE_6D53C8B4=1" "-DJUCE_APP_VERSION=2.3.2" "-DJUCE_APP_VERSION_HEX=0x20302" $(shell pkg-config --cflags alsa freetype2 libcurl) -pthread -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I$(HOME)/modules -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) "-DLINUX=1" "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DJUCE_DISABLE_NATIVE_FILECHOOSERS=1" "-DJUCER_LINUX_MAKE_6D53C8B4=1" "-DJUCE_APP_VERSION=2.3.3" "-DJUCE_APP_VERSION_HEX=0x20303" $(shell pkg-config --cflags alsa freetype2 libcurl) -pthread -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I$(HOME)/modules -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST3 :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=1" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_VST3 := -fPIC -fvisibility=hidden
