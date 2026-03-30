@@ -8,7 +8,7 @@
              textColour="955443169" processorId="Granular2">
     <Component type="ScriptPanel" id="V0" x="9" y="47" width="820" height="620"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Filter1" x="612" y="13" width="200" height="100"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V0">
         <Component type="ScriptComboBox" id="type" x="113" y="4" max="3" width="30"
@@ -2399,7 +2399,7 @@
     </Component>
     <Component type="ScriptPanel" id="V3" x="9" y="47" width="820" height="620"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Grain3" x="7" y="13" width="600" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V3"
