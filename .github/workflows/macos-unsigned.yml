@@ -92,14 +92,8 @@ jobs:
         run: |
           set -euo pipefail
           pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
-          client_utils_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-          client_vst3_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
-          vst_utils_mm="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
           sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
           test -f "$pbxproj"
-          test -f "$client_utils_cpp"
-          test -f "$client_vst3_cpp"
-          test -f "$vst_utils_mm"
 
           HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
             s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
@@ -140,32 +134,6 @@ jobs:
           perl -0pi -e '
             s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
           ' "$pbxproj"
-
-          printf '%s\n' \
-            '/* CI patch: compatibility shims for legacy JUCE/HISE VST symbols. */' \
-            '#include "AppConfig.h"' \
-            '#if JUCE_MAC' \
-            'namespace juce {' \
-            'void initialiseMacVST() {}' \
-            'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
-            'void detachComponentFromWindowRefVST (Component*, void*, bool) {}' \
-            '}' \
-            '#endif' > "$client_utils_cpp"
-
-          # Ensure required legacy symbols are present in the VST3 TU that is definitely linked.
-          if ! grep -q "CI_LEGACY_VST3_SYMBOL_SHIMS" "$client_vst3_cpp"; then
-            printf '%s\n' \
-              '' \
-              '// CI_LEGACY_VST3_SYMBOL_SHIMS' \
-              '#if JUCE_MAC' \
-              'namespace juce {' \
-              'void initialiseMacVST() {}' \
-              'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
-              'void detachComponentFromWindowRefVST (Component*, void*, bool) {}' \
-              '}' \
-              '#endif' >> "$client_vst3_cpp"
-          fi
-          printf '%s\n' '#include "AppConfig.h"' > "$vst_utils_mm"
 
           # Legacy VST3 SDK compatibility: older SDKs don't define newer speaker constants
           # referenced by recent JUCE VST3 common helpers.

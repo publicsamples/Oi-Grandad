@@ -113,14 +113,8 @@ jobs:
         run: |
           set -euo pipefail
           pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
-          client_utils_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-          client_vst3_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
-          vst_utils_mm="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
           sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
           test -f "$pbxproj"
-          test -f "$client_utils_cpp"
-          test -f "$client_vst3_cpp"
-          test -f "$vst_utils_mm"
 
           HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
             s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
@@ -160,31 +154,6 @@ jobs:
             s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
           ' "$pbxproj"
 
-          printf '%s\n' \
-            '/* CI patch: compatibility shims for legacy JUCE/HISE VST symbols. */' \
-            '#include "AppConfig.h"' \
-            '#if JUCE_MAC' \
-            'namespace juce {' \
-            'void initialiseMacVST() {}' \
-            'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
-            'void detachComponentFromWindowRefVST (Component*, void*, bool) {}' \
-            '}' \
-            '#endif' > "$client_utils_cpp"
-
-          if ! grep -q "CI_LEGACY_VST3_SYMBOL_SHIMS" "$client_vst3_cpp"; then
-            printf '%s\n' \
-              '' \
-              '// CI_LEGACY_VST3_SYMBOL_SHIMS' \
-              '#if JUCE_MAC' \
-              'namespace juce {' \
-              'void initialiseMacVST() {}' \
-              'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
-              'void detachComponentFromWindowRefVST (Component*, void*, bool) {}' \
-              '}' \
-              '#endif' >> "$client_vst3_cpp"
-          fi
-          printf '%s\n' '#include "AppConfig.h"' > "$vst_utils_mm"
-
           vst3_common=""
           for candidate in \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h" \
@@ -217,6 +186,18 @@ jobs:
           xcodebuild \
             -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
             -scheme "oi grandad - VST3" \
+            -configuration Release \
+            MACOSX_DEPLOYMENT_TARGET=10.13 \
+            OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Build AU
+        shell: bash
+        run: |
+          xcodebuild \
+            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
+            -scheme "oi grandad - AU" \
             -configuration Release \
             MACOSX_DEPLOYMENT_TARGET=10.13 \
             OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
@@ -337,5 +318,5 @@ jobs:
       - name: Upload signed artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: mac-vst3-signed
+          name: mac-au-vst3-signed
           path: dist/*.zip
