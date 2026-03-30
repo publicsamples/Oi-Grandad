@@ -207,18 +207,6 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             build
 
-      - name: Build AU
-        shell: bash
-        run: |
-          xcodebuild \
-            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
-            -scheme "oi grandad - AU" \
-            -configuration Release \
-            MACOSX_DEPLOYMENT_TARGET=10.13 \
-            OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
-            CODE_SIGNING_ALLOWED=NO \
-            build
-
       - name: Package
         shell: bash
         run: |
@@ -239,5 +227,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: mac-au-vst3-unsigned
+          name: mac-vst3-unsigned
           path: dist/*.zip
