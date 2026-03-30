@@ -246,7 +246,14 @@ jobs:
           echo "$DEVELOPER_ID_APP_CERT_P12_BASE64" | base64 --decode > "$CERT_P12"
           security import "$CERT_P12" -k "$KEYCHAIN_PATH" -P "$DEVELOPER_ID_APP_CERT_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
           security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-          security find-identity -v -p codesigning "$KEYCHAIN_PATH"
+          if ! security find-identity -v -p codesigning "$KEYCHAIN_PATH" | grep -q 'Developer ID Application:'; then
+            echo "ERROR: No 'Developer ID Application' signing identity found after import."
+            echo "The P12 secret likely does not contain the correct cert+private-key pair."
+            echo "Re-export the cert from Keychain Access as .p12 including private key,"
+            echo "then update DEVELOPER_ID_APP_CERT_P12_BASE64 and DEVELOPER_ID_APP_CERT_PASSWORD."
+            security find-identity -v -p codesigning "$KEYCHAIN_PATH" || true
+            exit 1
+          fi
 
       - name: Sign bundles
         shell: bash
