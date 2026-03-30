@@ -255,9 +255,29 @@ jobs:
         run: |
           set -euo pipefail
 
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security list-keychains -d user -s "$KEYCHAIN_PATH"
+
           sign_identity="$DEVELOPER_ID_APPLICATION_IDENTITY"
           if [[ -z "${sign_identity:-}" ]]; then
-            sign_identity="Developer ID Application: Richard Taylor"
+            sign_identity="$(security find-identity -v -p codesigning "$KEYCHAIN_PATH" | awk -F\" '/Developer ID Application:/{print $2; exit}')"
+          fi
+
+          if [[ -z "${sign_identity:-}" ]]; then
+            echo "ERROR: No Developer ID Application identity found in keychain."
+            security find-identity -v -p codesigning "$KEYCHAIN_PATH" || true
+            exit 1
+          fi
+
+          if ! security find-identity -v -p codesigning "$KEYCHAIN_PATH" | grep -Fq "\"$sign_identity\""; then
+            echo "Requested identity not found in keychain; falling back to first Developer ID Application identity."
+            sign_identity="$(security find-identity -v -p codesigning "$KEYCHAIN_PATH" | awk -F\" '/Developer ID Application:/{print $2; exit}')"
+          fi
+
+          if [[ -z "${sign_identity:-}" ]]; then
+            echo "ERROR: Could not resolve a signing identity."
+            security find-identity -v -p codesigning "$KEYCHAIN_PATH" || true
+            exit 1
           fi
 
           mkdir -p dist
@@ -276,7 +296,7 @@ jobs:
 
           while IFS= read -r bundle; do
             echo "Signing: $bundle"
-            codesign --force --deep --options runtime --timestamp --sign "$sign_identity" "$bundle"
+            codesign --force --deep --options runtime --timestamp --keychain "$KEYCHAIN_PATH" --sign "$sign_identity" "$bundle"
             codesign --verify --deep --strict --verbose=2 "$bundle"
           done < bundles.txt
 
