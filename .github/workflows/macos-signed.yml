@@ -11,12 +11,35 @@ concurrency:
 
 jobs:
   mac-signed:
-    if: ${{ secrets.DEVELOPER_ID_APP_CERT_P12_BASE64 != '' && secrets.DEVELOPER_ID_APP_CERT_PASSWORD != '' && secrets.APPLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.APPLE_APP_SPECIFIC_PASSWORD != '' }}
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Validate required secrets
+        shell: bash
+        env:
+          DEVELOPER_ID_APP_CERT_P12_BASE64: ${{ secrets.DEVELOPER_ID_APP_CERT_P12_BASE64 }}
+          DEVELOPER_ID_APP_CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_APP_CERT_PASSWORD }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        run: |
+          set -euo pipefail
+          required=(
+            DEVELOPER_ID_APP_CERT_P12_BASE64
+            DEVELOPER_ID_APP_CERT_PASSWORD
+            APPLE_ID
+            APPLE_TEAM_ID
+            APPLE_APP_SPECIFIC_PASSWORD
+          )
+          for var_name in "${required[@]}"; do
+            if [[ -z "${!var_name:-}" ]]; then
+              echo "ERROR: Missing required secret: $var_name"
+              exit 1
+            fi
+          done
 
       - name: Source fingerprint (macOS)
         shell: bash
