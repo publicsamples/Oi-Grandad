@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="mod" Version="0.0.0">
+<Network ID="mods" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="mod" Bypassed="0" ShowParameters="1">
     <Nodes>
       <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0">
