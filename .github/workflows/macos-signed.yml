@@ -260,20 +260,25 @@ jobs:
             sign_identity="Developer ID Application: Richard Taylor"
           fi
 
-          mapfile -t bundles < <(find . -type d \( -name "*.vst3" -o -name "*.component" \))
-          if [[ "${#bundles[@]}" -eq 0 ]]; then
+          mkdir -p dist
+          : > bundles.txt
+          found_any=0
+          while IFS= read -r bundle; do
+            [[ -z "$bundle" ]] && continue
+            found_any=1
+            echo "$bundle" >> bundles.txt
+          done < <(find . -type d \( -name "*.vst3" -o -name "*.component" \))
+
+          if [[ "$found_any" -eq 0 ]]; then
             echo "ERROR: No plugin bundles found to sign."
             exit 1
           fi
 
-          mkdir -p dist
-          : > bundles.txt
-          for bundle in "${bundles[@]}"; do
+          while IFS= read -r bundle; do
             echo "Signing: $bundle"
             codesign --force --deep --options runtime --timestamp --sign "$sign_identity" "$bundle"
             codesign --verify --deep --strict --verbose=2 "$bundle"
-            echo "$bundle" >> bundles.txt
-          done
+          done < bundles.txt
 
       - name: Configure notarytool profile
         shell: bash
