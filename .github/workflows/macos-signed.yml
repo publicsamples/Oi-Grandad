@@ -1,0 +1,286 @@
+name: MacOS (signed)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mac-signed:
+    if: ${{ secrets.DEVELOPER_ID_APP_CERT_P12_BASE64 != '' && secrets.DEVELOPER_ID_APP_CERT_PASSWORD != '' && secrets.APPLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.APPLE_APP_SPECIFIC_PASSWORD != '' }}
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Source fingerprint (macOS)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Commit: $GITHUB_SHA"
+          files=(
+            "oi grandad/Binaries/Source/Plugin.cpp"
+            "oi grandad/Binaries/Source/PresetData.cpp"
+            "oi grandad/Binaries/Source/CopyProtection.cpp"
+            "oi grandad/AdditionalSourceCode/nodes/factory.cpp"
+            "oi grandad/AdditionalSourceCode/nodes/RNBO.cpp"
+            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
+            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+          )
+          for f in "${files[@]}"; do
+            if [[ -f "$f" ]]; then
+              shasum -a 256 "$f"
+            else
+              echo "MISSING  $f"
+            fi
+          done
+
+      - name: Ensure VST3 SDK headers exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          sdk_header="$sdk_dir/pluginterfaces/vst/vsttypes.h"
+          sdk_speaker="$sdk_dir/pluginterfaces/vst/vstspeaker.h"
+          headless_sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+
+          if [[ ! -f "$sdk_header" || ! -f "$sdk_speaker" ]]; then
+            echo "ERROR: Expected JUCE bundled VST3 SDK at $sdk_dir but required files were missing."
+            exit 1
+          fi
+
+          mkdir -p "$(dirname "$headless_sdk_dir")"
+          rm -rf "$headless_sdk_dir"
+          ln -s "$sdk_dir" "$headless_sdk_dir"
+
+          juce_vst3_headers=""
+          for candidate in \
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h" \
+            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h"; do
+            if [[ -f "$candidate" ]]; then
+              juce_vst3_headers="$candidate"
+              break
+            fi
+          done
+
+          if [[ -n "$juce_vst3_headers" ]]; then
+            while IFS= read -r rel_cpp; do
+              [[ -z "$rel_cpp" ]] && continue
+              target="$sdk_dir/$rel_cpp"
+              if [[ ! -f "$target" ]]; then
+                echo "Creating VST3 SDK compatibility stub: $rel_cpp"
+                mkdir -p "$(dirname "$target")"
+                printf '%s\n' '/* CI compatibility stub for missing VST3 SDK translation unit. */' > "$target"
+              fi
+            done < <(sed -n 's/^[[:space:]]*#include[[:space:]]*<\([^>]*\.cpp\)>.*/\1/p' "$juce_vst3_headers" | sort -u)
+          fi
+
+          test -f "$sdk_header"
+          test -f "$sdk_speaker"
+          test -f "$headless_sdk_dir/pluginterfaces/vst/vsttypes.h"
+          test -f "$headless_sdk_dir/pluginterfaces/vst/vstspeaker.h"
+
+      - name: Normalize project paths for CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          client_utils_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+          client_vst3_cpp="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
+          vst_utils_mm="oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
+          sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          test -f "$pbxproj"
+          test -f "$client_utils_cpp"
+          test -f "$client_vst3_cpp"
+          test -f "$vst_utils_mm"
+
+          HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
+            s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
+          ' "$pbxproj"
+
+          for wrapper in \
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3_Wrapper.cpp" \
+            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3_Wrapper.cpp"; do
+            if [[ -f "$wrapper" ]]; then
+              perl -0pi -e '
+                s/if\s*\(\s*auto\*\s+handler\s*=\s*componentHandler\s*\)/if (auto* handler = componentHandler.get())/g;
+              ' "$wrapper"
+            fi
+          done
+
+          faust_include="$GITHUB_WORKSPACE/HISE/tools/faust/include/faust"
+          mkdir -p "$faust_include/dsp" "$faust_include/gui"
+
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/dsp/dsp.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/dsp/dsp.h" "$faust_include/dsp/dsp.h"
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/UI.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/UI.h" "$faust_include/gui/UI.h"
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/meta.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_types/faust_wrap/gui/meta.h" "$faust_include/gui/meta.h"
+          [[ -f "$GITHUB_WORKSPACE/HISE/hi_faust_lib/faust_wrap/dsp/libfaust.h" ]] \
+            && cp "$GITHUB_WORKSPACE/HISE/hi_faust_lib/faust_wrap/dsp/libfaust.h" "$faust_include/dsp/libfaust.h"
+
+          cat > "$faust_include/export.h" <<'EOF'
+          #pragma once
+          #ifndef FAUST_API
+          #define FAUST_API
+          #endif
+          EOF
+
+          perl -0pi -e '
+            s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
+          ' "$pbxproj"
+
+          printf '%s\n' \
+            '/* CI patch: compatibility shims for legacy JUCE/HISE VST symbols. */' \
+            '#include "AppConfig.h"' \
+            '#if JUCE_MAC' \
+            'namespace juce {' \
+            'void initialiseMacVST() {}' \
+            'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
+            'void detachComponentFromWindowRefVST (Component*, void*, bool) {}' \
+            '}' \
+            '#endif' > "$client_utils_cpp"
+
+          if ! grep -q "CI_LEGACY_VST3_SYMBOL_SHIMS" "$client_vst3_cpp"; then
+            printf '%s\n' \
+              '' \
+              '// CI_LEGACY_VST3_SYMBOL_SHIMS' \
+              '#if JUCE_MAC' \
+              'namespace juce {' \
+              'void initialiseMacVST() {}' \
+              'void* attachComponentToWindowRefVST (Component*, void* parent, bool) { return parent; }' \
+              'void detachComponentFromWindowRefVST (Component*, void*, bool) {}' \
+              '}' \
+              '#endif' >> "$client_vst3_cpp"
+          fi
+          printf '%s\n' '#include "AppConfig.h"' > "$vst_utils_mm"
+
+          vst3_common=""
+          for candidate in \
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h" \
+            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h"; do
+            if [[ -f "$candidate" ]]; then
+              vst3_common="$candidate"
+              break
+            fi
+          done
+
+          if [[ -n "$vst3_common" ]]; then
+            if ! grep -q 'kSpeakerACN0' "$sdk_dir/pluginterfaces/vst/vstspeaker.h"; then
+              perl -0pi -e '
+                s/^[ \t]*case\s+Steinberg::Vst::kSpeakerACN\d+:\s*return\s+AudioChannelSet::ambisonicACN\d+;\s*\n//mg;
+                s/^[ \t]*case\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr):\s*return\s+AudioChannelSet::(?:bottomSideLeft|bottomSideRight|bottomRearLeft|bottomRearRight);\s*\n//mg;
+                s/return\s+Steinberg::Vst::kSpeakerACN\d+;/return 0;/g;
+                s/return\s+Steinberg::Vst::kSpeakerB(?:sl|sr|rl|rr);/return 0;/g;
+              ' "$vst3_common"
+
+              if grep -Eq 'case[[:space:]]+Steinberg::Vst::kSpeakerACN|return[[:space:]]+Steinberg::Vst::kSpeakerACN|case[[:space:]]+Steinberg::Vst::kSpeakerB(sl|sr|rl|rr)|return[[:space:]]+Steinberg::Vst::kSpeakerB(sl|sr|rl|rr)' "$vst3_common"; then
+                echo "ERROR: Legacy speaker symbol patch did not fully apply to $vst3_common"
+                exit 1
+              fi
+            fi
+          fi
+
+      - name: Build VST3
+        shell: bash
+        run: |
+          xcodebuild \
+            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
+            -scheme "oi grandad - VST3" \
+            -configuration Release \
+            MACOSX_DEPLOYMENT_TARGET=10.13 \
+            OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Import Developer ID certificate
+        shell: bash
+        env:
+          DEVELOPER_ID_APP_CERT_P12_BASE64: ${{ secrets.DEVELOPER_ID_APP_CERT_P12_BASE64 }}
+          DEVELOPER_ID_APP_CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_APP_CERT_PASSWORD }}
+        run: |
+          set -euo pipefail
+          KEYCHAIN_PATH="$RUNNER_TEMP/build-signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(openssl rand -base64 24)"
+
+          echo "KEYCHAIN_PATH=$KEYCHAIN_PATH" >> "$GITHUB_ENV"
+          echo "KEYCHAIN_PASSWORD=$KEYCHAIN_PASSWORD" >> "$GITHUB_ENV"
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security list-keychains -d user -s "$KEYCHAIN_PATH"
+          security default-keychain -d user -s "$KEYCHAIN_PATH"
+
+          CERT_P12="$RUNNER_TEMP/developer_id_app.p12"
+          echo "$DEVELOPER_ID_APP_CERT_P12_BASE64" | base64 --decode > "$CERT_P12"
+          security import "$CERT_P12" -k "$KEYCHAIN_PATH" -P "$DEVELOPER_ID_APP_CERT_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security find-identity -v -p codesigning "$KEYCHAIN_PATH"
+
+      - name: Sign bundles
+        shell: bash
+        env:
+          DEVELOPER_ID_APPLICATION_IDENTITY: ${{ secrets.DEVELOPER_ID_APPLICATION_IDENTITY }}
+        run: |
+          set -euo pipefail
+
+          sign_identity="$DEVELOPER_ID_APPLICATION_IDENTITY"
+          if [[ -z "${sign_identity:-}" ]]; then
+            sign_identity="Developer ID Application: Richard Taylor"
+          fi
+
+          mapfile -t bundles < <(find . -type d \( -name "*.vst3" -o -name "*.component" \))
+          if [[ "${#bundles[@]}" -eq 0 ]]; then
+            echo "ERROR: No plugin bundles found to sign."
+            exit 1
+          fi
+
+          mkdir -p dist
+          : > bundles.txt
+          for bundle in "${bundles[@]}"; do
+            echo "Signing: $bundle"
+            codesign --force --deep --options runtime --timestamp --sign "$sign_identity" "$bundle"
+            codesign --verify --deep --strict --verbose=2 "$bundle"
+            echo "$bundle" >> bundles.txt
+          done
+
+      - name: Configure notarytool profile
+        shell: bash
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        run: |
+          set -euo pipefail
+          xcrun notarytool store-credentials "ci-notary-profile" \
+            --apple-id "$APPLE_ID" \
+            --team-id "$APPLE_TEAM_ID" \
+            --password "$APPLE_APP_SPECIFIC_PASSWORD"
+
+      - name: Notarize and staple bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          while IFS= read -r bundle; do
+            name="$(basename "$bundle")"
+            zip_path="dist/$name.zip"
+            ditto -c -k --sequesterRsrc --keepParent "$bundle" "$zip_path"
+            xcrun notarytool submit "$zip_path" --keychain-profile "ci-notary-profile" --wait
+            xcrun stapler staple "$bundle"
+            ditto -c -k --sequesterRsrc --keepParent "$bundle" "$zip_path"
+          done < bundles.txt
+
+      - name: Upload signed artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-vst3-signed
+          path: dist/*.zip
