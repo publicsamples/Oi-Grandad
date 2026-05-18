@@ -1753,14 +1753,14 @@
                  Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
                  Send7="-1" Channel8="0" Send8="-1" Channel9="1" Send9="-1"/>
   <macro_controls>
-    <macro name="Slot 1" value="63.48082733154297" midi_cc="-1">
+    <macro name="Slot 1" value="89.78900146484375" midi_cc="-1">
       <controlled_parameter id="Macro Control Modulator1" parameter="3" parameter_name="MacroValue"
                             min="0.0" max="1.0" low="0.0" high="1.0" skew="1.0" step="0.01"
                             inverted="0" readonly="1" converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADv..."/>
     </macro>
-    <macro name="Slot 2" value="5.635425091672603e-29" midi_cc="-1"/>
-    <macro name="Slot 3" value="5.635425091672603e-29" midi_cc="-1"/>
-    <macro name="Slot 4" value="5.635425091672603e-29" midi_cc="-1"/>
+    <macro name="Slot 2" value="8.459899447643693e-14" midi_cc="-1"/>
+    <macro name="Slot 3" value="8.459899447643693e-14" midi_cc="-1"/>
+    <macro name="Slot 4" value="8.459899447643693e-14" midi_cc="-1"/>
     <macro name="Slot 5" value="127.0" midi_cc="-1"/>
     <macro name="Slot 6" value="127.0" midi_cc="-1"/>
     <macro name="Slot 7" value="127.0" midi_cc="-1"/>
