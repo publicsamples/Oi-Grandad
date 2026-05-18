@@ -67,13 +67,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          sdk_dir=""
+          for candidate in \
+            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
+            "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK" \
+            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"; do
+            if [[ -f "$candidate/pluginterfaces/vst/vsttypes.h" ]]; then
+              sdk_dir="$candidate"
+              break
+            fi
+          done
+          if [[ -z "$sdk_dir" ]]; then
+            echo "ERROR: Could not locate VST3 SDK in expected paths."
+            exit 1
+          fi
           sdk_header="$sdk_dir/pluginterfaces/vst/vsttypes.h"
           sdk_speaker="$sdk_dir/pluginterfaces/vst/vstspeaker.h"
           headless_sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
 
           if [[ ! -f "$sdk_header" || ! -f "$sdk_speaker" ]]; then
-            echo "ERROR: Expected JUCE bundled VST3 SDK at $sdk_dir but required files were missing."
+            echo "ERROR: Expected VST3 SDK at $sdk_dir but required files were missing."
             exit 1
           fi
 
@@ -113,7 +127,7 @@ jobs:
         run: |
           set -euo pipefail
           pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
-          sdk_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+          sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
           test -f "$pbxproj"
 
           HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '

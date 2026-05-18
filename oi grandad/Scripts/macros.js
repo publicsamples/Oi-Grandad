@@ -68,8 +68,7 @@ uph.setPostCallback(function(presetFile)
 
 inline function onMacroPos2Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	pos1.setValue(value);
 	pos1.changed();
@@ -82,8 +81,7 @@ Content.getComponent("MacroPos2").setControlCallback(onMacroPos2Control);
 
 inline function onMacroPos3Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	pos2.setValue(value);
 	pos2.changed();
@@ -96,8 +94,7 @@ Content.getComponent("MacroPos3").setControlCallback(onMacroPos3Control);
 
 inline function onMacroPos4Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	pos3.setValue(value);
 	pos3.changed();
@@ -115,8 +112,7 @@ const var pitchoffset4 = Content.getComponent("pitchoffset4");
 
 inline function onMacroPitch1Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 		pitchoffset1.setValue(value);
 		pitchoffset1.changed();
@@ -129,8 +125,7 @@ Content.getComponent("MacroPitch1").setControlCallback(onMacroPitch1Control);
 
 inline function onMacroPitch2Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	pitchoffset2.setValue(value);
 		pitchoffset2.changed();
@@ -143,8 +138,7 @@ Content.getComponent("MacroPitch2").setControlCallback(onMacroPitch2Control);
 
 inline function onMacroPitch3Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 		pitchoffset3.setValue(value);
 		pitchoffset3.changed();
@@ -157,8 +151,7 @@ Content.getComponent("MacroPitch3").setControlCallback(onMacroPitch3Control);
 
 inline function onMacroPitch4Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 		pitchoffset4.setValue(value);
 		pitchoffset4.changed();
@@ -176,8 +169,7 @@ const var Vol3 = Content.getComponent("Vol3");
 
 inline function onMacroGainControl(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	Vol0.setValueNormalized(value);
 	Vol0.changed();
@@ -188,8 +180,7 @@ Content.getComponent("MacroGain").setControlCallback(onMacroGainControl);
 
 inline function onMacroGain1Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	Vol1.setValueNormalized(value);
 	Vol1.changed();
@@ -200,8 +191,7 @@ Content.getComponent("MacroGain1").setControlCallback(onMacroGain1Control);
 
 inline function onMacroGain2Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	Vol2.setValueNormalized(value);
 	Vol2.changed();
@@ -212,8 +202,7 @@ Content.getComponent("MacroGain2").setControlCallback(onMacroGain2Control);
 
 inline function onMacroGain3Control(component, value)
 {
-	if (isDefined(g_isPresetLoadInProgress) && g_isPresetLoadInProgress)
-		return;
+	
 
 	Vol3.setValueNormalized(value);
 	Vol3.changed();

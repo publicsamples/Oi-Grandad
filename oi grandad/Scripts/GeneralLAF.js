@@ -23,7 +23,7 @@ laf.registerFunction("drawToggleButton", function(g, obj)
     g.drawAlignedText(obj.text, obj.area, "centred");
 });
 
-
+const var cBLaf = Content.createLocalLookAndFeel();
 
 cBLaf.registerFunction("drawComboBox", function(g, obj)
 {

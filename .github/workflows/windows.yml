@@ -50,10 +50,19 @@ jobs:
 
           $ws = $env:GITHUB_WORKSPACE
           $hise = Join-Path $ws "HISE"
-          $juceVst3Sdk = Join-Path $ws "oi grandad\Binaries\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK"
+          $sdkCandidates = @(
+            (Join-Path $ws "oi grandad\Binaries\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK"),
+            (Join-Path $ws "HISE\JUCE\modules\juce_audio_processors_headless\format_types\VST3_SDK"),
+            (Join-Path $ws "HISE\JUCE\modules\juce_audio_processors\format_types\VST3_SDK"),
+            (Join-Path $ws "oi grandad\Binaries\JUCE\modules\juce_audio_processors\format_types\VST3_SDK")
+          )
+          $juceVst3Sdk = $null
+          foreach ($c in $sdkCandidates) {
+            if (Test-Path (Join-Path $c "pluginterfaces\vst\vsttypes.h")) { $juceVst3Sdk = $c; break }
+          }
           $faustInclude = Join-Path $hise "tools\faust\include"
 
-          if (!(Test-Path $juceVst3Sdk)) { throw "Missing JUCE bundled VST3 SDK: $juceVst3Sdk" }
+          if (-not $juceVst3Sdk) { throw "Missing VST3 SDK in expected paths." }
 
           $vstProj = Join-Path $ws "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
           $sharedProj = Join-Path $ws "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
