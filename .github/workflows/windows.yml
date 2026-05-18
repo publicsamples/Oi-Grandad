@@ -103,14 +103,6 @@ jobs:
             }
           }
 
-          # HISE JUCE snapshot compatibility: IPtr must be unwrapped before assigning to auto*.
-          $wrapper = Join-Path $hise "JUCE\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"
-          if (Test-Path $wrapper) {
-            $wc = Get-Content -Raw -Path $wrapper
-            $wc = [regex]::Replace($wc, 'if\s*\(\s*auto\*\s+handler\s*=\s*componentHandler\s*\)', 'if (auto* handler = componentHandler.get())')
-            Set-Content -Path $wrapper -Value $wc -NoNewline
-          }
-
           # JUCE/HISE compatibility on MSVC: use CRT-prefixed case-insensitive functions.
           $juceTextDir = Join-Path $hise "JUCE\modules\juce_core\text"
           if (Test-Path $juceTextDir) {
@@ -169,17 +161,12 @@ jobs:
             '#include "AppConfig.h"' | Set-Content -Path $clientUtils -NoNewline
           }
 
-          # Ensure VST3 StringConvert implementation is linked when JUCE client is built in headers-only mode.
+          # Remove stale compatibility injections from previous CI runs.
           $clientVst3 = Join-Path $ws "oi grandad\Binaries\JuceLibraryCode\include_juce_audio_plugin_client_VST3.cpp"
           if (Test-Path $clientVst3) {
             $vc = Get-Content -Raw -Path $clientVst3
-            if ($vc -notmatch "public\.sdk/source/common/commonstringconvert\.cpp") {
-              $vc += "`r`n#include <public.sdk/source/common/commonstringconvert.cpp>"
-            }
-            if ($vc -notmatch "public\.sdk/source/vst/utility/stringconvert\.cpp") {
-              $vc += "`r`n#include <public.sdk/source/vst/utility/stringconvert.cpp>"
-            }
-            # If an old shim exists from a previous CI run, remove it to avoid duplicate definitions.
+            $vc = [regex]::Replace($vc, '^\s*#include\s*<public\.sdk/source/common/commonstringconvert\.cpp>\s*\r?\n?', '', 'Multiline')
+            $vc = [regex]::Replace($vc, '^\s*#include\s*<public\.sdk/source/vst/utility/stringconvert\.cpp>\s*\r?\n?', '', 'Multiline')
             $vc = [regex]::Replace($vc, '(?s)\r?\n// StringConvertCIShim:.*?\r?\n\}\}\}', '')
             Set-Content -Path $clientVst3 -Value $vc -NoNewline
           }
