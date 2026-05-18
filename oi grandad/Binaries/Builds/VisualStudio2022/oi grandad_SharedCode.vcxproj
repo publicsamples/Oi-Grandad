@@ -404,6 +404,12 @@
     <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorInterfaces.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadata.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadataRegistry.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\Routing.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2489,6 +2495,9 @@
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\CustomDataContainers.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\FuzzySearcherTests.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\HI_LookAndFeels.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2514,6 +2523,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\runtime_target.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\SemanticVersionCheckerTests.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\SiTraNoConverter.cpp">
@@ -5062,6 +5074,8 @@
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\hi_dsp.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\Processor.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorInterfaces.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadata.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadataRegistry.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\Routing.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\RoutingEditor.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_modules\effects\editors\AnalyserEditor.h"/>

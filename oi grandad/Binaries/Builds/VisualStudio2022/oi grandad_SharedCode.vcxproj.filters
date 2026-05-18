@@ -1315,6 +1315,12 @@
     <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorInterfaces.cpp">
       <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadata.cpp">
+      <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadataRegistry.cpp">
+      <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_core\hi_dsp\Routing.cpp">
       <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
     </ClCompile>
@@ -3409,6 +3415,9 @@
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\CustomDataContainers.cpp">
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\FuzzySearcherTests.cpp">
+      <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\HI_LookAndFeels.cpp">
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
@@ -3434,6 +3443,9 @@
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\runtime_target.cpp">
+      <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\SemanticVersionCheckerTests.cpp">
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_tools\hi_tools\SiTraNoConverter.cpp">
@@ -6475,6 +6487,12 @@
       <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorInterfaces.h">
+      <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadata.h">
+      <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\ProcessorMetadataRegistry.h">
       <Filter>JUCE Modules\hi_core\hi_dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\HISE\hi_core\hi_dsp\Routing.h">
