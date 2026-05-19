@@ -6009,8 +6009,8 @@
   <Component type="ScriptComboBox" id="cmbPresets" x="634" y="18" width="200"
              height="30" bgColour="2834420659" itemColour="2381435827" itemColour2="15591125"
              textColour="2767382478" useCustomPopup="1" saveInPreset="0" text="LOAD A PRESET"
-             items="&#10;factory::bank 1::1&#10;factory::bank 1::p2&#10;factory::bank 1::preset1&#10;factory::Drums::geewhiz&#10;factory::Drums::tech1"
-             max="5">
+             items="&#10;factory::Bank 1::1complex&#10;factory::Bank 1::2 flavours&#10;factory::Bank 1::geewhiz&#10;factory::Bank 1::HELLO&#10;factory::Bank 1::Just res&#10;factory::Bank 1::Pluck"
+             max="6">
     <Component type="ScriptLabel" id="ScriptLabel11" x="0" y="1" width="200"
                height="30" parentComponent="cmbPresets" text="Select a preset.."
                fontName="Montserrat" bgColour="4291389544" textColour="4294757580"
@@ -6057,6 +6057,6 @@
              text="master" editable="0" itemColour2="4092454613" itemColour="15848371"/>
   <Component type="ScriptLabel" id="Label38" x="779" y="643" width="50" height="20"
              fontName="Montserrat" fontSize="15.0" textColour="3706906574"
-             text="v2.3.3" editable="0" alignment="left" itemColour2="3001935573"
+             text="v2.3.5" editable="0" alignment="left" itemColour2="3001935573"
              itemColour="15848371"/>
 </ContentProperties>
