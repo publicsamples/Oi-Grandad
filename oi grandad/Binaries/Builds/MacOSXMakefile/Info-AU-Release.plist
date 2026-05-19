@@ -18,9 +18,9 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.3.3</string>
+    <string>2.3.5</string>
     <key>CFBundleVersion</key>
-    <string>2.3.3</string>
+    <string>2.3.5</string>
     <key>NSHumanReadableCopyright</key>
     <string>2024 MS</string>
     <key>NSHighResolutionCapable</key>
@@ -41,7 +41,7 @@
         <key>subtype</key>
         <string>Msog</string>
         <key>version</key>
-        <integer>131843</integer>
+        <integer>131845</integer>
         <key>resourceUsage</key>
         <dict>
           <key>network.client</key>

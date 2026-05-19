@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.3.3"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.3.5"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
               buildVST="0" buildVST3="1" buildAU="1" buildAUv3="0" buildStandalone="0"
               buildRTAS="0" buildAAX="0" pluginName="oi grandad" pluginDesc="oi grandad"
@@ -26,31 +26,31 @@
       <FILE id="AOT2K8" name="Plugin.cpp" compile="1" resource="0" file="Source/Plugin.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="QSlrCi" name="nodes">
-        <FILE id="R8CGSa" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="NzpjxO" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="zHHlXY" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="MpZNP6" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="xHmSZo" name="modcont_networkdata.h" compile="0" resource="0"
+      <GROUP id="FvTzbi" name="nodes">
+        <FILE id="CiQb6i" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="zfjkLf" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="xNPqGY" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="VGajjT" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="yaRpkS" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="fnFMKn" name="OutMods_networkdata.h" compile="0" resource="0"
+        <FILE id="kVD5xL" name="OutMods_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/OutMods_networkdata.h"/>
-        <FILE id="FuiJZl" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="OrLYaF" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="H9fCtx" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="cLIif5" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="ccjPyB" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="WaLGEV" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="rpvRrP" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="xmRCmX" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="UEP2yy" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="VHhKi2" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="g68MpU" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="bDvrYh" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="ffhpx9" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="lx0eZo" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="N44BHe" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="xHURO1" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="AZlFRl" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="pzDple" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="UfaCrE" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="UOUZHn" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
@@ -256,7 +256,7 @@
     </XCODE_IPHONE>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
                 extraLinkerFlags="-flto=auto&#10;-fuse-ld=gold&#10;%FFT_LINKER_FLAGS%"
-                extraCompilerFlags="-fpermissive" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1"
+                extraCompilerFlags="-fpermissive" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;&#10;&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1"
                 linuxExtraPkgConfig="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" linkTimeOptimisation="0"
