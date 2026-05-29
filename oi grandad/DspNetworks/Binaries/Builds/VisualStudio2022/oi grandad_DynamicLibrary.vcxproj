@@ -64,6 +64,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='CI|x64'">$(Platform)\$(Configuration)\Dynamic Library\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='CI|x64'">oigrandad_ci</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='CI|x64'">true</GenerateManifest>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='CI|x64'">$(LibraryPath);%WIN_STATIC_LIB_FOLDER_R64%</LibraryPath>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\dll\Dynamic Library\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\Dynamic Library\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">oigrandad</TargetName>
@@ -153,6 +154,7 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalLibraryDirectories>%WIN_STATIC_LIB_FOLDER_R64%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
       <AdditionalOptions>%WIN_STATIC_LIBS% %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -160,7 +162,9 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\oigrandad_ci.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
+    <Lib>
+      <AdditionalLibraryDirectories>%WIN_STATIC_LIB_FOLDER_R64%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -682,6 +686,9 @@
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\CustomDataContainers.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\FuzzySearcherTests.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\HI_LookAndFeels.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -707,6 +714,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\runtime_target.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\SemanticVersionCheckerTests.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\SiTraNoConverter.cpp">

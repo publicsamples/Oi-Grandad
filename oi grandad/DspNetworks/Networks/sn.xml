@@ -3612,7 +3612,7 @@
                   <Node ID="chain219" FactoryPath="container.chain" Bypassed="0" Name="PreFilterCut">
                     <Nodes>
                       <Node ID="branch13" FactoryPath="container.branch" Bypassed="0" Name="branch"
-                            Folded="1" ShowParameters="1">
+                            ShowParameters="1">
                         <Nodes>
                           <Node ID="chain220" FactoryPath="container.chain" Bypassed="0" Name="chain1">
                             <Nodes>
@@ -8648,7 +8648,8 @@
           <Connection NodeId="pma10" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PreCut" Value="1.0" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="PreCut" Value="1.0" DefaultValue="0.0"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="pma14" ParameterId="Add"/>
         </Connections>
@@ -8659,8 +8660,8 @@
           <Connection NodeId="pma14" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PreCutSrc" Value="0.99912109375"
-                 DefaultValue="0.0">
+      <Parameter MinValue="1.0" MaxValue="16.0" ID="PreCutSrc" Value="1.0" StepSize="1"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="branch13" ParameterId="Index"/>
         </Connections>

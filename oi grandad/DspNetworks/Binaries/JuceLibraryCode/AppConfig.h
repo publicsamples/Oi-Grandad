@@ -64,12 +64,12 @@
 //==============================================================================
 // hi_dsp_library flags:
 
-#ifndef    HISE_INCLUDE_SCRIPTNODE_DATABASE
- //#define HISE_INCLUDE_SCRIPTNODE_DATABASE 0
-#endif
-
 #ifndef    HI_EXPORT_AS_PROJECT_DLL
  #define   HI_EXPORT_AS_PROJECT_DLL 1
+#endif
+
+#ifndef    HISE_INCLUDE_SCRIPTNODE_DATABASE
+ //#define HISE_INCLUDE_SCRIPTNODE_DATABASE 1
 #endif
 
 #ifndef    HI_EXPORT_DSP_LIBRARY
@@ -127,6 +127,10 @@
 
 #ifndef    HISE_INCLUDE_PITCH_DETECTION
  //#define HISE_INCLUDE_PITCH_DETECTION 1
+#endif
+
+#ifndef    HISE_INCLUDE_XSIMD
+ //#define HISE_INCLUDE_XSIMD 0
 #endif
 
 #ifndef    HISE_INCLUDE_RT_NEURAL

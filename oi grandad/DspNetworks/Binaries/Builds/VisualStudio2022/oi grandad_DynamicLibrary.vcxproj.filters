@@ -1009,6 +1009,9 @@
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\CustomDataContainers.cpp">
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\FuzzySearcherTests.cpp">
+      <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\HI_LookAndFeels.cpp">
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
@@ -1034,6 +1037,9 @@
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\runtime_target.cpp">
+      <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\SemanticVersionCheckerTests.cpp">
       <Filter>JUCE Modules\hi_tools\hi_tools</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\HISE\hi_tools\hi_tools\SiTraNoConverter.cpp">

@@ -23,9 +23,9 @@ const var slot4 = g4.getAudioFile(0);
 Content.callAfterDelay(10, function()
 {
     slot1.loadFile(defaultRef);
-    slot2.loadFile(defaultRef);
-    slot3.loadFile(defaultRef);
-    slot4.loadFile(defaultRef);
+ //   slot2.loadFile(defaultRef);
+ //   slot3.loadFile(defaultRef);
+ //   slot4.loadFile(defaultRef);
 });
 
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");

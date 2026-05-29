@@ -374,8 +374,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules /Users/rick/Documents/GitHub/HISE/tools/faust/include";
-				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off";
-				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off";
+				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
+				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.oigrandad;
 				PRODUCT_NAME = "oigrandad_debug";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -426,8 +426,8 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules /Users/rick/Documents/GitHub/HISE/tools/faust/include";
-				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off";
-				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off";
+				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
+				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.oigrandad;
 				PRODUCT_NAME = "oigrandad";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -477,8 +477,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules /Users/rick/Documents/GitHub/HISE/tools/faust/include";
-				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off";
-				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -fno-aligned-allocation -ffp-contract=off";
+				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
+				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.oigrandad;
 				PRODUCT_NAME = "oigrandad_ci";
 				PROVISIONING_PROFILE_SPECIFIER = "";

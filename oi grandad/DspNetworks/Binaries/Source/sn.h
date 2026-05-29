@@ -6720,10 +6720,17 @@ using GrainSync = parameter::from0To1<sn_impl::tempo_sync_t<NV>,
                                       2, 
                                       GrainSyncRange>;
 
+DECLARE_PARAMETER_RANGE_STEP(PreCutSrc_InputRange, 
+                             1., 
+                             16., 
+                             1.);
 template <int NV>
-using PreCutSrc = parameter::from0To1<sn_impl::branch13_t<NV>, 
-                                      0, 
-                                      PositionSrc_0Range>;
+using PreCutSrc_0 = parameter::from0To1<sn_impl::branch13_t<NV>, 
+                                        0, 
+                                        PositionSrc_0Range>;
+
+template <int NV>
+using PreCutSrc = parameter::chain<PreCutSrc_InputRange, PreCutSrc_0<NV>>;
 
 DECLARE_PARAMETER_RANGE_STEP(PreCutMode_InputRange, 
                              1., 
@@ -7185,8 +7192,8 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x003F, 0x0000, 0x5C00, 0x2700, 0x0000, 0x5000, 0x6572, 0x7543, 
             0x4D74, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0xCCCD, 
             0x3D44, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0028, 0x0000, 
-            0x7250, 0x4365, 0x7475, 0x7253, 0x0063, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x663F, 0x7FC6, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x7250, 0x4365, 0x7475, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
+            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x2900, 0x0000, 0x5000, 0x6572, 0x7543, 0x4D74, 0x646F, 0x0065, 
             0x0000, 0x8000, 0x003F, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x2A00, 0x0000, 0x5000, 0x6572, 0x7543, 
@@ -10462,7 +10469,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(37, -0.0258984);
 		this->setParameterT(38, 1.);
 		this->setParameterT(39, 0.0480469);
-		this->setParameterT(40, 0.999121);
+		this->setParameterT(40, 1.);
 		this->setParameterT(41, 1.);
 		this->setParameterT(42, 0.);
 		this->setParameterT(43, 0.);
