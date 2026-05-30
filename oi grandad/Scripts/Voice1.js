@@ -410,23 +410,7 @@ inline function onShowRandom1Control(component, value)
 Content.getComponent("ShowRandom1").setControlCallback(onShowRandom1Control);
 
 
-const var RandomiseSamples = Content.getComponent("RandomiseSamples");
 
-inline function isDefaultOrEmpty(path)
-{
-    return path == "" || path == defaultRef || path.endsWith("OGInit.wav");
-}
-
-inline function getAudioFilesFromFolder(folder)
-{
-    local files = [];
-    local children = folder.findChildFiles("*.wav", true);
-
-    for (f in children)
-        files.push(f);
-
-    return files;
-}
 
 
 //FX MENUS
