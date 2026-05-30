@@ -392,6 +392,9 @@ inline function onRANDOMISE1Control(component, value)
     randomiseIfUnlocked(14, PostMeta1);
     randomiseIfUnlocked(15, PostMeta2);
     randomiseIfUnlocked(16, PostMeta3);
+    
+    if (RandomiseSamples.getValue() == 1)
+        randomiseSampleForVoice(1);
 }
 
 Content.getComponent("RANDOMISE1").setControlCallback(onRANDOMISE1Control);
@@ -405,6 +408,25 @@ inline function onShowRandom1Control(component, value)
 };
 
 Content.getComponent("ShowRandom1").setControlCallback(onShowRandom1Control);
+
+
+const var RandomiseSamples = Content.getComponent("RandomiseSamples");
+
+inline function isDefaultOrEmpty(path)
+{
+    return path == "" || path == defaultRef || path.endsWith("OGInit.wav");
+}
+
+inline function getAudioFilesFromFolder(folder)
+{
+    local files = [];
+    local children = folder.findChildFiles("*.wav", true);
+
+    for (f in children)
+        files.push(f);
+
+    return files;
+}
 
 
 //FX MENUS
