@@ -111,8 +111,62 @@ const var ModulationMenus = [Content.getComponent("TempoModSel1"),
                       Content.getComponent("TrigSel11"),
                       Content.getComponent("TrigSel12")];
 
+const var vMenu1 = [Content.getComponent("pos1modsel"),
+                    Content.getComponent("PmodSel1"),
+                    Content.getComponent("detmodsel"),
+                    Content.getComponent("spreadmodsel"),
+                    Content.getComponent("densemodsel"),
+                    Content.getComponent("spreadmodsel4"),
+                    Content.getComponent("winmodsrc1"),
+                    Content.getComponent("GrainModSel1"),
+                    Content.getComponent("delmodsel9"),
+                    Content.getComponent("redmodsel6"),
+                    Content.getComponent("redmodsel5"),
+                    Content.getComponent("delmodsel10"),
+                    Content.getComponent("PostMode1"),
+                    Content.getComponent("ampmodsel"),
+                    Content.getComponent("PanModSel1"),
+                    Content.getComponent("delmodsel1"),
+                    Content.getComponent("redmodsel1"),
+                    Content.getComponent("delmodsel5")];
+
+
 for(s in ModulationMenus)
        s.setLocalLookAndFeel(cBLaf); 
+       
+for(s in vMenu1)
+       s.setLocalLookAndFeel(cBLaf);  
+ 
+const var vMenu2 = [Content.getComponent("delmodsel11"),
+                    Content.getComponent("redmodsel8"),
+                    Content.getComponent("redmodsel7"),
+                    Content.getComponent("delmodsel12"),
+                    Content.getComponent("PostMode2")];
+ for(s in vMenu2)
+        s.setLocalLookAndFeel(cBLaf);  
+        
+const var Vmenu3 = [Content.getComponent("delmodsel13"),
+                    Content.getComponent("redmodsel9"),
+                    Content.getComponent("delmodsel14"),
+                    Content.getComponent("PostMode3"),
+                    Content.getComponent("redmodsel10")];
+  
+  for(s in Vmenu3)
+         s.setLocalLookAndFeel(cBLaf);  
+         
+const var vMenu4 = [Content.getComponent("delmodsel19"),
+                    Content.getComponent("ResMode4"),
+                    Content.getComponent("redmodsel14"),
+                    Content.getComponent("delmodsel20"),
+                    Content.getComponent("PostMode4"),
+                    Content.getComponent("delmodsel16"),
+                    Content.getComponent("redmodsel11"),
+                    Content.getComponent("delmodsel15"),
+                    Content.getComponent("redmodsel12")];
+
+for(s in vMenu4)
+       s.setLocalLookAndFeel(cBLaf); 
+      
 
 const var ModMenus1 = [Content.getComponent("PosHeadSrcA1"),
                        Content.getComponent("PosHeadSrcA2"),

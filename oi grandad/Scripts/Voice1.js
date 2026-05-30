@@ -333,6 +333,8 @@ const var RandLockA = [];
 const var RandMinA = [];
 const var RandMaxA = [];
 
+
+
 for (i = 0; i < 17; i++)
 {
     RandLockA[i] = Content.getComponent("RandLock" + (i + 1));
@@ -356,6 +358,111 @@ inline function randomiseIfUnlocked(lockIndex, target)
         target.changed();
     }
 }
+
+const var HiddenFiles1 = Content.getComponent("HiddenFiles1");
+
+
+const var AudioList = Engine.loadAudioFilesIntoPool();
+
+//const var SampleMin1 = Content.getComponent("SampleMin1");
+//const var SampleMax1 = Content.getComponent("SampleMax1");
+
+//SampleMin1.set("min", 1);
+//SampleMin1.set("max", AudioList.length);
+//SampleMin1.set("stepSize", 1);
+
+//SampleMax1.set("min", 1);
+//SampleMax1.set("max", AudioList.length);
+//SampleMax1.set("stepSize", 1);
+
+// sensible defaults
+//SampleMin1.setValue(1);
+//SampleMax1.setValue(AudioList.length);
+
+ 
+reg isSampleLoadBusy1 = false;
+reg pendingSampleRandomise1 = false;
+reg lastSampleIndex1 = -1;
+
+inline function onHiddenFiles1Control(component, value)
+{
+    if (isSampleLoadBusy1)
+        return;
+
+    if (value <= 0 || value > AudioList.length)
+        return;
+
+    isSampleLoadBusy1 = true;
+    slot1.loadFile(HiddenFiles1.getItemText());
+
+    Content.callAfterDelay(500, function()
+    {
+        isSampleLoadBusy1 = false;
+
+        if (pendingSampleRandomise1)
+        {
+            pendingSampleRandomise1 = false;
+            randomiseVoice1Sample();
+        }
+    });
+};
+
+Content.getComponent("HiddenFiles1").setControlCallback(onHiddenFiles1Control);
+
+inline function randomiseVoice1Sample()
+{
+    if (isSampleLoadBusy1)
+    {
+        pendingSampleRandomise1 = true;
+        return;
+    }
+
+    if (AudioList.length == 0)
+        return;
+
+    local minIdx = Math.round(SampleMin1.getValue());
+    local maxIdx = Math.round(SampleMax1.getValue());
+
+    // guard against reversed range
+    if (minIdx > maxIdx)
+    {
+        local t = minIdx;
+        minIdx = maxIdx;
+        maxIdx = t;
+    }
+
+    // clamp to valid menu range
+    minIdx = Math.max(1, minIdx);
+    maxIdx = Math.min(AudioList.length, maxIdx);
+
+    local newIndex = Math.randInt(minIdx, maxIdx + 1);
+
+    if (maxIdx > minIdx)
+    {
+        while (newIndex == lastSampleIndex1)
+            newIndex = Math.randInt(minIdx, maxIdx + 1);
+    }
+
+    lastSampleIndex1 = newIndex;
+    HiddenFiles1.setValue(newIndex);
+    HiddenFiles1.changed();
+}
+
+//inline function onSampleMin1Control(component, value)
+//{
+ //   if (value > SampleMax1.getValue())
+  //      SampleMax1.setValue(value);
+//}
+//Content.getComponent("SampleMin1").setControlCallback(onSampleMin1Contro/l);
+
+//inline function onSampleMax1Control(component, value)
+///{
+ //   if (value < SampleMin1.getValue())
+//        SampleMin1.setValue(value);
+//}
+//Content.getComponent("SampleMax1").setControlCallback(onSampleMax1Contro//l);
+
+const var RandomiseSamples = Content.getComponent("RandomiseSamples");
 
 inline function onRANDOMISE1Control(component, value)
 {
@@ -393,8 +500,12 @@ inline function onRANDOMISE1Control(component, value)
     randomiseIfUnlocked(15, PostMeta2);
     randomiseIfUnlocked(16, PostMeta3);
     
-    if (RandomiseSamples.getValue() == 1)
-        randomiseSampleForVoice(1);
+   
+    
+   // if (RandomiseSamples.getValue() == 1)
+//{
+//    randomiseVoice1Sample();
+//}
 }
 
 Content.getComponent("RANDOMISE1").setControlCallback(onRANDOMISE1Control);

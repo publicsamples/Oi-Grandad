@@ -19,125 +19,32 @@ const var slot2 = g2.getAudioFile(0);
 const var slot3 = g3.getAudioFile(0);
 const var slot4 = g4.getAudioFile(0);
 
-const var RandomiseSamples = Content.getComponent("RandomiseSamples");
+const var HiddenFiles1 = Content.getComponent("HiddenFiles1");
 
-inline function isAudioFileRef(ref)
+const var allList = [];
+const var allIds = [];
+
+const var AudioList = Engine.loadAudioFilesIntoPool();
+
+allList.push("no file");
+allIds.push("");
+
+HiddenFiles1.set("items", AudioList.join("\n"));
+
+for(r in AudioList)
 {
-    local s = ref.toLowerCase();
-    return s.endsWith(".wav") || s.endsWith(".aif") || s.endsWith(".aiff") || s.endsWith(".flac");
+    allList.push(r.split("}")[1]);
+    allIds.push(r);
 }
 
-inline function getLastSlashIndex(s)
-{
-    local a = s.lastIndexOf("/");
-    local b = s.lastIndexOf("\\");
-
-    if (a > b)
-        return a;
-
-    return b;
-}
-
-inline function getFolderRefFromFileRef(fileRef)
-{
-    local slash = getLastSlashIndex(fileRef);
-
-    if (slash == -1)
-        return "";
-
-    return fileRef.substring(0, slash);
-}
-
-inline function getProcessorForVoice(voiceIndex)
-{
-    if (voiceIndex == 1) return g1;
-    if (voiceIndex == 2) return g2;
-    if (voiceIndex == 3) return g3;
-    if (voiceIndex == 4) return g4;
-
-    return undefined;
-}
-
-inline function getSlotForVoice(voiceIndex)
-{
-    if (voiceIndex == 1) return slot1;
-    if (voiceIndex == 2) return slot2;
-    if (voiceIndex == 3) return slot3;
-    if (voiceIndex == 4) return slot4;
-
-    return undefined;
-}
-
-inline function getSampleRefsInFolder(folder)
-{
-    local files = FileSystem.findFiles(folder, "*", false);
-    local refs = [];
-
-    for (f in files)
-    {
-        local ref = f.toReferenceString("AudioFiles");
-
-        if (isAudioFileRef(ref))
-            refs.push(ref);
-    }
-
-    return refs;
-}
-
-inline function getFirstAudioSubfolderRef()
-{
-    local root = FileSystem.getFolder(FileSystem.AudioFiles);
-    local files = FileSystem.findFiles(root, "*", true);
-
-    for (f in files)
-    {
-        local ref = f.toReferenceString("AudioFiles");
-
-        if (isAudioFileRef(ref))
-            return getFolderRefFromFileRef(ref);
-    }
-
-    return "";
-}
-
-inline function isDefaultSampleRef(ref)
-{
-    if (!isDefined(ref) || ref == "")
-        return true;
-
-    return ref == defaultRef || ref.endsWith("OGInit.wav");
-}
-
-inline function getRandomFolderRefForVoice(voiceIndex)
-{
-    local processor = getProcessorForVoice(voiceIndex);
-    local currentRef = processor.getFilename();
-
-    if (!isDefaultSampleRef(currentRef))
-        return getFolderRefFromFileRef(currentRef);
-
-    return getFirstAudioSubfolderRef();
-}
-
-inline function randomiseSampleForVoice(voiceIndex)
-{
-    local folderRef = getRandomFolderRefForVoice(voiceIndex);
-
-    if (folderRef == "")
-        return false;
-
-    local folder = FileSystem.fromReferenceString(folderRef, FileSystem.AudioFiles);
-    local refs = getSampleRefsInFolder(folder);
-
-    if (refs.length == 0)
-        return false;
-
-    local chosenRef = refs[Math.randInt(0, refs.length)];
-    local slot = getSlotForVoice(voiceIndex);
-
-    slot.loadFile(chosenRef);
-    return true;
-}
+ 
+ inline function onHiddenFiles1Control(component, value)
+ {
+ 	slot1.loadFile(HiddenFiles1.getItemText());
+ };
+ 
+ Content.getComponent("HiddenFiles1").setControlCallback(onHiddenFiles1Control);
+ 
 
 const var gran = Synth.getChildSynth("Granular1");
 const var gran1 = Synth.getChildSynth("Granular2");
