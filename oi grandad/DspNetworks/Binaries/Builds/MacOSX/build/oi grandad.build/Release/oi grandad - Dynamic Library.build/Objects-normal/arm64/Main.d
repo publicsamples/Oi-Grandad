@@ -782,6 +782,7 @@ dependencies: \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/MacroMod.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/res2.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/sn.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/sn_fin.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/JuceLibraryCode/JuceHeader.h \
   /Users/rick/Documents/GitHub/HISE/hi_faust_types/hi_faust_types.h \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_tools.h \

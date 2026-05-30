@@ -172,21 +172,7 @@ for (i = 0; i < 4; i++)
 
 } 
 
-const var cutoff =[];
 
-for (i = 0; i < 4; i++)
-{
-    cutoff[i] = Content.getComponent("cutoffA"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-} 
-
-const var cutoffB =[];
-
-for (i = 0; i < 4; i++)
-{
-    cutoffB[i] = Content.getComponent("cutoffB"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-} 
 
 const var graintempo =[];
 

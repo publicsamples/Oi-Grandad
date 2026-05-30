@@ -285,3 +285,270 @@ inline function onPitchMode3Control(component, value)
 
 Content.getComponent("PitchMode3").setControlCallback(onPitchMode3Control);
 
+// RANDOM
+const var pos2 = Content.getComponent("pos2");
+const var MultPosA3 = Content.getComponent("MultPosA3");
+const var MultPosB3 = Content.getComponent("MultPosB3");
+const var MultPosC3 = Content.getComponent("MultPosC3");
+const var MultPosD3 = Content.getComponent("MultPosD3");
+const var MacroPos3 = Content.getComponent("MacroPos3");
+
+const var pitchCont3 = Content.getComponent("pitch2");
+const var det2 = Content.getComponent("det2");
+const var spreadCont3 = Content.getComponent("spread2");
+const var graintempo3 = Content.getComponent("graintempo3");
+const var grainsize3 = Content.getComponent("grainsize3");
+const var WindowTempo3 = Content.getComponent("WindowTempo3");
+const var Jitter3 = Content.getComponent("Jitter3");
+const var Dense3 = Content.getComponent("Dense3");
+const var DelayTime3 = Content.getComponent("DelayTime3");
+const var delcut3 = Content.getComponent("delcut3");
+const var delmix3 = Content.getComponent("delmix3");
+const var PostMeta7 = Content.getComponent("PostMeta7");
+const var PostMeta8 = Content.getComponent("PostMeta8");
+const var PostMix1 = Content.getComponent("PostMix1");
+const var PostMeta9 = Content.getComponent("PostMeta9");
+
+const var RandLockC = [];
+const var RandMinC = [];
+const var RandMaxC = [];
+
+for (i = 0; i < 17; i++)
+{
+    RandLockC[i] = Content.getComponent("RandLock" + (i + 35));
+    RandMinC[i] = Content.getComponent("RandMin" + (i + 35));
+    RandMaxC[i] = Content.getComponent("RandMax" + (i + 35));
+}
+
+inline function randRangeC(min, max)
+{
+    return min + Math.random() * (max - min);
+}
+
+inline function randomiseIfUnlockedC(lockIndex, target)
+{
+    if (RandLockC[lockIndex].getValue() == 0)
+    {
+        target.setValue(randRangeC(
+            RandMinC[lockIndex].getValue(),
+            RandMaxC[lockIndex].getValue()
+        ));
+        target.changed();
+    }
+}
+
+inline function onRANDOMISE3Control(component, value)
+{
+    if (value != 1)
+        return;
+
+    // Position group
+    if (RandLockC[0].getValue() == 0)
+    {
+        local v = randRangeC(RandMinC[0].getValue(), RandMaxC[0].getValue());
+
+        pos2.setValue(v);
+        MultPosA3.setValue(v);
+        MacroPos3.setValue(v);
+
+        pos2.changed();
+        MultPosA3.changed();
+     //   MacroPos3.changed();
+    }
+
+    randomiseIfUnlockedC(1, MultPosB3);
+    randomiseIfUnlockedC(2, MultPosC3);
+    randomiseIfUnlockedC(3, MultPosD3);
+    randomiseIfUnlockedC(4, pitchCont3);
+    randomiseIfUnlockedC(5, det2);
+    randomiseIfUnlockedC(6, spreadCont3);
+    randomiseIfUnlockedC(7, grainsize3);
+    randomiseIfUnlockedC(8, graintempo3);
+    randomiseIfUnlockedC(9, WindowTempo3);
+    randomiseIfUnlockedC(10, Jitter3);
+    randomiseIfUnlockedC(11, Dense3);
+    randomiseIfUnlockedC(12, DelayTime3);
+    randomiseIfUnlockedC(13, delcut3);
+    randomiseIfUnlockedC(14, PostMeta7);
+    randomiseIfUnlockedC(15, PostMeta8);
+    randomiseIfUnlockedC(16, PostMeta9);
+}
+
+Content.getComponent("RANDOMISE3").setControlCallback(onRANDOMISE3Control);
+
+const var RandomControls3 = Content.getComponent("RandomControls3");
+
+
+inline function onShowRandom3Control(component, value)
+{
+	RandomControls3.showControl(value);
+};
+
+Content.getComponent("ShowRandom3").setControlCallback(onShowRandom3Control);
+
+
+//FX MENUS
+
+const var FxLabelA5 = Content.getComponent("FxLabelA5");
+const var FxLabelA6 = Content.getComponent("FxLabelA6");
+
+inline function onResMode3Control(component, value)
+{
+
+	if(value == 1)
+	{
+	 gran2.setAttribute(gran2.delMode, 1);
+	 FxLabelA5.setValue("OFF");
+	 FxLabelA6.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  gran2.setAttribute(gran2.delMode, 2);
+	  FxLabelA5.setValue("CUT");
+	  FxLabelA6.setValue("Q");
+	  }
+	  if(value == 3)
+	  {
+	   gran2.setAttribute(gran2.delMode, 3);
+	   FxLabelA5.setValue("CUT");
+	   FxLabelA6.setValue("Q");
+	   }
+	   if(value == 4)
+	   {
+	    gran2.setAttribute(gran2.delMode, 4);
+	    FxLabelA5.setValue("CUT");
+	    FxLabelA6.setValue("Q");
+	    }	
+		if(value == 5)
+	   {
+	    gran2.setAttribute(gran2.delMode, 5);
+	      FxLabelA5.setValue("CUT");
+	    FxLabelA6.setValue("Q");
+	    }
+	    if(value == 6)
+	       {
+	        gran2.setAttribute(gran2.delMode, 6);
+	          FxLabelA5.setValue("FREQ");
+	    FxLabelA6.setValue("Q");
+	        }
+	    if(value == 7)
+	       {
+	        gran2.setAttribute(gran2.delMode, 7);
+	          FxLabelA5.setValue("TRASH");
+	    FxLabelA6.setValue("LP");
+	        } 
+	   if(value == 8)
+	      {
+	       gran2.setAttribute(gran2.delMode, 8);
+	       FxLabelA5.setValue("Pitch");
+	       FxLabelA6.setValue("LP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       gran2.setAttribute(gran2.delMode, 9);
+	   	       FxLabelA5.setValue("Pitch");
+	       FxLabelA6.setValue("LP");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       gran2.setAttribute(gran2.delMode, 10);
+	   	 	       FxLabelA5.setValue("Bit");
+	   	 	       FxLabelA6.setValue("S&H");
+	   	 	       }                                
+	        
+};
+
+Content.getComponent("ResMode3").setControlCallback(onResMode3Control);
+
+const var FxLabelB7 = Content.getComponent("FxLabelB7");
+const var FxLabelB8 = Content.getComponent("FxLabelB8");
+const var FxLabelB9 = Content.getComponent("FxLabelB9");
+
+const var Final3 = Synth.getEffect("Final3");
+
+inline function onPostMode3Control(component, value)
+{
+		if(value == 1)
+	{
+	 Final3.setAttribute(Final3.delMode, 1);
+	 FxLabelB7.setValue("OFF");
+	 FxLabelB8.setValue("OFF");
+	 FxLabelB9.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  Final3.setAttribute(Final3.delMode, 2);
+	  FxLabelB7.setValue("LP");
+	  FxLabelB8.setValue("Q");
+	  FxLabelB9.setValue("HP");
+	  }
+	  if(value == 3)
+	  {
+	   Final3.setAttribute(Final3.delMode, 3);
+	   FxLabelB7.setValue("HP");
+	   FxLabelB8.setValue("Q");
+	   FxLabelB9.setValue("LP");
+	   }
+	   if(value == 4)
+	   {
+	    Final3.setAttribute(Final3.delMode, 4);
+	    FxLabelB7.setValue("BP");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("LP");
+	    }	
+		if(value == 5)
+	   {
+	    Final3.setAttribute(Final3.delMode, 5);
+	      FxLabelB7.setValue("BP");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("HP");
+	    }
+	    if(value == 6)
+	       {
+	        Final3.setAttribute(Final3.delMode, 6);
+	          FxLabelB7.setValue("CUT");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("GAIN");
+	        }
+	    if(value == 7)
+	       {
+	        Final3.setAttribute(Final3.delMode, 7);
+	          FxLabelB7.setValue("CUT");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("GAIN");
+	        } 
+	   if(value == 8)
+	      {
+	       Final3.setAttribute(Final3.delMode, 8);
+	       FxLabelB7.setValue("AP");
+	       FxLabelB8.setValue("Q");
+	       FxLabelB9.setValue("HP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       Final3.setAttribute(Final3.delMode, 9);
+	   	       FxLabelB7.setValue("Time");
+	       FxLabelB8.setValue("LP");
+	       FxLabelB9.setValue("FEED");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       Final3.setAttribute(Final3.delMode, 10);
+	   	 	       FxLabelB7.setValue("DELAY");
+	   	 	       FxLabelB8.setValue("LP");
+	   	 	       FxLabelB9.setValue("FEED");
+	   	 	       }                                
+	     if(value == 11)
+	     	   	 	      {
+	     	   	 	       Final3.setAttribute(Final3.delMode, 11);
+	     	   	 	       FxLabelB7.setValue("SPACE");
+	     	   	 	       FxLabelB8.setValue("DAMP");
+	     	   	 	       FxLabelB9.setValue("WIDTH");
+	     	   	 	       }         
+
+};
+
+Content.getComponent("PostMode3").setControlCallback(onPostMode3Control);
+
+
+

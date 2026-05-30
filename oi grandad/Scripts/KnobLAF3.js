@@ -107,8 +107,6 @@ const var VoiceMods1 = [Content.getComponent("posmod"),
                         Content.getComponent("spreadmod"),
                         Content.getComponent("winmod1"),
                         Content.getComponent("GrainMod1"),
-                        Content.getComponent("cutmodA1"),
-                        Content.getComponent("cutmodB1"),
                         Content.getComponent("volmod"),
                         Content.getComponent("PanMod1")];
 
@@ -124,8 +122,6 @@ const var VoiceMods2 = [Content.getComponent("pmod2"),
                         Content.getComponent("GrainMod2"),
                         Content.getComponent("spreadmod1"),
                         Content.getComponent("winmod2"),
-                        Content.getComponent("cutmodA2"),
-                        Content.getComponent("cutmodB2"),
                         Content.getComponent("PanMod2"),
                         Content.getComponent("volmod1")];
 
@@ -141,16 +137,14 @@ const var VoiceMods3 = [Content.getComponent("pmod3"),
                         Content.getComponent("spreadmod2"),
                         Content.getComponent("GrainMod3"),
                         Content.getComponent("winmod3"),
-                        Content.getComponent("cutmodA3"),
-                        Content.getComponent("cutmodB3"),
+                      
                         Content.getComponent("volmod2"),
                         Content.getComponent("PanMod3")];
 
 for(s in VoiceMods3)
       s.setLocalLookAndFeel(KnobLaf3);
       
-const var VoiceMods4 = [Content.getComponent("cutmodA4"),
-                        Content.getComponent("cutmodB4"),
+const var VoiceMods4 = [
                         Content.getComponent("posmod3"),
                         Content.getComponent("PanMod4"),
                         Content.getComponent("volmod3"),

@@ -10,12 +10,14 @@
 // Include compiled network files ------------------
 
 #include "DspNetwork.h"
+#include "FoldTests_networkdata.h"
 #include "MacroMod.h"
 #include "modcont_networkdata.h"
 #include "OutMods_networkdata.h"
 #include "res2.h"
 #include "sn.h"
 #include "sndummy_networkdata.h"
+#include "sn_fin.h"
 #include "track_networkdata.h"
 #include "vec1b_networkdata.h"
 #include "vec2b_networkdata.h"

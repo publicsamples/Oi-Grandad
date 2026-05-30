@@ -126,20 +126,16 @@ const var ModMenus1 = [Content.getComponent("PosHeadSrcA1"),
                        Content.getComponent("spreadmodsel"),
                        Content.getComponent("winmodsrc1"),
                        Content.getComponent("GrainModSel1"),
-                       Content.getComponent("cut1modsel"),
                        Content.getComponent("delmodsel1"),
                        Content.getComponent("redmodsel1"),
                        Content.getComponent("delmodsel5"),
-                       Content.getComponent("cut1modselB1"),
                        Content.getComponent("ampmodsel"),
                        Content.getComponent("PanModSel1")];
 
-for(s in ModMenus1)
-       s.setLocalLookAndFeel(cBLaf); 
+//for(s in ModMenus1)
+ //      s.setLocalLookAndFeel(cBLaf); 
        
-const var ModeMenus1 = [Content.getComponent("type"),
-                        Content.getComponent("type4"),
-                        Content.getComponent("OutputSelector"),
+const var ModeMenus1 = [Content.getComponent("OutputSelector"),
                         Content.getComponent("maxGrains1"),
                         Content.getComponent("PitchMode1")];
 
@@ -158,11 +154,10 @@ const var ModMenus2 = [Content.getComponent("PmodSel2"),
                        Content.getComponent("spreadmodsel1"),
                        Content.getComponent("ampmodsel1"),
                        Content.getComponent("PanModSel2"),
-                       Content.getComponent("cut1modselB2"),
+                       
                        Content.getComponent("delmodsel2"),
                        Content.getComponent("redmodsel2"),
-                       Content.getComponent("delmodsel6"),
-                       Content.getComponent("cut1modsel1")];
+                       Content.getComponent("delmodsel6"),];
                        
 for(s in ModMenus2)
        s.setLocalLookAndFeel(cBLaf);  
@@ -171,9 +166,8 @@ for(s in ModMenus2)
 const var ModeMenus2 = [Content.getComponent("maxGrains2"),
                        
                         Content.getComponent("OutputSelector1"),
-                        Content.getComponent("type5"),
-                        Content.getComponent("PitchMode2"),
-                        Content.getComponent("type1")];
+                        
+                        Content.getComponent("PitchMode2")];
 
 
  for(s in ModeMenus2)
@@ -191,11 +185,9 @@ const var ModMenus3 = [Content.getComponent("PosHeadSrcA9"),
                        Content.getComponent("pos1modsel2"),
                        Content.getComponent("GrainModSel3"),
                        Content.getComponent("winmodsrc3"),
-                       Content.getComponent("cut1modselB3"),
                        Content.getComponent("delmodsel3"),
                        Content.getComponent("redmodsel3"),
                        Content.getComponent("delmodsel7"),
-                       Content.getComponent("cut1modsel2"),
                        Content.getComponent("ampmodsel2"),
                        Content.getComponent("PanModSel3")];
 
@@ -205,9 +197,7 @@ const var ModMenus3 = [Content.getComponent("PosHeadSrcA9"),
 const var ModeMenus3 = [Content.getComponent("maxGrains3"),
                         
                         Content.getComponent("OutputSelector2"),
-                        Content.getComponent("PitchMode3"),
-                        Content.getComponent("type6"),
-                        Content.getComponent("type2")];
+                        Content.getComponent("PitchMode3")];
 
 for(s in ModeMenus3)
        s.setLocalLookAndFeel(cBLaf);  
@@ -224,10 +214,8 @@ const var ModMenus4 = [Content.getComponent("PosHeadSrcA13"),
                        Content.getComponent("spreadmodsel7"),
                        Content.getComponent("PmodSel4"),
                        Content.getComponent("detmodsel3"),
-                       Content.getComponent("cut1modselB4"),
                        Content.getComponent("ampmodsel3"),
                        Content.getComponent("PanModSel4"),
-                       Content.getComponent("cut1modsel3"),
                        Content.getComponent("delmodsel4"),
                        Content.getComponent("redmodsel4"),
                        Content.getComponent("delmodsel8")];
@@ -237,8 +225,6 @@ for(s in ModMenus4)
 
 const var ModeMenus4 = [Content.getComponent("maxGrains4"),
                        
-                        Content.getComponent("type7"),
-                        Content.getComponent("type3"),
                         Content.getComponent("PitchMode4"),
                         Content.getComponent("OutputSelector3")];
   

@@ -2496,16 +2496,8 @@ if (g > 16)
 
 
 
-// ----------------------------
-// RMS NORMALISATION (SAFE SNEX VERSION)
-// ----------------------------
-
-double rmsNorm = 1.0;
-if (isStackMode && g > 1)
-    rmsNorm = 1.0 / Math.sqrt((double)g);
-
-Lsum *= rmsNorm;
-Rsum *= rmsNorm;
+// Keep loudness consistent across maxGrains:
+// per-grain constant-power weighting (wnorm) above already normalizes the cloud.
 
 
 

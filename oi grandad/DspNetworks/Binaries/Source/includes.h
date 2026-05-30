@@ -13,6 +13,7 @@
 #include "MacroMod.h"
 #include "res2.h"
 #include "sn.h"
+#include "sn_fin.h"
 
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )

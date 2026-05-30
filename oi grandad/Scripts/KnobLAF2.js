@@ -86,37 +86,10 @@ KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
 });
 
 
-const var res =[];
 
-for (i = 0; i < 4; i++)
-{
-    res[i] = Content.getComponent("resA"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
-} 
 
-const var resB =[];
 
-for (i = 0; i < 4; i++)
-{
-    resB[i] = Content.getComponent("resB"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
-
-const var FmixA =[];
-
-for (i = 0; i < 4; i++)
-{
-    FmixA[i] = Content.getComponent("FmixA"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
-
-const var FmixB =[];
-
-for (i = 0; i < 4; i++)
-{
-    FmixB[i] = Content.getComponent("FmixB"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
 
 
 
