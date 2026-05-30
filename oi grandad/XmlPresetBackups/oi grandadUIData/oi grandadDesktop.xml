@@ -32,7 +32,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelA1" x="1" y="43" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="Pitch"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptSlider" id="delmix1" x="129" y="2" parentComponent="VoiceParam11"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular1"
@@ -47,7 +47,7 @@
                      showValuePopup="Below"/>
           <Component type="ScriptLabel" id="FxLabelA2" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="LP"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel1" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
@@ -455,8 +455,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainSize" middlePosition="500.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
-                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"
-                     visible="0"/>
+                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"/>
           <Component type="ScriptSlider" id="GrainMod1" x="82" y="35" width="30" height="30"
                      processorId="Granular1" parameterId="GrainMod" parentComponent="VoiceGrain1"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -488,7 +487,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395">
+                     bgColour="16777215" itemColour="1630745395" visible="0">
             <Component type="ScriptLabel" id="ParamLabel13" x="51" y="27" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv1"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -504,7 +503,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931"/>
+                     bgColour="4290759931" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel181" x="139" y="24" textColour="4280884766"
                      width="70" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="Max Grains" alignment="left"/>
@@ -1017,7 +1016,7 @@
                    filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                    visible="0"/>
         <Component type="ScriptComboBox" id="HiddenFiles1" x="100" y="3" width="90"
-                   height="20" max="22" parentComponent="RandomControls1" items="{PROJECT_FOLDER}breakbank.wav&#10;{PROJECT_FOLDER}Factory/about70.wav&#10;{PROJECT_FOLDER}Factory/basschain-_3.wav&#10;{PROJECT_FOLDER}Factory/BELLLHARM.wav&#10;{PROJECT_FOLDER}Factory/bes1.wav&#10;{PROJECT_FOLDER}Factory/ClimA76-05.wav&#10;{PROJECT_FOLDER}Factory/Climb121-01.wav&#10;{PROJECT_FOLDER}Factory/Climb121-03.wav&#10;{PROJECT_FOLDER}Factory/DrumTones.wav&#10;{PROJECT_FOLDER}Factory/Fchordx4.wav&#10;{PROJECT_FOLDER}Factory/FM_Multi.wav&#10;{PROJECT_FOLDER}Factory/hisuer.wav&#10;{PROJECT_FOLDER}Factory/mulii.wav&#10;{PROJECT_FOLDER}Factory/Mux.wav&#10;{PROJECT_FOLDER}Factory/nstring.wav&#10;{PROJECT_FOLDER}Factory/OG.wav&#10;{PROJECT_FOLDER}Factory/OGluv.wav&#10;{PROJECT_FOLDER}Factory/Q-PWJive.wav&#10;{PROJECT_FOLDER}Factory/rad.aif&#10;{PROJECT_FOLDER}Factory/Rumble1.wav&#10;{PROJECT_FOLDER}Factory/SomethingInTheWater.wav&#10;{PROJECT_FOLDER}OGInit.wav"
+                   height="20" parentComponent="RandomControls1" items="{PROJECT_FOLDER}OGInit.wav"
                    saveInPreset="0" visible="0"/>
       </Component>
     </Component>
@@ -5065,8 +5064,7 @@
                  saveInPreset="0"/>
       <Component type="ScriptPanel" id="MOD1" x="-1" y="0" width="610" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
-                 visible="0">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
         <Component type="ScriptPanel" id="seq1" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
@@ -5637,13 +5635,14 @@
       </Component>
       <Component type="ScriptPanel" id="MOD3" x="-1" y="0" width="620" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
+                 visible="0">
         <Component type="ScriptPanel" id="seq5" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD3">
           <Component type="ScriptPanel" id="Step5" x="13" y="30" width="270" height="60"
                      parentComponent="seq5" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215">
+                     bgColour="16777215" visible="0">
             <Component type="ScriptSliderPack" id="SliderPackA16" x="8" y="0" processorId="s5"
                        width="240" height="60" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step5" bgColour="4281811545"/>
@@ -5662,7 +5661,7 @@
           </Component>
           <Component type="ScriptPanel" id="Table5" x="13" y="30" width="270" height="60"
                      parentComponent="seq5" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215" visible="0">
+                     bgColour="16777215">
             <Component type="ScriptTable" id="ScriptTable5" x="10" y="0" width="240"
                        height="60" parentComponent="Table5" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="s5"

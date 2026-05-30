@@ -6177,14 +6177,10 @@ template <int NV>
 using frame2_block2_t = wrap::frame<2, frame2_block2_t_<NV>>;
 
 template <int NV>
-using split2_t = container::split<parameter::empty, 
-                                  wrap::fix<2, frame2_block2_t<NV>>>;
-
-template <int NV>
 using chain21_t = container::chain<parameter::empty, 
                                    wrap::fix<2, chain42_t<NV>>, 
                                    pma_unscaled4_t<NV>, 
-                                   split2_t<NV>>;
+                                   frame2_block2_t<NV>>;
 
 template <int NV>
 using chain23_t = container::chain<parameter::empty, 
@@ -6835,7 +6831,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x6472, 0x7273, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1C00, 0x0000, 
             0x5000, 0x7469, 0x6863, 0x7053, 0x6472, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0xCCCD, 0x3C5C, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x6666, 0x3CC2, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x001D, 0x0000, 0x6950, 0x6374, 0x5368, 0x7270, 0x4D64, 
             0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x6666, 0x3CCE, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001E, 0x0000, 0x6950, 
@@ -6856,7 +6852,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x6E69, 0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0025, 
             0x0000, 0x6957, 0x536E, 0x6168, 0x6570, 0x6F4D, 0x0064, 0x0000, 
-            0x8000, 0x00BF, 0x8000, 0x003F, 0x8000, 0x00BF, 0x8000, 0x003F, 
+            0x8000, 0x00BF, 0x8000, 0x333F, 0x7533, 0x00BF, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x2600, 0x0000, 0x5200, 0x7365, 0x4D6F, 0x7869, 
             0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x005C, 0x0027, 0x0000, 0x6552, 0x6F73, 
@@ -6865,7 +6861,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x6552, 0x6F73, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x0041, 0x5000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x2900, 0x0000, 0x5200, 0x7365, 0x6950, 0x6374, 0x0068, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x863F, 0x202C, 0x003E, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x8000, 0x0B3F, 0x0859, 0x003F, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x2A00, 0x0000, 0x5200, 0x7365, 0x5070, 0x7469, 
             0x6863, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 
             0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2B00, 0x0000, 
@@ -6909,7 +6905,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x4468, 0x7669, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003D, 0x0000, 
             0x6564, 0x4D6C, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x2000, 
-            0x0041, 0xE000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3E00, 
+            0x0041, 0x1000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3E00, 
             0x0000, 0x4A00, 0x7469, 0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x003F, 0x0000, 0x6353, 0x7461, 0x6574, 0x0072, 0x0000, 
@@ -7874,33 +7870,30 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		auto& offline3 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(0).getT(1);       // sn_impl::offline3_t<NV>
 		auto& converter8 = this->getT(4).getT(0).getT(1).getT(0).                             // sn_impl::converter8_t<NV>
                            getT(8).getT(0).getT(1).getT(0);
-		auto& pma_unscaled4 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(1);         // sn_impl::pma_unscaled4_t<NV>
-		auto& split2 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(2);                // sn_impl::split2_t<NV>
-		auto& frame2_block2 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(2).getT(0); // sn_impl::frame2_block2_t<NV>
-		auto& allpass = this->getT(4).getT(0).getT(1).getT(0).                               // filters::allpass<NV>
-                        getT(8).getT(2).getT(0).getT(0);
-		auto& one_pole4 = this->getT(4).getT(0).getT(1).getT(0).                     // filters::one_pole<NV>
-                          getT(8).getT(2).getT(0).getT(1);
-		auto& chain23 = this->getT(4).getT(0).getT(1).getT(0).getT(9);               // sn_impl::chain23_t<NV>
-		auto& cable_table5 = this->getT(4).getT(0).getT(1).getT(0).getT(9).getT(0);  // sn_impl::cable_table5_t<NV>
-		auto& bitcrush = this->getT(4).getT(0).getT(1).getT(0).getT(9).getT(1);      // fx::bitcrush<NV>
-		auto& sampleandhold = this->getT(4).getT(0).getT(1).getT(0).getT(9).getT(2); // fx::sampleandhold<NV>
-		auto& gain1 = this->getT(4).getT(0).getT(1).getT(1);                         // core::gain<NV>
-		auto& gain3 = this->getT(5);                                                 // core::gain<NV>
-		auto& jpanner = this->getT(6);                                               // jdsp::jpanner<NV>
-		auto& branch18 = this->getT(7);                                              // sn_impl::branch18_t
-		auto& chain29 = this->getT(7).getT(0);                                       // sn_impl::chain29_t
-		auto& peak20 = this->getT(7).getT(0).getT(0);                                // sn_impl::peak20_t
-		auto& global_cable19 = this->getT(7).getT(0).getT(1);                        // routing::global_cable<global_cable19_t_index, parameter::empty>
-		auto& chain30 = this->getT(7).getT(1);                                       // sn_impl::chain30_t
-		auto& peak21 = this->getT(7).getT(1).getT(0);                                // sn_impl::peak21_t
-		auto& global_cable20 = this->getT(7).getT(1).getT(1);                        // routing::global_cable<global_cable20_t_index, parameter::empty>
-		auto& chain31 = this->getT(7).getT(2);                                       // sn_impl::chain31_t
-		auto& peak22 = this->getT(7).getT(2).getT(0);                                // sn_impl::peak22_t
-		auto& global_cable21 = this->getT(7).getT(2).getT(1);                        // routing::global_cable<global_cable21_t_index, parameter::empty>
-		auto& chain32 = this->getT(7).getT(3);                                       // sn_impl::chain32_t
-		auto& peak23 = this->getT(7).getT(3).getT(0);                                // sn_impl::peak23_t
-		auto& global_cable22 = this->getT(7).getT(3).getT(1);                        // routing::global_cable<global_cable22_t_index, parameter::empty>
+		auto& pma_unscaled4 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(1);     // sn_impl::pma_unscaled4_t<NV>
+		auto& frame2_block2 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(2);     // sn_impl::frame2_block2_t<NV>
+		auto& allpass = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(2).getT(0);   // filters::allpass<NV>
+		auto& one_pole4 = this->getT(4).getT(0).getT(1).getT(0).getT(8).getT(2).getT(1); // filters::one_pole<NV>
+		auto& chain23 = this->getT(4).getT(0).getT(1).getT(0).getT(9);                   // sn_impl::chain23_t<NV>
+		auto& cable_table5 = this->getT(4).getT(0).getT(1).getT(0).getT(9).getT(0);      // sn_impl::cable_table5_t<NV>
+		auto& bitcrush = this->getT(4).getT(0).getT(1).getT(0).getT(9).getT(1);          // fx::bitcrush<NV>
+		auto& sampleandhold = this->getT(4).getT(0).getT(1).getT(0).getT(9).getT(2);     // fx::sampleandhold<NV>
+		auto& gain1 = this->getT(4).getT(0).getT(1).getT(1);                             // core::gain<NV>
+		auto& gain3 = this->getT(5);                                                     // core::gain<NV>
+		auto& jpanner = this->getT(6);                                                   // jdsp::jpanner<NV>
+		auto& branch18 = this->getT(7);                                                  // sn_impl::branch18_t
+		auto& chain29 = this->getT(7).getT(0);                                           // sn_impl::chain29_t
+		auto& peak20 = this->getT(7).getT(0).getT(0);                                    // sn_impl::peak20_t
+		auto& global_cable19 = this->getT(7).getT(0).getT(1);                            // routing::global_cable<global_cable19_t_index, parameter::empty>
+		auto& chain30 = this->getT(7).getT(1);                                           // sn_impl::chain30_t
+		auto& peak21 = this->getT(7).getT(1).getT(0);                                    // sn_impl::peak21_t
+		auto& global_cable20 = this->getT(7).getT(1).getT(1);                            // routing::global_cable<global_cable20_t_index, parameter::empty>
+		auto& chain31 = this->getT(7).getT(2);                                           // sn_impl::chain31_t
+		auto& peak22 = this->getT(7).getT(2).getT(0);                                    // sn_impl::peak22_t
+		auto& global_cable21 = this->getT(7).getT(2).getT(1);                            // routing::global_cable<global_cable21_t_index, parameter::empty>
+		auto& chain32 = this->getT(7).getT(3);                                           // sn_impl::chain32_t
+		auto& peak23 = this->getT(7).getT(3).getT(0);                                    // sn_impl::peak23_t
+		auto& global_cable22 = this->getT(7).getT(3).getT(1);                            // routing::global_cable<global_cable22_t_index, parameter::empty>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -9791,7 +9784,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(25, 0.4);
 		this->setParameterT(26, 0.);
 		this->setParameterT(27, 16.);
-		this->setParameterT(28, 0.0134766);
+		this->setParameterT(28, 0.0237305);
 		this->setParameterT(29, 0.0251953);
 		this->setParameterT(30, 3.);
 		this->setParameterT(31, 638.461);
@@ -9800,11 +9793,11 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(34, 10.);
 		this->setParameterT(35, 1.);
 		this->setParameterT(36, 1.);
-		this->setParameterT(37, -1.);
+		this->setParameterT(37, -0.957812);
 		this->setParameterT(38, 1.);
 		this->setParameterT(39, 0.);
 		this->setParameterT(40, 13.);
-		this->setParameterT(41, 0.15642);
+		this->setParameterT(41, 0.532609);
 		this->setParameterT(42, 0.);
 		this->setParameterT(43, 10.);
 		this->setParameterT(44, 1.);
@@ -9824,7 +9817,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(58, 1.);
 		this->setParameterT(59, 10.);
 		this->setParameterT(60, 1.);
-		this->setParameterT(61, 7.);
+		this->setParameterT(61, 9.);
 		this->setParameterT(62, 0.);
 		this->setParameterT(63, 0.);
 		this->setParameterT(64, 0.);

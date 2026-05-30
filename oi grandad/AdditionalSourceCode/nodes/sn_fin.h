@@ -1148,6 +1148,15 @@ using delMode_0 = parameter::from0To1<sn_fin_impl::branch1_t<NV>,
 template <int NV>
 using delMode = parameter::chain<delMode_InputRange, delMode_0<NV>>;
 
+DECLARE_PARAMETER_RANGE(MetaModRange, 
+                        -1., 
+                        1.);
+
+template <int NV>
+using MetaMod = parameter::from0To1<sn_fin_impl::pma20_t<NV>, 
+                                    1, 
+                                    MetaModRange>;
+
 template <int NV>
 using MetaSrc = parameter::from0To1<sn_fin_impl::branch19_t<NV>, 
                                     0, 
@@ -1171,8 +1180,9 @@ using ResLp = parameter::plain<sn_fin_impl::pma18_t<NV>,
 template <int NV>
 using ResLpMod = parameter::plain<sn_fin_impl::pma18_t<NV>, 
                                   1>;
-using Meta = parameter::empty;
-using MetaMod = Meta;
+template <int NV>
+using Meta = parameter::plain<sn_fin_impl::pma20_t<NV>, 
+                              2>;
 template <int NV>
 using sn_fin_t_plist = parameter::list<ResoMix<NV>, 
                                        ResoMixMod<NV>, 
@@ -1184,8 +1194,8 @@ using sn_fin_t_plist = parameter::list<ResoMix<NV>,
                                        ResLpMod<NV>, 
                                        ResLpSrc<NV>, 
                                        delMode<NV>, 
-                                       Meta, 
-                                       MetaMod, 
+                                       Meta<NV>, 
+                                       MetaMod<NV>, 
                                        MetaSrc<NV>>;
 }
 
@@ -1218,27 +1228,27 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0200, 0x0000, 0x5200, 
             0x7365, 0x536F, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 
-            0x0000, 0x4150, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0003, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0003, 
             0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0xA3D7, 0x3F70, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0004, 0x0000, 0x6552, 0x7073, 0x6950, 0x6374, 0x4D68, 
             0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0005, 0x0000, 0x6552, 
             0x5073, 0x7469, 0x6863, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0041, 0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0600, 0x0000, 0x5200, 0x7365, 0x704C, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x5811, 0x3F73, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0007, 0x0000, 0x6552, 0x4C73, 0x4D70, 0x646F, 0x0000, 
             0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0008, 0x0000, 0x6552, 0x4C73, 0x5370, 
-            0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 
+            0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0009, 0x0000, 0x6564, 
             0x4D6C, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x3000, 0x0041, 
-            0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0A00, 0x0000, 
+            0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0A00, 0x0000, 
             0x4D00, 0x7465, 0x0061, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 
+            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 
             0x4D00, 0x7465, 0x4D61, 0x646F, 0x0000, 0x0000, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x3F80, 0xDA74, 0x3F35, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
             0x000C, 0x0000, 0x654D, 0x6174, 0x7253, 0x0063, 0x0000, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x0000
@@ -1536,6 +1546,10 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		this->getParameterT(8).connectT(0, branch17); // ResLpSrc -> branch17::Index
 		
 		this->getParameterT(9).connectT(0, branch1); // delMode -> branch1::Index
+		
+		this->getParameterT(10).connectT(0, pma20); // Meta -> pma20::Add
+		
+		this->getParameterT(11).connectT(0, pma20); // MetaMod -> pma20::Multiply
 		
 		this->getParameterT(12).connectT(0, branch19); // MetaSrc -> branch19::Index
 		
@@ -1940,9 +1954,9 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		
 		clear19.setParameterT(0, 0.); // math::clear::Value
 		
-		;                           // pma20::Value is automated
-		pma20.setParameterT(1, 0.); // control::pma::Multiply
-		pma20.setParameterT(2, 0.); // control::pma::Add
+		; // pma20::Value is automated
+		; // pma20::Multiply is automated
+		; // pma20::Add is automated
 		
 		; // xfader::Value is automated
 		
@@ -2096,16 +2110,16 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		
 		this->setParameterT(0, 1.);
 		this->setParameterT(1, 0.);
-		this->setParameterT(2, 13.);
-		this->setParameterT(3, 1.);
+		this->setParameterT(2, 1.);
+		this->setParameterT(3, 0.94);
 		this->setParameterT(4, 0.);
-		this->setParameterT(5, 3.);
-		this->setParameterT(6, 1.);
+		this->setParameterT(5, 1.);
+		this->setParameterT(6, 0.950563);
 		this->setParameterT(7, 0.);
-		this->setParameterT(8, 13.);
-		this->setParameterT(9, 4.);
-		this->setParameterT(10, 0.);
-		this->setParameterT(11, 0.);
+		this->setParameterT(8, 1.);
+		this->setParameterT(9, 10.);
+		this->setParameterT(10, 1.);
+		this->setParameterT(11, 0.710365);
 		this->setParameterT(12, 0.);
 		this->setExternalData({}, -1);
 	}
