@@ -3149,19 +3149,19 @@
                    height="70" parentComponent="Delay4" borderRadius="0.0" itemColour="3002330087"
                    itemColour2="3001935573" textColour="587202560">
           <Component type="ScriptSlider" id="delcutmod14" x="105" y="40" width="20"
-                     height="20" processorId="Granular1" parameterId="ResLpMod" parentComponent="VoiceParam23"
+                     height="20" processorId="Granular4" parameterId="ResLpMod" parentComponent="VoiceParam23"
                      numStrips="200.0" dragDirection="Vertical" scaleFactor="0.5"
                      middlePosition="0.0" showValuePopup="Below" min="-1.0" bgColour="4278190080"
                      textColour="3001935573" itemColour2="4212199680"/>
           <Component type="ScriptSlider" id="delmod19" x="44" y="40" width="20" height="20"
-                     processorId="Granular1" parameterId="RespPitchMod" parentComponent="VoiceParam23"
+                     processorId="Granular4" parameterId="RespPitchMod" parentComponent="VoiceParam23"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
                      showValuePopup="Below" scaleFactor="0.5" min="-1.0" bgColour="4278190080"
                      textColour="3001935573" itemColour2="4212199680"/>
           <Component type="ScriptComboBox" id="delmodsel19" x="44" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
-                     processorId="Granular1" parameterId="ResPitchSrc" itemColour2="3825139712"
+                     processorId="Granular4" parameterId="ResPitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelA11" x="1" y="43" textColour="4280884766"
@@ -3169,14 +3169,14 @@
                      fontStyle="Regular" fontSize="15.0" text="FREQ"/>
           <Component type="ScriptSlider" id="delmix6" x="129" y="2" parentComponent="VoiceParam23"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular1"
+                     scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular4"
                      parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"/>
           <Component type="ScriptLabel" id="ParamLabel57" x="131" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam23"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
           <Component type="ScriptSlider" id="delcut6" x="65" y="2" parentComponent="VoiceParam23"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1299999952316284" width="40" height="40" processorId="Granular1"
+                     scaleFactor="0.1299999952316284" width="40" height="40" processorId="Granular4"
                      parameterId="ResLp" bgColour="4294885004" stepSize="0.0" middlePosition="0.5"
                      showValuePopup="Below"/>
           <Component type="ScriptLabel" id="FxLabelA12" x="65" y="43" textColour="4280884766"
@@ -3185,21 +3185,21 @@
           <Component type="ScriptComboBox" id="redmodsel14" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
-                     processorId="Granular1" parameterId="ResLpSrc" itemColour2="3816794416"
+                     processorId="Granular4" parameterId="ResLpSrc" itemColour2="3816794416"
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptSlider" id="DelayTime6" x="1" y="2" parentComponent="VoiceParam23"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
+                     scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular4"
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
                      defaultValue="0.5" showValuePopup="Below"/>
           <Component type="ScriptComboBox" id="delmodsel20" x="168" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
-                     processorId="Granular1" parameterId="ResoSrc" itemColour2="3825139712"
+                     processorId="Granular4" parameterId="ResoSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptSlider" id="delmod20" x="167" y="40" width="20" height="20"
-                     processorId="Granular1" parameterId="ResoMixMod" parentComponent="VoiceParam23"
+                     processorId="Granular4" parameterId="ResoMixMod" parentComponent="VoiceParam23"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
                      showValuePopup="Below" scaleFactor="0.699999988079071" min="-1.0"
                      bgColour="4278190080" textColour="3001935573" itemColour2="4212199680"/>
