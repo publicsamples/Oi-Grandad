@@ -32,7 +32,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelA1" x="1" y="43" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
+                     fontStyle="Regular" fontSize="15.0" text="TRASH"/>
           <Component type="ScriptSlider" id="delmix1" x="129" y="2" parentComponent="VoiceParam11"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular1"
@@ -47,7 +47,7 @@
                      showValuePopup="Below"/>
           <Component type="ScriptLabel" id="FxLabelA2" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
+                     fontStyle="Regular" fontSize="15.0" text="LP"/>
           <Component type="ScriptComboBox" id="redmodsel1" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
@@ -540,7 +540,8 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DenseLabel1" x="5" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam4"
-                     fontStyle="Regular" fontSize="15.0" text="DENSE" alignment="left"/>
+                     fontStyle="Regular" fontSize="15.0" text="DENSE" alignment="left"
+                     visible="0"/>
           <Component type="ScriptSlider" id="Dense1" x="4" y="8" parentComponent="VoiceParam4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular1"
@@ -550,8 +551,7 @@
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
           <Component type="ScriptLabel" id="DenseLabelB1" x="6" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam4"
-                     fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"
-                     visible="0"/>
+                     fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceParam5" x="469" y="131" width="110"
                    height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
@@ -778,7 +778,7 @@
         <Component type="ScriptButton" id="ShowRandom1" x="128" y="11" width="30"
                    height="30" parentComponent="Random1" text="RANDOMISE" bgColour="1440743424"
                    saveInPreset="0" textColour="4281680473" filmstripImage="{PROJECT_FOLDER}Settings.png"
-                   scaleFactor="0.05999999865889549"/>
+                   scaleFactor="0.05999999865889549" enableMidiLearn="0"/>
         <Component type="ScriptLabel" id="semi64" x="86" y="46" textColour="4280884766"
                    width="110" height="20" fontName="Montserrat" editable="0" parentComponent="Random1"
                    fontStyle="Regular" fontSize="15.0" text="RANDOM RANGES" alignment="left"/>
@@ -2071,7 +2071,7 @@
         <Component type="ScriptButton" id="ShowRandom2" x="128" y="11" width="30"
                    height="30" parentComponent="Random2" text="RANDOMISE" bgColour="1440743424"
                    saveInPreset="0" textColour="4281680473" filmstripImage="{PROJECT_FOLDER}Settings.png"
-                   scaleFactor="0.05999999865889549"/>
+                   scaleFactor="0.05999999865889549" enableMidiLearn="0"/>
         <Component type="ScriptLabel" id="semi66" x="86" y="46" textColour="4280884766"
                    width="110" height="20" fontName="Montserrat" editable="0" parentComponent="Random2"
                    fontStyle="Regular" fontSize="15.0" text="RANDOM RANGES" alignment="left"/>
@@ -3224,7 +3224,7 @@
         <Component type="ScriptButton" id="ShowRandom4" x="128" y="11" width="30"
                    height="30" parentComponent="Random4" text="RANDOMISE" bgColour="1440743424"
                    saveInPreset="0" textColour="4281680473" filmstripImage="{PROJECT_FOLDER}Settings.png"
-                   scaleFactor="0.05999999865889549"/>
+                   scaleFactor="0.05999999865889549" enableMidiLearn="0"/>
         <Component type="ScriptLabel" id="semi70" x="86" y="46" textColour="4280884766"
                    width="110" height="20" fontName="Montserrat" editable="0" parentComponent="Random4"
                    fontStyle="Regular" fontSize="15.0" text="RANDOM RANGES" alignment="left"/>
@@ -5038,15 +5038,15 @@
     <Component type="ScriptButton" id="VOICE1" x="116" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 2" saveInPreset="0"
                bgColour="4294951129" textColour="4278650374" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE2" x="217" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 3" saveInPreset="0"
                bgColour="4290759931" textColour="4278255873" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE3" x="317" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 4" saveInPreset="0"
                bgColour="4293838681" textColour="4278190080" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE4" x="418" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="OVERVIEW" saveInPreset="0"
                bgColour="4294351196" itemColour="3355443" textColour="4278255873"
@@ -5122,9 +5122,6 @@
           <Component type="ScriptLabel" id="ScriptLabel19" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq1"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel20" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq1"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel21" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq1"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5137,8 +5134,9 @@
                      processorId="s1" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction1" x="27" y="5" width="20" height="20"
                      parentComponent="seq1" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s1"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s1"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel1" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s1" parameterId="moddest" parentComponent="seq1"
@@ -5210,7 +5208,7 @@
                    textColour="4278190080" text="*" parentComponent="MOD1">
           <Component type="ScriptPanel" id="Step2" x="13" y="30" width="270" height="60"
                      parentComponent="seq2" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215" visible="0">
+                     bgColour="16777215">
             <Component type="ScriptSliderPack" id="SliderPackA4" x="8" y="0" processorId="s2"
                        width="240" height="60" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step2" bgColour="4281811545"/>
@@ -5229,7 +5227,7 @@
           </Component>
           <Component type="ScriptPanel" id="Table2" x="13" y="30" width="270" height="60"
                      parentComponent="seq2" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215">
+                     bgColour="16777215" visible="0">
             <Component type="ScriptTable" id="ScriptTable2" x="10" y="0" width="240"
                        height="60" parentComponent="Table2" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="s2"
@@ -5262,9 +5260,6 @@
           <Component type="ScriptLabel" id="ScriptLabel28" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq2"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel29" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq2"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel30" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq2"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5277,8 +5272,9 @@
                      processorId="s2" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction2" x="27" y="5" width="20" height="20"
                      parentComponent="seq2" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s2"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s2"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel2" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s2" parameterId="moddest" parentComponent="seq2"
@@ -5407,9 +5403,6 @@
           <Component type="ScriptLabel" id="ScriptLabel37" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq3"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel38" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq3"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel39" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq3"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5422,8 +5415,9 @@
                      processorId="s3" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction3" x="27" y="5" width="20" height="20"
                      parentComponent="seq3" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s3"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s3"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel3" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s3" parameterId="moddest" parentComponent="seq3"
@@ -5548,9 +5542,6 @@
           <Component type="ScriptLabel" id="ScriptLabel46" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq4"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel47" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq4"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel48" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq4"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5563,8 +5554,9 @@
                      processorId="s4" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction4" x="27" y="5" width="20" height="20"
                      parentComponent="seq4" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s4"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s4"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel4" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s4" parameterId="moddest" parentComponent="seq4"
@@ -5694,9 +5686,6 @@
           <Component type="ScriptLabel" id="ScriptLabel55" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq5"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel56" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq5"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel57" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq5"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5709,8 +5698,9 @@
                      processorId="s5" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction5" x="27" y="5" width="20" height="20"
                      parentComponent="seq5" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s5"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s5"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel5" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s5" parameterId="moddest" parentComponent="seq5"
@@ -5835,9 +5825,6 @@
           <Component type="ScriptLabel" id="ScriptLabel64" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq6"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel65" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq6"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel66" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq6"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5850,8 +5837,9 @@
                      processorId="s6" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction6" x="27" y="5" width="20" height="20"
                      parentComponent="seq6" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s6"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s6"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel6" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s6" parameterId="moddest" parentComponent="seq6"
@@ -5981,9 +5969,6 @@
           <Component type="ScriptLabel" id="ScriptLabel73" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq7"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel74" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq7"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel75" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq7"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -5996,8 +5981,9 @@
                      processorId="s7" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction7" x="27" y="5" width="20" height="20"
                      parentComponent="seq7" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s7"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s7"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel7" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s7" parameterId="moddest" parentComponent="seq7"
@@ -6122,9 +6108,6 @@
           <Component type="ScriptLabel" id="ScriptLabel82" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq8"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel83" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq8"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel84" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq8"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -6137,8 +6120,9 @@
                      processorId="s8" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction8" x="27" y="5" width="20" height="20"
                      parentComponent="seq8" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s8"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s8"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel8" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s8" parameterId="moddest" parentComponent="seq8"
@@ -6269,9 +6253,6 @@
           <Component type="ScriptLabel" id="ScriptLabel92" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq9"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel93" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq9"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel94" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq9"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -6284,8 +6265,9 @@
                      processorId="s9" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction9" x="27" y="5" width="20" height="20"
                      parentComponent="seq9" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s9"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s9"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel9" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s9" parameterId="moddest" parentComponent="seq9"
@@ -6410,9 +6392,6 @@
           <Component type="ScriptLabel" id="ScriptLabel107" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq10"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel108" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq10"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel109" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq10"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -6425,8 +6404,9 @@
                      processorId="s10" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction10" x="27" y="5" width="20"
                      height="20" parentComponent="seq10" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s10"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s10"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel10" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s10" parameterId="moddest" parentComponent="seq10"
@@ -6556,9 +6536,6 @@
           <Component type="ScriptLabel" id="ScriptLabel117" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq11"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel118" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq11"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel119" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq11"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -6571,8 +6548,9 @@
                      processorId="s11" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction11" x="27" y="5" width="20"
                      height="20" parentComponent="seq11" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s11"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s11"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel11" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s11" parameterId="moddest" parentComponent="seq11"
@@ -6697,9 +6675,6 @@
           <Component type="ScriptLabel" id="ScriptLabel172" x="166" y="5" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq12"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel173" x="44" y="5" width="30"
-                     height="20" text="dir" textColour="4278190080" parentComponent="seq12"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel174" x="88" y="5" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq12"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -6712,8 +6687,9 @@
                      processorId="s12" parameterId="onshot"/>
           <Component type="ScriptButton" id="Direction12" x="27" y="5" width="20"
                      height="20" parentComponent="seq12" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.4000000059604645" processorId="s12"
-                     parameterId="dir" textColour="16777215"/>
+                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s12"
+                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
+                     enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel12" x="98" y="108" width="25"
                      height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      processorId="s12" parameterId="moddest" parentComponent="seq12"
@@ -6826,18 +6802,19 @@
              stepSize="0.1000000014901161"/>
   <Component type="ScriptPanel" id="blank1" x="572" y="-31" visible="0"/>
   <Component type="ScriptPanel" id="blank2" x="617" y="-22" visible="0"/>
-  <Component type="ScriptLabel" id="Label17" x="346" y="647" width="130" height="20"
+  <Component type="ScriptLabel" id="Label17" x="374" y="599" width="80" height="20"
              fontName="Montserrat" fontSize="15.0" textColour="4294109134"
-             text="PLAYBACK" editable="0" itemColour2="4092454613" itemColour="15848371"/>
-  <Component type="ScriptComboBox" id="Playback" x="347" y="613" max="6" width="130"
-             height="25" items="Mono x 4&#10;Round Robin &#10;Crossfade&#10;Poly 4x4&#10;Poly 2x6&#10;Poly 1x8"
+             text="PLAYBACK" editable="0" itemColour2="4092454613" itemColour="15848371"
+             alignment="left"/>
+  <Component type="ScriptComboBox" id="Playback" x="352" y="599" max="3" width="20"
+             height="20" items="Normal&#10;Round Robin &#10;Crossfade&#10;"
              bgColour="4294038451" itemColour="4294038451" itemColour2="4294038451"
              textColour="4294038451"/>
   <Component type="ScriptSlider" id="Knob7" x="827" y="671" filmstripImage="{PROJECT_FOLDER}k2.png"
              numStrips="200.0" scaleFactor="0.699999988079071" width="20"
              height="20" macroControl="Macro 1" stepSize="1.0" min="63.0"
              max="64.0" middlePosition="63.5" visible="0" enabled="0"/>
-  <Component type="ScriptPanel" id="XFcont" x="491" y="610" width="180" height="60"
+  <Component type="ScriptPanel" id="XFcont" x="470" y="610" width="180" height="60"
              itemColour="0" itemColour2="16777215" bgColour="0" textColour="0"
              processorId="xfade" parameterId="scan" visible="0">
     <Component type="ScriptLabel" id="Label19" x="-6" y="36" width="40" height="20"
@@ -6913,7 +6890,8 @@
   <Component type="ScriptButton" id="Hold" x="42" y="623" text="" width="30"
              height="50" processorId="hold" parameterId="Hold" bgColour="15908403"
              itemColour="4291389544" itemColour2="4291389544" textColour="2293630727"
-             scaleFactor="0.04199999943375587" saveInPreset="0" filmstripImage="{PROJECT_FOLDER}play.png">
+             scaleFactor="0.04199999943375587" saveInPreset="0" filmstripImage="{PROJECT_FOLDER}play.png"
+             enableMidiLearn="0">
     <Component type="ScriptLabel" id="Label31" x="-3" y="26" width="40" height="20"
                fontName="Montserrat" fontSize="14.0" textColour="3706906574"
                text="play" editable="0" itemColour2="3001935573" itemColour="15848371"
@@ -6921,7 +6899,8 @@
   </Component>
   <Component type="ScriptButton" id="RecEnable1" x="133" y="625" text="" width="20"
              height="20" bgColour="4294639616" itemColour="4291361271" itemColour2="4294967295"
-             textColour="4290119431" scaleFactor="0.02999999932944775" saveInPreset="0"/>
+             textColour="4290119431" scaleFactor="0.02999999932944775" saveInPreset="0"
+             enableMidiLearn="0"/>
   <Component type="ScriptButton" id="ShowFolder" x="131" y="598" text="" width="30"
              height="20" bgColour="15908403" itemColour="4291389544" itemColour2="4291389544"
              textColour="2293630727" scaleFactor="0.05000000074505806" saveInPreset="0"
@@ -7085,4 +7064,19 @@
              fontName="Montserrat" fontSize="15.0" textColour="3706906574"
              text="v2.4.0" editable="0" alignment="left" itemColour2="3001935573"
              itemColour="15848371"/>
+  <Component type="ScriptComboBox" id="VoiceNumber" x="352" y="623" max="4"
+             width="20" height="20" items="1&#10;2&#10;3&#10;4" bgColour="4294038451"
+             itemColour="4294038451" itemColour2="4294038451" textColour="4294038451"/>
+  <Component type="ScriptComboBox" id="Poly" x="352" y="648" max="8" width="20"
+             height="20" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8"
+             bgColour="4294038451" itemColour="4294038451" itemColour2="4294038451"
+             textColour="4294038451"/>
+  <Component type="ScriptLabel" id="Label39" x="374" y="623" width="80" height="20"
+             fontName="Montserrat" fontSize="15.0" textColour="4294109134"
+             text="VOICES" editable="0" itemColour2="4092454613" itemColour="15848371"
+             alignment="left"/>
+  <Component type="ScriptLabel" id="Label40" x="374" y="647" width="80" height="20"
+             fontName="Montserrat" fontSize="15.0" textColour="4294109134"
+             text="POLYPHONY" editable="0" itemColour2="4092454613" itemColour="15848371"
+             alignment="left"/>
 </ContentProperties>

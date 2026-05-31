@@ -409,6 +409,140 @@ inline function onPlaybackControl(component, value)
 Content.getComponent("Playback").setControlCallback(onPlaybackControl);
 
 
+inline function onVoiceNumberControl(component, value)
+{
+	if(value == 1)
+	{
+
+	VOICE0.showControl(1); 
+	VOICE1.showControl(0); 
+	VOICE2.showControl(0); 
+	VOICE3.showControl(0); 
+	gran.setBypassed(0);
+	gran1.setBypassed(1);
+	gran2.setBypassed(1);
+	gran3.setBypassed(1);
+	
+	}
+	
+	if(value == 2)
+	{
+	
+	VOICE0.showControl(1); 
+	VOICE1.showControl(1); 
+	VOICE2.showControl(0); 
+	VOICE3.showControl(0); 
+	gran.setBypassed(0);
+	gran1.setBypassed(0);
+	gran2.setBypassed(1);
+	gran3.setBypassed(1);
+	
+	}
+	
+	if(value == 3)
+	{
+	
+	VOICE0.showControl(1); 
+	VOICE1.showControl(1); 
+	VOICE2.showControl(1); 
+	VOICE3.showControl(0); 
+	gran.setBypassed(0);
+	gran1.setBypassed(0);
+	gran2.setBypassed(0);
+	gran3.setBypassed(1);
+	
+	}
+	
+	if(value == 4)
+	{
+	
+	VOICE0.showControl(1); 
+	VOICE1.showControl(1); 
+	VOICE2.showControl(1); 
+	VOICE3.showControl(1); 
+	gran.setBypassed(0);
+	gran1.setBypassed(0);
+	gran2.setBypassed(0);
+	gran3.setBypassed(0);
+	
+	}
+};
+
+Content.getComponent("VoiceNumber").setControlCallback(onVoiceNumberControl);
+
+
+inline function onPolyControl(component, value)
+{
+		gran.setAttribute(gran.VoiceLimit, value);
+		gran1.setAttribute(gran1.VoiceLimit, value);
+		gran2.setAttribute(gran2.VoiceLimit, value);
+		gran3.setAttribute(gran3.VoiceLimit, value);
+};
+
+Content.getComponent("Poly").setControlCallback(onPolyControl);
+
+
+inline function onPlaybackControl(component, value)
+{
+	//standard
+	if(value == 1)
+	{
+	XFcont.showControl(0); 
+	LedPanel.showControl(0); 
+	xf1.setBypassed(1);
+	xf2.setBypassed(1);
+	xf3.setBypassed(1);
+	xf4.setBypassed(1);
+	xfade.setBypassed(1);
+	Filter1.setBypassed(1);
+	Filter2.setBypassed(1);
+	Filter3.setBypassed(1);
+	Filter4.setBypassed(1);	
+	}
+	
+	//Round Robin
+	
+		if(value == 2)
+	{
+	XFcont.showControl(0); 
+	LedPanel.showControl(1); 
+	xf1.setBypassed(1);
+	xf2.setBypassed(1);
+	xf3.setBypassed(1);
+	xf4.setBypassed(1);
+	xfade.setBypassed(1);
+	Filter1.setBypassed(0);
+	Filter2.setBypassed(0);
+	Filter3.setBypassed(0);
+	Filter4.setBypassed(0);
+	
+	}
+	
+	//xfade
+	
+		if(value == 3)
+	{
+	XFcont.showControl(1); 
+	LedPanel.showControl(0); 
+	xf1.setBypassed(0);
+	xf2.setBypassed(0);
+	xf3.setBypassed(0);
+	xf4.setBypassed(0);
+	xfade.setBypassed(0);
+	Filter1.setBypassed(1);
+	Filter2.setBypassed(1);
+	Filter3.setBypassed(1);
+	Filter4.setBypassed(1);
+
+	}
+	
+
+	
+};
+
+Content.getComponent("Playback").setControlCallback(onPlaybackControl);
+
+
 /*
 	This snippet implements a stereo audio recorder
 	The final audio file is written to a file and loaded into an Audio Loop Player

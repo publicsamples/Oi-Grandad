@@ -2347,14 +2347,15 @@
           <Connection NodeId="pma1" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="multi" MinValue="1.0" MaxValue="32.0" Value="1.0" StepSize="1.0">
+      <Parameter ID="multi" MinValue="1.0" MaxValue="32.0" Value="10.0" StepSize="1.0"
+                 DefaultValue="1.0">
         <Connections>
           <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
           <Connection NodeId="clock_ramp1" ParameterId="Multiplier"/>
         </Connections>
       </Parameter>
       <Parameter ID="tempomod" MinValue="5.551115123125783e-17" MaxValue="1.0"
-                 Value="0.5" DefaultValue="0.49846875">
+                 Value="0.4899999797344208" DefaultValue="0.49846875">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Multiply"/>
         </Connections>
@@ -2364,7 +2365,8 @@
           <Connection NodeId="branch3" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter ID="type" MinValue="1.0" MaxValue="0.0" StepSize="0.1" Value="0.0">
+      <Parameter ID="type" MinValue="1.0" MaxValue="0.0" StepSize="0.1" Value="1.0"
+                 DefaultValue="0.0">
         <Connections>
           <Connection NodeId="softbypass_switch3" ParameterId="Switch"/>
         </Connections>
@@ -2374,7 +2376,7 @@
           <Connection NodeId="minmax" ParameterId="Polarity"/>
         </Connections>
       </Parameter>
-      <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="19.0" StepSize="0.1"
+      <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="3.0" StepSize="0.1"
                  SkewFactor="1" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="cable_table1" ParameterId="Value"/>
@@ -2399,7 +2401,7 @@
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter ID="morphmodest" MinValue="0.0" MaxValue="16.0" Value="3.0" StepSize="0.1"
+      <Parameter ID="morphmodest" MinValue="0.0" MaxValue="16.0" Value="0.0" StepSize="0.1"
                  DefaultValue="5.800000000000001">
         <Connections>
           <Connection NodeId="branch4" ParameterId="Index"/>

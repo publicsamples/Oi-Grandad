@@ -256,7 +256,7 @@
     </Nodes>
     <Parameters>
       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                 SkewFactor="5.422270774841309" ID="thresh1" Value="-14.99999873340131"
+                 SkewFactor="5.422270774841309" ID="thresh1" Value="-68.999999538064"
                  DefaultValue="0.0" TextToValueConverter="Decibel">
         <Connections>
           <Connection NodeId="comp" ParameterId="Threshhold"/>
@@ -282,7 +282,7 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="250.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.4306765496730804" ID="Attack1" Value="61.00000090897083"
+                 SkewFactor="0.4306765496730804" ID="Attack1" Value="2.000000029802322"
                  DefaultValue="0.0" TextToValueConverter="Time" ExternalModulation="Disabled"
                  ModColour="0">
         <Connections>

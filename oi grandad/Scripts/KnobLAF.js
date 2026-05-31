@@ -272,13 +272,7 @@ for (i = 0; i < 4; i++)
 
 }
 
-const var Direction =[];
 
-for (i = 0; i < 12; i++)
-{
-    Direction[i] = Content.getComponent("Direction"+(i+1)).setLocalLookAndFeel(LAF_Button);
-
-}
 
 const var OneShot =[];
 

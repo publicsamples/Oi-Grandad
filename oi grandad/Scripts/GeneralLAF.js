@@ -288,6 +288,8 @@ for(s in ModeMenus4)
        
 const var GlbMenus = [Content.getComponent("MidiNote"),
                       Content.getComponent("Playback"),
+                      Content.getComponent("VoiceNumber"),
+                      Content.getComponent("Poly"),
                       Content.getComponent("ModPage"),
                       Content.getComponent("cmbPresets")];
 
@@ -324,7 +326,11 @@ const var ResMode = [Content.getComponent("ResMode1"),
             Content.getComponent("StgSel3"),
             Content.getComponent("StgSel4")];    
 
-const var V2StageMods = [Content.getComponent("PosHeadSrcA5"),
+const var V2StageMods = [Content.getComponent("PosHeadSrcA1"),
+						Content.getComponent("PosHeadSrcA2"),
+						Content.getComponent("PosHeadSrcA3"),
+						Content.getComponent("PosHeadSrcA4"),
+						Content.getComponent("PosHeadSrcA5"),
                          Content.getComponent("PosHeadSrcA6"),
                          Content.getComponent("PosHeadSrcA8"),
                          Content.getComponent("PosHeadSrcA7")];
