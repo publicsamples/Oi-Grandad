@@ -253,5 +253,10 @@ for(s in MacroSliders)
 
 for(s in outMods)
       s.setLocalLookAndFeel(KnobLaf2);
-      
+
+const var Loose = [Content.getComponent("DelayTime6"),
+                   Content.getComponent("delcut6")];
+
+   for(s in Loose)
+         s.setLocalLookAndFeel(KnobLaf2);   
       
