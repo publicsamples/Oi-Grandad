@@ -103,7 +103,7 @@
             <Control type="ScriptSlider" id="DelayTime3" value="0.2078210264444351"/>
             <Control type="ScriptComboBox" id="delmodsel7" value="0.0"/>
             <Control type="ScriptSlider" id="delmod7" value="0.0"/>
-            <Control type="ScriptComboBox" id="ResMode2" value="7.0"/>
+            <Control type="ScriptComboBox" id="ResMode2" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="posmod1" value="1.0"/>
@@ -187,7 +187,7 @@
             <Control type="ScriptSlider" id="DelayTime5" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel18" value="0.0"/>
             <Control type="ScriptSlider" id="delmod18" value="0.0"/>
-            <Control type="ScriptComboBox" id="ResMode3" value="0.0"/>
+            <Control type="ScriptComboBox" id="ResMode3" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform2" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptSlider" id="posmod2" value="0.05999999865889549"/>
@@ -262,7 +262,7 @@
             <Control type="ScriptSlider" id="DelayTime6" value="0.1427500396966934"/>
             <Control type="ScriptComboBox" id="delmodsel20" value="1.0"/>
             <Control type="ScriptSlider" id="delmod20" value="0.0"/>
-            <Control type="ScriptComboBox" id="ResMode4" value="7.0"/>
+            <Control type="ScriptComboBox" id="ResMode4" value="1.0"/>
             <Control type="ScriptComboBox" id="OutputSelector3" value="1.0"/>
             <Control type="ScriptSlider" id="volmod3" value="0.0"/>
             <Control type="ScriptComboBox" id="ampmodsel3" value="1.0"/>
@@ -1561,7 +1561,7 @@
                ResLpMod="0.0" ResLpSrc="1.0" PostMode="1.0" GrainOut="1.0" ResOut="1.0"
                GainMod="0.0" gainSrc="10.0" Vol="1.0" Parn="0.0" PanMod="0.0"
                PanSrc="1.0" Fmix1="0.300000011920929" Fmix2="0.0" feed="0.921221137046814"
-               PitchTempo="0.0" PitchDiv="1.0" delMode="7.0" JitSync="0.0" Scatter="0.2906782627105713"
+               PitchTempo="0.0" PitchDiv="1.0" delMode="1.0" JitSync="0.0" Scatter="0.2906782627105713"
                ScatterMod="0.0" ScatterSrc="1.0" ScatterTempo="15.0" ScatterDiv="16.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
@@ -1800,7 +1800,7 @@
                ResLpSrc="1.0" PostMode="1.0" GrainOut="3.0" ResOut="3.0" GainMod="0.0"
                gainSrc="1.0" Vol="0.6200000047683716" Parn="0.0" PanMod="0.0"
                PanSrc="1.0" Fmix1="0.0" Fmix2="0.0" feed="0.922978937625885"
-               PitchTempo="18.0" PitchDiv="1.0" delMode="7.0" JitSync="0.0"
+               PitchTempo="18.0" PitchDiv="1.0" delMode="1.0" JitSync="0.0"
                Scatter="0.0" ScatterMod="-1.0" ScatterSrc="1.0" ScatterTempo="15.0"
                ScatterDiv="16.0">
       <ChildProcessors>
@@ -1949,7 +1949,7 @@
                  Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
                  Send7="-1" Channel8="0" Send8="-1" Channel9="1" Send9="-1"/>
   <macro_controls>
-    <macro name="Slot 1" value="90.85928344726562" midi_cc="-1">
+    <macro name="Slot 1" value="76.25965118408203" midi_cc="-1">
       <controlled_parameter id="Macro Control Modulator1" parameter="3" parameter_name="MacroValue"
                             min="0.0" max="1.0" low="0.0" high="1.0" skew="1.0" step="0.01"
                             inverted="0" readonly="1" converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADv..."/>
@@ -1957,10 +1957,10 @@
     <macro name="Slot 2" value="5.635425091672603e-29" midi_cc="-1"/>
     <macro name="Slot 3" value="5.635425091672603e-29" midi_cc="-1"/>
     <macro name="Slot 4" value="5.635425091672603e-29" midi_cc="-1"/>
-    <macro name="Slot 5" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 6" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 7" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 8" value="127.0" midi_cc="-1"/>
+    <macro name="Slot 5" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 6" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 7" value="4.0" midi_cc="-1"/>
+    <macro name="Slot 8" value="0.0" midi_cc="-1"/>
   </macro_controls>
   <MidiAutomation/>
   <MPEData Enabled="0"/>

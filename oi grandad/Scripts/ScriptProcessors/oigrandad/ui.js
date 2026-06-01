@@ -616,6 +616,290 @@ inline function onResMode1Control(component, value)
 
 Content.getComponent("ResMode1").setControlCallback(onResMode1Control);
 
+const var FxLabelA4 = Content.getComponent("FxLabelA4");
+const var FxLabelA2 = Content.getComponent("FxLabelA2");
+
+inline function onResMode2Control(component, value)
+{
+
+	if(value == 1)
+	{
+	 gran1.setAttribute(gran1.delMode, 1);
+	 FxLabelA4.setValue("OFF");
+	 FxLabelA2.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  gran1.setAttribute(gran1.delMode, 2);
+	  FxLabelA4.setValue("CUT");
+	  FxLabelA2.setValue("Q");
+	  }
+	  if(value == 3)
+	  {
+	   gran1.setAttribute(gran1.delMode, 3);
+	   FxLabelA4.setValue("CUT");
+	   FxLabelA2.setValue("Q");
+	   }
+	   if(value == 4)
+	   {
+	    gran1.setAttribute(gran1.delMode, 4);
+	    FxLabelA4.setValue("CUT");
+	    FxLabelA2.setValue("Q");
+	    }	
+		if(value == 5)
+	   {
+	    gran1.setAttribute(gran1.delMode, 5);
+	      FxLabelA4.setValue("CUT");
+	    FxLabelA2.setValue("Q");
+	    }
+	    if(value == 6)
+	       {
+	        gran1.setAttribute(gran1.delMode, 6);
+	          FxLabelA4.setValue("FREQ");
+	    FxLabelA2.setValue("Q");
+	        }
+	    if(value == 7)
+	       {
+	        gran1.setAttribute(gran1.delMode, 7);
+	          FxLabelA4.setValue("TRASH");
+	    FxLabelA2.setValue("LP");
+	        } 
+	   if(value == 8)
+	      {
+	       gran1.setAttribute(gran1.delMode, 8);
+	       FxLabelA4.setValue("Pitch");
+	       FxLabelA2.setValue("LP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       gran1.setAttribute(gran1.delMode, 9);
+	   	       FxLabelA4.setValue("Pitch");
+	       FxLabelA2.setValue("LP");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       gran1.setAttribute(gran1.delMode, 10);
+	   	 	       FxLabelA4.setValue("Bit");
+	   	 	       FxLabelA2.setValue("S&H");
+	   	 	       }                                
+	        
+};
+
+Content.getComponent("ResMode2").setControlCallback(onResMode2Control);
+
+const var FxLabelA3 = Content.getComponent("FxLabelA3");
+const var FxLabelA4 = Content.getComponent("FxLabelA4");
+
+inline function onResMode2Control(component, value)
+{
+
+	if(value == 1)
+	{
+	 gran1.setAttribute(gran1.delMode, 1);
+	 FxLabelA3.setValue("OFF");
+	 FxLabelA4.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  gran1.setAttribute(gran1.delMode, 2);
+	  FxLabelA3.setValue("CUT");
+	  FxLabelA4.setValue("Q");
+	  }
+	  if(value == 3)
+	  {
+	   gran1.setAttribute(gran1.delMode, 3);
+	   FxLabelA3.setValue("CUT");
+	   FxLabelA4.setValue("Q");
+	   }
+	   if(value == 4)
+	   {
+	    gran1.setAttribute(gran1.delMode, 4);
+	    FxLabelA3.setValue("CUT");
+	    FxLabelA4.setValue("Q");
+	    }	
+		if(value == 5)
+	   {
+	    gran1.setAttribute(gran1.delMode, 5);
+	      FxLabelA3.setValue("CUT");
+	    FxLabelA4.setValue("Q");
+	    }
+	    if(value == 6)
+	       {
+	        gran1.setAttribute(gran1.delMode, 6);
+	          FxLabelA3.setValue("FREQ");
+	    FxLabelA4.setValue("Q");
+	        }
+	    if(value == 7)
+	       {
+	        gran1.setAttribute(gran1.delMode, 7);
+	          FxLabelA3.setValue("TRASH");
+	    FxLabelA4.setValue("LP");
+	        } 
+	   if(value == 8)
+	      {
+	       gran1.setAttribute(gran1.delMode, 8);
+	       FxLabelA3.setValue("Pitch");
+	       FxLabelA4.setValue("LP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       gran1.setAttribute(gran1.delMode, 9);
+	   	       FxLabelA3.setValue("Pitch");
+	       FxLabelA4.setValue("LP");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       gran1.setAttribute(gran1.delMode, 10);
+	   	 	       FxLabelA3.setValue("Bit");
+	   	 	       FxLabelA4.setValue("S&H");
+	   	 	       }                                
+	        
+};
+
+Content.getComponent("ResMode2").setControlCallback(onResMode2Control);
+
+const var FxLabelA5 = Content.getComponent("FxLabelA5");
+const var FxLabelA6 = Content.getComponent("FxLabelA6");
+
+inline function onResMode3Control(component, value)
+{
+
+	if(value == 1)
+	{
+	 gran2.setAttribute(gran2.delMode, 1);
+	 FxLabelA5.setValue("OFF");
+	 FxLabelA6.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  gran2.setAttribute(gran2.delMode, 2);
+	  FxLabelA5.setValue("CUT");
+	  FxLabelA6.setValue("Q");
+	  }
+	  if(value == 3)
+	  {
+	   gran2.setAttribute(gran2.delMode, 3);
+	   FxLabelA5.setValue("CUT");
+	   FxLabelA6.setValue("Q");
+	   }
+	   if(value == 4)
+	   {
+	    gran2.setAttribute(gran2.delMode, 4);
+	    FxLabelA5.setValue("CUT");
+	    FxLabelA6.setValue("Q");
+	    }	
+		if(value == 5)
+	   {
+	    gran2.setAttribute(gran2.delMode, 5);
+	      FxLabelA5.setValue("CUT");
+	    FxLabelA6.setValue("Q");
+	    }
+	    if(value == 6)
+	       {
+	        gran2.setAttribute(gran2.delMode, 6);
+	          FxLabelA5.setValue("FREQ");
+	    FxLabelA6.setValue("Q");
+	        }
+	    if(value == 7)
+	       {
+	        gran2.setAttribute(gran2.delMode, 7);
+	          FxLabelA5.setValue("TRASH");
+	    FxLabelA6.setValue("LP");
+	        } 
+	   if(value == 8)
+	      {
+	       gran2.setAttribute(gran2.delMode, 8);
+	       FxLabelA5.setValue("Pitch");
+	       FxLabelA6.setValue("LP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       gran2.setAttribute(gran2.delMode, 9);
+	   	       FxLabelA5.setValue("Pitch");
+	       FxLabelA6.setValue("LP");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       gran2.setAttribute(gran2.delMode, 10);
+	   	 	       FxLabelA5.setValue("Bit");
+	   	 	       FxLabelA6.setValue("S&H");
+	   	 	       }                                
+	        
+};
+
+Content.getComponent("ResMode3").setControlCallback(onResMode3Control);
+
+const var FxLabelA7 = Content.getComponent("FxLabelA7");
+const var FxLabelA8 = Content.getComponent("FxLabelA8");
+
+inline function onResMode4Control(component, value)
+{
+
+	if(value == 1)
+	{
+	 gran3.setAttribute(gran3.delMode, 1);
+	 FxLabelA7.setValue("OFF");
+	 FxLabelA8.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  gran3.setAttribute(gran3.delMode, 2);
+	  FxLabelA7.setValue("CUT");
+	  FxLabelA8.setValue("Q");
+	  }
+	  if(value == 3)
+	  {
+	   gran3.setAttribute(gran3.delMode, 3);
+	   FxLabelA7.setValue("CUT");
+	   FxLabelA8.setValue("Q");
+	   }
+	   if(value == 4)
+	   {
+	    gran3.setAttribute(gran3.delMode, 4);
+	    FxLabelA7.setValue("CUT");
+	    FxLabelA8.setValue("Q");
+	    }	
+		if(value == 5)
+	   {
+	    gran3.setAttribute(gran3.delMode, 5);
+	      FxLabelA7.setValue("CUT");
+	    FxLabelA8.setValue("Q");
+	    }
+	    if(value == 6)
+	       {
+	        gran3.setAttribute(gran3.delMode, 6);
+	          FxLabelA7.setValue("FREQ");
+	    FxLabelA8.setValue("Q");
+	        }
+	    if(value == 7)
+	       {
+	        gran3.setAttribute(gran3.delMode, 7);
+	          FxLabelA7.setValue("TRASH");
+	    FxLabelA8.setValue("LP");
+	        } 
+	   if(value == 8)
+	      {
+	       gran3.setAttribute(gran3.delMode, 8);
+	       FxLabelA7.setValue("Pitch");
+	       FxLabelA8.setValue("LP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       gran3.setAttribute(gran3.delMode, 9);
+	   	       FxLabelA7.setValue("Pitch");
+	       FxLabelA8.setValue("LP");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       gran3.setAttribute(gran3.delMode, 10);
+	   	 	       FxLabelA7.setValue("Bit");
+	   	 	       FxLabelA8.setValue("S&H");
+	   	 	       }                                
+	        
+};
+
+Content.getComponent("ResMode4").setControlCallback(onResMode4Control);
+
 const var FxLabelB1 = Content.getComponent("FxLabelB1");
 const var FxLabelB2 = Content.getComponent("FxLabelB2");
 const var FxLabelB3 = Content.getComponent("FxLabelB3");
