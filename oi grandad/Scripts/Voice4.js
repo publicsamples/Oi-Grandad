@@ -364,7 +364,7 @@ inline function onHiddenFiles4Control(component, value)
         return;
 
     isSampleLoadBusy4 = true;
-    slot4.loadFile(HiddenFiles4.getItemText());
+    slot4.loadFile(AudioList[value - 1]);
 
     Content.callAfterDelay(500, function()
     {

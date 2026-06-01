@@ -369,7 +369,7 @@ inline function onHiddenFiles3Control(component, value)
         return;
 
     isSampleLoadBusy3 = true;
-    slot3.loadFile(HiddenFiles3.getItemText());
+    slot3.loadFile(AudioList[value - 1]);
 
     Content.callAfterDelay(500, function()
     {

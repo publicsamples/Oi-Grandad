@@ -2912,7 +2912,7 @@
                    fontSize="12.0" textColour="4278190080"/>
         <Component type="ScriptLabel" id="FxLabelB1" x="1" y="43" textColour="4280884766"
                    width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="OFF"/>
+                   fontStyle="Regular" fontSize="15.0" text="DELAY"/>
         <Component type="ScriptSlider" id="PostMix1" x="127" y="2" parentComponent="VoiceParam40"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1400000005960464" width="40" height="40" processorId="Final1"
@@ -2927,7 +2927,7 @@
                    showValuePopup="Below"/>
         <Component type="ScriptLabel" id="FxLabelB2" x="65" y="43" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="OFF"/>
+                   fontStyle="Regular" fontSize="15.0" text="LP"/>
         <Component type="ScriptComboBox" id="redmodsel5" x="106" y="8" width="20"
                    height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
@@ -2961,7 +2961,7 @@
                    max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
         <Component type="ScriptLabel" id="FxLabelB3" x="37" y="70" textColour="4280884766"
                    width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="OFF"/>
+                   fontStyle="Regular" fontSize="15.0" text="FEED"/>
         <Component type="ScriptSlider" id="delcutmod6" x="108" y="71" width="20"
                    height="20" processorId="Final1" parameterId="MetaMod" parentComponent="VoiceParam40"
                    numStrips="200.0" dragDirection="Vertical" scaleFactor="0.5"
@@ -3206,9 +3206,9 @@
       <Component type="ScriptButton" id="RandomiseSamples" x="169" y="35" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptComboBox" id="HiddenFiles1" x="100" y="3" width="90"
-                 height="20" parentComponent="RandomControls1" items="{PROJECT_FOLDER}OGInit.wav"
-                 saveInPreset="0" visible="0"/>
+      <Component type="ScriptComboBox" id="HiddenFiles1" x="20" y="443" width="210"
+                 height="110" parentComponent="RandomControls1" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/OGInit.wav"
+                 saveInPreset="0"/>
       <Component type="ScriptSlider" id="SampleMax1" x="115" y="35" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"/>
