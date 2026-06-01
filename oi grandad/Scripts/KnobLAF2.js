@@ -93,20 +93,20 @@ KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
 
 
 
-const var delmix =[];
+const var PolyMix =[];
 
 for (i = 0; i < 6; i++)
 {
-    delmix[i] = Content.getComponent("delmix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    PolyMix[i] = Content.getComponent("PolyMix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
 
 
 const var delcut =[];
 
-for (i = 0; i < 6; i++)
+for (i = 0; i < 4; i++)
 {
-    delcut[i] = Content.getComponent("delcut"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    delcut[i] = Content.getComponent("PolyMetaB"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
 
@@ -205,9 +205,9 @@ for (i = 0; i < 12; i++)
 
 const var DelayTimes =[];
 
-for (i = 0; i < 6; i++)
+for (i = 0; i < 4; i++)
 {
-    DelayTimes[i] = Content.getComponent("DelayTime"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    DelayTimes[i] = Content.getComponent("PolyMetaB"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
 

@@ -143,7 +143,7 @@ const var DelayTime =[];
 
 for (i = 0; i < 4; i++)
 {
-    DelayTime[i] = Content.getComponent("DelayTime"+(i+1)).setLocalLookAndFeel(KnobLaf);
+    DelayTime[i] = Content.getComponent("PolyMeta"+(i+1)).setLocalLookAndFeel(KnobLaf);
 
 }  
 

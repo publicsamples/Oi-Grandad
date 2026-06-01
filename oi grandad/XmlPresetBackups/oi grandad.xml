@@ -13,13 +13,13 @@
             <Control type="ScriptSlider" id="delcutmod1" value="0.0"/>
             <Control type="ScriptSlider" id="delmod1" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel1" value="6.0"/>
-            <Control type="ScriptSlider" id="delmix1" value="0.0"/>
-            <Control type="ScriptSlider" id="delcut1" value="0.0"/>
+            <Control type="ScriptSlider" id="PolyMix1" value="1.0"/>
+            <Control type="ScriptSlider" id="PolyMetaB1" value="0.8844375014305115"/>
             <Control type="ScriptComboBox" id="redmodsel1" value="13.0"/>
-            <Control type="ScriptSlider" id="DelayTime1" value="0.0"/>
+            <Control type="ScriptSlider" id="PolyMeta1" value="0.6200000047683716"/>
             <Control type="ScriptComboBox" id="delmodsel5" value="13.0"/>
             <Control type="ScriptSlider" id="delmod5" value="0.0"/>
-            <Control type="ScriptComboBox" id="ResMode1" value="1.0"/>
+            <Control type="ScriptComboBox" id="ResMode1" value="2.0"/>
             <Control type="ScriptComboBox" id="OutputSelector" value="1.0"/>
             <Control type="ScriptSlider" id="volmod" value="-0.009999999776482582"/>
             <Control type="ScriptComboBox" id="ampmodsel" value="4.0"/>
@@ -88,19 +88,19 @@
             <Control type="ScriptSlider" id="delcutmod2" value="0.0"/>
             <Control type="ScriptSlider" id="delmod2" value="0.9599999785423279"/>
             <Control type="ScriptComboBox" id="delmodsel2" value="1.0"/>
-            <Control type="ScriptSlider" id="delmix2" value="0.3600000143051147"/>
-            <Control type="ScriptSlider" id="delcut2" value="0.6367789506912231"/>
+            <Control type="ScriptSlider" id="PolyMix2" value="0.3600000143051147"/>
+            <Control type="ScriptSlider" id="PolyMetaB2" value="0.6367789506912231"/>
             <Control type="ScriptComboBox" id="redmodsel2" value="1.0"/>
-            <Control type="ScriptSlider" id="DelayTime2" value="0.5106411576271057"/>
+            <Control type="ScriptSlider" id="PolyMeta2" value="0.5106411576271057"/>
             <Control type="ScriptComboBox" id="delmodsel6" value="1.0"/>
             <Control type="ScriptSlider" id="delmod6" value="0.0"/>
             <Control type="ScriptSlider" id="delcutmod3" value="0.0"/>
             <Control type="ScriptSlider" id="delmod3" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel3" value="0.0"/>
-            <Control type="ScriptSlider" id="delmix3" value="0.0"/>
-            <Control type="ScriptSlider" id="delcut3" value="0.650490939617157"/>
+            <Control type="ScriptSlider" id="PolyMix3" value="0.0"/>
+            <Control type="ScriptSlider" id="PolyMetaB3" value="0.650490939617157"/>
             <Control type="ScriptComboBox" id="redmodsel3" value="0.0"/>
-            <Control type="ScriptSlider" id="DelayTime3" value="0.2078210264444351"/>
+            <Control type="ScriptSlider" id="PolyMeta3" value="0.2078210264444351"/>
             <Control type="ScriptComboBox" id="delmodsel7" value="0.0"/>
             <Control type="ScriptSlider" id="delmod7" value="0.0"/>
             <Control type="ScriptComboBox" id="ResMode2" value="1.0"/>
@@ -172,16 +172,16 @@
             <Control type="ScriptSlider" id="delcutmod4" value="0.0"/>
             <Control type="ScriptSlider" id="delmod4" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel4" value="1.0"/>
-            <Control type="ScriptSlider" id="delmix4" value="0.0"/>
-            <Control type="ScriptSlider" id="delcut4" value="0.0"/>
+            <Control type="ScriptSlider" id="PolyMix4" value="0.0"/>
+            <Control type="ScriptSlider" id="PolyMetaB4" value="0.0"/>
             <Control type="ScriptComboBox" id="redmodsel4" value="1.0"/>
-            <Control type="ScriptSlider" id="DelayTime4" value="0.4035899341106415"/>
+            <Control type="ScriptSlider" id="PolyMeta4" value="0.4035899341106415"/>
             <Control type="ScriptComboBox" id="delmodsel8" value="1.0"/>
             <Control type="ScriptSlider" id="delmod8" value="0.0"/>
             <Control type="ScriptSlider" id="delcutmod13" value="0.0"/>
             <Control type="ScriptSlider" id="delmod17" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel17" value="0.0"/>
-            <Control type="ScriptSlider" id="delmix5" value="0.0"/>
+            <Control type="ScriptSlider" id="PolyMix5" value="0.0"/>
             <Control type="ScriptSlider" id="delcut5" value="0.0"/>
             <Control type="ScriptComboBox" id="redmodsel13" value="0.0"/>
             <Control type="ScriptSlider" id="DelayTime5" value="0.0"/>
@@ -256,7 +256,7 @@
             <Control type="ScriptSlider" id="delcutmod14" value="0.0"/>
             <Control type="ScriptSlider" id="delmod19" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel19" value="1.0"/>
-            <Control type="ScriptSlider" id="delmix6" value="0.4199999868869781"/>
+            <Control type="ScriptSlider" id="PolyMix6" value="0.4199999868869781"/>
             <Control type="ScriptSlider" id="delcut6" value="1.0"/>
             <Control type="ScriptComboBox" id="redmodsel14" value="1.0"/>
             <Control type="ScriptSlider" id="DelayTime6" value="0.1427500396966934"/>
@@ -1436,14 +1436,14 @@
                PanSpread="1.0" PanSpreadMod="0.0" PanSprdsrc="14.0" PitchSprd="0.0"
                PitchSprdMod="0.0" PitchSprdSrc="1.0" GrainSize="369.0" GrainMod="0.0"
                GrainSrc="4.0" GrainTempo="7.0" GrainDiv="1.0" GrainSync="1.0"
-               WinShapeMod="0.0" ResoMix="0.0" ResoMixMod="0.0" ResoSrc="0.0"
-               ResPitch="0.0" RespPitchMod="0.0" ResPitchSrc="0.0" ResLp="0.0"
-               ResLpMod="0.0" ResLpSrc="0.0" PostMode="2.0" GrainOut="0.0" ResOut="0.0"
-               GainMod="-0.009999999776482582" gainSrc="4.0" Vol="0.5199999809265137"
-               Parn="0.009999999776482582" PanMod="0.0" PanSrc="4.0" Fmix1="1.0"
-               Fmix2="1.0" feed="0.921221137046814" PitchTempo="3.0" PitchDiv="1.0"
-               delMode="1.0" JitSync="0.0" Scatter="0.0" ScatterMod="0.0" ScatterSrc="6.0"
-               ScatterTempo="0.0" ScatterDiv="15.0">
+               WinShapeMod="0.0" ResoMix="1.0" ResoMixMod="0.0" ResoSrc="0.0"
+               ResPitch="0.6200000047683716" RespPitchMod="0.0" ResPitchSrc="0.0"
+               ResLp="0.8844375014305115" ResLpMod="0.0" ResLpSrc="0.0" PostMode="2.0"
+               GrainOut="0.0" ResOut="0.0" GainMod="-0.009999999776482582" gainSrc="4.0"
+               Vol="0.5199999809265137" Parn="0.009999999776482582" PanMod="0.0"
+               PanSrc="4.0" Fmix1="1.0" Fmix2="1.0" feed="0.921221137046814"
+               PitchTempo="3.0" PitchDiv="1.0" delMode="2.0" JitSync="0.0" Scatter="0.0"
+               ScatterMod="0.0" ScatterSrc="6.0" ScatterTempo="0.0" ScatterDiv="15.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>

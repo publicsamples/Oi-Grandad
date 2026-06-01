@@ -267,14 +267,14 @@ const var mastertime = Content.getComponent("mastertime");
 
 
 const var delaysync1 = Content.getComponent("delaysync1");
-const var DelayTime1 = Content.getComponent("DelayTime1");
+const var PolyMeta1 = Content.getComponent("PolyMeta1");
 const var DelayTimesync1 = Content.getComponent("DelayTimesync1");
 const var dt1 = Synth.getEffect("del1");
 
 inline function ondelaysync1Control(number, value)
 {
 		DelayTimesync1.showControl(value); 
-        DelayTime1.showControl(1-value);
+        PolyMeta1.showControl(1-value);
       mastertime1.showControl(value); 
                      mastertime.showControl(1-value);
        dt1.setAttribute(dt1.delaysync, 0);
@@ -285,7 +285,7 @@ inline function ondelaysync1Control(number, value)
 delaysync1.setControlCallback(ondelaysync1Control);
 
 const var delaysync2 = Content.getComponent("delaysync2");
-const var DelayTime2 = Content.getComponent("DelayTime2");
+const var PolyMeta2 = Content.getComponent("PolyMeta2");
 const var DelayTimesync2 = Content.getComponent("DelayTimesync2");
 
 
@@ -294,7 +294,7 @@ const var dt2 = Synth.getEffect("del2");
 inline function ondelaysync2Control(number, value)
 {
 		DelayTimesync2.showControl(value); 
-        DelayTime2.showControl(1-value);
+        PolyMeta2.showControl(1-value);
       mastertime1.showControl(value); 
                      mastertime.showControl(1-value);
       dt2.setAttribute(dt2.delaysync, 0);
@@ -306,7 +306,7 @@ inline function ondelaysync2Control(number, value)
 delaysync2.setControlCallback(ondelaysync2Control);
 
 const var delaysync3 = Content.getComponent("delaysync3");
-const var DelayTime3 = Content.getComponent("DelayTime3");
+const var PolyMeta3 = Content.getComponent("PolyMeta3");
 const var DelayTimesync3 = Content.getComponent("DelayTimesync3");
 
 
@@ -315,7 +315,7 @@ const var dt3 = Synth.getEffect("del3");
 inline function ondelaysync3Control(number, value)
 {
 		DelayTimesync3.showControl(value); 
-        DelayTime3.showControl(1-value);
+        PolyMeta3.showControl(1-value);
       mastertime1.showControl(value); 
                      mastertime.showControl(1-value);
        dt3.setAttribute(dt3.delaysync, 0);
@@ -326,7 +326,7 @@ inline function ondelaysync3Control(number, value)
 delaysync3.setControlCallback(ondelaysync3Control);
 
 const var delaysync4 = Content.getComponent("delaysync4");
-const var DelayTime4 = Content.getComponent("DelayTime4");
+const var PolyMeta4 = Content.getComponent("PolyMeta4");
 const var DelayTimesync4 = Content.getComponent("DelayTimesync4");
 
 
@@ -335,7 +335,7 @@ const var dt4 = Synth.getEffect("del4");
 inline function ondelaysync4Control(number, value)
 {
 		DelayTimesync4.showControl(value); 
-        DelayTime4.showControl(1-value);
+        PolyMeta4.showControl(1-value);
       mastertime1.showControl(value); 
       mastertime.showControl(1-value);
        dt4.setAttribute(dt4.delaysync, 0);
@@ -1082,13 +1082,13 @@ const var del4 = Synth.getEffect("del4");
 
 inline function onmastertimeControl(component, value)
 {
-	DelayTime1.setValue(value);
+	PolyMeta1.setValue(value);
 	del1.setAttribute(del1.timenosync, value);
-	DelayTime2.setValue(value);
+	PolyMeta2.setValue(value);
 	del2.setAttribute(del2.timenosync, value);
-	DelayTime3.setValue(value);
+	PolyMeta3.setValue(value);
 	del3.setAttribute(del3.timenosync, value);
-	DelayTime4.setValue(value);
+	PolyMeta4.setValue(value);
 	del4.setAttribute(del4.timenosync, value);
 };
 
@@ -1130,21 +1130,21 @@ inline function onmasterfeedControl(component, value)
 Content.getComponent("masterfeed").setControlCallback(onmasterfeedControl);
 
 const var masterdmix = Content.getComponent("masterdmix");
-const var delmix = Content.getComponent("delmix");
-const var delmix1 = Content.getComponent("delmix1");
-const var delmix2 = Content.getComponent("delmix2");
-const var delmix3 = Content.getComponent("delmix3");
+const var PolyMix = Content.getComponent("PolyMix");
+const var PolyMix1 = Content.getComponent("PolyMix1");
+const var PolyMix2 = Content.getComponent("PolyMix2");
+const var PolyMix3 = Content.getComponent("PolyMix3");
 
 
 inline function onmasterdmixControl(component, value)
 {
-	delmix.setValue(value);
+	PolyMix.setValue(value);
 	del1.setAttribute(del1.dmix, value);
-	delmix1.setValue(value);
+	PolyMix1.setValue(value);
 	del2.setAttribute(del2.dmix, value);
-	delmix2.setValue(value);
+	PolyMix2.setValue(value);
 	del3.setAttribute(del3.dmix, value);
-	delmix3.setValue(value);
+	PolyMix3.setValue(value);
 	del4.setAttribute(del4.dmix, value);
 };
 

@@ -151,14 +151,14 @@ gsync4.setControlCallback(ongsync4Control);
 // Switch delay slider
 
 const var delaysync1 = Content.getComponent("delaysync1");
-const var DelayTime1 = Content.getComponent("DelayTime1");
+const var PolyMeta1 = Content.getComponent("PolyMeta1");
 const var DelayTimesync1 = Content.getComponent("DelayTimesync1");
 const var dt1 = Synth.getEffect("del1");
 
 inline function ondelaysync1Control(number, value)
 {
 		DelayTimesync1.showControl(value); 
-        DelayTime1.showControl(1-value);
+        PolyMeta1.showControl(1-value);
       
        dt1.setAttribute(dt1.delaysync, 0);
        dt1.setAttribute(dt1.delaysync, 1-value);
@@ -168,7 +168,7 @@ inline function ondelaysync1Control(number, value)
 delaysync1.setControlCallback(ondelaysync1Control);
 
 const var delaysync2 = Content.getComponent("delaysync2");
-const var DelayTime2 = Content.getComponent("DelayTime2");
+const var PolyMeta2 = Content.getComponent("PolyMeta2");
 const var DelayTimesync2 = Content.getComponent("DelayTimesync2");
 
 
@@ -177,7 +177,7 @@ const var dt2 = Synth.getEffect("del2");
 inline function ondelaysync2Control(number, value)
 {
 		DelayTimesync2.showControl(value); 
-        DelayTime2.showControl(1-value);
+        PolyMeta2.showControl(1-value);
       
       dt2.setAttribute(dt2.delaysync, 0);
        dt2.setAttribute(dt2.delaysync, 1-value);
@@ -188,7 +188,7 @@ inline function ondelaysync2Control(number, value)
 delaysync2.setControlCallback(ondelaysync2Control);
 
 const var delaysync3 = Content.getComponent("delaysync3");
-const var DelayTime3 = Content.getComponent("DelayTime3");
+const var PolyMeta3 = Content.getComponent("PolyMeta3");
 const var DelayTimesync3 = Content.getComponent("DelayTimesync3");
 
 
@@ -197,7 +197,7 @@ const var dt3 = Synth.getEffect("del3");
 inline function ondelaysync3Control(number, value)
 {
 		DelayTimesync3.showControl(value); 
-        DelayTime3.showControl(1-value);
+        PolyMeta3.showControl(1-value);
       
        dt3.setAttribute(dt3.delaysync, 0);
        dt3.setAttribute(dt3.delaysync, 1-value);
@@ -207,7 +207,7 @@ inline function ondelaysync3Control(number, value)
 delaysync3.setControlCallback(ondelaysync3Control);
 
 const var delaysync4 = Content.getComponent("delaysync4");
-const var DelayTime4 = Content.getComponent("DelayTime4");
+const var PolyMeta4 = Content.getComponent("PolyMeta4");
 const var DelayTimesync4 = Content.getComponent("DelayTimesync4");
 
 
@@ -216,7 +216,7 @@ const var dt4 = Synth.getEffect("del4");
 inline function ondelaysync4Control(number, value)
 {
 		DelayTimesync4.showControl(value); 
-        DelayTime4.showControl(1-value);
+        PolyMeta4.showControl(1-value);
       
        dt4.setAttribute(dt4.delaysync, 0);
        dt4.setAttribute(dt4.delaysync, 1-value);
