@@ -219,9 +219,6 @@ const var ModMenus3 = [Content.getComponent("PosHeadSrcA9"),
                        Content.getComponent("pos1modsel2"),
                        Content.getComponent("GrainModSel3"),
                        Content.getComponent("winmodsrc3"),
-                       Content.getComponent("delmodsel3"),
-                       Content.getComponent("redmodsel3"),
-                       Content.getComponent("delmodsel7"),
                        Content.getComponent("ampmodsel2"),
                        Content.getComponent("PanModSel3")];
 

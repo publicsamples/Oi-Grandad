@@ -95,7 +95,7 @@ KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
 
 const var PolyMix =[];
 
-for (i = 0; i < 6; i++)
+for (i = 0; i < 4; i++)
 {
     PolyMix[i] = Content.getComponent("PolyMix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
@@ -254,9 +254,3 @@ for(s in MacroSliders)
 for(s in outMods)
       s.setLocalLookAndFeel(KnobLaf2);
 
-const var Loose = [Content.getComponent("DelayTime6"),
-                   Content.getComponent("delcut6")];
-
-   for(s in Loose)
-         s.setLocalLookAndFeel(KnobLaf2);   
-      
