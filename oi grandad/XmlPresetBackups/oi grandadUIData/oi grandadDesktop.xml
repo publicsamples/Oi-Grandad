@@ -77,7 +77,7 @@
                    height="20" max="10" parentComponent="Delay1" items="Off&#10;Low pass&#10;High Pass&#10;Band Pass&#10;Notch&#10;Ring Mod&#10;AM Trash&#10;Resonator 1&#10;Resonator 2&#10;Degrade"
                    bgColour="4278190080" textColour="4282519608" itemColour2="4279308561"/>
       </Component>
-      <Component type="ScriptPanel" id="Amp1" x="612" y="131" width="200" height="190"
+      <Component type="ScriptPanel" id="Amp1" x="611" y="131" width="200" height="190"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V0">
         <Component type="ScriptComboBox" id="OutputSelector" x="136" y="5" max="4"
                    width="50" height="20" text="" items="1-2&#10;3-4&#10;5-6&#10;7-8"
@@ -2247,7 +2247,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelB7" x="1" y="43" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam42"
-                     fontStyle="Regular" fontSize="15.0" text="DELAY"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptSlider" id="PostMix3" x="129" y="2" parentComponent="VoiceParam42"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Final3"
@@ -2262,7 +2262,7 @@
                      showValuePopup="Below"/>
           <Component type="ScriptLabel" id="FxLabelB8" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam42"
-                     fontStyle="Regular" fontSize="15.0" text="LP"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel9" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam42" bgColour="4278190080" itemColour="5166303"
@@ -2296,7 +2296,7 @@
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelB9" x="37" y="70" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam42"
-                     fontStyle="Regular" fontSize="15.0" text="FEED"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptSlider" id="delcutmod10" x="106" y="69" width="20"
                      height="20" processorId="Final3" parameterId="MetaSrc" parentComponent="VoiceParam42"
                      numStrips="200.0" dragDirection="Vertical" scaleFactor="0.5"
@@ -3252,7 +3252,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelB10" x="1" y="43" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam43"
-                     fontStyle="Regular" fontSize="15.0" text="BP"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptSlider" id="PostMix4" x="129" y="2" parentComponent="VoiceParam43"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Final4"
@@ -3267,7 +3267,7 @@
                      showValuePopup="Below"/>
           <Component type="ScriptLabel" id="FxLabelB11" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam43"
-                     fontStyle="Regular" fontSize="15.0" text="Q"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel11" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam43" bgColour="4278190080" itemColour="5166303"
@@ -3301,7 +3301,7 @@
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelB12" x="37" y="70" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam43"
-                     fontStyle="Regular" fontSize="15.0" text="LP"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptSlider" id="delcutmod12" x="106" y="69" width="20"
                      height="20" processorId="Final4" parameterId="MetaSrc" parentComponent="VoiceParam43"
                      numStrips="200.0" dragDirection="Vertical" scaleFactor="0.5"

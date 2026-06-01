@@ -813,7 +813,8 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="0.7700781250000001">
+      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.4799999892711639"
+                 DefaultValue="0.7700781250000001">
         <Connections>
           <Connection NodeId="smoothed_parameter41" ParameterId="SmoothingTime"/>
           <Connection NodeId="smoothed_parameter42" ParameterId="SmoothingTime"/>
