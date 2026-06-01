@@ -112,7 +112,7 @@ for (i = 0; i < 6; i++)
 
 const var PostMix =[];
 
-for (i = 0; i < 4; i++)
+for (i = 0; i < 1; i++)
 {
     PostMix[i] = Content.getComponent("PostMix"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
@@ -120,7 +120,7 @@ for (i = 0; i < 4; i++)
 
 const var PostMeta =[];
 
-for (i = 0; i < 12; i++)
+for (i = 0; i < 3; i++)
 {
     PostMeta[i] = Content.getComponent("PostMeta"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 

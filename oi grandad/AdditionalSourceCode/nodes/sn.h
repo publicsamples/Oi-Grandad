@@ -4725,13 +4725,14 @@ using pma1_mod = parameter::chain<ranges::Identity,
 
 template <int NV>
 using pma1_t = control::pma<NV, pma1_mod<NV>>;
-DECLARE_PARAMETER_RANGE(cable_table6_modRange, 
-                        0.03, 
-                        1.);
+DECLARE_PARAMETER_RANGE_SKEW(cable_table6_modRange, 
+                             0., 
+                             0.3, 
+                             0.253636);
 
 template <int NV>
 using cable_table6_mod = parameter::from0To1<pma1_t<NV>, 
-                                             1, 
+                                             2, 
                                              cable_table6_modRange>;
 
 struct cable_table6_t_data
@@ -4876,14 +4877,13 @@ using pma16_mod_7 = parameter::from0To1<filters::ring_mod<NV>,
                                         0, 
                                         pma16_mod_2Range>;
 
-DECLARE_PARAMETER_RANGE_SKEW(pma16_mod_9Range, 
-                             0., 
-                             0.3, 
-                             0.253636);
+DECLARE_PARAMETER_RANGE(pma16_mod_9Range, 
+                        0.03, 
+                        1.);
 
 template <int NV>
 using pma16_mod_9 = parameter::from0To1<pma1_t<NV>, 
-                                        2, 
+                                        1, 
                                         pma16_mod_9Range>;
 
 template <int NV>
@@ -8272,7 +8272,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		pma_unscaled4.getWrappedObject().getParameter().connectT(0, allpass);     // pma_unscaled4 -> allpass::Frequency
 		pma1.getWrappedObject().getParameter().connectT(0, div);                  // pma1 -> div::Value
 		pma1.getWrappedObject().getParameter().connectT(1, fmod);                 // pma1 -> fmod::Value
-		cable_table6.getWrappedObject().getParameter().connectT(0, pma1);         // cable_table6 -> pma1::Multiply
+		cable_table6.getWrappedObject().getParameter().connectT(0, pma1);         // cable_table6 -> pma1::Add
 		pma16.getWrappedObject().getParameter().connectT(0, pma_unscaled3);       // pma16 -> pma_unscaled3::Multiply
 		pma16.getWrappedObject().getParameter().connectT(1, pma_unscaled4);       // pma16 -> pma_unscaled4::Multiply
 		pma16.getWrappedObject().getParameter().connectT(2, svf);                 // pma16 -> svf::Frequency
@@ -8282,7 +8282,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		pma16.getWrappedObject().getParameter().connectT(6, sampleandhold);       // pma16 -> sampleandhold::Counter
 		pma16.getWrappedObject().getParameter().connectT(7, ring_mod);            // pma16 -> ring_mod::Frequency
 		pma16.getWrappedObject().getParameter().connectT(8, cable_table6);        // pma16 -> cable_table6::Value
-		pma16.getWrappedObject().getParameter().connectT(9, pma1);                // pma16 -> pma1::Add
+		pma16.getWrappedObject().getParameter().connectT(9, pma1);                // pma16 -> pma1::Multiply
 		peak15.getParameter().connectT(0, pma16);                                 // peak15 -> pma16::Value
 		global_cable270.getWrappedObject().getParameter().connectT(0, add270);    // global_cable270 -> add270::Value
 		global_cable271.getWrappedObject().getParameter().connectT(0, add271);    // global_cable271 -> add271::Value

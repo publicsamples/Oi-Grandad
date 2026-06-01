@@ -2442,8 +2442,7 @@
           <Connection NodeId="branch15" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResLp" Value="0.9505625367164612"
-                 DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResLp" Value="1.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma18" ParameterId="Add"/>
         </Connections>
@@ -2465,18 +2464,21 @@
           <Connection NodeId="branch1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Meta" Value="1.0" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Meta" Value="0.9013247282608695"
+                 DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma20" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="MetaMod" Value="0.7103645629882812"
-                 DefaultValue="0.0" ExternalModulation="Disabled" ModColour="0">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="MetaMod" Value="0.7103645629882812"
+                 DefaultValue="0.0" ExternalModulation="Disabled" ModColour="0"
+                 TextToValueConverter="">
         <Connections>
           <Connection NodeId="pma20" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="MetaSrc" Value="0.0">
+      <Parameter MinValue="1.0" MaxValue="16.0" ID="MetaSrc" Value="1.0" StepSize="1"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="branch19" ParameterId="Index"/>
         </Connections>

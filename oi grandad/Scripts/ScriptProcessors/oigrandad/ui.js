@@ -19,33 +19,6 @@ const var slot2 = g2.getAudioFile(0);
 const var slot3 = g3.getAudioFile(0);
 const var slot4 = g4.getAudioFile(0);
 
-const var HiddenFiles1 = Content.getComponent("HiddenFiles1");
-
-const var allList = [];
-const var allIds = [];
-
-const var AudioList = Engine.loadAudioFilesIntoPool();
-
-allList.push("no file");
-allIds.push("");
-
-HiddenFiles1.set("items", AudioList.join("\n"));
-
-for(r in AudioList)
-{
-    allList.push(r.split("}")[1]);
-    allIds.push(r);
-}
-
- 
- inline function onHiddenFiles1Control(component, value)
- {
- 	slot1.loadFile(HiddenFiles1.getItemText());
- };
- 
- Content.getComponent("HiddenFiles1").setControlCallback(onHiddenFiles1Control);
- 
-
 const var gran = Synth.getChildSynth("Granular1");
 const var gran1 = Synth.getChildSynth("Granular2");
 const var gran2 = Synth.getChildSynth("Granular3");
@@ -96,10 +69,6 @@ include("macros.js");
 
 
 
-
-
-
-
 const var BoxItems = Content.getComponent("BoxItems");
 
 //Tabs
@@ -107,6 +76,12 @@ const var BoxItems = Content.getComponent("BoxItems");
 const var NUM_BUTTONS = 6;
 const var buttons = [];
 const var panels = [];
+const var Post1 = Content.getComponent("Post1");
+const var ShowRandom1 = Content.getComponent("ShowRandom1");
+const var ShowRandom2 = Content.getComponent("ShowRandom2");
+const var ShowRandom3 = Content.getComponent("ShowRandom3");
+const var ShowRandom4 = Content.getComponent("ShowRandom4");
+
 
 for (i = 0; i < NUM_BUTTONS; i++)
 {
@@ -131,6 +106,16 @@ inline function onButtonControl(component, value)
 		if (buttons[i].getValue() != shouldBeOn)
         	buttons[i].setValue(shouldBeOn);
     }
+    
+    Post1.showControl(idx < 4);
+    RandomControls1.showControl(0);
+    RandomControls2.showControl(0);
+    RandomControls3.showControl(0);
+    RandomControls4.showControl(0);
+    ShowRandom1.setValue(0);
+    ShowRandom2.setValue(0);
+    ShowRandom3.setValue(0);
+    ShowRandom4.setValue(0);
 
 	g_isUpdatingTabButtons = false;
 }
@@ -219,195 +204,6 @@ const var VOICE0 = Content.getComponent("VOICE0");
 const var VOICE1 = Content.getComponent("VOICE1");
 const var VOICE2 = Content.getComponent("VOICE2");
 const var VOICE3 = Content.getComponent("VOICE3");
-
-
-inline function onPlaybackControl(component, value)
-{
-	//standard
-	if(value == 1)
-	{
-	XFcont.showControl(0); 
-	LedPanel.showControl(0); 
-	xf1.setBypassed(1);
-	xf2.setBypassed(1);
-	xf3.setBypassed(1);
-	xf4.setBypassed(1);
-	xfade.setBypassed(1);
-	Filter1.setBypassed(1);
-	Filter2.setBypassed(1);
-	Filter3.setBypassed(1);
-	Filter4.setBypassed(1);
-	VOICE0.showControl(1); 
-	VOICE1.showControl(1); 
-	VOICE2.showControl(1); 
-	VOICE3.showControl(1); 
-	gran.setBypassed(0);
-	gran1.setBypassed(0);
-	gran2.setBypassed(0);
-	gran3.setBypassed(0);
-	gran.setAttribute(gran.VoiceLimit, 1);
-	gran1.setAttribute(gran1.VoiceLimit, 1);
-	gran2.setAttribute(gran2.VoiceLimit, 1);
-	gran3.setAttribute(gran3.VoiceLimit, 1);
-	
-	}
-	
-	//Round Robin
-	
-		if(value == 2)
-	{
-	XFcont.showControl(0); 
-	LedPanel.showControl(1); 
-	xf1.setBypassed(1);
-	xf2.setBypassed(1);
-	xf3.setBypassed(1);
-	xf4.setBypassed(1);
-	xfade.setBypassed(1);
-	Filter1.setBypassed(0);
-	Filter2.setBypassed(0);
-	Filter3.setBypassed(0);
-	Filter4.setBypassed(0);
-	VOICE0.showControl(1); 
-		VOICE1.showControl(1); 
-		VOICE2.showControl(1); 
-		VOICE3.showControl(1); 
-		gran.setBypassed(0);
-		gran1.setBypassed(0);
-		gran2.setBypassed(0);
-		gran3.setBypassed(0);
-		gran.setAttribute(gran.VoiceLimit, 1);
-		gran1.setAttribute(gran1.VoiceLimit, 1);
-		gran2.setAttribute(gran2.VoiceLimit, 1);
-		gran3.setAttribute(gran3.VoiceLimit, 1);
-	}
-	
-	//xfade
-	
-		if(value == 3)
-	{
-	XFcont.showControl(1); 
-	LedPanel.showControl(0); 
-	xf1.setBypassed(0);
-	xf2.setBypassed(0);
-	xf3.setBypassed(0);
-	xf4.setBypassed(0);
-	xfade.setBypassed(0);
-	Filter1.setBypassed(1);
-	Filter2.setBypassed(1);
-	Filter3.setBypassed(1);
-	Filter4.setBypassed(1);
-	VOICE0.showControl(1); 
-		VOICE1.showControl(1); 
-		VOICE2.showControl(1); 
-		VOICE3.showControl(1); 
-		gran.setBypassed(0);
-		gran1.setBypassed(0);
-		gran2.setBypassed(0);
-		gran3.setBypassed(0);
-		gran.setAttribute(gran.VoiceLimit, 1);
-		gran1.setAttribute(gran1.VoiceLimit, 1);
-		gran2.setAttribute(gran2.VoiceLimit, 1);
-		gran3.setAttribute(gran3.VoiceLimit, 1);
-
-	}
-	
-	
-
-	if(value == 4)
-	{
-	XFcont.showControl(0); 
-	LedPanel.showControl(0); 
-	xf1.setBypassed(1);
-	xf2.setBypassed(1);
-	xf3.setBypassed(1);
-	xf4.setBypassed(1);
-	xfade.setBypassed(1);
-	Filter1.setBypassed(1);
-	Filter2.setBypassed(1);
-	Filter3.setBypassed(1);
-	Filter4.setBypassed(1);
-	VOICE0.showControl(1); 
-	VOICE0.setValue(1); 
-	VOICE0.changed(); 
-	VOICE1.showControl(1); 
-	VOICE2.showControl(1); 
-	VOICE3.showControl(1); 
-	gran.setBypassed(0);
-	gran1.setBypassed(0);
-	gran2.setBypassed(0);
-	gran3.setBypassed(0);
-	gran.setAttribute(gran.VoiceLimit, 4);
-	gran1.setAttribute(gran1.VoiceLimit, 4);
-	gran2.setAttribute(gran2.VoiceLimit, 4);
-	gran3.setAttribute(gran3.VoiceLimit, 4);
-	
-	
-	}
-	
-	if(value == 5)
-	{
-	XFcont.showControl(0); 
-	LedPanel.showControl(0); 
-	xf1.setBypassed(1);
-	xf2.setBypassed(1);
-	xf3.setBypassed(1);
-	xf4.setBypassed(1);
-	xfade.setBypassed(1);
-	Filter1.setBypassed(1);
-	Filter2.setBypassed(1);
-	Filter3.setBypassed(1);
-	Filter4.setBypassed(1);
-	VOICE0.showControl(1); 
-	VOICE0.setValue(1); 
-	VOICE0.changed(); 
-	VOICE1.showControl(1); 
-	VOICE2.showControl(0); 
-	VOICE3.showControl(0); 
-	gran.setBypassed(0);
-	gran1.setBypassed(0);
-	gran2.setBypassed(1);
-	gran3.setBypassed(1);
-	gran.setAttribute(gran.VoiceLimit, 6);
-	gran1.setAttribute(gran1.VoiceLimit, 6);
-	gran2.setAttribute(gran2.VoiceLimit, 1);
-	gran3.setAttribute(gran3.VoiceLimit, 1);
-	
-	}
-	
-	if(value == 6)
-		{
-		XFcont.showControl(0); 
-		LedPanel.showControl(0); 
-		xf1.setBypassed(1);
-		xf2.setBypassed(1);
-		xf3.setBypassed(1);
-		xf4.setBypassed(1);
-		xfade.setBypassed(1);
-		Filter1.setBypassed(1);
-		Filter2.setBypassed(1);
-		Filter3.setBypassed(1);
-		Filter4.setBypassed(1);
-		VOICE0.showControl(1); 
-		VOICE0.setValue(1); 
-		VOICE0.changed(); 
-		VOICE1.showControl(0); 
-		VOICE2.showControl(0); 
-		VOICE3.showControl(0); 
-		gran.setBypassed(0);
-		gran1.setBypassed(1);
-		gran2.setBypassed(1);
-		gran3.setBypassed(1);
-		gran.setAttribute(gran.VoiceLimit, 8);
-		gran1.setAttribute(gran1.VoiceLimit, 1);
-		gran2.setAttribute(gran2.VoiceLimit, 1);
-		gran3.setAttribute(gran3.VoiceLimit, 1);
-		
-		}
-	
-};
-
-Content.getComponent("Playback").setControlCallback(onPlaybackControl);
-
 
 inline function onVoiceNumberControl(component, value)
 {
@@ -743,6 +539,174 @@ inline function populatePresetsMenu()
 		cmbPresets.addItem(item);
 	}
 }
+
+
+
+
+//FX MENUS
+
+const var FxLabelA1 = Content.getComponent("FxLabelA1");
+const var FxLabelA2 = Content.getComponent("FxLabelA2");
+
+inline function onResMode1Control(component, value)
+{
+
+	if(value == 1)
+	{
+	 gran.setAttribute(gran.delMode, 1);
+	 FxLabelA1.setValue("OFF");
+	 FxLabelA2.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  gran.setAttribute(gran.delMode, 2);
+	  FxLabelA1.setValue("CUT");
+	  FxLabelA2.setValue("Q");
+	  }
+	  if(value == 3)
+	  {
+	   gran.setAttribute(gran.delMode, 3);
+	   FxLabelA1.setValue("CUT");
+	   FxLabelA2.setValue("Q");
+	   }
+	   if(value == 4)
+	   {
+	    gran.setAttribute(gran.delMode, 4);
+	    FxLabelA1.setValue("CUT");
+	    FxLabelA2.setValue("Q");
+	    }	
+		if(value == 5)
+	   {
+	    gran.setAttribute(gran.delMode, 5);
+	      FxLabelA1.setValue("CUT");
+	    FxLabelA2.setValue("Q");
+	    }
+	    if(value == 6)
+	       {
+	        gran.setAttribute(gran.delMode, 6);
+	          FxLabelA1.setValue("FREQ");
+	    FxLabelA2.setValue("Q");
+	        }
+	    if(value == 7)
+	       {
+	        gran.setAttribute(gran.delMode, 7);
+	          FxLabelA1.setValue("TRASH");
+	    FxLabelA2.setValue("LP");
+	        } 
+	   if(value == 8)
+	      {
+	       gran.setAttribute(gran.delMode, 8);
+	       FxLabelA1.setValue("Pitch");
+	       FxLabelA2.setValue("LP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       gran.setAttribute(gran.delMode, 9);
+	   	       FxLabelA1.setValue("Pitch");
+	       FxLabelA2.setValue("LP");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       gran.setAttribute(gran.delMode, 10);
+	   	 	       FxLabelA1.setValue("Bit");
+	   	 	       FxLabelA2.setValue("S&H");
+	   	 	       }                                
+	        
+};
+
+Content.getComponent("ResMode1").setControlCallback(onResMode1Control);
+
+const var FxLabelB1 = Content.getComponent("FxLabelB1");
+const var FxLabelB2 = Content.getComponent("FxLabelB2");
+const var FxLabelB3 = Content.getComponent("FxLabelB3");
+
+const var Final1 = Synth.getEffect("Final1");
+
+inline function onPostMode1Control(component, value)
+{
+		if(value == 1)
+	{
+	 Final1.setAttribute(Final1.delMode, 1);
+	 FxLabelB1.setValue("OFF");
+	 FxLabelB2.setValue("OFF");
+	 FxLabelB3.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  Final1.setAttribute(Final1.delMode, 2);
+	  FxLabelB1.setValue("LP");
+	  FxLabelB2.setValue("Q");
+	  FxLabelB3.setValue("HP");
+	  }
+	  if(value == 3)
+	  {
+	   Final1.setAttribute(Final1.delMode, 3);
+	   FxLabelB1.setValue("HP");
+	   FxLabelB2.setValue("Q");
+	   FxLabelB3.setValue("LP");
+	   }
+	   if(value == 4)
+	   {
+	    Final1.setAttribute(Final1.delMode, 4);
+	    FxLabelB1.setValue("BP");
+	    FxLabelB2.setValue("Q");
+	    FxLabelB3.setValue("LP");
+	    }	
+		if(value == 5)
+	   {
+	    Final1.setAttribute(Final1.delMode, 5);
+	      FxLabelB1.setValue("BP");
+	    FxLabelB2.setValue("Q");
+	    FxLabelB3.setValue("HP");
+	    }
+	    if(value == 6)
+	       {
+	        Final1.setAttribute(Final1.delMode, 6);
+	          FxLabelB1.setValue("CUT");
+	    FxLabelB2.setValue("Q");
+	    FxLabelB3.setValue("GAIN");
+	        }
+	    if(value == 7)
+	       {
+	        Final1.setAttribute(Final1.delMode, 7);
+	          FxLabelB1.setValue("CUT");
+	    FxLabelB2.setValue("Q");
+	    FxLabelB3.setValue("GAIN");
+	        } 
+	   if(value == 8)
+	      {
+	       Final1.setAttribute(Final1.delMode, 8);
+	       FxLabelB1.setValue("AP");
+	       FxLabelB2.setValue("Q");
+	       FxLabelB3.setValue("HP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       Final1.setAttribute(Final1.delMode, 9);
+	   	       FxLabelB1.setValue("Time");
+	       FxLabelB2.setValue("LP");
+	       FxLabelB3.setValue("FEED");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       Final1.setAttribute(Final1.delMode, 10);
+	   	 	       FxLabelB1.setValue("DELAY");
+	   	 	       FxLabelB2.setValue("LP");
+	   	 	       FxLabelB3.setValue("FEED");
+	   	 	       }                                
+	     if(value == 11)
+	     	   	 	      {
+	     	   	 	       Final1.setAttribute(Final1.delMode, 11);
+	     	   	 	       FxLabelB1.setValue("SPACE");
+	     	   	 	       FxLabelB2.setValue("DAMP");
+	     	   	 	       FxLabelB3.setValue("WIDTH");
+	     	   	 	       }         
+
+};
+
+Content.getComponent("PostMode1").setControlCallback(onPostMode1Control);
+
+
 function onNoteOn()
 {
 // the index is zero based like everything else in good

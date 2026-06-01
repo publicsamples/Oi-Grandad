@@ -334,6 +334,110 @@ inline function randomiseIfUnlockedB(lockIndex, target)
     }
 }
 
+//rand samples
+const var HiddenFiles2 = Content.getComponent("HiddenFiles2");
+
+const var SampleMin2 = Content.getComponent("SampleMin2");
+const var SampleMax2 = Content.getComponent("SampleMax2");
+
+SampleMin2.set("min", 1);
+SampleMin2.set("max", AudioList.length);
+SampleMin2.set("stepSize", 1);
+
+SampleMax2.set("min", 1);
+SampleMax2.set("max", AudioList.length);
+SampleMax2.set("stepSize", 1);
+
+ //sensible defaults
+SampleMin2.setValue(1);
+SampleMax2.setValue(AudioList.length);
+
+ 
+reg isSampleLoadBusy2 = false;
+reg pendingSampleRandomise2 = false;
+reg lastSampleIndex2 = -1;
+
+inline function onHiddenFiles2Control(component, value)
+{
+    if (isSampleLoadBusy2)
+        return;
+
+    if (value <= 0 || value > AudioList.length)
+        return;
+
+    isSampleLoadBusy2 = true;
+    slot2.loadFile(HiddenFiles2.getItemText());
+
+    Content.callAfterDelay(500, function()
+    {
+        isSampleLoadBusy2 = false;
+
+        if (pendingSampleRandomise2)
+        {
+            pendingSampleRandomise2 = false;
+            randomiseVoice2Sample();
+        }
+    });
+};
+
+Content.getComponent("HiddenFiles2").setControlCallback(onHiddenFiles2Control);
+
+inline function randomiseVoice2Sample()
+{
+    if (isSampleLoadBusy2)
+    {
+        pendingSampleRandomise2 = true;
+        return;
+    }
+
+    if (AudioList.length == 0)
+        return;
+
+    local minIdx = Math.round(SampleMin2.getValue());
+    local maxIdx = Math.round(SampleMax2.getValue());
+
+    // guard against reversed range
+    if (minIdx > maxIdx)
+    {
+        local t = minIdx;
+        minIdx = maxIdx;
+        maxIdx = t;
+    }
+
+    // clamp to valid menu range
+    minIdx = Math.max(1, minIdx);
+    maxIdx = Math.min(AudioList.length, maxIdx);
+
+    local newIndex = Math.randInt(minIdx, maxIdx + 1);
+
+    if (maxIdx > minIdx)
+    {
+        while (newIndex == lastSampleIndex2)
+            newIndex = Math.randInt(minIdx, maxIdx + 1);
+    }
+
+    lastSampleIndex2 = newIndex;
+    HiddenFiles2.setValue(newIndex);
+    HiddenFiles2.changed();
+}
+
+inline function onSampleMin2Control(component, value)
+{
+    if (value > SampleMax2.getValue())
+        SampleMax2.setValue(value);
+}
+Content.getComponent("SampleMin2").setControlCallback(onSampleMin2Control);
+
+inline function onSampleMax2Control(component, value)
+{
+    if (value < SampleMin2.getValue())
+        SampleMin2.setValue(value);
+}
+Content.getComponent("SampleMax2").setControlCallback(onSampleMax2Control);
+
+const var RandomiseSamples1 = Content.getComponent("RandomiseSamples1");
+
+
 inline function onRANDOMISE2Control(component, value)
 {
     if (value != 1)
@@ -366,9 +470,15 @@ inline function onRANDOMISE2Control(component, value)
     randomiseIfUnlockedB(11, Dense2);
     randomiseIfUnlockedB(12, DelayTime2);
     randomiseIfUnlockedB(13, delcut2);
-    randomiseIfUnlockedB(14, PostMeta4);
-    randomiseIfUnlockedB(15, PostMeta5);
-    randomiseIfUnlockedB(16, PostMeta6);
+ //   randomiseIfUnlockedB(14, PostMeta4);
+ //   randomiseIfUnlockedB(15, PostMeta5);
+ //   randomiseIfUnlockedB(16, PostMeta6);
+    
+    if (RandomiseSamples1.getValue() == 0)
+    {
+    randomiseVoice2Sample();
+    
+    }
 }
 
 Content.getComponent("RANDOMISE2").setControlCallback(onRANDOMISE2Control);
@@ -379,173 +489,11 @@ const var RandomControls2 = Content.getComponent("RandomControls2");
 inline function onShowRandom2Control(component, value)
 {
 	RandomControls2.showControl(value);
+	Post1.showControl(value-1);
 };
 
 Content.getComponent("ShowRandom2").setControlCallback(onShowRandom2Control);
 
-
-//FX MENUS
-
-const var FxLabelA3 = Content.getComponent("FxLabelA3");
-const var FxLabelA4 = Content.getComponent("FxLabelA4");
-
-inline function onResMode2Control(component, value)
-{
-
-	if(value == 1)
-	{
-	 gran1.setAttribute(gran1.delMode, 1);
-	 FxLabelA3.setValue("OFF");
-	 FxLabelA4.setValue("OFF");
-	 }
-	 if(value == 2)
-	 {
-	  gran1.setAttribute(gran1.delMode, 2);
-	  FxLabelA3.setValue("CUT");
-	  FxLabelA4.setValue("Q");
-	  }
-	  if(value == 3)
-	  {
-	   gran1.setAttribute(gran1.delMode, 3);
-	   FxLabelA3.setValue("CUT");
-	   FxLabelA4.setValue("Q");
-	   }
-	   if(value == 4)
-	   {
-	    gran1.setAttribute(gran1.delMode, 4);
-	    FxLabelA3.setValue("CUT");
-	    FxLabelA4.setValue("Q");
-	    }	
-		if(value == 5)
-	   {
-	    gran1.setAttribute(gran1.delMode, 5);
-	      FxLabelA3.setValue("CUT");
-	    FxLabelA4.setValue("Q");
-	    }
-	    if(value == 6)
-	       {
-	        gran1.setAttribute(gran1.delMode, 6);
-	          FxLabelA3.setValue("FREQ");
-	    FxLabelA4.setValue("Q");
-	        }
-	    if(value == 7)
-	       {
-	        gran1.setAttribute(gran1.delMode, 7);
-	          FxLabelA3.setValue("TRASH");
-	    FxLabelA4.setValue("LP");
-	        } 
-	   if(value == 8)
-	      {
-	       gran1.setAttribute(gran1.delMode, 8);
-	       FxLabelA3.setValue("Pitch");
-	       FxLabelA4.setValue("LP");
-	       }  
-	   if(value == 9)
-	   	      {
-	   	       gran1.setAttribute(gran1.delMode, 9);
-	   	       FxLabelA3.setValue("Pitch");
-	       FxLabelA4.setValue("LP");
-	   	       }   
-	   	 if(value == 10)
-	   	 	      {
-	   	 	       gran1.setAttribute(gran1.delMode, 10);
-	   	 	       FxLabelA3.setValue("Bit");
-	   	 	       FxLabelA4.setValue("S&H");
-	   	 	       }                                
-	        
-};
-
-Content.getComponent("ResMode2").setControlCallback(onResMode2Control);
-
-const var FxLabelB4 = Content.getComponent("FxLabelB4");
-const var FxLabelB5 = Content.getComponent("FxLabelB5");
-const var FxLabelB6 = Content.getComponent("FxLabelB6");
-
-const var Final2 = Synth.getEffect("Final2");
-
-inline function onPostMode2Control(component, value)
-{
-		if(value == 1)
-	{
-	 Final2.setAttribute(Final2.delMode, 1);
-	 FxLabelB4.setValue("OFF");
-	 FxLabelB5.setValue("OFF");
-	 FxLabelB6.setValue("OFF");
-	 }
-	 if(value == 2)
-	 {
-	  Final2.setAttribute(Final2.delMode, 2);
-	  FxLabelB4.setValue("LP");
-	  FxLabelB5.setValue("Q");
-	  FxLabelB6.setValue("HP");
-	  }
-	  if(value == 3)
-	  {
-	   Final2.setAttribute(Final2.delMode, 3);
-	   FxLabelB4.setValue("HP");
-	   FxLabelB5.setValue("Q");
-	   FxLabelB6.setValue("LP");
-	   }
-	   if(value == 4)
-	   {
-	    Final2.setAttribute(Final2.delMode, 4);
-	    FxLabelB4.setValue("BP");
-	    FxLabelB5.setValue("Q");
-	    FxLabelB6.setValue("LP");
-	    }	
-		if(value == 5)
-	   {
-	    Final2.setAttribute(Final2.delMode, 5);
-	      FxLabelB4.setValue("BP");
-	    FxLabelB5.setValue("Q");
-	    FxLabelB6.setValue("HP");
-	    }
-	    if(value == 6)
-	       {
-	        Final2.setAttribute(Final2.delMode, 6);
-	          FxLabelB4.setValue("CUT");
-	    FxLabelB5.setValue("Q");
-	    FxLabelB6.setValue("GAIN");
-	        }
-	    if(value == 7)
-	       {
-	        Final2.setAttribute(Final2.delMode, 7);
-	          FxLabelB4.setValue("CUT");
-	    FxLabelB5.setValue("Q");
-	    FxLabelB6.setValue("GAIN");
-	        } 
-	   if(value == 8)
-	      {
-	       Final2.setAttribute(Final2.delMode, 8);
-	       FxLabelB4.setValue("AP");
-	       FxLabelB5.setValue("Q");
-	       FxLabelB6.setValue("HP");
-	       }  
-	   if(value == 9)
-	   	      {
-	   	       Final2.setAttribute(Final2.delMode, 9);
-	   	       FxLabelB4.setValue("Time");
-	       FxLabelB5.setValue("LP");
-	       FxLabelB6.setValue("FEED");
-	   	       }   
-	   	 if(value == 10)
-	   	 	      {
-	   	 	       Final2.setAttribute(Final2.delMode, 10);
-	   	 	       FxLabelB4.setValue("DELAY");
-	   	 	       FxLabelB5.setValue("LP");
-	   	 	       FxLabelB6.setValue("FEED");
-	   	 	       }                                
-	     if(value == 11)
-	     	   	 	      {
-	     	   	 	       Final2.setAttribute(Final2.delMode, 11);
-	     	   	 	       FxLabelB4.setValue("SPACE");
-	     	   	 	       FxLabelB5.setValue("DAMP");
-	     	   	 	       FxLabelB6.setValue("WIDTH");
-	     	   	 	       }         
-
-};
-
-Content.getComponent("PostMode2").setControlCallback(onPostMode2Control);
 
 
 

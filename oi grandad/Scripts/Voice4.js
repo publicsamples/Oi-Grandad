@@ -332,6 +332,110 @@ inline function randomiseIfUnlockedD(lockIndex, target)
     }
 }
 
+//rand samples
+const var HiddenFiles4 = Content.getComponent("HiddenFiles4");
+
+const var SampleMin4 = Content.getComponent("SampleMin4");
+const var SampleMax4 = Content.getComponent("SampleMax4");
+
+SampleMin4.set("min", 1);
+SampleMin4.set("max", AudioList.length);
+SampleMin4.set("stepSize", 1);
+
+SampleMax4.set("min", 1);
+SampleMax4.set("max", AudioList.length);
+SampleMax4.set("stepSize", 1);
+
+ //sensible defaults
+SampleMin4.setValue(1);
+SampleMax4.setValue(AudioList.length);
+
+ 
+reg isSampleLoadBusy4 = false;
+reg pendingSampleRandomise4 = false;
+reg lastSampleIndex4 = -1;
+
+inline function onHiddenFiles4Control(component, value)
+{
+    if (isSampleLoadBusy4)
+        return;
+
+    if (value <= 0 || value > AudioList.length)
+        return;
+
+    isSampleLoadBusy4 = true;
+    slot4.loadFile(HiddenFiles4.getItemText());
+
+    Content.callAfterDelay(500, function()
+    {
+        isSampleLoadBusy4 = false;
+
+        if (pendingSampleRandomise4)
+        {
+            pendingSampleRandomise4 = false;
+            randomiseVoice4Sample();
+        }
+    });
+};
+
+Content.getComponent("HiddenFiles4").setControlCallback(onHiddenFiles4Control);
+
+inline function randomiseVoice4Sample()
+{
+    if (isSampleLoadBusy4)
+    {
+        pendingSampleRandomise4 = true;
+        return;
+    }
+
+    if (AudioList.length == 0)
+        return;
+
+    local minIdx = Math.round(SampleMin4.getValue());
+    local maxIdx = Math.round(SampleMax4.getValue());
+
+    // guard against reversed range
+    if (minIdx > maxIdx)
+    {
+        local t = minIdx;
+        minIdx = maxIdx;
+        maxIdx = t;
+    }
+
+    // clamp to valid menu range
+    minIdx = Math.max(1, minIdx);
+    maxIdx = Math.min(AudioList.length, maxIdx);
+
+    local newIndex = Math.randInt(minIdx, maxIdx + 1);
+
+    if (maxIdx > minIdx)
+    {
+        while (newIndex == lastSampleIndex4)
+            newIndex = Math.randInt(minIdx, maxIdx + 1);
+    }
+
+    lastSampleIndex4 = newIndex;
+    HiddenFiles4.setValue(newIndex);
+    HiddenFiles4.changed();
+}
+
+inline function onSampleMin4Control(component, value)
+{
+    if (value > SampleMax4.getValue())
+        SampleMax4.setValue(value);
+}
+Content.getComponent("SampleMin4").setControlCallback(onSampleMin4Control);
+
+inline function onSampleMax4Control(component, value)
+{
+    if (value < SampleMin4.getValue())
+        SampleMin4.setValue(value);
+}
+Content.getComponent("SampleMax4").setControlCallback(onSampleMax4Control);
+
+const var RandomiseSamples3 = Content.getComponent("RandomiseSamples3");
+
+
 inline function onRANDOMISE4Control(component, value)
 {
     if (value != 1)
@@ -364,9 +468,17 @@ inline function onRANDOMISE4Control(component, value)
     randomiseIfUnlockedD(11, Dense4);
     randomiseIfUnlockedD(12, DelayTime4);
     randomiseIfUnlockedD(13, delcut3);
-    randomiseIfUnlockedD(14, PostMeta10);
-    randomiseIfUnlockedD(15, PostMeta11);
-    randomiseIfUnlockedD(16, PostMeta12);
+ //   randomiseIfUnlockedD(14, PostMeta10);
+ //   randomiseIfUnlockedD(15, PostMeta11);
+ //   randomiseIfUnlockedD(16, PostMeta12);
+    
+    
+       if (RandomiseSamples3.getValue() == 0)
+        {
+        randomiseVoice4Sample();
+        
+        }
+        
 }
 
 Content.getComponent("RANDOMISE4").setControlCallback(onRANDOMISE4Control);
@@ -377,174 +489,9 @@ const var RandomControls4 = Content.getComponent("RandomControls4");
 inline function onShowRandom4Control(component, value)
 {
 	RandomControls4.showControl(value);
+	Post1.showControl(value-1);
 };
 
 Content.getComponent("ShowRandom4").setControlCallback(onShowRandom4Control);
-
-
-//FX MENUS
-
-const var FxLabelA7 = Content.getComponent("FxLabelA7");
-const var FxLabelA8 = Content.getComponent("FxLabelA8");
-
-inline function onResMode4Control(component, value)
-{
-
-	if(value == 1)
-	{
-	 gran3.setAttribute(gran3.delMode, 1);
-	 FxLabelA7.setValue("OFF");
-	 FxLabelA8.setValue("OFF");
-	 }
-	 if(value == 2)
-	 {
-	  gran3.setAttribute(gran3.delMode, 2);
-	  FxLabelA7.setValue("CUT");
-	  FxLabelA8.setValue("Q");
-	  }
-	  if(value == 3)
-	  {
-	   gran3.setAttribute(gran3.delMode, 4);
-	   FxLabelA7.setValue("CUT");
-	   FxLabelA8.setValue("Q");
-	   }
-	   if(value == 4)
-	   {
-	    gran3.setAttribute(gran3.delMode, 4);
-	    FxLabelA7.setValue("CUT");
-	    FxLabelA8.setValue("Q");
-	    }	
-		if(value == 5)
-	   {
-	    gran3.setAttribute(gran3.delMode, 5);
-	      FxLabelA7.setValue("CUT");
-	    FxLabelA8.setValue("Q");
-	    }
-	    if(value == 6)
-	       {
-	        gran3.setAttribute(gran3.delMode, 6);
-	          FxLabelA7.setValue("FREQ");
-	    FxLabelA8.setValue("Q");
-	        }
-	    if(value == 7)
-	       {
-	        gran3.setAttribute(gran3.delMode, 7);
-	          FxLabelA7.setValue("TRASH");
-	    FxLabelA8.setValue("LP");
-	        } 
-	   if(value == 8)
-	      {
-	       gran3.setAttribute(gran3.delMode, 8);
-	       FxLabelA7.setValue("Pitch");
-	       FxLabelA8.setValue("LP");
-	       }  
-	   if(value == 9)
-	   	      {
-	   	       gran3.setAttribute(gran3.delMode, 9);
-	   	       FxLabelA7.setValue("Pitch");
-	       FxLabelA8.setValue("LP");
-	   	       }   
-	   	 if(value == 10)
-	   	 	      {
-	   	 	       gran3.setAttribute(gran3.delMode, 10);
-	   	 	       FxLabelA7.setValue("Bit");
-	   	 	       FxLabelA8.setValue("S&H");
-	   	 	       }                                
-	        
-};
-
-Content.getComponent("ResMode4").setControlCallback(onResMode4Control);
-
-const var FxLabelB10 = Content.getComponent("FxLabelB10");
-const var FxLabelB11 = Content.getComponent("FxLabelB11");
-const var FxLabelB12 = Content.getComponent("FxLabelB12");
-
-const var Final4 = Synth.getEffect("Final4");
-
-inline function onPostMode4Control(component, value)
-{
-		if(value == 1)
-	{
-	 Final4.setAttribute(Final4.delMode, 1);
-	 FxLabelB10.setValue("OFF");
-	 FxLabelB11.setValue("OFF");
-	 FxLabelB12.setValue("OFF");
-	 }
-	 if(value == 2)
-	 {
-	  Final4.setAttribute(Final4.delMode, 2);
-	  FxLabelB10.setValue("LP");
-	  FxLabelB11.setValue("Q");
-	  FxLabelB12.setValue("HP");
-	  }
-	  if(value == 4)
-	  {
-	   Final4.setAttribute(Final4.delMode, 4);
-	   FxLabelB10.setValue("HP");
-	   FxLabelB11.setValue("Q");
-	   FxLabelB12.setValue("LP");
-	   }
-	   if(value == 4)
-	   {
-	    Final4.setAttribute(Final4.delMode, 4);
-	    FxLabelB10.setValue("BP");
-	    FxLabelB11.setValue("Q");
-	    FxLabelB12.setValue("LP");
-	    }	
-		if(value == 5)
-	   {
-	    Final4.setAttribute(Final4.delMode, 5);
-	      FxLabelB10.setValue("BP");
-	    FxLabelB11.setValue("Q");
-	    FxLabelB12.setValue("HP");
-	    }
-	    if(value == 6)
-	       {
-	        Final4.setAttribute(Final4.delMode, 6);
-	          FxLabelB10.setValue("CUT");
-	    FxLabelB11.setValue("Q");
-	    FxLabelB12.setValue("GAIN");
-	        }
-	    if(value == 7)
-	       {
-	        Final4.setAttribute(Final4.delMode, 7);
-	          FxLabelB10.setValue("CUT");
-	    FxLabelB11.setValue("Q");
-	    FxLabelB12.setValue("GAIN");
-	        } 
-	   if(value == 8)
-	      {
-	       Final4.setAttribute(Final4.delMode, 8);
-	       FxLabelB10.setValue("AP");
-	       FxLabelB11.setValue("Q");
-	       FxLabelB12.setValue("HP");
-	       }  
-	   if(value == 9)
-	   	      {
-	   	       Final4.setAttribute(Final4.delMode, 9);
-	   	       FxLabelB10.setValue("Time");
-	       FxLabelB11.setValue("LP");
-	       FxLabelB12.setValue("FEED");
-	   	       }   
-	   	 if(value == 10)
-	   	 	      {
-	   	 	       Final4.setAttribute(Final4.delMode, 10);
-	   	 	       FxLabelB10.setValue("DELAY");
-	   	 	       FxLabelB11.setValue("LP");
-	   	 	       FxLabelB12.setValue("FEED");
-	   	 	       }                                
-	     if(value == 11)
-	     	   	 	      {
-	     	   	 	       Final4.setAttribute(Final4.delMode, 11);
-	     	   	 	       FxLabelB10.setValue("SPACE");
-	     	   	 	       FxLabelB11.setValue("DAMP");
-	     	   	 	       FxLabelB12.setValue("WIDTH");
-	     	   	 	       }         
-
-};
-
-Content.getComponent("PostMode4").setControlCallback(onPostMode4Control);
-
-
 
 

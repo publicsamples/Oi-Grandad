@@ -19,12 +19,6 @@
                      Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="haas" FactoryPath="fx.haas" Bypassed="0" Name="haas">
-        <Parameters>
-          <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                     ID="Position" Automated="1"/>
-        </Parameters>
-      </Node>
       <Node ID="one_pole" FactoryPath="filters.one_pole" Bypassed="0" Name="one_pole">
         <ComplexData>
           <Filters>
@@ -54,7 +48,7 @@
     </Nodes>
     <Parameters>
       <Parameter ID="FB" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.5623125">
+                 DefaultValue="" Value="0.515828125">
         <Connections>
           <Connection NodeId="receive" ParameterId="Feedback"/>
         </Connections>
@@ -67,9 +61,7 @@
       </Parameter>
       <Parameter ID="HASS" MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
                  ModColour="0" ExternalModulation="Disabled" DefaultValue="" Value="0.1000000163912771">
-        <Connections>
-          <Connection NodeId="haas" ParameterId="Position"/>
-        </Connections>
+        <Connections/>
       </Parameter>
       <Parameter ID="lp" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled">
         <Connections>

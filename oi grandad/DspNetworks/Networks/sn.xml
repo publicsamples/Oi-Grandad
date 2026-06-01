@@ -4800,7 +4800,7 @@
                       <Connection NodeId="sampleandhold" ParameterId="Counter"/>
                       <Connection NodeId="ring_mod" ParameterId="Frequency"/>
                       <Connection NodeId="cable_table6" ParameterId="Value"/>
-                      <Connection NodeId="pma1" ParameterId="Add"/>
+                      <Connection NodeId="pma1" ParameterId="Multiply"/>
                     </ModulationTargets>
                   </Node>
                 </Nodes>
@@ -6869,7 +6869,7 @@
                               <Node ID="cable_table6" FactoryPath="control.cable_table" Bypassed="0"
                                     Name="cable_table6">
                                 <ModulationTargets>
-                                  <Connection NodeId="pma1" ParameterId="Multiply"/>
+                                  <Connection NodeId="pma1" ParameterId="Add"/>
                                 </ModulationTargets>
                                 <ComplexData>
                                   <Tables>

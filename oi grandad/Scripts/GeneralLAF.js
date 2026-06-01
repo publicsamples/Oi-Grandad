@@ -136,33 +136,13 @@ for(s in ModulationMenus)
        
 for(s in vMenu1)
        s.setLocalLookAndFeel(cBLaf);  
- 
-const var vMenu2 = [Content.getComponent("delmodsel11"),
-                    Content.getComponent("redmodsel8"),
-                    Content.getComponent("redmodsel7"),
-                    Content.getComponent("delmodsel12"),
-                    Content.getComponent("PostMode2")];
- for(s in vMenu2)
-        s.setLocalLookAndFeel(cBLaf);  
-        
-const var Vmenu3 = [Content.getComponent("delmodsel13"),
-                    Content.getComponent("redmodsel9"),
-                    Content.getComponent("delmodsel14"),
-                    Content.getComponent("PostMode3"),
-                    Content.getComponent("redmodsel10")];
-  
-  for(s in Vmenu3)
-         s.setLocalLookAndFeel(cBLaf);  
+
+
          
 const var vMenu4 = [Content.getComponent("delmodsel19"),
                     Content.getComponent("ResMode4"),
                     Content.getComponent("redmodsel14"),
-                    Content.getComponent("delmodsel20"),
-                    Content.getComponent("PostMode4"),
-                    Content.getComponent("delmodsel16"),
-                    Content.getComponent("redmodsel11"),
-                    Content.getComponent("delmodsel15"),
-                    Content.getComponent("redmodsel12")];
+                    Content.getComponent("delmodsel20")];
 
 for(s in vMenu4)
        s.setLocalLookAndFeel(cBLaf); 

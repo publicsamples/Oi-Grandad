@@ -1148,19 +1148,17 @@ using delMode_0 = parameter::from0To1<sn_fin_impl::branch1_t<NV>,
 template <int NV>
 using delMode = parameter::chain<delMode_InputRange, delMode_0<NV>>;
 
-DECLARE_PARAMETER_RANGE(MetaModRange, 
-                        -1., 
-                        1.);
+DECLARE_PARAMETER_RANGE_STEP(MetaSrc_InputRange, 
+                             1., 
+                             16., 
+                             1.);
+template <int NV>
+using MetaSrc_0 = parameter::from0To1<sn_fin_impl::branch19_t<NV>, 
+                                      0, 
+                                      ResoSrc_0Range>;
 
 template <int NV>
-using MetaMod = parameter::from0To1<sn_fin_impl::pma20_t<NV>, 
-                                    1, 
-                                    MetaModRange>;
-
-template <int NV>
-using MetaSrc = parameter::from0To1<sn_fin_impl::branch19_t<NV>, 
-                                    0, 
-                                    ResoSrc_0Range>;
+using MetaSrc = parameter::chain<MetaSrc_InputRange, MetaSrc_0<NV>>;
 
 template <int NV>
 using ResoMix = parameter::plain<sn_fin_impl::pma15_t<NV>, 
@@ -1183,6 +1181,9 @@ using ResLpMod = parameter::plain<sn_fin_impl::pma18_t<NV>,
 template <int NV>
 using Meta = parameter::plain<sn_fin_impl::pma20_t<NV>, 
                               2>;
+template <int NV>
+using MetaMod = parameter::plain<sn_fin_impl::pma20_t<NV>, 
+                                 1>;
 template <int NV>
 using sn_fin_t_plist = parameter::list<ResoMix<NV>, 
                                        ResoMixMod<NV>, 
@@ -1237,7 +1238,7 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
             0x5073, 0x7469, 0x6863, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0600, 0x0000, 0x5200, 0x7365, 0x704C, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x5811, 0x3F73, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0007, 0x0000, 0x6552, 0x4C73, 0x4D70, 0x646F, 0x0000, 
             0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0008, 0x0000, 0x6552, 0x4C73, 0x5370, 
@@ -1245,13 +1246,13 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0009, 0x0000, 0x6564, 
             0x4D6C, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x3000, 0x0041, 
             0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0A00, 0x0000, 
-            0x4D00, 0x7465, 0x0061, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 
-            0x4D00, 0x7465, 0x4D61, 0x646F, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x4D00, 0x7465, 0x0061, 0x0000, 0x0000, 0x0000, 0x8000, 0x383F, 
+            0x66BD, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 
+            0x4D00, 0x7465, 0x4D61, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 
             0x3F80, 0xDA74, 0x3F35, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
-            0x000C, 0x0000, 0x654D, 0x6174, 0x7253, 0x0063, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
-            0x0000, 0x0000
+            0x000C, 0x0000, 0x654D, 0x6174, 0x7253, 0x0063, 0x0000, 0x8000, 
+            0x003F, 0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(2)
 		{
@@ -2114,13 +2115,13 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		this->setParameterT(3, 0.94);
 		this->setParameterT(4, 0.);
 		this->setParameterT(5, 1.);
-		this->setParameterT(6, 0.950563);
+		this->setParameterT(6, 1.);
 		this->setParameterT(7, 0.);
 		this->setParameterT(8, 1.);
 		this->setParameterT(9, 10.);
-		this->setParameterT(10, 1.);
+		this->setParameterT(10, 0.901325);
 		this->setParameterT(11, 0.710365);
-		this->setParameterT(12, 0.);
+		this->setParameterT(12, 1.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
