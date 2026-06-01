@@ -697,7 +697,7 @@ inline function onPostMode1Control(component, value)
 	     if(value == 11)
 	     	   	 	      {
 	     	   	 	       Final1.setAttribute(Final1.delMode, 11);
-	     	   	 	       FxLabelB1.setValue("SPACE");
+	     	   	 	       FxLabelB1.setValue("SIZE");
 	     	   	 	       FxLabelB2.setValue("DAMP");
 	     	   	 	       FxLabelB3.setValue("WIDTH");
 	     	   	 	       }         

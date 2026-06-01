@@ -10,13 +10,13 @@
                      Automated="1"/>
         </Parameters>
       </Node>
-      <Node ID="jdelay_thiran" FactoryPath="jdsp.jdelay_thiran" Bypassed="0"
-            Name="jdelay_thiran">
+      <Node ID="jdelay_thiran1" FactoryPath="jdsp.jdelay_thiran" Bypassed="0"
+            Name="jdelay_thiran1">
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="30.0" ID="Limit" TextToValueConverter="Time"
-                     Value="30.0"/>
-          <Parameter MinValue="0.0" MaxValue="30.0" ID="DelayTime" TextToValueConverter="Time"
-                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                     ID="Limit" TextToValueConverter="Time" Value="1000.0"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                     ID="DelayTime" TextToValueConverter="Time" Automated="1"/>
         </Parameters>
       </Node>
       <Node ID="one_pole" FactoryPath="filters.one_pole" Bypassed="0" Name="one_pole">
@@ -53,10 +53,10 @@
           <Connection NodeId="receive" ParameterId="Feedback"/>
         </Connections>
       </Parameter>
-      <Parameter ID="DELAY" MinValue="0.0" MaxValue="30.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="20.22515625" TextToValueConverter="Time">
+      <Parameter ID="DELAY" MinValue="0.0" MaxValue="1000.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="30.0" TextToValueConverter="Time" SkewFactor="0.3010300099849701">
         <Connections>
-          <Connection NodeId="jdelay_thiran" ParameterId="DelayTime"/>
+          <Connection NodeId="jdelay_thiran1" ParameterId="DelayTime"/>
         </Connections>
       </Parameter>
       <Parameter ID="HASS" MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"

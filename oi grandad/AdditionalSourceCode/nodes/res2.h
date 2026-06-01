@@ -13,14 +13,14 @@ using namespace snex::Types;
 
 namespace res2_impl
 {
-// ===========================| Node & Parameter type declarations |===========================
+// ============================| Node & Parameter type declarations |============================
 
 template <int NV>
 using stereo_cable = cable::block<NV, 2>;
 
 namespace res2_t_parameters
 {
-// Parameter list for res2_impl::res2_t -------------------------------------------------------
+// Parameter list for res2_impl::res2_t ---------------------------------------------------------
 
 DECLARE_PARAMETER_RANGE_SKEW(lpRange, 
                              20., 
@@ -53,7 +53,7 @@ using res2_t_ = container::chain<res2_t_parameters::res2_t_plist<NV>,
                                  filters::one_pole<NV>, 
                                  routing::send<NV, stereo_cable<NV>>>;
 
-// ===============================| Root node initialiser class |===============================
+// ================================| Root node initialiser class |================================
 
 template <int NV> struct instance: public res2_impl::res2_t_<NV>
 {
@@ -73,7 +73,7 @@ template <int NV> struct instance: public res2_impl::res2_t_<NV>
 			0x005C, 0x0000, 0x0000, 0x4246, 0x0000, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0x0D50, 0x3F04, 0x0000, 0x3F80, 0x0000, 0x0000, 0x025C, 
             0x0001, 0x0000, 0x4544, 0x414C, 0x0059, 0x0000, 0x0000, 0x0000, 
-            0xF000, 0x1F41, 0xA1CD, 0x0041, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x7A00, 0x0044, 0xF000, 0x9B41, 0x9A20, 0x003E, 0x0000, 0x5C00, 
             0x0200, 0x0000, 0x4800, 0x5341, 0x0053, 0x0000, 0x8000, 0x00BF, 
             0x8000, 0xCF3F, 0xCCCC, 0x003D, 0x8000, 0xCD3F, 0xCCCC, 0x5C3D, 
             0x0300, 0x0000, 0x6C00, 0x0070, 0x0000, 0x0000, 0x0000, 0x8000, 
@@ -87,31 +87,31 @@ template <int NV> struct instance: public res2_impl::res2_t_<NV>
 	
 	instance()
 	{
-		// Node References --------------------------------------------------------------------
+		// Node References ----------------------------------------------------------------------
 		
-		auto& receive = this->getT(0);       // routing::receive<NV, stereo_cable<NV>>
-		auto& jdelay_thiran = this->getT(1); // jdsp::jdelay_thiran<NV>
-		auto& one_pole = this->getT(2);      // filters::one_pole<NV>
-		auto& send = this->getT(3);          // routing::send<NV, stereo_cable<NV>>
+		auto& receive = this->getT(0);        // routing::receive<NV, stereo_cable<NV>>
+		auto& jdelay_thiran1 = this->getT(1); // jdsp::jdelay_thiran<NV>
+		auto& one_pole = this->getT(2);       // filters::one_pole<NV>
+		auto& send = this->getT(3);           // routing::send<NV, stereo_cable<NV>>
 		
-		// Parameter Connections --------------------------------------------------------------
+		// Parameter Connections ----------------------------------------------------------------
 		
 		this->getParameterT(0).connectT(0, receive); // FB -> receive::Feedback
 		
-		this->getParameterT(1).connectT(0, jdelay_thiran); // DELAY -> jdelay_thiran::DelayTime
+		this->getParameterT(1).connectT(0, jdelay_thiran1); // DELAY -> jdelay_thiran1::DelayTime
 		
 		this->getParameterT(3).connectT(0, one_pole); // lp -> one_pole::Frequency
 		
-		// Send Connections -------------------------------------------------------------------
+		// Send Connections ---------------------------------------------------------------------
 		
 		send.connect(receive);
 		
-		// Default Values ---------------------------------------------------------------------
+		// Default Values -----------------------------------------------------------------------
 		
 		; // receive::Feedback is automated
 		
-		jdelay_thiran.setParameterT(0, 30.); // jdsp::jdelay_thiran::Limit
-		;                                    // jdelay_thiran::DelayTime is automated
+		jdelay_thiran1.setParameterT(0, 1000.); // jdsp::jdelay_thiran::Limit
+		;                                       // jdelay_thiran1::DelayTime is automated
 		
 		;                                // one_pole::Frequency is automated
 		one_pole.setParameterT(1, 1.);   // filters::one_pole::Q
@@ -121,7 +121,7 @@ template <int NV> struct instance: public res2_impl::res2_t_<NV>
 		one_pole.setParameterT(5, 1.);   // filters::one_pole::Enabled
 		
 		this->setParameterT(0, 0.515828);
-		this->setParameterT(1, 20.2252);
+		this->setParameterT(1, 30.);
 		this->setParameterT(2, 0.1);
 		this->setParameterT(3, 0.);
 	}
@@ -139,7 +139,7 @@ template <int NV> struct instance: public res2_impl::res2_t_<NV>
 #undef setParameterT
 #undef setParameterWT
 #undef getParameterT
-// ====================================| Public Definition |====================================
+// =====================================| Public Definition |=====================================
 
 namespace project
 {

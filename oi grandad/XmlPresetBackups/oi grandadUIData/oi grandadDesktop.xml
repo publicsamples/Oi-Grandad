@@ -2912,7 +2912,7 @@
                    fontSize="12.0" textColour="4278190080"/>
         <Component type="ScriptLabel" id="FxLabelB1" x="1" y="43" textColour="4280884766"
                    width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="DELAY"/>
+                   fontStyle="Regular" fontSize="15.0" text="OFF"/>
         <Component type="ScriptSlider" id="PostMix1" x="127" y="2" parentComponent="VoiceParam40"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1400000005960464" width="40" height="40" processorId="Final1"
@@ -2927,7 +2927,7 @@
                    showValuePopup="Below"/>
         <Component type="ScriptLabel" id="FxLabelB2" x="65" y="43" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="LP"/>
+                   fontStyle="Regular" fontSize="15.0" text="OFF"/>
         <Component type="ScriptComboBox" id="redmodsel5" x="106" y="8" width="20"
                    height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
@@ -2961,7 +2961,7 @@
                    max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
         <Component type="ScriptLabel" id="FxLabelB3" x="37" y="70" textColour="4280884766"
                    width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="FEED"/>
+                   fontStyle="Regular" fontSize="15.0" text="OFF"/>
         <Component type="ScriptSlider" id="delcutmod6" x="108" y="71" width="20"
                    height="20" processorId="Final1" parameterId="MetaMod" parentComponent="VoiceParam40"
                    numStrips="200.0" dragDirection="Vertical" scaleFactor="0.5"

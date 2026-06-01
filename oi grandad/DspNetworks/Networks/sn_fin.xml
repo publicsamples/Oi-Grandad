@@ -792,7 +792,6 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" DefaultValue="0.0" Automated="1"/>
                         </Parameters>
                         <ModulationTargets>
-                          <Connection NodeId="clone_cable" ParameterId="Value"/>
                           <Connection NodeId="svf" ParameterId="Frequency"/>
                           <Connection NodeId="svf5" ParameterId="Frequency"/>
                           <Connection NodeId="svf4" ParameterId="Frequency"/>
@@ -801,6 +800,8 @@
                           <Connection NodeId="svf_eq2" ParameterId="Frequency"/>
                           <Connection NodeId="jdelay_cubic" ParameterId="DelayTime"/>
                           <Connection NodeId="reverb" ParameterId="Size"/>
+                          <Connection NodeId="allpass" ParameterId="Frequency"/>
+                          <Connection NodeId="clone_cable" ParameterId="Value"/>
                         </ModulationTargets>
                       </Node>
                     </Nodes>
@@ -1928,7 +1929,8 @@
                             </ComplexData>
                             <Parameters>
                               <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
-                                         ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"/>
+                                         ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
+                                         Automated="1"/>
                               <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
                                          ID="Q" DefaultValue="1.0" Automated="1"/>
                               <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
@@ -2050,7 +2052,7 @@
                             <Parameters>
                               <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="NumClones"
                                          Value="8.0" DefaultValue="1.0"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Value" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Gamma" Value="0.0"/>
                             </Parameters>
                           </Node>
@@ -2095,12 +2097,12 @@
                                 <Nodes>
                                   <Node ID="res2" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5158281326293945"
                                                  Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" DefaultValue="30.0" Automated="1"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
+                                                 ID="HASS" Value="0.2000000178813932" DefaultValue="0.1000000163912773"/>
                                       <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
                                     </Parameters>
                                   </Node>
@@ -2123,18 +2125,18 @@
                               <Node ID="clone_child1" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res18" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res11" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain23" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain3" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2153,18 +2155,18 @@
                               <Node ID="clone_child2" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res19" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res12" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain24" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain4" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2183,18 +2185,18 @@
                               <Node ID="clone_child3" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res20" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res13" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain25" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain5" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2213,18 +2215,18 @@
                               <Node ID="clone_child4" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res21" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res14" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain26" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain6" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2243,18 +2245,18 @@
                               <Node ID="clone_child5" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res22" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res15" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain27" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain7" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2273,18 +2275,18 @@
                               <Node ID="clone_child6" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res23" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res16" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain28" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain8" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2303,18 +2305,18 @@
                               <Node ID="clone_child7" FactoryPath="container.chain" Bypassed="0"
                                     Name="clone_child" NodeColour="4287927444">
                                 <Nodes>
-                                  <Node ID="res24" FactoryPath="project.res2" Bypassed="0" Name="res2">
+                                  <Node ID="res17" FactoryPath="project.res2" Bypassed="0" Name="res2">
                                     <Parameters>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" DefaultValue="0.5623124837875366"
-                                                 Automated="1"/>
-                                      <Parameter MinValue="0.0" MaxValue="30.0" ID="DELAY" TextToValueConverter="Time"
-                                                 DefaultValue="20.22515678405762" Automated="1"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="FB" Value="0.5158281326293945"/>
+                                      <Parameter MinValue="0.0" MaxValue="1000.0" SkewFactor="0.3010300099849701"
+                                                 ID="DELAY" TextToValueConverter="Time" Value="61.67595768447254"
+                                                 DefaultValue="30.0"/>
                                       <Parameter MinValue="-1.0" MaxValue="1.0" StepSize="0.1000000014901161"
-                                                 ID="HASS" Value="1.490116097180305e-8" DefaultValue="0.1000000163912773"/>
-                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Automated="1"/>
+                                                 ID="HASS" Value="0.2000000178813932"/>
+                                      <Parameter MinValue="0.0" MaxValue="1.0" ID="lp" Value="0.0"/>
                                     </Parameters>
                                   </Node>
-                                  <Node ID="gain29" FactoryPath="core.gain" Bypassed="0" Name="gain2">
+                                  <Node ID="gain9" FactoryPath="core.gain" Bypassed="0" Name="gain2">
                                     <Parameters>
                                       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
                                                  SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
@@ -2423,7 +2425,7 @@
           <Connection NodeId="branch14" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResPitch" Value="0.9399999976158142"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="ResPitch" Value="0.2040591032608696"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma16" ParameterId="Add"/>
@@ -2436,8 +2438,8 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="ResPitchSrc"
-                 Value="1.0" TextToValueConverter="" ExternalModulation="Disabled"
-                 ModColour="0">
+                 Value="6.0" TextToValueConverter="" ExternalModulation="Disabled"
+                 ModColour="0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="branch15" ParameterId="Index"/>
         </Connections>
@@ -2464,15 +2466,14 @@
           <Connection NodeId="branch1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Meta" Value="0.9013247282608695"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Meta" Value="0.9213654891304348"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma20" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="MetaMod" Value="0.7103645629882812"
-                 DefaultValue="0.0" ExternalModulation="Disabled" ModColour="0"
-                 TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="MetaMod" Value="0.0" ExternalModulation="Disabled"
+                 ModColour="0" TextToValueConverter="">
         <Connections>
           <Connection NodeId="pma20" ParameterId="Multiply"/>
         </Connections>

@@ -411,9 +411,10 @@ using branch15_t = container::branch<parameter::empty,
                                      chain268_t<NV>, 
                                      chain269_t<NV>>;
 
-DECLARE_PARAMETER_RANGE(clone_cable_modRange, 
-                        0., 
-                        30.);
+DECLARE_PARAMETER_RANGE_SKEW(clone_cable_modRange, 
+                             0., 
+                             1000., 
+                             0.30103);
 
 template <int NV>
 using clone_cable_mod = parameter::from0To1<project::res2<NV>, 
@@ -423,50 +424,60 @@ using clone_cable_mod = parameter::from0To1<project::res2<NV>,
 template <int NV>
 using clone_cable_t = control::clone_cable<parameter::cloned<clone_cable_mod<NV>>, 
                                            duplilogic::spread>;
-DECLARE_PARAMETER_RANGE_SKEW(pma16_mod_1Range, 
+DECLARE_PARAMETER_RANGE_SKEW(pma16_mod_0Range, 
                              20., 
                              20000., 
                              0.229905);
 
 template <int NV>
-using pma16_mod_1 = parameter::from0To1<filters::svf<NV>, 
+using pma16_mod_0 = parameter::from0To1<filters::svf<NV>, 
                                         0, 
-                                        pma16_mod_1Range>;
+                                        pma16_mod_0Range>;
 
-template <int NV> using pma16_mod_2 = pma16_mod_1<NV>;
+template <int NV> using pma16_mod_1 = pma16_mod_0<NV>;
 
-template <int NV> using pma16_mod_3 = pma16_mod_1<NV>;
+template <int NV> using pma16_mod_2 = pma16_mod_0<NV>;
 
-template <int NV> using pma16_mod_4 = pma16_mod_1<NV>;
+template <int NV> using pma16_mod_3 = pma16_mod_0<NV>;
 
 template <int NV>
-using pma16_mod_5 = parameter::from0To1<filters::svf_eq<NV>, 
+using pma16_mod_4 = parameter::from0To1<filters::svf_eq<NV>, 
                                         0, 
-                                        pma16_mod_1Range>;
+                                        pma16_mod_0Range>;
 
-template <int NV> using pma16_mod_6 = pma16_mod_5<NV>;
-
-DECLARE_PARAMETER_RANGE_SKEW(pma16_mod_7Range, 
-                             0., 
-                             1000., 
-                             0.30103);
+template <int NV> using pma16_mod_5 = pma16_mod_4<NV>;
 
 template <int NV>
-using pma16_mod_7 = parameter::from0To1<jdsp::jdelay_cubic<NV>, 
+using pma16_mod_6 = parameter::from0To1<jdsp::jdelay_cubic<NV>, 
                                         1, 
-                                        pma16_mod_7Range>;
+                                        clone_cable_modRange>;
+
+template <int NV>
+using pma16_mod_8 = parameter::from0To1<filters::allpass<NV>, 
+                                        0, 
+                                        pma16_mod_0Range>;
+
+DECLARE_PARAMETER_RANGE(pma16_mod_9Range, 
+                        -1., 
+                        1.);
+
+template <int NV>
+using pma16_mod_9 = parameter::from0To1<clone_cable_t<NV>, 
+                                        1, 
+                                        pma16_mod_9Range>;
 
 template <int NV>
 using pma16_mod = parameter::chain<ranges::Identity, 
-                                   parameter::plain<clone_cable_t<NV>, 1>, 
+                                   pma16_mod_0<NV>, 
                                    pma16_mod_1<NV>, 
                                    pma16_mod_2<NV>, 
                                    pma16_mod_3<NV>, 
                                    pma16_mod_4<NV>, 
                                    pma16_mod_5<NV>, 
                                    pma16_mod_6<NV>, 
-                                   pma16_mod_7<NV>, 
-                                   parameter::plain<fx::reverb, 2>>;
+                                   parameter::plain<fx::reverb, 2>, 
+                                   pma16_mod_8<NV>, 
+                                   pma16_mod_9<NV>>;
 
 template <int NV>
 using pma16_t = control::pma<NV, pma16_mod<NV>>;
@@ -665,7 +676,7 @@ using clone_cable1_t = control::clone_cable<parameter::cloned<parameter::plain<p
 template <int NV>
 using pma18_mod_0 = parameter::from0To1<filters::one_pole<NV>, 
                                         0, 
-                                        pma16_mod_1Range>;
+                                        pma16_mod_0Range>;
 
 DECLARE_PARAMETER_RANGE_SKEW(pma18_mod_2Range, 
                              0.3, 
@@ -917,13 +928,13 @@ using stereo_frame_cable = cable::frame<NV, 2>;
 template <int NV>
 using clone_cable2_t = control::clone_cable<parameter::cloned<parameter::plain<project::res2<NV>, 0>>, 
                                             duplilogic::fixed>;
-template <int NV> using pma20_mod_0 = pma16_mod_1<NV>;
+template <int NV> using pma20_mod_0 = pma16_mod_0<NV>;
 
-template <int NV> using pma20_mod_1 = pma16_mod_1<NV>;
+template <int NV> using pma20_mod_1 = pma16_mod_0<NV>;
 
-template <int NV> using pma20_mod_2 = pma16_mod_1<NV>;
+template <int NV> using pma20_mod_2 = pma16_mod_0<NV>;
 
-template <int NV> using pma20_mod_3 = pma16_mod_1<NV>;
+template <int NV> using pma20_mod_3 = pma16_mod_0<NV>;
 
 DECLARE_PARAMETER_RANGE(pma20_mod_4Range, 
                         -18., 
@@ -1231,12 +1242,12 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
             0x7365, 0x536F, 0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0003, 
             0x0000, 0x6552, 0x5073, 0x7469, 0x6863, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0xA3D7, 0x3F70, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0xF4DF, 0x3E50, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0004, 0x0000, 0x6552, 0x7073, 0x6950, 0x6374, 0x4D68, 
             0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0005, 0x0000, 0x6552, 
             0x5073, 0x7469, 0x6863, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0041, 0xC000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0600, 0x0000, 0x5200, 0x7365, 0x704C, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0007, 0x0000, 0x6552, 0x4C73, 0x4D70, 0x646F, 0x0000, 
@@ -1246,10 +1257,10 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0009, 0x0000, 0x6564, 
             0x4D6C, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x3000, 0x0041, 
             0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0A00, 0x0000, 
-            0x4D00, 0x7465, 0x0061, 0x0000, 0x0000, 0x0000, 0x8000, 0x383F, 
-            0x66BD, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 
+            0x4D00, 0x7465, 0x0061, 0x0000, 0x0000, 0x0000, 0x8000, 0x9C3F, 
+            0x6BDE, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 
             0x4D00, 0x7465, 0x4D61, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 
-            0x3F80, 0xDA74, 0x3F35, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
             0x000C, 0x0000, 0x654D, 0x6174, 0x7253, 0x0063, 0x0000, 0x8000, 
             0x003F, 0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x003F, 0x0000
@@ -1594,15 +1605,16 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		global_cable252.getWrappedObject().getParameter().connectT(0, add252); // global_cable252 -> add252::Value
 		global_cable253.getWrappedObject().getParameter().connectT(0, add253); // global_cable253 -> add253::Value
 		clone_cable.getWrappedObject().getParameter().connectT(0, res2);       // clone_cable -> res2::DELAY
-		pma16.getWrappedObject().getParameter().connectT(0, clone_cable);      // pma16 -> clone_cable::Value
-		pma16.getWrappedObject().getParameter().connectT(1, svf);              // pma16 -> svf::Frequency
-		pma16.getWrappedObject().getParameter().connectT(2, svf5);             // pma16 -> svf5::Frequency
-		pma16.getWrappedObject().getParameter().connectT(3, svf4);             // pma16 -> svf4::Frequency
-		pma16.getWrappedObject().getParameter().connectT(4, svf3);             // pma16 -> svf3::Frequency
-		pma16.getWrappedObject().getParameter().connectT(5, svf_eq1);          // pma16 -> svf_eq1::Frequency
-		pma16.getWrappedObject().getParameter().connectT(6, svf_eq2);          // pma16 -> svf_eq2::Frequency
-		pma16.getWrappedObject().getParameter().connectT(7, jdelay_cubic);     // pma16 -> jdelay_cubic::DelayTime
-		pma16.getWrappedObject().getParameter().connectT(8, reverb);           // pma16 -> reverb::Size
+		pma16.getWrappedObject().getParameter().connectT(0, svf);              // pma16 -> svf::Frequency
+		pma16.getWrappedObject().getParameter().connectT(1, svf5);             // pma16 -> svf5::Frequency
+		pma16.getWrappedObject().getParameter().connectT(2, svf4);             // pma16 -> svf4::Frequency
+		pma16.getWrappedObject().getParameter().connectT(3, svf3);             // pma16 -> svf3::Frequency
+		pma16.getWrappedObject().getParameter().connectT(4, svf_eq1);          // pma16 -> svf_eq1::Frequency
+		pma16.getWrappedObject().getParameter().connectT(5, svf_eq2);          // pma16 -> svf_eq2::Frequency
+		pma16.getWrappedObject().getParameter().connectT(6, jdelay_cubic);     // pma16 -> jdelay_cubic::DelayTime
+		pma16.getWrappedObject().getParameter().connectT(7, reverb);           // pma16 -> reverb::Size
+		pma16.getWrappedObject().getParameter().connectT(8, allpass);          // pma16 -> allpass::Frequency
+		pma16.getWrappedObject().getParameter().connectT(9, clone_cable);      // pma16 -> clone_cable::Value
 		peak15.getParameter().connectT(0, pma16);                              // peak15 -> pma16::Value
 		global_cable270.getWrappedObject().getParameter().connectT(0, add270); // global_cable270 -> add270::Value
 		global_cable271.getWrappedObject().getParameter().connectT(0, add271); // global_cable271 -> add271::Value
@@ -2037,7 +2049,7 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		svf_eq2.setParameterT(4, 3.);   // filters::svf_eq::Mode
 		svf_eq2.setParameterT(5, 1.);   // filters::svf_eq::Enabled
 		
-		allpass.setParameterT(0, 0.);   // filters::allpass::Frequency
+		;                               // allpass::Frequency is automated
 		;                               // allpass::Q is automated
 		allpass.setParameterT(2, 0.);   // filters::allpass::Gain
 		allpass.setParameterT(3, 0.01); // filters::allpass::Smoothing
@@ -2085,10 +2097,10 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		clone.setParameterT(0, 8.); // container::clone::NumClones
 		clone.setParameterT(1, 2.); // container::clone::SplitSignal
 		
-		;                                   // res2::FB is automated
-		;                                   // res2::DELAY is automated
-		res2.setParameterT(2, 1.49012e-08); // project::res2::HASS
-		;                                   // res2::lp is automated
+		;                           // res2::FB is automated
+		;                           // res2::DELAY is automated
+		res2.setParameterT(2, 0.2); // project::res2::HASS
+		;                           // res2::lp is automated
 		
 		gain2.setParameterT(0, -17.); // core::gain::Gain
 		gain2.setParameterT(1, 20.);  // core::gain::Smoothing
@@ -2112,15 +2124,15 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		this->setParameterT(0, 1.);
 		this->setParameterT(1, 0.);
 		this->setParameterT(2, 1.);
-		this->setParameterT(3, 0.94);
+		this->setParameterT(3, 0.204059);
 		this->setParameterT(4, 0.);
-		this->setParameterT(5, 1.);
+		this->setParameterT(5, 6.);
 		this->setParameterT(6, 1.);
 		this->setParameterT(7, 0.);
 		this->setParameterT(8, 1.);
 		this->setParameterT(9, 10.);
-		this->setParameterT(10, 0.901325);
-		this->setParameterT(11, 0.710365);
+		this->setParameterT(10, 0.921365);
+		this->setParameterT(11, 0.);
 		this->setParameterT(12, 1.);
 		this->setExternalData({}, -1);
 	}
