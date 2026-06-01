@@ -32,7 +32,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelA1" x="1" y="43" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="TRASH"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptSlider" id="delmix1" x="129" y="2" parentComponent="VoiceParam11"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular1"
@@ -47,7 +47,7 @@
                      showValuePopup="Below"/>
           <Component type="ScriptLabel" id="FxLabelA2" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="LP"/>
+                     fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel1" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
@@ -2954,16 +2954,16 @@
                    scaleFactor="0.1299999952316284" width="30" height="30" processorId="Final1"
                    parameterId="Meta" bgColour="4292665834" stepSize="0.0" middlePosition="0.5"
                    showValuePopup="Below"/>
-        <Component type="ScriptComboBox" id="redmodsel6" x="79" y="70" width="20"
+        <Component type="ScriptComboBox" id="redmodsel6" x="85" y="70" width="20"
                    height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
                    processorId="Final1" parameterId="MetaSrc" itemColour2="3816794416"
                    max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
         <Component type="ScriptLabel" id="FxLabelB3" x="37" y="70" textColour="4280884766"
-                   width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
+                   width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
                    fontStyle="Regular" fontSize="15.0" text="FEED"/>
-        <Component type="ScriptSlider" id="delcutmod6" x="106" y="69" width="20"
-                   height="20" processorId="Final1" parameterId="MetaSrc" parentComponent="VoiceParam40"
+        <Component type="ScriptSlider" id="delcutmod6" x="108" y="71" width="20"
+                   height="20" processorId="Final1" parameterId="MetaMod" parentComponent="VoiceParam40"
                    numStrips="200.0" dragDirection="Vertical" scaleFactor="0.5"
                    middlePosition="0.0" showValuePopup="Below" min="-1.0" bgColour="4278190080"
                    textColour="3001935573" itemColour2="4212199680"/>
@@ -6829,8 +6829,8 @@
   <Component type="ScriptComboBox" id="cmbPresets" x="634" y="18" width="200"
              height="30" bgColour="2834420659" itemColour="2381435827" itemColour2="15591125"
              textColour="2767382478" useCustomPopup="1" saveInPreset="0" text="LOAD A PRESET"
-             items="&#10;factory::Bank 1::1complex&#10;factory::Bank 1::2 flavours&#10;factory::Bank 1::geewhiz&#10;factory::Bank 1::HELLO&#10;factory::Bank 1::Just res&#10;factory::Bank 1::Pluck"
-             max="6">
+             items="&#10;factory::Bank 1::1complex&#10;factory::Bank 1::2 flavours&#10;factory::Bank 1::a&#10;factory::Bank 1::geewhiz&#10;factory::Bank 1::HELLO&#10;factory::Bank 1::Just res&#10;factory::Bank 1::Pluck"
+             max="7">
     <Component type="ScriptLabel" id="ScriptLabel11" x="0" y="1" width="200"
                height="30" parentComponent="cmbPresets" text="Select a preset.."
                fontName="Montserrat" bgColour="4291389544" textColour="4294757580"
