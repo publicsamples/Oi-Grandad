@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="trash2" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="trash2" Bypassed="0" Name="trash2">
+    <Nodes>
+      <Node ID="frame2_block" FactoryPath="container.frame2_block" Bypassed="0"
+            Name="frame2_block">
+        <Nodes>
+          <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
+            <Nodes>
+              <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
+                <Nodes/>
+                <Parameters/>
+              </Node>
+              <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain">
+                <Nodes>
+                  <Node ID="add" FactoryPath="math.add" Bypassed="1" Name="add">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="receive" FactoryPath="routing.receive" Bypassed="0" Name="receive">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Value="0.6173502197265626"
+                                 DefaultValue="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="phase_delay" FactoryPath="fx.phase_delay" Bypassed="1" Name="phase_delay">
+                    <Parameters>
+                      <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.2299045622348785" ID="Frequency" Value="20000.0"
+                                 DefaultValue="400.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="fix_delay" FactoryPath="core.fix_delay" Bypassed="0" Name="fix_delay">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="10.0" SkewFactor="0.3010300099849701"
+                                 ID="DelayTime" Value="1.230594779713266" DefaultValue="100.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
+                                 Value="512.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="peak" FactoryPath="core.peak" Bypassed="0" Name="peak">
+                    <ModulationTargets>
+                      <Connection NodeId="pma" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Name="pma">
+            <ModulationTargets>
+              <Connection NodeId="fmod" ParameterId="Value"/>
+              <Connection NodeId="div" ParameterId="Value"/>
+              <Connection NodeId="clip" ParameterId="Value"/>
+              <Connection NodeId="pi" ParameterId="Value"/>
+              <Connection NodeId="biquad" ParameterId="Frequency"/>
+              <Connection NodeId="sampleandhold" ParameterId="Counter"/>
+              <Connection NodeId="gain" ParameterId="Gain"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Value="1.0" DefaultValue="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="fmod" FactoryPath="math.fmod" Bypassed="0" Name="fmod">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="pi" FactoryPath="math.pi" Bypassed="1" Name="pi">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="2.0" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="sampleandhold" FactoryPath="fx.sampleandhold" Bypassed="1"
+                Name="sampleandhold">
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="64.0" StepSize="1.0" ID="Counter" DefaultValue="1.0"
+                         Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="clip" FactoryPath="math.clip" Bypassed="1" Name="clip">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="div" FactoryPath="math.div" Bypassed="0" Name="div">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+            </Parameters>
+          </Node>
+          <Node ID="gain" FactoryPath="core.gain" Bypassed="1" Name="gain">
+            <Parameters>
+              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="0.0" DefaultValue="20.0"/>
+              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="send" FactoryPath="routing.send" Bypassed="0" Name="send">
+            <Properties>
+              <Property ID="Connection" Value="receive"/>
+            </Properties>
+            <Parameters/>
+          </Node>
+          <Node ID="biquad" FactoryPath="filters.biquad" Bypassed="1" Name="biquad">
+            <ComplexData>
+              <Filters>
+                <Filter Index="-1"/>
+              </Filters>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                         ID="Frequency" DefaultValue="1000.0" Automated="1"/>
+              <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                         ID="Q" Value="2.072280299068064" DefaultValue="1.0"/>
+              <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                         ID="Smoothing" Value="0.0" DefaultValue="0.009999999776482582"/>
+              <Parameter MinValue="0.0" MaxValue="5.0" StepSize="1.0" ID="Mode" Value="5.0"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

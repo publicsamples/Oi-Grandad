@@ -7,7 +7,11 @@
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
 
-// Include compiled network files ------------------
+// Include third party header files ------------------------
+
+#include "granular_player_stepquant_density_hybrid_native.h"
+
+// Include compiled network files --------------------------
 
 #include "DspNetwork.h"
 #include "MacroMod.h"
