@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptButton" id="Analyze" x="277" y="162" enableMidiLearn="0"
+             isMomentary="1" saveInPreset="0"/>
+  <Component type="ScriptAudioWaveform" id="AudioWaveform1" x="270" y="30"
+             processorId="Spec"/>
+</ContentProperties>

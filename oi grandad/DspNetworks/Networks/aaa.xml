@@ -3,11 +3,12 @@
 <Network ID="aaa" AllowPolyphonic="1" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="aaa" Bypassed="0" Name="aaa">
     <Nodes>
-      <Node ID="spectral_player_loris1" FactoryPath="project.spectral_player_loris"
-            Bypassed="0" Name="spectral_player_loris1">
+      <Node ID="spectral_player_loris3" FactoryPath="project.spectral_player_loris"
+            Bypassed="0" Name="spectral_player_loris3">
         <ComplexData>
           <AudioFiles>
-            <AudioFile Index="0" MinValue="0" MaxValue="65536"/>
+            <AudioFile Index="0" EmbeddedData="{PROJECT_FOLDER}mstring.wav" MinValue="0"
+                       MaxValue="65536"/>
           </AudioFiles>
           <DisplayBuffers>
             <DisplayBuffer Index="-1"/>
@@ -17,10 +18,11 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.0"/>
           <Parameter MinValue="-24.0" MaxValue="24.0" ID="PitchSemitones" Value="0.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="PartialBlend" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="NoiseBlend" Value="0.473341796875"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="NoiseBlend" Value="0.481984375"
                      DefaultValue="0.0"/>
           <Parameter MinValue="1.0" MaxValue="256.0" ID="PartialCount" Value="64.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Analyze" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="DebugMode" Value="0.0"/>
         </Parameters>
       </Node>
       <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
@@ -28,20 +30,20 @@
         <Properties>
           <Property ID="Connection" Value="spectral_status"/>
         </Properties>
-        <ModulationTargets>
-          <Connection NodeId="pma_unscaled" ParameterId="Add"/>
-        </ModulationTargets>
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="3.0" ID="Value" Value="0.09078173828124997"
-                     DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0" DefaultValue="1.0"/>
         </Parameters>
+        <ModulationTargets>
+          <Connection NodeId="pma_unscaled" ParameterId="Value"/>
+        </ModulationTargets>
       </Node>
       <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0"
             Name="pma_unscaled">
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
-          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="3.0" ID="Add" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
+          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="0.06349999999999989"
+                     DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="3.0" ID="Add"/>
         </Parameters>
       </Node>
     </Nodes>

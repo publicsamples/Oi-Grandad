@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="loris" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="loris" Bypassed="0" Name="loris">
+    <Nodes>
+      <Node ID="spectral_player_loris" FactoryPath="project.spectral_player_loris"
+            Bypassed="0" Name="spectral_player_loris">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="0" MinValue="0" MaxValue="264600"/>
+          </AudioFiles>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1"/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.0"/>
+          <Parameter MinValue="-24.0" MaxValue="24.0" ID="PitchSemitones" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PartialBlend" Value="0.73759375"
+                     DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="NoiseBlend" Value="0.533375"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="256.0" ID="PartialCount" Value="155.477265625"
+                     DefaultValue="64.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Analyze" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="DebugMode" Value="0.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="global_cable" FactoryPath="routing.global_cable" Bypassed="0"
+            Name="global_cable" NodeColour="4287869512">
+        <Properties>
+          <Property ID="Connection" Value="spectral_status"/>
+        </Properties>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Name="pma">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
+          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Add" Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

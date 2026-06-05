@@ -89,6 +89,7 @@ template <int NV> struct spectral_player_loris : public data::base,
 		String lastError;
 		std::vector<int> laneIds;
 		std::vector<AnalysisFrame> frames;
+		std::vector<float> lorisResynthMono;
 
 		void reset()
 		{
@@ -101,6 +102,7 @@ template <int NV> struct spectral_player_loris : public data::base,
 			lastError.clear();
 			laneIds.clear();
 			frames.clear();
+			lorisResynthMono.clear();
 		}
 	};
 
@@ -109,6 +111,7 @@ template <int NV> struct spectral_player_loris : public data::base,
 		double scrubPosition = 0.0;
 		double lastScrubPosition = -1.0;
 		double oscillatorPhase = 0.0;
+		double resynthReadPos = 0.0;
 		int noteNumber = 60;
 		double pitchRatio = 1.0;
 		std::array<double, MaxRenderablePartials> partialPhases {};
@@ -122,6 +125,7 @@ template <int NV> struct spectral_player_loris : public data::base,
 			scrubPosition = 0.0;
 			lastScrubPosition = -1.0;
 			oscillatorPhase = 0.0;
+			resynthReadPos = 0.0;
 			noteNumber = 60;
 			pitchRatio = 1.0;
 			partialPhases.fill(0.0);
@@ -239,10 +243,20 @@ template <int NV> struct spectral_player_loris : public data::base,
 		for (int ch = 0; ch < 2; ++ch)
 			data.referBlockTo(sourceSample[(size_t) ch], ch);
 
+		if (audioFile.numSamples <= 2 || audioFile.sampleRate <= 0.0)
+		{
+			invalidateAnalysis();
+			return;
+		}
+
 		if (!cacheMatchesCurrentSample())
 		{
 			invalidateAnalysis();
-			analyzeCurrentSample();
+
+			// If the Analyze parameter was already high when the node was restored,
+			// retrigger analysis now that the sample slot is actually valid.
+			if (analyzeTrigger >= 0.5)
+				analyzeCurrentSample();
 		}
 	}
 
@@ -260,11 +274,12 @@ template <int NV> struct spectral_player_loris : public data::base,
 		if (P == 4) partialCount = jlimit(1.0, 256.0, std::round(v));
 		if (P == 5)
 		{
-			if (v >= 0.5 && analyzeTrigger < 0.5)
+			if (v >= 0.5 && (analyzeTrigger < 0.5 || !cacheMatchesCurrentSample()))
 				analyzeCurrentSample();
 
 			analyzeTrigger = v;
 		}
+		if (P == 6) debugMode = jlimit(0.0, 2.0, std::round(v));
 	}
 
 	void createParameters(ParameterDataList& data)
@@ -278,6 +293,13 @@ template <int NV> struct spectral_player_loris : public data::base,
 			parameter::data p("Analyze", { 0.0, 1.0, 1.0 });
 			registerCallback<5>(p);
 			p.setParameterValueNames({ "Idle", "Analyze" });
+			p.setDefaultValue(0.0);
+			data.add(std::move(p));
+		}
+		{
+			parameter::data p("DebugMode", { 0.0, 2.0, 1.0 });
+			registerCallback<6>(p);
+			p.setParameterValueNames({ "Normal", "Snapshot", "Loris" });
 			p.setDefaultValue(0.0);
 			data.add(std::move(p));
 		}
@@ -632,6 +654,23 @@ template <int NV> struct spectral_player_loris : public data::base,
 		cache.laneCount = 0;
 		for (const auto& frame : cache.frames)
 			cache.laneCount = jmax(cache.laneCount, (int) frame.harmonicGains.size());
+
+		auto synthBuffers = lorisManager->synthesise(tempAnalysisFile);
+		if (!synthBuffers.isEmpty())
+		{
+			auto* left = synthBuffers[0].getBuffer();
+			auto* right = synthBuffers[jmin(1, synthBuffers.size() - 1)].getBuffer();
+
+			if (left != nullptr && left->size > 0)
+			{
+				cache.lorisResynthMono.resize((size_t) left->size, 0.0f);
+				auto* leftSrc = left->buffer.getReadPointer(0);
+				auto* rightSrc = (right != nullptr) ? right->buffer.getReadPointer(0) : leftSrc;
+
+				for (int i = 0; i < left->size; ++i)
+					cache.lorisResynthMono[(size_t) i] = 0.5f * (leftSrc[i] + rightSrc[i]);
+			}
+		}
 	#else
 			failAnalysis("Loris support is not available in this build");
 			return;
@@ -718,6 +757,32 @@ template <int NV> struct spectral_player_loris : public data::base,
 
 		const double rootFrequency = 440.0 * std::pow(2.0, ((double) rootNote - 69.0) / 12.0);
 		const double oscFrequency = rootFrequency * voice.pitchRatio;
+
+		if (debugMode >= 1.5 && !cache.lorisResynthMono.empty())
+		{
+			const double scrubJump = std::abs(scrub - voice.lastScrubPosition);
+			if (voice.lastScrubPosition < 0.0 || scrubJump > 0.002)
+			{
+				const double maxPos = (double) jmax(0, (int) cache.lorisResynthMono.size() - 1);
+				voice.resynthReadPos = scrub * maxPos;
+			}
+
+			voice.lastScrubPosition = scrub;
+			const double increment = jmax(0.125, voice.pitchRatio);
+			const double maxPos = (double) cache.lorisResynthMono.size();
+			const double pos = std::fmod(voice.resynthReadPos, maxPos);
+			const int i0 = jlimit(0, (int) cache.lorisResynthMono.size() - 1, (int) std::floor(pos));
+			const int i1 = (i0 + 1) % (int) cache.lorisResynthMono.size();
+			const double t = pos - std::floor(pos);
+			const double s0 = cache.lorisResynthMono[(size_t) i0];
+			const double s1 = cache.lorisResynthMono[(size_t) i1];
+			const float s = (float) jlimit(-0.8, 0.8, s0 + (s1 - s0) * t);
+			voice.resynthReadPos += increment;
+			fd[0] += s;
+			fd[1] += s;
+			return;
+		}
+
 		voice.oscillatorPhase = wrap01(voice.oscillatorPhase + oscFrequency / sampleRate);
 
 		const int harmonicLimit = jmin(jlimit(1, MaxRenderablePartials, (int) partialCount),
@@ -755,14 +820,19 @@ template <int NV> struct spectral_player_loris : public data::base,
 
 		const double sampleA = wa0 + (wa1 - wa0) * sampleT;
 		const double sampleB = wb0 + (wb1 - wb0) * sampleT;
-		double sum = (sampleA + (sampleB - sampleA) * frameT) * partialWeight * (0.35 + 0.65 * partialBlend);
+		double sum = sampleA + (sampleB - sampleA) * frameT;
+
+		if (debugMode < 0.5)
+			sum *= partialWeight * (0.35 + 0.65 * partialBlend);
 
 		double noiseAmt = ((1.0 - frameT) * a.noiseEnergy + frameT * b.noiseEnergy) * noiseBlend * 0.01;
 		voice.noiseState = voice.noiseState * 1664525u + 1013904223u;
 		double white = ((double) ((voice.noiseState >> 8) & 0x00ffffff) / 8388607.5) - 1.0;
-		sum += white * noiseAmt;
+		if (debugMode < 0.5)
+			sum += white * noiseAmt;
 
 		float s = (float) jlimit(-0.8, 0.8, sum);
+		voice.lastScrubPosition = scrub;
 		fd[0] += s;
 		fd[1] += s;
 	}
@@ -781,6 +851,7 @@ template <int NV> struct spectral_player_loris : public data::base,
 	double partialBlend = 1.0;
 	double noiseBlend = 0.0;
 	double partialCount = 64.0;
+	double debugMode = 0.0;
 	int rootNote = 60;
 	double analyzeTrigger = 0.0;
 	File tempAnalysisFile;
