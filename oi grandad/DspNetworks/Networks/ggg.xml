@@ -73,55 +73,47 @@
               </DisplayBuffers>
             </ComplexData>
             <Parameters/>
-            <ModulationTargets>
-              <Connection NodeId="granular_player_stepquant_density_hybrid_native1" ParameterId="Scrub"/>
-            </ModulationTargets>
           </Node>
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="granular_player_stepquant_density_hybrid_native1" FactoryPath="project.granular_player_stepquant_density_hybrid_native"
-            Bypassed="0" Name="granular_player_stepquant_density_hybrid_native1">
+      <Node ID="pma" FactoryPath="control.pma" Bypassed="0" Name="pma">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Value="0.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="granular_player_stepquant_density_hybrid_native" FactoryPath="project.granular_player_stepquant_density_hybrid_native"
+            Bypassed="0" Name="granular_player_stepquant_density_hybrid_native">
         <ComplexData>
           <AudioFiles>
-            <AudioFile Index="0" MinValue="0" MaxValue="1536000"/>
+            <AudioFile Index="0" MinValue="0" MaxValue="325662"/>
           </AudioFiles>
-          <SliderPacks>
-            <SliderPack Index="1"/>
-          </SliderPacks>
         </ComplexData>
         <Parameters>
-          <Parameter MinValue="-12.0" MaxValue="12.0" ID="PitchSemitones" Value="-0.0157500000000006"
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="PitchSemitones" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.2921874999999999"
                      DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" DefaultValue="0.0" Automated="1"/>
-          <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" Value="125.0683125"
+          <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" Value="234.915890625"
                      DefaultValue="50.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.0" DefaultValue="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" Value="0.9654374999999999"
-                     DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.717890625"
-                     DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchMode" Value="0.566203125"
-                     DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpreadOrSync" Value="0.5128125"
-                     DefaultValue="0.0"/>
-          <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" Value="15.972515625"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchMode" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpreadOrSync" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" Value="4.1220625"
                      DefaultValue="4.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubMode" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Value="0.15159375"
-                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubMode" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Value="0.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="DirectionMode" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="4096.0" ID="PhaseScatter" Value="3530.624"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" Value="0.62190625"
                      DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Value="0.3121406249999999"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Value="0.153078125"
                      DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Value="0.9178437500000001"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" Value="0.230328125"
                      DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" DefaultValue="" Value="0.2965937490463257"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density2" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" Value="0.901625"
-                     DefaultValue="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="PositionSpread" Value="1.0"/>
         </Parameters>
       </Node>
     </Nodes>

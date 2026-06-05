@@ -16,53 +16,8 @@ namespace DspNetwork_impl
 // ==============================| Node & Parameter type declarations |==============================
 
 template <int NV>
-using cable_table_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
-                                 data::external::table<0>>;
-
-template <int NV>
-using cable_table17_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
-                                   data::external::table<1>>;
-
-template <int NV>
-using cable_table16_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
-                                   data::external::table<2>>;
-
-template <int NV>
-using cable_table15_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
-                                   data::external::table<3>>;
-
-template <int NV>
-using cable_pack_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
-                                data::external::sliderpack<0>>;
-
-template <int NV>
-using cable_pack7_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
-                                 data::external::sliderpack<1>>;
-
-template <int NV>
-using cable_pack6_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
-                                 data::external::sliderpack<2>>;
-
-template <int NV>
-using cable_pack5_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
-                                 data::external::sliderpack<3>>;
-
-template <int NV>
-using minmax_mod = parameter::chain<ranges::Identity, 
-                                    parameter::plain<cable_table_t<NV>, 0>, 
-                                    parameter::plain<cable_table17_t<NV>, 0>, 
-                                    parameter::plain<cable_table16_t<NV>, 0>, 
-                                    parameter::plain<cable_table15_t<NV>, 0>, 
-                                    parameter::plain<cable_pack_t<NV>, 0>, 
-                                    parameter::plain<cable_pack7_t<NV>, 0>, 
-                                    parameter::plain<cable_pack6_t<NV>, 0>, 
-                                    parameter::plain<cable_pack5_t<NV>, 0>>;
-
-template <int NV>
-using minmax_t = control::minmax<NV, minmax_mod<NV>>;
-template <int NV>
 using input_toggle3_t = control::input_toggle<NV, 
-                                              parameter::plain<minmax_t<NV>, 0>>;
+                                              parameter::plain<math::add<NV>, 0>>;
 template <int NV>
 using ramp_t = wrap::mod<parameter::plain<input_toggle3_t<NV>, 1>, 
                          wrap::no_data<core::ramp<NV, false>>>;
@@ -1195,13 +1150,64 @@ using cable_table4_t = wrap::data<control::cable_table<cable_table4_mod<NV>>,
                                   data::embedded::table<cable_table4_t_data>>;
 
 template <int NV>
+using cable_table_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
+                                 data::external::table<0>>;
+
+template <int NV>
+using cable_table17_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
+                                   data::external::table<1>>;
+
+template <int NV>
+using cable_table16_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
+                                   data::external::table<2>>;
+
+template <int NV>
+using cable_table15_t = wrap::data<control::cable_table<parameter::plain<math::add<NV>, 0>>, 
+                                   data::external::table<3>>;
+
+template <int NV>
+using cable_pack_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
+                                data::external::sliderpack<0>>;
+
+template <int NV>
+using cable_pack7_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
+                                 data::external::sliderpack<1>>;
+
+template <int NV>
+using cable_pack6_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
+                                 data::external::sliderpack<2>>;
+
+template <int NV>
+using cable_pack5_t = wrap::data<control::cable_pack<parameter::plain<math::add<NV>, 0>>, 
+                                 data::external::sliderpack<3>>;
+
+template <int NV>
+using peak21_mod = parameter::chain<ranges::Identity, 
+                                    parameter::plain<cable_table_t<NV>, 0>, 
+                                    parameter::plain<cable_table17_t<NV>, 0>, 
+                                    parameter::plain<cable_table16_t<NV>, 0>, 
+                                    parameter::plain<cable_table15_t<NV>, 0>, 
+                                    parameter::plain<cable_pack_t<NV>, 0>, 
+                                    parameter::plain<cable_pack7_t<NV>, 0>, 
+                                    parameter::plain<cable_pack6_t<NV>, 0>, 
+                                    parameter::plain<cable_pack5_t<NV>, 0>>;
+
+template <int NV>
+using peak21_t = wrap::mod<peak21_mod<NV>, 
+                           wrap::no_data<core::peak>>;
+
+template <int NV>
 using chain1_t = container::chain<parameter::empty, 
                                   wrap::fix<1, cable_table4_t<NV>>, 
                                   resetter_t<NV>, 
                                   clock_ramp1_t<NV>, 
                                   ramp_t<NV>, 
                                   input_toggle3_t<NV>, 
-                                  minmax_t<NV>, 
+                                  math::clear<NV>, 
+                                  math::add<NV>, 
+                                  wrap::no_process<math::fmod<NV>>, 
+                                  control::pma<NV, parameter::empty>, 
+                                  peak21_t<NV>, 
                                   math::clear<NV>, 
                                   cable_pack1_t>;
 
@@ -1244,6 +1250,7 @@ template <int NV>
 using chain2_t = container::chain<parameter::empty, 
                                   wrap::fix<1, xfader_t<NV>>, 
                                   split1_t<NV>, 
+                                  math::fmod<NV>, 
                                   peak3_t<NV>, 
                                   math::clear<NV>, 
                                   math::add<NV>>;
@@ -1597,7 +1604,8 @@ DECLARE_PARAMETER_RANGE_STEP(onshot_InputRange,
 
 template <int NV>
 using onshot = parameter::chain<onshot_InputRange, 
-                                parameter::plain<DspNetwork_impl::ramp_t<NV>, 1>>;
+                                parameter::plain<DspNetwork_impl::ramp_t<NV>, 1>, 
+                                parameter::plain<control::pma<NV, parameter::empty>, 0>>;
 
 DECLARE_PARAMETER_RANGE(morph_InputRange, 
                         1., 
@@ -1630,9 +1638,7 @@ using morphmodest_0 = parameter::from0To1<DspNetwork_impl::branch4_t<NV>,
 template <int NV>
 using morphmodest = parameter::chain<morphmodest_InputRange, morphmodest_0<NV>>;
 
-template <int NV>
-using dir = parameter::plain<DspNetwork_impl::minmax_t<NV>, 
-                             5>;
+using dir = parameter::empty;
 using Out = parameter::plain<DspNetwork_impl::branch1_t, 
                              0>;
 template <int NV>
@@ -1641,7 +1647,7 @@ using DspNetwork_t_plist = parameter::list<tempo<NV>,
                                            tempomod<NV>, 
                                            moddest<NV>, 
                                            type<NV>, 
-                                           dir<NV>, 
+                                           dir, 
                                            keysync<NV>, 
                                            onshot<NV>, 
                                            morph<NV>, 
@@ -1677,9 +1683,9 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		SNEX_METADATA_ENCODED_PARAMETERS(206)
 		{
 			0x005C, 0x0000, 0x0000, 0x6574, 0x706D, 0x006F, 0x0000, 0x0000, 
-            0x0000, 0x9000, 0x0041, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 
+            0x0000, 0x9000, 0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 
             0x5C3F, 0x0100, 0x0000, 0x6D00, 0x6C75, 0x6974, 0x0000, 0x0000, 
-            0x3F80, 0x0000, 0x4200, 0x0000, 0x4120, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000, 0x4200, 0x0000, 0x4040, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x005C, 0x0002, 0x0000, 0x6574, 0x706D, 0x6D6F, 0x646F, 
             0x0000, 0x0000, 0x2480, 0x0000, 0x3F80, 0xE147, 0x3EFA, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x005C, 0x0003, 0x0000, 0x6F6D, 0x6464, 
@@ -1891,9 +1897,13 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		auto& clock_ramp1 = this->getT(4).getT(0).getT(2);                             // DspNetwork_impl::clock_ramp1_t<NV>
 		auto& ramp = this->getT(4).getT(0).getT(3);                                    // DspNetwork_impl::ramp_t<NV>
 		auto& input_toggle3 = this->getT(4).getT(0).getT(4);                           // DspNetwork_impl::input_toggle3_t<NV>
-		auto& minmax = this->getT(4).getT(0).getT(5);                                  // DspNetwork_impl::minmax_t<NV>
-		auto& clear = this->getT(4).getT(0).getT(6);                                   // math::clear<NV>
-		auto& cable_pack1 = this->getT(4).getT(0).getT(7);                             // DspNetwork_impl::cable_pack1_t
+		auto& clear9 = this->getT(4).getT(0).getT(5);                                  // math::clear<NV>
+		auto& add = this->getT(4).getT(0).getT(6);                                     // math::add<NV>
+		auto& fmod = this->getT(4).getT(0).getT(7);                                    // wrap::no_process<math::fmod<NV>>
+		auto& pma_fmod_onshot = this->getT(4).getT(0).getT(8);                         // control::pma<NV, parameter::empty>
+		auto& peak21 = this->getT(4).getT(0).getT(9);                                  // DspNetwork_impl::peak21_t<NV>
+		auto& clear = this->getT(4).getT(0).getT(10);                                  // math::clear<NV>
+		auto& cable_pack1 = this->getT(4).getT(0).getT(11);                            // DspNetwork_impl::cable_pack1_t
 		auto& softbypass_switch3 = this->getT(4).getT(1);                              // DspNetwork_impl::softbypass_switch3_t<NV>
 		auto& switcher = this->getT(4).getT(1).getT(0);                                // DspNetwork_impl::switcher_t<NV>
 		auto& sb_container = this->getT(4).getT(1).getT(1);                            // DspNetwork_impl::sb_container_t<NV>
@@ -1929,9 +1939,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
                       getT(0).getT(1).getT(3).getT(1);
 		auto& gain12 = this->getT(4).getT(1).getT(1).getT(0).                          // core::gain<NV>
                        getT(0).getT(1).getT(3).getT(2);
-		auto& peak3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(2);           // DspNetwork_impl::peak3_t<NV>
-		auto& clear3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(3);          // math::clear<NV>
-		auto& add3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(4);            // math::add<NV>
+		auto& fmod1 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(2);           // math::fmod<NV>
+		auto& peak3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(3);           // DspNetwork_impl::peak3_t<NV>
+		auto& clear3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(4);          // math::clear<NV>
+		auto& add3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(5);            // math::add<NV>
 		auto& sb2 = this->getT(4).getT(1).getT(1).getT(1);                             // DspNetwork_impl::sb2_t<NV>
 		auto& chain18 = this->getT(4).getT(1).getT(1).getT(1).getT(0);                 // DspNetwork_impl::chain18_t<NV>
 		auto& xfader1 = this->getT(4).getT(1).getT(1).getT(1).getT(0).getT(0);         // DspNetwork_impl::xfader1_t<NV>
@@ -2033,15 +2044,15 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		this->getParameterT(4).connectT(0, softbypass_switch3); // type -> softbypass_switch3::Switch
 		
-		this->getParameterT(5).connectT(0, minmax); // dir -> minmax::Polarity
-		
 		auto& keysync_p = this->getParameterT(6);
 		keysync_p.connectT(0, cable_table1); // keysync -> cable_table1::Value
 		keysync_p.connectT(1, cable_table2); // keysync -> cable_table2::Value
 		keysync_p.connectT(2, cable_table3); // keysync -> cable_table3::Value
 		keysync_p.connectT(3, cable_table4); // keysync -> cable_table4::Value
 		
-		this->getParameterT(7).connectT(0, ramp); // onshot -> ramp::LoopStart
+		auto& onshot_p = this->getParameterT(7);
+		onshot_p.connectT(0, ramp);            // onshot -> ramp::LoopStart
+		onshot_p.connectT(1, pma_fmod_onshot); // onshot -> pma_fmod_onshot::Value
 		
 		this->getParameterT(8).connectT(0, pma); // morph -> pma::Add
 		
@@ -2053,23 +2064,7 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
-		cable_table.getWrappedObject().getParameter().connectT(0, add1);       // cable_table -> add1::Value
-		cable_table17.getWrappedObject().getParameter().connectT(0, add15);    // cable_table17 -> add15::Value
-		cable_table16.getWrappedObject().getParameter().connectT(0, add14);    // cable_table16 -> add14::Value
-		cable_table15.getWrappedObject().getParameter().connectT(0, add13);    // cable_table15 -> add13::Value
-		cable_pack.getWrappedObject().getParameter().connectT(0, add16);       // cable_pack -> add16::Value
-		cable_pack7.getWrappedObject().getParameter().connectT(0, add23);      // cable_pack7 -> add23::Value
-		cable_pack6.getWrappedObject().getParameter().connectT(0, add22);      // cable_pack6 -> add22::Value
-		cable_pack5.getWrappedObject().getParameter().connectT(0, add21);      // cable_pack5 -> add21::Value
-		minmax.getWrappedObject().getParameter().connectT(0, cable_table);     // minmax -> cable_table::Value
-		minmax.getWrappedObject().getParameter().connectT(1, cable_table17);   // minmax -> cable_table17::Value
-		minmax.getWrappedObject().getParameter().connectT(2, cable_table16);   // minmax -> cable_table16::Value
-		minmax.getWrappedObject().getParameter().connectT(3, cable_table15);   // minmax -> cable_table15::Value
-		minmax.getWrappedObject().getParameter().connectT(4, cable_pack);      // minmax -> cable_pack::Value
-		minmax.getWrappedObject().getParameter().connectT(5, cable_pack7);     // minmax -> cable_pack7::Value
-		minmax.getWrappedObject().getParameter().connectT(6, cable_pack6);     // minmax -> cable_pack6::Value
-		minmax.getWrappedObject().getParameter().connectT(7, cable_pack5);     // minmax -> cable_pack5::Value
-		input_toggle3.getWrappedObject().getParameter().connectT(0, minmax);   // input_toggle3 -> minmax::Value
+		input_toggle3.getWrappedObject().getParameter().connectT(0, add);      // input_toggle3 -> add::Value
 		ramp.getParameter().connectT(0, input_toggle3);                        // ramp -> input_toggle3::Value1
 		resetter.getWrappedObject().getParameter().connectT(0, ramp);          // resetter -> ramp::Gate
 		input_toggle1.getWrappedObject().getParameter().connectT(0, resetter); // input_toggle1 -> resetter::Value
@@ -2150,6 +2145,22 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		pma.getWrappedObject().getParameter().connectT(2, cable_pack1);            // pma -> cable_pack1::Value
 		peak6.getParameter().connectT(0, pma);                                     // peak6 -> pma::Value
 		cable_table4.getWrappedObject().getParameter().connectT(0, input_toggle3); // cable_table4 -> input_toggle3::Input
+		cable_table.getWrappedObject().getParameter().connectT(0, add1);           // cable_table -> add1::Value
+		cable_table17.getWrappedObject().getParameter().connectT(0, add15);        // cable_table17 -> add15::Value
+		cable_table16.getWrappedObject().getParameter().connectT(0, add14);        // cable_table16 -> add14::Value
+		cable_table15.getWrappedObject().getParameter().connectT(0, add13);        // cable_table15 -> add13::Value
+		cable_pack.getWrappedObject().getParameter().connectT(0, add16);           // cable_pack -> add16::Value
+		cable_pack7.getWrappedObject().getParameter().connectT(0, add23);          // cable_pack7 -> add23::Value
+		cable_pack6.getWrappedObject().getParameter().connectT(0, add22);          // cable_pack6 -> add22::Value
+		cable_pack5.getWrappedObject().getParameter().connectT(0, add21);          // cable_pack5 -> add21::Value
+		peak21.getParameter().connectT(0, cable_table);                            // peak21 -> cable_table::Value
+		peak21.getParameter().connectT(1, cable_table17);                          // peak21 -> cable_table17::Value
+		peak21.getParameter().connectT(2, cable_table16);                          // peak21 -> cable_table16::Value
+		peak21.getParameter().connectT(3, cable_table15);                          // peak21 -> cable_table15::Value
+		peak21.getParameter().connectT(4, cable_pack);                             // peak21 -> cable_pack::Value
+		peak21.getParameter().connectT(5, cable_pack7);                            // peak21 -> cable_pack7::Value
+		peak21.getParameter().connectT(6, cable_pack6);                            // peak21 -> cable_pack6::Value
+		peak21.getParameter().connectT(7, cable_pack5);                            // peak21 -> cable_pack5::Value
 		peak3.getParameter().connectT(0, add3);                                    // peak3 -> add3::Value
 		peak1.getParameter().connectT(0, add2);                                    // peak1 -> add2::Value
 		auto& switcher_p = switcher.getWrappedObject().getParameter();
@@ -2449,12 +2460,15 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		; // input_toggle3::Value1 is automated
 		; // input_toggle3::Value2 is automated
 		
-		;                                  // minmax::Value is automated
-		minmax.setParameterT(1, 0.);       // control::minmax::Minimum
-		minmax.setParameterT(2, 1.);       // control::minmax::Maximum
-		minmax.setParameterT(3, 0.992434); // control::minmax::Skew
-		minmax.setParameterT(4, 0.);       // control::minmax::Step
-		;                                  // minmax::Polarity is automated
+		clear9.setParameterT(0, 0.); // math::clear::Value
+		
+		; // add::Value is automated
+		
+		fmod.setParameterT(0, 1.); // math::fmod::Value
+		
+		;                                      // pma_fmod_onshot::Value is automated
+		pma_fmod_onshot.setParameterT(1, -1.); // control::pma::Multiply
+		pma_fmod_onshot.setParameterT(2, 1.);  // control::pma::Add
 		
 		clear.setParameterT(0, 0.); // math::clear::Value
 		
@@ -2499,6 +2513,8 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		;                             // gain12::Gain is automated
 		gain12.setParameterT(1, 20.); // core::gain::Smoothing
 		gain12.setParameterT(2, 0.);  // core::gain::ResetValue
+		
+		fmod1.setParameterT(0, 2.); // math::fmod::Value
 		
 		clear3.setParameterT(0, 0.); // math::clear::Value
 		
@@ -2576,8 +2592,8 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		; // global_cable31::Value is automated
 		
-		this->setParameterT(0, 0.);
-		this->setParameterT(1, 10.);
+		this->setParameterT(0, 2.);
+		this->setParameterT(1, 3.);
 		this->setParameterT(2, 0.49);
 		this->setParameterT(3, 0.);
 		this->setParameterT(4, 1.);
@@ -2690,7 +2706,8 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		this->getT(4).getT(0).getT(0).setExternalData(b, index);                         // DspNetwork_impl::cable_table4_t<NV>
 		this->getT(4).getT(0).getT(2).setExternalData(b, index);                         // DspNetwork_impl::clock_ramp1_t<NV>
 		this->getT(4).getT(0).getT(3).setExternalData(b, index);                         // DspNetwork_impl::ramp_t<NV>
-		this->getT(4).getT(0).getT(7).setExternalData(b, index);                         // DspNetwork_impl::cable_pack1_t
+		this->getT(4).getT(0).getT(9).setExternalData(b, index);                         // DspNetwork_impl::peak21_t<NV>
+		this->getT(4).getT(0).getT(11).setExternalData(b, index);                        // DspNetwork_impl::cable_pack1_t
 		this->getT(4).getT(1).getT(1).getT(0).                                           // DspNetwork_impl::cable_table_t<NV>
         getT(0).getT(1).getT(0).getT(0).setExternalData(b, index);
 		this->getT(4).getT(1).getT(1).getT(0).                                           // DspNetwork_impl::cable_table17_t<NV>
@@ -2699,7 +2716,7 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
         getT(0).getT(1).getT(2).getT(0).setExternalData(b, index);
 		this->getT(4).getT(1).getT(1).getT(0).                                           // DspNetwork_impl::cable_table15_t<NV>
         getT(0).getT(1).getT(3).getT(0).setExternalData(b, index);
-		this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(2).setExternalData(b, index); // DspNetwork_impl::peak3_t<NV>
+		this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(3).setExternalData(b, index); // DspNetwork_impl::peak3_t<NV>
 		this->getT(4).getT(1).getT(1).getT(1).                                           // DspNetwork_impl::cable_pack_t<NV>
         getT(0).getT(1).getT(0).getT(0).setExternalData(b, index);
 		this->getT(4).getT(1).getT(1).getT(1).                                           // DspNetwork_impl::cable_pack7_t<NV>

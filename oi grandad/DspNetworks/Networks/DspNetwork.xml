@@ -1412,7 +1412,7 @@
               <Node ID="input_toggle3" FactoryPath="control.input_toggle" Bypassed="0"
                     Name="input_toggle3">
                 <ModulationTargets>
-                  <Connection NodeId="minmax" ParameterId="Value"/>
+                  <Connection NodeId="add" ParameterId="Value"/>
                 </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Input" Automated="1"/>
@@ -1420,7 +1420,29 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
+              <Node ID="clear9" FactoryPath="math.clear" Bypassed="0" Name="clear9">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                </Parameters>
+              </Node>
+              <Node ID="fmod" FactoryPath="math.fmod" Bypassed="1" Name="fmod">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="pma_fmod_onshot" FactoryPath="control.pma" Bypassed="0" Name="pma_fmod_onshot">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="-1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Value="1.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="peak21" FactoryPath="core.peak" Bypassed="0" Name="peak21">
                 <ModulationTargets>
                   <Connection NodeId="cable_table" ParameterId="Value"/>
                   <Connection NodeId="cable_table17" ParameterId="Value"/>
@@ -1431,15 +1453,12 @@
                   <Connection NodeId="cable_pack6" ParameterId="Value"/>
                   <Connection NodeId="cable_pack5" ParameterId="Value"/>
                 </ModulationTargets>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="1.0"/>
-                  <Parameter MinValue="0.1000000014901161" MaxValue="10.0" SkewFactor="0.2890648245811462"
-                             ID="Skew" Value="0.9924335928129965"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Step" Value="0.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Polarity" Automated="1"/>
-                </Parameters>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters/>
               </Node>
               <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
                 <Parameters>
@@ -1668,6 +1687,11 @@
                               </Node>
                             </Nodes>
                             <Parameters/>
+                          </Node>
+                          <Node ID="fmod1" FactoryPath="math.fmod" Bypassed="0" Name="fmod1">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="2.0" ID="Value" Value="2.0" DefaultValue="1.0"/>
+                            </Parameters>
                           </Node>
                           <Node ID="peak3" FactoryPath="core.peak" Bypassed="0" Name="peak3">
                             <ModulationTargets>
@@ -2341,13 +2365,12 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="0.0" StepSize="1"
-                 DefaultValue="2.0">
+      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="2.0" StepSize="1">
         <Connections>
           <Connection NodeId="pma1" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter ID="multi" MinValue="1.0" MaxValue="32.0" Value="10.0" StepSize="1.0"
+      <Parameter ID="multi" MinValue="1.0" MaxValue="32.0" Value="3.0" StepSize="1.0"
                  DefaultValue="1.0">
         <Connections>
           <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
@@ -2372,9 +2395,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="dir" MinValue="0.0" MaxValue="1.0" StepSize="1" Value="0.0">
-        <Connections>
-          <Connection NodeId="minmax" ParameterId="Polarity"/>
-        </Connections>
+        <Connections/>
       </Parameter>
       <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="3.0" StepSize="0.1"
                  SkewFactor="1" DefaultValue="0.0">
@@ -2388,6 +2409,7 @@
       <Parameter ID="onshot" MinValue="0.0" MaxValue="1.0" StepSize="1" Value="0.0">
         <Connections>
           <Connection NodeId="ramp" ParameterId="LoopStart"/>
+          <Connection NodeId="pma_fmod_onshot" ParameterId="Value"/>
         </Connections>
       </Parameter>
       <Parameter ID="morph" MinValue="1.0" MaxValue="4.0" Value="1.0" DefaultValue="2.033986145019531">

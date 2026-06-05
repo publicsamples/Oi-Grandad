@@ -10,9 +10,12 @@
 // Include third party header files ------------------------
 
 #include "granular_player_stepquant_density_hybrid_native.h"
+#include "spectral_player_loris.h"
 
 // Include compiled network files --------------------------
 
+#include "aaa_networkdata.h"
+#include "atest_networkdata.h"
 #include "DspNetwork.h"
 #include "FoldTests_networkdata.h"
 #include "ggg_networkdata.h"

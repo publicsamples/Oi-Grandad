@@ -1,0 +1,20 @@
+namespace project
+{
+
+struct aaa_networkdata: public scriptnode::dll::InterpretedNetworkData
+{
+	String getId() const override
+	{
+		return "aaa";
+	}
+	bool isModNode() const override
+	{
+		return false;
+	}
+	String getNetworkData() const override
+	{
+		return "624.nT6K8CVcETyD.XIWZYB7ria.kXjv1ztxWvE+ksDXqb9aAi0iupGsRHNLol3Zf6BeNTDRJ3D.PAvS.DkWcl1tfpAfqCwYzGXslFmsQQAc4H1vGKg+0hfSAIYMawWdwNrvoM1mw4TGO1FNE9OsXCgFsWO3CJayeMS7tOQYl20oVtDfSkH9SH6LArGrLljZXanZmY7ZikKQ6tLjcHNxZTMpgcQr83YRQ6YQUJHQhPsMnf6oyP.eXnnwfN+4v+vlSTVxVnn8rPeE.bNh3iYKCZj1K9NmXuwdFGmCSw46eEGefO47iqBs2gu33bm2+rFraNCmrBTwaSVK2LQoR37qPEQZaDI8I6osnQprnjTEMAAR0zAs16yrDrJFrcJN+jaAZM7kuP8FPWxmlnRNzKmSVr4YOoOwrCvH.myg+wnJIRljhrjrfTEYU8PRBPbXXS1Eqc9RCN4vgxvtH6OQ9A1mXOlojkZH.+m7pgvux1SF6rOpQJJhDJqJKoPZfFYLCHiMSfBBJrffX.DA.ECIZXMcGzGCyZYiajT6r1qTqSLZfXngQ4uQfWNpv5nu3ClYeZKIRjoh8mjdGVexPF.S6ZJLzBhWKmWb8OaArh6TVsx+x5ugC5BsUx1fYUYmfLfcHJNvfyx8kAy0fPUQSBtTHou7QHycNPoCrXnLbEjgn.1M0isdHFrXEDd.Y2Qh5vSiB3c9AkLHbTiwcUC7lf3p5iICMQf1hGlrBw3p7DzLD3WwshAnEaDCXnhsygQO6DfU227QtN63xrkiv9vLMXnB.RWlBApyE4+cje1Zfxp4Q1PrSVJfOObcTg5f2FaIcdfpN.0d.dU.";
+	}
+};
+}
+

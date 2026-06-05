@@ -19,7 +19,7 @@ if(value == 1)
   	VoiceParam4.showControl(1);
   	VoiceParamB4.showControl(0);
              
-        gran3.setAttribute(gran3.scrubMode, 1);  
+        gran3.setAttribute(gran3.scrubMode, 0);  
        // gran3.setAttribute(gran3.PositionModMode, 0);
 
       
@@ -35,7 +35,7 @@ if(value == 2)
 	VoiceParamB4.showControl(1);
 	  	
 	  	
-          gran3.setAttribute(gran3.scrubMode, 2);  
+          gran3.setAttribute(gran3.scrubMode, 1);  
 
               for(s in StackItem4)
                   s.showControl(1);

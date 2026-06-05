@@ -6219,10 +6219,22 @@
     <ClInclude Include="..\..\Source\PresetData.h">
       <Filter>oi grandad\Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\aaa_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\atest_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\FoldTests_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ggg_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\granular_player_stepquant_density_hybrid_native.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\includes.h">
@@ -6232,6 +6244,9 @@
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\modcont_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\NuTest_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\OutMods_networkdata.h">
@@ -6249,7 +6264,13 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn_fin.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\spectral_player_loris.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\track_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\trash2_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\vec1b_networkdata.h">

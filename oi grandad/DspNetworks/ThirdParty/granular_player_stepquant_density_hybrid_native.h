@@ -243,13 +243,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			else directionMode = 1.0;
 		}
 
-		if (P == 12) phaseScatter = jmax(0.0, v);
+		if (P == 12) phaseScatter = clamp01(v);
 		if (P == 13) scrubB = v;
 		if (P == 14) scrubC = v;
 		if (P == 15) scrubD = v;
-		if (P == 16) density2 = clamp01(v);
-		if (P == 17) diffusionAmount = clamp01(v);
-		if (P == 18) positionSpreadAmount = clamp01(v);
 	}
 
 	void createParameters(ParameterDataList& data)
@@ -266,13 +263,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		addParameter<9>(data, "ScrubMode", 0.0, 1.0, 0.0);
 		addParameter<10>(data, "ScrubBlend", 0.0, 1.0, 0.0);
 		addParameter<11>(data, "DirectionMode", 0.0, 1.0, 0.0);
-		addParameter<12>(data, "PhaseScatter", 0.0, 4096.0, 0.0);
+		addParameter<12>(data, "PhaseScatter", 0.0, 1.0, 0.0);
 		addParameter<13>(data, "ScrubB", 0.0, 1.0, 0.0);
 		addParameter<14>(data, "ScrubC", 0.0, 1.0, 0.0);
 		addParameter<15>(data, "ScrubD", 0.0, 1.0, 0.0);
-		addParameter<16>(data, "Density2", 0.0, 1.0, 1.0);
-		addParameter<17>(data, "Diffusion", 0.0, 1.0, 1.0);
-		addParameter<18>(data, "PositionSpread", 0.0, 1.0, 1.0);
 	}
 
 	template <int P> void addParameter(ParameterDataList& data, const char* id, double min, double max, double defaultValue)
@@ -355,7 +349,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (phaseScatter <= 0.0 || maxStart <= 0.0)
 			return 0.0;
 
-		double maxSpray = phaseScatter;
+		double maxSpray = maxStart * DensityPositionSpreadRange * clamp01(phaseScatter);
 		double hardLimit = maxStart * 0.95;
 		if (maxSpray > hardLimit)
 			maxSpray = hardLimit;
@@ -521,7 +515,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (i < baseOn)
 			return 1.0;
 
-		double d = clamp01(density2);
+		double d = clamp01(density);
 		double coverage = (double) baseOn + d * (double) grainCount;
 		if (coverage > (double) grainCount)
 			coverage = (double) grainCount;
@@ -667,9 +661,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	double getScrubSourceForGrain(int grainIndex, int grainCount) const
 	{
-		ignoreUnused(grainCount);
 		const double values[4] = { scrub, scrubB, scrubC, scrubD };
-		return clamp01(values[(grainIndex / 2) % 4]);
+		int clampedCount = jmax(1, grainCount);
+		int lane = (grainIndex * 4) / clampedCount;
+		lane = jlimit(0, 3, lane);
+		return clamp01(values[lane]);
+	}
+
+	int getScrubGroupForGrain(int grainIndex) const
+	{
+		int clampedCount = jmax(1, (int)std::round(maxGrainsValue));
+		int lane = (grainIndex * 4) / clampedCount;
+		return jlimit(0, 3, lane);
 	}
 
 	double getInterpolatedScrubForGrain(int grainIndex, int grainCount) const
@@ -729,7 +732,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const bool stretchFreezeMode = true;
 		const int densitySlots = g;
 
-		double morphDensity = clamp01(density2);
+		double morphDensity = clamp01(density);
 		if (!isStackMode)
 		{
 			if (voice.densityMorphSmoothed < 0.0)
@@ -747,30 +750,35 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			voice.densityMorphSmoothed = morphDensity;
 		}
 
-		int baseIndex = 0;
-		double frac = 0.0;
-		if (!isStackMode)
-		{
-			double pos = morphDensity * (double) (g - 1);
-			if (pos < 0.0) pos = 0.0;
-			if (pos > (double) (g - 1)) pos = (double) (g - 1);
-			baseIndex = (int) std::floor(pos);
-			frac = pos - (double) baseIndex;
-		}
-
 		std::array<double, MaxGrains> weights {};
+		std::array<int, MaxGrains> grainGroup {};
+		std::array<int, MaxGrains> grainIndexInGroup {};
+		std::array<int, 4> groupSizes {};
 		double sumsq = 0.0;
 
 		int idxA = 0;
 		int idxB = 0;
 		double gA = 1.0;
 		double gB = 0.0;
+		std::array<double, 4> groupMorphWeights {};
+
+		for (int i = 0; i < g; ++i)
+		{
+			int group = getScrubGroupForGrain(i);
+			grainGroup[(size_t)i] = group;
+			grainIndexInGroup[(size_t)i] = groupSizes[(size_t)group];
+			++groupSizes[(size_t)group];
+		}
 
 		if (!isStackMode)
 		{
-			idxA = jlimit(0, g - 1, baseIndex);
-			idxB = jlimit(0, g - 1, baseIndex + 1);
-			double t = clamp01(frac);
+			double selector = morphDensity * 4.0;
+			if (selector >= 4.0)
+				selector = 3.999999;
+
+			idxA = jlimit(0, 3, (int) std::floor(selector));
+			idxB = jlimit(0, 3, idxA + 1);
+			double t = smooth01(clamp01(selector - (double) idxA));
 			gA = std::sqrt(1.0 - t);
 			gB = std::sqrt(t);
 			const double morphMin = 0.12;
@@ -779,13 +787,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double gNorm = 1.0 / std::sqrt(gA * gA + gB * gB);
 			gA *= gNorm;
 			gB *= gNorm;
-			if (g <= 1)
-			{
-				idxA = 0;
-				idxB = 0;
-				gA = 1.0;
-				gB = 0.0;
-			}
+			groupMorphWeights[(size_t)idxA] += gA;
+			groupMorphWeights[(size_t)idxB] += gB;
 		}
 
 		for (int i = 0; i < g; ++i)
@@ -793,16 +796,16 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double w = getGrainWeight(i, densitySlots, isStackMode);
 			if (!isStackMode)
 			{
-				double m = ((idxA == i) ? gA : 0.0) + ((idxB == i) ? gB : 0.0);
-				w *= m;
+				int group = grainGroup[(size_t)i];
+				int groupIndex = grainIndexInGroup[(size_t)i];
+				int groupCount = groupSizes[(size_t)group];
+				w = getGrainWeight(groupIndex, groupCount, true) * groupMorphWeights[(size_t)group];
 			}
 			weights[(size_t) i] = w;
 			sumsq += w * w;
 		}
 
-		double wnorm = 1.0;
-		if (isStackMode)
-			wnorm = (sumsq > 0.0 ? 1.0 / std::sqrt(sumsq) : 1.0);
+		double wnorm = (sumsq > 0.0 ? 1.0 / std::sqrt(sumsq) : 1.0);
 
 		double Lsum = 0.0;
 		double Rsum = 0.0;
@@ -834,7 +837,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				}
 				else
 				{
-					base = getInterpolatedScrubForGrain(i, g) * maxStart;
+					double scrubValue = getScrubSourceForGrain(i, g);
+					scrubValue = quantiseScrub(scrubValue);
+					base = scrubValue * maxStart;
 				}
 			}
 
@@ -842,11 +847,12 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			{
 				double denom = (g > 1) ? (double) (g - 1) : 1.0;
 				double idxNorm = (double) i / denom;
-				double amt = maxStart * DensityPositionSpreadRange * clamp01(positionSpreadAmount);
+				double amt = maxStart * DensityPositionSpreadRange * clamp01(density);
 				base += A2curve(idxNorm) * amt;
 			}
 
-			base += startSprayOffsetSamples(i, maxStart);
+			if (isStackMode)
+				base += startSprayOffsetSamples(i, maxStart);
 
 			auto& grain = voice.grains[(size_t) i];
 			if (!grain.active)
@@ -945,7 +951,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			Rsum += monoR * w * (0.5 * (1.0 + pan)) * weight;
 		}
 
-		double diffusion = isStackMode ? clamp01(diffusionAmount) : 0.0;
+		double diffusion = isStackMode ? clamp01(phaseScatter) : 0.0;
 		if (diffusion > 0.0001)
 		{
 			double a1 = 0.08 + 0.62 * diffusion;
@@ -990,9 +996,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	int rootNote = 60;
 	int scrubStepCount = 64;
 	double density = 1.0;
-	double density2 = 1.0;
-	double diffusionAmount = 1.0;
-	double positionSpreadAmount = 1.0;
 	double windowShape = 0.0;
 	double panSpread = 0.0;
 	double pitchSpread = 0.0;
