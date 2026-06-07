@@ -2,21 +2,5 @@
   "granular_player_stepquant_density_hybrid_native": [
     "IsPolyphonic",
     "AllowPolyphonic"
-  ],
-  "spectral_player_loris": [
-    "IsPolyphonic",
-    "AllowPolyphonic"
-  ],
-  "loris_snapshot_probe": [
-    "IsPolyphonic",
-    "AllowPolyphonic"
-  ],
-  "poly_sine_probe": [
-    "IsPolyphonic",
-    "AllowPolyphonic"
-  ],
-  "poly_sine_audio_probe": [
-    "IsPolyphonic",
-    "AllowPolyphonic"
   ]
 }

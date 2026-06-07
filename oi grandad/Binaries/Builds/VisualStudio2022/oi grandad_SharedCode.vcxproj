@@ -4999,7 +4999,6 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn_fin.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\spectral_player_loris.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\track_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\trash2_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\vec1b_networkdata.h"/>

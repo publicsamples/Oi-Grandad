@@ -10,10 +10,6 @@
 // Include third party header files ------------------------
 
 #include "granular_player_stepquant_density_hybrid_native.h"
-#include "loris_snapshot_probe.h"
-#include "poly_sine_audio_probe.h"
-#include "poly_sine_probe.h"
-#include "spectral_player_loris.h"
 
 // Include compiled network files --------------------------
 

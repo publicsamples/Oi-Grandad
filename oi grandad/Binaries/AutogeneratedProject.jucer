@@ -53,8 +53,6 @@
         <FILE id="IK62mL" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
         <FILE id="SzBYhK" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="YzTZPL" name="spectral_player_loris.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/spectral_player_loris.h"/>
         <FILE id="BgxWxu" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
         <FILE id="LlWwde" name="trash2_networkdata.h" compile="0" resource="0"
