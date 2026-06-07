@@ -10,15 +10,20 @@
 // Include third party header files ------------------------
 
 #include "granular_player_stepquant_density_hybrid_native.h"
+#include "loris_snapshot_probe.h"
+#include "poly_sine_audio_probe.h"
+#include "poly_sine_probe.h"
 #include "spectral_player_loris.h"
 
 // Include compiled network files --------------------------
 
 #include "aaa_networkdata.h"
+#include "Ana_networkdata.h"
 #include "atest_networkdata.h"
 #include "DspNetwork.h"
 #include "FoldTests_networkdata.h"
 #include "ggg_networkdata.h"
+#include "loris_networkdata.h"
 #include "MacroMod.h"
 #include "modcont_networkdata.h"
 #include "NuTest_networkdata.h"

@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/rick/Documents/GitHub/Oi-Grandad/SpectralHelper/build/JUCE/tools/cmake_install.cmake",
+		"/Users/rick/Documents/GitHub/Oi-Grandad/SpectralHelper/build/JUCE/tools/extras/Build/cmake_install.cmake",
+		"/Users/rick/Documents/GitHub/Oi-Grandad/SpectralHelper/build/JUCE/tools/extras/Build/juceaide/cmake_install.cmake",
+		"/Users/rick/Documents/GitHub/Oi-Grandad/SpectralHelper/build/JUCE/tools/modules/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

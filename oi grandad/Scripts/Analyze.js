@@ -1,12 +1,6 @@
-//waveform view
 const var AudioWaveform1 = Content.getComponent("AudioWaveform1");
-
-
-//Analyze button
 const var Analyze = Content.getComponent("Analyze");
 
-
-const var Spec = Synth.getChildSynth("Spec");
 const var Specwav = Synth.getAudioSampleProcessor("Spec");
 const var Loris = Engine.getLorisManager();
 const var SpecAudioFile = Specwav.getAudioFile(0);
@@ -28,131 +22,66 @@ function printSpecFileState()
 	Console.print("Spec samples: " + SpecAudioFile.getNumSamples());
 }
 
-function analyseOnly()
+const var CurrentCacheFile = FileSystem.getFolder(FileSystem.AudioFiles).getChildFile("spectral_cache_current.json");
+
+function writeDebugSpectralCache()
 {
-	var f = getCurrentSpecFile();
-	
-	printSpecFileState();
-	
-	if (f == undefined)
-	{
-		Console.print("No file loaded");
-		return;
-	}
-	
-	if (SpecAudioFile.getNumSamples() <= 0)
-	{
-		Console.print("Empty audio slot");
-		return;
-	}
+	var obj = {};
+	obj.version = 1;
+	obj.sourceFile = SpecAudioFile.getCurrentlyLoadedFile();
+	obj.sampleRate = 44100;
+	obj.durationSeconds = 0.03;
+	obj.rootHz = 220.0;
+	obj.hopTime = 0.01;
+	obj.timedomain = "seconds";
+	obj.frameCount = 4;
+	obj.maxPartials = 4;
+	obj.frames = [];
 
-	Loris.set("enablecache", false);
-	Loris.set("timedomain", "0to1");
-	Loris.set("hoptime", 0.05);
-	Loris.set("croptime", 0.05);
-	Loris.set("windowwidth", 1.0);
+	var f0 = {};
+	f0.time = 0.00;
+	f0.gains = [1.0, 0.5, 0.2];
+	f0.phases = [0.0, 0.0, 0.0];
+	f0.bandwidth = [0.0, 0.0, 0.0];
+	obj.frames.push(f0);
 
-	var rootHz = 220.0;
+	var f1 = {};
+	f1.time = 0.01;
+	f1.gains = [0.7, 0.9, 0.1];
+	f1.phases = [0.0, 0.5, 1.0];
+	f1.bandwidth = [0.0, 0.1, 0.2];
+	obj.frames.push(f1);
 
-	Console.print("About to analyse: " + SpecAudioFile.getCurrentlyLoadedFile());
-	Console.print("Using rootHz: " + rootHz);
+	var f2 = {};
+	f2.time = 0.02;
+	f2.gains = [0.3, 1.0, 0.6];
+	f2.phases = [0.2, 1.0, 1.7];
+	f2.bandwidth = [0.1, 0.2, 0.4];
+	obj.frames.push(f2);
 
-	Loris.analyse(f, rootHz);
+	var f3 = {};
+	f3.time = 0.03;
+	f3.gains = [0.1, 0.3, 1.0, 0.5];
+	f3.phases = [0.4, 1.3, 2.0, 2.4];
+	f3.bandwidth = [0.2, 0.3, 0.6, 0.8];
+	obj.frames.push(f3);
 
-	Console.print("Analyse returned");
+	CurrentCacheFile.writeString(JSON.stringify(obj, null, "  "));
+	Console.print("Wrote cache: " + CurrentCacheFile.toString(0));
 }
 
 inline function onAnalyzeControl(component, value)
 {
-	if (value)
-	{
-		analyseOnly();
-		component.setValue(0);
-	}
+	Console.print("Analyze changed: " + value);
+	
+	if (!value)
+		return;
+
+	writeDebugSpectralCache();
+	component.setValue(0);
 }
 
 Analyze.setControlCallback(onAnalyzeControl);
-
-function analyseAndSnapshot()
-{
-	var f = getCurrentSpecFile();
-	
-	if (f == undefined || SpecAudioFile.getNumSamples() <= 0)
-	{
-		Console.print("No valid file loaded");
-		return;
-	}
-
-	Loris.set("enablecache", false);
-	Loris.set("timedomain", "0to1");
-	Loris.set("hoptime", 0.05);
-	Loris.set("croptime", 0.05);
-	Loris.set("windowwidth", 1.0);
-
-	var rootHz = 220.0;
-
-	Console.print("About to analyse");
-	Loris.analyse(f, rootHz);
-	Console.print("Analyse returned");
-
-	var gains = Loris.createSnapshot(f, "gain", 0.5);
-	Console.print("gain snapshot returned");
-
-	var phases = Loris.createSnapshot(f, "phase", 0.5);
-	Console.print("phase snapshot returned");
-
-	var bandwidth = Loris.createSnapshot(f, "bandwidth", 0.5);
-	Console.print("bandwidth snapshot returned");
-
-	Console.print("gain channels: " + gains.length);
-	Console.print("phase channels: " + phases.length);
-	Console.print("bandwidth channels: " + bandwidth.length);
-
-	if (gains.length > 0)
-		Console.print("gain[0] harmonics: " + gains[0].length);
-
-	if (phases.length > 0)
-		Console.print("phase[0] harmonics: " + phases[0].length);
-
-	if (bandwidth.length > 0)
-		Console.print("bandwidth[0] harmonics: " + bandwidth[0].length);
-}
-
-function analyseAndSynth()
-{
-	var f = getCurrentSpecFile();
-	
-	if (f == undefined || SpecAudioFile.getNumSamples() <= 0)
-	{
-		Console.print("No valid file loaded");
-		return;
-	}
-
-	Loris.set("enablecache", false);
-	Loris.set("timedomain", "0to1");
-	Loris.set("hoptime", 0.05);
-	Loris.set("croptime", 0.05);
-	Loris.set("windowwidth", 1.0);
-
-	var rootHz = 220.0;
-
-	Console.print("About to analyse");
-	Loris.analyse(f, rootHz);
-	Console.print("Analyse returned");
-
-	var buffers = Loris.synthesise(f);
-
-	Console.print("Synth returned");
-	Console.print("buffer channels: " + buffers.length);
-
-	if (buffers.length > 0)
-	{
-		Console.print("buffer samples: " + buffers[0].length);
-		Console.print("first sample: " + buffers[0][0]);
-		Console.print("sample 100: " + buffers[0][100]);
-	}
-}
-
 
 inline function onAudioWaveform1Control(component, value)
 {

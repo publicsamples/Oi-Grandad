@@ -781,6 +781,12 @@ dependencies: \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/includes.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/granular_player_stepquant_density_hybrid_native.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/granular_player_stepquant_density_hybrid_native.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/loris_snapshot_probe.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/loris_snapshot_probe.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/poly_sine_audio_probe.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/poly_sine_audio_probe.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/poly_sine_probe.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/poly_sine_probe.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/spectral_player_loris.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/spectral_player_loris.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/DspNetwork.h \

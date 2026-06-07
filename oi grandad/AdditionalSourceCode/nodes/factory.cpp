@@ -28,6 +28,9 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		// Node registrations ----------------------------------------------------------------------
 		
 		registerPolyNode<project::spectral_player_loris<1>, project::spectral_player_loris<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::poly_sine_probe<1>, project::poly_sine_probe<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::poly_sine_audio_probe<1>, project::poly_sine_audio_probe<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::loris_snapshot_probe<1>, project::loris_snapshot_probe<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
@@ -35,9 +38,11 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, project::sn_fin<NUM_POLYPHONIC_VOICES>>();
 		registerDataNode<project::aaa_networkdata>();
+		registerDataNode<project::Ana_networkdata>();
 		registerDataNode<project::atest_networkdata>();
 		registerDataNode<project::FoldTests_networkdata>();
 		registerDataNode<project::ggg_networkdata>();
+		registerDataNode<project::loris_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
 		registerDataNode<project::NuTest_networkdata>();
 		registerDataNode<project::OutMods_networkdata>();

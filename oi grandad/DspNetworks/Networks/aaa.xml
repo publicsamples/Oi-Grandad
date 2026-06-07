@@ -15,7 +15,7 @@
           </DisplayBuffers>
         </ComplexData>
         <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.68" DefaultValue="0.0"/>
           <Parameter MinValue="-24.0" MaxValue="24.0" ID="PitchSemitones" Value="0.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="PartialBlend" Value="1.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="NoiseBlend" Value="0.481984375"
@@ -23,27 +23,8 @@
           <Parameter MinValue="1.0" MaxValue="256.0" ID="PartialCount" Value="64.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Analyze" Value="0.0"/>
           <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="DebugMode" Value="0.0"/>
-        </Parameters>
-      </Node>
-      <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
-            Name="global_cable1" NodeColour="4287869512">
-        <Properties>
-          <Property ID="Connection" Value="spectral_status"/>
-        </Properties>
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0" DefaultValue="1.0"/>
-        </Parameters>
-        <ModulationTargets>
-          <Connection NodeId="pma_unscaled" ParameterId="Value"/>
-        </ModulationTargets>
-      </Node>
-      <Node ID="pma_unscaled" FactoryPath="control.pma_unscaled" Bypassed="0"
-            Name="pma_unscaled">
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="0.0" Automated="1"/>
-          <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Value="0.06349999999999989"
-                     DefaultValue="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="3.0" ID="Add"/>
+          <Parameter MinValue="0.0" MaxValue="512.0" ID="AssetIndex" Value="3.864"
+                     DefaultValue="0.0"/>
         </Parameters>
       </Node>
     </Nodes>

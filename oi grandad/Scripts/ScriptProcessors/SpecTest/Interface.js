@@ -1,6 +1,6 @@
 Content.makeFrontInterface(600, 600);
 
-include("anal.js");
+include("Analyze.js");
 function onNoteOn()
 {
 	

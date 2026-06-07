@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="loris" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="loris" Bypassed="0" Name="loris"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="fix8_block" FactoryPath="container.fix8_block" Bypassed="0"
+            Name="fix8_block">
+        <Nodes>
+          <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+                Name="tempo_sync">
+            <ModulationTargets>
+              <Connection NodeId="ramp" ParameterId="PeriodTime"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="0.0"/>
+              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                         Value="16.0" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         ID="UnsyncedTime" TextToValueConverter="Time" Value="200.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="ramp" FactoryPath="core.ramp" Bypassed="0" Name="ramp">
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
+                         ID="PeriodTime" TextToValueConverter="Time" DefaultValue="100.0"
+                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" TextToValueConverter="NormalizedPercentage"
+                         Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
+            </Parameters>
+            <ModulationTargets>
+              <Connection NodeId="spectral_player_loris1" ParameterId="Scrub"/>
+            </ModulationTargets>
+          </Node>
+          <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="spectral_player_loris1" FactoryPath="project.spectral_player_loris"
+                Bypassed="0" Name="spectral_player_loris1">
+            <ComplexData>
+              <AudioFiles>
+                <AudioFile Index="-1" MinValue="0" MaxValue="0"/>
+              </AudioFiles>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" DefaultValue="0.0" Automated="1"/>
+              <Parameter MinValue="-24.0" MaxValue="24.0" ID="PitchSemitones" Value="1.478250000000003"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="PartialBlend" Value="0.0" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="NoiseBlend" Value="0.03996875"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="1.0" MaxValue="256.0" ID="PartialCount" Value="96.453671875"
+                         DefaultValue="64.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Analyze" Value="1.0"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="DebugMode" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="512.0" ID="AssetIndex" DefaultValue="0.0"
+                         StepSize="1" Automated="1"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="oscilloscope" FactoryPath="analyse.oscilloscope" Bypassed="0"
+            Name="oscilloscope">
+        <ComplexData>
+          <DisplayBuffers>
+            <DisplayBuffer Index="-1" EmbeddedData=""/>
+          </DisplayBuffers>
+        </ComplexData>
+        <Parameters/>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="index" MinValue="0.0" MaxValue="512.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="3.0" StepSize="1">
+        <Connections>
+          <Connection NodeId="spectral_player_loris1" ParameterId="AssetIndex"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

@@ -40,7 +40,7 @@
   <DefaultUserPreset value=""/>
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
-  <IncludeLorisInFrontend value="No"/>
+  <IncludeLorisInFrontend value="1"/>
   <ExtraDefinitionsNetworkDll value=""/>
   <ProjectType value="Instrument"/>
 </ProjectSettings>
