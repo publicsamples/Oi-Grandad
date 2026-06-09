@@ -7,7 +7,7 @@ reg g_isUpdatingTabButtons = false;
 
 ////Engine.setMaximumBlockSize(512);
 
-const var defaultRef = "{PROJECT_FOLDER}OGInit.wav";
+const var defaultRef = "{PROJECT_FOLDER}OGInit.aif";
 
 const var g1 = Synth.getAudioSampleProcessor("Granular1");
 const var g2 = Synth.getAudioSampleProcessor("Granular2");
@@ -38,7 +38,7 @@ Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
 include("RR.js");
 include("rec.js");
 
-//include("MultiChannel.js");
+include("MultiChannel.js");
 include("ModControls.js");
 include("Rect.js");
 

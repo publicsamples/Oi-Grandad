@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.4.1"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.4.2"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
               buildVST="0" buildVST3="1" buildAU="1" buildAUv3="0" buildStandalone="0"
               buildRTAS="0" buildAAX="0" pluginName="oi grandad" pluginDesc="oi grandad"
@@ -26,46 +26,42 @@
       <FILE id="AOT2K8" name="Plugin.cpp" compile="1" resource="0" file="Source/Plugin.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="VrmIb1" name="nodes">
-        <FILE id="EfWD0r" name="aaa_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/aaa_networkdata.h"/>
-        <FILE id="JCSgjk" name="atest_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/atest_networkdata.h"/>
-        <FILE id="pJPdEp" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="WG7F7v" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="AncF83" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="aoUKbe" name="nodes">
+        <FILE id="GEaFze" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="y6PoJM" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="Ftnhwa" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="TEc6ke" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="W6RnCe" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="IluI73" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="BGzogL" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="i9QROi" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="ufyta8" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="MM707s" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="d3YIeB" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="wmzhpk" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="qP9RAU" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="whp3Oo" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="pKi9UX" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="ddaWFH" name="OutMods_networkdata.h" compile="0" resource="0"
+        <FILE id="TWXgwK" name="OutMods_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/OutMods_networkdata.h"/>
-        <FILE id="uoDNly" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="O7PMkk" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="Lj1unX" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="IK62mL" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="adDdXg" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="PDkNcL" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="L5ItmH" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="BCU0IS" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="SzBYhK" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="BgxWxu" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="ujLvRT" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="uGxiV2" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="LlWwde" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="nnItlE" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="XOuNSZ" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="WCbARS" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="yX770U" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="Yg2ibi" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="MVSSmB" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="pj3cLx" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="yQ0i6V" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="ZgqEg8" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="PmvSld" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="DhHJWA" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
@@ -118,6 +114,7 @@
         <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="hi_snex" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="melatonin_blur" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
@@ -169,6 +166,7 @@
         <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="hi_snex" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="melatonin_blur" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <MACOSX_MAKE targetFolder="Builds/MacOSXMakefile" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
@@ -217,6 +215,7 @@
         <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="hi_snex" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="melatonin_blur" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </MACOSX_MAKE>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight"
@@ -267,6 +266,7 @@
         <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="hi_snex" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="melatonin_blur" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
@@ -313,6 +313,7 @@
         <MODULEPATH id="hi_tools" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="hnode_jit" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="melatonin_blur" path="/Users/rick/Documents/GitHub/HISE"/>
+        <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -323,6 +324,7 @@
     <MODULE id="hi_faust_types" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_frontend" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_lac" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_loris" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="hi_rlottie" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_scripting" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_snex" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
@@ -364,5 +366,5 @@
                JUCE_WEB_BROWSER="0" JUCE_USE_CURL="1" JUCE_DSP_USE_INTEL_MKL="0"
                JUCE_DSP_USE_SHARED_FFTW="0" JUCE_DSP_USE_STATIC_FFTW="0" HISE_USE_CUSTOM_EXPANSION_TYPE="0"
                READ_ONLY_FACTORY_PRESETS="0" JUCE_HEADLESS_PLUGIN_CLIENT="disabled"
-               HISE_INCLUDE_LORIS="0"/>
+               HISE_INCLUDE_LORIS="1"/>
 </JUCERPROJECT>

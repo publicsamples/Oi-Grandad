@@ -20,6 +20,7 @@
 #include <hi_faust_types/hi_faust_types.h>
 #include <hi_frontend/hi_frontend.h>
 #include <hi_lac/hi_lac.h>
+#include <hi_loris/hi_loris.h>
 #include <hi_rlottie/hi_rlottie.h>
 #include <hi_scripting/hi_scripting.h>
 #include <hi_snex/hi_snex.h>
@@ -68,7 +69,7 @@ namespace ProjectInfo
 {
     const char* const  projectName    = "oi grandad";
     const char* const  companyName    = "modularsamples";
-    const char* const  versionString  = "2.4.1";
-    const int          versionNumber  = 0x20401;
+    const char* const  versionString  = "2.4.2";
+    const int          versionNumber  = 0x20402;
 }
 #endif

@@ -54,6 +54,7 @@
 #define JUCE_MODULE_AVAILABLE_hi_faust_types                      1
 #define JUCE_MODULE_AVAILABLE_hi_frontend                         1
 #define JUCE_MODULE_AVAILABLE_hi_lac                              1
+#define JUCE_MODULE_AVAILABLE_hi_loris                            1
 #define JUCE_MODULE_AVAILABLE_hi_rlottie                          1
 #define JUCE_MODULE_AVAILABLE_hi_scripting                        1
 #define JUCE_MODULE_AVAILABLE_hi_snex                             1
@@ -351,6 +352,17 @@
 
 #ifndef    HLAC_INCLUDE_TEST_SUITE
  #define   HLAC_INCLUDE_TEST_SUITE 0
+#endif
+
+//==============================================================================
+// hi_loris flags:
+
+#ifndef    HISE_INCLUDE_LORIS
+ #define   HISE_INCLUDE_LORIS 1
+#endif
+
+#ifndef    HISE_USE_LORIS_DLL
+ //#define HISE_USE_LORIS_DLL 0
 #endif
 
 //==============================================================================

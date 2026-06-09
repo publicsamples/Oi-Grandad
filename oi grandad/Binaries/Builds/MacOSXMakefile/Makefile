@@ -47,7 +47,7 @@ ifeq ($(CONFIG),Debug)
   JUCE_PCH     :=
   JUCE_PCH_INC :=
 
-  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.1" "-DJUCE_APP_VERSION_HEX=0x20401" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.2" "-DJUCE_APP_VERSION_HEX=0x20402" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST3 :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=1" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_VST3 := -fvisibility=hidden
@@ -102,6 +102,46 @@ ifeq ($(CONFIG),Debug)
     $(JUCE_OBJDIR)/include_hi_frontend_f98d5f69.o \
     $(JUCE_OBJDIR)/include_hi_lac_15d99830.o \
     $(JUCE_OBJDIR)/include_hi_lac_02_7a39397b.o \
+    $(JUCE_OBJDIR)/include_hi_loris_a6cf15a8.o \
+    $(JUCE_OBJDIR)/include_hi_loris_3_cfa2acf.o \
+    $(JUCE_OBJDIR)/include_hi_loris_4_d084250.o \
+    $(JUCE_OBJDIR)/include_hi_loris_6_d247152.o \
+    $(JUCE_OBJDIR)/include_hi_loris_7_d3288d3.o \
+    $(JUCE_OBJDIR)/include_hi_loris_8_d40a054.o \
+    $(JUCE_OBJDIR)/include_hi_loris_9_d4eb7d5.o \
+    $(JUCE_OBJDIR)/include_hi_loris_10_8ee564cd.o \
+    $(JUCE_OBJDIR)/include_hi_loris_11_8ef37c4e.o \
+    $(JUCE_OBJDIR)/include_hi_loris_12_8f0193cf.o \
+    $(JUCE_OBJDIR)/include_hi_loris_13_8f0fab50.o \
+    $(JUCE_OBJDIR)/include_hi_loris_15_8f2bda52.o \
+    $(JUCE_OBJDIR)/include_hi_loris_16_8f39f1d3.o \
+    $(JUCE_OBJDIR)/include_hi_loris_17_8f480954.o \
+    $(JUCE_OBJDIR)/include_hi_loris_18_8f5620d5.o \
+    $(JUCE_OBJDIR)/include_hi_loris_19_8f643856.o \
+    $(JUCE_OBJDIR)/include_hi_loris_21_90a854ed.o \
+    $(JUCE_OBJDIR)/include_hi_loris_22_90b66c6e.o \
+    $(JUCE_OBJDIR)/include_hi_loris_23_90c483ef.o \
+    $(JUCE_OBJDIR)/include_hi_loris_24_90d29b70.o \
+    $(JUCE_OBJDIR)/include_hi_loris_25_90e0b2f1.o \
+    $(JUCE_OBJDIR)/include_hi_loris_26_90eeca72.o \
+    $(JUCE_OBJDIR)/include_hi_loris_27_90fce1f3.o \
+    $(JUCE_OBJDIR)/include_hi_loris_28_910af974.o \
+    $(JUCE_OBJDIR)/include_hi_loris_29_911910f5.o \
+    $(JUCE_OBJDIR)/include_hi_loris_30_924f160b.o \
+    $(JUCE_OBJDIR)/include_hi_loris_31_925d2d8c.o \
+    $(JUCE_OBJDIR)/include_hi_loris_32_926b450d.o \
+    $(JUCE_OBJDIR)/include_hi_loris_33_92795c8e.o \
+    $(JUCE_OBJDIR)/include_hi_loris_34_9287740f.o \
+    $(JUCE_OBJDIR)/include_hi_loris_35_92958b90.o \
+    $(JUCE_OBJDIR)/include_hi_loris_36_92a3a311.o \
+    $(JUCE_OBJDIR)/include_hi_loris_37_92b1ba92.o \
+    $(JUCE_OBJDIR)/include_hi_loris_38_92bfd213.o \
+    $(JUCE_OBJDIR)/include_hi_loris_39_92cde994.o \
+    $(JUCE_OBJDIR)/include_hi_loris_40_9403eeaa.o \
+    $(JUCE_OBJDIR)/include_hi_loris_42_94201dac.o \
+    $(JUCE_OBJDIR)/include_hi_loris_44_943c4cae.o \
+    $(JUCE_OBJDIR)/include_hi_loris_45_944a642f.o \
+    $(JUCE_OBJDIR)/include_hi_loris_46_94587bb0.o \
     $(JUCE_OBJDIR)/include_hi_rlottie_3f7c6c10.o \
     $(JUCE_OBJDIR)/include_hi_rlottie_1_40582c65.o \
     $(JUCE_OBJDIR)/include_hi_rlottie_2_406643e6.o \
@@ -187,7 +227,7 @@ ifeq ($(CONFIG),Release)
   JUCE_PCH     :=
   JUCE_PCH_INC :=
 
-  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.1" "-DJUCE_APP_VERSION_HEX=0x20401" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.2" "-DJUCE_APP_VERSION_HEX=0x20402" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST3 :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=1" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_VST3 := -fvisibility=hidden
@@ -242,6 +282,46 @@ ifeq ($(CONFIG),Release)
     $(JUCE_OBJDIR)/include_hi_frontend_f98d5f69.o \
     $(JUCE_OBJDIR)/include_hi_lac_15d99830.o \
     $(JUCE_OBJDIR)/include_hi_lac_02_7a39397b.o \
+    $(JUCE_OBJDIR)/include_hi_loris_a6cf15a8.o \
+    $(JUCE_OBJDIR)/include_hi_loris_3_cfa2acf.o \
+    $(JUCE_OBJDIR)/include_hi_loris_4_d084250.o \
+    $(JUCE_OBJDIR)/include_hi_loris_6_d247152.o \
+    $(JUCE_OBJDIR)/include_hi_loris_7_d3288d3.o \
+    $(JUCE_OBJDIR)/include_hi_loris_8_d40a054.o \
+    $(JUCE_OBJDIR)/include_hi_loris_9_d4eb7d5.o \
+    $(JUCE_OBJDIR)/include_hi_loris_10_8ee564cd.o \
+    $(JUCE_OBJDIR)/include_hi_loris_11_8ef37c4e.o \
+    $(JUCE_OBJDIR)/include_hi_loris_12_8f0193cf.o \
+    $(JUCE_OBJDIR)/include_hi_loris_13_8f0fab50.o \
+    $(JUCE_OBJDIR)/include_hi_loris_15_8f2bda52.o \
+    $(JUCE_OBJDIR)/include_hi_loris_16_8f39f1d3.o \
+    $(JUCE_OBJDIR)/include_hi_loris_17_8f480954.o \
+    $(JUCE_OBJDIR)/include_hi_loris_18_8f5620d5.o \
+    $(JUCE_OBJDIR)/include_hi_loris_19_8f643856.o \
+    $(JUCE_OBJDIR)/include_hi_loris_21_90a854ed.o \
+    $(JUCE_OBJDIR)/include_hi_loris_22_90b66c6e.o \
+    $(JUCE_OBJDIR)/include_hi_loris_23_90c483ef.o \
+    $(JUCE_OBJDIR)/include_hi_loris_24_90d29b70.o \
+    $(JUCE_OBJDIR)/include_hi_loris_25_90e0b2f1.o \
+    $(JUCE_OBJDIR)/include_hi_loris_26_90eeca72.o \
+    $(JUCE_OBJDIR)/include_hi_loris_27_90fce1f3.o \
+    $(JUCE_OBJDIR)/include_hi_loris_28_910af974.o \
+    $(JUCE_OBJDIR)/include_hi_loris_29_911910f5.o \
+    $(JUCE_OBJDIR)/include_hi_loris_30_924f160b.o \
+    $(JUCE_OBJDIR)/include_hi_loris_31_925d2d8c.o \
+    $(JUCE_OBJDIR)/include_hi_loris_32_926b450d.o \
+    $(JUCE_OBJDIR)/include_hi_loris_33_92795c8e.o \
+    $(JUCE_OBJDIR)/include_hi_loris_34_9287740f.o \
+    $(JUCE_OBJDIR)/include_hi_loris_35_92958b90.o \
+    $(JUCE_OBJDIR)/include_hi_loris_36_92a3a311.o \
+    $(JUCE_OBJDIR)/include_hi_loris_37_92b1ba92.o \
+    $(JUCE_OBJDIR)/include_hi_loris_38_92bfd213.o \
+    $(JUCE_OBJDIR)/include_hi_loris_39_92cde994.o \
+    $(JUCE_OBJDIR)/include_hi_loris_40_9403eeaa.o \
+    $(JUCE_OBJDIR)/include_hi_loris_42_94201dac.o \
+    $(JUCE_OBJDIR)/include_hi_loris_44_943c4cae.o \
+    $(JUCE_OBJDIR)/include_hi_loris_45_944a642f.o \
+    $(JUCE_OBJDIR)/include_hi_loris_46_94587bb0.o \
     $(JUCE_OBJDIR)/include_hi_rlottie_3f7c6c10.o \
     $(JUCE_OBJDIR)/include_hi_rlottie_1_40582c65.o \
     $(JUCE_OBJDIR)/include_hi_rlottie_2_406643e6.o \
@@ -477,6 +557,206 @@ $(JUCE_OBJDIR)/include_hi_lac_15d99830.o: ../../JuceLibraryCode/include_hi_lac.c
 $(JUCE_OBJDIR)/include_hi_lac_02_7a39397b.o: ../../JuceLibraryCode/include_hi_lac_02.cpp $(JUCE_PCH)
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling include_hi_lac_02.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_a6cf15a8.o: ../../JuceLibraryCode/include_hi_loris.mm
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris.mm"
+	$(V_AT)$(CXX) -x objective-c++ $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_3_cfa2acf.o: ../../JuceLibraryCode/include_hi_loris_3.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_3.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_4_d084250.o: ../../JuceLibraryCode/include_hi_loris_4.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_4.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_6_d247152.o: ../../JuceLibraryCode/include_hi_loris_6.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_6.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_7_d3288d3.o: ../../JuceLibraryCode/include_hi_loris_7.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_7.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_8_d40a054.o: ../../JuceLibraryCode/include_hi_loris_8.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_8.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_9_d4eb7d5.o: ../../JuceLibraryCode/include_hi_loris_9.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_9.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_10_8ee564cd.o: ../../JuceLibraryCode/include_hi_loris_10.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_10.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_11_8ef37c4e.o: ../../JuceLibraryCode/include_hi_loris_11.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_11.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_12_8f0193cf.o: ../../JuceLibraryCode/include_hi_loris_12.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_12.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_13_8f0fab50.o: ../../JuceLibraryCode/include_hi_loris_13.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_13.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_15_8f2bda52.o: ../../JuceLibraryCode/include_hi_loris_15.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_15.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_16_8f39f1d3.o: ../../JuceLibraryCode/include_hi_loris_16.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_16.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_17_8f480954.o: ../../JuceLibraryCode/include_hi_loris_17.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_17.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_18_8f5620d5.o: ../../JuceLibraryCode/include_hi_loris_18.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_18.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_19_8f643856.o: ../../JuceLibraryCode/include_hi_loris_19.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_19.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_21_90a854ed.o: ../../JuceLibraryCode/include_hi_loris_21.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_21.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_22_90b66c6e.o: ../../JuceLibraryCode/include_hi_loris_22.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_22.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_23_90c483ef.o: ../../JuceLibraryCode/include_hi_loris_23.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_23.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_24_90d29b70.o: ../../JuceLibraryCode/include_hi_loris_24.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_24.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_25_90e0b2f1.o: ../../JuceLibraryCode/include_hi_loris_25.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_25.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_26_90eeca72.o: ../../JuceLibraryCode/include_hi_loris_26.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_26.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_27_90fce1f3.o: ../../JuceLibraryCode/include_hi_loris_27.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_27.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_28_910af974.o: ../../JuceLibraryCode/include_hi_loris_28.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_28.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_29_911910f5.o: ../../JuceLibraryCode/include_hi_loris_29.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_29.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_30_924f160b.o: ../../JuceLibraryCode/include_hi_loris_30.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_30.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_31_925d2d8c.o: ../../JuceLibraryCode/include_hi_loris_31.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_31.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_32_926b450d.o: ../../JuceLibraryCode/include_hi_loris_32.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_32.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_33_92795c8e.o: ../../JuceLibraryCode/include_hi_loris_33.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_33.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_34_9287740f.o: ../../JuceLibraryCode/include_hi_loris_34.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_34.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_35_92958b90.o: ../../JuceLibraryCode/include_hi_loris_35.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_35.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_36_92a3a311.o: ../../JuceLibraryCode/include_hi_loris_36.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_36.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_37_92b1ba92.o: ../../JuceLibraryCode/include_hi_loris_37.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_37.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_38_92bfd213.o: ../../JuceLibraryCode/include_hi_loris_38.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_38.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_39_92cde994.o: ../../JuceLibraryCode/include_hi_loris_39.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_39.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_40_9403eeaa.o: ../../JuceLibraryCode/include_hi_loris_40.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_40.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_42_94201dac.o: ../../JuceLibraryCode/include_hi_loris_42.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_42.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_44_943c4cae.o: ../../JuceLibraryCode/include_hi_loris_44.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_44.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_45_944a642f.o: ../../JuceLibraryCode/include_hi_loris_45.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_45.cpp"
+	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_hi_loris_46_94587bb0.o: ../../JuceLibraryCode/include_hi_loris_46.cpp $(JUCE_PCH)
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_hi_loris_46.cpp"
 	$(V_AT)$(CXX) $(JUCE_PCH_INC) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/include_hi_rlottie_3f7c6c10.o: ../../JuceLibraryCode/include_hi_rlottie.mm

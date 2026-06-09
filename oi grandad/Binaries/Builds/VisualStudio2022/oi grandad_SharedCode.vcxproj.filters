@@ -182,6 +182,24 @@
     <Filter Include="JUCE Modules\hi_lac">
       <UniqueIdentifier>{29EF2371-B527-9929-CBD2-A6F42455A4EE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\hi_loris\loris\include\loris">
+      <UniqueIdentifier>{37B28E0B-B1A5-E566-241C-7C75C63DF82C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\hi_loris\loris\include">
+      <UniqueIdentifier>{D5ACEE6F-F0DF-3BB5-1C25-2A537929A099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\hi_loris\loris\src">
+      <UniqueIdentifier>{B5A4CFF0-36AE-4A93-90D0-EDAC727F2641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\hi_loris\loris">
+      <UniqueIdentifier>{4A42332B-937D-2AA9-3908-D4F3238D6FC0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\hi_loris\wrapper">
+      <UniqueIdentifier>{8C1CE8A5-5395-4A03-9744-618B5E7B65C7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\hi_loris">
+      <UniqueIdentifier>{3B8597B4-A3B6-391F-81CA-9DBE912DBDA6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\hi_rlottie\include">
       <UniqueIdentifier>{049C6E37-FAAE-757D-45C4-59A9ABE2FE6A}</UniqueIdentifier>
     </Filter>
@@ -1971,6 +1989,279 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_lac\hi_lac_02.cpp">
       <Filter>JUCE Modules\hi_lac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffData.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffFile.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Analyzer.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\AssociateBandwidth.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\BigEndian.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Breakpoint.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\BreakpointUtils.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Channelizer.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Collator.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Dilator.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Distiller.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Envelope.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\F0Estimate.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\fftsg.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Filter.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\FourierTransform.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\FrequencyReference.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Fundamental.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Harmonifier.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\ImportLemur.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\KaiserWindow.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\LinearEnvelope.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisAnalyzer_pi.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisBpEnvelope_pi.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisException_pi.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\LorisExceptions.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisNonObj_pi.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisPartialList_pi.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisUtilities_pi.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Marker.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Morpher.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\NoiseGenerator.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Notifier.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Oscillator.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Partial.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialBuilder.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialUtils.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\phasefix.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\ReassignedSpectrum.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Resampler.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SdifFile.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Sieve.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpcFile.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralPeakSelector.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralSurface.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Synthesizer.cpp">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\Helpers.cpp">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\LorisState.cpp">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\MultichannelPartialList.cpp">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\public.cpp">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris.mm">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_3.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_4.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_6.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_7.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_8.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_9.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_10.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_11.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_12.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_13.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_15.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_16.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_17.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_18.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_19.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_21.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_22.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_23.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_24.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_25.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_26.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_27.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_28.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_29.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_30.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_31.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_32.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_33.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_34.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_35.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_36.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_37.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_38.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_39.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_40.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_42.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_44.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_45.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_46.cpp">
+      <Filter>JUCE Modules\hi_loris</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_rlottie\src\binding\c\lottieanimation_capi.cpp">
       <Filter>JUCE Modules\hi_rlottie\src\binding\c</Filter>
@@ -6004,6 +6295,126 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_lac_02.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_3.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_4.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_6.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_7.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_8.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_9.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_10.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_11.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_12.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_13.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_15.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_16.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_17.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_18.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_19.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_21.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_22.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_23.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_24.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_25.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_26.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_27.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_28.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_29.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_30.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_31.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_32.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_33.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_34.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_35.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_36.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_37.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_38.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_39.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_40.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_42.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_44.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_45.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_46.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_rlottie.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -6218,12 +6629,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\PresetData.h">
       <Filter>oi grandad\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\aaa_networkdata.h">
-      <Filter>oi grandad\Source\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\atest_networkdata.h">
-      <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h">
       <Filter>oi grandad\Source\nodes</Filter>
@@ -7247,6 +7652,309 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\HISE\hi_lac\hi_lac.h">
       <Filter>JUCE Modules\hi_lac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\AiffData.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\AiffFile.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Analyzer.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\AssociateBandwidth.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\BigEndian.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Breakpoint.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\BreakpointEnvelope.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\BreakpointUtils.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Channelizer.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Collator.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Dilator.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Distiller.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Envelope.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Exception.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\F0Estimate.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Filter.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\FourierTransform.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\FrequencyReference.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Fundamental.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Harmonifier.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\ImportLemur.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\KaiserWindow.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\LinearEnvelope.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\lorisException_pi.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\LorisExceptions.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Marker.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Morpher.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\NoiseGenerator.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Notifier.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Oscillator.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Partial.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialBuilder.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialList.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialPtrs.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialUtils.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\phasefix.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\ReassignedSpectrum.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Resampler.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SdifFile.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Sieve.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpcFile.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpectralPeaks.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpectralPeakSelector.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpectralSurface.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Synthesizer.h">
+      <Filter>JUCE Modules\hi_loris\loris\include\loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris.h">
+      <Filter>JUCE Modules\hi_loris\loris\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffData.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffFile.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Analyzer.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\AssociateBandwidth.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\BigEndian.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Breakpoint.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\BreakpointEnvelope.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\BreakpointUtils.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Channelizer.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Collator.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Dilator.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Distiller.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Envelope.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Exception.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\F0Estimate.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Filter.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\FourierTransform.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\FrequencyReference.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Fundamental.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Harmonifier.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\ImportLemur.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\KaiserWindow.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\LinearEnvelope.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\loris.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisException_pi.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\LorisExceptions.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Marker.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Morpher.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\NoiseGenerator.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Notifier.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Oscillator.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Partial.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialBuilder.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialList.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialPtrs.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialUtils.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\phasefix.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\ReassignedSpectrum.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Resampler.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SdifFile.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Sieve.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpcFile.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralPeaks.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralPeakSelector.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralSurface.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Synthesizer.h">
+      <Filter>JUCE Modules\hi_loris\loris\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\Helpers.h">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\LorisState.h">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\MultichannelPartialList.h">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\Properties.h">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\public.h">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\ThreadController.h">
+      <Filter>JUCE Modules\hi_loris\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\fix_warning_post.h">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\fix_warning_pre.h">
+      <Filter>JUCE Modules\hi_loris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\hi_loris.h">
+      <Filter>JUCE Modules\hi_loris</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\HISE\hi_rlottie\include\rlottie.h">
       <Filter>JUCE Modules\hi_rlottie\include</Filter>

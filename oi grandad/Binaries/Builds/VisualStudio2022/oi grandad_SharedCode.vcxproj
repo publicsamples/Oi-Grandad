@@ -64,7 +64,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>\Users\rick\Documents\GitHub\HISE\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;\Users\rick\Documents\GitHub\HISE\tools\SDK\VST3 SDK;..\..\JuceLibraryCode;\Users\rick\Documents\GitHub\HISE;\Users\rick\Documents\GitHub\HISE\JUCE\modules;%FFT_HEADER_PATH%;/Users/rick/Documents/GitHub/HISE/tools/faust/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=2.4.1;JUCE_APP_VERSION_HEX=0x20401;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=2.4.2;JUCE_APP_VERSION_HEX=0x20402;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -109,7 +109,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>\Users\rick\Documents\GitHub\HISE\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;\Users\rick\Documents\GitHub\HISE\tools\SDK\VST3 SDK;..\..\JuceLibraryCode;\Users\rick\Documents\GitHub\HISE;\Users\rick\Documents\GitHub\HISE\JUCE\modules;%FFT_HEADER_PATH%;/Users/rick/Documents/GitHub/HISE/tools/faust/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=2.4.1;JUCE_APP_VERSION_HEX=0x20401;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=2.4.2;JUCE_APP_VERSION_HEX=0x20402;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -1056,6 +1056,276 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_lac\hi_lac_02.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffData.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Analyzer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\AssociateBandwidth.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\BigEndian.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Breakpoint.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\BreakpointUtils.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Channelizer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Collator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Dilator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Distiller.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Envelope.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\F0Estimate.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\fftsg.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Filter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\FourierTransform.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\FrequencyReference.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Fundamental.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Harmonifier.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\ImportLemur.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\KaiserWindow.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\LinearEnvelope.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisAnalyzer_pi.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisBpEnvelope_pi.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisException_pi.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\LorisExceptions.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisNonObj_pi.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisPartialList_pi.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisUtilities_pi.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Marker.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Morpher.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\NoiseGenerator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Notifier.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Oscillator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Partial.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialBuilder.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialUtils.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\phasefix.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\ReassignedSpectrum.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Resampler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SdifFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Sieve.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpcFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralPeakSelector.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralSurface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\loris\src\Synthesizer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\Helpers.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\LorisState.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\MultichannelPartialList.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\wrapper\public.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_3.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_4.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_6.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_7.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_8.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_9.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_10.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_11.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_12.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_13.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_15.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_16.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_17.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_18.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_19.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_21.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_22.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_23.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_24.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_25.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_26.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_27.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_28.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_29.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_30.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_31.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_33.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_34.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_35.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_36.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_37.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_38.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_39.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_40.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_42.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_44.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_45.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\HISE\hi_loris\hi_loris_46.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\HISE\hi_rlottie\src\binding\c\lottieanimation_capi.cpp">
@@ -4909,6 +5179,46 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_frontend.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_lac.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_lac_02.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_3.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_4.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_6.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_7.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_8.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_9.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_10.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_11.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_12.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_13.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_15.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_16.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_17.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_18.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_19.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_21.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_22.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_23.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_24.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_25.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_26.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_27.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_28.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_29.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_30.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_31.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_32.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_33.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_34.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_35.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_36.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_37.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_38.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_39.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_40.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_42.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_44.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_45.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_hi_loris_46.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_rlottie.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_rlottie_1.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_hi_rlottie_2.cpp"/>
@@ -4984,8 +5294,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\PresetData.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\aaa_networkdata.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\atest_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\FoldTests_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ggg_networkdata.h"/>
@@ -5327,6 +5635,107 @@
     <ClInclude Include="..\..\..\..\..\HISE\hi_lac\hlac\HlacEncoder.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_lac\hlac\SampleBuffer.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_lac\hi_lac.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\AiffData.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\AiffFile.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Analyzer.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\AssociateBandwidth.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\BigEndian.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Breakpoint.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\BreakpointEnvelope.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\BreakpointUtils.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Channelizer.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Collator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Dilator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Distiller.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Envelope.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Exception.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\F0Estimate.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Filter.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\FourierTransform.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\FrequencyReference.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Fundamental.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Harmonifier.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\ImportLemur.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\KaiserWindow.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\LinearEnvelope.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\lorisException_pi.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\LorisExceptions.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Marker.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Morpher.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\NoiseGenerator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Notifier.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Oscillator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Partial.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialBuilder.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialList.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialPtrs.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\PartialUtils.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\phasefix.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\ReassignedSpectrum.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Resampler.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SdifFile.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Sieve.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpcFile.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpectralPeaks.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpectralPeakSelector.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\SpectralSurface.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris\Synthesizer.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\include\loris.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffData.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\AiffFile.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Analyzer.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\AssociateBandwidth.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\BigEndian.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Breakpoint.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\BreakpointEnvelope.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\BreakpointUtils.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Channelizer.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Collator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Dilator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Distiller.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Envelope.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Exception.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\F0Estimate.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Filter.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\FourierTransform.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\FrequencyReference.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Fundamental.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Harmonifier.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\ImportLemur.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\KaiserWindow.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\LinearEnvelope.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\loris.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\lorisException_pi.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\LorisExceptions.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Marker.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Morpher.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\NoiseGenerator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Notifier.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Oscillator.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Partial.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialBuilder.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialList.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialPtrs.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\PartialUtils.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\phasefix.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\ReassignedSpectrum.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Resampler.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SdifFile.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Sieve.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpcFile.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralPeaks.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralPeakSelector.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\SpectralSurface.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\loris\src\Synthesizer.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\Helpers.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\LorisState.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\MultichannelPartialList.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\Properties.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\public.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\wrapper\ThreadController.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\fix_warning_post.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\fix_warning_pre.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_loris\hi_loris.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_rlottie\include\rlottie.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_rlottie\include\rlottie_capi.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_rlottie\include\rlottiecommon.h"/>
