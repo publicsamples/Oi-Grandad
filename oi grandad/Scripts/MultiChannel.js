@@ -2,7 +2,11 @@
 const var MultiChannelTest = Synth.getChildSynth("oi grandad");
 
 
-var matrix = MultiChannelTest.getRoutingMatrix();
+const var matrix = Synth.getRoutingMatrix("Granular1");
+const var matrix2 = Synth.getRoutingMatrix("Granular2");
+const var matrix3 = Synth.getRoutingMatrix("Granular3");
+const var matrix4 = Synth.getRoutingMatrix("Granular4");
+
 
 const var SucessLabel = Content.getComponent("SucessLabel");
 const var SucessLabel1 = Content.getComponent("SucessLabel1");
@@ -56,27 +60,27 @@ inline function onOutputSelector1Control(component, value)
 	switch(value)
     {
         case 1:
-            matrix.addConnection(2, 0);
-            matrix.addConnection(3, 1);
+            matrix2.addConnection(2, 0);
+            matrix2.addConnection(3, 1);
             break;
         case 2:
-            matrix.addConnection(2, 2);
-            success = matrix.addConnection(3, 3);
+            matrix2.addConnection(2, 2);
+            success = matrix2.addConnection(3, 3);
             break;
         case 3:
-            matrix.addConnection(2, 4);
-            success = matrix.addConnection(3, 5);
+            matri2x.addConnection(2, 4);
+            success = matrix2.addConnection(3, 5);
             break;
         case 4:
-            matrix.addConnection(2, 6);
-            success = matrix.addConnection(3, 7);
+            matrix2.addConnection(2, 6);
+            success = matrix2.addConnection(3, 7);
             break;
     }
     
     if(!success)
     {
-        matrix.addConnection(2, 0);
-        matrix.addConnection(3, 1);
+        matrix2.addConnection(2, 0);
+        matrix2.addConnection(3, 1);
     }
     
     SucessLabel1.set("text", success ? "OK" : "Error");
@@ -94,27 +98,27 @@ inline function onOutputSelector2Control(component, value)
 	switch(value)
     {
         case 1:
-            matrix.addConnection(4, 0);
-            matrix.addConnection(5, 1);
+            matrix3.addConnection(4, 0);
+            matrix3.addConnection(5, 1);
             break;
         case 2:
-            matrix.addConnection(4, 2);
-            success = matrix.addConnection(5, 3);
+            matrix3.addConnection(4, 2);
+            success = matrix3.addConnection(5, 3);
             break;
         case 3:
-            matrix.addConnection(4, 4);
-            success = matrix.addConnection(5, 5);
+            matrix3.addConnection(4, 4);
+            success = matrix3.addConnection(5, 5);
             break;
         case 4:
-            matrix.addConnection(4, 6);
-            success = matrix.addConnection(5, 7);
+            matrix3.addConnection(4, 6);
+            success = matrix3.addConnection(5, 7);
             break;
     }
     
     if(!success)
     {
-        matrix.addConnection(4, 0);
-        matrix.addConnection(5, 1);
+        matrix3.addConnection(4, 0);
+        matrix3.addConnection(5, 1);
     }
     
     SucessLabel2.set("text", success ? "OK" : "Error");
@@ -132,27 +136,27 @@ inline function onOutputSelector3Control(component, value)
 	switch(value)
     {
         case 1:
-            matrix.addConnection(6, 0);
-            matrix.addConnection(7, 1);
+            matrix4.addConnection(6, 0);
+            matrix4.addConnection(7, 1);
             break;
         case 2:
-            matrix.addConnection(6, 2);
-            success = matrix.addConnection(7, 3);
+            matrix4.addConnection(6, 2);
+            success = matrix4.addConnection(7, 3);
             break;
         case 3:
-            matrix.addConnection(6, 4);
-            success = matrix.addConnection(7, 5);
+            matrix4.addConnection(6, 4);
+            success = matrix4.addConnection(7, 5);
             break;
         case 4:
-            matrix.addConnection(6, 6);
-            success = matrix.addConnection(7, 7);
+            matrix4.addConnection(6, 6);
+            success = matrix4.addConnection(7, 7);
             break;
     }
     
     if(!success)
     {
-        matrix.addConnection(6, 0);
-        matrix.addConnection(7, 1);
+        matrix4.addConnection(6, 0);
+        matrix4.addConnection(7, 1);
     }
     
     SucessLabel3.set("text", success ? "OK" : "Error");
