@@ -866,11 +866,11 @@
             <Control type="ScriptButton" id="ClosePreset" value="0.0"/>
             <Control type="ScriptComboBox" id="MidiNote" value="36.0"/>
             <Control type="ScriptSlider" id="FinVol1" value="0.0"/>
-            <Control type="ScriptSlider" id="FinVol2" value="-100.0"/>
-            <Control type="ScriptSlider" id="FinVol3" value="-100.0"/>
-            <Control type="ScriptSlider" id="FinVol4" value="-100.0"/>
+            <Control type="ScriptSlider" id="FinVol2" value="0.0"/>
+            <Control type="ScriptSlider" id="FinVol3" value="-2.099998474121094"/>
+            <Control type="ScriptSlider" id="FinVol4" value="-3.099998474121094"/>
             <Control type="ScriptSlider" id="MasterVol" value="7.100001811981201"/>
-            <Control type="ScriptComboBox" id="VoiceNumber" value="4.0"/>
+            <Control type="ScriptComboBox" id="VoiceNumber" value="1.0"/>
             <Control type="ScriptComboBox" id="Poly" value="4.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
@@ -887,11 +887,10 @@
       <ChildProcessors>
         <Processor Type="ScriptFX" ID="RecordingScript" Bypassed="0">
           <ChildProcessors/>
-          <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
                          Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1" Channel8="-1" Send8="-1" Channel9="-1"
-                         Send9="-1"/>
+                         Channel7="-1" Send7="-1"/>
           <Content/>
           <UIData>
             <ContentProperties DeviceType="Desktop"/>
@@ -899,11 +898,10 @@
         </Processor>
         <Processor Type="ScriptFX" ID="RecBuffer" Bypassed="0" NumAudioFiles="1">
           <ChildProcessors/>
-          <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
                          Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1" Channel8="-1" Send8="-1" Channel9="-1"
-                         Send9="-1"/>
+                         Channel7="-1" Send7="-1"/>
           <Content/>
           <Networks>
             <Network ID="recorder" Version="0.0.0">
@@ -940,11 +938,10 @@
                    ResLpMod="0.0" ResLpSrc="1.0" delMode="10.0" Meta="0.8555000424385071"
                    MetaMod="0.0" MetaSrc="1.0">
           <ChildProcessors/>
-          <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
                          Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1" Channel8="-1" Send8="-1" Channel9="-1"
-                         Send9="-1"/>
+                         Channel7="-1" Send7="-1"/>
         </Processor>
         <Processor Type="SimpleGain" ID="MasterVol" Bypassed="0" Gain="7.100002288818359"
                    Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
@@ -962,11 +959,10 @@
               <ChildProcessors/>
             </Processor>
           </ChildProcessors>
-          <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
                          Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1" Channel8="-1" Send8="-1" Channel9="-1"
-                         Send9="-1"/>
+                         Channel7="-1" Send7="-1"/>
         </Processor>
         <Processor Type="Dynamics" ID="Dynamics1" Bypassed="1" GateEnabled="0.0"
                    GateThreshold="0.0" GateAttack="1.0" GateRelease="100.0" CompressorEnabled="0.0"
@@ -975,11 +971,10 @@
                    LimiterAttack="9.569999694824219" LimiterRelease="3.960000038146973"
                    CompressorMakeup="0.0" LimiterMakeup="1.0">
           <ChildProcessors/>
-          <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
                          Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1" Channel8="-1" Send8="-1" Channel9="-1"
-                         Send9="-1"/>
+                         Channel7="-1" Send7="-1"/>
         </Processor>
         <Processor Type="SimpleGain" ID="gainFix" Bypassed="0" Gain="12.60259056091309"
                    Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
@@ -997,11 +992,10 @@
               <ChildProcessors/>
             </Processor>
           </ChildProcessors>
-          <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+          <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
                          Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1" Channel8="-1" Send8="-1" Channel9="-1"
-                         Send9="-1"/>
+                         Channel7="-1" Send7="-1"/>
         </Processor>
       </ChildProcessors>
     </Processor>
@@ -1526,7 +1520,7 @@
         <AudioFile EmbeddedData="{PROJECT_FOLDER}OGInit.aif" MinValue="0" MaxValue="264600"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="0" Gain="1.0"
+    <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="1" Gain="1.0"
                Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="sn" PitchMode="2.0" MaxGrains="4.0" scrubMode="3.0"
                scrubBlen="0.0" reverse="3.0" Position="0.7628698945045471" PositionMod="1.0"
@@ -1607,8 +1601,8 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain2" Bypassed="0" Gain="-100.0"
-                       Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
+            <Processor Type="SimpleGain" ID="Simple Gain2" Bypassed="0" Gain="0.0" Delay="0.0"
+                       Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                   <ChildProcessors/>
@@ -1634,7 +1628,7 @@
           <ChildProcessors/>
         </Processor>
       </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+      <RoutingMatrix NumSourceChannels="2" Channel0="2" Send0="-1" Channel1="3" Send1="-1"/>
       <Tables>
         <Table EmbeddedData="24...............vO...f+.........vO"/>
         <Table EmbeddedData="24...............vO...f+.........vO"/>
@@ -1645,7 +1639,7 @@
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="0" Gain="1.0"
+    <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="1" Gain="1.0"
                Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="sn" PitchMode="1.0" MaxGrains="32.0" scrubMode="3.0"
                scrubBlen="1.0" reverse="1.0" Position="0.7691639065742493" PositionMod="0.05999999865889549"
@@ -1726,7 +1720,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain3" Bypassed="0" Gain="-100.0"
+            <Processor Type="SimpleGain" ID="Simple Gain3" Bypassed="0" Gain="-2.099998474121094"
                        Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
@@ -1753,7 +1747,7 @@
           <ChildProcessors/>
         </Processor>
       </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+      <RoutingMatrix NumSourceChannels="2" Channel0="4" Send0="-1" Channel1="5" Send1="-1"/>
       <Tables>
         <Table EmbeddedData="24...............vO...f+.........vO"/>
         <Table EmbeddedData="24...............vO...f+.........vO"/>
@@ -1764,7 +1758,7 @@
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular4" Bypassed="0" Gain="1.0"
+    <Processor Type="HardcodedSynth" ID="Granular4" Bypassed="1" Gain="1.0"
                Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="sn" PitchMode="1.0" MaxGrains="8.0" scrubMode="3.0"
                scrubBlen="0.0" reverse="2.0" Position="0.6630394458770752" PositionMod="0.0"
@@ -1845,7 +1839,7 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain4" Bypassed="0" Gain="-100.0"
+            <Processor Type="SimpleGain" ID="Simple Gain4" Bypassed="0" Gain="-3.099998950958252"
                        Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
@@ -1872,7 +1866,7 @@
           <ChildProcessors/>
         </Processor>
       </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+      <RoutingMatrix NumSourceChannels="2" Channel0="6" Send0="-1" Channel1="7" Send1="-1"/>
       <Tables>
         <Table EmbeddedData="24...............vO...f+.........vO"/>
         <Table EmbeddedData="24...............vO...f+.........vO"/>
@@ -1926,23 +1920,23 @@
       </UIData>
     </Processor>
   </ChildProcessors>
-  <RoutingMatrix NumSourceChannels="10" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
+  <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                  Channel2="0" Send2="-1" Channel3="1" Send3="-1" Channel4="0"
                  Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
-                 Send7="-1" Channel8="0" Send8="-1" Channel9="1" Send9="-1"/>
+                 Send7="-1"/>
   <macro_controls>
-    <macro name="Slot 1" value="106.0768127441406" midi_cc="-1">
+    <macro name="Slot 1" value="127.0" midi_cc="-1">
       <controlled_parameter id="Macro Control Modulator1" parameter="3" parameter_name="MacroValue"
                             min="0.0" max="1.0" low="0.0" high="1.0" skew="1.0" step="0.01"
                             inverted="0" readonly="1" converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADv..."/>
     </macro>
-    <macro name="Slot 2" value="8.459899447643693e-14" midi_cc="-1"/>
-    <macro name="Slot 3" value="8.459899447643693e-14" midi_cc="-1"/>
-    <macro name="Slot 4" value="8.459899447643693e-14" midi_cc="-1"/>
-    <macro name="Slot 5" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 6" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 7" value="127.0" midi_cc="-1"/>
-    <macro name="Slot 8" value="127.0" midi_cc="-1"/>
+    <macro name="Slot 2" value="5.635425091672603e-29" midi_cc="-1"/>
+    <macro name="Slot 3" value="5.635425091672603e-29" midi_cc="-1"/>
+    <macro name="Slot 4" value="5.635425091672603e-29" midi_cc="-1"/>
+    <macro name="Slot 5" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 6" value="0.0" midi_cc="-1"/>
+    <macro name="Slot 7" value="4.0" midi_cc="-1"/>
+    <macro name="Slot 8" value="0.0" midi_cc="-1"/>
   </macro_controls>
   <MidiAutomation/>
   <MPEData Enabled="0"/>
