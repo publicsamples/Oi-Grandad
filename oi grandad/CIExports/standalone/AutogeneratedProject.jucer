@@ -2,9 +2,9 @@
 
 <JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.2"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
-              jucerVersion="5.2.0" companyName="modularsamples" companyWebsite="http://modularsamples.com"
+              companyName="modularsamples" companyWebsite="http://modularsamples.com"
               companyCopyright="2024 MS" displaySplashScreen="0" reportAppUsage="0"
-              cppLanguageStandard="17">
+              cppLanguageStandard="17" jucerFormatVersion="1">
   <MAINGROUP id="SLR7uY" name="oi grandad">
     <GROUP id="{122C85F1-8B09-257A-B636-113E3EAC258A}" name="Source">
       <FILE id="KmyOlv" name="infoError.png" compile="0" resource="1" file="Source/Images/infoError.png"/>
@@ -17,42 +17,42 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="evIfN9" name="nodes">
-        <FILE id="P4uFkW" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="eyfKyw" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="vuYb1N" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="uS56aD" name="nodes">
+        <FILE id="LYWEeX" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="gpPFer" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="zXCPI4" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="oMSoEw" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="XZfbIo" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="CYyRj1" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="xdEq5g" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="CGc1gD" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="rLAH9Q" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="fGMBa9" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="sfpK4u" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="omvTAG" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="V1ALKm" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="sufLKw" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="Yhwbuk" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="bAQUWZ" name="OutMods_networkdata.h" compile="0" resource="0"
+        <FILE id="nrUvce" name="OutMods_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/OutMods_networkdata.h"/>
-        <FILE id="AEggsz" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="VFQdzp" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="qwOea2" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="qoBHyy" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="X0GpDm" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="h5vGv4" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="UXUoHQ" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="rRwlDQ" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="JVRCda" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="YXv4KT" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="sBPFBe" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="uIgTtw" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="ZJN1m7" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="rZi26v" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="JDwT6I" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="Xe7z5G" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="gfksas" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="FfFjb0" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="THd7rC" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="zJwMR1" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="GZZyWR" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="PSkuT4" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="HMJWtH" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="R7RsqS" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
@@ -250,12 +250,14 @@
     <MODULE id="hi_faust" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_faust_types" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_frontend" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_scripting" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_lac" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_zstd" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_loris" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="hi_rlottie" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_scripting" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_snex" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="hi_streaming" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_tools" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_zstd" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
@@ -271,26 +273,21 @@
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_product_unlocking" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_snex" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_product_unlocking" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="melatonin_blur" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="hi_loris" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_QUICKTIME="disabled" USE_BACKEND="disabled" USE_FRONTEND="enabled"
-               USE_RAW_FRONTEND="disabled" HI_EXPORT_DSP_LIBRARY="disabled"
-               USE_COPY_PROTECTION="disabled" IS_STANDALONE_APP="enabled" FRONTEND_IS_PLUGIN="disabled"
-               USE_CUSTOM_FRONTEND_TOOLBAR="disabled" HI_SUPPORT_FULL_DYNAMICS_HLAC="disabled"
-               READ_ONLY_FACTORY_PRESETS="disabled" IS_STANDALONE_FRONTEND="enabled"
-               USE_GLITCH_DETECTION="enabled" ENABLE_PLOTTER="disabled" ENABLE_SCRIPTING_SAFE_CHECKS="disabled"
-               ENABLE_ALL_PEAK_METERS="disabled" ENABLE_CONSOLE_OUTPUT="disabled"
-               JUCE_ASIO="disabled" JUCE_JACK="disabled" USE_SPLASH_SCREEN="disabled"
-               HISE_OVERWRITE_OLD_USER_PRESETS="disabled" HI_ENABLE_LEGACY_CPU_SUPPORT="0"
-               HISE_INCLUDE_RLOTTIE="enabled" HISE_INCLUDE_FAUST="enabled" HISE_USE_SYSTEM_APP_DATA_FOLDER="enabled"
-               HLAC_MEASURE_DECODING_PERFORMANCE="disabled" HLAC_DEBUG_LOG="disabled"
-               HLAC_INCLUDE_TEST_SUITE="disabled" STANDALONE_STREAMING="disabled"
-               JUCE_DSP_USE_INTEL_MKL="disabled" JUCE_WEB_BROWSER="disabled"
-               JUCE_USE_CURL="enabled" JUCE_DSP_USE_SHARED_FFTW="disabled" JUCE_DSP_USE_STATIC_FFTW="disabled"
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" USE_BACKEND="0" USE_FRONTEND="1" USE_RAW_FRONTEND="0"
+               HI_EXPORT_DSP_LIBRARY="0" USE_COPY_PROTECTION="0" IS_STANDALONE_APP="1"
+               FRONTEND_IS_PLUGIN="0" USE_CUSTOM_FRONTEND_TOOLBAR="0" HI_SUPPORT_FULL_DYNAMICS_HLAC="0"
+               READ_ONLY_FACTORY_PRESETS="0" IS_STANDALONE_FRONTEND="1" USE_GLITCH_DETECTION="1"
+               ENABLE_PLOTTER="0" ENABLE_SCRIPTING_SAFE_CHECKS="0" ENABLE_ALL_PEAK_METERS="0"
+               ENABLE_CONSOLE_OUTPUT="0" JUCE_ASIO="0" JUCE_JACK="0" USE_SPLASH_SCREEN="0"
+               HISE_OVERWRITE_OLD_USER_PRESETS="0" HI_ENABLE_LEGACY_CPU_SUPPORT="0"
+               HISE_INCLUDE_RLOTTIE="1" HISE_INCLUDE_FAUST="1" HISE_USE_SYSTEM_APP_DATA_FOLDER="1"
+               HLAC_MEASURE_DECODING_PERFORMANCE="0" HLAC_DEBUG_LOG="0" HLAC_INCLUDE_TEST_SUITE="0"
+               STANDALONE_STREAMING="0" JUCE_DSP_USE_INTEL_MKL="0" JUCE_WEB_BROWSER="0"
+               JUCE_USE_CURL="1" JUCE_DSP_USE_SHARED_FFTW="0" JUCE_DSP_USE_STATIC_FFTW="0"
                HISE_USE_CUSTOM_EXPANSION_TYPE="0" HISE_INCLUDE_LORIS="1"/>
 </JUCERPROJECT>

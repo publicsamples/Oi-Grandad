@@ -8,10 +8,12 @@
               pluginCode="Msog" pluginChannelConfigs="" pluginIsSynth="1" pluginWantsMidiIn="1%"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="1"
               pluginAUExportPrefix="DemoProjectAU" pluginRTASCategory="" aaxIdentifier=""
-              pluginAAXCategory="AAX_ePlugInCategory_SWGenerators" pluginVST3Category="Instrument"
-              jucerVersion="5.2.0" companyName="modularsamples" companyWebsite="http://modularsamples.com"
-              companyCopyright="2024 MS" displaySplashScreen="0" reportAppUsage="0"
-              splashScreenColour="Dark" enableIAA="1" cppLanguageStandard="17">
+              pluginAAXCategory="2048" pluginVST3Category="Instrument" companyName="modularsamples"
+              companyWebsite="http://modularsamples.com" companyCopyright="2024 MS"
+              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              enableIAA="1" cppLanguageStandard="17" pluginFormats="buildAU,enableIAA"
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn,pluginEditorRequiresKeys"
+              jucerFormatVersion="1">
   <MAINGROUP id="SLR7uY" name="oi grandad">
     <GROUP id="{122C85F1-8B09-257A-B636-113E3EAC258A}" name="Source">
       <FILE id="KmyOlv" name="infoError.png" compile="0" resource="1" file="Source/Images/infoError.png"/>
@@ -24,49 +26,49 @@
       <FILE id="AOT2K8" name="Plugin.cpp" compile="1" resource="0" file="Source/Plugin.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="j8Dg6m" name="nodes">
-        <FILE id="Em2R7K" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="b5L2YU" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="I4mW49" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="fP3Yjd" name="nodes">
+        <FILE id="JZnkdU" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="HGFKhV" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="qfrdcU" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="fxpoXL" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="VFolfb" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="s9J5A3" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="hrvkR8" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="Mcs1Qu" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="eGy1XM" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="SrtJn1" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="BEe638" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="IsRbWG" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="G683FN" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="wuz0rf" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="VuR7sp" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="VTK09p" name="OutMods_networkdata.h" compile="0" resource="0"
+        <FILE id="WGPI3Y" name="OutMods_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/OutMods_networkdata.h"/>
-        <FILE id="sZRzN4" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="wTqfDE" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="N29DSz" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="y0rcoQ" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="EQpNNI" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="tVRXJV" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="McORiP" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="PVuvNe" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="fL3GMA" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="rq1osa" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="cCfASR" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="clpFaQ" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="hHcrOI" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="tCNogF" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="RMZX3r" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="AjNZjy" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="OIYon7" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="z79TcM" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="RuBn5L" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="lS9tTo" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="GO5pvi" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="Z9Ypjd" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="hB4BPm" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="imQF2e" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2026 targetFolder="Builds/VisualStudio2026" vstLegacyFolder="%" vst3Folder="%"
-            aaxFolder="" IPP1ALibrary="" extraDefs="&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10"
+            IPP1ALibrary="" extraDefs="&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10"
             extraCompilerFlags="/bigobj /cgthreads8  /wd&quot;4100&quot; /wd&quot;4127&quot; /wd&quot;4244&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4459&quot;&#10;"
             extraLinkerFlags="%FFT_LINKER_FLAGS%%WIN_STATIC_LIBS%">
       <CONFIGURATIONS>
@@ -115,7 +117,7 @@
       </MODULEPATHS>
     </VS2026>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="%" vst3Folder="%"
-               aaxFolder="" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
+               extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
                extraLinkerFlags="" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"
                hardenedRuntime="0" hardenedRuntimeOptions="com.apple.security.cs.allow-jit,com.apple.security.cs.allow-unsigned-executable-memory,com.apple.security.device.audio-input"
                xcodeValidArchs="arm64,arm64e,x86_64" externalLibraries=";">
@@ -165,8 +167,7 @@
         <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <MACOSX_MAKE targetFolder="Builds/MacOSXMakefile" vstLegacyFolder="%" aaxFolder=""
-                 extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
+    <MACOSX_MAKE targetFolder="Builds/MacOSXMakefile" vstLegacyFolder="%" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
                  extraLinkerFlags=" -Wl,-ld_new" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_INCLUDE_LORIS=0"
                  externalLibraries=";" compileFirstPatterns="*hi_scripting_01*, *hi_tools_01*, *hi_scripting_03*"
                  featureGatedModules="hi_rlottie:HISE_INCLUDE_RLOTTIE, hi_loris:HISE_INCLUDE_LORIS">
@@ -214,7 +215,8 @@
         <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
     </MACOSX_MAKE>
-    <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="landscape" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation"
+    <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight"
+                  extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation"
                   extraLinkerFlags="" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;&#10;HISE_IOS=1&#10;JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=1&#10;USE_VDSP_FFT=1"
                   UIStatusBarHidden="1" iosBackgroundAudio="1" iosBackgroundBle="0"
                   customXcodeResourceFolders="../Samples\n../Images\nEmbeddedResources\n../UserPresets"
@@ -313,19 +315,20 @@
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="hi_core" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_frontend" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_scripting" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_dsp_library" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_faust" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_faust_types" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_frontend" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_lac" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_zstd" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_loris" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="hi_rlottie" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_scripting" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_snex" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="hi_streaming" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="hi_tools" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="hi_zstd" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
@@ -335,34 +338,29 @@
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_product_unlocking" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="hi_snex" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_product_unlocking" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="melatonin_blur" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="hi_loris" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_QUICKTIME="disabled" USE_BACKEND="disabled" USE_FRONTEND="enabled"
-               USE_RAW_FRONTEND="disabled" HI_EXPORT_DSP_LIBRARY="disabled"
-               HISE_ENABLE_MIDI_INPUT_FOR_FX="disabled" PROCESS_SOUND_GENERATORS_IN_FX_PLUGIN="disabled"
-               HISE_MIDIFX_PLUGIN="disabled" USE_COPY_PROTECTION="disabled"
-               IS_STANDALONE_APP="disabled" FRONTEND_IS_PLUGIN="disabled" USE_CUSTOM_FRONTEND_TOOLBAR="disabled"
-               IS_STANDALONE_FRONTEND="disabled" USE_GLITCH_DETECTION="enabled"
-               ENABLE_PLOTTER="disabled" ENABLE_SCRIPTING_SAFE_CHECKS="disabled"
-               ENABLE_ALL_PEAK_METERS="disabled" USE_SPLASH_SCREEN="disabled"
-               HISE_OVERWRITE_OLD_USER_PRESETS="disabled" HI_SUPPORT_MONO_CHANNEL_LAYOUT="disabled"
-               HI_SUPPORT_FULL_DYNAMICS_HLAC="disabled" ENABLE_CONSOLE_OUTPUT="disabled"
-               HI_ENABLE_LEGACY_CPU_SUPPORT="0" HISE_INCLUDE_FAUST="enabled"
-               HISE_USE_SYSTEM_APP_DATA_FOLDER="enabled" HISE_INCLUDE_RLOTTIE="enabled"
-               HLAC_MEASURE_DECODING_PERFORMANCE="disabled" HLAC_DEBUG_LOG="disabled"
-               HLAC_INCLUDE_TEST_SUITE="disabled" STANDALONE_STREAMING="disabled"
-               JUCE_ASSERTION_FIRFILTER="disabled" JUCE_VST3_CAN_REPLACE_VST2="disabled"
-               JUCE_WEB_BROWSER="disabled" JUCE_USE_CURL="enabled" JUCE_DSP_USE_INTEL_MKL="disabled"
-               JUCE_DSP_USE_SHARED_FFTW="disabled" JUCE_DSP_USE_STATIC_FFTW="disabled"
-               HISE_USE_CUSTOM_EXPANSION_TYPE="0" READ_ONLY_FACTORY_PRESETS="disabled"
-               JUCE_HEADLESS_PLUGIN_CLIENT="disabled" HISE_INCLUDE_LORIS="1"/>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" USE_BACKEND="0" USE_FRONTEND="1" USE_RAW_FRONTEND="0"
+               HI_EXPORT_DSP_LIBRARY="0" HISE_ENABLE_MIDI_INPUT_FOR_FX="0" PROCESS_SOUND_GENERATORS_IN_FX_PLUGIN="0"
+               HISE_MIDIFX_PLUGIN="0" USE_COPY_PROTECTION="0" IS_STANDALONE_APP="0"
+               FRONTEND_IS_PLUGIN="0" USE_CUSTOM_FRONTEND_TOOLBAR="0" IS_STANDALONE_FRONTEND="0"
+               USE_GLITCH_DETECTION="1" ENABLE_PLOTTER="0" ENABLE_SCRIPTING_SAFE_CHECKS="0"
+               ENABLE_ALL_PEAK_METERS="0" USE_SPLASH_SCREEN="0" HISE_OVERWRITE_OLD_USER_PRESETS="0"
+               HI_SUPPORT_MONO_CHANNEL_LAYOUT="0" HI_SUPPORT_FULL_DYNAMICS_HLAC="0"
+               ENABLE_CONSOLE_OUTPUT="0" HI_ENABLE_LEGACY_CPU_SUPPORT="0" HISE_INCLUDE_FAUST="1"
+               HISE_USE_SYSTEM_APP_DATA_FOLDER="1" HISE_INCLUDE_RLOTTIE="1"
+               HLAC_MEASURE_DECODING_PERFORMANCE="0" HLAC_DEBUG_LOG="0" HLAC_INCLUDE_TEST_SUITE="0"
+               STANDALONE_STREAMING="0" JUCE_ASSERTION_FIRFILTER="0" JUCE_VST3_CAN_REPLACE_VST2="0"
+               JUCE_WEB_BROWSER="0" JUCE_USE_CURL="1" JUCE_DSP_USE_INTEL_MKL="0"
+               JUCE_DSP_USE_SHARED_FFTW="0" JUCE_DSP_USE_STATIC_FFTW="0" HISE_USE_CUSTOM_EXPANSION_TYPE="0"
+               READ_ONLY_FACTORY_PRESETS="0" JUCE_HEADLESS_PLUGIN_CLIENT="disabled"
+               HISE_INCLUDE_LORIS="1"/>
 </JUCERPROJECT>

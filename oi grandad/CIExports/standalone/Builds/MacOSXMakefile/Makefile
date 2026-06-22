@@ -210,9 +210,9 @@ ifeq ($(CONFIG),Release)
   JUCE_PLIST_APP := Info-APP-Release.plist
   JUCE_STRIPCMD_APP := $(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(JUCE_TARGET_APP)
 
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -flto=thin -isysroot $(shell xcrun --sdk macosx --show-sdk-path) -mmacosx-version-min=11.0 -Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off $(CFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -isysroot $(shell xcrun --sdk macosx --show-sdk-path) -mmacosx-version-min=11.0 -Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++17 -stdlib=libc++ $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden -stdlib=libc++ -mmacosx-version-min=11.0 -flto=thin -Wl,-cache_path_lto,build/lto_cache -Wl,-ld_new -framework Accelerate -framework CoreAudio -framework CoreMIDI -framework AudioToolbox -framework QuartzCore -framework CoreAudioKit -framework DiscRecording -framework Cocoa -framework Foundation -framework IOKit -framework Carbon -framework WebKit -framework OpenGL $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden -stdlib=libc++ -mmacosx-version-min=11.0 -Wl,-ld_new -framework Accelerate -framework CoreAudio -framework CoreMIDI -framework AudioToolbox -framework QuartzCore -framework CoreAudioKit -framework DiscRecording -framework Cocoa -framework Foundation -framework IOKit -framework Carbon -framework WebKit -framework OpenGL $(LDFLAGS)
 
   OBJECTS_APP := \
     $(JUCE_OBJDIR)/include_hi_scripting_01_6ad431f1.o \
