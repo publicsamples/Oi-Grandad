@@ -195,11 +195,15 @@ jobs:
           standalone_makefile="$standalone_makefile_dir/Makefile"
 
           if [[ -f "$plugin_makefile" ]] && grep -Eq '^VST3[[:space:]]*:' "$plugin_makefile"; then
+            echo "Building Linux VST3 from $plugin_makefile_dir"
             make -C "$plugin_makefile_dir" CONFIG=Release VST3 -j"$(nproc)"
+          elif [[ -f "$plugin_makefile" ]]; then
+            echo "Skipping Linux VST3: no VST3 target found in $plugin_makefile"
           fi
 
           if [[ -f "$standalone_makefile" ]]; then
             if [[ "$standalone_makefile_dir" != "$plugin_makefile_dir" ]] || ! grep -Eq '^VST3[[:space:]]*:' "$standalone_makefile"; then
+              echo "Building Linux standalone app from $standalone_makefile_dir"
               make -C "$standalone_makefile_dir" CONFIG=Release -j"$(nproc)"
             fi
           fi

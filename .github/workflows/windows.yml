@@ -210,15 +210,19 @@ jobs:
           $app = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_App.vcxproj"
 
           if (Test-Path $shared) {
+            Write-Host "Building Windows plugin shared code: $shared"
             msbuild $shared /m /t:Build /p:Configuration=Release /p:Platform=x64
           }
           if (Test-Path $vst3) {
+            Write-Host "Building Windows VST3: $vst3"
             msbuild $vst3 /m /t:Build /p:Configuration=Release /p:Platform=x64
           }
           if (Test-Path $standaloneShared) {
+            Write-Host "Building Windows standalone shared code: $standaloneShared"
             msbuild $standaloneShared /m /t:Build /p:Configuration=Release /p:Platform=x64
           }
           if (Test-Path $app) {
+            Write-Host "Building Windows standalone app: $app"
             msbuild $app /m /t:Build /p:Configuration=Release /p:Platform=x64
           }
 
