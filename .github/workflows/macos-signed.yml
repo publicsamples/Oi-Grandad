@@ -41,6 +41,26 @@ jobs:
             fi
           done
 
+      - name: Resolve export roots
+        shell: bash
+        run: |
+          set -euo pipefail
+          plugin_root="$GITHUB_WORKSPACE/oi grandad/CIExports/plugin"
+          standalone_root="$GITHUB_WORKSPACE/oi grandad/CIExports/standalone"
+          fallback_root="$GITHUB_WORKSPACE/oi grandad/Binaries"
+
+          if [[ -d "$plugin_root" ]]; then
+            echo "PLUGIN_ROOT=$plugin_root" >> "$GITHUB_ENV"
+          else
+            echo "PLUGIN_ROOT=$fallback_root" >> "$GITHUB_ENV"
+          fi
+
+          if [[ -d "$standalone_root" ]]; then
+            echo "STANDALONE_ROOT=$standalone_root" >> "$GITHUB_ENV"
+          else
+            echo "STANDALONE_ROOT=$fallback_root" >> "$GITHUB_ENV"
+          fi
+
       - name: Source fingerprint (macOS)
         shell: bash
         run: |
@@ -52,8 +72,8 @@ jobs:
             "oi grandad/Binaries/Source/CopyProtection.cpp"
             "oi grandad/AdditionalSourceCode/nodes/factory.cpp"
             "oi grandad/AdditionalSourceCode/nodes/RNBO.cpp"
-            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
-            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+            "${PLUGIN_ROOT#$GITHUB_WORKSPACE/}/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
+            "${PLUGIN_ROOT#$GITHUB_WORKSPACE/}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
           )
           for f in "${files[@]}"; do
             if [[ -f "$f" ]]; then
@@ -69,10 +89,10 @@ jobs:
           set -euo pipefail
           sdk_dir=""
           for candidate in \
-            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
+            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK" \
-            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"; do
+            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"; do
             if [[ -f "$candidate/pluginterfaces/vst/vsttypes.h" ]]; then
               sdk_dir="$candidate"
               break
@@ -98,7 +118,7 @@ jobs:
           juce_vst3_headers=""
           for candidate in \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h" \
-            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h"; do
+            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h"; do
             if [[ -f "$candidate" ]]; then
               juce_vst3_headers="$candidate"
               break
@@ -126,14 +146,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          pbxproj="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          plugin_pbxproj="$PLUGIN_ROOT/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          standalone_pbxproj="$STANDALONE_ROOT/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
           sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
-          test -f "$pbxproj"
+          test -f "$plugin_pbxproj" || test -f "$standalone_pbxproj"
 
-          HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
-            s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
-            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
-          ' "$pbxproj"
+          for pbxproj in "$plugin_pbxproj" "$standalone_pbxproj"; do
+            [[ -f "$pbxproj" ]] || continue
+            HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
+              s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+              s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK#g;
+            ' "$pbxproj"
+
+            perl -0pi -e '
+              s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
+            ' "$pbxproj"
+          done
 
           faust_include="$GITHUB_WORKSPACE/HISE/tools/faust/include/faust"
           mkdir -p "$faust_include/dsp" "$faust_include/gui"
@@ -154,14 +182,10 @@ jobs:
           #endif
           EOF
 
-          perl -0pi -e '
-            s#(include_juce_audio_plugin_client_VST3\\.cpp \\*/ = \\{isa = PBXBuildFile; fileRef = [A-F0-9]+;)(\\s*\\};)#$1 settings = {COMPILER_FLAGS = "-x objective-c++"; };$2#g;
-          ' "$pbxproj"
-
           vst3_common=""
           for candidate in \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h" \
-            "$GITHUB_WORKSPACE/oi grandad/Binaries/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h"; do
+            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h"; do
             if [[ -f "$candidate" ]]; then
               vst3_common="$candidate"
               break
@@ -188,12 +212,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          project="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj"
-          schemes_file="$RUNNER_TEMP/xcode_schemes.txt"
-          xcodebuild -list -project "$project" > "$schemes_file"
-
           build_scheme() {
-            local scheme="$1"
+            local project="$1"
+            local scheme="$2"
             echo "Building scheme: $scheme"
             xcodebuild \
               -project "$project" \
@@ -206,18 +227,40 @@ jobs:
           }
 
           built_any=0
-          for scheme in "oi grandad - VST3" "oi grandad - AU" "oi grandad - App"; do
-            if grep -Fq "$scheme" "$schemes_file"; then
-              build_scheme "$scheme"
-              built_any=1
+          last_project=""
+          for project in \
+            "$PLUGIN_ROOT/Builds/MacOSX/oi grandad.xcodeproj" \
+            "$STANDALONE_ROOT/Builds/MacOSX/oi grandad.xcodeproj"; do
+            [[ -d "$project" ]] || continue
+            if [[ "$project" == "$last_project" ]]; then
+              continue
             fi
+            last_project="$project"
+            schemes_file="$RUNNER_TEMP/$(basename "$(dirname "$project")")-schemes.txt"
+            xcodebuild -list -project "$project" > "$schemes_file"
+            for scheme in "oi grandad - VST3" "oi grandad - AU" "oi grandad - App"; do
+              if grep -Fq "$scheme" "$schemes_file"; then
+                build_scheme "$project" "$scheme"
+                built_any=1
+              fi
+            done
           done
 
           if [[ "$built_any" -eq 0 ]]; then
-            echo "ERROR: No supported build schemes found in $project"
-            cat "$schemes_file"
+            echo "ERROR: No supported build schemes found in export roots."
             exit 1
           fi
+
+      - name: Collect build outputs into Binaries/Compiled
+        shell: bash
+        run: |
+          set -euo pipefail
+          compiled_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/Compiled"
+          mkdir -p "$compiled_dir"
+          for root in "$PLUGIN_ROOT" "$STANDALONE_ROOT"; do
+            [[ -d "$root/Compiled" ]] || continue
+            find "$root/Compiled" -mindepth 1 -maxdepth 1 -exec cp -R {} "$compiled_dir/" \;
+          done
 
       - name: Import Developer ID certificate
         shell: bash
@@ -290,7 +333,7 @@ jobs:
             [[ -z "$bundle" ]] && continue
             found_any=1
             echo "$bundle" >> bundles.txt
-          done < <(find . -type d \( -name "*.vst3" -o -name "*.component" -o -name "*.app" \))
+          done < <(find "$GITHUB_WORKSPACE/oi grandad/Binaries/Compiled" -type d \( -name "*.vst3" -o -name "*.component" -o -name "*.app" \))
 
           if [[ "$found_any" -eq 0 ]]; then
             echo "ERROR: No plugin bundles found to sign."

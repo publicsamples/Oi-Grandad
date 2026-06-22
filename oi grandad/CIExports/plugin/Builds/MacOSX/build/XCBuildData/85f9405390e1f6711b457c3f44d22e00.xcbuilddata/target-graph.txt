@@ -1,0 +1,10 @@
+Target dependency graph (4 targets)
+Target 'oi grandad - All' in project 'oi grandad'
+➜ Explicit dependency on target 'oi grandad - VST3' in project 'oi grandad'
+➜ Explicit dependency on target 'oi grandad - AU' in project 'oi grandad'
+➜ Explicit dependency on target 'oi grandad - Shared Code' in project 'oi grandad'
+Target 'oi grandad - AU' in project 'oi grandad'
+➜ Explicit dependency on target 'oi grandad - Shared Code' in project 'oi grandad'
+Target 'oi grandad - VST3' in project 'oi grandad'
+➜ Explicit dependency on target 'oi grandad - Shared Code' in project 'oi grandad'
+Target 'oi grandad - Shared Code' in project 'oi grandad' (no dependencies)

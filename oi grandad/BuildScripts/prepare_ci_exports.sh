@@ -1,0 +1,281 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+prepare_ci_exports.sh
+
+Generates CI-ready exported project files for both plugin and standalone modes
+by invoking the HISE command line exporter twice and snapshotting the generated
+Binaries state after each pass.
+
+Usage:
+  ./prepare_ci_exports.sh [options]
+
+Options:
+  --hise-bin PATH        Absolute path to the HISE executable or HISE.app bundle.
+  --project-dir PATH     Project directory. Default: parent of this script.
+  --project-file PATH    Relative project XML/hip path. Default: XmlPresetBackups/oi grandad.xml
+  --plugin-target TEXT   HISE -t value for plugin export. Default: instrument
+  --plugin-format TEXT   Optional HISE -p value for plugin export. Default: none
+  --arch TEXT            HISE -a value. Default: x64
+  --hise-source PATH     Absolute path to HISE source repository. Default: <project-dir>/../HISE
+  --output-dir PATH      Output root for snapshots. Default: <project-dir>/CIExports
+  --keep-active MODE     Leave live Binaries export as plugin|standalone. Default: standalone
+  --skip-plugin          Do not export plugin mode
+  --skip-standalone      Do not export standalone mode
+  --help                 Show this help
+
+Notes:
+  - HISE export_ci performs a build as part of export. This wrapper does not
+    suppress compilation; it snapshots the generated files after each export.
+  - The live Binaries folder is overwritten during the process because HISE only
+    maintains one export tree at a time.
+EOF
+}
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJECT_FILE="XmlPresetBackups/oi grandad.xml"
+PLUGIN_TARGET="instrument"
+PLUGIN_FORMAT=""
+ARCH="x64"
+HISE_SOURCE_DIR=""
+OUTPUT_DIR="$PROJECT_DIR/CIExports"
+KEEP_ACTIVE="standalone"
+DO_PLUGIN=1
+DO_STANDALONE=1
+HISE_BIN=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --hise-bin)
+      HISE_BIN="${2:-}"
+      shift 2
+      ;;
+    --project-dir)
+      PROJECT_DIR="${2:-}"
+      shift 2
+      ;;
+    --project-file)
+      PROJECT_FILE="${2:-}"
+      shift 2
+      ;;
+    --plugin-target)
+      PLUGIN_TARGET="${2:-}"
+      shift 2
+      ;;
+    --plugin-format)
+      PLUGIN_FORMAT="${2:-}"
+      shift 2
+      ;;
+    --arch)
+      ARCH="${2:-}"
+      shift 2
+      ;;
+    --hise-source)
+      HISE_SOURCE_DIR="${2:-}"
+      shift 2
+      ;;
+    --output-dir)
+      OUTPUT_DIR="${2:-}"
+      shift 2
+      ;;
+    --keep-active)
+      KEEP_ACTIVE="${2:-}"
+      shift 2
+      ;;
+    --skip-plugin)
+      DO_PLUGIN=0
+      shift
+      ;;
+    --skip-standalone)
+      DO_STANDALONE=0
+      shift
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+if [[ "$DO_PLUGIN" -eq 0 && "$DO_STANDALONE" -eq 0 ]]; then
+  echo "Nothing to do: both plugin and standalone exports are disabled." >&2
+  exit 1
+fi
+
+if [[ "$KEEP_ACTIVE" != "plugin" && "$KEEP_ACTIVE" != "standalone" ]]; then
+  echo "--keep-active must be 'plugin' or 'standalone'." >&2
+  exit 1
+fi
+
+detect_hise_bin() {
+  local candidates=(
+    "$PROJECT_DIR/../HISE/projects/standalone/Builds/MacOSX/build/Release/HISE.app/Contents/MacOS/HISE"
+    "$PROJECT_DIR/../HISE/projects/standalone/Builds/MacOSX/build/Release with Faust/HISE.app/Contents/MacOS/HISE"
+    "$PROJECT_DIR/../HISE/projects/standalone/Builds/LinuxMakefile/build/HISE"
+    "$PROJECT_DIR/../HISE/projects/standalone/Builds/VisualStudio2022/x64/Release/App/HISE.exe"
+    "$(command -v HISE 2>/dev/null || true)"
+  )
+
+  local candidate
+  for candidate in "${candidates[@]}"; do
+    if [[ -n "$candidate" && -x "$candidate" ]]; then
+      HISE_BIN="$candidate"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+normalise_hise_bin() {
+  if [[ -d "$HISE_BIN" && "$HISE_BIN" == *.app ]]; then
+    local app_name
+    app_name="$(basename "$HISE_BIN" .app)"
+    local macos_bin="$HISE_BIN/Contents/MacOS/$app_name"
+
+    if [[ -x "$macos_bin" ]]; then
+      HISE_BIN="$macos_bin"
+      return 0
+    fi
+
+    local fallback_bin
+    fallback_bin="$(find "$HISE_BIN/Contents/MacOS" -maxdepth 1 -type f -perm -111 | head -n1 || true)"
+    if [[ -n "$fallback_bin" && -x "$fallback_bin" ]]; then
+      HISE_BIN="$fallback_bin"
+      return 0
+    fi
+  fi
+
+  return 0
+}
+
+if [[ -z "$HISE_BIN" ]]; then
+  detect_hise_bin || {
+    echo "Could not locate a runnable HISE executable. Pass --hise-bin PATH." >&2
+    exit 1
+  }
+fi
+
+normalise_hise_bin
+
+if [[ ! -x "$HISE_BIN" ]]; then
+  echo "HISE executable not found or not executable: $HISE_BIN" >&2
+  exit 1
+fi
+
+PROJECT_DIR="$(cd "$PROJECT_DIR" && pwd)"
+if [[ -z "$HISE_SOURCE_DIR" ]]; then
+  HISE_SOURCE_DIR="$PROJECT_DIR/../HISE"
+fi
+HISE_SOURCE_DIR="$(cd "$HISE_SOURCE_DIR" && pwd)"
+
+if [[ ! -d "$HISE_SOURCE_DIR/hi_core" || ! -d "$HISE_SOURCE_DIR/JUCE" ]]; then
+  echo "HISE source folder does not look valid: $HISE_SOURCE_DIR" >&2
+  exit 1
+fi
+
+PROJECT_FILE_ABS="$PROJECT_DIR/$PROJECT_FILE"
+if [[ ! -f "$PROJECT_FILE_ABS" ]]; then
+  echo "Project file not found: $PROJECT_FILE_ABS" >&2
+  exit 1
+fi
+
+BINARY_ROOT="$PROJECT_DIR/Binaries"
+if [[ ! -d "$BINARY_ROOT" ]]; then
+  echo "Binaries directory not found: $BINARY_ROOT" >&2
+  exit 1
+fi
+
+copy_export_snapshot() {
+  local mode="$1"
+  local dest="$OUTPUT_DIR/$mode"
+
+  mkdir -p "$dest"
+  rm -rf \
+    "$dest/Builds" \
+    "$dest/JuceLibraryCode" \
+    "$dest/Compiled"
+
+  cp -R "$BINARY_ROOT/Builds" "$dest/Builds"
+  cp -R "$BINARY_ROOT/JuceLibraryCode" "$dest/JuceLibraryCode"
+
+  if [[ -d "$BINARY_ROOT/Compiled" ]]; then
+    cp -R "$BINARY_ROOT/Compiled" "$dest/Compiled"
+  fi
+
+  cp "$BINARY_ROOT/AutogeneratedProject.jucer" "$dest/AutogeneratedProject.jucer"
+
+  if [[ -f "$BINARY_ROOT/batchCompileOSX" ]]; then
+    cp "$BINARY_ROOT/batchCompileOSX" "$dest/batchCompileOSX"
+  fi
+
+  cat > "$dest/export-metadata.txt" <<EOF
+mode=$mode
+hise_bin=$HISE_BIN
+project_dir=$PROJECT_DIR
+project_file=$PROJECT_FILE
+arch=$ARCH
+plugin_target=$PLUGIN_TARGET
+plugin_format=$PLUGIN_FORMAT
+hise_source_dir=$HISE_SOURCE_DIR
+timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+EOF
+}
+
+run_export() {
+  local mode="$1"
+  local target="$2"
+
+  local -a cmd=(
+    "$HISE_BIN"
+    export_ci
+    "$PROJECT_FILE"
+    "-h:$HISE_SOURCE_DIR"
+    "-t:$target"
+    "-a:$ARCH"
+    -nolto
+  )
+
+  if [[ "$mode" == "plugin" && -n "$PLUGIN_FORMAT" ]]; then
+    cmd+=("-p:$PLUGIN_FORMAT")
+  fi
+
+  echo "Setting HISE project folder: $PROJECT_DIR"
+  "$HISE_BIN" set_project_folder "-p:$PROJECT_DIR"
+  "$HISE_BIN" set_hise_folder "-p:$HISE_SOURCE_DIR"
+
+  echo "Running HISE export for $mode"
+  "${cmd[@]}"
+}
+
+mkdir -p "$OUTPUT_DIR"
+
+if [[ "$DO_PLUGIN" -eq 1 ]]; then
+  run_export "plugin" "$PLUGIN_TARGET"
+  copy_export_snapshot "plugin"
+fi
+
+if [[ "$DO_STANDALONE" -eq 1 ]]; then
+  run_export "standalone" "standalone"
+  copy_export_snapshot "standalone"
+fi
+
+if [[ "$KEEP_ACTIVE" == "plugin" && "$DO_PLUGIN" -eq 1 && "$DO_STANDALONE" -eq 1 ]]; then
+  run_export "plugin" "$PLUGIN_TARGET"
+fi
+
+echo "CI export snapshots written to: $OUTPUT_DIR"
+if [[ "$DO_PLUGIN" -eq 1 ]]; then
+  echo "  plugin:      $OUTPUT_DIR/plugin"
+fi
+if [[ "$DO_STANDALONE" -eq 1 ]]; then
+  echo "  standalone:  $OUTPUT_DIR/standalone"
+fi

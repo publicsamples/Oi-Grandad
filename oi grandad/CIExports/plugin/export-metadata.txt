@@ -1,0 +1,9 @@
+mode=plugin
+hise_bin=/Users/rick/HISE Standalone - App 2026-05-07 16-42-28/HISE.app/Contents/MacOS/HISE
+project_dir=/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad
+project_file=XmlPresetBackups/oi grandad.xml
+arch=x64
+plugin_target=instrument
+plugin_format=
+hise_source_dir=/Users/rick/Documents/GitHub/Oi-Grandad/HISE
+timestamp=2026-06-22T12:05:46Z
