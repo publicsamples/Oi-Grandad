@@ -184,29 +184,40 @@ jobs:
             fi
           fi
 
-      - name: Build VST3
+      - name: Build available macOS targets
         shell: bash
         run: |
-          xcodebuild \
-            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
-            -scheme "oi grandad - VST3" \
-            -configuration Release \
-            MACOSX_DEPLOYMENT_TARGET=10.13 \
-            OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+          set -euo pipefail
+          project="oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj"
+          schemes_file="$RUNNER_TEMP/xcode_schemes.txt"
+          xcodebuild -list -project "$project" > "$schemes_file"
 
-      - name: Build AU
-        shell: bash
-        run: |
-          xcodebuild \
-            -project "oi grandad/Binaries/Builds/MacOSX/oi grandad.xcodeproj" \
-            -scheme "oi grandad - AU" \
-            -configuration Release \
-            MACOSX_DEPLOYMENT_TARGET=10.13 \
-            OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+          build_scheme() {
+            local scheme="$1"
+            echo "Building scheme: $scheme"
+            xcodebuild \
+              -project "$project" \
+              -scheme "$scheme" \
+              -configuration Release \
+              MACOSX_DEPLOYMENT_TARGET=10.13 \
+              OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
+              CODE_SIGNING_ALLOWED=NO \
+              build
+          }
+
+          built_any=0
+          for scheme in "oi grandad - VST3" "oi grandad - AU" "oi grandad - App"; do
+            if grep -Fq "$scheme" "$schemes_file"; then
+              build_scheme "$scheme"
+              built_any=1
+            fi
+          done
+
+          if [[ "$built_any" -eq 0 ]]; then
+            echo "ERROR: No supported build schemes found in $project"
+            cat "$schemes_file"
+            exit 1
+          fi
 
       - name: Import Developer ID certificate
         shell: bash
@@ -279,7 +290,7 @@ jobs:
             [[ -z "$bundle" ]] && continue
             found_any=1
             echo "$bundle" >> bundles.txt
-          done < <(find . -type d \( -name "*.vst3" -o -name "*.component" \))
+          done < <(find . -type d \( -name "*.vst3" -o -name "*.component" -o -name "*.app" \))
 
           if [[ "$found_any" -eq 0 ]]; then
             echo "ERROR: No plugin bundles found to sign."
@@ -322,5 +333,5 @@ jobs:
       - name: Upload signed artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: mac-au-vst3-signed
+          name: mac-builds-signed
           path: dist/*.zip

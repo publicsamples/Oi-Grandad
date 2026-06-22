@@ -65,10 +65,11 @@ jobs:
           if (-not $juceVst3Sdk) { throw "Missing VST3 SDK in expected paths." }
 
           $vstProj = Join-Path $ws "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
+          $appProj = Join-Path $ws "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_App.vcxproj"
           $sharedProj = Join-Path $ws "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
 
-          foreach ($p in @($vstProj, $sharedProj)) {
-            if (!(Test-Path $p)) { throw "Missing project file: $p" }
+          foreach ($p in @($vstProj, $appProj, $sharedProj)) {
+            if (!(Test-Path $p)) { continue }
             $c = Get-Content -Raw -Path $p
             $c = $c.Replace('\Users\rick\Documents\GitHub\HISE\JUCE\modules\juce_audio_processors\format_types\VST3_SDK', $juceVst3Sdk)
             $c = $c.Replace('\Users\rick\Documents\GitHub\HISE\tools\SDK\VST3 SDK', $juceVst3Sdk)
@@ -95,7 +96,8 @@ jobs:
           }
 
           # Validate patched project XML before build.
-          foreach ($p in @($vstProj, $sharedProj)) {
+          foreach ($p in @($vstProj, $appProj, $sharedProj)) {
+            if (!(Test-Path $p)) { continue }
             try {
               [void]([xml](Get-Content -Raw -Path $p))
             } catch {
@@ -171,14 +173,23 @@ jobs:
             Set-Content -Path $clientVst3 -Value $vc -NoNewline
           }
 
-      - name: Build VST3 (Windows)
+      - name: Build available Windows targets
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           $shared = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
           $vst3 = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
-          msbuild $shared /m /t:Build /p:Configuration=Release /p:Platform=x64
-          msbuild $vst3 /m /t:Build /p:Configuration=Release /p:Platform=x64
+          $app = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Builds\VisualStudio2022\oi grandad_App.vcxproj"
+
+          if (Test-Path $shared) {
+            msbuild $shared /m /t:Build /p:Configuration=Release /p:Platform=x64
+          }
+          if (Test-Path $vst3) {
+            msbuild $vst3 /m /t:Build /p:Configuration=Release /p:Platform=x64
+          }
+          if (Test-Path $app) {
+            msbuild $app /m /t:Build /p:Configuration=Release /p:Platform=x64
+          }
 
       - name: Package (Windows)
         shell: pwsh
@@ -186,13 +197,23 @@ jobs:
           $ErrorActionPreference = "Stop"
           New-Item -ItemType Directory -Force -Path dist | Out-Null
           $vst3Files = Get-ChildItem -Path . -Recurse -Filter *.vst3 -File
-          if ($vst3Files.Count -eq 0) {
-            throw "No .vst3 files found"
-          }
-
           foreach ($f in $vst3Files) {
             $zipPath = Join-Path "dist" ($f.Name + ".zip")
             Compress-Archive -Path $f.FullName -DestinationPath $zipPath -Force
+          }
+
+          $appDir = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries\Compiled\App"
+          if (Test-Path $appDir) {
+            $appExe = Get-ChildItem -Path $appDir -Filter *.exe -File
+            if ($appExe.Count -gt 0) {
+              $zipPath = Join-Path "dist" "oi-grandad-windows-app.zip"
+              Compress-Archive -Path (Join-Path $appDir "*") -DestinationPath $zipPath -Force
+            }
+          }
+
+          $distFiles = Get-ChildItem dist -File
+          if ($distFiles.Count -eq 0) {
+            throw "No Windows build artifacts found"
           }
 
           Get-ChildItem dist
@@ -200,5 +221,5 @@ jobs:
       - name: Upload artifacts (Windows)
         uses: actions/upload-artifact@v4
         with:
-          name: windows-vst3-unsigned
+          name: windows-builds-unsigned
           path: dist/*.zip

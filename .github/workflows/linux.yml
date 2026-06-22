@@ -156,22 +156,37 @@ jobs:
             printf '%s\n' '#include "AppConfig.h"' > "$client_utils"
           fi
 
-      - name: Build VST3 (Linux)
+      - name: Build available Linux targets
+        shell: bash
         run: |
-          make -C "oi grandad/Binaries/Builds/LinuxMakefile" CONFIG=Release VST3 -j"$(nproc)"
+          set -euo pipefail
+          makefile_dir="oi grandad/Binaries/Builds/LinuxMakefile"
+          makefile="$makefile_dir/Makefile"
+
+          if grep -Eq '^VST3[[:space:]]*:' "$makefile"; then
+            make -C "$makefile_dir" CONFIG=Release VST3 -j"$(nproc)"
+          else
+            make -C "$makefile_dir" CONFIG=Release -j"$(nproc)"
+          fi
 
       - name: Inspect runtime deps (Linux)
         shell: bash
         run: |
           set -euo pipefail
-          so_file="$(find . -type f -path "*.vst3/Contents/*-linux/*.so" | head -n1)"
-          if [[ -z "${so_file:-}" ]]; then
-            echo "No Linux VST3 .so found for dependency inspection"
+          target_file="$(find . -type f -path "*.vst3/Contents/*-linux/*.so" | head -n1)"
+          if [[ -z "${target_file:-}" ]]; then
+            candidate_app="$GITHUB_WORKSPACE/oi grandad/Binaries/Builds/LinuxMakefile/build/oi grandad"
+            if [[ -f "$candidate_app" ]]; then
+              target_file="$candidate_app"
+            fi
+          fi
+          if [[ -z "${target_file:-}" ]]; then
+            echo "No Linux binary found for dependency inspection"
             exit 1
           fi
-          echo "Inspecting: $so_file"
-          ldd "$so_file" || true
-          strings "$so_file" | grep -E 'GLIBC_[0-9]+\.[0-9]+' | sort -u | tail -n 10 || true
+          echo "Inspecting: $target_file"
+          ldd "$target_file" || true
+          strings "$target_file" | grep -E 'GLIBC_[0-9]+\.[0-9]+' | sort -u | tail -n 10 || true
 
       - name: Package (Linux)
         shell: bash
@@ -179,19 +194,25 @@ jobs:
           set -euo pipefail
           mkdir -p dist
           mapfile -d '' bundles < <(find . -type d -name "*.vst3" -print0)
-          if [[ "${#bundles[@]}" -eq 0 ]]; then
-            echo "No .vst3 bundles found"
-            exit 1
-          fi
 
           for bundle in "${bundles[@]}"; do
             base="$(basename "$bundle")"
             (cd "$(dirname "$bundle")" && zip -r "$GITHUB_WORKSPACE/dist/${base}.zip" "$base")
           done
+
+          app_file="oi grandad/Binaries/Builds/LinuxMakefile/build/oi grandad"
+          if [[ -f "$app_file" ]]; then
+            zip -j "$GITHUB_WORKSPACE/dist/oi-grandad-linux-app.zip" "$app_file"
+          fi
+
+          if ! compgen -G "dist/*.zip" > /dev/null; then
+            echo "No Linux build artifacts found"
+            exit 1
+          fi
           ls -la dist
 
       - name: Upload artifacts (Linux)
         uses: actions/upload-artifact@v4
         with:
-          name: linux-vst3-unsigned
+          name: linux-builds-unsigned
           path: dist/*.zip
