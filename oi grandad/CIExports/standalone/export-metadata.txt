@@ -5,5 +5,5 @@ project_file=XmlPresetBackups/oi grandad.xml
 arch=x64
 plugin_target=instrument
 plugin_format=
-hise_source_dir=/Users/rick/Documents/GitHub/Oi-Grandad/HISE
-timestamp=2026-06-22T12:05:52Z
+hise_source_dir=/Users/rick/Documents/GitHub/HISE
+timestamp=2026-06-22T12:25:21Z

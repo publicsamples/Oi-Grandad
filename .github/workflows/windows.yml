@@ -25,13 +25,19 @@ jobs:
           $standaloneRoot = Join-Path $env:GITHUB_WORKSPACE "oi grandad\CIExports\standalone"
           $fallbackRoot = Join-Path $env:GITHUB_WORKSPACE "oi grandad\Binaries"
 
-          if (Test-Path $pluginRoot) {
+          function Test-CompleteExportRoot([string]$Root) {
+            return (Test-Path (Join-Path $Root "Builds")) `
+              -and (Test-Path (Join-Path $Root "Source")) `
+              -and (Test-Path (Join-Path $Root "JuceLibraryCode"))
+          }
+
+          if (Test-CompleteExportRoot $pluginRoot) {
             "PLUGIN_ROOT=$pluginRoot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           } else {
             "PLUGIN_ROOT=$fallbackRoot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           }
 
-          if (Test-Path $standaloneRoot) {
+          if (Test-CompleteExportRoot $standaloneRoot) {
             "STANDALONE_ROOT=$standaloneRoot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           } else {
             "STANDALONE_ROOT=$fallbackRoot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8

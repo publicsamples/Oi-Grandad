@@ -34,13 +34,18 @@ jobs:
           standalone_root="$GITHUB_WORKSPACE/oi grandad/CIExports/standalone"
           fallback_root="$GITHUB_WORKSPACE/oi grandad/Binaries"
 
-          if [[ -d "$plugin_root" ]]; then
+          is_complete_export_root() {
+            local root="$1"
+            [[ -d "$root/Builds" && -d "$root/Source" && -d "$root/JuceLibraryCode" ]]
+          }
+
+          if is_complete_export_root "$plugin_root"; then
             echo "PLUGIN_ROOT=$plugin_root" >> "$GITHUB_ENV"
           else
             echo "PLUGIN_ROOT=$fallback_root" >> "$GITHUB_ENV"
           fi
 
-          if [[ -d "$standalone_root" ]]; then
+          if is_complete_export_root "$standalone_root"; then
             echo "STANDALONE_ROOT=$standalone_root" >> "$GITHUB_ENV"
           else
             echo "STANDALONE_ROOT=$fallback_root" >> "$GITHUB_ENV"
