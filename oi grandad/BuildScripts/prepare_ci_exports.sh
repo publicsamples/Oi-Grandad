@@ -17,12 +17,14 @@ Options:
   --project-dir PATH     Project directory. Default: parent of this script.
   --project-file PATH    Relative project XML/hip path. Default: XmlPresetBackups/oi grandad.xml
   --plugin-target TEXT   HISE -t value for plugin export. Default: instrument
-  --plugin-format TEXT   Optional HISE -p value for plugin export. Default: none
+  --vst3-format TEXT     HISE -p value for VST3 export. Default: VST3
+  --au-format TEXT       HISE -p value for AU export. Default: AU
   --arch TEXT            HISE -a value. Default: x64
   --hise-source PATH     Absolute path to HISE source repository. Default: <project-dir>/../HISE
   --output-dir PATH      Output root for snapshots. Default: <project-dir>/CIExports
-  --keep-active MODE     Leave live Binaries export as plugin|standalone. Default: standalone
-  --skip-plugin          Do not export plugin mode
+  --keep-active MODE     Leave live Binaries export as vst3|au|standalone. Default: standalone
+  --skip-vst3            Do not export VST3 mode
+  --skip-au              Do not export AU mode
   --skip-standalone      Do not export standalone mode
   --help                 Show this help
 
@@ -38,12 +40,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 PROJECT_FILE="XmlPresetBackups/oi grandad.xml"
 PLUGIN_TARGET="instrument"
-PLUGIN_FORMAT=""
+VST3_FORMAT="VST3"
+AU_FORMAT="AU"
 ARCH="x64"
 HISE_SOURCE_DIR=""
 OUTPUT_DIR="$PROJECT_DIR/CIExports"
 KEEP_ACTIVE="standalone"
-DO_PLUGIN=1
+DO_VST3=1
+DO_AU=1
 DO_STANDALONE=1
 HISE_BIN=""
 
@@ -65,8 +69,12 @@ while [[ $# -gt 0 ]]; do
       PLUGIN_TARGET="${2:-}"
       shift 2
       ;;
-    --plugin-format)
-      PLUGIN_FORMAT="${2:-}"
+    --vst3-format)
+      VST3_FORMAT="${2:-}"
+      shift 2
+      ;;
+    --au-format)
+      AU_FORMAT="${2:-}"
       shift 2
       ;;
     --arch)
@@ -85,8 +93,12 @@ while [[ $# -gt 0 ]]; do
       KEEP_ACTIVE="${2:-}"
       shift 2
       ;;
-    --skip-plugin)
-      DO_PLUGIN=0
+    --skip-vst3)
+      DO_VST3=0
+      shift
+      ;;
+    --skip-au)
+      DO_AU=0
       shift
       ;;
     --skip-standalone)
@@ -105,13 +117,13 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ "$DO_PLUGIN" -eq 0 && "$DO_STANDALONE" -eq 0 ]]; then
-  echo "Nothing to do: both plugin and standalone exports are disabled." >&2
+if [[ "$DO_VST3" -eq 0 && "$DO_AU" -eq 0 && "$DO_STANDALONE" -eq 0 ]]; then
+  echo "Nothing to do: all export modes are disabled." >&2
   exit 1
 fi
 
-if [[ "$KEEP_ACTIVE" != "plugin" && "$KEEP_ACTIVE" != "standalone" ]]; then
-  echo "--keep-active must be 'plugin' or 'standalone'." >&2
+if [[ "$KEEP_ACTIVE" != "vst3" && "$KEEP_ACTIVE" != "au" && "$KEEP_ACTIVE" != "standalone" ]]; then
+  echo "--keep-active must be 'vst3', 'au', or 'standalone'." >&2
   exit 1
 fi
 
@@ -242,7 +254,8 @@ project_dir=$PROJECT_DIR
 project_file=$PROJECT_FILE
 arch=$ARCH
 plugin_target=$PLUGIN_TARGET
-plugin_format=$PLUGIN_FORMAT
+vst3_format=$VST3_FORMAT
+au_format=$AU_FORMAT
 hise_source_dir=$HISE_SOURCE_DIR
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 EOF
@@ -251,6 +264,7 @@ EOF
 run_export() {
   local mode="$1"
   local target="$2"
+  local format="${3:-}"
 
   local -a cmd=(
     "$HISE_BIN"
@@ -262,8 +276,8 @@ run_export() {
     -nolto
   )
 
-  if [[ "$mode" == "plugin" && -n "$PLUGIN_FORMAT" ]]; then
-    cmd+=("-p:$PLUGIN_FORMAT")
+  if [[ -n "$format" ]]; then
+    cmd+=("-p:$format")
   fi
 
   echo "Setting HISE project folder: $PROJECT_DIR"
@@ -276,23 +290,35 @@ run_export() {
 
 mkdir -p "$OUTPUT_DIR"
 
-if [[ "$DO_PLUGIN" -eq 1 ]]; then
-  run_export "plugin" "$PLUGIN_TARGET"
-  copy_export_snapshot "plugin"
+if [[ "$DO_VST3" -eq 1 ]]; then
+  run_export "vst3" "$PLUGIN_TARGET" "$VST3_FORMAT"
+  copy_export_snapshot "vst3"
+fi
+
+if [[ "$DO_AU" -eq 1 ]]; then
+  run_export "au" "$PLUGIN_TARGET" "$AU_FORMAT"
+  copy_export_snapshot "au"
 fi
 
 if [[ "$DO_STANDALONE" -eq 1 ]]; then
-  run_export "standalone" "standalone"
+  run_export "standalone" "standalone" ""
   copy_export_snapshot "standalone"
 fi
 
-if [[ "$KEEP_ACTIVE" == "plugin" && "$DO_PLUGIN" -eq 1 && "$DO_STANDALONE" -eq 1 ]]; then
-  run_export "plugin" "$PLUGIN_TARGET"
+if [[ "$KEEP_ACTIVE" == "vst3" && "$DO_VST3" -eq 1 ]]; then
+  run_export "vst3" "$PLUGIN_TARGET" "$VST3_FORMAT"
+fi
+
+if [[ "$KEEP_ACTIVE" == "au" && "$DO_AU" -eq 1 ]]; then
+  run_export "au" "$PLUGIN_TARGET" "$AU_FORMAT"
 fi
 
 echo "CI export snapshots written to: $OUTPUT_DIR"
-if [[ "$DO_PLUGIN" -eq 1 ]]; then
-  echo "  plugin:      $OUTPUT_DIR/plugin"
+if [[ "$DO_VST3" -eq 1 ]]; then
+  echo "  vst3:        $OUTPUT_DIR/vst3"
+fi
+if [[ "$DO_AU" -eq 1 ]]; then
+  echo "  au:          $OUTPUT_DIR/au"
 fi
 if [[ "$DO_STANDALONE" -eq 1 ]]; then
   echo "  standalone:  $OUTPUT_DIR/standalone"

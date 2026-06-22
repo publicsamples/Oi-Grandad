@@ -45,7 +45,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          plugin_root="$GITHUB_WORKSPACE/oi grandad/CIExports/plugin"
+          vst3_root="$GITHUB_WORKSPACE/oi grandad/CIExports/vst3"
+          au_root="$GITHUB_WORKSPACE/oi grandad/CIExports/au"
           standalone_root="$GITHUB_WORKSPACE/oi grandad/CIExports/standalone"
           fallback_root="$GITHUB_WORKSPACE/oi grandad/Binaries"
 
@@ -54,10 +55,16 @@ jobs:
             [[ -d "$root/Builds" && -d "$root/Source" && -d "$root/JuceLibraryCode" ]]
           }
 
-          if is_complete_export_root "$plugin_root"; then
-            echo "PLUGIN_ROOT=$plugin_root" >> "$GITHUB_ENV"
+          if is_complete_export_root "$vst3_root"; then
+            echo "VST3_ROOT=$vst3_root" >> "$GITHUB_ENV"
           else
-            echo "PLUGIN_ROOT=$fallback_root" >> "$GITHUB_ENV"
+            echo "VST3_ROOT=$fallback_root" >> "$GITHUB_ENV"
+          fi
+
+          if is_complete_export_root "$au_root"; then
+            echo "AU_ROOT=$au_root" >> "$GITHUB_ENV"
+          else
+            echo "AU_ROOT=$fallback_root" >> "$GITHUB_ENV"
           fi
 
           if is_complete_export_root "$standalone_root"; then
@@ -77,8 +84,8 @@ jobs:
             "oi grandad/Binaries/Source/CopyProtection.cpp"
             "oi grandad/AdditionalSourceCode/nodes/factory.cpp"
             "oi grandad/AdditionalSourceCode/nodes/RNBO.cpp"
-            "${PLUGIN_ROOT#$GITHUB_WORKSPACE/}/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
-            "${PLUGIN_ROOT#$GITHUB_WORKSPACE/}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+            "${VST3_ROOT#$GITHUB_WORKSPACE/}/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
+            "${VST3_ROOT#$GITHUB_WORKSPACE/}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
           )
           for f in "${files[@]}"; do
             if [[ -f "$f" ]]; then
@@ -94,10 +101,10 @@ jobs:
           set -euo pipefail
           sdk_dir=""
           for candidate in \
-            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
+            "$VST3_ROOT/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK" \
-            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"; do
+            "$VST3_ROOT/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"; do
             if [[ -f "$candidate/pluginterfaces/vst/vsttypes.h" ]]; then
               sdk_dir="$candidate"
               break
@@ -123,7 +130,7 @@ jobs:
           juce_vst3_headers=""
           for candidate in \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h" \
-            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h"; do
+            "$VST3_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Headers.h"; do
             if [[ -f "$candidate" ]]; then
               juce_vst3_headers="$candidate"
               break
@@ -151,12 +158,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          plugin_pbxproj="$PLUGIN_ROOT/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          plugin_pbxproj="$VST3_ROOT/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
+          au_pbxproj="$AU_ROOT/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
           standalone_pbxproj="$STANDALONE_ROOT/Builds/MacOSX/oi grandad.xcodeproj/project.pbxproj"
           sdk_dir="$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
-          test -f "$plugin_pbxproj" || test -f "$standalone_pbxproj"
+          test -f "$plugin_pbxproj" || test -f "$au_pbxproj" || test -f "$standalone_pbxproj"
 
-          for pbxproj in "$plugin_pbxproj" "$standalone_pbxproj"; do
+          for pbxproj in "$plugin_pbxproj" "$au_pbxproj" "$standalone_pbxproj"; do
             [[ -f "$pbxproj" ]] || continue
             HISE_ROOT="$GITHUB_WORKSPACE/HISE" perl -0pi -e '
               s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
@@ -190,7 +198,8 @@ jobs:
           vst3_common=""
           for candidate in \
             "$GITHUB_WORKSPACE/HISE/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h" \
-            "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h"; do
+            "$VST3_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h" \
+            "$AU_ROOT/JUCE/modules/juce_audio_processors/format_types/juce_VST3Common.h"; do
             if [[ -f "$candidate" ]]; then
               vst3_common="$candidate"
               break
@@ -240,17 +249,24 @@ jobs:
           }
 
           built_any=0
-          plugin_project="$PLUGIN_ROOT/Builds/MacOSX/oi grandad.xcodeproj"
+          plugin_project="$VST3_ROOT/Builds/MacOSX/oi grandad.xcodeproj"
+          au_project="$AU_ROOT/Builds/MacOSX/oi grandad.xcodeproj"
           standalone_project="$STANDALONE_ROOT/Builds/MacOSX/oi grandad.xcodeproj"
 
           if [[ -d "$plugin_project" ]]; then
             plugin_schemes="$RUNNER_TEMP/plugin-mac-schemes.txt"
-            for scheme in "oi grandad - VST3" "oi grandad - AU"; do
-              if has_scheme "$plugin_project" "$scheme" "$plugin_schemes"; then
-                build_scheme "$plugin_project" "$scheme"
-                built_any=1
-              fi
-            done
+            if has_scheme "$plugin_project" "oi grandad - VST3" "$plugin_schemes"; then
+              build_scheme "$plugin_project" "oi grandad - VST3"
+              built_any=1
+            fi
+          fi
+
+          if [[ -d "$au_project" ]]; then
+            au_schemes="$RUNNER_TEMP/au-mac-schemes.txt"
+            if has_scheme "$au_project" "oi grandad - AU" "$au_schemes"; then
+              build_scheme "$au_project" "oi grandad - AU"
+              built_any=1
+            fi
           fi
 
           if [[ -d "$standalone_project" ]]; then
@@ -272,7 +288,7 @@ jobs:
           set -euo pipefail
           compiled_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/Compiled"
           mkdir -p "$compiled_dir"
-          for root in "$PLUGIN_ROOT" "$STANDALONE_ROOT"; do
+          for root in "$VST3_ROOT" "$AU_ROOT" "$STANDALONE_ROOT"; do
             [[ -d "$root/Compiled" ]] || continue
             find "$root/Compiled" -mindepth 1 -maxdepth 1 -exec cp -R {} "$compiled_dir/" \;
           done
