@@ -98,7 +98,8 @@ jobs:
           set -euo pipefail
           ws="$GITHUB_WORKSPACE"
           hise="$ws/HISE"
-          makefile="$PLUGIN_ROOT/Builds/LinuxMakefile/Makefile"
+          plugin_makefile="$PLUGIN_ROOT/Builds/LinuxMakefile/Makefile"
+          standalone_makefile="$STANDALONE_ROOT/Builds/LinuxMakefile/Makefile"
           sdk_dir=""
           for candidate in \
             "$PLUGIN_ROOT/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
@@ -118,24 +119,27 @@ jobs:
           legacy_sdk_dir="$hise/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
           headless_hise_sdk_dir="$hise/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
 
-          test -f "$makefile"
           test -f "$sdk_dir/pluginterfaces/vst/vsttypes.h"
 
-          # Rewrite local absolute paths and remove unresolved exporter placeholders.
-          HISE_ROOT="$hise" SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
-            s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
-            s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#$ENV{SDK_ROOT_ESC}#g;
-            s#/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\\ SDK#$ENV{SDK_ROOT_ESC}#g;
-            s#%FFT_HEADER_PATH%;##g;
-            s#%FFT_LINKER_FLAGS%##g;
-          ' "$makefile"
+          for makefile in "$plugin_makefile" "$standalone_makefile"; do
+            [[ -f "$makefile" ]] || continue
 
-          # Force-include SDK root in JUCE_CPPFLAGS to avoid include resolution drift.
-          if ! grep -Fq -- "-I$sdk_dir_escaped" "$makefile"; then
-            SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
-              s/\$\(CPPFLAGS\)/-I$ENV{SDK_ROOT_ESC} \$\(CPPFLAGS\)/g;
+            # Rewrite local absolute paths and remove unresolved exporter placeholders.
+            HISE_ROOT="$hise" SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
+              s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+              s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#$ENV{SDK_ROOT_ESC}#g;
+              s#/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\\ SDK#$ENV{SDK_ROOT_ESC}#g;
+              s#%FFT_HEADER_PATH%;##g;
+              s#%FFT_LINKER_FLAGS%##g;
             ' "$makefile"
-          fi
+
+            # Force-include SDK root in JUCE_CPPFLAGS to avoid include resolution drift.
+            if ! grep -Fq -- "-I$sdk_dir_escaped" "$makefile"; then
+              SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
+                s/\$\(CPPFLAGS\)/-I$ENV{SDK_ROOT_ESC} \$\(CPPFLAGS\)/g;
+              ' "$makefile"
+            fi
+          done
 
           # Ensure headless SDK path exists, but avoid replacing the legacy path to prevent symlink loops.
           mkdir -p "$(dirname "$headless_hise_sdk_dir")"
