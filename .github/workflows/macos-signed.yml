@@ -289,9 +289,18 @@ jobs:
           compiled_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/Compiled"
           mkdir -p "$compiled_dir"
           for root in "$VST3_ROOT" "$AU_ROOT" "$STANDALONE_ROOT"; do
-            [[ -d "$root/Compiled" ]] || continue
-            find "$root/Compiled" -mindepth 1 -maxdepth 1 -exec cp -R {} "$compiled_dir/" \;
+            if [[ -d "$root/Compiled" ]]; then
+              find "$root/Compiled" -mindepth 1 -maxdepth 1 -exec cp -R {} "$compiled_dir/" \;
+            fi
+
+            build_release_dir="$root/Builds/MacOSX/build/Release"
+            if [[ -d "$build_release_dir" ]]; then
+              find "$build_release_dir" -mindepth 1 -maxdepth 1 \
+                \( -name "*.vst3" -o -name "*.component" -o -name "*.app" \) \
+                -exec cp -R {} "$compiled_dir/" \;
+            fi
           done
+          find "$compiled_dir" -mindepth 1 -maxdepth 1 | sort
 
       - name: Import Developer ID certificate
         shell: bash
