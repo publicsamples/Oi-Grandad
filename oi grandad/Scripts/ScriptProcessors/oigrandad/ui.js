@@ -140,7 +140,7 @@ const var pmod1 = Content.getComponent("pmod1");
 const var PmodSel1 = Content.getComponent("PmodSel1");
 
 
-
+const var rm = Engine.getGlobalRoutingManager();
 
 
 //links

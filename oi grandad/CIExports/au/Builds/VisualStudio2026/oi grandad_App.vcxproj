@@ -66,7 +66,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;\Users\rick\Documents\GitHub\HISE;\Users\rick\Documents\GitHub\HISE\JUCE\modules;%FFT_HEADER_PATH%;/Users/rick/Documents/GitHub/HISE/tools/faust/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.4.2;JUCE_APP_VERSION_HEX=0x20402;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.4.1;JUCE_APP_VERSION_HEX=0x20401;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -115,7 +115,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;\Users\rick\Documents\GitHub\HISE;\Users\rick\Documents\GitHub\HISE\JUCE\modules;%FFT_HEADER_PATH%;/Users/rick/Documents/GitHub/HISE/tools/faust/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.4.2;JUCE_APP_VERSION_HEX=0x20402;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.4.1;JUCE_APP_VERSION_HEX=0x20401;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -5304,10 +5304,10 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\MacroMod.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\modcont_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\NuTest_networkdata.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\OutMods_networkdata.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\OutMods.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\res2.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy_networkdata.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn_fin.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\track_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\trash2_networkdata.h"/>
