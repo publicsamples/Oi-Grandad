@@ -783,8 +783,10 @@ dependencies: \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/granular_player_stepquant_density_hybrid_native.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/DspNetwork.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/MacroMod.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/OutMods.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/res2.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/sn.h \
+  /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/sndummy.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/sn_fin.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/JuceLibraryCode/JuceHeader.h \
   /Users/rick/Documents/GitHub/HISE/hi_faust_types/hi_faust_types.h \

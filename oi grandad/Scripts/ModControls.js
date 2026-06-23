@@ -699,7 +699,6 @@ Mod12SPs[3] = Content.getComponent("ScriptTableA37");
 
 const var Stage12 = Content.getComponent("Stage12");
 
-
 inline function onStage12Control(component, value)
 {
 	
@@ -716,6 +715,213 @@ inline function onStage12Control(component, value)
 
 Content.getComponent("Stage12").setControlCallback(onStage12Control);
 
+const var EnvDisplayB1 = Content.getComponent("EnvDisplayB1");
+const var EnvDisplayA1 = Content.getComponent("EnvDisplayA1");
+const var EnvPeak1 = Content.getComponent("EnvPeak1");
+const var TrigPeak1 = Content.getComponent("TrigPeak1");
+const var TrigPeakLabel1 = Content.getComponent("TrigPeakLabel1");
+const var EnvLoopLabel1 = Content.getComponent("EnvLoopLabel1");
+const var EnvLoop1 = Content.getComponent("EnvLoop1");
+const var EnvVoiceSel1 = Content.getComponent("EnvVoiceSel1");
+
+
+
+
+
+const var ENV1 = Synth.getModulator("ENV1");
+
+inline function onModType13Control(component, value)
+{
+ if(value == 0)
+        	{
+              ENV1.setAttribute(ENV1.Mode, 0);
+              EnvDisplayA1.showControl(1);
+              EnvPeak1.showControl(1);
+              TrigPeak1.showControl(1);
+              TrigPeakLabel1.showControl(1);
+              EnvVoiceSel1.showControl(1);
+              EnvDisplayB1.showControl(0);
+              EnvLoopLabel1.showControl(0);
+              EnvLoop1.showControl(0);
+              
+              
+              
+       }
+       
+       if(value == 1)
+              	{
+                    ENV1.setAttribute(ENV1.Mode, 1);
+                    EnvDisplayA1.showControl(0);
+                    EnvPeak1.showControl(0);
+                    TrigPeak1.showControl(0);
+                    TrigPeakLabel1.showControl(0);
+                    EnvVoiceSel1.showControl(0);
+                    EnvDisplayB1.showControl(1);
+                    EnvLoopLabel1.showControl(1);
+                    EnvLoop1.showControl(1);
+                    
+                    
+             }
+};
+
+Content.getComponent("ModType13").setControlCallback(onModType13Control);
+
+const var EnvDisplayB2 = Content.getComponent("EnvDisplayB2");
+const var EnvDisplayA2 = Content.getComponent("EnvDisplayA2");
+const var EnvPeak2 = Content.getComponent("EnvPeak2");
+const var TrigPeak2 = Content.getComponent("TrigPeak2");
+const var TrigPeakLabel2 = Content.getComponent("TrigPeakLabel2");
+const var EnvLoopLabel2 = Content.getComponent("EnvLoopLabel2");
+const var EnvLoop2 = Content.getComponent("EnvLoop2");
+const var EnvVoiceSel2 = Content.getComponent("EnvVoiceSel2");
+
+
+
+
+
+
+const var ENV2 = Synth.getModulator("ENV2");
+
+inline function onModType14Control(component, value)
+{
+ if(value == 0)
+        	{
+              ENV2.setAttribute(ENV2.Mode, 0);
+              EnvDisplayA2.showControl(1);
+              EnvPeak2.showControl(1);
+              TrigPeak2.showControl(1);
+              TrigPeakLabel2.showControl(1);
+              EnvVoiceSel2.showControl(1);
+              EnvDisplayB2.showControl(0);
+              EnvLoopLabel2.showControl(0);
+              EnvLoop2.showControl(0);
+              
+              
+       }
+       
+       if(value == 1)
+              	{
+                    ENV2.setAttribute(ENV2.Mode, 1);
+                    EnvDisplayA2.showControl(0);
+                    EnvPeak2.showControl(0);
+                    TrigPeak2.showControl(0);
+                    TrigPeakLabel2.showControl(0);
+                    EnvVoiceSel2.showControl(0);
+                    EnvDisplayB2.showControl(1);
+                    EnvLoopLabel2.showControl(1);
+                    EnvLoop2.showControl(1);
+                    
+                    
+             }
+};
+
+Content.getComponent("ModType14").setControlCallback(onModType14Control);
+
+
+const var EnvDisplayB3 = Content.getComponent("EnvDisplayB3");
+const var EnvDisplayA3 = Content.getComponent("EnvDisplayA3");
+const var EnvPeak3 = Content.getComponent("EnvPeak3");
+const var TrigPeak3 = Content.getComponent("TrigPeak3");
+const var TrigPeakLabel3 = Content.getComponent("TrigPeakLabel3");
+const var EnvLoopLabel3 = Content.getComponent("EnvLoopLabel3");
+const var EnvLoop3 = Content.getComponent("EnvLoop3");
+const var EnvVoiceSel3 = Content.getComponent("EnvVoiceSel3");
+
+
+
+
+
+const var ENV3 = Synth.getModulator("ENV3");
+
+inline function onModType15Control(component, value)
+{
+ if(value == 0)
+        	{
+              ENV3.setAttribute(ENV3.Mode, 0);
+              EnvDisplayA3.showControl(1);
+              EnvPeak3.showControl(1);
+              TrigPeak3.showControl(1);
+              TrigPeakLabel3.showControl(1);
+              EnvVoiceSel3.showControl(1);
+              EnvDisplayB3.showControl(0);
+              EnvLoopLabel3.showControl(0);
+              EnvLoop3.showControl(0);
+              
+              
+       }
+       
+       if(value == 1)
+              	{
+                    ENV3.setAttribute(ENV3.Mode, 1);
+                    EnvDisplayA3.showControl(0);
+                    EnvPeak3.showControl(0);
+                    TrigPeak3.showControl(0);
+                    TrigPeakLabel3.showControl(0);
+                    EnvVoiceSel3.showControl(0);
+                    EnvDisplayB3.showControl(1);
+                    EnvLoopLabel3.showControl(1);
+                    EnvLoop3.showControl(1);
+                    
+                    
+             }
+};
+
+Content.getComponent("ModType15").setControlCallback(onModType15Control);
+
+const var EnvDisplayB4 = Content.getComponent("EnvDisplayB4");
+const var EnvDisplayA4 = Content.getComponent("EnvDisplayA4");
+const var EnvPeak4 = Content.getComponent("EnvPeak4");
+const var TrigPeak4 = Content.getComponent("TrigPeak4");
+const var TrigPeakLabel4 = Content.getComponent("TrigPeakLabel4");
+const var EnvLoopLabel4 = Content.getComponent("EnvLoopLabel4");
+const var EnvLoop4 = Content.getComponent("EnvLoop4");
+const var EnvVoiceSel4 = Content.getComponent("EnvVoiceSel4");
+
+
+
+
+
+const var ENV4 = Synth.getModulator("ENV4");
+
+inline function onModType16Control(component, value)
+{
+ if(value == 0)
+        	{
+              ENV4.setAttribute(ENV4.Mode, 0);
+              EnvDisplayA4.showControl(1);
+              EnvPeak4.showControl(1);
+              TrigPeak4.showControl(1);
+              TrigPeakLabel4.showControl(1);
+              EnvVoiceSel4.showControl(1);
+              EnvDisplayB4.showControl(0);
+              EnvLoopLabel4.showControl(0);
+              EnvLoop4.showControl(0);
+              
+              
+       }
+       
+       if(value == 1)
+              	{
+                    ENV4.setAttribute(ENV4.Mode, 1);
+                    EnvDisplayA4.showControl(0);
+                    EnvPeak4.showControl(0);
+                    TrigPeak4.showControl(0);
+                    TrigPeakLabel4.showControl(0);
+                    EnvVoiceSel4.showControl(0);
+                    EnvDisplayB4.showControl(1);
+                    EnvLoopLabel4.showControl(1);
+                    EnvLoop4.showControl(1);
+                    
+                    
+             }
+};
+
+Content.getComponent("ModType16").setControlCallback(onModType16Control);
+
+
+
+
+
 const var ModPages = []
                       
 ModPages[0] = Content.getComponent("MOD1");
@@ -724,6 +930,8 @@ ModPages[2] = Content.getComponent("MOD3");
 ModPages[3] = Content.getComponent("MOD4");
 ModPages[4] = Content.getComponent("MOD5");
 ModPages[5] = Content.getComponent("MOD6");
+ModPages[6] = Content.getComponent("MOD7");
+ModPages[7] = Content.getComponent("MOD8");
 
 
 inline function onModPageControl(component, value)
@@ -736,3 +944,261 @@ for (i = 0; i < ModPages.length; i++)
 
 Content.getComponent("ModPage").setControlCallback(onModPageControl);
 
+
+const var dp = Synth.getDisplayBufferSource("ENV1");
+
+const var rb = dp.getDisplayBuffer(1);
+const var rb1 = dp.getDisplayBuffer(2);
+
+
+const var BUFFER_LENGTH = 16384;
+
+
+const var properties = {
+  "BufferLength": BUFFER_LENGTH,
+  "NumChannels": 1
+};
+
+//env peak
+
+rb.setRingBufferProperties(properties);
+
+EnvPeak1.setTimerCallback(function()
+{
+
+	this.data.buffer = rb.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0], 
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvPeak1.startTimer(30);
+
+EnvPeak1.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFC96868);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+//env dispA
+
+rb1.setRingBufferProperties(properties);
+
+
+EnvDisplayA1.setTimerCallback(function()
+{
+
+	this.data.buffer = rb1.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0],
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvDisplayA1.startTimer(30);
+
+EnvDisplayA1.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFF6995C);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+var dpB = Synth.getDisplayBufferSource("ENV2");
+
+const var rbB = dpB.getDisplayBuffer(1);
+const var rbB1 = dpB.getDisplayBuffer(2);
+
+
+//env peak
+
+rbB.setRingBufferProperties(properties);
+
+EnvPeak2.setTimerCallback(function()
+{
+
+	this.data.buffer = rbB.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0], 
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvPeak2.startTimer(30);
+
+EnvPeak2.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFC96868);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+//env dispA
+
+rbB1.setRingBufferProperties(properties);
+
+
+EnvDisplayA2.setTimerCallback(function()
+{
+
+	this.data.buffer = rbB1.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0],
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvDisplayA2.startTimer(30);
+
+EnvDisplayA2.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFF6995C);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+
+var dpC = Synth.getDisplayBufferSource("ENV3");
+
+const var rbC = dpC.getDisplayBuffer(1);
+const var rbC1 = dpC.getDisplayBuffer(2);
+
+
+//env peak
+
+rbC.setRingBufferProperties(properties);
+
+EnvPeak3.setTimerCallback(function()
+{
+
+	this.data.buffer = rbC.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0], 
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvPeak3.startTimer(30);
+
+EnvPeak3.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFC96868);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+//env dispA
+
+rbC1.setRingBufferProperties(properties);
+
+
+EnvDisplayA3.setTimerCallback(function()
+{
+
+	this.data.buffer = rbC1.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0],
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvDisplayA3.startTimer(30);
+
+EnvDisplayA3.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFF6995C);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+var dpD = Synth.getDisplayBufferSource("ENV4");
+
+const var rbD = dpD.getDisplayBuffer(1);
+const var rbD1 = dpD.getDisplayBuffer(2);
+
+
+//env peak
+
+rbD.setRingBufferProperties(properties);
+
+EnvPeak4.setTimerCallback(function()
+{
+
+	this.data.buffer = rbD.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0], 
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvPeak4.startTimer(30);
+
+EnvPeak4.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFC96868);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+//env dispA
+
+rbD1.setRingBufferProperties(properties);
+
+
+EnvDisplayA4.setTimerCallback(function()
+{
+
+	this.data.buffer = rbD1.createPath(this.getLocalBounds(0), 
+									 [0, BUFFER_LENGTH, 0, 1.0],
+									 0.0 
+									 );
+	this.repaint();
+});
+
+EnvDisplayA4.startTimer(30);
+
+EnvDisplayA4.setPaintRoutine(function(g)
+{
+	g.fillAll(0xFFF6995C);
+	g.setColour(0xFFBFCCFB);
+	g.fillPath(this.data.buffer, this.getLocalBounds(0));
+});
+
+const var laf = Content.createLocalLookAndFeel();
+
+//FLEX ENVS
+laf.registerFunction("drawFlexAhdsrBackground", function(g, obj)
+{
+	g.fillAll(0xFFC96868);
+});
+
+laf.registerFunction("drawFlexAhdsrFullPath", function(g, obj)
+{
+	g.setColour(0xFFF6995C);
+	g.drawPath(obj.path, obj.pathArea, 2.0);
+});
+
+laf.registerFunction("drawFlexAhdsrCurvePoint", function(g, obj)
+{
+	g.setColour(0xFFBFCCFB);
+	g.fillEllipse([obj.curvePoint[0] -5, obj.curvePoint[1] - 5, 10, 10]);
+});
+
+laf.registerFunction("drawFlexAhdsrSegment", function(g, obj)
+{
+	g.setColour(obj.active ? 0xFF7EACB5 : 0x14058294);
+	g.fillPath(obj.path, Rectangle(obj.area));
+});
+
+laf.registerFunction("drawFlexAhdsrPosition", function(g, obj)
+{
+	g.setColour(Colours.white);
+	g.fillEllipse([obj.pointOnPath[0] -3, obj.pointOnPath[1] - 3, 6, 6]);
+});
+
+Content.getComponent("EnvDisplayB1").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB2").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB3").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB4").setLocalLookAndFeel(laf);

@@ -15,7 +15,7 @@
                   <Node ID="chain236" FactoryPath="container.chain" Bypassed="0" Name="ResonatorMix">
                     <Nodes>
                       <Node ID="branch14" FactoryPath="container.branch" Bypassed="0" Name="branch"
-                            Folded="1" ShowParameters="1">
+                            ShowParameters="1">
                         <Nodes>
                           <Node ID="chain237" FactoryPath="container.chain" Bypassed="0" Name="chain1">
                             <Nodes>
@@ -283,7 +283,7 @@
                           </Node>
                           <Node ID="chain249" FactoryPath="container.chain" Bypassed="0" Name="chain1">
                             <Nodes>
-                              <Node ID="global_cable234" FactoryPath="routing.global_cable" Bypassed="0"
+                              <Node ID="global_cable254" FactoryPath="routing.global_cable" Bypassed="0"
                                     Name="global_cable" NodeColour="4289049160">
                                 <Properties>
                                   <Property ID="Connection" Value="Modulator13"/>

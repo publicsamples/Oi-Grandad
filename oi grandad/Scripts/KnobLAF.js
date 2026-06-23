@@ -284,7 +284,7 @@ for (i = 0; i < 12; i++)
 
 const var ModType =[];
 
-for (i = 0; i < 12; i++)
+for (i = 0; i < 16; i++)
 {
     ModType[i] = Content.getComponent("ModType"+(i+1)).setLocalLookAndFeel(LAF_Button);
 
@@ -307,5 +307,22 @@ const var GrainXf =[];
 for (i = 1; i < 5; i++)
 {
     GrainXf[i] = Content.getComponent("GrainXf"+(i)).setLocalLookAndFeel(LAF_Button);
+
+}
+
+const var EnvLoop =[];
+
+for (i = 1; i < 5; i++)
+{
+    EnvLoop[i] = Content.getComponent("EnvLoop"+(i)).setLocalLookAndFeel(LAF_Button);
+
+}
+
+
+const var TrigPeak =[];
+
+for (i = 1; i < 5; i++)
+{
+    TrigPeak[i] = Content.getComponent("TrigPeak"+(i)).setLocalLookAndFeel(LAF_Button);
 
 }

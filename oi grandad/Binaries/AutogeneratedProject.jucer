@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.2"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.1"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
               companyName="modularsamples" companyWebsite="http://modularsamples.com"
               companyCopyright="2024 MS" displaySplashScreen="0" reportAppUsage="0"
@@ -17,42 +17,40 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="uS56aD" name="nodes">
-        <FILE id="LYWEeX" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="gpPFer" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="zXCPI4" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="qIoAAx" name="nodes">
+        <FILE id="SWE47w" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="WGfIOQ" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="qZ6ivJ" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="XZfbIo" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="pHKb8p" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="xdEq5g" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="tWwQJg" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="sfpK4u" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="omvTAG" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="V1ALKm" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="rjDm8f" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="ElpHMd" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="obr5EP" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="Yhwbuk" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="vUcvQ7" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="nrUvce" name="OutMods_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/OutMods_networkdata.h"/>
-        <FILE id="X0GpDm" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="h5vGv4" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="UXUoHQ" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="rRwlDQ" name="sndummy_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="sBPFBe" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="uIgTtw" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="La0AwW" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="iYjU2y" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="DjyQAX" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="A8Kakb" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="mK3ZYO" name="sndummy.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sndummy.h"/>
+        <FILE id="ndFtve" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="U3YsYM" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="rZi26v" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="a4YfXW" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="Xe7z5G" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="ZhR5Rh" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="FfFjb0" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="d9IahO" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="zJwMR1" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="W6kjvU" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="PSkuT4" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="Di9cr9" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="R7RsqS" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="RBlCIC" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>

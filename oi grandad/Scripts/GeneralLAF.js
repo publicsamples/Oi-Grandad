@@ -109,7 +109,12 @@ const var ModulationMenus = [Content.getComponent("TempoModSel1"),
                       Content.getComponent("TrigSel9"),
                       Content.getComponent("TrigSel10"),
                       Content.getComponent("TrigSel11"),
-                      Content.getComponent("TrigSel12")];
+                      Content.getComponent("TrigSel12"),
+                      Content.getComponent("EnvVoiceSel1"),
+                      Content.getComponent("EnvVoiceSel2"),
+                      Content.getComponent("EnvVoiceSel3"),
+                      Content.getComponent("EnvVoiceSel4")];
+                   
 
 const var vMenu1 = [Content.getComponent("pos1modsel"),
                     Content.getComponent("PmodSel1"),

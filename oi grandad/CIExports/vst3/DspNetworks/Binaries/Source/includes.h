@@ -15,8 +15,10 @@
 
 #include "DspNetwork.h"
 #include "MacroMod.h"
+#include "OutMods.h"
 #include "res2.h"
 #include "sn.h"
+#include "sndummy.h"
 #include "sn_fin.h"
 
 #if (defined (_WIN32) || defined (_WIN64))

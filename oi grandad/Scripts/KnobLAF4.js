@@ -131,5 +131,24 @@ const var Smooth = Content.getComponent("Smooth").setLocalLookAndFeel(KnobLaf4);
 const var XfModMaster = Content.getComponent("XfModMaster").setLocalLookAndFeel(KnobLaf4);
 
 
-
+const var EnkNkbs = [Content.getComponent("EnvAtk1"),
+                     Content.getComponent("EnvDec1"),
+                     Content.getComponent("EnvSus1"),
+                     Content.getComponent("EnvRel1"),
+                     Content.getComponent("EnvAtk2"),
+                     Content.getComponent("EnvDec2"),
+                     Content.getComponent("EnvSus2"),
+                     Content.getComponent("EnvRel2"),
+                     Content.getComponent("EnvAtk3"),
+                     Content.getComponent("EnvDec3"),
+                     Content.getComponent("EnvSus3"),
+                     Content.getComponent("EnvRel3"),
+                     Content.getComponent("EnvAtk4"),
+                     Content.getComponent("EnvDec4"),
+                     Content.getComponent("EnvSus4"),
+                     Content.getComponent("EnvRel4")];
+                     
+                    
+for(s in EnkNkbs)
+      s.setLocalLookAndFeel(KnobLaf);
 
