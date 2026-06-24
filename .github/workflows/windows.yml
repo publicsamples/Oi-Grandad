@@ -68,6 +68,8 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
 
       - name: Normalize project paths for CI (Windows)
         shell: pwsh
@@ -204,27 +206,25 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
+
+          function Invoke-MSBuild([string]$ProjectPath, [string]$Label) {
+            if (-not (Test-Path $ProjectPath)) { return }
+            Write-Host "Building $Label: $ProjectPath"
+            msbuild $ProjectPath /m /t:Build /p:Configuration=Release /p:Platform=x64 /p:PreferredToolArchitecture=x64
+            if ($LASTEXITCODE -ne 0) {
+              throw "MSBuild failed for $Label"
+            }
+          }
+
           $shared = Join-Path $env:VST3_ROOT "Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
           $vst3 = Join-Path $env:VST3_ROOT "Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
           $standaloneShared = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
           $app = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_App.vcxproj"
 
-          if (Test-Path $shared) {
-            Write-Host "Building Windows plugin shared code: $shared"
-            msbuild $shared /m /t:Build /p:Configuration=Release /p:Platform=x64
-          }
-          if (Test-Path $vst3) {
-            Write-Host "Building Windows VST3: $vst3"
-            msbuild $vst3 /m /t:Build /p:Configuration=Release /p:Platform=x64
-          }
-          if (Test-Path $standaloneShared) {
-            Write-Host "Building Windows standalone shared code: $standaloneShared"
-            msbuild $standaloneShared /m /t:Build /p:Configuration=Release /p:Platform=x64
-          }
-          if (Test-Path $app) {
-            Write-Host "Building Windows standalone app: $app"
-            msbuild $app /m /t:Build /p:Configuration=Release /p:Platform=x64
-          }
+          Invoke-MSBuild $shared "Windows plugin shared code"
+          Invoke-MSBuild $vst3 "Windows VST3"
+          Invoke-MSBuild $standaloneShared "Windows standalone shared code"
+          Invoke-MSBuild $app "Windows standalone app"
 
       - name: Package (Windows)
         shell: pwsh
