@@ -77,7 +77,7 @@ DLL_EXPORT int getHash(int index)
 	static const int hashIndexes[6] =
 	{
 		-966045569,
-		-1118362864,
+		1129100673,
 		225970153,
 		1021442333,
 		-1100965340,
