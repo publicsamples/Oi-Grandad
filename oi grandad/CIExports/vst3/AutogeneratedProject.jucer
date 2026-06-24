@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.1"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.4.1"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
-              companyName="modularsamples" companyWebsite="http://modularsamples.com"
-              companyCopyright="2024 MS" displaySplashScreen="0" reportAppUsage="0"
-              cppLanguageStandard="17" jucerFormatVersion="1">
+              buildVST="0" buildVST3="1" buildAU="0" buildAUv3="0" buildStandalone="0"
+              buildRTAS="0" buildAAX="0" pluginName="oi grandad" pluginDesc="oi grandad"
+              pluginManufacturer="modularsamples" pluginManufacturerCode="Msms"
+              pluginCode="Msog" pluginChannelConfigs="" pluginIsSynth="1" pluginWantsMidiIn="1%"
+              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="1"
+              pluginAUExportPrefix="DemoProjectAU" pluginRTASCategory="" aaxIdentifier=""
+              pluginAAXCategory="2048" pluginVST3Category="Instrument" companyName="modularsamples"
+              companyWebsite="http://modularsamples.com" companyCopyright="2024 MS"
+              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              enableIAA="1" cppLanguageStandard="17" pluginFormats="buildVST3,enableIAA"
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn,pluginEditorRequiresKeys"
+              jucerFormatVersion="1">
   <MAINGROUP id="SLR7uY" name="oi grandad">
     <GROUP id="{122C85F1-8B09-257A-B636-113E3EAC258A}" name="Source">
       <FILE id="KmyOlv" name="infoError.png" compile="0" resource="1" file="Source/Images/infoError.png"/>
