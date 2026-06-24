@@ -25,7 +25,7 @@
                      showValuePopup="Below" scaleFactor="0.5" min="-1.0" bgColour="4278190080"
                      textColour="3001935573" itemColour2="4212199680"/>
           <Component type="ScriptComboBox" id="delmodsel1" x="44" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="ResPitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -49,7 +49,7 @@
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
                      fontStyle="Regular" fontSize="15.0" text="Q"/>
           <Component type="ScriptComboBox" id="redmodsel1" x="106" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="ResLpSrc" itemColour2="3816794416"
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
@@ -59,7 +59,7 @@
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
                      defaultValue="0.5" showValuePopup="Below"/>
           <Component type="ScriptComboBox" id="delmodsel5" x="168" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="ResoSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -93,7 +93,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="ampmodsel" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam12" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="gainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -120,7 +120,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="PanModSel1" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam13" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="PanSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -231,7 +231,7 @@
                      min="-1.0" bgColour="4278190080" itemColour2="4279308561" itemColour="4293781205"
                      textColour="4293781205" macroControl="No MacroControl"/>
           <Component type="ScriptComboBox" id="pos1modsel" x="161" y="35" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="PosParam1" bgColour="4278190080" itemColour="5166303"
                      defaultValue="0.0" itemColour2="3825139712" macroControl="No MacroControl"
                      fontName="Montserrat" max="16" fontSize="12.0" textColour="4278190080"/>
@@ -241,7 +241,8 @@
           <Component type="ScriptSlider" id="pos" x="27" y="9" parentComponent="PosParam1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.239999994635582" width="60" height="60" showValuePopup="Below"
-                     bgColour="4286491829" middlePosition="0.5"/>
+                     bgColour="4286491829" middlePosition="0.5" isPluginParameter="1"
+                     pluginParameterName="Voice 1: Position A"/>
           <Component type="ScriptLabel" id="ParamLabel2" x="107" y="68" textColour="4280884766"
                      width="40" height="15" fontName="Montserrat" editable="0" parentComponent="PosParam1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -346,7 +347,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour="4293781205"
                      itemColour2="4279308561"/>
           <Component type="ScriptComboBox" id="detmodsel" x="184" y="16" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch1" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="PitchSprdSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -395,7 +396,7 @@
                      textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="PmodSel1" x="73" y="17" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch1" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="PitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -463,7 +464,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="GrainModSel1" x="113" y="25" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceGrain1" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="GrainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -533,7 +534,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="densemodsel" x="59" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam4" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="DenseSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -563,7 +564,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel" x="58" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam5" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="SpreadSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -588,7 +589,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc" x="59" y="8" width="15" height="15"
-                     text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls1" bgColour="4278190080" itemColour="5166303"
                      processorId="gran" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -631,7 +632,7 @@
                      min="-1.0" bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel4" x="62" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam6" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular1" parameterId="ScatterSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -717,7 +718,7 @@
                      showValuePopup="Below" scaleFactor="0.5" min="-1.0" bgColour="4278190080"
                      textColour="3001935573" itemColour2="4212199680"/>
           <Component type="ScriptComboBox" id="delmodsel2" x="44" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam15" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="ResPitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -741,7 +742,7 @@
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam15"
                      fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel2" x="106" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam15" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="ResLpSrc" itemColour2="3816794416"
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
@@ -751,7 +752,7 @@
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
                      defaultValue="0.5" showValuePopup="Below"/>
           <Component type="ScriptComboBox" id="delmodsel6" x="168" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam15" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="ResoSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -820,7 +821,7 @@
                      min="-1.0" bgColour="4278190080" itemColour2="4279308561" itemColour="4293781205"
                      textColour="4293781205" macroControl="No MacroControl"/>
           <Component type="ScriptComboBox" id="pos1modsel1" x="161" y="35" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="PosParam2" bgColour="4278190080" itemColour="5166303"
                      defaultValue="0.0" itemColour2="3825139712" macroControl="No MacroControl"
                      fontName="Montserrat" max="16" fontSize="12.0" textColour="4278190080"/>
@@ -830,7 +831,8 @@
           <Component type="ScriptSlider" id="pos1" x="27" y="9" parentComponent="PosParam2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.239999994635582" width="60" height="60" showValuePopup="Below"
-                     bgColour="4286491829" middlePosition="0.5"/>
+                     bgColour="4286491829" middlePosition="0.5" isPluginParameter="1"
+                     pluginParameterName="Voice 2: Position A"/>
           <Component type="ScriptLabel" id="ParamLabel7" x="107" y="68" textColour="4280884766"
                      width="40" height="15" fontName="Montserrat" editable="0" parentComponent="PosParam2"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -935,7 +937,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour="4293781205"
                      itemColour2="4279308561"/>
           <Component type="ScriptComboBox" id="detmodsel1" x="184" y="16" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch2" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="PitchSprdSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -985,7 +987,7 @@
                      textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="PmodSel2" x="73" y="17" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch2" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="PitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1057,8 +1059,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainSize" middlePosition="500.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
-                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"
-                     visible="0"/>
+                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"/>
           <Component type="ScriptSlider" id="GrainMod2" x="82" y="35" width="30" height="30"
                      processorId="Granular2" parameterId="GrainMod" parentComponent="VoiceGrain2"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -1066,7 +1067,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="GrainModSel2" x="113" y="25" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceGrain2" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="GrainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1090,7 +1091,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395">
+                     bgColour="16777215" itemColour="1630745395" visible="0">
             <Component type="ScriptLabel" id="ParamLabel76" x="51" y="27" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv2"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -1106,7 +1107,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931"/>
+                     bgColour="4290759931" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel183" x="139" y="24" textColour="4280884766"
                      width="70" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain2"
                      fontStyle="Regular" fontSize="15.0" text="Max Grains" alignment="left"/>
@@ -1121,7 +1122,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="densemodsel1" x="59" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam7" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="DenseSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1151,7 +1152,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel1" x="58" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam8" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="SpreadSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1176,7 +1177,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc1" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls2" bgColour="4278190080" itemColour="5166303"
                      processorId="gran" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -1219,7 +1220,7 @@
                      min="-1.0" bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel5" x="62" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam9" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="ScatterSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1280,7 +1281,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="ampmodsel1" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam17" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="gainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1307,7 +1308,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="PanModSel2" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam18" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular2" parameterId="PanSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1408,7 +1409,7 @@
                      showValuePopup="Below" scaleFactor="0.5" min="-1.0" bgColour="4278190080"
                      textColour="3001935573" itemColour2="4212199680"/>
           <Component type="ScriptComboBox" id="delmodsel4" x="44" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam16" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="ResPitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1432,7 +1433,7 @@
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam16"
                      fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel4" x="106" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam16" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="ResLpSrc" itemColour2="3816794416"
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
@@ -1442,7 +1443,7 @@
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
                      defaultValue="0.5" showValuePopup="Below"/>
           <Component type="ScriptComboBox" id="delmodsel8" x="168" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam16" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="ResoSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1529,7 +1530,7 @@
                      min="-1.0" bgColour="4278190080" itemColour2="4279308561" itemColour="4293781205"
                      textColour="4293781205" macroControl="No MacroControl"/>
           <Component type="ScriptComboBox" id="pos1modsel2" x="161" y="35" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="PosParam3" bgColour="4278190080" itemColour="5166303"
                      defaultValue="0.0" itemColour2="3825139712" macroControl="No MacroControl"
                      fontName="Montserrat" max="16" fontSize="12.0" textColour="4278190080"/>
@@ -1539,7 +1540,8 @@
           <Component type="ScriptSlider" id="pos2" x="27" y="9" parentComponent="PosParam3"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.239999994635582" width="60" height="60" showValuePopup="Below"
-                     bgColour="4286491829" middlePosition="0.5"/>
+                     bgColour="4286491829" middlePosition="0.5" isPluginParameter="1"
+                     pluginParameterName="Voice 3: Position A"/>
           <Component type="ScriptLabel" id="ParamLabel108" x="107" y="68" textColour="4280884766"
                      width="40" height="15" fontName="Montserrat" editable="0" parentComponent="PosParam3"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1644,7 +1646,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour="4293781205"
                      itemColour2="4279308561"/>
           <Component type="ScriptComboBox" id="detmodsel2" x="184" y="16" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch3" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="PitchSprdSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1693,7 +1695,7 @@
                      textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="PmodSel3" x="73" y="17" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch3" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="PitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1777,7 +1779,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="GrainModSel3" x="113" y="25" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceGrain3" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="GrainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1832,7 +1834,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="densemodsel2" x="59" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam20" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="DenseSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1862,7 +1864,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel2" x="58" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam21" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="SpreadSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1887,7 +1889,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc2" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls3" bgColour="4278190080" itemColour="5166303"
                      processorId="gran" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -1930,7 +1932,7 @@
                      min="-1.0" bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel6" x="62" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam22" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="ScatterSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -1991,7 +1993,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="ampmodsel2" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam25" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="gainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2018,7 +2020,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="PanModSel3" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam26" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular3" parameterId="PanSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2101,7 +2103,7 @@
                      showValuePopup="Below" scaleFactor="0.5" min="-1.0" bgColour="4278190080"
                      textColour="3001935573" itemColour2="4212199680"/>
           <Component type="ScriptComboBox" id="delmodsel19" x="44" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="ResPitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2125,7 +2127,7 @@
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam23"
                      fontStyle="Regular" fontSize="15.0" text="OFF"/>
           <Component type="ScriptComboBox" id="redmodsel14" x="106" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="ResLpSrc" itemColour2="3816794416"
                      max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
@@ -2135,7 +2137,7 @@
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
                      defaultValue="0.5" showValuePopup="Below"/>
           <Component type="ScriptComboBox" id="delmodsel20" x="168" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="ResoSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2187,7 +2189,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="ampmodsel3" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam36" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="gainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2214,7 +2216,7 @@
                      bgColour="4278190080" itemColour="1191118856" itemColour2="16777215"
                      textColour="3001935573"/>
           <Component type="ScriptComboBox" id="PanModSel4" x="54" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam37" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="PanSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2325,7 +2327,7 @@
                      min="-1.0" bgColour="4278190080" itemColour2="4279308561" itemColour="4293781205"
                      textColour="4293781205" macroControl="No MacroControl"/>
           <Component type="ScriptComboBox" id="pos1modsel3" x="161" y="35" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="PosParam4" bgColour="4278190080" itemColour="5166303"
                      defaultValue="0.0" itemColour2="3825139712" macroControl="No MacroControl"
                      fontName="Montserrat" max="16" fontSize="12.0" textColour="4278190080"/>
@@ -2335,7 +2337,8 @@
           <Component type="ScriptSlider" id="pos3" x="27" y="9" parentComponent="PosParam4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.239999994635582" width="60" height="60" showValuePopup="Below"
-                     bgColour="4286491829" middlePosition="0.5"/>
+                     bgColour="4286491829" middlePosition="0.5" isPluginParameter="1"
+                     pluginParameterName="Voice 4: Position A"/>
           <Component type="ScriptLabel" id="ParamLabel153" x="107" y="68" textColour="4280884766"
                      width="40" height="15" fontName="Montserrat" editable="0" parentComponent="PosParam4"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -2440,7 +2443,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour="4293781205"
                      itemColour2="4279308561"/>
           <Component type="ScriptComboBox" id="detmodsel3" x="184" y="16" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch4" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="PitchSprdSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2489,7 +2492,7 @@
                      textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="PmodSel4" x="73" y="17" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoicePitch4" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="PitchSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2573,7 +2576,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="GrainModSel4" x="113" y="25" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceGrain4" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="GrainSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2628,7 +2631,7 @@
                      min="-1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="4278190080"/>
           <Component type="ScriptComboBox" id="densemodsel3" x="59" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam28" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="DenseSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2658,7 +2661,7 @@
                      bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel3" x="58" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam29" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="SpreadSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2683,7 +2686,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc3" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls4" bgColour="4278190080" itemColour="5166303"
                      processorId="gran" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -2726,7 +2729,7 @@
                      min="-1.0" bgColour="4278190080" textColour="4293781205" itemColour2="4279308561"
                      itemColour="4293781205"/>
           <Component type="ScriptComboBox" id="spreadmodsel7" x="62" y="8" width="20"
-                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam30" bgColour="4278190080" itemColour="5166303"
                      processorId="Granular4" parameterId="phaseScatterSrc" itemColour2="3825139712"
                      macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2792,7 +2795,7 @@
                    showValuePopup="Below" scaleFactor="0.5" min="-1.0" bgColour="4278190080"
                    textColour="3001935573" itemColour2="4212199680"/>
         <Component type="ScriptComboBox" id="delmodsel9" x="44" y="8" width="20"
-                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
                    processorId="Final1" parameterId="ResPitchSrc" itemColour2="3825139712"
                    macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2816,7 +2819,7 @@
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
                    fontStyle="Regular" fontSize="15.0" text="LP"/>
         <Component type="ScriptComboBox" id="redmodsel5" x="106" y="8" width="20"
-                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
                    processorId="Final1" parameterId="ResLpSrc" itemColour2="3816794416"
                    max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
@@ -2826,7 +2829,7 @@
                    parameterId="ResPitch" middlePosition="0.5" bgColour="4292665834"
                    defaultValue="0.5" showValuePopup="Below"/>
         <Component type="ScriptComboBox" id="delmodsel10" x="166" y="8" width="20"
-                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
                    processorId="Final1" parameterId="ResoSrc" itemColour2="3825139712"
                    macroControl="No MacroControl" fontName="Montserrat" max="16"
@@ -2842,7 +2845,7 @@
                    parameterId="Meta" bgColour="4292665834" stepSize="0.0" middlePosition="0.5"
                    showValuePopup="Below"/>
         <Component type="ScriptComboBox" id="redmodsel6" x="85" y="70" width="20"
-                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                   height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
                    processorId="Final1" parameterId="MetaSrc" itemColour2="3816794416"
                    max="16" fontName="Montserrat" fontSize="12.0" textColour="4278190080"/>
@@ -3920,7 +3923,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc4" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls5" bgColour="4278190080" itemColour="5166303"
                      processorId="gran4" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -4019,7 +4022,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc5" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls6" bgColour="4278190080" itemColour="5166303"
                      processorId="gran4" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -4106,7 +4109,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc6" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls7" bgColour="4278190080" itemColour="5166303"
                      processorId="gran4" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -4205,7 +4208,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc7" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls8" bgColour="4278190080" itemColour="5166303"
                      processorId="gran4" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -4293,7 +4296,7 @@
                      middlePosition="0.0" showValuePopup="Below" scaleFactor="0.699999988079071"
                      min="-1.0"/>
           <Component type="ScriptComboBox" id="XfModSrc9" x="59" y="8" width="15"
-                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="15" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="XfModControls10" bgColour="4278190080" itemColour="5166303"
                      processorId="gran4" parameterId="XfadeSrc" defaultValue="0.0"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
@@ -4619,7 +4622,7 @@
     <Component type="ScriptButton" id="VOICE1" x="116" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 2" saveInPreset="0"
                bgColour="4294951129" textColour="4278650374" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
+               itemColour2="1118481" enableMidiLearn="0"/>
     <Component type="ScriptButton" id="VOICE2" x="217" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 3" saveInPreset="0"
                bgColour="4290759931" textColour="4278255873" itemColour="3355443"
@@ -4719,7 +4722,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel1" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s1" parameterId="moddest" parentComponent="seq1"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -4742,7 +4745,7 @@
                      parentComponent="seq1" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel1" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s1" parameterId="keysync" parentComponent="seq1"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -4757,7 +4760,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq1"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel1" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s1" parameterId="morphmodest" parentComponent="seq1"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -4857,7 +4860,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel2" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s2" parameterId="moddest" parentComponent="seq2"
                      itemColour="4282291135" bgColour="4278190080" itemColour2="3816794416"
                      textColour="4278190080" max="16" fontName="Arial"/>
@@ -4880,7 +4883,7 @@
                      parentComponent="seq2" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel2" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s2" parameterId="keysync" parentComponent="seq2"
                      itemColour="1589016349" bgColour="4278190080" itemColour2="3816794416"
                      textColour="4278190080" max="19"/>
@@ -4895,7 +4898,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq2"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel2" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s2" parameterId="morphmodest" parentComponent="seq2"
                      itemColour="4282291135" bgColour="4278190080" itemColour2="3816794416"
                      textColour="4278190080" max="16" fontName="Arial"/>
@@ -5000,7 +5003,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel3" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s3" parameterId="moddest" parentComponent="seq3"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5023,7 +5026,7 @@
                      parentComponent="seq3" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel3" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s3" parameterId="keysync" parentComponent="seq3"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5038,7 +5041,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq3"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel3" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s3" parameterId="morphmodest" parentComponent="seq3"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5139,7 +5142,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel4" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s4" parameterId="moddest" parentComponent="seq4"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5162,7 +5165,7 @@
                      parentComponent="seq4" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel4" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s4" parameterId="keysync" parentComponent="seq4"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5177,7 +5180,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq4"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel4" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s4" parameterId="morphmodest" parentComponent="seq4"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5283,7 +5286,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel5" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s5" parameterId="moddest" parentComponent="seq5"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5306,7 +5309,7 @@
                      parentComponent="seq5" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel5" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s5" parameterId="keysync" parentComponent="seq5"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5321,7 +5324,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq5"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel5" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s5" parameterId="morphmodest" parentComponent="seq5"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5422,7 +5425,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel6" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s6" parameterId="moddest" parentComponent="seq6"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5445,7 +5448,7 @@
                      parentComponent="seq6" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel6" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s6" parameterId="keysync" parentComponent="seq6"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5460,7 +5463,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq6"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel6" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s6" parameterId="morphmodest" parentComponent="seq6"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5566,7 +5569,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel7" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s7" parameterId="moddest" parentComponent="seq7"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5589,7 +5592,7 @@
                      parentComponent="seq7" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel7" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s7" parameterId="keysync" parentComponent="seq7"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5604,7 +5607,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq7"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel7" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s7" parameterId="morphmodest" parentComponent="seq7"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5705,7 +5708,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel8" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s8" parameterId="moddest" parentComponent="seq8"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5728,7 +5731,7 @@
                      parentComponent="seq8" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel8" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s8" parameterId="keysync" parentComponent="seq8"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5743,7 +5746,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq8"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel8" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s8" parameterId="morphmodest" parentComponent="seq8"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5850,7 +5853,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel9" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s9" parameterId="moddest" parentComponent="seq9"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5873,7 +5876,7 @@
                      parentComponent="seq9" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel9" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s9" parameterId="keysync" parentComponent="seq9"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -5888,7 +5891,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq9"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel9" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s9" parameterId="morphmodest" parentComponent="seq9"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -5989,7 +5992,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel10" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s10" parameterId="moddest" parentComponent="seq10"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -6012,7 +6015,7 @@
                      parentComponent="seq10" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel10" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s10" parameterId="keysync" parentComponent="seq10"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -6027,7 +6030,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq10"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel10" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s10" parameterId="morphmodest" parentComponent="seq10"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -6133,7 +6136,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel11" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s11" parameterId="moddest" parentComponent="seq11"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -6156,7 +6159,7 @@
                      parentComponent="seq11" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel11" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s11" parameterId="keysync" parentComponent="seq11"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -6171,7 +6174,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq11"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel11" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s11" parameterId="morphmodest" parentComponent="seq11"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -6272,7 +6275,7 @@
                      parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
                      enableMidiLearn="0"/>
           <Component type="ScriptComboBox" id="TempoModSel12" x="98" y="108" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s12" parameterId="moddest" parentComponent="seq12"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -6295,7 +6298,7 @@
                      parentComponent="seq12" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
           <Component type="ScriptComboBox" id="TrigSel12" x="236" y="5" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4&#10;DAW&#10;"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
                      processorId="s12" parameterId="keysync" parentComponent="seq12"
                      defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="19"/>
@@ -6310,7 +6313,7 @@
                      height="15" text="stage mod" textColour="4278190080" parentComponent="seq12"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptComboBox" id="MorphModSel12" x="208" y="99" width="25"
-                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;G1&#10;G2&#10;G3&#10;G4"
+                     height="20" fontStyle="Regular" fontSize="15.0" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;EVN3&#10;ENV4"
                      processorId="s12" parameterId="morphmodest" parentComponent="seq12"
                      defaultValue="0.0" itemColour="4282291135" bgColour="4278190080"
                      itemColour2="3816794416" textColour="4278190080" max="16" fontName="Arial"/>
@@ -6410,7 +6413,7 @@
           <Component type="ScriptButton" id="EnvLoop1" x="172" y="7" width="20" height="20"
                      parentComponent="seq13" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
-                     processorId="ENV1" parameterId="Loop" enabled=""/>
+                     processorId="ENV1" parameterId="Loop"/>
           <Component type="ScriptLabel" id="EnvLoopLabel1" x="196" y="2" width="30"
                      height="30" text="loop" textColour="4278190080" parentComponent="seq13"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -6959,9 +6962,9 @@
              mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
              suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"/>
   <Component type="ScriptSlider" id="MasterVol" x="304" y="604" style="Vertical"
-             width="15" height="40" processorId="MasterVol" parameterId="Gain"
-             mode="Decibel" min="-100.0" max="12.0" stepSize="0.1000000014901161"
-             suffix=" dB" middlePosition="0.0" itemColour="1721839150" showValuePopup="Below"/>
+             width="15" height="40" processorId="oi grandad" parameterId="Gain"
+             stepSize="0.1000000014901161" suffix=" dB" middlePosition="0.5"
+             itemColour="1721839150" showValuePopup="Below"/>
   <Component type="ScriptLabel" id="Label22" x="188" y="648" width="20" height="20"
              fontName="Montserrat" fontSize="15.0" textColour="4294109134"
              text="1" editable="0" itemColour2="4092454613" itemColour="15848371"/>

@@ -1,10 +1,10 @@
 mode=vst3
-hise_bin=
+hise_bin=/Users/rick/HISE Standalone - App 2026-05-07 16-42-28/HISE.app/Contents/MacOS/HISE
 project_dir=/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad
 project_file=XmlPresetBackups/oi grandad.xml
 arch=x64
 plugin_target=instrument
 vst3_format=VST3
 au_format=AU
-hise_source_dir=
-timestamp=2026-06-24T16:21:01Z
+hise_source_dir=/Users/rick/Documents/GitHub/HISE
+timestamp=2026-06-24T17:39:18Z

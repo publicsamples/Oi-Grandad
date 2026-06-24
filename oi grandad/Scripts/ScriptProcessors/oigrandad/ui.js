@@ -1,5 +1,7 @@
 Content.makeFrontInterface(860, 690);
 
+const var rm = Engine.getGlobalRoutingManager();
+
 Engine.loadAudioFilesIntoPool();
 
 reg g_isPresetLoadInProgress = false;
@@ -140,7 +142,6 @@ const var pmod1 = Content.getComponent("pmod1");
 const var PmodSel1 = Content.getComponent("PmodSel1");
 
 
-const var rm = Engine.getGlobalRoutingManager();
 
 
 //links
