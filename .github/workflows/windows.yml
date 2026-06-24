@@ -209,7 +209,7 @@ jobs:
 
           function Invoke-MSBuild([string]$ProjectPath, [string]$Label) {
             if (-not (Test-Path $ProjectPath)) { return }
-            Write-Host "Building $Label: $ProjectPath"
+            Write-Host "Building ${Label}: $ProjectPath"
             msbuild $ProjectPath /m /t:Build /p:Configuration=Release /p:Platform=x64 /p:PreferredToolArchitecture=x64
             if ($LASTEXITCODE -ne 0) {
               throw "MSBuild failed for $Label"
