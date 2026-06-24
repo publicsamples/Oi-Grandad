@@ -539,7 +539,7 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		;                                      // flex_ahdsr::Mode is automated
 		flex_ahdsr.setParameterT(6, 1.);       // envelope::flex_ahdsr::AttackLevel
 		flex_ahdsr.setParameterT(7, 0.483333); // envelope::flex_ahdsr::AttackCurve
-		flex_ahdsr.setParameterT(8, 1.);       // envelope::flex_ahdsr::DecayCurve
+		flex_ahdsr.setParameterT(8, 0.516667); // envelope::flex_ahdsr::DecayCurve
 		flex_ahdsr.setParameterT(9, 0.1);      // envelope::flex_ahdsr::ReleaseCurve
 		
 		; // add8::Value is automated

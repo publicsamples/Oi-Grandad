@@ -296,6 +296,7 @@
 		90868185CD6A0F2705B74337 /* include_hi_streaming.cpp */ /* include_hi_streaming.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_streaming.cpp; path = ../../JuceLibraryCode/include_hi_streaming.cpp; sourceTree = SOURCE_ROOT; };
 		915E86F81E087A38E351A858 /* include_hi_rlottie_19.cpp */ /* include_hi_rlottie_19.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_rlottie_19.cpp; path = ../../JuceLibraryCode/include_hi_rlottie_19.cpp; sourceTree = SOURCE_ROOT; };
 		921F3278E44E673709B2246D /* include_hi_rlottie_16.cpp */ /* include_hi_rlottie_16.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_rlottie_16.cpp; path = ../../JuceLibraryCode/include_hi_rlottie_16.cpp; sourceTree = SOURCE_ROOT; };
+		92AFD5FE1960558B186B8D12 /* sndummy_networkdata.h */ /* sndummy_networkdata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sndummy_networkdata.h; path = ../../../AdditionalSourceCode/nodes/sndummy_networkdata.h; sourceTree = SOURCE_ROOT; };
 		931CC38C8469B9F70F314E2A /* sn.h */ /* sn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sn.h; path = ../../../AdditionalSourceCode/nodes/sn.h; sourceTree = SOURCE_ROOT; };
 		93988170A37AAB07350BFEB1 /* LaunchScreen.storyboard */ /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		93EAC90F65FB1452E9D46253 /* granular_player_stepquant_density_hybrid_native.h */ /* granular_player_stepquant_density_hybrid_native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = granular_player_stepquant_density_hybrid_native.h; path = ../../../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h; sourceTree = SOURCE_ROOT; };
@@ -321,7 +322,6 @@
 		ABC7F5424B8D214F329D55F9 /* include_hi_rlottie_2.cpp */ /* include_hi_rlottie_2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_rlottie_2.cpp; path = ../../JuceLibraryCode/include_hi_rlottie_2.cpp; sourceTree = SOURCE_ROOT; };
 		ADEDBA698A9192AA3EC26D78 /* juce_opengl */ /* juce_opengl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_opengl; path = /Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_opengl; sourceTree = "<absolute>"; };
 		AE03F30D3DDF6DE38783243A /* include_juce_gui_extra.mm */ /* include_juce_gui_extra.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_extra.mm; path = ../../JuceLibraryCode/include_juce_gui_extra.mm; sourceTree = SOURCE_ROOT; };
-		AE39C47508FFB87B076C1D19 /* sndummy.h */ /* sndummy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sndummy.h; path = ../../../AdditionalSourceCode/nodes/sndummy.h; sourceTree = SOURCE_ROOT; };
 		AEB765130CF1E38538177613 /* hi_faust_types */ /* hi_faust_types */ = {isa = PBXFileReference; lastKnownFileType = folder; name = hi_faust_types; path = /Users/rick/Documents/GitHub/HISE/hi_faust_types; sourceTree = "<absolute>"; };
 		B0798E3D03EB536891469942 /* juce_graphics */ /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = /Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_graphics; sourceTree = "<absolute>"; };
 		B10A935204B2EDFD2B5CFAD1 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
@@ -409,7 +409,7 @@
 				951334B791C1FF380FD35A27,
 				2AF52B3774EB3E0F56F38808,
 				375D2628F72A796397A4AFAF,
-				D4C6922661EB9B3BEE7046D4,
+				84FAE7C7FA0B30805205739B,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -607,7 +607,7 @@
 			name = "JUCE Library Code";
 			sourceTree = "<group>";
 		};
-		D4C6922661EB9B3BEE7046D4 /* nodes */ = {
+		84FAE7C7FA0B30805205739B /* nodes */ = {
 			isa = PBXGroup;
 			children = (
 				14B6050A1F860A16398D4FE9,
@@ -623,7 +623,7 @@
 				E3865170AD7E329DF539F15C,
 				1075E1B13B94F13ADDE4E9DC,
 				931CC38C8469B9F70F314E2A,
-				AE39C47508FFB87B076C1D19,
+				92AFD5FE1960558B186B8D12,
 				E9187C5E90A8D6734E422047,
 				5D85CBD55CD163E59A6684C1,
 				4C5A6B08496ED13F01B6F5BB,

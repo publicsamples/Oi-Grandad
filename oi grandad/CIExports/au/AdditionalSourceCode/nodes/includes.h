@@ -22,7 +22,7 @@
 #include "OutMods.h"
 #include "res2.h"
 #include "sn.h"
-#include "sndummy.h"
+#include "sndummy_networkdata.h"
 #include "sn_fin.h"
 #include "track_networkdata.h"
 #include "trash2_networkdata.h"

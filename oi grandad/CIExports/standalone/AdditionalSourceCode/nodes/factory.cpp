@@ -33,12 +33,12 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
-		registerPolyNode<project::sndummy<1>, project::sndummy<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, project::sn_fin<NUM_POLYPHONIC_VOICES>>();
 		registerDataNode<project::FoldTests_networkdata>();
 		registerDataNode<project::ggg_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
 		registerDataNode<project::NuTest_networkdata>();
+		registerDataNode<project::sndummy_networkdata>();
 		registerDataNode<project::track_networkdata>();
 		registerDataNode<project::trash2_networkdata>();
 		registerDataNode<project::vec1b_networkdata>();
