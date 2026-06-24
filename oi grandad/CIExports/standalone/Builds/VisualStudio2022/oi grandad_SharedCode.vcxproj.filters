@@ -6576,10 +6576,7 @@
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp">
       <Filter>JUCE Library Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_plugin_client_utils.cpp">
-      <Filter>JUCE Library Code</Filter>
-    </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_processors.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -6663,7 +6660,7 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy.h">
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn_fin.h">

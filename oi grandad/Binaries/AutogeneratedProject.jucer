@@ -17,47 +17,47 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="lVAIGU" name="nodes">
-        <FILE id="dFxXBd" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="VHCxWS" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="qeilhc" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="dcZj60" name="nodes">
+        <FILE id="cWZs6e" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="bTVB7k" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="EqyE1O" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="hc47Jx" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="uVzJZI" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="vGGWq6" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="bgJfTk" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="wMXICd" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="dCgifz" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="pCLQtj" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="rHu8RM" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="M1bnSw" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="NPrs8h" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="dZuKvf" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="a7rK5O" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="sClXRO" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
-        <FILE id="eWmpXp" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="gsIH4w" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="jNNDDz" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="prluBr" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="c9ZEvK" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="H1cXpD" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="bIjWdT" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="EhZm0U" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="bSc5OA" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="ml0Ukr" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="JiJG0F" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="qTmGBA" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="bwxzWE" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="WodKMC" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="vpaJCQ" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="ipbLoR" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="hPjwUP" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="rtmN5t" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="x8Hpth" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="EPmigW" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="aEOAdz" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="etPDB5" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="FoKEA3" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="ujukjv" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="vELl24" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2026 targetFolder="Builds/VisualStudio2026/" IPP1ALibrary="" extraDefs="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10"
+    <VS2022 targetFolder="Builds/VisualStudio2022/" IPP1ALibrary="" extraDefs="HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10"
             extraLinkerFlags="%FFT_LINKER_FLAGS%&#10;" extraCompilerFlags="/bigobj /cgthreads8  /wd&quot;4100&quot; /wd&quot;4127&quot; /wd&quot;4244&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4459&quot;&#10;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="1" generateManifest="1" winArchitecture="x64"
@@ -67,7 +67,7 @@
         <CONFIGURATION name="Release" winWarningLevel="1" generateManifest="1" winArchitecture="x64"
                        libraryPath="%WIN_STATIC_LIB_FOLDER_R64%" isDebug="0" optimisation="3"
                        targetName="oi grandad" binaryPath="Compiled/" headerPath="%FFT_HEADER_PATH%&#10;;/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       linkTimeOptimisation="0" useRuntimeLibDLL="0" prebuildCommand="%PREBUILD_COMMAND%;"/>
+                       linkTimeOptimisation="1" useRuntimeLibDLL="0" prebuildCommand="%PREBUILD_COMMAND%;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
@@ -102,7 +102,7 @@
         <MODULEPATH id="melatonin_blur" path="/Users/rick/Documents/GitHub/HISE"/>
         <MODULEPATH id="hi_loris" path="/Users/rick/Documents/GitHub/HISE"/>
       </MODULEPATHS>
-    </VS2026>
+    </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="%VSTSDK_FOLDER%" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off"
                extraLinkerFlags="" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"
                hardenedRuntime="0" hardenedRuntimeOptions="com.apple.security.cs.allow-jit,com.apple.security.cs.allow-unsigned-executable-memory,com.apple.security.device.audio-input"
@@ -113,7 +113,7 @@
                        libraryPath=";" cppLibType="libc++" binaryPath="Compiled/"/>
         <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="11.0 SDK" osxArchitecture="64BitIntel"
                        isDebug="0" optimisation="3" targetName="oi grandad" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath=";" cppLibType="libc++" linkTimeOptimisation="0"
+                       libraryPath=";" cppLibType="libc++" linkTimeOptimisation="1"
                        binaryPath="Compiled/" stripLocalSymbols="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -161,7 +161,7 @@
                        libraryPath=";" binaryPath="Compiled/"/>
         <CONFIGURATION name="Release" osxArchitecture="x86_64" isDebug="0" optimisation="3"
                        targetName="oi grandad" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath=";" binaryPath="Compiled/" linkTimeOptimisation="0"
+                       libraryPath=";" binaryPath="Compiled/" linkTimeOptimisation="1"
                        stripLocalSymbols="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -206,7 +206,7 @@
                        libraryPath=""/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="oi grandad"
                        headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath="" linkTimeOptimisation="0"/>
+                       libraryPath="" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Documents/GitHub/HISE"/>

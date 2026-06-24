@@ -19,9 +19,9 @@ REGISTER_STATIC_DSP_LIBRARIES()
 #if USE_COPY_PROTECTION
 RSAKey hise::Unlocker::getPublicKey() { return RSAKey(""); };
 #endif
-AudioProcessor* JUCE_CALLTYPE createPluginFilter() { CREATE_PLUGIN(nullptr, nullptr); }
+AudioProcessor* hise::StandaloneProcessor::createProcessor() { CREATE_PLUGIN(deviceManager, callback); }
 
-AudioProcessor* hise::StandaloneProcessor::createProcessor() { return nullptr; }
+START_JUCE_APPLICATION(hise::FrontendStandaloneApplication)
 String hise::FrontendHandler::getProjectName() { return "oi grandad"; };
 String hise::FrontendHandler::getCompanyName() { return "modularsamples"; };
 String hise::FrontendHandler::getCompanyWebsiteName() { return "http://modularsamples.com"; };
