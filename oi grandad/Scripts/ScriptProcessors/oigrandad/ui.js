@@ -1010,6 +1010,27 @@ inline function onPostMode1Control(component, value)
 Content.getComponent("PostMode1").setControlCallback(onPostMode1Control);
 
 
+inline function onTransportModeControl(component, value)
+{
+	gran.setAttribute(gran.TransportMode, value);
+	gran1.setAttribute(gran1.TransportMode, value);
+	gran2.setAttribute(gran2.TransportMode, value);
+	gran3.setAttribute(gran3.TransportMode, value);
+};
+
+Content.getComponent("TransportMode").setControlCallback(onTransportModeControl);
+
+
+inline function onReadModeControl(component, value)
+{
+	gran.setAttribute(gran.ReadMode, value);
+	gran1.setAttribute(gran1.ReadMode, value);
+	gran2.setAttribute(gran2.ReadMode, value);
+	gran3.setAttribute(gran3.ReadMode, value);
+};
+
+Content.getComponent("ReadMode").setControlCallback(onReadModeControl);
+
 function onNoteOn()
 {
 // the index is zero based like everything else in good

@@ -101,6 +101,13 @@ for (i = 0; i < 4; i++)
 
 } 
 
+const var DelayTime =[];
+
+for (i = 0; i < 4; i++)
+{
+    DelayTime[i] = Content.getComponent("PolyMeta"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    }
+
 
 const var delcut =[];
 
@@ -236,6 +243,7 @@ const var MacroSliders = [Content.getComponent("MacroPos1"),
 
 for(s in MacroSliders)
       s.setLocalLookAndFeel(KnobLaf2);
+      
       
 
 

@@ -131,14 +131,6 @@ for (i = 0; i < 3; i++)
 }  
 
 
- 
-const var DelayTime =[];
-
-for (i = 0; i < 4; i++)
-{
-    DelayTime[i] = Content.getComponent("PolyMeta"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-}  
 
 const var Xf =[];
 
