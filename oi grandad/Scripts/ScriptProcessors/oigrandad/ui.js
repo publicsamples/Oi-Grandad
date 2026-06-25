@@ -11,9 +11,11 @@ const var modQuality = Content.getComponent("modQuality");
 
 const var modBlockSizes = [16, 32, 64, 128, 256, 512];
 
+//Engine.setMaximumBlockSize(512);
+
 
 modQuality.set("items", "16 samples\n32 samples\n64 samples\n128 samples\n256 samples\n512 samples");
-modQuality.setValue(3); // 64 samples as default selection
+modQuality.setValue(6); // 64 samples as default selection
 modQuality.changed();
 
 inline function onmodQualityControl(component, value)

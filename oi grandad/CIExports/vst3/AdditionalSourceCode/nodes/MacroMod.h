@@ -135,64 +135,46 @@ template <int NV>
 using chain92_t = container::chain<parameter::empty, 
                                    wrap::fix<1, global_cable75_t<NV>>, 
                                    math::add<NV>>;
+using global_cable78_t_index = runtime_target::indexers::fix_hash<377786417>;
 
 template <int NV>
-using event_data_reader_t = wrap::mod<parameter::plain<math::add<NV>, 0>, 
-                                      routing::event_data_reader<NV>>;
+using global_cable78_t = routing::global_cable<global_cable78_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using wrapevent_data_reader1_t_ = container::chain<parameter::empty, 
-                                                   wrap::fix<1, event_data_reader_t<NV>>>;
-
-template <int NV>
-using wrapevent_data_reader1_t = wrap::event<wrapevent_data_reader1_t_<NV>>;
-
-template <int NV>
-using chain93_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader1_t<NV>>, 
+using chain99_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, global_cable78_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader1_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader2_t_ = container::chain<parameter::empty, 
-                                                   wrap::fix<1, event_data_reader1_t<NV>>>;
+using global_cable77_t_index = runtime_target::indexers::fix_hash<377786418>;
 
 template <int NV>
-using wrapevent_data_reader2_t = wrap::event<wrapevent_data_reader2_t_<NV>>;
+using global_cable77_t = routing::global_cable<global_cable77_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain94_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader2_t<NV>>, 
+using chain98_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, global_cable77_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader2_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader3_t_ = container::chain<parameter::empty, 
-                                                   wrap::fix<1, event_data_reader2_t<NV>>>;
+using global_cable76_t_index = runtime_target::indexers::fix_hash<377786419>;
 
 template <int NV>
-using wrapevent_data_reader3_t = wrap::event<wrapevent_data_reader3_t_<NV>>;
+using global_cable76_t = routing::global_cable<global_cable76_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain95_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader3_t<NV>>, 
+using chain97_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, global_cable76_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader3_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader4_t_ = container::chain<parameter::empty, 
-                                                   wrap::fix<1, event_data_reader3_t<NV>>>;
+using global_cable79_t_index = runtime_target::indexers::fix_hash<377786420>;
 
 template <int NV>
-using wrapevent_data_reader4_t = wrap::event<wrapevent_data_reader4_t_<NV>>;
+using global_cable79_t = routing::global_cable<global_cable79_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain96_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader4_t<NV>>, 
-                                   math::add<NV>>;
+using chain100_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable79_t<NV>>, 
+                                    math::add<NV>>;
 template <int NV>
 using branch4_t = container::branch<parameter::empty, 
                                     wrap::fix<1, chain81_t<NV>>, 
@@ -207,10 +189,10 @@ using branch4_t = container::branch<parameter::empty,
                                     chain90_t<NV>, 
                                     chain91_t<NV>, 
                                     chain92_t<NV>, 
-                                    chain93_t<NV>, 
-                                    chain94_t<NV>, 
-                                    chain95_t<NV>, 
-                                    chain96_t<NV>>;
+                                    chain99_t<NV>, 
+                                    chain98_t<NV>, 
+                                    chain97_t<NV>, 
+                                    chain100_t<NV>>;
 
 template <int NV>
 using pma12_t = control::pma<NV, 
@@ -295,64 +277,60 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 	{
 		// Node References -------------------------------------------------------------------------
 		
-		auto& clear7 = this->getT(0);                                      // math::clear<NV>
-		auto& branch4 = this->getT(1);                                     // MacroMod_impl::branch4_t<NV>
-		auto& chain81 = this->getT(1).getT(0);                             // MacroMod_impl::chain81_t<NV>
-		auto& global_cable64 = this->getT(1).getT(0).getT(0);              // MacroMod_impl::global_cable64_t<NV>
-		auto& add58 = this->getT(1).getT(0).getT(1);                       // math::add<NV>
-		auto& chain82 = this->getT(1).getT(1);                             // MacroMod_impl::chain82_t<NV>
-		auto& global_cable65 = this->getT(1).getT(1).getT(0);              // MacroMod_impl::global_cable65_t<NV>
-		auto& add59 = this->getT(1).getT(1).getT(1);                       // math::add<NV>
-		auto& chain83 = this->getT(1).getT(2);                             // MacroMod_impl::chain83_t<NV>
-		auto& global_cable66 = this->getT(1).getT(2).getT(0);              // MacroMod_impl::global_cable66_t<NV>
-		auto& add60 = this->getT(1).getT(2).getT(1);                       // math::add<NV>
-		auto& chain84 = this->getT(1).getT(3);                             // MacroMod_impl::chain84_t<NV>
-		auto& global_cable67 = this->getT(1).getT(3).getT(0);              // MacroMod_impl::global_cable67_t<NV>
-		auto& add61 = this->getT(1).getT(3).getT(1);                       // math::add<NV>
-		auto& chain85 = this->getT(1).getT(4);                             // MacroMod_impl::chain85_t<NV>
-		auto& global_cable68 = this->getT(1).getT(4).getT(0);              // MacroMod_impl::global_cable68_t<NV>
-		auto& add62 = this->getT(1).getT(4).getT(1);                       // math::add<NV>
-		auto& chain86 = this->getT(1).getT(5);                             // MacroMod_impl::chain86_t<NV>
-		auto& global_cable69 = this->getT(1).getT(5).getT(0);              // MacroMod_impl::global_cable69_t<NV>
-		auto& add63 = this->getT(1).getT(5).getT(1);                       // math::add<NV>
-		auto& chain87 = this->getT(1).getT(6);                             // MacroMod_impl::chain87_t<NV>
-		auto& global_cable70 = this->getT(1).getT(6).getT(0);              // MacroMod_impl::global_cable70_t<NV>
-		auto& add64 = this->getT(1).getT(6).getT(1);                       // math::add<NV>
-		auto& chain88 = this->getT(1).getT(7);                             // MacroMod_impl::chain88_t<NV>
-		auto& global_cable71 = this->getT(1).getT(7).getT(0);              // MacroMod_impl::global_cable71_t<NV>
-		auto& add65 = this->getT(1).getT(7).getT(1);                       // math::add<NV>
-		auto& chain89 = this->getT(1).getT(8);                             // MacroMod_impl::chain89_t<NV>
-		auto& global_cable72 = this->getT(1).getT(8).getT(0);              // MacroMod_impl::global_cable72_t<NV>
-		auto& add66 = this->getT(1).getT(8).getT(1);                       // math::add<NV>
-		auto& chain90 = this->getT(1).getT(9);                             // MacroMod_impl::chain90_t<NV>
-		auto& global_cable73 = this->getT(1).getT(9).getT(0);              // MacroMod_impl::global_cable73_t<NV>
-		auto& add67 = this->getT(1).getT(9).getT(1);                       // math::add<NV>
-		auto& chain91 = this->getT(1).getT(10);                            // MacroMod_impl::chain91_t<NV>
-		auto& global_cable74 = this->getT(1).getT(10).getT(0);             // MacroMod_impl::global_cable74_t<NV>
-		auto& add68 = this->getT(1).getT(10).getT(1);                      // math::add<NV>
-		auto& chain92 = this->getT(1).getT(11);                            // MacroMod_impl::chain92_t<NV>
-		auto& global_cable75 = this->getT(1).getT(11).getT(0);             // MacroMod_impl::global_cable75_t<NV>
-		auto& add69 = this->getT(1).getT(11).getT(1);                      // math::add<NV>
-		auto& chain93 = this->getT(1).getT(12);                            // MacroMod_impl::chain93_t<NV>
-		auto& wrapevent_data_reader1 = this->getT(1).getT(12).getT(0);     // MacroMod_impl::wrapevent_data_reader1_t<NV>
-		auto& event_data_reader = this->getT(1).getT(12).getT(0).getT(0);  // MacroMod_impl::event_data_reader_t<NV>
-		auto& add70 = this->getT(1).getT(12).getT(1);                      // math::add<NV>
-		auto& chain94 = this->getT(1).getT(13);                            // MacroMod_impl::chain94_t<NV>
-		auto& wrapevent_data_reader2 = this->getT(1).getT(13).getT(0);     // MacroMod_impl::wrapevent_data_reader2_t<NV>
-		auto& event_data_reader1 = this->getT(1).getT(13).getT(0).getT(0); // MacroMod_impl::event_data_reader1_t<NV>
-		auto& add71 = this->getT(1).getT(13).getT(1);                      // math::add<NV>
-		auto& chain95 = this->getT(1).getT(14);                            // MacroMod_impl::chain95_t<NV>
-		auto& wrapevent_data_reader3 = this->getT(1).getT(14).getT(0);     // MacroMod_impl::wrapevent_data_reader3_t<NV>
-		auto& event_data_reader2 = this->getT(1).getT(14).getT(0).getT(0); // MacroMod_impl::event_data_reader2_t<NV>
-		auto& add72 = this->getT(1).getT(14).getT(1);                      // math::add<NV>
-		auto& chain96 = this->getT(1).getT(15);                            // MacroMod_impl::chain96_t<NV>
-		auto& wrapevent_data_reader4 = this->getT(1).getT(15).getT(0);     // MacroMod_impl::wrapevent_data_reader4_t<NV>
-		auto& event_data_reader3 = this->getT(1).getT(15).getT(0).getT(0); // MacroMod_impl::event_data_reader3_t<NV>
-		auto& add73 = this->getT(1).getT(15).getT(1);                      // math::add<NV>
-		auto& peak6 = this->getT(2);                                       // MacroMod_impl::peak6_t<NV>
-		auto& clear = this->getT(3);                                       // math::clear<NV>
-		auto& pma12 = this->getT(4);                                       // MacroMod_impl::pma12_t<NV>
-		auto& add = this->getT(5);                                         // math::add<NV>
+		auto& clear7 = this->getT(0);                          // math::clear<NV>
+		auto& branch4 = this->getT(1);                         // MacroMod_impl::branch4_t<NV>
+		auto& chain81 = this->getT(1).getT(0);                 // MacroMod_impl::chain81_t<NV>
+		auto& global_cable64 = this->getT(1).getT(0).getT(0);  // MacroMod_impl::global_cable64_t<NV>
+		auto& add58 = this->getT(1).getT(0).getT(1);           // math::add<NV>
+		auto& chain82 = this->getT(1).getT(1);                 // MacroMod_impl::chain82_t<NV>
+		auto& global_cable65 = this->getT(1).getT(1).getT(0);  // MacroMod_impl::global_cable65_t<NV>
+		auto& add59 = this->getT(1).getT(1).getT(1);           // math::add<NV>
+		auto& chain83 = this->getT(1).getT(2);                 // MacroMod_impl::chain83_t<NV>
+		auto& global_cable66 = this->getT(1).getT(2).getT(0);  // MacroMod_impl::global_cable66_t<NV>
+		auto& add60 = this->getT(1).getT(2).getT(1);           // math::add<NV>
+		auto& chain84 = this->getT(1).getT(3);                 // MacroMod_impl::chain84_t<NV>
+		auto& global_cable67 = this->getT(1).getT(3).getT(0);  // MacroMod_impl::global_cable67_t<NV>
+		auto& add61 = this->getT(1).getT(3).getT(1);           // math::add<NV>
+		auto& chain85 = this->getT(1).getT(4);                 // MacroMod_impl::chain85_t<NV>
+		auto& global_cable68 = this->getT(1).getT(4).getT(0);  // MacroMod_impl::global_cable68_t<NV>
+		auto& add62 = this->getT(1).getT(4).getT(1);           // math::add<NV>
+		auto& chain86 = this->getT(1).getT(5);                 // MacroMod_impl::chain86_t<NV>
+		auto& global_cable69 = this->getT(1).getT(5).getT(0);  // MacroMod_impl::global_cable69_t<NV>
+		auto& add63 = this->getT(1).getT(5).getT(1);           // math::add<NV>
+		auto& chain87 = this->getT(1).getT(6);                 // MacroMod_impl::chain87_t<NV>
+		auto& global_cable70 = this->getT(1).getT(6).getT(0);  // MacroMod_impl::global_cable70_t<NV>
+		auto& add64 = this->getT(1).getT(6).getT(1);           // math::add<NV>
+		auto& chain88 = this->getT(1).getT(7);                 // MacroMod_impl::chain88_t<NV>
+		auto& global_cable71 = this->getT(1).getT(7).getT(0);  // MacroMod_impl::global_cable71_t<NV>
+		auto& add65 = this->getT(1).getT(7).getT(1);           // math::add<NV>
+		auto& chain89 = this->getT(1).getT(8);                 // MacroMod_impl::chain89_t<NV>
+		auto& global_cable72 = this->getT(1).getT(8).getT(0);  // MacroMod_impl::global_cable72_t<NV>
+		auto& add66 = this->getT(1).getT(8).getT(1);           // math::add<NV>
+		auto& chain90 = this->getT(1).getT(9);                 // MacroMod_impl::chain90_t<NV>
+		auto& global_cable73 = this->getT(1).getT(9).getT(0);  // MacroMod_impl::global_cable73_t<NV>
+		auto& add67 = this->getT(1).getT(9).getT(1);           // math::add<NV>
+		auto& chain91 = this->getT(1).getT(10);                // MacroMod_impl::chain91_t<NV>
+		auto& global_cable74 = this->getT(1).getT(10).getT(0); // MacroMod_impl::global_cable74_t<NV>
+		auto& add68 = this->getT(1).getT(10).getT(1);          // math::add<NV>
+		auto& chain92 = this->getT(1).getT(11);                // MacroMod_impl::chain92_t<NV>
+		auto& global_cable75 = this->getT(1).getT(11).getT(0); // MacroMod_impl::global_cable75_t<NV>
+		auto& add69 = this->getT(1).getT(11).getT(1);          // math::add<NV>
+		auto& chain99 = this->getT(1).getT(12);                // MacroMod_impl::chain99_t<NV>
+		auto& global_cable78 = this->getT(1).getT(12).getT(0); // MacroMod_impl::global_cable78_t<NV>
+		auto& add76 = this->getT(1).getT(12).getT(1);          // math::add<NV>
+		auto& chain98 = this->getT(1).getT(13);                // MacroMod_impl::chain98_t<NV>
+		auto& global_cable77 = this->getT(1).getT(13).getT(0); // MacroMod_impl::global_cable77_t<NV>
+		auto& add75 = this->getT(1).getT(13).getT(1);          // math::add<NV>
+		auto& chain97 = this->getT(1).getT(14);                // MacroMod_impl::chain97_t<NV>
+		auto& global_cable76 = this->getT(1).getT(14).getT(0); // MacroMod_impl::global_cable76_t<NV>
+		auto& add74 = this->getT(1).getT(14).getT(1);          // math::add<NV>
+		auto& chain100 = this->getT(1).getT(15);               // MacroMod_impl::chain100_t<NV>
+		auto& global_cable79 = this->getT(1).getT(15).getT(0); // MacroMod_impl::global_cable79_t<NV>
+		auto& add77 = this->getT(1).getT(15).getT(1);          // math::add<NV>
+		auto& peak6 = this->getT(2);                           // MacroMod_impl::peak6_t<NV>
+		auto& clear = this->getT(3);                           // math::clear<NV>
+		auto& pma12 = this->getT(4);                           // MacroMod_impl::pma12_t<NV>
+		auto& add = this->getT(5);                             // math::add<NV>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -376,10 +354,10 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 		global_cable73.getWrappedObject().getParameter().connectT(0, add67); // global_cable73 -> add67::Value
 		global_cable74.getWrappedObject().getParameter().connectT(0, add68); // global_cable74 -> add68::Value
 		global_cable75.getWrappedObject().getParameter().connectT(0, add69); // global_cable75 -> add69::Value
-		event_data_reader.getParameter().connectT(0, add70);                 // event_data_reader -> add70::Value
-		event_data_reader1.getParameter().connectT(0, add71);                // event_data_reader1 -> add71::Value
-		event_data_reader2.getParameter().connectT(0, add72);                // event_data_reader2 -> add72::Value
-		event_data_reader3.getParameter().connectT(0, add73);                // event_data_reader3 -> add73::Value
+		global_cable78.getWrappedObject().getParameter().connectT(0, add76); // global_cable78 -> add76::Value
+		global_cable77.getWrappedObject().getParameter().connectT(0, add75); // global_cable77 -> add75::Value
+		global_cable76.getWrappedObject().getParameter().connectT(0, add74); // global_cable76 -> add74::Value
+		global_cable79.getWrappedObject().getParameter().connectT(0, add77); // global_cable79 -> add77::Value
 		pma12.getWrappedObject().getParameter().connectT(0, add);            // pma12 -> add::Value
 		peak6.getParameter().connectT(0, pma12);                             // peak6 -> pma12::Value
 		
@@ -437,25 +415,21 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 		
 		; // add69::Value is automated
 		
-		event_data_reader.setParameterT(0, 0.); // routing::event_data_reader::SlotIndex
-		event_data_reader.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable78.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add70::Value is automated
+		; // add76::Value is automated
 		
-		event_data_reader1.setParameterT(0, 1.); // routing::event_data_reader::SlotIndex
-		event_data_reader1.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable77.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add71::Value is automated
+		; // add75::Value is automated
 		
-		event_data_reader2.setParameterT(0, 2.); // routing::event_data_reader::SlotIndex
-		event_data_reader2.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable76.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add72::Value is automated
+		; // add74::Value is automated
 		
-		event_data_reader3.setParameterT(0, 3.); // routing::event_data_reader::SlotIndex
-		event_data_reader3.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable79.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add73::Value is automated
+		; // add77::Value is automated
 		
 		clear.setParameterT(0, 0.); // math::clear::Value
 		
@@ -479,8 +453,6 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 	
 	static constexpr bool isPolyphonic() { return NV > 1; };
 	
-	static constexpr bool isProcessingHiseEvent() { return true; };
-	
 	static constexpr bool hasTail() { return true; };
 	
 	static constexpr bool isSuspendedOnSilence() { return false; };
@@ -501,6 +473,10 @@ template <int NV> struct instance: public MacroMod_impl::MacroMod_t_<NV>
 		this->getT(1).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);  // MacroMod_impl::global_cable73_t<NV>
 		this->getT(1).getT(10).getT(0).connectToRuntimeTarget(addConnection, c); // MacroMod_impl::global_cable74_t<NV>
 		this->getT(1).getT(11).getT(0).connectToRuntimeTarget(addConnection, c); // MacroMod_impl::global_cable75_t<NV>
+		this->getT(1).getT(12).getT(0).connectToRuntimeTarget(addConnection, c); // MacroMod_impl::global_cable78_t<NV>
+		this->getT(1).getT(13).getT(0).connectToRuntimeTarget(addConnection, c); // MacroMod_impl::global_cable77_t<NV>
+		this->getT(1).getT(14).getT(0).connectToRuntimeTarget(addConnection, c); // MacroMod_impl::global_cable76_t<NV>
+		this->getT(1).getT(15).getT(0).connectToRuntimeTarget(addConnection, c); // MacroMod_impl::global_cable79_t<NV>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)

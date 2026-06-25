@@ -4588,7 +4588,8 @@
                  bgColour="3001935573" itemColour="3001935573" textColour="3001935573"/>
       <Component type="ScriptPanel" id="MOD1" x="-1" y="0" width="610" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
+                 visible="0">
         <Component type="ScriptPanel" id="seq1" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
@@ -6283,8 +6284,7 @@
       </Component>
       <Component type="ScriptPanel" id="MOD7" x="-1" y="0" width="610" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
-                 visible="0">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
         <Component type="ScriptPanel" id="seq13" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD7">

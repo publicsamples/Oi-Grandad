@@ -268,36 +268,46 @@ template <int NV>
 using chain58_t = container::chain<parameter::empty, 
                                    wrap::fix<1, global_cable43_t<NV>>, 
                                    math::add<NV>>;
+using global_cable46_t_index = runtime_target::indexers::fix_hash<377786417>;
 
 template <int NV>
-using event_data_reader_t = wrap::mod<parameter::plain<math::add<NV>, 0>, 
-                                      routing::event_data_reader<NV>>;
+using global_cable46_t = routing::global_cable<global_cable46_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain59_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, event_data_reader_t<NV>>, 
+using chain99_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, global_cable46_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader1_t = event_data_reader_t<NV>;
-
-template <int NV>
-using chain60_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, event_data_reader1_t<NV>>, 
-                                   math::add<NV>>;
-
-template <int NV> using event_data_reader2_t = event_data_reader_t<NV>;
+using global_cable45_t_index = runtime_target::indexers::fix_hash<377786418>;
 
 template <int NV>
-using chain61_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, event_data_reader2_t<NV>>, 
-                                   math::add<NV>>;
-
-template <int NV> using event_data_reader3_t = event_data_reader_t<NV>;
+using global_cable45_t = routing::global_cable<global_cable45_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain62_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, event_data_reader3_t<NV>>, 
+using chain98_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, global_cable45_t<NV>>, 
                                    math::add<NV>>;
+using global_cable44_t_index = runtime_target::indexers::fix_hash<377786419>;
+
+template <int NV>
+using global_cable44_t = routing::global_cable<global_cable44_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain97_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, global_cable44_t<NV>>, 
+                                   math::add<NV>>;
+using global_cable47_t_index = runtime_target::indexers::fix_hash<377786420>;
+
+template <int NV>
+using global_cable47_t = routing::global_cable<global_cable47_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
+
+template <int NV>
+using chain100_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable47_t<NV>>, 
+                                    math::add<NV>>;
 template <int NV>
 using branch2_t = container::branch<parameter::empty, 
                                     wrap::fix<1, chain47_t<NV>>, 
@@ -312,10 +322,10 @@ using branch2_t = container::branch<parameter::empty,
                                     chain56_t<NV>, 
                                     chain57_t<NV>, 
                                     chain58_t<NV>, 
-                                    chain59_t<NV>, 
-                                    chain60_t<NV>, 
-                                    chain61_t<NV>, 
-                                    chain62_t<NV>>;
+                                    chain99_t<NV>, 
+                                    chain98_t<NV>, 
+                                    chain97_t<NV>, 
+                                    chain100_t<NV>>;
 
 template <int NV>
 using peak4_t = wrap::mod<parameter::plain<input_toggle2_t<NV>, 1>, 
@@ -675,61 +685,45 @@ template <int NV>
 using chain75_t = container::chain<parameter::empty, 
                                    wrap::fix<1, global_cable59_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader4_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader41_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader4_t<NV>>>;
+using global_cable60_t_index = global_cable46_t_index;
 
 template <int NV>
-using wrapevent_data_reader41_t = wrap::event<wrapevent_data_reader41_t_<NV>>;
+using global_cable60_t = routing::global_cable<global_cable60_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
 using chain76_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader41_t<NV>>, 
+                                   wrap::fix<1, global_cable60_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader5_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader42_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader5_t<NV>>>;
+using global_cable63_t_index = global_cable45_t_index;
 
 template <int NV>
-using wrapevent_data_reader42_t = wrap::event<wrapevent_data_reader42_t_<NV>>;
+using global_cable63_t = routing::global_cable<global_cable63_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
 using chain77_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader42_t<NV>>, 
+                                   wrap::fix<1, global_cable63_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader6_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader43_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader6_t<NV>>>;
+using global_cable62_t_index = global_cable44_t_index;
 
 template <int NV>
-using wrapevent_data_reader43_t = wrap::event<wrapevent_data_reader43_t_<NV>>;
+using global_cable62_t = routing::global_cable<global_cable62_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
 using chain78_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader43_t<NV>>, 
+                                   wrap::fix<1, global_cable62_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader7_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader44_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader7_t<NV>>>;
+using global_cable61_t_index = global_cable47_t_index;
 
 template <int NV>
-using wrapevent_data_reader44_t = wrap::event<wrapevent_data_reader44_t_<NV>>;
+using global_cable61_t = routing::global_cable<global_cable61_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
 using chain79_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader44_t<NV>>, 
+                                   wrap::fix<1, global_cable61_t<NV>>, 
                                    math::add<NV>>;
 template <int NV>
 using branch3_t = container::branch<parameter::empty, 
@@ -915,62 +909,46 @@ template <int NV>
 using chain92_t = container::chain<parameter::empty, 
                                    wrap::fix<1, global_cable75_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader8_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader45_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader8_t<NV>>>;
+using global_cable76_t_index = global_cable46_t_index;
 
 template <int NV>
-using wrapevent_data_reader45_t = wrap::event<wrapevent_data_reader45_t_<NV>>;
+using global_cable76_t = routing::global_cable<global_cable76_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
 using chain93_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader45_t<NV>>, 
+                                   wrap::fix<1, global_cable76_t<NV>>, 
                                    math::add<NV>>;
-
-template <int NV> using event_data_reader9_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader46_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader9_t<NV>>>;
+using global_cable77_t_index = global_cable45_t_index;
 
 template <int NV>
-using wrapevent_data_reader46_t = wrap::event<wrapevent_data_reader46_t_<NV>>;
+using global_cable77_t = routing::global_cable<global_cable77_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain94_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader46_t<NV>>, 
-                                   math::add<NV>>;
-
-template <int NV> using event_data_reader10_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader47_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader10_t<NV>>>;
+using chain101_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable77_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable78_t_index = global_cable44_t_index;
 
 template <int NV>
-using wrapevent_data_reader47_t = wrap::event<wrapevent_data_reader47_t_<NV>>;
+using global_cable78_t = routing::global_cable<global_cable78_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain95_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader47_t<NV>>, 
-                                   math::add<NV>>;
-
-template <int NV> using event_data_reader11_t = event_data_reader_t<NV>;
-
-template <int NV>
-using wrapevent_data_reader48_t_ = container::chain<parameter::empty, 
-                                                    wrap::fix<1, event_data_reader11_t<NV>>>;
+using chain102_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable78_t<NV>>, 
+                                    math::add<NV>>;
+using global_cable79_t_index = global_cable47_t_index;
 
 template <int NV>
-using wrapevent_data_reader48_t = wrap::event<wrapevent_data_reader48_t_<NV>>;
+using global_cable79_t = routing::global_cable<global_cable79_t_index, 
+                                               parameter::plain<math::add<NV>, 0>>;
 
 template <int NV>
-using chain96_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, wrapevent_data_reader48_t<NV>>, 
-                                   math::add<NV>>;
+using chain103_t = container::chain<parameter::empty, 
+                                    wrap::fix<1, global_cable79_t<NV>>, 
+                                    math::add<NV>>;
 template <int NV>
 using branch4_t = container::branch<parameter::empty, 
                                     wrap::fix<1, chain81_t<NV>>, 
@@ -986,9 +964,9 @@ using branch4_t = container::branch<parameter::empty,
                                     chain91_t<NV>, 
                                     chain92_t<NV>, 
                                     chain93_t<NV>, 
-                                    chain94_t<NV>, 
-                                    chain95_t<NV>, 
-                                    chain96_t<NV>>;
+                                    chain101_t<NV>, 
+                                    chain102_t<NV>, 
+                                    chain103_t<NV>>;
 
 DECLARE_PARAMETER_RANGE_SKEW(xfader_c0Range, 
                              -100., 
@@ -1490,7 +1468,7 @@ using chain41_t = container::chain<parameter::empty,
                                    wrap::fix<1, peak17_t>, 
                                    routing::global_cable<global_cable27_t_index, parameter::empty>>;
 
-using global_cable28_t_index = runtime_target::indexers::fix_hash<377786417>;
+using global_cable28_t_index = global_cable46_t_index;
 using peak13_mod = parameter::plain<routing::global_cable<global_cable28_t_index, parameter::empty>, 
                                     0>;
 using peak13_t = wrap::mod<peak13_mod, 
@@ -1500,7 +1478,7 @@ using chain42_t = container::chain<parameter::empty,
                                    wrap::fix<1, peak13_t>, 
                                    routing::global_cable<global_cable28_t_index, parameter::empty>>;
 
-using global_cable29_t_index = runtime_target::indexers::fix_hash<377786418>;
+using global_cable29_t_index = global_cable45_t_index;
 using peak20_mod = parameter::plain<routing::global_cable<global_cable29_t_index, parameter::empty>, 
                                     0>;
 using peak20_t = wrap::mod<peak20_mod, 
@@ -1510,7 +1488,7 @@ using chain43_t = container::chain<parameter::empty,
                                    wrap::fix<1, peak20_t>, 
                                    routing::global_cable<global_cable29_t_index, parameter::empty>>;
 
-using global_cable30_t_index = runtime_target::indexers::fix_hash<377786419>;
+using global_cable30_t_index = global_cable44_t_index;
 using peak19_mod = parameter::plain<routing::global_cable<global_cable30_t_index, parameter::empty>, 
                                     0>;
 using peak19_t = wrap::mod<peak19_mod, 
@@ -1520,7 +1498,7 @@ using chain44_t = container::chain<parameter::empty,
                                    wrap::fix<1, peak19_t>, 
                                    routing::global_cable<global_cable30_t_index, parameter::empty>>;
 
-using global_cable31_t_index = runtime_target::indexers::fix_hash<377786420>;
+using global_cable31_t_index = global_cable47_t_index;
 using peak18_mod = parameter::plain<routing::global_cable<global_cable31_t_index, parameter::empty>, 
                                     0>;
 using peak18_t = wrap::mod<peak18_mod, 
@@ -1741,208 +1719,200 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 	{
 		// Node References -------------------------------------------------------------------------
 		
-		auto& midichain = this->getT(0);                                                   // DspNetwork_impl::midichain_t<NV>
-		auto& ahdsr1 = this->getT(0).getT(0);                                              // DspNetwork_impl::ahdsr1_t<NV>
-		auto& cable_table3 = this->getT(0).getT(1);                                        // DspNetwork_impl::cable_table3_t<NV>
-		auto& input_toggle2 = this->getT(0).getT(2);                                       // DspNetwork_impl::input_toggle2_t<NV>
-		auto& chain46 = this->getT(0).getT(3);                                             // DspNetwork_impl::chain46_t<NV>
-		auto& clear4 = this->getT(0).getT(3).getT(0);                                      // math::clear<NV>
-		auto& branch2 = this->getT(0).getT(3).getT(1);                                     // DspNetwork_impl::branch2_t<NV>
-		auto& chain47 = this->getT(0).getT(3).getT(1).getT(0);                             // DspNetwork_impl::chain47_t<NV>
-		auto& global_cable32 = this->getT(0).getT(3).getT(1).getT(0).getT(0);              // DspNetwork_impl::global_cable32_t<NV>
-		auto& add26 = this->getT(0).getT(3).getT(1).getT(0).getT(1);                       // math::add<NV>
-		auto& chain48 = this->getT(0).getT(3).getT(1).getT(1);                             // DspNetwork_impl::chain48_t<NV>
-		auto& global_cable33 = this->getT(0).getT(3).getT(1).getT(1).getT(0);              // DspNetwork_impl::global_cable33_t<NV>
-		auto& add27 = this->getT(0).getT(3).getT(1).getT(1).getT(1);                       // math::add<NV>
-		auto& chain49 = this->getT(0).getT(3).getT(1).getT(2);                             // DspNetwork_impl::chain49_t<NV>
-		auto& global_cable34 = this->getT(0).getT(3).getT(1).getT(2).getT(0);              // DspNetwork_impl::global_cable34_t<NV>
-		auto& add28 = this->getT(0).getT(3).getT(1).getT(2).getT(1);                       // math::add<NV>
-		auto& chain50 = this->getT(0).getT(3).getT(1).getT(3);                             // DspNetwork_impl::chain50_t<NV>
-		auto& global_cable35 = this->getT(0).getT(3).getT(1).getT(3).getT(0);              // DspNetwork_impl::global_cable35_t<NV>
-		auto& add29 = this->getT(0).getT(3).getT(1).getT(3).getT(1);                       // math::add<NV>
-		auto& chain51 = this->getT(0).getT(3).getT(1).getT(4);                             // DspNetwork_impl::chain51_t<NV>
-		auto& global_cable36 = this->getT(0).getT(3).getT(1).getT(4).getT(0);              // DspNetwork_impl::global_cable36_t<NV>
-		auto& add30 = this->getT(0).getT(3).getT(1).getT(4).getT(1);                       // math::add<NV>
-		auto& chain52 = this->getT(0).getT(3).getT(1).getT(5);                             // DspNetwork_impl::chain52_t<NV>
-		auto& global_cable37 = this->getT(0).getT(3).getT(1).getT(5).getT(0);              // DspNetwork_impl::global_cable37_t<NV>
-		auto& add31 = this->getT(0).getT(3).getT(1).getT(5).getT(1);                       // math::add<NV>
-		auto& chain53 = this->getT(0).getT(3).getT(1).getT(6);                             // DspNetwork_impl::chain53_t<NV>
-		auto& global_cable38 = this->getT(0).getT(3).getT(1).getT(6).getT(0);              // DspNetwork_impl::global_cable38_t<NV>
-		auto& add32 = this->getT(0).getT(3).getT(1).getT(6).getT(1);                       // math::add<NV>
-		auto& chain54 = this->getT(0).getT(3).getT(1).getT(7);                             // DspNetwork_impl::chain54_t<NV>
-		auto& global_cable39 = this->getT(0).getT(3).getT(1).getT(7).getT(0);              // DspNetwork_impl::global_cable39_t<NV>
-		auto& add33 = this->getT(0).getT(3).getT(1).getT(7).getT(1);                       // math::add<NV>
-		auto& chain55 = this->getT(0).getT(3).getT(1).getT(8);                             // DspNetwork_impl::chain55_t<NV>
-		auto& global_cable40 = this->getT(0).getT(3).getT(1).getT(8).getT(0);              // DspNetwork_impl::global_cable40_t<NV>
-		auto& add34 = this->getT(0).getT(3).getT(1).getT(8).getT(1);                       // math::add<NV>
-		auto& chain56 = this->getT(0).getT(3).getT(1).getT(9);                             // DspNetwork_impl::chain56_t<NV>
-		auto& global_cable41 = this->getT(0).getT(3).getT(1).getT(9).getT(0);              // DspNetwork_impl::global_cable41_t<NV>
-		auto& add35 = this->getT(0).getT(3).getT(1).getT(9).getT(1);                       // math::add<NV>
-		auto& chain57 = this->getT(0).getT(3).getT(1).getT(10);                            // DspNetwork_impl::chain57_t<NV>
-		auto& global_cable42 = this->getT(0).getT(3).getT(1).getT(10).getT(0);             // DspNetwork_impl::global_cable42_t<NV>
-		auto& add36 = this->getT(0).getT(3).getT(1).getT(10).getT(1);                      // math::add<NV>
-		auto& chain58 = this->getT(0).getT(3).getT(1).getT(11);                            // DspNetwork_impl::chain58_t<NV>
-		auto& global_cable43 = this->getT(0).getT(3).getT(1).getT(11).getT(0);             // DspNetwork_impl::global_cable43_t<NV>
-		auto& add37 = this->getT(0).getT(3).getT(1).getT(11).getT(1);                      // math::add<NV>
-		auto& chain59 = this->getT(0).getT(3).getT(1).getT(12);                            // DspNetwork_impl::chain59_t<NV>
-		auto& event_data_reader = this->getT(0).getT(3).getT(1).getT(12).getT(0);          // DspNetwork_impl::event_data_reader_t<NV>
-		auto& add38 = this->getT(0).getT(3).getT(1).getT(12).getT(1);                      // math::add<NV>
-		auto& chain60 = this->getT(0).getT(3).getT(1).getT(13);                            // DspNetwork_impl::chain60_t<NV>
-		auto& event_data_reader1 = this->getT(0).getT(3).getT(1).getT(13).getT(0);         // DspNetwork_impl::event_data_reader1_t<NV>
-		auto& add39 = this->getT(0).getT(3).getT(1).getT(13).getT(1);                      // math::add<NV>
-		auto& chain61 = this->getT(0).getT(3).getT(1).getT(14);                            // DspNetwork_impl::chain61_t<NV>
-		auto& event_data_reader2 = this->getT(0).getT(3).getT(1).getT(14).getT(0);         // DspNetwork_impl::event_data_reader2_t<NV>
-		auto& add40 = this->getT(0).getT(3).getT(1).getT(14).getT(1);                      // math::add<NV>
-		auto& chain62 = this->getT(0).getT(3).getT(1).getT(15);                            // DspNetwork_impl::chain62_t<NV>
-		auto& event_data_reader3 = this->getT(0).getT(3).getT(1).getT(15).getT(0);         // DspNetwork_impl::event_data_reader3_t<NV>
-		auto& add41 = this->getT(0).getT(3).getT(1).getT(15).getT(1);                      // math::add<NV>
-		auto& peak4 = this->getT(0).getT(3).getT(2);                                       // DspNetwork_impl::peak4_t<NV>
-		auto& clear2 = this->getT(0).getT(3).getT(3);                                      // math::clear<NV>
-		auto& cable_table1 = this->getT(0).getT(4);                                        // DspNetwork_impl::cable_table1_t<NV>
-		auto& ahdsr = this->getT(0).getT(5);                                               // DspNetwork_impl::ahdsr_t<NV>
-		auto& cable_table2 = this->getT(0).getT(6);                                        // DspNetwork_impl::cable_table2_t<NV>
-		auto& input_toggle1 = this->getT(0).getT(7);                                       // DspNetwork_impl::input_toggle1_t<NV>
-		auto& chain = this->getT(1);                                                       // DspNetwork_impl::chain_t<NV>
-		auto& chain63 = this->getT(1).getT(0);                                             // DspNetwork_impl::chain63_t<NV>
-		auto& clear5 = this->getT(1).getT(0).getT(0);                                      // math::clear<NV>
-		auto& branch3 = this->getT(1).getT(0).getT(1);                                     // DspNetwork_impl::branch3_t<NV>
-		auto& chain64 = this->getT(1).getT(0).getT(1).getT(0);                             // DspNetwork_impl::chain64_t<NV>
-		auto& global_cable48 = this->getT(1).getT(0).getT(1).getT(0).getT(0);              // DspNetwork_impl::global_cable48_t<NV>
-		auto& add42 = this->getT(1).getT(0).getT(1).getT(0).getT(1);                       // math::add<NV>
-		auto& chain65 = this->getT(1).getT(0).getT(1).getT(1);                             // DspNetwork_impl::chain65_t<NV>
-		auto& global_cable49 = this->getT(1).getT(0).getT(1).getT(1).getT(0);              // DspNetwork_impl::global_cable49_t<NV>
-		auto& add43 = this->getT(1).getT(0).getT(1).getT(1).getT(1);                       // math::add<NV>
-		auto& chain66 = this->getT(1).getT(0).getT(1).getT(2);                             // DspNetwork_impl::chain66_t<NV>
-		auto& global_cable50 = this->getT(1).getT(0).getT(1).getT(2).getT(0);              // DspNetwork_impl::global_cable50_t<NV>
-		auto& add44 = this->getT(1).getT(0).getT(1).getT(2).getT(1);                       // math::add<NV>
-		auto& chain67 = this->getT(1).getT(0).getT(1).getT(3);                             // DspNetwork_impl::chain67_t<NV>
-		auto& global_cable51 = this->getT(1).getT(0).getT(1).getT(3).getT(0);              // DspNetwork_impl::global_cable51_t<NV>
-		auto& add45 = this->getT(1).getT(0).getT(1).getT(3).getT(1);                       // math::add<NV>
-		auto& chain68 = this->getT(1).getT(0).getT(1).getT(4);                             // DspNetwork_impl::chain68_t<NV>
-		auto& global_cable52 = this->getT(1).getT(0).getT(1).getT(4).getT(0);              // DspNetwork_impl::global_cable52_t<NV>
-		auto& add46 = this->getT(1).getT(0).getT(1).getT(4).getT(1);                       // math::add<NV>
-		auto& chain69 = this->getT(1).getT(0).getT(1).getT(5);                             // DspNetwork_impl::chain69_t<NV>
-		auto& global_cable53 = this->getT(1).getT(0).getT(1).getT(5).getT(0);              // DspNetwork_impl::global_cable53_t<NV>
-		auto& add47 = this->getT(1).getT(0).getT(1).getT(5).getT(1);                       // math::add<NV>
-		auto& chain70 = this->getT(1).getT(0).getT(1).getT(6);                             // DspNetwork_impl::chain70_t<NV>
-		auto& global_cable54 = this->getT(1).getT(0).getT(1).getT(6).getT(0);              // DspNetwork_impl::global_cable54_t<NV>
-		auto& add48 = this->getT(1).getT(0).getT(1).getT(6).getT(1);                       // math::add<NV>
-		auto& chain71 = this->getT(1).getT(0).getT(1).getT(7);                             // DspNetwork_impl::chain71_t<NV>
-		auto& global_cable55 = this->getT(1).getT(0).getT(1).getT(7).getT(0);              // DspNetwork_impl::global_cable55_t<NV>
-		auto& add49 = this->getT(1).getT(0).getT(1).getT(7).getT(1);                       // math::add<NV>
-		auto& chain72 = this->getT(1).getT(0).getT(1).getT(8);                             // DspNetwork_impl::chain72_t<NV>
-		auto& global_cable56 = this->getT(1).getT(0).getT(1).getT(8).getT(0);              // DspNetwork_impl::global_cable56_t<NV>
-		auto& add50 = this->getT(1).getT(0).getT(1).getT(8).getT(1);                       // math::add<NV>
-		auto& chain73 = this->getT(1).getT(0).getT(1).getT(9);                             // DspNetwork_impl::chain73_t<NV>
-		auto& global_cable57 = this->getT(1).getT(0).getT(1).getT(9).getT(0);              // DspNetwork_impl::global_cable57_t<NV>
-		auto& add51 = this->getT(1).getT(0).getT(1).getT(9).getT(1);                       // math::add<NV>
-		auto& chain74 = this->getT(1).getT(0).getT(1).getT(10);                            // DspNetwork_impl::chain74_t<NV>
-		auto& global_cable58 = this->getT(1).getT(0).getT(1).getT(10).getT(0);             // DspNetwork_impl::global_cable58_t<NV>
-		auto& add52 = this->getT(1).getT(0).getT(1).getT(10).getT(1);                      // math::add<NV>
-		auto& chain75 = this->getT(1).getT(0).getT(1).getT(11);                            // DspNetwork_impl::chain75_t<NV>
-		auto& global_cable59 = this->getT(1).getT(0).getT(1).getT(11).getT(0);             // DspNetwork_impl::global_cable59_t<NV>
-		auto& add53 = this->getT(1).getT(0).getT(1).getT(11).getT(1);                      // math::add<NV>
-		auto& chain76 = this->getT(1).getT(0).getT(1).getT(12);                            // DspNetwork_impl::chain76_t<NV>
-		auto& wrapevent_data_reader41 = this->getT(1).getT(0).getT(1).getT(12).getT(0);    // DspNetwork_impl::wrapevent_data_reader41_t<NV>
-		auto& event_data_reader4 = this->getT(1).getT(0).getT(1).getT(12).getT(0).getT(0); // DspNetwork_impl::event_data_reader4_t<NV>
-		auto& add54 = this->getT(1).getT(0).getT(1).getT(12).getT(1);                      // math::add<NV>
-		auto& chain77 = this->getT(1).getT(0).getT(1).getT(13);                            // DspNetwork_impl::chain77_t<NV>
-		auto& wrapevent_data_reader42 = this->getT(1).getT(0).getT(1).getT(13).getT(0);    // DspNetwork_impl::wrapevent_data_reader42_t<NV>
-		auto& event_data_reader5 = this->getT(1).getT(0).getT(1).getT(13).getT(0).getT(0); // DspNetwork_impl::event_data_reader5_t<NV>
-		auto& add55 = this->getT(1).getT(0).getT(1).getT(13).getT(1);                      // math::add<NV>
-		auto& chain78 = this->getT(1).getT(0).getT(1).getT(14);                            // DspNetwork_impl::chain78_t<NV>
-		auto& wrapevent_data_reader43 = this->getT(1).getT(0).getT(1).getT(14).getT(0);    // DspNetwork_impl::wrapevent_data_reader43_t<NV>
-		auto& event_data_reader6 = this->getT(1).getT(0).getT(1).getT(14).getT(0).getT(0); // DspNetwork_impl::event_data_reader6_t<NV>
-		auto& add56 = this->getT(1).getT(0).getT(1).getT(14).getT(1);                      // math::add<NV>
-		auto& chain79 = this->getT(1).getT(0).getT(1).getT(15);                            // DspNetwork_impl::chain79_t<NV>
-		auto& wrapevent_data_reader44 = this->getT(1).getT(0).getT(1).getT(15).getT(0);    // DspNetwork_impl::wrapevent_data_reader44_t<NV>
-		auto& event_data_reader7 = this->getT(1).getT(0).getT(1).getT(15).getT(0).getT(0); // DspNetwork_impl::event_data_reader7_t<NV>
-		auto& add57 = this->getT(1).getT(0).getT(1).getT(15).getT(1);                      // math::add<NV>
-		auto& peak5 = this->getT(1).getT(0).getT(2);                                       // DspNetwork_impl::peak5_t<NV>
-		auto& clear6 = this->getT(1).getT(0).getT(3);                                      // math::clear<NV>
-		auto& pma1 = this->getT(1).getT(1);                                                // DspNetwork_impl::pma1_t<NV>
-		auto& tempo_sync = this->getT(1).getT(2);                                          // DspNetwork_impl::tempo_sync_t<NV>
-		auto& chain80 = this->getT(2);                                                     // DspNetwork_impl::chain80_t<NV>
-		auto& clear7 = this->getT(2).getT(0);                                              // wrap::no_process<math::clear<NV>>
-		auto& branch4 = this->getT(2).getT(1);                                             // DspNetwork_impl::branch4_t<NV>
-		auto& chain81 = this->getT(2).getT(1).getT(0);                                     // DspNetwork_impl::chain81_t<NV>
-		auto& global_cable64 = this->getT(2).getT(1).getT(0).getT(0);                      // DspNetwork_impl::global_cable64_t<NV>
-		auto& add58 = this->getT(2).getT(1).getT(0).getT(1);                               // math::add<NV>
-		auto& chain82 = this->getT(2).getT(1).getT(1);                                     // DspNetwork_impl::chain82_t<NV>
-		auto& global_cable65 = this->getT(2).getT(1).getT(1).getT(0);                      // DspNetwork_impl::global_cable65_t<NV>
-		auto& add59 = this->getT(2).getT(1).getT(1).getT(1);                               // math::add<NV>
-		auto& chain83 = this->getT(2).getT(1).getT(2);                                     // DspNetwork_impl::chain83_t<NV>
-		auto& global_cable66 = this->getT(2).getT(1).getT(2).getT(0);                      // DspNetwork_impl::global_cable66_t<NV>
-		auto& add60 = this->getT(2).getT(1).getT(2).getT(1);                               // math::add<NV>
-		auto& chain84 = this->getT(2).getT(1).getT(3);                                     // DspNetwork_impl::chain84_t<NV>
-		auto& global_cable67 = this->getT(2).getT(1).getT(3).getT(0);                      // DspNetwork_impl::global_cable67_t<NV>
-		auto& add61 = this->getT(2).getT(1).getT(3).getT(1);                               // math::add<NV>
-		auto& chain85 = this->getT(2).getT(1).getT(4);                                     // DspNetwork_impl::chain85_t<NV>
-		auto& global_cable68 = this->getT(2).getT(1).getT(4).getT(0);                      // DspNetwork_impl::global_cable68_t<NV>
-		auto& add62 = this->getT(2).getT(1).getT(4).getT(1);                               // math::add<NV>
-		auto& chain86 = this->getT(2).getT(1).getT(5);                                     // DspNetwork_impl::chain86_t<NV>
-		auto& global_cable69 = this->getT(2).getT(1).getT(5).getT(0);                      // DspNetwork_impl::global_cable69_t<NV>
-		auto& add63 = this->getT(2).getT(1).getT(5).getT(1);                               // math::add<NV>
-		auto& chain87 = this->getT(2).getT(1).getT(6);                                     // DspNetwork_impl::chain87_t<NV>
-		auto& global_cable70 = this->getT(2).getT(1).getT(6).getT(0);                      // DspNetwork_impl::global_cable70_t<NV>
-		auto& add64 = this->getT(2).getT(1).getT(6).getT(1);                               // math::add<NV>
-		auto& chain88 = this->getT(2).getT(1).getT(7);                                     // DspNetwork_impl::chain88_t<NV>
-		auto& global_cable71 = this->getT(2).getT(1).getT(7).getT(0);                      // DspNetwork_impl::global_cable71_t<NV>
-		auto& add65 = this->getT(2).getT(1).getT(7).getT(1);                               // math::add<NV>
-		auto& chain89 = this->getT(2).getT(1).getT(8);                                     // DspNetwork_impl::chain89_t<NV>
-		auto& global_cable72 = this->getT(2).getT(1).getT(8).getT(0);                      // DspNetwork_impl::global_cable72_t<NV>
-		auto& add66 = this->getT(2).getT(1).getT(8).getT(1);                               // math::add<NV>
-		auto& chain90 = this->getT(2).getT(1).getT(9);                                     // DspNetwork_impl::chain90_t<NV>
-		auto& global_cable73 = this->getT(2).getT(1).getT(9).getT(0);                      // DspNetwork_impl::global_cable73_t<NV>
-		auto& add67 = this->getT(2).getT(1).getT(9).getT(1);                               // math::add<NV>
-		auto& chain91 = this->getT(2).getT(1).getT(10);                                    // DspNetwork_impl::chain91_t<NV>
-		auto& global_cable74 = this->getT(2).getT(1).getT(10).getT(0);                     // DspNetwork_impl::global_cable74_t<NV>
-		auto& add68 = this->getT(2).getT(1).getT(10).getT(1);                              // math::add<NV>
-		auto& chain92 = this->getT(2).getT(1).getT(11);                                    // DspNetwork_impl::chain92_t<NV>
-		auto& global_cable75 = this->getT(2).getT(1).getT(11).getT(0);                     // DspNetwork_impl::global_cable75_t<NV>
-		auto& add69 = this->getT(2).getT(1).getT(11).getT(1);                              // math::add<NV>
-		auto& chain93 = this->getT(2).getT(1).getT(12);                                    // DspNetwork_impl::chain93_t<NV>
-		auto& wrapevent_data_reader45 = this->getT(2).getT(1).getT(12).getT(0);            // DspNetwork_impl::wrapevent_data_reader45_t<NV>
-		auto& event_data_reader8 = this->getT(2).getT(1).getT(12).getT(0).getT(0);         // DspNetwork_impl::event_data_reader8_t<NV>
-		auto& add70 = this->getT(2).getT(1).getT(12).getT(1);                              // math::add<NV>
-		auto& chain94 = this->getT(2).getT(1).getT(13);                                    // DspNetwork_impl::chain94_t<NV>
-		auto& wrapevent_data_reader46 = this->getT(2).getT(1).getT(13).getT(0);            // DspNetwork_impl::wrapevent_data_reader46_t<NV>
-		auto& event_data_reader9 = this->getT(2).getT(1).getT(13).getT(0).getT(0);         // DspNetwork_impl::event_data_reader9_t<NV>
-		auto& add71 = this->getT(2).getT(1).getT(13).getT(1);                              // math::add<NV>
-		auto& chain95 = this->getT(2).getT(1).getT(14);                                    // DspNetwork_impl::chain95_t<NV>
-		auto& wrapevent_data_reader47 = this->getT(2).getT(1).getT(14).getT(0);            // DspNetwork_impl::wrapevent_data_reader47_t<NV>
-		auto& event_data_reader10 = this->getT(2).getT(1).getT(14).getT(0).getT(0);        // DspNetwork_impl::event_data_reader10_t<NV>
-		auto& add72 = this->getT(2).getT(1).getT(14).getT(1);                              // math::add<NV>
-		auto& chain96 = this->getT(2).getT(1).getT(15);                                    // DspNetwork_impl::chain96_t<NV>
-		auto& wrapevent_data_reader48 = this->getT(2).getT(1).getT(15).getT(0);            // DspNetwork_impl::wrapevent_data_reader48_t<NV>
-		auto& event_data_reader11 = this->getT(2).getT(1).getT(15).getT(0).getT(0);        // DspNetwork_impl::event_data_reader11_t<NV>
-		auto& add73 = this->getT(2).getT(1).getT(15).getT(1);                              // math::add<NV>
-		auto& peak6 = this->getT(2).getT(2);                                               // DspNetwork_impl::peak6_t<NV>
-		auto& clear8 = this->getT(2).getT(3);                                              // math::clear<NV>
-		auto& pma = this->getT(3);                                                         // DspNetwork_impl::pma_t<NV>
-		auto& split = this->getT(4);                                                       // DspNetwork_impl::split_t<NV>
-		auto& chain1 = this->getT(4).getT(0);                                              // DspNetwork_impl::chain1_t<NV>
-		auto& cable_table4 = this->getT(4).getT(0).getT(0);                                // DspNetwork_impl::cable_table4_t<NV>
-		auto& resetter = this->getT(4).getT(0).getT(1);                                    // DspNetwork_impl::resetter_t<NV>
-		auto& clock_ramp1 = this->getT(4).getT(0).getT(2);                                 // DspNetwork_impl::clock_ramp1_t<NV>
-		auto& ramp = this->getT(4).getT(0).getT(3);                                        // DspNetwork_impl::ramp_t<NV>
-		auto& input_toggle3 = this->getT(4).getT(0).getT(4);                               // DspNetwork_impl::input_toggle3_t<NV>
-		auto& clear9 = this->getT(4).getT(0).getT(5);                                      // math::clear<NV>
-		auto& add = this->getT(4).getT(0).getT(6);                                         // math::add<NV>
-		auto& fmod = this->getT(4).getT(0).getT(7);                                        // wrap::no_process<math::fmod<NV>>
-		auto& pma_fmod_onshot = this->getT(4).getT(0).getT(8);                             // control::pma<NV, parameter::empty>
-		auto& peak21 = this->getT(4).getT(0).getT(9);                                      // DspNetwork_impl::peak21_t<NV>
-		auto& clear = this->getT(4).getT(0).getT(10);                                      // math::clear<NV>
-		auto& cable_pack1 = this->getT(4).getT(0).getT(11);                                // DspNetwork_impl::cable_pack1_t
-		auto& softbypass_switch3 = this->getT(4).getT(1);                                  // DspNetwork_impl::softbypass_switch3_t<NV>
-		auto& switcher = this->getT(4).getT(1).getT(0);                                    // DspNetwork_impl::switcher_t<NV>
-		auto& sb_container = this->getT(4).getT(1).getT(1);                                // DspNetwork_impl::sb_container_t<NV>
-		auto& sb1 = this->getT(4).getT(1).getT(1).getT(0);                                 // DspNetwork_impl::sb1_t<NV>
-		auto& chain2 = this->getT(4).getT(1).getT(1).getT(0).getT(0);                      // DspNetwork_impl::chain2_t<NV>
-		auto& xfader = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(0);              // DspNetwork_impl::xfader_t<NV>
-		auto& split1 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(1);              // DspNetwork_impl::split1_t<NV>
-		auto& chain3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(1).getT(0);      // DspNetwork_impl::chain3_t<NV>
-		auto& cable_table = this->getT(4).getT(1).getT(1).getT(0).                         // DspNetwork_impl::cable_table_t<NV>
+		auto& midichain = this->getT(0);                                               // DspNetwork_impl::midichain_t<NV>
+		auto& ahdsr1 = this->getT(0).getT(0);                                          // DspNetwork_impl::ahdsr1_t<NV>
+		auto& cable_table3 = this->getT(0).getT(1);                                    // DspNetwork_impl::cable_table3_t<NV>
+		auto& input_toggle2 = this->getT(0).getT(2);                                   // DspNetwork_impl::input_toggle2_t<NV>
+		auto& chain46 = this->getT(0).getT(3);                                         // DspNetwork_impl::chain46_t<NV>
+		auto& clear4 = this->getT(0).getT(3).getT(0);                                  // math::clear<NV>
+		auto& branch2 = this->getT(0).getT(3).getT(1);                                 // DspNetwork_impl::branch2_t<NV>
+		auto& chain47 = this->getT(0).getT(3).getT(1).getT(0);                         // DspNetwork_impl::chain47_t<NV>
+		auto& global_cable32 = this->getT(0).getT(3).getT(1).getT(0).getT(0);          // DspNetwork_impl::global_cable32_t<NV>
+		auto& add26 = this->getT(0).getT(3).getT(1).getT(0).getT(1);                   // math::add<NV>
+		auto& chain48 = this->getT(0).getT(3).getT(1).getT(1);                         // DspNetwork_impl::chain48_t<NV>
+		auto& global_cable33 = this->getT(0).getT(3).getT(1).getT(1).getT(0);          // DspNetwork_impl::global_cable33_t<NV>
+		auto& add27 = this->getT(0).getT(3).getT(1).getT(1).getT(1);                   // math::add<NV>
+		auto& chain49 = this->getT(0).getT(3).getT(1).getT(2);                         // DspNetwork_impl::chain49_t<NV>
+		auto& global_cable34 = this->getT(0).getT(3).getT(1).getT(2).getT(0);          // DspNetwork_impl::global_cable34_t<NV>
+		auto& add28 = this->getT(0).getT(3).getT(1).getT(2).getT(1);                   // math::add<NV>
+		auto& chain50 = this->getT(0).getT(3).getT(1).getT(3);                         // DspNetwork_impl::chain50_t<NV>
+		auto& global_cable35 = this->getT(0).getT(3).getT(1).getT(3).getT(0);          // DspNetwork_impl::global_cable35_t<NV>
+		auto& add29 = this->getT(0).getT(3).getT(1).getT(3).getT(1);                   // math::add<NV>
+		auto& chain51 = this->getT(0).getT(3).getT(1).getT(4);                         // DspNetwork_impl::chain51_t<NV>
+		auto& global_cable36 = this->getT(0).getT(3).getT(1).getT(4).getT(0);          // DspNetwork_impl::global_cable36_t<NV>
+		auto& add30 = this->getT(0).getT(3).getT(1).getT(4).getT(1);                   // math::add<NV>
+		auto& chain52 = this->getT(0).getT(3).getT(1).getT(5);                         // DspNetwork_impl::chain52_t<NV>
+		auto& global_cable37 = this->getT(0).getT(3).getT(1).getT(5).getT(0);          // DspNetwork_impl::global_cable37_t<NV>
+		auto& add31 = this->getT(0).getT(3).getT(1).getT(5).getT(1);                   // math::add<NV>
+		auto& chain53 = this->getT(0).getT(3).getT(1).getT(6);                         // DspNetwork_impl::chain53_t<NV>
+		auto& global_cable38 = this->getT(0).getT(3).getT(1).getT(6).getT(0);          // DspNetwork_impl::global_cable38_t<NV>
+		auto& add32 = this->getT(0).getT(3).getT(1).getT(6).getT(1);                   // math::add<NV>
+		auto& chain54 = this->getT(0).getT(3).getT(1).getT(7);                         // DspNetwork_impl::chain54_t<NV>
+		auto& global_cable39 = this->getT(0).getT(3).getT(1).getT(7).getT(0);          // DspNetwork_impl::global_cable39_t<NV>
+		auto& add33 = this->getT(0).getT(3).getT(1).getT(7).getT(1);                   // math::add<NV>
+		auto& chain55 = this->getT(0).getT(3).getT(1).getT(8);                         // DspNetwork_impl::chain55_t<NV>
+		auto& global_cable40 = this->getT(0).getT(3).getT(1).getT(8).getT(0);          // DspNetwork_impl::global_cable40_t<NV>
+		auto& add34 = this->getT(0).getT(3).getT(1).getT(8).getT(1);                   // math::add<NV>
+		auto& chain56 = this->getT(0).getT(3).getT(1).getT(9);                         // DspNetwork_impl::chain56_t<NV>
+		auto& global_cable41 = this->getT(0).getT(3).getT(1).getT(9).getT(0);          // DspNetwork_impl::global_cable41_t<NV>
+		auto& add35 = this->getT(0).getT(3).getT(1).getT(9).getT(1);                   // math::add<NV>
+		auto& chain57 = this->getT(0).getT(3).getT(1).getT(10);                        // DspNetwork_impl::chain57_t<NV>
+		auto& global_cable42 = this->getT(0).getT(3).getT(1).getT(10).getT(0);         // DspNetwork_impl::global_cable42_t<NV>
+		auto& add36 = this->getT(0).getT(3).getT(1).getT(10).getT(1);                  // math::add<NV>
+		auto& chain58 = this->getT(0).getT(3).getT(1).getT(11);                        // DspNetwork_impl::chain58_t<NV>
+		auto& global_cable43 = this->getT(0).getT(3).getT(1).getT(11).getT(0);         // DspNetwork_impl::global_cable43_t<NV>
+		auto& add37 = this->getT(0).getT(3).getT(1).getT(11).getT(1);                  // math::add<NV>
+		auto& chain99 = this->getT(0).getT(3).getT(1).getT(12);                        // DspNetwork_impl::chain99_t<NV>
+		auto& global_cable46 = this->getT(0).getT(3).getT(1).getT(12).getT(0);         // DspNetwork_impl::global_cable46_t<NV>
+		auto& add76 = this->getT(0).getT(3).getT(1).getT(12).getT(1);                  // math::add<NV>
+		auto& chain98 = this->getT(0).getT(3).getT(1).getT(13);                        // DspNetwork_impl::chain98_t<NV>
+		auto& global_cable45 = this->getT(0).getT(3).getT(1).getT(13).getT(0);         // DspNetwork_impl::global_cable45_t<NV>
+		auto& add75 = this->getT(0).getT(3).getT(1).getT(13).getT(1);                  // math::add<NV>
+		auto& chain97 = this->getT(0).getT(3).getT(1).getT(14);                        // DspNetwork_impl::chain97_t<NV>
+		auto& global_cable44 = this->getT(0).getT(3).getT(1).getT(14).getT(0);         // DspNetwork_impl::global_cable44_t<NV>
+		auto& add74 = this->getT(0).getT(3).getT(1).getT(14).getT(1);                  // math::add<NV>
+		auto& chain100 = this->getT(0).getT(3).getT(1).getT(15);                       // DspNetwork_impl::chain100_t<NV>
+		auto& global_cable47 = this->getT(0).getT(3).getT(1).getT(15).getT(0);         // DspNetwork_impl::global_cable47_t<NV>
+		auto& add77 = this->getT(0).getT(3).getT(1).getT(15).getT(1);                  // math::add<NV>
+		auto& peak4 = this->getT(0).getT(3).getT(2);                                   // DspNetwork_impl::peak4_t<NV>
+		auto& clear2 = this->getT(0).getT(3).getT(3);                                  // math::clear<NV>
+		auto& cable_table1 = this->getT(0).getT(4);                                    // DspNetwork_impl::cable_table1_t<NV>
+		auto& ahdsr = this->getT(0).getT(5);                                           // DspNetwork_impl::ahdsr_t<NV>
+		auto& cable_table2 = this->getT(0).getT(6);                                    // DspNetwork_impl::cable_table2_t<NV>
+		auto& input_toggle1 = this->getT(0).getT(7);                                   // DspNetwork_impl::input_toggle1_t<NV>
+		auto& chain = this->getT(1);                                                   // DspNetwork_impl::chain_t<NV>
+		auto& chain63 = this->getT(1).getT(0);                                         // DspNetwork_impl::chain63_t<NV>
+		auto& clear5 = this->getT(1).getT(0).getT(0);                                  // math::clear<NV>
+		auto& branch3 = this->getT(1).getT(0).getT(1);                                 // DspNetwork_impl::branch3_t<NV>
+		auto& chain64 = this->getT(1).getT(0).getT(1).getT(0);                         // DspNetwork_impl::chain64_t<NV>
+		auto& global_cable48 = this->getT(1).getT(0).getT(1).getT(0).getT(0);          // DspNetwork_impl::global_cable48_t<NV>
+		auto& add42 = this->getT(1).getT(0).getT(1).getT(0).getT(1);                   // math::add<NV>
+		auto& chain65 = this->getT(1).getT(0).getT(1).getT(1);                         // DspNetwork_impl::chain65_t<NV>
+		auto& global_cable49 = this->getT(1).getT(0).getT(1).getT(1).getT(0);          // DspNetwork_impl::global_cable49_t<NV>
+		auto& add43 = this->getT(1).getT(0).getT(1).getT(1).getT(1);                   // math::add<NV>
+		auto& chain66 = this->getT(1).getT(0).getT(1).getT(2);                         // DspNetwork_impl::chain66_t<NV>
+		auto& global_cable50 = this->getT(1).getT(0).getT(1).getT(2).getT(0);          // DspNetwork_impl::global_cable50_t<NV>
+		auto& add44 = this->getT(1).getT(0).getT(1).getT(2).getT(1);                   // math::add<NV>
+		auto& chain67 = this->getT(1).getT(0).getT(1).getT(3);                         // DspNetwork_impl::chain67_t<NV>
+		auto& global_cable51 = this->getT(1).getT(0).getT(1).getT(3).getT(0);          // DspNetwork_impl::global_cable51_t<NV>
+		auto& add45 = this->getT(1).getT(0).getT(1).getT(3).getT(1);                   // math::add<NV>
+		auto& chain68 = this->getT(1).getT(0).getT(1).getT(4);                         // DspNetwork_impl::chain68_t<NV>
+		auto& global_cable52 = this->getT(1).getT(0).getT(1).getT(4).getT(0);          // DspNetwork_impl::global_cable52_t<NV>
+		auto& add46 = this->getT(1).getT(0).getT(1).getT(4).getT(1);                   // math::add<NV>
+		auto& chain69 = this->getT(1).getT(0).getT(1).getT(5);                         // DspNetwork_impl::chain69_t<NV>
+		auto& global_cable53 = this->getT(1).getT(0).getT(1).getT(5).getT(0);          // DspNetwork_impl::global_cable53_t<NV>
+		auto& add47 = this->getT(1).getT(0).getT(1).getT(5).getT(1);                   // math::add<NV>
+		auto& chain70 = this->getT(1).getT(0).getT(1).getT(6);                         // DspNetwork_impl::chain70_t<NV>
+		auto& global_cable54 = this->getT(1).getT(0).getT(1).getT(6).getT(0);          // DspNetwork_impl::global_cable54_t<NV>
+		auto& add48 = this->getT(1).getT(0).getT(1).getT(6).getT(1);                   // math::add<NV>
+		auto& chain71 = this->getT(1).getT(0).getT(1).getT(7);                         // DspNetwork_impl::chain71_t<NV>
+		auto& global_cable55 = this->getT(1).getT(0).getT(1).getT(7).getT(0);          // DspNetwork_impl::global_cable55_t<NV>
+		auto& add49 = this->getT(1).getT(0).getT(1).getT(7).getT(1);                   // math::add<NV>
+		auto& chain72 = this->getT(1).getT(0).getT(1).getT(8);                         // DspNetwork_impl::chain72_t<NV>
+		auto& global_cable56 = this->getT(1).getT(0).getT(1).getT(8).getT(0);          // DspNetwork_impl::global_cable56_t<NV>
+		auto& add50 = this->getT(1).getT(0).getT(1).getT(8).getT(1);                   // math::add<NV>
+		auto& chain73 = this->getT(1).getT(0).getT(1).getT(9);                         // DspNetwork_impl::chain73_t<NV>
+		auto& global_cable57 = this->getT(1).getT(0).getT(1).getT(9).getT(0);          // DspNetwork_impl::global_cable57_t<NV>
+		auto& add51 = this->getT(1).getT(0).getT(1).getT(9).getT(1);                   // math::add<NV>
+		auto& chain74 = this->getT(1).getT(0).getT(1).getT(10);                        // DspNetwork_impl::chain74_t<NV>
+		auto& global_cable58 = this->getT(1).getT(0).getT(1).getT(10).getT(0);         // DspNetwork_impl::global_cable58_t<NV>
+		auto& add52 = this->getT(1).getT(0).getT(1).getT(10).getT(1);                  // math::add<NV>
+		auto& chain75 = this->getT(1).getT(0).getT(1).getT(11);                        // DspNetwork_impl::chain75_t<NV>
+		auto& global_cable59 = this->getT(1).getT(0).getT(1).getT(11).getT(0);         // DspNetwork_impl::global_cable59_t<NV>
+		auto& add53 = this->getT(1).getT(0).getT(1).getT(11).getT(1);                  // math::add<NV>
+		auto& chain76 = this->getT(1).getT(0).getT(1).getT(12);                        // DspNetwork_impl::chain76_t<NV>
+		auto& global_cable60 = this->getT(1).getT(0).getT(1).getT(12).getT(0);         // DspNetwork_impl::global_cable60_t<NV>
+		auto& add54 = this->getT(1).getT(0).getT(1).getT(12).getT(1);                  // math::add<NV>
+		auto& chain77 = this->getT(1).getT(0).getT(1).getT(13);                        // DspNetwork_impl::chain77_t<NV>
+		auto& global_cable63 = this->getT(1).getT(0).getT(1).getT(13).getT(0);         // DspNetwork_impl::global_cable63_t<NV>
+		auto& add55 = this->getT(1).getT(0).getT(1).getT(13).getT(1);                  // math::add<NV>
+		auto& chain78 = this->getT(1).getT(0).getT(1).getT(14);                        // DspNetwork_impl::chain78_t<NV>
+		auto& global_cable62 = this->getT(1).getT(0).getT(1).getT(14).getT(0);         // DspNetwork_impl::global_cable62_t<NV>
+		auto& add56 = this->getT(1).getT(0).getT(1).getT(14).getT(1);                  // math::add<NV>
+		auto& chain79 = this->getT(1).getT(0).getT(1).getT(15);                        // DspNetwork_impl::chain79_t<NV>
+		auto& global_cable61 = this->getT(1).getT(0).getT(1).getT(15).getT(0);         // DspNetwork_impl::global_cable61_t<NV>
+		auto& add57 = this->getT(1).getT(0).getT(1).getT(15).getT(1);                  // math::add<NV>
+		auto& peak5 = this->getT(1).getT(0).getT(2);                                   // DspNetwork_impl::peak5_t<NV>
+		auto& clear6 = this->getT(1).getT(0).getT(3);                                  // math::clear<NV>
+		auto& pma1 = this->getT(1).getT(1);                                            // DspNetwork_impl::pma1_t<NV>
+		auto& tempo_sync = this->getT(1).getT(2);                                      // DspNetwork_impl::tempo_sync_t<NV>
+		auto& chain80 = this->getT(2);                                                 // DspNetwork_impl::chain80_t<NV>
+		auto& clear7 = this->getT(2).getT(0);                                          // wrap::no_process<math::clear<NV>>
+		auto& branch4 = this->getT(2).getT(1);                                         // DspNetwork_impl::branch4_t<NV>
+		auto& chain81 = this->getT(2).getT(1).getT(0);                                 // DspNetwork_impl::chain81_t<NV>
+		auto& global_cable64 = this->getT(2).getT(1).getT(0).getT(0);                  // DspNetwork_impl::global_cable64_t<NV>
+		auto& add58 = this->getT(2).getT(1).getT(0).getT(1);                           // math::add<NV>
+		auto& chain82 = this->getT(2).getT(1).getT(1);                                 // DspNetwork_impl::chain82_t<NV>
+		auto& global_cable65 = this->getT(2).getT(1).getT(1).getT(0);                  // DspNetwork_impl::global_cable65_t<NV>
+		auto& add59 = this->getT(2).getT(1).getT(1).getT(1);                           // math::add<NV>
+		auto& chain83 = this->getT(2).getT(1).getT(2);                                 // DspNetwork_impl::chain83_t<NV>
+		auto& global_cable66 = this->getT(2).getT(1).getT(2).getT(0);                  // DspNetwork_impl::global_cable66_t<NV>
+		auto& add60 = this->getT(2).getT(1).getT(2).getT(1);                           // math::add<NV>
+		auto& chain84 = this->getT(2).getT(1).getT(3);                                 // DspNetwork_impl::chain84_t<NV>
+		auto& global_cable67 = this->getT(2).getT(1).getT(3).getT(0);                  // DspNetwork_impl::global_cable67_t<NV>
+		auto& add61 = this->getT(2).getT(1).getT(3).getT(1);                           // math::add<NV>
+		auto& chain85 = this->getT(2).getT(1).getT(4);                                 // DspNetwork_impl::chain85_t<NV>
+		auto& global_cable68 = this->getT(2).getT(1).getT(4).getT(0);                  // DspNetwork_impl::global_cable68_t<NV>
+		auto& add62 = this->getT(2).getT(1).getT(4).getT(1);                           // math::add<NV>
+		auto& chain86 = this->getT(2).getT(1).getT(5);                                 // DspNetwork_impl::chain86_t<NV>
+		auto& global_cable69 = this->getT(2).getT(1).getT(5).getT(0);                  // DspNetwork_impl::global_cable69_t<NV>
+		auto& add63 = this->getT(2).getT(1).getT(5).getT(1);                           // math::add<NV>
+		auto& chain87 = this->getT(2).getT(1).getT(6);                                 // DspNetwork_impl::chain87_t<NV>
+		auto& global_cable70 = this->getT(2).getT(1).getT(6).getT(0);                  // DspNetwork_impl::global_cable70_t<NV>
+		auto& add64 = this->getT(2).getT(1).getT(6).getT(1);                           // math::add<NV>
+		auto& chain88 = this->getT(2).getT(1).getT(7);                                 // DspNetwork_impl::chain88_t<NV>
+		auto& global_cable71 = this->getT(2).getT(1).getT(7).getT(0);                  // DspNetwork_impl::global_cable71_t<NV>
+		auto& add65 = this->getT(2).getT(1).getT(7).getT(1);                           // math::add<NV>
+		auto& chain89 = this->getT(2).getT(1).getT(8);                                 // DspNetwork_impl::chain89_t<NV>
+		auto& global_cable72 = this->getT(2).getT(1).getT(8).getT(0);                  // DspNetwork_impl::global_cable72_t<NV>
+		auto& add66 = this->getT(2).getT(1).getT(8).getT(1);                           // math::add<NV>
+		auto& chain90 = this->getT(2).getT(1).getT(9);                                 // DspNetwork_impl::chain90_t<NV>
+		auto& global_cable73 = this->getT(2).getT(1).getT(9).getT(0);                  // DspNetwork_impl::global_cable73_t<NV>
+		auto& add67 = this->getT(2).getT(1).getT(9).getT(1);                           // math::add<NV>
+		auto& chain91 = this->getT(2).getT(1).getT(10);                                // DspNetwork_impl::chain91_t<NV>
+		auto& global_cable74 = this->getT(2).getT(1).getT(10).getT(0);                 // DspNetwork_impl::global_cable74_t<NV>
+		auto& add68 = this->getT(2).getT(1).getT(10).getT(1);                          // math::add<NV>
+		auto& chain92 = this->getT(2).getT(1).getT(11);                                // DspNetwork_impl::chain92_t<NV>
+		auto& global_cable75 = this->getT(2).getT(1).getT(11).getT(0);                 // DspNetwork_impl::global_cable75_t<NV>
+		auto& add69 = this->getT(2).getT(1).getT(11).getT(1);                          // math::add<NV>
+		auto& chain93 = this->getT(2).getT(1).getT(12);                                // DspNetwork_impl::chain93_t<NV>
+		auto& global_cable76 = this->getT(2).getT(1).getT(12).getT(0);                 // DspNetwork_impl::global_cable76_t<NV>
+		auto& add70 = this->getT(2).getT(1).getT(12).getT(1);                          // math::add<NV>
+		auto& chain101 = this->getT(2).getT(1).getT(13);                               // DspNetwork_impl::chain101_t<NV>
+		auto& global_cable77 = this->getT(2).getT(1).getT(13).getT(0);                 // DspNetwork_impl::global_cable77_t<NV>
+		auto& add78 = this->getT(2).getT(1).getT(13).getT(1);                          // math::add<NV>
+		auto& chain102 = this->getT(2).getT(1).getT(14);                               // DspNetwork_impl::chain102_t<NV>
+		auto& global_cable78 = this->getT(2).getT(1).getT(14).getT(0);                 // DspNetwork_impl::global_cable78_t<NV>
+		auto& add79 = this->getT(2).getT(1).getT(14).getT(1);                          // math::add<NV>
+		auto& chain103 = this->getT(2).getT(1).getT(15);                               // DspNetwork_impl::chain103_t<NV>
+		auto& global_cable79 = this->getT(2).getT(1).getT(15).getT(0);                 // DspNetwork_impl::global_cable79_t<NV>
+		auto& add80 = this->getT(2).getT(1).getT(15).getT(1);                          // math::add<NV>
+		auto& peak6 = this->getT(2).getT(2);                                           // DspNetwork_impl::peak6_t<NV>
+		auto& clear8 = this->getT(2).getT(3);                                          // math::clear<NV>
+		auto& pma = this->getT(3);                                                     // DspNetwork_impl::pma_t<NV>
+		auto& split = this->getT(4);                                                   // DspNetwork_impl::split_t<NV>
+		auto& chain1 = this->getT(4).getT(0);                                          // DspNetwork_impl::chain1_t<NV>
+		auto& cable_table4 = this->getT(4).getT(0).getT(0);                            // DspNetwork_impl::cable_table4_t<NV>
+		auto& resetter = this->getT(4).getT(0).getT(1);                                // DspNetwork_impl::resetter_t<NV>
+		auto& clock_ramp1 = this->getT(4).getT(0).getT(2);                             // DspNetwork_impl::clock_ramp1_t<NV>
+		auto& ramp = this->getT(4).getT(0).getT(3);                                    // DspNetwork_impl::ramp_t<NV>
+		auto& input_toggle3 = this->getT(4).getT(0).getT(4);                           // DspNetwork_impl::input_toggle3_t<NV>
+		auto& clear9 = this->getT(4).getT(0).getT(5);                                  // math::clear<NV>
+		auto& add = this->getT(4).getT(0).getT(6);                                     // math::add<NV>
+		auto& fmod = this->getT(4).getT(0).getT(7);                                    // wrap::no_process<math::fmod<NV>>
+		auto& pma_fmod_onshot = this->getT(4).getT(0).getT(8);                         // control::pma<NV, parameter::empty>
+		auto& peak21 = this->getT(4).getT(0).getT(9);                                  // DspNetwork_impl::peak21_t<NV>
+		auto& clear = this->getT(4).getT(0).getT(10);                                  // math::clear<NV>
+		auto& cable_pack1 = this->getT(4).getT(0).getT(11);                            // DspNetwork_impl::cable_pack1_t
+		auto& softbypass_switch3 = this->getT(4).getT(1);                              // DspNetwork_impl::softbypass_switch3_t<NV>
+		auto& switcher = this->getT(4).getT(1).getT(0);                                // DspNetwork_impl::switcher_t<NV>
+		auto& sb_container = this->getT(4).getT(1).getT(1);                            // DspNetwork_impl::sb_container_t<NV>
+		auto& sb1 = this->getT(4).getT(1).getT(1).getT(0);                             // DspNetwork_impl::sb1_t<NV>
+		auto& chain2 = this->getT(4).getT(1).getT(1).getT(0).getT(0);                  // DspNetwork_impl::chain2_t<NV>
+		auto& xfader = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(0);          // DspNetwork_impl::xfader_t<NV>
+		auto& split1 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(1);          // DspNetwork_impl::split1_t<NV>
+		auto& chain3 = this->getT(4).getT(1).getT(1).getT(0).getT(0).getT(1).getT(0);  // DspNetwork_impl::chain3_t<NV>
+		auto& cable_table = this->getT(4).getT(1).getT(1).getT(0).                     // DspNetwork_impl::cable_table_t<NV>
                             getT(0).getT(1).getT(0).getT(0);
 		auto& add1 = this->getT(4).getT(1).getT(1).getT(0).                            // math::add<NV>
                      getT(0).getT(1).getT(0).getT(1);
@@ -2116,10 +2086,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		global_cable41.getWrappedObject().getParameter().connectT(0, add35);       // global_cable41 -> add35::Value
 		global_cable42.getWrappedObject().getParameter().connectT(0, add36);       // global_cable42 -> add36::Value
 		global_cable43.getWrappedObject().getParameter().connectT(0, add37);       // global_cable43 -> add37::Value
-		event_data_reader.getParameter().connectT(0, add38);                       // event_data_reader -> add38::Value
-		event_data_reader1.getParameter().connectT(0, add39);                      // event_data_reader1 -> add39::Value
-		event_data_reader2.getParameter().connectT(0, add40);                      // event_data_reader2 -> add40::Value
-		event_data_reader3.getParameter().connectT(0, add41);                      // event_data_reader3 -> add41::Value
+		global_cable46.getWrappedObject().getParameter().connectT(0, add76);       // global_cable46 -> add76::Value
+		global_cable45.getWrappedObject().getParameter().connectT(0, add75);       // global_cable45 -> add75::Value
+		global_cable44.getWrappedObject().getParameter().connectT(0, add74);       // global_cable44 -> add74::Value
+		global_cable47.getWrappedObject().getParameter().connectT(0, add77);       // global_cable47 -> add77::Value
 		peak4.getParameter().connectT(0, input_toggle2);                           // peak4 -> input_toggle2::Value1
 		cable_table1.getWrappedObject().getParameter().connectT(0, branch2);       // cable_table1 -> branch2::Index
 		cable_table2.getWrappedObject().getParameter().connectT(0, input_toggle1); // cable_table2 -> input_toggle1::Input
@@ -2135,10 +2105,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		global_cable57.getWrappedObject().getParameter().connectT(0, add51);       // global_cable57 -> add51::Value
 		global_cable58.getWrappedObject().getParameter().connectT(0, add52);       // global_cable58 -> add52::Value
 		global_cable59.getWrappedObject().getParameter().connectT(0, add53);       // global_cable59 -> add53::Value
-		event_data_reader4.getParameter().connectT(0, add54);                      // event_data_reader4 -> add54::Value
-		event_data_reader5.getParameter().connectT(0, add55);                      // event_data_reader5 -> add55::Value
-		event_data_reader6.getParameter().connectT(0, add56);                      // event_data_reader6 -> add56::Value
-		event_data_reader7.getParameter().connectT(0, add57);                      // event_data_reader7 -> add57::Value
+		global_cable60.getWrappedObject().getParameter().connectT(0, add54);       // global_cable60 -> add54::Value
+		global_cable63.getWrappedObject().getParameter().connectT(0, add55);       // global_cable63 -> add55::Value
+		global_cable62.getWrappedObject().getParameter().connectT(0, add56);       // global_cable62 -> add56::Value
+		global_cable61.getWrappedObject().getParameter().connectT(0, add57);       // global_cable61 -> add57::Value
 		tempo_sync.getParameter().connectT(0, ramp);                               // tempo_sync -> ramp::PeriodTime
 		clock_ramp1.getParameter().connectT(0, input_toggle3);                     // clock_ramp1 -> input_toggle3::Value2
 		pma1.getWrappedObject().getParameter().connectT(0, tempo_sync);            // pma1 -> tempo_sync::Tempo
@@ -2156,10 +2126,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		global_cable73.getWrappedObject().getParameter().connectT(0, add67);       // global_cable73 -> add67::Value
 		global_cable74.getWrappedObject().getParameter().connectT(0, add68);       // global_cable74 -> add68::Value
 		global_cable75.getWrappedObject().getParameter().connectT(0, add69);       // global_cable75 -> add69::Value
-		event_data_reader8.getParameter().connectT(0, add70);                      // event_data_reader8 -> add70::Value
-		event_data_reader9.getParameter().connectT(0, add71);                      // event_data_reader9 -> add71::Value
-		event_data_reader10.getParameter().connectT(0, add72);                     // event_data_reader10 -> add72::Value
-		event_data_reader11.getParameter().connectT(0, add73);                     // event_data_reader11 -> add73::Value
+		global_cable76.getWrappedObject().getParameter().connectT(0, add70);       // global_cable76 -> add70::Value
+		global_cable77.getWrappedObject().getParameter().connectT(0, add78);       // global_cable77 -> add78::Value
+		global_cable78.getWrappedObject().getParameter().connectT(0, add79);       // global_cable78 -> add79::Value
+		global_cable79.getWrappedObject().getParameter().connectT(0, add80);       // global_cable79 -> add80::Value
 		auto& xfader_p = xfader.getWrappedObject().getParameter();
 		xfader_p.getParameterT(0).connectT(0, gain);   // xfader -> gain::Gain
 		xfader_p.getParameterT(1).connectT(0, gain14); // xfader -> gain14::Gain
@@ -2283,25 +2253,21 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		; // add37::Value is automated
 		
-		event_data_reader.setParameterT(0, 0.); // routing::event_data_reader::SlotIndex
-		event_data_reader.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable46.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add38::Value is automated
+		; // add76::Value is automated
 		
-		event_data_reader1.setParameterT(0, 1.); // routing::event_data_reader::SlotIndex
-		event_data_reader1.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable45.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add39::Value is automated
+		; // add75::Value is automated
 		
-		event_data_reader2.setParameterT(0, 2.); // routing::event_data_reader::SlotIndex
-		event_data_reader2.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable44.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add40::Value is automated
+		; // add74::Value is automated
 		
-		event_data_reader3.setParameterT(0, 3.); // routing::event_data_reader::SlotIndex
-		event_data_reader3.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable47.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add41::Value is automated
+		; // add77::Value is automated
 		
 		clear2.setParameterT(0, 0.); // math::clear::Value
 		
@@ -2375,23 +2341,19 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		; // add53::Value is automated
 		
-		event_data_reader4.setParameterT(0, 0.); // routing::event_data_reader::SlotIndex
-		event_data_reader4.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable60.setParameterT(0, 1.); // routing::global_cable::Value
 		
 		; // add54::Value is automated
 		
-		event_data_reader5.setParameterT(0, 1.); // routing::event_data_reader::SlotIndex
-		event_data_reader5.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable63.setParameterT(0, 1.); // routing::global_cable::Value
 		
 		; // add55::Value is automated
 		
-		event_data_reader6.setParameterT(0, 2.); // routing::event_data_reader::SlotIndex
-		event_data_reader6.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable62.setParameterT(0, 1.); // routing::global_cable::Value
 		
 		; // add56::Value is automated
 		
-		event_data_reader7.setParameterT(0, 3.); // routing::event_data_reader::SlotIndex
-		event_data_reader7.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable61.setParameterT(0, 1.); // routing::global_cable::Value
 		
 		; // add57::Value is automated
 		
@@ -2458,25 +2420,21 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		; // add69::Value is automated
 		
-		event_data_reader8.setParameterT(0, 0.); // routing::event_data_reader::SlotIndex
-		event_data_reader8.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable76.setParameterT(0, 1.); // routing::global_cable::Value
 		
 		; // add70::Value is automated
 		
-		event_data_reader9.setParameterT(0, 1.); // routing::event_data_reader::SlotIndex
-		event_data_reader9.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable77.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add71::Value is automated
+		; // add78::Value is automated
 		
-		event_data_reader10.setParameterT(0, 2.); // routing::event_data_reader::SlotIndex
-		event_data_reader10.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable78.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add72::Value is automated
+		; // add79::Value is automated
 		
-		event_data_reader11.setParameterT(0, 3.); // routing::event_data_reader::SlotIndex
-		event_data_reader11.setParameterT(1, 0.); // routing::event_data_reader::Static
+		global_cable79.setParameterT(0, 1.); // routing::global_cable::Value
 		
-		; // add73::Value is automated
+		; // add80::Value is automated
 		
 		clear8.setParameterT(0, 0.); // math::clear::Value
 		
@@ -2679,6 +2637,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		this->getT(0).getT(3).getT(1).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);  // DspNetwork_impl::global_cable41_t<NV>
 		this->getT(0).getT(3).getT(1).getT(10).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable42_t<NV>
 		this->getT(0).getT(3).getT(1).getT(11).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable43_t<NV>
+		this->getT(0).getT(3).getT(1).getT(12).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable46_t<NV>
+		this->getT(0).getT(3).getT(1).getT(13).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable45_t<NV>
+		this->getT(0).getT(3).getT(1).getT(14).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable44_t<NV>
+		this->getT(0).getT(3).getT(1).getT(15).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable47_t<NV>
 		this->getT(1).getT(0).getT(1).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);  // DspNetwork_impl::global_cable48_t<NV>
 		this->getT(1).getT(0).getT(1).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);  // DspNetwork_impl::global_cable49_t<NV>
 		this->getT(1).getT(0).getT(1).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);  // DspNetwork_impl::global_cable50_t<NV>
@@ -2691,6 +2653,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		this->getT(1).getT(0).getT(1).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);  // DspNetwork_impl::global_cable57_t<NV>
 		this->getT(1).getT(0).getT(1).getT(10).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable58_t<NV>
 		this->getT(1).getT(0).getT(1).getT(11).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable59_t<NV>
+		this->getT(1).getT(0).getT(1).getT(12).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable60_t<NV>
+		this->getT(1).getT(0).getT(1).getT(13).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable63_t<NV>
+		this->getT(1).getT(0).getT(1).getT(14).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable62_t<NV>
+		this->getT(1).getT(0).getT(1).getT(15).getT(0).connectToRuntimeTarget(addConnection, c); // DspNetwork_impl::global_cable61_t<NV>
 		this->getT(2).getT(1).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);          // DspNetwork_impl::global_cable64_t<NV>
 		this->getT(2).getT(1).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);          // DspNetwork_impl::global_cable65_t<NV>
 		this->getT(2).getT(1).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);          // DspNetwork_impl::global_cable66_t<NV>
@@ -2703,6 +2669,10 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		this->getT(2).getT(1).getT(9).getT(0).connectToRuntimeTarget(addConnection, c);          // DspNetwork_impl::global_cable73_t<NV>
 		this->getT(2).getT(1).getT(10).getT(0).connectToRuntimeTarget(addConnection, c);         // DspNetwork_impl::global_cable74_t<NV>
 		this->getT(2).getT(1).getT(11).getT(0).connectToRuntimeTarget(addConnection, c);         // DspNetwork_impl::global_cable75_t<NV>
+		this->getT(2).getT(1).getT(12).getT(0).connectToRuntimeTarget(addConnection, c);         // DspNetwork_impl::global_cable76_t<NV>
+		this->getT(2).getT(1).getT(13).getT(0).connectToRuntimeTarget(addConnection, c);         // DspNetwork_impl::global_cable77_t<NV>
+		this->getT(2).getT(1).getT(14).getT(0).connectToRuntimeTarget(addConnection, c);         // DspNetwork_impl::global_cable78_t<NV>
+		this->getT(2).getT(1).getT(15).getT(0).connectToRuntimeTarget(addConnection, c);         // DspNetwork_impl::global_cable79_t<NV>
 		this->getT(5).getT(0).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);          // routing::global_cable<global_cable16_t_index, parameter::empty>
 		this->getT(5).getT(0).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);          // routing::global_cable<global_cable17_t_index, parameter::empty>
 		this->getT(5).getT(0).getT(2).getT(1).connectToRuntimeTarget(addConnection, c);          // routing::global_cable<global_cable18_t_index, parameter::empty>
