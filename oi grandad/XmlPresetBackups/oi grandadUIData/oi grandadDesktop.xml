@@ -36,7 +36,8 @@
           <Component type="ScriptSlider" id="PolyMix1" x="129" y="2" parentComponent="VoiceParam11"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular1"
-                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"/>
+                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 1: Poly Fx Mix"/>
           <Component type="ScriptLabel" id="ParamLabel37" x="131" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
@@ -44,7 +45,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="40" height="40" processorId="Granular1"
                      parameterId="ResLp" bgColour="4294885004" stepSize="0.0" middlePosition="0.5"
-                     showValuePopup="Below"/>
+                     showValuePopup="Below" pluginParameterName="Voice 1: Poly Fx param 2"
+                     isPluginParameter="1"/>
           <Component type="ScriptLabel" id="FxLabelA2" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
                      fontStyle="Regular" fontSize="15.0" text="Q"/>
@@ -57,7 +59,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
-                     defaultValue="0.5" showValuePopup="Below"/>
+                     defaultValue="0.5" showValuePopup="Below" isPluginParameter="1"
+                     pluginParameterName="Voice 1: Poly Fx param 1"/>
           <Component type="ScriptComboBox" id="delmodsel5" x="168" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
@@ -105,7 +108,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45" height="45" processorId="Granular1"
                      parameterId="Vol" middlePosition="0.5" isMetaParameter="1" bgColour="4294937226"
-                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"/>
+                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 1: Volume"/>
           <Component type="ScriptLabel" id="ParamLabel42" x="49" y="59" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam12"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -358,37 +362,14 @@
           <Component type="ScriptSlider" id="det" x="125" y="25" parentComponent="VoicePitch1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
-                     parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"/>
+                     parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"
+                     isPluginParameter="1" pluginParameterName="*"/>
           <Component type="ScriptLabel" id="ParamLabel18" x="175" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptSlider" id="Window1" x="185" y="23" parentComponent="VoicePitch1"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel20" x="137" y="-1" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="12.0" text="mode" alignment="left"/>
-          <Component type="ScriptButton" id="winsync1" x="11" y="0" width="20" height="20"
-                     parentComponent="VoicePitch1" tooltip="Select Sync Mode" bgColour="4294901760"
-                     itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
-                     visible="0"/>
-          <Component type="ScriptSlider" id="Winfade1" x="313" y="23" parentComponent="VoicePitch1"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="51" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
-          <Component type="ScriptSlider" id="pitchoffset1" x="97" y="2" parentComponent="VoicePitch1"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.09000000357627869" width="20" height="20" middlePosition="0.5"
-                     processorId="gran" parameterId="PitchStack" textColour="3942601984"
-                     bgColour="0" itemColour="4294903559" defaultValue="0.5" showValuePopup="Below"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pmod1" x="68" y="38" width="30" height="30"
                      processorId="Granular1" parameterId="PitchMod" parentComponent="VoicePitch1"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -408,14 +389,11 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="Pitch" min="-12.0" max="12.0" middlePosition="0.0"
-                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"/>
+                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Grain Size"/>
           <Component type="ScriptLabel" id="ParamLabel6" x="62" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptLabel" id="PitchOffsetLabel1" x="115" y="2" textColour="4280884766"
-                     width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
-                     fontStyle="Regular" fontSize="15.0" text="offset" alignment="left"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pitch5" x="47" y="4" parentComponent="VoicePitch1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="0" height="40" processorId="gran"
@@ -423,12 +401,12 @@
                      bgColour="4291389544" stepSize="1.0"/>
           <Component type="ScriptLabel" id="DetuneLabel" x="116" y="69" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
-                     fontStyle="Regular" fontSize="15.0" text="DETUNE" alignment="left"/>
+                     fontStyle="Regular" fontSize="15.0" text="SPREAD" alignment="left"/>
           <Component type="ScriptComboBox" id="PitchMode1" x="117" y="0" width="20"
-                     height="20" text="" items="Detune&#10;Harmonic &#10;Sync" parentComponent="VoicePitch1"
-                     bgColour="4278190080" itemColour="5166303" itemColour2="3825139712"
-                     macroControl="No MacroControl" fontName="Montserrat" max="3"
-                     fontSize="12.0" textColour="4278190080"/>
+                     height="20" text="" items="Detune&#10;Harmonic&#10;Tempo Sync&#10;Glide&#10;Major&#10;Minor&#10;Maj7&#10;Min7&#10;Fifths&#10;Sevenths"
+                     parentComponent="VoicePitch1" bgColour="4278190080" itemColour="5166303"
+                     itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
+                     max="10" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DivLabel" x="30" y="5" textColour="4280884766"
                      width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="12.0" text="div" alignment="left"
@@ -444,7 +422,7 @@
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="PitchTempo" showValuePopup="Below" bgColour="4293838681"
                      mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
-                     visible="0"/>
+                     visible="0" isPluginParameter="1" pluginParameterName="Voice 1: Pitch Tempo"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceGrain1" x="15" y="230" width="210"
                    height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
@@ -453,10 +431,11 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular1"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain Size"
                      showValuePopup="Below" parameterId="GrainSize" middlePosition="500.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
-                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"/>
+                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"
+                     visible="0"/>
           <Component type="ScriptSlider" id="GrainMod1" x="82" y="35" width="30" height="30"
                      processorId="Granular1" parameterId="GrainMod" parentComponent="VoiceGrain1"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -488,7 +467,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395" visible="0">
+                     bgColour="16777215" itemColour="1630745395">
             <Component type="ScriptLabel" id="ParamLabel13" x="51" y="27" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv1"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -501,28 +480,31 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular1"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931" visible="0"/>
+                     bgColour="4290759931"/>
           <Component type="ScriptLabel" id="ParamLabel181" x="139" y="24" textColour="4280884766"
                      width="70" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="Max Grains" alignment="left"/>
           <Component type="ScriptSlider" id="GrainDir1" x="158" y="48" width="30"
                      height="30" processorId="Granular1" parameterId="reverse" parentComponent="VoiceGrain1"
-                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.0"
+                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
                      showValuePopup="Below" scaleFactor="0.699999988079071" tooltip="Grain Size Moduation Amount"
                      min="1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
-                     bgColour="16777215" max="3.0" stepSize="1.0"/>
-          <Component type="ScriptLabel" id="ParamLabel251" x="181" y="71" textColour="4280884766"
+                     bgColour="16777215" max="4.0" stepSize="1.0"/>
+          <Component type="ScriptLabel" id="ParamLabel251" x="174" y="75" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
-                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel182" x="162" y="43" textColour="4280884766"
+                     fontStyle="Regular" fontSize="12.0" text="one" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel182" x="145" y="43" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&lt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel189" x="141" y="72" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel189" x="150" y="76" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="&gt;&gt;" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel252" x="179" y="43" textColour="4280884766"
+                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceParam4" x="470" y="230" width="110"
                    height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
@@ -545,7 +527,8 @@
           <Component type="ScriptSlider" id="Dense1" x="4" y="8" parentComponent="VoiceParam4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular1"
-                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"/>
+                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"
+                     isPluginParameter="1" pluginParameterName="Voice 1: Density"/>
           <Component type="ScriptLabel" id="ParamLabel14" x="57" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam4"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -556,7 +539,7 @@
         </Component>
         <Component type="ScriptPanel" id="VoiceParam5" x="469" y="131" width="110"
                    height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
-                   itemColour2="4293781205" textColour="268435456">
+                   itemColour2="4293781205" textColour="268435456" saveInPreset="1">
           <Component type="ScriptSlider" id="spreadmod" x="65" y="37" width="30" height="30"
                      processorId="Granular1" parameterId="SpreadMod" parentComponent="VoiceParam5"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -575,7 +558,8 @@
           <Component type="ScriptSlider" id="spread" x="11" y="16" parentComponent="VoiceParam5"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular1"
-                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"
+                     pluginParameterName="Voice 1: Pan Spread" isPluginParameter="1"/>
           <Component type="ScriptLabel" id="ParamLabel16" x="57" y="67" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam5"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -643,7 +627,8 @@
           <Component type="ScriptSlider" id="Jitter1" x="15" y="16" parentComponent="VoiceParam6"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular1"
-                     parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"
+                     isPluginParameter="1" pluginParameterName="Voice 1: Scatter "/>
           <Component type="ScriptLabel" id="ParamLabel200" x="61" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam6"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -673,8 +658,9 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="Granular1"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" pluginParameterName="Voice1GrainSize" showValuePopup="Below"
-                     parameterId="WinShape" middlePosition="0.5" stepSize="0.0" bgColour="4294351196"/>
+                     useUndoManager="1" pluginParameterName="Voice 1: Window Shape"
+                     showValuePopup="Below" parameterId="WinShape" middlePosition="0.5"
+                     stepSize="0.0" bgColour="4294351196" isPluginParameter="1"/>
         </Component>
       </Component>
       <Component type="ScriptButton" id="PowerBtn1" x="8" y="-28" width="20" height="20"
@@ -729,7 +715,8 @@
           <Component type="ScriptSlider" id="PolyMix2" x="129" y="2" parentComponent="VoiceParam15"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular2"
-                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"/>
+                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 2: Poly Fx Mix"/>
           <Component type="ScriptLabel" id="ParamLabel52" x="131" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam15"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
@@ -737,7 +724,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="40" height="40" processorId="Granular2"
                      parameterId="ResLp" bgColour="4294885004" stepSize="0.0" middlePosition="0.5"
-                     showValuePopup="Below"/>
+                     showValuePopup="Below" pluginParameterName="Voice 2: Poly Fx param 2"
+                     isPluginParameter="1"/>
           <Component type="ScriptLabel" id="FxLabelA4" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam15"
                      fontStyle="Regular" fontSize="15.0" text="OFF"/>
@@ -750,7 +738,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular2"
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
-                     defaultValue="0.5" showValuePopup="Below"/>
+                     defaultValue="0.5" showValuePopup="Below" isPluginParameter="1"
+                     pluginParameterName="Voice 2: Poly Fx param 1"/>
           <Component type="ScriptComboBox" id="delmodsel6" x="168" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam15" bgColour="4278190080" itemColour="5166303"
@@ -948,37 +937,14 @@
           <Component type="ScriptSlider" id="det1" x="125" y="25" parentComponent="VoicePitch2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular2"
-                     parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"/>
+                     parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"
+                     isPluginParameter="1" pluginParameterName="Voice 2: Detune"/>
           <Component type="ScriptLabel" id="ParamLabel26" x="175" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch2"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptSlider" id="Window2" x="185" y="23" parentComponent="VoicePitch2"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel70" x="137" y="-1" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch2"
                      fontStyle="Regular" fontSize="12.0" text="mode" alignment="left"/>
-          <Component type="ScriptButton" id="winsync2" x="11" y="0" width="20" height="20"
-                     parentComponent="VoicePitch2" tooltip="Select Sync Mode" bgColour="4294901760"
-                     itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
-                     visible="0"/>
-          <Component type="ScriptSlider" id="Winfade2" x="313" y="23" parentComponent="VoicePitch2"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="51" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
-          <Component type="ScriptSlider" id="pitchoffset2" x="97" y="2" parentComponent="VoicePitch2"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.09000000357627869" width="20" height="20" middlePosition="0.5"
-                     processorId="gran" parameterId="PitchStack" textColour="3942601984"
-                     bgColour="0" itemColour="4294903559" defaultValue="0.5" showValuePopup="Below"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pmod2" x="68" y="38" width="30" height="30"
                      processorId="Granular2" parameterId="PitchMod" parentComponent="VoicePitch2"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -998,14 +964,11 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular2"
                      parameterId="Pitch" min="-12.0" max="12.0" middlePosition="0.0"
-                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"/>
+                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"
+                     isPluginParameter="1" pluginParameterName="Voice 2: Pitch"/>
           <Component type="ScriptLabel" id="ParamLabel72" x="62" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch2"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptLabel" id="PitchOffsetLabel2" x="115" y="2" textColour="4280884766"
-                     width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch2"
-                     fontStyle="Regular" fontSize="15.0" text="offset" alignment="left"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pitch6" x="47" y="4" parentComponent="VoicePitch2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="0" height="40" processorId="gran"
@@ -1015,10 +978,10 @@
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch2"
                      fontStyle="Regular" fontSize="15.0" text="DETUNE" alignment="left"/>
           <Component type="ScriptComboBox" id="PitchMode2" x="117" y="0" width="20"
-                     height="20" text="" items="Detune&#10;Harmonic &#10;Sync" parentComponent="VoicePitch2"
-                     bgColour="4278190080" itemColour="5166303" itemColour2="3825139712"
-                     macroControl="No MacroControl" fontName="Montserrat" max="3"
-                     fontSize="12.0" textColour="4278190080"/>
+                     height="20" text="" items="Detune&#10;Harmonic&#10;Tempo Sync&#10;Glide&#10;Major&#10;Minor&#10;Maj7&#10;Min7&#10;Fifths&#10;Sevenths"
+                     parentComponent="VoicePitch2" bgColour="4278190080" itemColour="5166303"
+                     itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
+                     max="10" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DivLabel1" x="30" y="5" textColour="4280884766"
                      width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoicePitch2"
                      fontStyle="Regular" fontSize="12.0" text="div" alignment="left"
@@ -1034,31 +997,34 @@
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular2"
                      parameterId="PitchTempo" showValuePopup="Below" bgColour="4293838681"
                      mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
-                     visible="0"/>
+                     visible="0" isPluginParameter="1" pluginParameterName="Voice 2: Pitch Tempo"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceGrain2" x="15" y="230" width="210"
                    height="90" parentComponent="Grain1" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
-          <Component type="ScriptLabel" id="ParamLabel196" x="181" y="71" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel255" x="174" y="75" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain2"
-                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel249" x="162" y="43" textColour="4280884766"
+                     fontStyle="Regular" fontSize="12.0" text="one" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel184" x="145" y="43" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain2"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&lt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel250" x="141" y="72" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel190" x="150" y="76" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain2"
                      fontStyle="Regular" fontSize="15.0" text="&gt;&gt;" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel256" x="179" y="43" textColour="4280884766"
+                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain2"
+                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
           <Component type="ScriptSlider" id="GrainDir2" x="158" y="48" width="30"
                      height="30" processorId="Granular2" parameterId="reverse" parentComponent="VoiceGrain2"
-                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.0"
+                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
                      showValuePopup="Below" scaleFactor="0.699999988079071" tooltip="Grain Size Moduation Amount"
                      min="1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
-                     bgColour="16777215" max="3.0" stepSize="1.0"/>
+                     bgColour="16777215" max="4.0" stepSize="1.0"/>
           <Component type="ScriptSlider" id="grainsize2" x="14" y="15" parentComponent="VoiceGrain2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular2"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 2: Grain Size"
                      showValuePopup="Below" parameterId="GrainSize" middlePosition="500.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
                      max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"/>
@@ -1090,10 +1056,10 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="80" height="50" processorId="Granular2"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
-                     min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395" visible="0">
+                     useUndoManager="1" showValuePopup="Below" parameterId="GrainDiv"
+                     max="32.0" middlePosition="16.5" min="1.0" stepSize="1.0" defaultValue="1.0"
+                     textColour="16777215" bgColour="16777215" itemColour="1630745395"
+                     visible="0">
             <Component type="ScriptLabel" id="ParamLabel76" x="51" y="27" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv2"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -1106,7 +1072,7 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular2"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 2: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
                      bgColour="4290759931" visible="0"/>
@@ -1135,7 +1101,8 @@
           <Component type="ScriptSlider" id="Dense2" x="4" y="8" parentComponent="VoiceParam7"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular2"
-                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"/>
+                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"
+                     isPluginParameter="1" pluginParameterName="Voice 2: Density"/>
           <Component type="ScriptLabel" id="ParamLabel78" x="57" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam7"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1165,7 +1132,8 @@
           <Component type="ScriptSlider" id="spread1" x="11" y="16" parentComponent="VoiceParam8"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular2"
-                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"
+                     pluginParameterName="Voice 2: Pan Spread" isPluginParameter="1"/>
           <Component type="ScriptLabel" id="ParamLabel80" x="57" y="67" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam8"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1233,7 +1201,8 @@
           <Component type="ScriptSlider" id="Jitter2" x="15" y="16" parentComponent="VoiceParam9"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular2"
-                     parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"
+                     isPluginParameter="1" pluginParameterName="Voice 2: Scatter "/>
           <Component type="ScriptLabel" id="ParamLabel204" x="61" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam9"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1263,8 +1232,9 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="Granular2"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" pluginParameterName="Voice1GrainSize" showValuePopup="Below"
-                     parameterId="WinShape" middlePosition="0.5" stepSize="0.0" bgColour="4294351196"/>
+                     useUndoManager="1" pluginParameterName="Voice 2: Window Shape"
+                     showValuePopup="Below" parameterId="WinShape" middlePosition="0.5"
+                     stepSize="0.0" bgColour="4294351196" isPluginParameter="1"/>
         </Component>
       </Component>
       <Component type="ScriptPanel" id="Amp2" x="611" y="131" width="200" height="190"
@@ -1295,7 +1265,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45" height="45" processorId="Granular2"
                      parameterId="Vol" middlePosition="0.5" isMetaParameter="1" bgColour="4294937226"
-                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"/>
+                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 2: Volume"/>
           <Component type="ScriptLabel" id="ParamLabel62" x="49" y="59" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam17"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1422,7 +1393,8 @@
           <Component type="ScriptSlider" id="PolyMix3" x="129" y="2" parentComponent="VoiceParam16"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular3"
-                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"/>
+                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 3: Poly Fx Mix"/>
           <Component type="ScriptLabel" id="ParamLabel55" x="131" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam16"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
@@ -1430,7 +1402,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="40" height="40" processorId="Granular3"
                      parameterId="ResLp" bgColour="4294885004" stepSize="0.0" middlePosition="0.5"
-                     showValuePopup="Below"/>
+                     showValuePopup="Below" pluginParameterName="Voice 3: Poly Fx param 2"
+                     isPluginParameter="1"/>
           <Component type="ScriptLabel" id="FxLabelA6" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam16"
                      fontStyle="Regular" fontSize="15.0" text="OFF"/>
@@ -1443,7 +1416,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular3"
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
-                     defaultValue="0.5" showValuePopup="Below"/>
+                     defaultValue="0.5" showValuePopup="Below" isPluginParameter="1"
+                     pluginParameterName="Voice 3: Poly Fx param 1"/>
           <Component type="ScriptComboBox" id="delmodsel8" x="168" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam16" bgColour="4278190080" itemColour="5166303"
@@ -1660,37 +1634,13 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular3"
                      parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"
-                     visible="0"/>
+                     visible="0" isPluginParameter="1" pluginParameterName="Voice 3: Detune"/>
           <Component type="ScriptLabel" id="ParamLabel114" x="175" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch3"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptSlider" id="Window3" x="185" y="23" parentComponent="VoicePitch3"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel115" x="137" y="-1" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch3"
                      fontStyle="Regular" fontSize="12.0" text="mode" alignment="left"/>
-          <Component type="ScriptButton" id="winsync3" x="11" y="0" width="20" height="20"
-                     parentComponent="VoicePitch3" tooltip="Select Sync Mode" bgColour="4294901760"
-                     itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
-                     visible="0"/>
-          <Component type="ScriptSlider" id="Winfade3" x="313" y="23" parentComponent="VoicePitch3"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="51" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
-          <Component type="ScriptSlider" id="pitchoffset3" x="97" y="2" parentComponent="VoicePitch3"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.09000000357627869" width="20" height="20" middlePosition="0.5"
-                     processorId="gran" parameterId="PitchStack" textColour="3942601984"
-                     bgColour="0" itemColour="4294903559" defaultValue="0.5" showValuePopup="Below"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pmod3" x="68" y="38" width="30" height="30"
                      processorId="Granular3" parameterId="PitchMod" parentComponent="VoicePitch3"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -1710,14 +1660,11 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular3"
                      parameterId="Pitch" min="-12.0" max="12.0" middlePosition="0.0"
-                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"/>
+                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"
+                     isPluginParameter="1" pluginParameterName="Voice 3: Pitch"/>
           <Component type="ScriptLabel" id="ParamLabel117" x="62" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch3"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptLabel" id="PitchOffsetLabel3" x="115" y="2" textColour="4280884766"
-                     width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch3"
-                     fontStyle="Regular" fontSize="15.0" text="offset" alignment="left"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pitch7" x="47" y="4" parentComponent="VoicePitch3"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="0" height="40" processorId="gran"
@@ -1727,10 +1674,10 @@
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch3"
                      fontStyle="Regular" fontSize="15.0" text="TEMPO" alignment="left"/>
           <Component type="ScriptComboBox" id="PitchMode3" x="117" y="0" width="20"
-                     height="20" text="" items="Detune&#10;Harmonic &#10;Sync" parentComponent="VoicePitch3"
-                     bgColour="4278190080" itemColour="5166303" itemColour2="3825139712"
-                     macroControl="No MacroControl" fontName="Montserrat" max="3"
-                     fontSize="12.0" textColour="4278190080"/>
+                     height="20" text="" items="Detune&#10;Harmonic&#10;Tempo Sync&#10;Glide&#10;Major&#10;Minor&#10;Maj7&#10;Min7&#10;Fifths&#10;Sevenths"
+                     parentComponent="VoicePitch3" bgColour="4278190080" itemColour="5166303"
+                     itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
+                     max="10" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DivLabel2" x="30" y="5" textColour="4280884766"
                      width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoicePitch3"
                      fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -1743,31 +1690,35 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular3"
                      parameterId="PitchTempo" showValuePopup="Below" bgColour="4293838681"
-                     mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"/>
+                     mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
+                     isPluginParameter="1" pluginParameterName="Voice 3: Pitch Tempo"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceGrain3" x="15" y="230" width="210"
                    height="90" parentComponent="Grain2" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
-          <Component type="ScriptLabel" id="ParamLabel193" x="181" y="71" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel257" x="174" y="75" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain3"
-                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel194" x="162" y="43" textColour="4280884766"
+                     fontStyle="Regular" fontSize="12.0" text="one" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel186" x="145" y="43" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain3"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&lt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel195" x="141" y="72" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel191" x="150" y="76" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain3"
                      fontStyle="Regular" fontSize="15.0" text="&gt;&gt;" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel258" x="179" y="43" textColour="4280884766"
+                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain3"
+                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
           <Component type="ScriptSlider" id="GrainDir3" x="158" y="48" width="30"
                      height="30" processorId="Granular3" parameterId="reverse" parentComponent="VoiceGrain3"
-                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.0"
+                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
                      showValuePopup="Below" scaleFactor="0.699999988079071" tooltip="Grain Size Moduation Amount"
                      min="1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
-                     bgColour="16777215" max="3.0" stepSize="1.0"/>
+                     bgColour="16777215" max="4.0" stepSize="1.0"/>
           <Component type="ScriptSlider" id="grainsize3" x="14" y="15" parentComponent="VoiceGrain3"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular3"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 3: Grain Size"
                      showValuePopup="Below" parameterId="GrainSize" middlePosition="500.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
                      max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"
@@ -1800,10 +1751,9 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="80" height="50" processorId="Granular3"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
-                     min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395">
+                     useUndoManager="1" showValuePopup="Below" parameterId="GrainDiv"
+                     max="32.0" middlePosition="16.5" min="1.0" stepSize="1.0" defaultValue="1.0"
+                     textColour="16777215" bgColour="16777215" itemColour="1630745395">
             <Component type="ScriptLabel" id="ParamLabel121" x="51" y="27" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv3"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -1816,7 +1766,7 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular3"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 3: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
                      bgColour="4290759931"/>
@@ -1846,7 +1796,8 @@
           <Component type="ScriptSlider" id="Dense3" x="4" y="8" parentComponent="VoiceParam20"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular3"
-                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"/>
+                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"
+                     isPluginParameter="1" pluginParameterName="Voice 3: Density"/>
           <Component type="ScriptLabel" id="ParamLabel123" x="57" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam20"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1875,7 +1826,8 @@
           <Component type="ScriptSlider" id="spread2" x="11" y="16" parentComponent="VoiceParam21"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular3"
-                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"
+                     pluginParameterName="Voice 3: Pan Spread" isPluginParameter="1"/>
           <Component type="ScriptLabel" id="ParamLabel125" x="57" y="67" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam21"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1943,7 +1895,8 @@
           <Component type="ScriptSlider" id="Jitter3" x="15" y="16" parentComponent="VoiceParam22"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular3"
-                     parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"
+                     isPluginParameter="1" pluginParameterName="Voice 3: Scatter "/>
           <Component type="ScriptLabel" id="ParamLabel216" x="61" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam22"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -1973,8 +1926,9 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="Granular3"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" pluginParameterName="Voice1GrainSize" showValuePopup="Below"
-                     parameterId="WinShape" middlePosition="0.5" stepSize="0.0" bgColour="4294351196"/>
+                     useUndoManager="1" pluginParameterName="Voice 3: Window Shape"
+                     showValuePopup="Below" parameterId="WinShape" middlePosition="0.5"
+                     stepSize="0.0" bgColour="4294351196" isPluginParameter="1"/>
         </Component>
       </Component>
       <Component type="ScriptPanel" id="Amp3" x="611" y="131" width="200" height="190"
@@ -2005,7 +1959,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45" height="45" processorId="Granular3"
                      parameterId="Vol" middlePosition="0.5" isMetaParameter="1" bgColour="4294937226"
-                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"/>
+                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 3: Volume"/>
           <Component type="ScriptLabel" id="ParamLabel100" x="49" y="59" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam25"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -2114,7 +2069,8 @@
           <Component type="ScriptSlider" id="PolyMix4" x="129" y="2" parentComponent="VoiceParam23"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular4"
-                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"/>
+                     parameterId="ResoMix" bgColour="4294885004" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Poly Fx Mix"/>
           <Component type="ScriptLabel" id="ParamLabel57" x="131" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam23"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
@@ -2122,7 +2078,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="40" height="40" processorId="Granular4"
                      parameterId="ResLp" bgColour="4294885004" stepSize="0.0" middlePosition="0.5"
-                     showValuePopup="Below"/>
+                     showValuePopup="Below" pluginParameterName="Voice 4: Poly Fx param 2"
+                     isPluginParameter="1"/>
           <Component type="ScriptLabel" id="FxLabelA8" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam23"
                      fontStyle="Regular" fontSize="15.0" text="OFF"/>
@@ -2135,7 +2092,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular4"
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4294885004"
-                     defaultValue="0.5" showValuePopup="Below"/>
+                     defaultValue="0.5" showValuePopup="Below" isPluginParameter="1"
+                     pluginParameterName="Voice 4: Poly Fx param 1"/>
           <Component type="ScriptComboBox" id="delmodsel20" x="168" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam23" bgColour="4278190080" itemColour="5166303"
@@ -2201,7 +2159,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="45" height="45" processorId="Granular4"
                      parameterId="Vol" middlePosition="0.5" isMetaParameter="1" bgColour="4294937226"
-                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"/>
+                     itemColour2="4211081216" deferControlCallback="1" showValuePopup="Below"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Volume"/>
           <Component type="ScriptLabel" id="ParamLabel145" x="49" y="59" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam36"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -2454,37 +2413,14 @@
           <Component type="ScriptSlider" id="det3" x="125" y="25" parentComponent="VoicePitch4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular4"
-                     parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"/>
+                     parameterId="PitchSprd" showValuePopup="Below" bgColour="4293838681"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Detune"/>
           <Component type="ScriptLabel" id="ParamLabel159" x="175" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch4"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptSlider" id="Window4" x="185" y="23" parentComponent="VoicePitch4"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="WinTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel160" x="137" y="-1" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch4"
                      fontStyle="Regular" fontSize="12.0" text="mode" alignment="left"/>
-          <Component type="ScriptButton" id="winsync4" x="11" y="0" width="20" height="20"
-                     parentComponent="VoicePitch4" tooltip="Select Sync Mode" bgColour="4294901760"
-                     itemColour="4294175719" itemColour2="4294175743" textColour="16777215"
-                     visible="0"/>
-          <Component type="ScriptSlider" id="Winfade4" x="313" y="23" parentComponent="VoicePitch4"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="51" height="50" processorId="gran"
-                     enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="FadeTime" mode="Time" max="1000.0"
-                     suffix=" ms" middlePosition="500.0" stepSize="1.0" visible="0"/>
-          <Component type="ScriptSlider" id="pitchoffset4" x="97" y="2" parentComponent="VoicePitch4"
-                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.09000000357627869" width="20" height="20" middlePosition="0.5"
-                     processorId="gran" parameterId="PitchStack" textColour="3942601984"
-                     bgColour="0" itemColour="4294903559" defaultValue="0.5" showValuePopup="Below"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pmod4" x="68" y="38" width="30" height="30"
                      processorId="Granular4" parameterId="PitchMod" parentComponent="VoicePitch4"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -2504,14 +2440,11 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular4"
                      parameterId="Pitch" min="-12.0" max="12.0" middlePosition="0.0"
-                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"/>
+                     showValuePopup="Below" bgColour="4291389544" stepSize="0.1000000014901161"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Pitch"/>
           <Component type="ScriptLabel" id="ParamLabel162" x="62" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch4"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
-          <Component type="ScriptLabel" id="PitchOffsetLabel4" x="115" y="2" textColour="4280884766"
-                     width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch4"
-                     fontStyle="Regular" fontSize="15.0" text="offset" alignment="left"
-                     visible="0"/>
           <Component type="ScriptSlider" id="pitch8" x="47" y="4" parentComponent="VoicePitch4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="0" height="40" processorId="gran"
@@ -2519,12 +2452,12 @@
                      bgColour="4291389544" stepSize="1.0"/>
           <Component type="ScriptLabel" id="DetuneLabel3" x="116" y="69" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch4"
-                     fontStyle="Regular" fontSize="15.0" text="DETUNE" alignment="left"/>
+                     fontStyle="Regular" fontSize="15.0" text="SPREAD" alignment="left"/>
           <Component type="ScriptComboBox" id="PitchMode4" x="117" y="0" width="20"
-                     height="20" text="" items="Detune&#10;Harmonic &#10;Sync" parentComponent="VoicePitch4"
-                     bgColour="4278190080" itemColour="5166303" itemColour2="3825139712"
-                     macroControl="No MacroControl" fontName="Montserrat" max="3"
-                     fontSize="12.0" textColour="4278190080"/>
+                     height="20" text="" items="Detune&#10;Harmonic&#10;Tempo Sync&#10;Glide&#10;Major&#10;Minor&#10;Maj7&#10;Min7&#10;Fifths&#10;Sevenths"
+                     parentComponent="VoicePitch4" bgColour="4278190080" itemColour="5166303"
+                     itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
+                     max="10" fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="DivLabel3" x="30" y="5" textColour="4280884766"
                      width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoicePitch4"
                      fontStyle="Regular" fontSize="12.0" text="div" alignment="left"
@@ -2540,35 +2473,37 @@
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular4"
                      parameterId="PitchTempo" showValuePopup="Below" bgColour="4293838681"
                      mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
-                     visible="0"/>
+                     visible="0" isPluginParameter="1" pluginParameterName="Voice 4: Pitch Tempo"/>
         </Component>
         <Component type="ScriptPanel" id="VoiceGrain4" x="15" y="230" width="210"
                    height="90" parentComponent="Grain3" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
-          <Component type="ScriptLabel" id="ParamLabel190" x="181" y="71" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel259" x="174" y="75" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
-                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel191" x="162" y="43" textColour="4280884766"
+                     fontStyle="Regular" fontSize="12.0" text="one" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel188" x="145" y="43" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&lt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel192" x="141" y="72" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel192" x="150" y="76" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
                      fontStyle="Regular" fontSize="15.0" text="&gt;&gt;" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel260" x="179" y="43" textColour="4280884766"
+                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
+                     fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
           <Component type="ScriptSlider" id="GrainDir4" x="158" y="48" width="30"
                      height="30" processorId="Granular4" parameterId="reverse" parentComponent="VoiceGrain4"
-                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.0"
+                     numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
                      showValuePopup="Below" scaleFactor="0.699999988079071" tooltip="Grain Size Moduation Amount"
                      min="1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
-                     bgColour="16777215" max="3.0" stepSize="1.0"/>
+                     bgColour="16777215" max="4.0" stepSize="1.0"/>
           <Component type="ScriptSlider" id="grainsize4" x="14" y="15" parentComponent="VoiceGrain4"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular4"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 4: Grain Size"
                      showValuePopup="Below" parameterId="GrainSize" middlePosition="500.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
-                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"
-                     visible="0"/>
+                     max="1000.0" mode="Time" stepSize="1.0" defaultValue="400.0"/>
           <Component type="ScriptSlider" id="GrainMod4" x="82" y="35" width="30" height="30"
                      processorId="Granular4" parameterId="GrainMod" parentComponent="VoiceGrain4"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="0.0"
@@ -2597,10 +2532,10 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="80" height="50" processorId="Granular4"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
-                     showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
-                     min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395">
+                     useUndoManager="1" showValuePopup="Below" parameterId="GrainDiv"
+                     max="32.0" middlePosition="16.5" min="1.0" stepSize="1.0" defaultValue="1.0"
+                     textColour="16777215" bgColour="16777215" itemColour="1630745395"
+                     visible="0">
             <Component type="ScriptLabel" id="ParamLabel166" x="51" y="27" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv4"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -2613,10 +2548,10 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular4"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
+                     useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 4: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931"/>
+                     bgColour="4290759931" visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel187" x="139" y="24" textColour="4280884766"
                      width="70" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
                      fontStyle="Regular" fontSize="15.0" text="Max Grains" alignment="left"/>
@@ -2642,7 +2577,8 @@
           <Component type="ScriptSlider" id="Dense4" x="4" y="8" parentComponent="VoiceParam28"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular4"
-                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"/>
+                     parameterId="Dense" showValuePopup="Below" bgColour="4289497029"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Density"/>
           <Component type="ScriptLabel" id="ParamLabel168" x="57" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam28"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -2672,7 +2608,8 @@
           <Component type="ScriptSlider" id="spread3" x="11" y="16" parentComponent="VoiceParam29"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular4"
-                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"
+                     pluginParameterName="Voice 4: Pan Spread" isPluginParameter="1"/>
           <Component type="ScriptLabel" id="ParamLabel170" x="57" y="67" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam29"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -2740,7 +2677,8 @@
           <Component type="ScriptSlider" id="Jitter4" x="15" y="16" parentComponent="VoiceParam30"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="45" height="45" processorId="Granular4"
-                     parameterId="phaseScatter" showValuePopup="Below" bgColour="4294951129"/>
+                     parameterId="phaseScatter" showValuePopup="Below" bgColour="4294951129"
+                     isPluginParameter="1" pluginParameterName="Voice 4: Scatter "/>
           <Component type="ScriptLabel" id="ParamLabel248" x="61" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam30"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"/>
@@ -2770,8 +2708,9 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="Granular4"
                      enableMidiLearn="0" tooltip="The size of the grains in MS, or if synced various clock divisions"
-                     useUndoManager="1" pluginParameterName="Voice1GrainSize" showValuePopup="Below"
-                     parameterId="WinShape" middlePosition="0.5" stepSize="0.0" bgColour="4294351196"/>
+                     useUndoManager="1" pluginParameterName="Voice 4: Window Shape"
+                     showValuePopup="Below" parameterId="WinShape" middlePosition="0.5"
+                     stepSize="0.0" bgColour="4294351196" isPluginParameter="1"/>
         </Component>
       </Component>
       <Component type="ScriptButton" id="PowerBtn4" x="8" y="-28" width="20" height="20"
@@ -2802,11 +2741,12 @@
                    fontSize="12.0" textColour="4278190080"/>
         <Component type="ScriptLabel" id="FxLabelB1" x="1" y="43" textColour="4280884766"
                    width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
-                   fontStyle="Regular" fontSize="15.0" text="DELAY"/>
+                   fontStyle="Regular" fontSize="15.0" text="Time"/>
         <Component type="ScriptSlider" id="PostMix1" x="127" y="2" parentComponent="VoiceParam40"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1400000005960464" width="40" height="40" processorId="Final1"
-                   parameterId="ResoMix" bgColour="4292665834" showValuePopup="Below"/>
+                   parameterId="ResoMix" bgColour="4292665834" showValuePopup="Below"
+                   pluginParameterName="Post FX: Mix"/>
         <Component type="ScriptLabel" id="ParamLabel38" x="129" y="43" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
                    fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
@@ -2814,7 +2754,7 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1299999952316284" width="40" height="40" processorId="Final1"
                    parameterId="ResLp" bgColour="4292665834" stepSize="0.0" middlePosition="0.5"
-                   showValuePopup="Below"/>
+                   showValuePopup="Below" isPluginParameter="1" pluginParameterName="Post FX: Param 2"/>
         <Component type="ScriptLabel" id="FxLabelB2" x="65" y="43" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam40"
                    fontStyle="Regular" fontSize="15.0" text="LP"/>
@@ -2827,7 +2767,8 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1800000071525574" width="40" height="40" processorId="Final1"
                    parameterId="ResPitch" middlePosition="0.5" bgColour="4292665834"
-                   defaultValue="0.5" showValuePopup="Below"/>
+                   defaultValue="0.5" showValuePopup="Below" pluginParameterName="Post FX: Param 1"
+                   isPluginParameter="1"/>
         <Component type="ScriptComboBox" id="delmodsel10" x="166" y="8" width="20"
                    height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
@@ -2843,7 +2784,7 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1299999952316284" width="30" height="30" processorId="Final1"
                    parameterId="Meta" bgColour="4292665834" stepSize="0.0" middlePosition="0.5"
-                   showValuePopup="Below"/>
+                   showValuePopup="Below" isPluginParameter="1" pluginParameterName="Post FX: Param 3"/>
         <Component type="ScriptComboBox" id="redmodsel6" x="85" y="70" width="20"
                    height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                    parentComponent="VoiceParam40" bgColour="4278190080" itemColour="5166303"
@@ -3097,8 +3038,8 @@
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
       <Component type="ScriptComboBox" id="HiddenFiles1" x="20" y="443" width="210"
-                 height="110" parentComponent="RandomControls1" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/mstring.wav"
-                 saveInPreset="0" visible="0"/>
+                 height="110" parentComponent="RandomControls1" saveInPreset="0"
+                 visible="0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/OGInit.wav"/>
       <Component type="ScriptSlider" id="SampleMax1" x="115" y="35" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"/>
@@ -4626,11 +4567,11 @@
     <Component type="ScriptButton" id="VOICE2" x="217" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 3" saveInPreset="0"
                bgColour="4290759931" textColour="4278255873" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
+               itemColour2="1118481" enableMidiLearn="0"/>
     <Component type="ScriptButton" id="VOICE3" x="317" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 4" saveInPreset="0"
                bgColour="4293838681" textColour="4278190080" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
+               itemColour2="1118481" enableMidiLearn="0"/>
     <Component type="ScriptButton" id="VOICE4" x="418" y="10" width="95" height="30"
                parentComponent="Og" radioGroup="307.0" text="OVERVIEW" saveInPreset="0"
                bgColour="4294351196" itemColour="3355443" textColour="4278255873"
@@ -4647,8 +4588,7 @@
                  bgColour="3001935573" itemColour="3001935573" textColour="3001935573"/>
       <Component type="ScriptPanel" id="MOD1" x="-1" y="0" width="610" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
-                 visible="0">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
         <Component type="ScriptPanel" id="seq1" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
@@ -6343,7 +6283,8 @@
       </Component>
       <Component type="ScriptPanel" id="MOD7" x="-1" y="0" width="610" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
+                 visible="0">
         <Component type="ScriptPanel" id="seq13" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD7">
@@ -6680,32 +6621,45 @@
     <Component type="ScriptPanel" id="V5" x="10" y="43" width="820" height="620"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
                bgColour="16777215" textColour="16777215" visible="0">
-      <Component type="ScriptPanel" id="Preset" x="10" y="7" width="580" height="342"
+      <Component type="ScriptPanel" id="Preset" x="10" y="7" width="590" height="535"
                  text="wave1" bgColour="3052524467" itemColour="4281680473" itemColour2="4281680473"
                  borderSize="1.0" textColour="4278190080" parentComponent="V5"
                  borderRadius="7.0">
         <Component type="ScriptLabel" id="ScriptLabel8" x="0" y="9" width="600"
                    height="30" parentComponent="Preset" fontName="Montserrat" editable="0"
                    fontSize="20.0" text="PRESETS" textColour="4279834648" itemColour2="1118481"/>
-        <Component type="ScriptFloatingTile" id="ScriptFloatingTile9" x="5" y="6"
-                   width="570" height="320" parentComponent="Preset" Font="Montserrat"
+        <Component type="ScriptFloatingTile" id="ScriptFloatingTile9" x="5" y="5"
+                   width="570" height="520" parentComponent="Preset" Font="Montserrat"
                    ContentType="PresetBrowser" bgColour="4281680473" itemColour="4288519060"
                    itemColour2="4281680473" Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: true,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: true,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowSearchBar&quot;: false,&#10;  &quot;FavoriteIconOffset&quot;: 0,&#10;  &quot;ShowFavoriteIcon&quot;: false,&#10;  &quot;FullPathFavorites&quot;: false,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 3,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"
                    itemColour3="4288519060" textColour="4288519060"/>
       </Component>
       <Component type="ScriptPanel" id="Settings" x="616" y="350" width="200"
-                 height="190" parentComponent="V5">
-        <Component type="ScriptFloatingTile" id="ScriptFloatingTile10" x="6" y="28"
+                 height="190" parentComponent="V5" bgColour="16777215" textColour="4294967295">
+        <Component type="ScriptComboBox" id="TransportMode" x="86" y="111" max="6"
+                   items="Latched Stretch&#10;Direct Stretch&#10;Hybrid Stretch&#10;Latched&#10;Direct&#10;Hybrid"
+                   processorId="Granular1" parameterId="TransportMode" parentComponent="Settings"
+                   width="96" height="30"/>
+        <Component type="ScriptComboBox" id="ReadMode" x="86" y="151" max="3" items="Varispeed&#10;Time-Invariant&#10;Formant"
+                   processorId="Granular1" parameterId="ReadMode" parentComponent="Settings"
+                   width="96" height="30"/>
+        <Component type="ScriptFloatingTile" id="ScriptFloatingTile10" x="6" y="18"
                    width="217" height="50" parentComponent="Settings" ContentType="CustomSettings"
                    bgColour="4278190080" itemColour="0" itemColour2="0" Data="{&#10;  &quot;Driver&quot;: false,&#10;  &quot;Device&quot;: false,&#10;  &quot;Output&quot;: false,&#10;  &quot;BufferSize&quot;: false,&#10;  &quot;SampleRate&quot;: false,&#10;  &quot;GlobalBPM&quot;: false,&#10;  &quot;StreamingMode&quot;: false,&#10;  &quot;ScaleFactor&quot;: true,&#10;  &quot;VoiceAmountMultiplier&quot;: false,&#10;  &quot;ClearMidiCC&quot;: false,&#10;  &quot;SampleLocation&quot;: false,&#10;  &quot;DebugMode&quot;: false,&#10;  &quot;UseOpenGL&quot;: false,&#10;  &quot;ScaleFactorList&quot;: [&#10;    0.5,&#10;    0.75,&#10;    1.0,&#10;    1.25,&#10;    1.5,&#10;    2.0&#10;  ]&#10;}"/>
         <Component type="ScriptLabel" id="ScriptLabel6" x="0" y="1" width="200"
                    height="30" parentComponent="Settings" fontName="Montserrat"
                    editable="0" fontSize="20.0" text="SETTINGS"/>
-        <Component type="ScriptComboBox" id="modQuality" x="87" y="91" width="96"
+        <Component type="ScriptComboBox" id="modQuality" x="86" y="71" width="96"
                    height="30" max="6" parentComponent="Settings" items="16 samples&#10;32 samples&#10;64 samples&#10;128 samples&#10;256 samples&#10;512 samples"/>
-        <Component type="ScriptLabel" id="ScriptLabel286" x="21" y="71" width="50"
-                   height="70" parentComponent="Settings" text="Mod Quality" fontName="Montserrat"
+        <Component type="ScriptLabel" id="ScriptLabel286" x="15" y="64" width="50"
+                   height="40" parentComponent="Settings" text="Mod Quality" fontName="Montserrat"
                    editable="0" fontSize="15.0"/>
+        <Component type="ScriptLabel" id="ScriptLabel287" x="14" y="105" width="60"
+                   height="40" parentComponent="Settings" text="Transport Mode"
+                   fontName="Montserrat" editable="0" fontSize="15.0"/>
+        <Component type="ScriptLabel" id="ScriptLabel288" x="14" y="145" width="60"
+                   height="40" parentComponent="Settings" text="Pos. Read Mode"
+                   fontName="Montserrat" editable="0" fontSize="15.0"/>
       </Component>
       <Component type="ScriptImage" id="ScriptImage8" x="614" y="15" width="200"
                  height="160" parentComponent="V5" fileName="{PROJECT_FOLDER}pack2.png"/>

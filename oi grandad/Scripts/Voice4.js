@@ -255,7 +255,7 @@ inline function onPitchMode4Control(component, value)
 	 PitchDiv4.showControl(0);
 	 PitchTempo4.showControl(0);;
 	 det3.showControl(1);
-	 DetuneLabel3.setValue("DETUNE");
+	 DetuneLabel3.setValue("SPREAD");
 	 }
 	 
 	 if(value == 2)
@@ -265,7 +265,7 @@ inline function onPitchMode4Control(component, value)
 	 	 	 PitchDiv4.showControl(0);
 	 	 	 PitchTempo4.showControl(0);;
 	 	 	 det3.showControl(1);
-	 	 	 DetuneLabel3.setValue("HARM.");
+	 	 	 DetuneLabel3.setValue("SPREAD");
 	 	 }
 	 	 
 	 if(value == 3)
@@ -278,6 +278,76 @@ inline function onPitchMode4Control(component, value)
 	 	 DetuneLabel3.setValue("TEMPO");
 	 	 }	 
 	 	 
+	 	 if(value == 4)
+	 	 	 	 	  {
+	 	 	 	 	 gran3.setAttribute(gran3.PitchMode, 4);
+	 	 	 	 	 DivLabel3.showControl(0);
+	 	 	 	 	 	 PitchDiv4.showControl(0);
+	 	 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 	 	 	 	 det3.showControl(1);
+	 	 	 	 	 	 DetuneLabel3.setValue("TIME");
+	 	 	 	 	 }
+	 	 	 	 	 
+	 	 	if(value == 5)
+	 	 		 	 	 	  {
+	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 5);
+	 	 		 	 	 	 DivLabel3.showControl(0);
+	 	 		 	 	 	 	 PitchDiv4.showControl(0);
+	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 		 	 	 	 	 det3.showControl(1);
+	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
+	 	 		 	 	 	 } 	 
+	 	 		 	 	 	 
+	 	 	if(value == 6)
+	 	 		 	 	 	  {
+	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 6);
+	 	 		 	 	 	 DivLabel3.showControl(0);
+	 	 		 	 	 	 	 PitchDiv4.showControl(0);
+	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 		 	 	 	 	 det3.showControl(1);
+	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
+	 	 		 	 	 	 }	 
+	 	 		 	 	 	 
+	 	 		 	 	 	 	 	 	 	 
+	 	 	if(value == 7)
+	 	 		 	 	 	  {
+	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 7);
+	 	 		 	 	 	 DivLabel3.showControl(0);
+	 	 		 	 	 	 	 PitchDiv4.showControl(0);
+	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 		 	 	 	 	 det3.showControl(1);
+	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
+	 	 		 	 	 	 } 
+	 	 		 	 	 	 
+	 	 	if(value == 8)
+	 	 		 	 	 	  {
+	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 8);
+	 	 		 	 	 	 DivLabel3.showControl(0);
+	 	 		 	 	 	 	 PitchDiv4.showControl(0);
+	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 		 	 	 	 	 det3.showControl(1);
+	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
+	 	 		 	 	 	 }	 	 
+	 	 		 	 	 	 
+	 	 	if(value == 9)
+	 	 		 	 	 	  {
+	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 9);
+	 	 		 	 	 	 DivLabel3.showControl(0);
+	 	 		 	 	 	 	 PitchDiv4.showControl(0);
+	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 		 	 	 	 	 det3.showControl(1);
+	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
+	 	 		 	 	 	 }	 	 
+	 	 		 	 	 	 
+	 	 	if(value ==10)
+	 	 	 		 	 	 	  {
+	 	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 10);
+	 	 	 		 	 	 	 DivLabel3.showControl(0);
+	 	 	 		 	 	 	 	 PitchDiv4.showControl(0);
+	 	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
+	 	 	 		 	 	 	 	 det3.showControl(1);
+	 	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
+	 	 	 		 	 	 	 }	 
 };
 
 Content.getComponent("PitchMode4").setControlCallback(onPitchMode4Control);

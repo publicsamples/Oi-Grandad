@@ -50,6 +50,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double phase = 0.0;
 		double readPhase = 0.0;
 		double start = 0.0;
+		double latchedStart = 0.0;
+		double scatterOffset = 0.0;
+		double wrapFade = 0.0;
 		bool active = false;
 
 		void reset()
@@ -57,6 +60,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			phase = 0.0;
 			readPhase = 0.0;
 			start = 0.0;
+			latchedStart = 0.0;
+			scatterOffset = 0.0;
+			wrapFade = 0.0;
 			active = false;
 		}
 	};
@@ -66,8 +72,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double scanPos = 0.0;
 		double stretchBasePos = -1.0;
 		double delta = 1.0;
+		double deltaTarget = 1.0;
 		int noteNumber = 60;
 		double scrubQ = 0.0;
+		std::array<double, 4> previousScrubSource {};
+		std::array<int, 4> previousOneShotStep {};
 		double densityMorphSmoothed = -1.0;
 		double speedPhase = 0.0;
 		double ap1L = 0.0;
@@ -81,8 +90,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			scanPos = 0.0;
 			stretchBasePos = -1.0;
 			delta = 1.0;
+			deltaTarget = 1.0;
 			noteNumber = 60;
 			scrubQ = 0.0;
+			previousScrubSource = { 0.0, 0.0, 0.0, 0.0 };
+			previousOneShotStep = { -1, -1, -1, -1 };
 			densityMorphSmoothed = -1.0;
 			speedPhase = 0.0;
 			ap1L = 0.0;
@@ -106,7 +118,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		sampleRate = ps.sampleRate;
 		blockSize = ps.blockSize;
 		voiceStates.prepare(ps);
-		formantRatioSmoothed = 1.0;
 		updateGrainSize();
 		reset();
 	}
@@ -114,7 +125,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	void reset()
 	{
 		resetVoiceContainer(voiceStates);
-		formantRatioSmoothed = 1.0;
 	}
 
 	template <typename ProcessDataType> void process(ProcessDataType& data)
@@ -129,7 +139,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		auto& fixData = data.template as<ProcessData<2>>();
 		auto fd = fixData.toFrameData();
 		auto& voice = voiceStates.get();
-		updateFormantSmoothing();
 
 		while (fd.next())
 			renderFrame(fd.toSpan(), voice);
@@ -147,7 +156,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			return;
 
 		auto& voice = voiceStates.get();
-		updateFormantSmoothing();
 		auto& fixFrame = span<float, 2>::as(data.begin());
 		renderFrame(fixFrame, voice);
 		audioFile.setDisplayedValue(voice.scanPos);
@@ -159,9 +167,12 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			return;
 
 		auto& voice = voiceStates.get();
+		double previousDelta = voice.delta;
 		voice.reset();
 		voice.noteNumber = e.getNoteNumber();
 		voice.scrubQ = scrub;
+		if (getPitchState() == 3)
+			voice.delta = previousDelta;
 		updateDelta(voice);
 	}
 
@@ -219,7 +230,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		if (P == 6)
 		{
-			pitchMode = clamp01(v);
+			pitchMode = decodeMenuValue(v, 10);
 			for (auto& voice : voiceStates)
 				updateDelta(voice);
 		}
@@ -232,21 +243,20 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		if (P == 8)
 			maxGrainsValue = jlimit(1.0, (double) MaxGrains, v);
-		if (P == 9) scrubMode = clamp01(v);
+		if (P == 9) scrubMode = jlimit(0.0, 1.0, std::round(v));
 		if (P == 10) scrubBlend = clamp01(v);
 
 		if (P == 11)
 		{
-			v = clamp01(v);
-			if (v < 0.25) directionMode = 0.0;
-			else if (v < 0.75) directionMode = 0.5;
-			else directionMode = 1.0;
+			directionMode = decodeMenuValue(v, 4);
 		}
 
 		if (P == 12) phaseScatter = clamp01(v);
 		if (P == 13) scrubB = v;
 		if (P == 14) scrubC = v;
 		if (P == 15) scrubD = v;
+		if (P == 16) transportMode = decodeMenuValue(v, 6);
+		if (P == 17) readMode = decodeMenuValue(v, 3);
 	}
 
 	void createParameters(ParameterDataList& data)
@@ -257,16 +267,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		addParameter<3>(data, "Density", 0.0, 1.0, 1.0);
 		addParameter<4>(data, "WindowShape", 0.0, 1.0, 0.0);
 		addParameter<5>(data, "PanSpread", 0.0, 1.0, 0.0);
-		addParameter<6>(data, "PitchMode", 0.0, 1.0, 0.0);
+		addParameter<6>(data, "PitchMode", 1.0, 10.0, 1.0);
 		addParameter<7>(data, "PitchSpreadOrSync", 0.0, 1.0, 0.0);
 		addParameter<8>(data, "MaxGrains", 1.0, 32.0, 4.0);
 		addParameter<9>(data, "ScrubMode", 0.0, 1.0, 0.0);
 		addParameter<10>(data, "ScrubBlend", 0.0, 1.0, 0.0);
-		addParameter<11>(data, "DirectionMode", 0.0, 1.0, 0.0);
+		addParameter<11>(data, "DirectionMode", 1.0, 4.0, 1.0);
 		addParameter<12>(data, "PhaseScatter", 0.0, 1.0, 0.0);
 		addParameter<13>(data, "ScrubB", 0.0, 1.0, 0.0);
 		addParameter<14>(data, "ScrubC", 0.0, 1.0, 0.0);
 		addParameter<15>(data, "ScrubD", 0.0, 1.0, 0.0);
+		addParameter<16>(data, "TransportMode", 1.0, 6.0, 1.0);
+		addParameter<17>(data, "ReadMode", 1.0, 3.0, 1.0);
 	}
 
 	template <int P> void addParameter(ParameterDataList& data, const char* id, double min, double max, double defaultValue)
@@ -280,6 +292,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double clamp01(double v) const
 	{
 		return jlimit(0.0, 1.0, v);
+	}
+
+	double decodeMenuValue(double v, int maxValue) const
+	{
+		return jlimit(1.0, (double) maxValue, std::round(v));
 	}
 
 	double smooth01(double x) const
@@ -408,9 +425,12 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		double mult = std::pow(2.0, semis / 12.0);
 		if (sampleRate > 0.0)
-			voice.delta = (audioFile.sampleRate / sampleRate) * mult;
+			voice.deltaTarget = (audioFile.sampleRate / sampleRate) * mult;
 		else
-			voice.delta = mult;
+			voice.deltaTarget = mult;
+
+		if (getPitchState() != 3)
+			voice.delta = voice.deltaTarget;
 	}
 
 	double quantiseScrub(double raw) const
@@ -442,47 +462,35 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return ratio;
 	}
 
-	double getFormantTargetRatio() const
+	double getGlideTimeSeconds() const
 	{
-		double semis = pitchSyncInput;
-		if (semis >= 0.0 && semis <= 1.0)
-			semis = semis * 48.0 - 24.0;
-
-		if (semis < -24.0) semis = -24.0;
-		if (semis > 24.0) semis = 24.0;
-
-		double ratio = std::pow(2.0, semis / 12.0);
-		if (ratio < 0.25) ratio = 0.25;
-		if (ratio > 4.0) ratio = 4.0;
-		return ratio;
+		double x = clamp01(pitchSyncInput);
+		return x * x * 0.5;
 	}
 
 	int getPitchState()
 	{
-		if (pitchMode < 0.25)
-			return 0;
-		if (pitchMode < 0.50)
-			return 1;
-		if (pitchMode < 0.75)
-			return 2;
-		return 3;
+		return jlimit(0, 9, (int)std::round(pitchMode) - 1);
 	}
 
-	void updateFormantSmoothing()
+	void updateGlideSmoothing(VoiceState& voice)
 	{
-		double formantTarget = getFormantTargetRatio();
-		double smoothCoeff = 1.0;
-		if (sampleRate > 0.0)
-			smoothCoeff = 1.0 - std::exp(-1.0 / (0.015 * sampleRate));
+		double glideTime = getGlideTimeSeconds();
+		if (glideTime <= 0.0001 || sampleRate <= 0.0)
+		{
+			voice.delta = voice.deltaTarget;
+			return;
+		}
 
-		formantRatioSmoothed += (formantTarget - formantRatioSmoothed) * smoothCoeff;
+		double smoothCoeff = 1.0 - std::exp(-1.0 / (glideTime * sampleRate));
+		voice.delta += (voice.deltaTarget - voice.delta) * smoothCoeff;
 	}
 
 	double getPitchModeMul(int pitchState, double spreadNorm, double detuneSeed, double harmonicTarget) const
 	{
 		if (pitchState == 0)
 		{
-			double spread = pitchSpread * spreadNorm;
+			double spread = std::pow(clamp01(pitchSpread), 2.5) * spreadNorm;
 			return 1.0 + spread * std::sin(detuneSeed);
 		}
 		else if (pitchState == 1)
@@ -493,8 +501,58 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		{
 			return tempoSyncRatioFromInput(pitchSyncInput);
 		}
+		else if (pitchState == 3)
+		{
+			return 1.0;
+		}
+		else if (pitchState == 4)
+		{
+			static constexpr int majorSteps[] = { 0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24 };
+			return getScaleModeMul(majorSteps, (int)(sizeof(majorSteps) / sizeof(majorSteps[0])), harmonicTarget);
+		}
+		else if (pitchState == 5)
+		{
+			static constexpr int minorSteps[] = { 0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24 };
+			return getScaleModeMul(minorSteps, (int)(sizeof(minorSteps) / sizeof(minorSteps[0])), harmonicTarget);
+		}
+		else if (pitchState == 6)
+		{
+			static constexpr int maj7Steps[] = { 0, 4, 7, 11, 12, 16, 19, 23, 24 };
+			return getScaleModeMul(maj7Steps, (int)(sizeof(maj7Steps) / sizeof(maj7Steps[0])), harmonicTarget);
+		}
+		else if (pitchState == 7)
+		{
+			static constexpr int min7Steps[] = { 0, 3, 7, 10, 12, 15, 19, 22, 24 };
+			return getScaleModeMul(min7Steps, (int)(sizeof(min7Steps) / sizeof(min7Steps[0])), harmonicTarget);
+		}
+		else if (pitchState == 8)
+		{
+			static constexpr int fifthSteps[] = { 0, 7, 12, 19, 24 };
+			return getScaleModeMul(fifthSteps, (int)(sizeof(fifthSteps) / sizeof(fifthSteps[0])), harmonicTarget);
+		}
+		else if (pitchState == 9)
+		{
+			static constexpr int seventhSteps[] = { 0, 10, 12, 22, 24 };
+			return getScaleModeMul(seventhSteps, (int)(sizeof(seventhSteps) / sizeof(seventhSteps[0])), harmonicTarget);
+		}
 
-		return formantRatioSmoothed;
+		return 1.0;
+	}
+
+	double getScaleModeMul(const int* semitoneSteps, int numSteps, double harmonicTarget) const
+	{
+		if (numSteps <= 0)
+			return 1.0;
+
+		double x = clamp01(pitchSpread);
+		int activeCount = 1 + (int)std::floor(x * (double)(numSteps - 1) + 0.000001);
+		if (activeCount < 1) activeCount = 1;
+		if (activeCount > numSteps) activeCount = numSteps;
+
+		int grainIndex = jmax(0, (int)std::round(harmonicTarget) - 1);
+		int stepIndex = grainIndex % activeCount;
+		double semis = (double)semitoneSteps[stepIndex];
+		return std::pow(2.0, semis / 12.0);
 	}
 
 	double getGrainWeight(int i, int grainCount, bool isStackMode) const
@@ -530,9 +588,92 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return floorWeight + (1.0 - floorWeight) * smooth01(edge);
 	}
 
-	double getReadPhaseForMode(double phase, int pitchState, double pitchMul) const
+	int getPlayheadModeState() const
 	{
-		if (pitchState != 3)
+		return jlimit(0, 1, (int)std::round(scrubMode));
+	}
+
+	int getSchedulerModeState() const
+	{
+		return 1;
+	}
+
+	void getTransportModeState(int& transportState, bool& stretchEnabled, bool& legacyExact) const
+	{
+		int mode = jlimit(1, 6, (int)std::round(transportMode));
+		stretchEnabled = mode <= 3;
+		legacyExact = (mode == 1 && jlimit(1, 3, (int)std::round(readMode)) == 1);
+
+		switch (mode)
+		{
+			case 1: // Latched Stretch
+				transportState = 2;
+				break;
+			case 2: // Direct Stretch
+				transportState = 0;
+				break;
+			case 3: // Hybrid Stretch
+				transportState = 1;
+				break;
+			case 4: // Latched
+				transportState = 2;
+				break;
+			case 5: // Direct
+				transportState = 0;
+				break;
+			case 6: // Hybrid
+			default:
+				transportState = 1;
+				break;
+		}
+	}
+
+	int getReadModeState() const
+	{
+		return jlimit(0, 2, (int)std::round(readMode) - 1);
+	}
+
+	double getSchedulerPhaseOffset(int grainIndex, int grainCount) const
+	{
+		if (grainCount <= 0)
+			return 0.0;
+
+		double evenOffset = grainSize * (double) grainIndex / (double) grainCount;
+		if (getSchedulerModeState() == 1)
+			return evenOffset;
+
+		double spread = clamp01(phaseScatter * 2.0);
+		return evenOffset * spread;
+	}
+
+	double getScatterStartOffset(int grainIndex, int grainCount, double maxStart) const
+	{
+		if (grainCount <= 1)
+			return 0.0;
+
+		double x = clamp01(phaseScatter);
+		double maxOffset = 0.0;
+
+		if (x <= 0.5)
+		{
+			double t = x * 2.0;
+			maxOffset = grainSize * t;
+		}
+		else
+		{
+			double t = (x - 0.5) * 2.0;
+			double wideTarget = maxStart * 0.25;
+			double wideBlend = t * t;
+			maxOffset = grainSize + (wideTarget - grainSize) * wideBlend;
+		}
+
+		double evenOffset = (double) grainIndex / (double) grainCount;
+		return evenOffset * maxOffset;
+	}
+
+	double getReadPhaseForMode(double phase, int readState, double pitchMul) const
+	{
+		if (readState != 2)
 			return phase;
 
 		double ratio = pitchMul;
@@ -662,17 +803,28 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double getScrubSourceForGrain(int grainIndex, int grainCount) const
 	{
 		const double values[4] = { scrub, scrubB, scrubC, scrubD };
+		int laneCount = getPlayheadModeState() == 1 ? 4 : 1;
+
 		int clampedCount = jmax(1, grainCount);
-		int lane = (grainIndex * 4) / clampedCount;
-		lane = jlimit(0, 3, lane);
+		int lane = (grainIndex * laneCount) / clampedCount;
+		lane = jlimit(0, laneCount - 1, lane);
 		return clamp01(values[lane]);
 	}
 
-	int getScrubGroupForGrain(int grainIndex) const
+	int getScrubGroupForGrain(int grainIndex, int grainCount, bool isStackMode) const
 	{
-		int clampedCount = jmax(1, (int)std::round(maxGrainsValue));
-		int lane = (grainIndex * 4) / clampedCount;
-		return jlimit(0, 3, lane);
+		if (!isStackMode)
+		{
+			if (getPlayheadModeState() == 0)
+				return jlimit(0, jmax(0, grainCount - 1), grainIndex);
+
+			int laneCount = 4;
+			int clampedCount = jmax(1, grainCount);
+			int lane = (grainIndex * laneCount) / clampedCount;
+			return jlimit(0, laneCount - 1, lane);
+		}
+
+		return 0;
 	}
 
 	double getInterpolatedScrubForGrain(int grainIndex, int grainCount) const
@@ -697,17 +849,32 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	int getDirectionState() const
 	{
-		if (directionMode < (1.0 / 3.0))
-			return 0;
-		if (directionMode < (2.0 / 3.0))
-			return 1;
-		return 2;
+		return jlimit(1, 4, (int)std::round(directionMode));
 	}
 
-	void getScrubModeState(int& scrubState, bool& timeInvariant) const
+	double getOneShotStepSize(double maxStart) const
 	{
-		scrubState = (scrubMode >= 0.5) ? 1 : 0;
-		timeInvariant = false;
+		int directionState = getDirectionState();
+		if (directionState == 4)
+		{
+			if (maxStart <= 0.0)
+				return 1.0;
+
+			double step = grainSize / maxStart;
+			if (step < 0.0001) step = 0.0001;
+			if (step > 1.0) step = 1.0;
+			return step;
+		}
+
+		return 0.0;
+	}
+
+	double getTransportFollowCoeff() const
+	{
+		if (sampleRate <= 0.0)
+			return 1.0;
+
+		return 1.0 - std::exp(-1.0 / (0.01 * sampleRate));
 	}
 
 	template <typename FrameType> void renderFrame(FrameType& fd, VoiceState& voice)
@@ -720,16 +887,22 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const double previousScrub = voice.scrubQ;
 		voice.scrubQ = scrub;
 		voice.scanPos = scrubSmoothed * maxStart;
-
-		int scrubState = 0;
-		bool timeInvariant = false;
-		getScrubModeState(scrubState, timeInvariant);
+		const bool transportWrapped = (scrubSmoothed + 0.25) < previousScrub;
 
 		const int pitchState = getPitchState();
+		if (pitchState == 3)
+			updateGlideSmoothing(voice);
+
+		const int schedulerMode = getSchedulerModeState();
+		int transportState = 2;
+		bool stretchEnabled = true;
+		bool legacyExact = true;
+		getTransportModeState(transportState, stretchEnabled, legacyExact);
+		const int readState = getReadModeState();
+		const bool timeInvariant = legacyExact ? false : (readState != 0);
 		const int g = jlimit(1, MaxGrains, (int) std::round(maxGrainsValue));
 		const bool isStackMode = (scrubBlend < 0.5);
-		const bool stretchMode = true;
-		const bool stretchFreezeMode = true;
+		const bool stretchMode = legacyExact ? true : stretchEnabled;
 		const int densitySlots = g;
 
 		double morphDensity = clamp01(density);
@@ -753,18 +926,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		std::array<double, MaxGrains> weights {};
 		std::array<int, MaxGrains> grainGroup {};
 		std::array<int, MaxGrains> grainIndexInGroup {};
-		std::array<int, 4> groupSizes {};
+		std::array<int, MaxGrains> groupSizes {};
 		double sumsq = 0.0;
 
 		int idxA = 0;
 		int idxB = 0;
 		double gA = 1.0;
 		double gB = 0.0;
-		std::array<double, 4> groupMorphWeights {};
+		std::array<double, MaxGrains> groupMorphWeights {};
 
 		for (int i = 0; i < g; ++i)
 		{
-			int group = getScrubGroupForGrain(i);
+			int group = getScrubGroupForGrain(i, g, isStackMode);
 			grainGroup[(size_t)i] = group;
 			grainIndexInGroup[(size_t)i] = groupSizes[(size_t)group];
 			++groupSizes[(size_t)group];
@@ -772,21 +945,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		if (!isStackMode)
 		{
-			double selector = morphDensity * 4.0;
-			if (selector >= 4.0)
-				selector = 3.999999;
+			int activeGroupCount = getPlayheadModeState() == 0 ? g : 4;
+			activeGroupCount = jlimit(1, MaxGrains, activeGroupCount);
 
-			idxA = jlimit(0, 3, (int) std::floor(selector));
-			idxB = jlimit(0, 3, idxA + 1);
+			double selector = morphDensity * (double) activeGroupCount;
+			if (selector >= (double) activeGroupCount)
+				selector = (double) activeGroupCount - 0.000001;
+
+			idxA = jlimit(0, activeGroupCount - 1, (int) std::floor(selector));
+			idxB = jlimit(0, activeGroupCount - 1, idxA + 1);
 			double t = smooth01(clamp01(selector - (double) idxA));
 			gA = std::sqrt(1.0 - t);
 			gB = std::sqrt(t);
-			const double morphMin = 0.12;
-			if (gA < morphMin) gA = morphMin;
-			if (gB < morphMin) gB = morphMin;
-			double gNorm = 1.0 / std::sqrt(gA * gA + gB * gB);
-			gA *= gNorm;
-			gB *= gNorm;
 			groupMorphWeights[(size_t)idxA] += gA;
 			groupMorphWeights[(size_t)idxB] += gB;
 		}
@@ -799,7 +969,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				int group = grainGroup[(size_t)i];
 				int groupIndex = grainIndexInGroup[(size_t)i];
 				int groupCount = groupSizes[(size_t)group];
-				w = getGrainWeight(groupIndex, groupCount, true) * groupMorphWeights[(size_t)group];
+				if (getPlayheadModeState() == 0)
+				{
+					w = groupMorphWeights[(size_t)group];
+				}
+				else
+				{
+					w = getGrainWeight(groupIndex, groupCount, true) * groupMorphWeights[(size_t)group];
+				}
 			}
 			weights[(size_t) i] = w;
 			sumsq += w * w;
@@ -812,9 +989,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double center = (double) (g - 1) * 0.5;
 		double invDenom = (g > 1) ? 1.0 / (double) (g - 1) : 0.0;
 		int directionState = getDirectionState();
-		bool lockStartOnWrap = true;
+		const bool oneShotMode = directionState >= 4;
+		const double oneShotStepSize = getOneShotStepSize(maxStart);
 		double spreadNorm = isStackMode ? 1.0 : morphDensity;
-		double stretchAnalysisHop = 0.0;
 		bool scrubMoved = std::abs(previousScrub - scrub) > 0.0005;
 
 		if (stretchMode && (voice.stretchBasePos < 0.0 || scrubMoved))
@@ -826,21 +1003,24 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (weight <= 0.0)
 				continue;
 
+			int playheadIndex = getPlayheadModeState() == 1 ? getScrubGroupForGrain(i, g, false) : 0;
+			double scrubValue = getScrubSourceForGrain(i, g);
+			double previousSource = voice.previousScrubSource[(size_t) playheadIndex];
+			bool scrubWrapped = false;
+
 			double base = scrubSmoothed * maxStart;
-			if (scrubState == 1)
+			if (legacyExact)
 			{
-				if (isStackMode)
+				if (getPlayheadModeState() > 0)
 				{
-					double scrubValue = getScrubSourceForGrain(i, g);
-					scrubValue = quantiseScrub(scrubValue);
 					base = scrubValue * maxStart;
 				}
-				else
-				{
-					double scrubValue = getScrubSourceForGrain(i, g);
-					scrubValue = quantiseScrub(scrubValue);
-					base = scrubValue * maxStart;
-				}
+			}
+			else
+			{
+				voice.previousScrubSource[(size_t) playheadIndex] = scrubValue;
+				scrubWrapped = (scrubValue + 0.25) < previousSource;
+				base = scrubValue * maxStart;
 			}
 
 			if (isStackMode)
@@ -851,23 +1031,103 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				base += A2curve(idxNorm) * amt;
 			}
 
-			if (isStackMode)
-				base += startSprayOffsetSamples(i, maxStart);
-
 			auto& grain = voice.grains[(size_t) i];
-			if (!grain.active)
+			double scatterOffset = getScatterStartOffset(i, g, maxStart);
+			bool oneShotTriggered = false;
+			if (oneShotMode)
+			{
+				double denom = oneShotStepSize > 0.0 ? oneShotStepSize : 1.0;
+				int currentStep = (int)std::floor(scrubValue / denom);
+				if (scrubValue >= 1.0)
+					currentStep = (int)std::floor(1.0 / denom);
+				if (voice.previousOneShotStep[(size_t)playheadIndex] != currentStep)
+				{
+					voice.previousOneShotStep[(size_t)playheadIndex] = currentStep;
+					oneShotTriggered = true;
+				}
+			}
+
+			if (!grain.active && !oneShotMode)
 			{
 				grain.active = true;
-				grain.phase = stretchMode ? (grainSize * (double) i / (double) g) : 0.0;
+				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
 				grain.readPhase = 0.0;
-				if (stretchMode)
-					grain.start = voice.stretchBasePos + (double) i * stretchAnalysisHop;
-				else
+				grain.scatterOffset = scatterOffset;
+				double scatterBase = base + grain.scatterOffset;
+				if (scatterBase < 0.0)
+					scatterBase = 0.0;
+				if (scatterBase > maxStart)
+					scatterBase = maxStart;
+				grain.latchedStart = scatterBase;
+				grain.start = legacyExact && stretchMode ? (voice.stretchBasePos + grain.scatterOffset) : scatterBase;
+				if (grain.start < 0.0)
+					grain.start = 0.0;
+				if (grain.start > maxStart)
+					grain.start = maxStart;
+				grain.wrapFade = 0.0;
+			}
+			else
+			{
+				grain.scatterOffset = scatterOffset;
+			}
+
+			if (oneShotMode && oneShotTriggered)
+			{
+				grain.active = true;
+				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
+				grain.readPhase = 0.0;
+				grain.scatterOffset = scatterOffset;
+				grain.start = base + grain.scatterOffset;
+				if (grain.start < 0.0)
+					grain.start = 0.0;
+				if (grain.start > maxStart)
+					grain.start = maxStart;
+				grain.latchedStart = grain.start;
+				grain.wrapFade = 0.0;
+			}
+
+			if (!grain.active)
+				continue;
+
+			if (legacyExact && transportWrapped)
+			{
+				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
+				grain.readPhase = 0.0;
+				grain.start = base + grain.scatterOffset;
+				grain.latchedStart = grain.start;
+				if (grain.start < 0.0)
+					grain.start = 0.0;
+				if (grain.start > maxStart)
+					grain.start = maxStart;
+				grain.latchedStart = grain.start;
+			}
+
+			ignoreUnused(scrubWrapped);
+
+			if (!legacyExact)
+			{
+				if (transportState == 0)
+				{
 					grain.start = base;
+					grain.latchedStart = base;
+				}
+				else if (transportState == 1)
+				{
+					double coeff = getTransportFollowCoeff();
+					grain.latchedStart += (base - grain.latchedStart) * coeff;
+					grain.start = grain.latchedStart;
+				}
+				else
+				{
+					grain.start = grain.latchedStart;
+				}
 			}
 
 			double grainPitchMul = getPitchModeMul(pitchState, spreadNorm, getDetuneSeed(i), (double) (i + 1));
-			double dir = getDirectionSign(directionState, i);
+			int signState = directionState;
+			if (signState > 3)
+				signState = 1;
+			double dir = getDirectionSign(signState - 1, i);
 			double schedulerInc = timeInvariant ? dir : (voice.delta * grainPitchMul * dir);
 			double readInc = schedulerInc;
 
@@ -884,6 +1144,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (grain.phase >= grainSize)
 			{
+				if (oneShotMode)
+				{
+					grain.active = false;
+					grain.phase = grainSize;
+					grain.readPhase = grainSize;
+					continue;
+				}
+
 				grain.phase -= grainSize;
 				if (stretchMode)
 				{
@@ -894,16 +1162,26 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				{
 					grain.readPhase = grain.phase;
 				}
-				if (lockStartOnWrap)
+				if (legacyExact)
 				{
-					if (stretchMode && !stretchFreezeMode)
-						grain.start += stretchAnalysisHop * dir;
-					else
-						grain.start = base;
+					grain.start = base + grain.scatterOffset;
+					grain.latchedStart = grain.start;
+				}
+				else if (transportState == 2)
+				{
+					grain.latchedStart = base;
 				}
 			}
 			if (grain.phase < 0.0)
 			{
+				if (oneShotMode)
+				{
+					grain.active = false;
+					grain.phase = 0.0;
+					grain.readPhase = 0.0;
+					continue;
+				}
+
 				grain.phase += grainSize;
 				if (stretchMode)
 				{
@@ -914,26 +1192,33 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				{
 					grain.readPhase = grain.phase;
 				}
-				if (lockStartOnWrap)
+				if (legacyExact)
 				{
-					if (stretchMode && !stretchFreezeMode)
-						grain.start -= stretchAnalysisHop * dir;
-					else
-						grain.start = base;
+					grain.start = base + grain.scatterOffset;
+					grain.latchedStart = grain.start;
+				}
+				else if (transportState == 2)
+				{
+					grain.latchedStart = base;
 				}
 			}
 
 			if (stretchMode)
 			{
-				if (grain.start < 0.0)
-					grain.start = 0.0;
-				if (grain.start > maxStart)
-					grain.start = maxStart;
+				if (grain.latchedStart < 0.0)
+					grain.latchedStart = 0.0;
+				if (grain.latchedStart > maxStart)
+					grain.latchedStart = maxStart;
 			}
+
+			if (grain.start < 0.0)
+				grain.start = 0.0;
+			if (grain.start > maxStart)
+				grain.start = maxStart;
 
 			double readCarrier = stretchMode ? grain.readPhase : grain.phase;
 			double readRate = stretchMode ? grainPitchMul : (voice.delta * grainPitchMul);
-			double pos = grain.start + getReadPhaseForMode(getTimelinePhaseForRead(readCarrier, timeInvariant, readRate), pitchState, grainPitchMul);
+			double pos = grain.start + getReadPhaseForMode(getTimelinePhaseForRead(readCarrier, timeInvariant, readRate), readState, grainPitchMul);
 			if (pos < 0.0) pos = 0.0;
 			if (pos >= audioFile.numSamples - 1.0)
 				pos = audioFile.numSamples - 2.0;
@@ -946,12 +1231,21 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double panSlot = panOrderIndex(i, g);
 			double normPan = ((panSlot - center) * invDenom);
 			double pan = panSpread * normPan * 2.0;
+			double wrapGain = 1.0;
+			if (grain.wrapFade > 0.0)
+			{
+				wrapGain = 1.0 - grain.wrapFade;
+				double fadeDec = (sampleRate > 0.0) ? (1.0 / (0.01 * sampleRate)) : 1.0;
+				grain.wrapFade -= fadeDec;
+				if (grain.wrapFade < 0.0)
+					grain.wrapFade = 0.0;
+			}
 
-			Lsum += monoL * w * (0.5 * (1.0 - pan)) * weight;
-			Rsum += monoR * w * (0.5 * (1.0 + pan)) * weight;
+			Lsum += monoL * w * (0.5 * (1.0 - pan)) * weight * wrapGain;
+			Rsum += monoR * w * (0.5 * (1.0 + pan)) * weight * wrapGain;
 		}
 
-		double diffusion = isStackMode ? clamp01(phaseScatter) : 0.0;
+		double diffusion = 0.0;
 		if (diffusion > 0.0001)
 		{
 			double a1 = 0.08 + 0.62 * diffusion;
@@ -1000,13 +1294,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double panSpread = 0.0;
 	double pitchSpread = 0.0;
 	double pitchSyncInput = 0.0;
-	double pitchMode = 0.0;
-	double formantRatioSmoothed = 1.0;
+	double pitchMode = 1.0;
 	double maxGrainsValue = 4.0;
-	double scrubMode = 0.0;
+	double scrubMode = 1.0;
 	double scrubBlend = 0.0;
 	double directionMode = 0.0;
 	double phaseScatter = 0.0;
+	double transportMode = 1.0;
+	double readMode = 1.0;
 };
 
 } // namespace project

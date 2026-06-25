@@ -6651,6 +6651,9 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn_fin.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\test_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\track_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>

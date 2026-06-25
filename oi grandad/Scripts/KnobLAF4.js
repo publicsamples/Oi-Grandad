@@ -107,13 +107,7 @@ for (i = 0; i < 4; i++)
 
 } 
 
-const var pitchoffset =[];
 
-for (i = 0; i < 4; i++)
-{
-    pitchoffset[i] = Content.getComponent("pitchoffset"+(i+1)).setLocalLookAndFeel(KnobLaf4);
-
-} 
 
 const var GrainDir =[];
 

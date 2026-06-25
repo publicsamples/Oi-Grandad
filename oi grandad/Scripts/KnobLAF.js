@@ -103,13 +103,6 @@ for (i = 0; i < 4; i++)
 
 }  	
 
-const var Window =[];
-
-for (i = 0; i < 4; i++)
-{
-    Window[i] = Content.getComponent("Window"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-}  	
 
 const var grainsize =[];
 
@@ -256,13 +249,6 @@ LAF_Button.registerFunction("drawToggleButton", function(g, obj)
 ///////////////// BUTTON DEFINITION ///////////////// 
 
 
-const var winsync =[];
-
-for (i = 0; i < 4; i++)
-{
-    winsync[i] = Content.getComponent("winsync"+(i+1)).setLocalLookAndFeel(LAF_Button);
-
-}
 
 const var GrainSync =[];
 

@@ -247,6 +247,7 @@
 		72D01260BD14ECC4C80330EE /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = /Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_data_structures; sourceTree = "<absolute>"; };
 		73B2F61471ABDDEB49EC2EEA /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = /Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_gui_basics; sourceTree = "<absolute>"; };
 		73F096A409E9A8157F7491DA /* include_hi_rlottie_24.cpp */ /* include_hi_rlottie_24.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_rlottie_24.cpp; path = ../../JuceLibraryCode/include_hi_rlottie_24.cpp; sourceTree = SOURCE_ROOT; };
+		74991200F896B9B1459D699A /* test_networkdata.h */ /* test_networkdata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = test_networkdata.h; path = ../../../AdditionalSourceCode/nodes/test_networkdata.h; sourceTree = SOURCE_ROOT; };
 		7564AA956F39DA9832EB1915 /* include_hi_rlottie_7.cpp */ /* include_hi_rlottie_7.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_rlottie_7.cpp; path = ../../JuceLibraryCode/include_hi_rlottie_7.cpp; sourceTree = SOURCE_ROOT; };
 		7702C5F87A739905F2A7420C /* include_hi_loris_36.cpp */ /* include_hi_loris_36.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_loris_36.cpp; path = ../../JuceLibraryCode/include_hi_loris_36.cpp; sourceTree = SOURCE_ROOT; };
 		777E26C2504610BD338DE7A7 /* include_hi_loris_7.cpp */ /* include_hi_loris_7.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_hi_loris_7.cpp; path = ../../JuceLibraryCode/include_hi_loris_7.cpp; sourceTree = SOURCE_ROOT; };
@@ -404,7 +405,7 @@
 				A17477BAF36B2E5E9B2D7BE8,
 				2AF52B3774EB3E0F56F38808,
 				375D2628F72A796397A4AFAF,
-				63CC9425E8AA702987A26E32,
+				E3CF085108884A32D0F8AC1D,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -598,7 +599,7 @@
 			name = "JUCE Library Code";
 			sourceTree = "<group>";
 		};
-		63CC9425E8AA702987A26E32 /* nodes */ = {
+		E3CF085108884A32D0F8AC1D /* nodes */ = {
 			isa = PBXGroup;
 			children = (
 				14B6050A1F860A16398D4FE9,
@@ -616,6 +617,7 @@
 				931CC38C8469B9F70F314E2A,
 				92AFD5FE1960558B186B8D12,
 				E9187C5E90A8D6734E422047,
+				74991200F896B9B1459D699A,
 				5D85CBD55CD163E59A6684C1,
 				4C5A6B08496ED13F01B6F5BB,
 				6337C72A5D77760C465C4A87,
@@ -982,8 +984,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.4.1",
-					"JUCE_APP_VERSION_HEX=0x20401",
+					"JUCE_APP_VERSION=2.4.2",
+					"JUCE_APP_VERSION_HEX=0x20402",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -1041,8 +1043,8 @@
 					"HISE_MACROS_ARE_PLUGIN_PARAMETERS=1",
 					"HISE_NUM_MACROS=8",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=2.4.1",
-					"JUCE_APP_VERSION_HEX=0x20401",
+					"JUCE_APP_VERSION=2.4.2",
+					"JUCE_APP_VERSION_HEX=0x20402",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",

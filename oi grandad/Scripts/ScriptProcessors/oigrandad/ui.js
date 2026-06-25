@@ -11,6 +11,7 @@ const var modQuality = Content.getComponent("modQuality");
 
 const var modBlockSizes = [16, 32, 64, 128, 256, 512];
 
+
 modQuality.set("items", "16 samples\n32 samples\n64 samples\n128 samples\n256 samples\n512 samples");
 modQuality.setValue(3); // 64 samples as default selection
 modQuality.changed();
@@ -26,7 +27,7 @@ inline function onmodQualityControl(component, value)
 
 modQuality.setControlCallback(onmodQualityControl);
 
-const var defaultRef = "{PROJECT_FOLDER}OGInit.aif";
+const var defaultRef = "{PROJECT_FOLDER}OGInit.wav";
 
 const var g1 = Synth.getAudioSampleProcessor("Granular1");
 const var g2 = Synth.getAudioSampleProcessor("Granular2");

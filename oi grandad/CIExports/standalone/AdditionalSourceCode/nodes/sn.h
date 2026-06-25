@@ -3597,6 +3597,10 @@ struct cable_table4_t_data
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.0189174f, 0.125897f, 0.232877f, 0.339856f, 0.446837f,
+		0.553816f, 0.660796f, 0.767776f, 0.874756f, 0.981735f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 0.912497f, 0.774951f,
+		0.637406f, 0.49986f, 0.362315f, 0.224769f, 0.0872245f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
@@ -3608,64 +3612,60 @@ struct cable_table4_t_data
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
-		0.f, 0.f, 0.f, 0.f, 0.f, 0.00354689f,
-		0.00956458f, 0.0155822f, 0.0215998f, 0.0276173f, 0.033635f, 0.0396526f,
-		0.0456702f, 0.0516878f, 0.0577055f, 0.0637231f, 0.0697407f, 0.0757583f,
-		0.081776f, 0.0877935f, 0.0938111f, 0.0998287f, 0.105846f, 0.111864f,
-		0.117882f, 0.123899f, 0.129917f, 0.135934f, 0.141952f, 0.14797f,
-		0.153987f, 0.160005f, 0.166022f, 0.17204f, 0.178058f, 0.184075f,
-		0.190093f, 0.19611f, 0.202128f, 0.208146f, 0.214163f, 0.220181f,
-		0.226199f, 0.232216f, 0.238234f, 0.244251f, 0.250269f, 0.256287f,
-		0.262304f, 0.268322f, 0.27434f, 0.280357f, 0.286375f, 0.292392f,
-		0.29841f, 0.304428f, 0.310445f, 0.316463f, 0.32248f, 0.328498f,
-		0.334516f, 0.340533f, 0.346551f, 0.352569f, 0.358586f, 0.364604f,
-		0.370621f, 0.376639f, 0.382656f, 0.388674f, 0.394692f, 0.400709f,
-		0.406727f, 0.412745f, 0.418762f, 0.42478f, 0.430797f, 0.436815f,
-		0.442833f, 0.44885f, 0.454868f, 0.460885f, 0.466903f, 0.472921f,
-		0.478938f, 0.484956f, 0.490974f, 0.496991f, 0.503009f, 0.509026f,
-		0.515044f, 0.521061f, 0.527079f, 0.533097f, 0.539114f, 0.545132f,
-		0.55115f, 0.557167f, 0.563185f, 0.569202f, 0.57522f, 0.581238f,
-		0.587255f, 0.593273f, 0.599291f, 0.605308f, 0.611326f, 0.617343f,
-		0.623361f, 0.629379f, 0.635396f, 0.641414f, 0.647431f, 0.653449f,
-		0.659467f, 0.665484f, 0.671502f, 0.67752f, 0.683537f, 0.689555f,
-		0.695572f, 0.70159f, 0.707608f, 0.713625f, 0.719643f, 0.72566f,
-		0.731678f, 0.737696f, 0.743713f, 0.749731f, 0.755748f, 0.761766f,
-		0.767784f, 0.773801f, 0.779819f, 0.785837f, 0.791854f, 0.797872f,
-		0.803889f, 0.809907f, 0.815925f, 0.821942f, 0.82796f, 0.833977f,
-		0.839995f, 0.846013f, 0.85203f, 0.858048f, 0.864066f, 0.870083f,
-		0.876101f, 0.882118f, 0.888136f, 0.894153f, 0.900171f, 0.906189f,
-		0.912206f, 0.918224f, 0.924242f, 0.930259f, 0.936277f, 0.942294f,
-		0.948312f, 0.95433f, 0.960347f, 0.966365f, 0.972382f, 0.9784f,
-		0.984418f, 0.990435f, 0.996453f, 0.997619f, 0.991819f, 0.986018f,
-		0.980218f, 0.974418f, 0.968618f, 0.962818f, 0.957018f, 0.951218f,
-		0.945418f, 0.939618f, 0.933818f, 0.928017f, 0.922217f, 0.916417f,
-		0.910617f, 0.904817f, 0.899017f, 0.893217f, 0.887417f, 0.881617f,
-		0.875816f, 0.870016f, 0.864216f, 0.858416f, 0.852616f, 0.846816f,
-		0.841016f, 0.835216f, 0.829416f, 0.823615f, 0.817815f, 0.812015f,
-		0.806215f, 0.800415f, 0.794615f, 0.788815f, 0.783015f, 0.777215f,
-		0.771415f, 0.765614f, 0.759814f, 0.754014f, 0.748214f, 0.742414f,
-		0.736614f, 0.730814f, 0.725014f, 0.719214f, 0.713413f, 0.707613f,
-		0.701813f, 0.696013f, 0.690213f, 0.684413f, 0.678613f, 0.672813f,
-		0.667012f, 0.661212f, 0.655412f, 0.649612f, 0.643812f, 0.638012f,
-		0.632212f, 0.626412f, 0.620612f, 0.614812f, 0.609011f, 0.603211f,
-		0.597411f, 0.591611f, 0.585811f, 0.580011f, 0.574211f, 0.568411f,
-		0.562611f, 0.55681f, 0.55101f, 0.54521f, 0.53941f, 0.53361f,
-		0.52781f, 0.52201f, 0.51621f, 0.51041f, 0.504609f, 0.498809f,
-		0.493009f, 0.487209f, 0.481409f, 0.475609f, 0.469809f, 0.464009f,
-		0.458209f, 0.452409f, 0.446608f, 0.440808f, 0.435008f, 0.429208f,
-		0.423408f, 0.417608f, 0.411808f, 0.406008f, 0.400208f, 0.394408f,
-		0.388607f, 0.382807f, 0.377007f, 0.371207f, 0.365407f, 0.359607f,
-		0.353807f, 0.348007f, 0.342206f, 0.336406f, 0.330606f, 0.324806f,
-		0.319006f, 0.313206f, 0.307406f, 0.301606f, 0.295806f, 0.290005f,
-		0.284205f, 0.278405f, 0.272605f, 0.266805f, 0.261005f, 0.255205f,
-		0.249405f, 0.243605f, 0.237804f, 0.232004f, 0.226204f, 0.220404f,
-		0.214604f, 0.208804f, 0.203004f, 0.197204f, 0.191404f, 0.185603f,
-		0.179803f, 0.174003f, 0.168203f, 0.162403f, 0.156603f, 0.150803f,
-		0.145003f, 0.139203f, 0.133403f, 0.127602f, 0.121802f, 0.116002f,
-		0.110202f, 0.104402f, 0.0986019f, 0.0928017f, 0.0870017f, 0.0812016f,
-		0.0754015f, 0.0696014f, 0.0638012f, 0.0580011f, 0.052201f, 0.0464009f,
-		0.0406008f, 0.0348008f, 0.0290006f, 0.0232006f, 0.0174003f, 0.0116002f,
-		0.00580013f, 0.f
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f
 	};
 };
 
@@ -3946,16 +3946,25 @@ namespace sn_t_parameters
 
 DECLARE_PARAMETER_RANGE_STEP(PitchMode_InputRange, 
                              1., 
-                             4., 
+                             10., 
                              1.);
+DECLARE_PARAMETER_RANGE_STEP(PitchMode_1Range, 
+                             1., 
+                             10., 
+                             1.);
+
+template <int NV>
+using PitchMode_1 = parameter::from0To1<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 
+                                        6, 
+                                        PitchMode_1Range>;
 
 template <int NV>
 using PitchMode = parameter::chain<PitchMode_InputRange, 
                                    parameter::plain<sn_impl::cable_table4_t<NV>, 0>, 
-                                   parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 6>>;
+                                   PitchMode_1<NV>>;
 
 DECLARE_PARAMETER_RANGE_STEP(MaxGrains_InputRange, 
-                             4., 
+                             1., 
                              32., 
                              1.);
 DECLARE_PARAMETER_RANGE(MaxGrains_0Range, 
@@ -3978,15 +3987,6 @@ DECLARE_PARAMETER_RANGE_STEP(scrubMode_InputRange,
 template <int NV>
 using scrubMode = parameter::chain<scrubMode_InputRange, 
                                    parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 9>>;
-
-DECLARE_PARAMETER_RANGE_STEP(reverse_InputRange, 
-                             1., 
-                             3., 
-                             1.);
-
-template <int NV>
-using reverse = parameter::chain<reverse_InputRange, 
-                                 parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 11>>;
 
 DECLARE_PARAMETER_RANGE_STEP(PositionSrc_InputRange, 
                              1., 
@@ -4273,6 +4273,9 @@ template <int NV>
 using scrubBlen = parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 
                                    10>;
 template <int NV>
+using reverse = parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 
+                                 11>;
+template <int NV>
 using Position = parameter::plain<sn_impl::pma_t<NV>, 2>;
 template <int NV>
 using PositionMod = parameter::plain<sn_impl::pma_t<NV>, 1>;
@@ -4341,6 +4344,12 @@ using ScatterMod = parameter::plain<sn_impl::pma22_t<NV>, 1>;
 using ScatterTempo = PostMode;
 using ScatterDiv = PostMode;
 template <int NV>
+using TransportMode = parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 
+                                       16>;
+template <int NV>
+using ReadMode = parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 
+                                  18>;
+template <int NV>
 using sn_t_plist = parameter::list<PitchMode<NV>, 
                                    MaxGrains<NV>, 
                                    scrubMode<NV>, 
@@ -4408,7 +4417,9 @@ using sn_t_plist = parameter::list<PitchMode<NV>,
                                    ScatterMod<NV>, 
                                    ScatterSrc<NV>, 
                                    ScatterTempo, 
-                                   ScatterDiv>;
+                                   ScatterDiv, 
+                                   TransportMode<NV>, 
+                                   ReadMode<NV>>;
 }
 
 template <int NV>
@@ -4437,35 +4448,35 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		
 		SNEX_METADATA_ID(sn);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(1224)
+		SNEX_METADATA_ENCODED_PARAMETERS(1262)
 		{
 			0x005C, 0x0000, 0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0065, 
-            0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 0x4000, 0x0040, 0x8000, 
+            0x0000, 0x8000, 0x003F, 0x2000, 0x0041, 0x1000, 0x0041, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x0100, 0x0000, 0x4D00, 0x7861, 0x7247, 
-            0x6961, 0x736E, 0x0000, 0x0000, 0x4080, 0x0000, 0x4200, 0x0000, 
-            0x4080, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0002, 0x0000, 
+            0x6961, 0x736E, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4200, 0x0000, 
+            0x4100, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0002, 0x0000, 
             0x6373, 0x7572, 0x4D62, 0x646F, 0x0065, 0x0000, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0300, 0x0000, 0x7300, 0x7263, 0x6275, 0x6C42, 0x6E65, 0x0000, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x005C, 0x0004, 0x0000, 0x6572, 0x6576, 0x7372, 
-            0x0065, 0x0000, 0x8000, 0x003F, 0x4000, 0x0040, 0x8000, 0x003F, 
+            0x0065, 0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x0500, 0x0000, 0x5000, 0x736F, 
-            0x7469, 0x6F69, 0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 
+            0x7469, 0x6F69, 0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0xAE3F, 
+            0xE147, 0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 
             0x5000, 0x736F, 0x7469, 0x6F69, 0x4D6E, 0x646F, 0x0000, 0x0000, 
-            0xBF80, 0x0000, 0x3F80, 0xE148, 0x3F7A, 0x0000, 0x3F80, 0x0000, 
+            0xBF80, 0x0000, 0x3F80, 0x1EB8, 0x3E85, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x0007, 0x0000, 0x6F50, 0x6973, 0x6974, 0x6E6F, 
-            0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x0000, 
-            0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0800, 0x0000, 0x5000, 
-            0x736F, 0x0032, 0x0000, 0x0000, 0x0000, 0x8000, 0x0A3F, 0xA3D7, 
-            0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0900, 0x0000, 0x5000, 
+            0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x0800, 0x0000, 0x5000, 
+            0x736F, 0x0032, 0x0000, 0x0000, 0x0000, 0x8000, 0xF63F, 0x1C28, 
+            0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0900, 0x0000, 0x5000, 
             0x736F, 0x4D32, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
-            0x0A3D, 0x3F17, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000A, 
+            0x28F6, 0x3F1C, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000A, 
             0x0000, 0x6F50, 0x3273, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x0041, 0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x8000, 0x0041, 0x5000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x0B00, 0x0000, 0x5000, 0x736F, 0x0033, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x8F3F, 0xF5C2, 0x003D, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x8000, 0x523F, 0x1EB8, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x0C00, 0x0000, 0x5000, 0x736F, 0x4D33, 0x646F, 0x0000, 0x0000, 
             0xBF80, 0x0000, 0x3F80, 0xC28F, 0x3D75, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x000D, 0x0000, 0x6F50, 0x3373, 0x7253, 0x0063, 
@@ -4478,20 +4489,20 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x3473, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0xC000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1100, 0x0000, 
             0x5000, 0x7469, 0x6863, 0x0000, 0x0000, 0xC140, 0x0000, 0x4140, 
-            0x6664, 0xBF66, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0012, 
+            0x0000, 0x4140, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0012, 
             0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0013, 0x0000, 0x6950, 0x6374, 0x5368, 0x6372, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x0014, 0x0000, 0x6544, 0x736E, 0x0065, 
-            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x713F, 0x0A3D, 0x003F, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x1500, 0x0000, 0x4400, 0x6E65, 0x6573, 
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1600, 0x0000, 0x4400, 
             0x6E65, 0x6573, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1700, 
+            0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1700, 
             0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x0065, 0x0000, 0x0000, 
-            0x0000, 0x8000, 0xCF3F, 0x64F7, 0x003F, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0xF43F, 0x08FD, 0x003F, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x1800, 0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x5365, 
             0x6372, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4040, 
             0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0019, 0x0000, 0x6150, 
@@ -4503,21 +4514,21 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x6472, 0x7273, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0x8000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1C00, 0x0000, 
             0x5000, 0x7469, 0x6863, 0x7053, 0x6472, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x28F6, 0x3F5C, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x001D, 0x0000, 0x6950, 0x6374, 0x5368, 0x7270, 0x4D64, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001E, 0x0000, 0x6950, 
             0x6374, 0x5368, 0x7270, 0x5364, 0x6372, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 0x0000, 0x3F80, 
+            0x0000, 0x4180, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x001F, 0x0000, 0x7247, 0x6961, 0x536E, 0x7A69, 0x0065, 
-            0x0000, 0xA000, 0x0040, 0x7A00, 0x0044, 0xC000, 0x0041, 0x8000, 
+            0x0000, 0xA000, 0x0040, 0x7A00, 0x0044, 0x07C0, 0x0044, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x2000, 0x0000, 0x4700, 0x6172, 0x6E69, 
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2100, 0x0000, 0x4700, 
             0x6172, 0x6E69, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0x5000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2200, 
+            0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2200, 
             0x0000, 0x4700, 0x6172, 0x6E69, 0x6554, 0x706D, 0x006F, 0x0000, 
-            0x0000, 0x0000, 0x9000, 0x0041, 0x9000, 0x0041, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x9000, 0x0041, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x2300, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6944, 
             0x0076, 0x0000, 0x8000, 0x003F, 0x0000, 0x0042, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x2400, 0x0000, 0x4700, 0x6172, 
@@ -4526,17 +4537,17 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x6957, 0x536E, 0x6168, 0x6570, 0x6F4D, 0x0064, 0x0000, 
             0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x2600, 0x0000, 0x5200, 0x7365, 0x4D6F, 0x7869, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x005C, 0x0027, 0x0000, 0x6552, 0x6F73, 
             0x694D, 0x4D78, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0028, 
             0x0000, 0x6552, 0x6F73, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x0041, 0x5000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x2900, 0x0000, 0x5200, 0x7365, 0x6950, 0x6374, 0x0068, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x713F, 0x0A3D, 0x003F, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x8000, 0xB83F, 0x051E, 0x003F, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x2A00, 0x0000, 0x5200, 0x7365, 0x5070, 0x7469, 
-            0x6863, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2B00, 0x0000, 
+            0x6863, 0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x853F, 
+            0xD1EB, 0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2B00, 0x0000, 
             0x5200, 0x7365, 0x6950, 0x6374, 0x5368, 0x6372, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x005C, 0x002C, 0x0000, 0x6552, 0x4C73, 0x0070, 0x0000, 
@@ -4545,7 +4556,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x5C00, 0x2E00, 0x0000, 0x5200, 0x7365, 
             0x704C, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
-            0x5000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2F00, 0x0000, 
+            0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2F00, 0x0000, 
             0x5000, 0x736F, 0x4D74, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 
             0xA000, 0x0040, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x3000, 0x0000, 0x4700, 0x6172, 0x6E69, 0x754F, 0x0074, 0x0000, 
@@ -4553,12 +4564,12 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x8000, 0x5C3F, 0x3100, 0x0000, 0x5200, 0x7365, 0x754F, 0x0074, 
             0x0000, 0x0000, 0x0000, 0x4000, 0x0040, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x8000, 0x5C3F, 0x3200, 0x0000, 0x4700, 0x6961, 0x4D6E, 
-            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0xD70A, 0xBC23, 
+            0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0033, 0x0000, 0x6167, 
             0x6E69, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 0x0041, 
             0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3400, 0x0000, 
-            0x5600, 0x6C6F, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x70A4, 
-            0x3F3D, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0035, 0x0000, 
+            0x5600, 0x6C6F, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0035, 0x0000, 
             0x6150, 0x6E72, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 0xD70A, 
             0x3C23, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0036, 0x0000, 
             0x6150, 0x4D6E, 0x646F, 0x0000, 0x0000, 0xBF80, 0x0000, 0x3F80, 
@@ -4568,11 +4579,11 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0038, 0x0000, 0x6D46, 0x7869, 0x0031, 0x0000, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 
             0x3900, 0x0000, 0x4600, 0x696D, 0x3278, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x8000, 0x3F7E, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x003A, 0x0000, 0x6566, 0x6465, 0x0000, 0x0000, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x8000, 0x3F7E, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x003B, 0x0000, 0x6950, 0x6374, 0x5468, 0x6D65, 0x6F70, 
-            0x0000, 0x0000, 0x0000, 0x0000, 0x4190, 0x0000, 0x40C0, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x0000, 0x4190, 0x0000, 0x4160, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x005C, 0x003C, 0x0000, 0x6950, 0x6374, 
             0x4468, 0x7669, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003D, 0x0000, 
@@ -4581,7 +4592,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x4A00, 0x7469, 0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x003F, 0x0000, 0x6353, 0x7461, 0x6574, 0x0072, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 
+            0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 
             0x0000, 0x5C00, 0x4000, 0x0000, 0x5300, 0x6163, 0x7474, 0x7265, 
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x4100, 0x0000, 0x5300, 
@@ -4591,7 +4602,12 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 0xE000, 0x0040, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x4300, 0x0000, 0x5300, 0x6163, 
             0x7474, 0x7265, 0x6944, 0x0076, 0x0000, 0x8000, 0x003F, 0x8000, 
-            0x0041, 0xE000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000
+            0x0041, 0xE000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4400, 
+            0x0000, 0x5400, 0x6172, 0x736E, 0x6F70, 0x7472, 0x6F4D, 0x6564, 
+            0x0000, 0x0000, 0x3F80, 0x0000, 0x40C0, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000, 0x3F80, 0x005C, 0x0045, 0x0000, 0x6552, 0x6461, 
+            0x6F4D, 0x6564, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4040, 0x0000, 
+            0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(2)
 		{
@@ -5725,6 +5741,10 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->getParameterT(64).connectT(0, pma22); // ScatterMod -> pma22::Multiply
 		
 		this->getParameterT(65).connectT(0, branch21); // ScatterSrc -> branch21::Index
+		
+		this->getParameterT(68).connectT(0, granular_player_stepquant_density_hybrid_native); // TransportMode -> granular_player_stepquant_density_hybrid_native::TransportMode
+		
+		this->getParameterT(69).connectT(0, granular_player_stepquant_density_hybrid_native); // ReadMode -> granular_player_stepquant_density_hybrid_native::ReadMode
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -7385,22 +7405,25 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // input_toggle::Value1 is automated
 		; // input_toggle::Value2 is automated
 		
-		; // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
-		; // granular_player_stepquant_density_hybrid_native::Scrub is automated
-		; // granular_player_stepquant_density_hybrid_native::GrainMs is automated
-		; // granular_player_stepquant_density_hybrid_native::Density is automated
-		; // granular_player_stepquant_density_hybrid_native::WindowShape is automated
-		; // granular_player_stepquant_density_hybrid_native::PanSpread is automated
-		; // granular_player_stepquant_density_hybrid_native::PitchMode is automated
-		; // granular_player_stepquant_density_hybrid_native::PitchSpreadOrSync is automated
-		; // granular_player_stepquant_density_hybrid_native::MaxGrains is automated
-		; // granular_player_stepquant_density_hybrid_native::ScrubMode is automated
-		; // granular_player_stepquant_density_hybrid_native::ScrubBlend is automated
-		; // granular_player_stepquant_density_hybrid_native::DirectionMode is automated
-		; // granular_player_stepquant_density_hybrid_native::PhaseScatter is automated
-		; // granular_player_stepquant_density_hybrid_native::ScrubB is automated
-		; // granular_player_stepquant_density_hybrid_native::ScrubC is automated
-		; // granular_player_stepquant_density_hybrid_native::ScrubD is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::Scrub is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::GrainMs is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::Density is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::WindowShape is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::PanSpread is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::PitchMode is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::PitchSpreadOrSync is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::MaxGrains is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubMode is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubBlend is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::DirectionMode is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::PhaseScatter is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubB is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubC is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubD is automated
+		;                                                                           // granular_player_stepquant_density_hybrid_native::TransportMode is automated
+		granular_player_stepquant_density_hybrid_native.setParameterT(17, 0.41149); // project::granular_player_stepquant_density_hybrid_native::WrapMode
+		;                                                                           // granular_player_stepquant_density_hybrid_native::ReadMode is automated
 		
 		; // branch2::Index is automated
 		
@@ -7556,74 +7579,76 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		
 		; // global_cable22::Value is automated
 		
-		this->setParameterT(0, 3.);
-		this->setParameterT(1, 4.);
+		this->setParameterT(0, 9.);
+		this->setParameterT(1, 8.);
 		this->setParameterT(2, 0.);
 		this->setParameterT(3, 0.);
 		this->setParameterT(4, 1.);
-		this->setParameterT(5, 0.);
-		this->setParameterT(6, 0.98);
-		this->setParameterT(7, 2.);
-		this->setParameterT(8, 0.08);
-		this->setParameterT(9, 0.59);
-		this->setParameterT(10, 10.);
-		this->setParameterT(11, 0.12);
+		this->setParameterT(5, 0.44);
+		this->setParameterT(6, 0.26);
+		this->setParameterT(7, 1.);
+		this->setParameterT(8, 0.61);
+		this->setParameterT(9, 0.61);
+		this->setParameterT(10, 13.);
+		this->setParameterT(11, 0.62);
 		this->setParameterT(12, 0.06);
 		this->setParameterT(13, 9.);
 		this->setParameterT(14, 0.74);
 		this->setParameterT(15, 0.);
 		this->setParameterT(16, 6.);
-		this->setParameterT(17, -0.9);
+		this->setParameterT(17, 12.);
 		this->setParameterT(18, 0.);
 		this->setParameterT(19, 13.);
-		this->setParameterT(20, 0.);
+		this->setParameterT(20, 0.54);
 		this->setParameterT(21, 0.);
-		this->setParameterT(22, 3.);
-		this->setParameterT(23, 0.894406);
+		this->setParameterT(22, 1.);
+		this->setParameterT(23, 0.535125);
 		this->setParameterT(24, 3.);
 		this->setParameterT(25, 1.);
 		this->setParameterT(26, 0.);
 		this->setParameterT(27, 16.);
-		this->setParameterT(28, 0.);
-		this->setParameterT(29, 1.);
-		this->setParameterT(30, 13.);
-		this->setParameterT(31, 24.);
+		this->setParameterT(28, 0.86);
+		this->setParameterT(29, 0.);
+		this->setParameterT(30, 16.);
+		this->setParameterT(31, 543.);
 		this->setParameterT(32, 0.);
-		this->setParameterT(33, 13.);
-		this->setParameterT(34, 18.);
+		this->setParameterT(33, 1.);
+		this->setParameterT(34, 0.);
 		this->setParameterT(35, 1.);
 		this->setParameterT(36, 0.);
 		this->setParameterT(37, 0.);
-		this->setParameterT(38, 1.);
+		this->setParameterT(38, 0.);
 		this->setParameterT(39, 0.);
 		this->setParameterT(40, 13.);
-		this->setParameterT(41, 0.54);
-		this->setParameterT(42, 0.);
+		this->setParameterT(41, 0.52);
+		this->setParameterT(42, 0.41);
 		this->setParameterT(43, 13.);
 		this->setParameterT(44, 0.793219);
 		this->setParameterT(45, 0.);
-		this->setParameterT(46, 13.);
+		this->setParameterT(46, 10.);
 		this->setParameterT(47, 5.);
 		this->setParameterT(48, 0.);
 		this->setParameterT(49, 0.);
-		this->setParameterT(50, -0.01);
+		this->setParameterT(50, 0.);
 		this->setParameterT(51, 4.);
-		this->setParameterT(52, 0.74);
+		this->setParameterT(52, 1.);
 		this->setParameterT(53, 0.01);
 		this->setParameterT(54, 0.);
 		this->setParameterT(55, 4.);
 		this->setParameterT(56, 0.);
-		this->setParameterT(57, 1.);
-		this->setParameterT(58, 1.);
-		this->setParameterT(59, 6.);
+		this->setParameterT(57, 0.994141);
+		this->setParameterT(58, 0.994141);
+		this->setParameterT(59, 14.);
 		this->setParameterT(60, 1.);
 		this->setParameterT(61, 2.);
 		this->setParameterT(62, 0.);
-		this->setParameterT(63, 0.);
+		this->setParameterT(63, 1.);
 		this->setParameterT(64, 0.);
 		this->setParameterT(65, 6.);
 		this->setParameterT(66, 7.);
 		this->setParameterT(67, 7.);
+		this->setParameterT(68, 1.);
+		this->setParameterT(69, 1.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
