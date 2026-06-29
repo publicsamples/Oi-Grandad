@@ -14,9 +14,9 @@
             <Control type="ScriptSlider" id="delmod1" value="1.0"/>
             <Control type="ScriptComboBox" id="delmodsel1" value="13.0"/>
             <Control type="ScriptSlider" id="PolyMix1" value="1.0"/>
-            <Control type="ScriptSlider" id="PolyMetaB1" value="1.0"/>
+            <Control type="ScriptSlider" id="PolyMetaB1" value="0.8971406221389771"/>
             <Control type="ScriptComboBox" id="redmodsel1" value="13.0"/>
-            <Control type="ScriptSlider" id="PolyMeta1" value="0.3799999952316284"/>
+            <Control type="ScriptSlider" id="PolyMeta1" value="0.6499999761581421"/>
             <Control type="ScriptComboBox" id="delmodsel5" value="13.0"/>
             <Control type="ScriptSlider" id="delmod5" value="0.0"/>
             <Control type="ScriptComboBox" id="ResMode1" value="2.0"/>
@@ -48,12 +48,12 @@
             <Control type="ScriptComboBox" id="StgSel1" value="1.0"/>
             <Control type="ScriptSlider" id="detmod" value="0.0"/>
             <Control type="ScriptComboBox" id="detmodsel" value="16.0"/>
-            <Control type="ScriptSlider" id="det" value="1.0"/>
+            <Control type="ScriptSlider" id="det" value="0.9100000262260437"/>
             <Control type="ScriptSlider" id="pmod1" value="0.0"/>
             <Control type="ScriptComboBox" id="PmodSel1" value="13.0"/>
             <Control type="ScriptSlider" id="pitch" value="1.788139343261719e-7"/>
             <Control type="ScriptSlider" id="pitch5" value="0.0"/>
-            <Control type="ScriptComboBox" id="PitchMode1" value="8.0"/>
+            <Control type="ScriptComboBox" id="PitchMode1" value="7.0"/>
             <Control type="ScriptSlider" id="PitchDiv1" value="1.0"/>
             <Control type="ScriptSlider" id="PitchTempo1" value="11.0"/>
             <Control type="ScriptSlider" id="grainsize1" value="324.0"/>
@@ -61,15 +61,15 @@
             <Control type="ScriptComboBox" id="GrainModSel1" value="13.0"/>
             <Control type="ScriptButton" id="GrainSync1" value="1.0"/>
             <Control type="ScriptSlider" id="graindiv1" value="1.0"/>
-            <Control type="ScriptSlider" id="graintempo1" value="7.0"/>
-            <Control type="ScriptSlider" id="GrainDir1" value="2.0"/>
+            <Control type="ScriptSlider" id="graintempo1" value="9.0"/>
+            <Control type="ScriptSlider" id="GrainDir1" value="1.0"/>
             <Control type="ScriptSlider" id="densemod" value="1.0"/>
             <Control type="ScriptComboBox" id="densemodsel" value="2.0"/>
             <Control type="ScriptSlider" id="Dense1" value="0.0"/>
             <Control type="ScriptPanel" id="VoiceParam5" value="0.0"/>
             <Control type="ScriptSlider" id="spreadmod" value="0.0"/>
             <Control type="ScriptComboBox" id="spreadmodsel" value="2.0"/>
-            <Control type="ScriptSlider" id="spread" value="1.0"/>
+            <Control type="ScriptSlider" id="spread" value="0.8600000143051147"/>
             <Control type="ScriptSlider" id="XfMod" value="0.0"/>
             <Control type="ScriptComboBox" id="XfModSrc" value="0.0"/>
             <Control type="ScriptSlider" id="Xf1" value="0.0"/>
@@ -80,7 +80,7 @@
             <Control type="ScriptSlider" id="Jitter1" value="0.05000000074505806"/>
             <Control type="ScriptSlider" id="winmod1" value="0.0"/>
             <Control type="ScriptComboBox" id="winmodsrc1" value="2.0"/>
-            <Control type="ScriptSlider" id="WindowTempo1" value="0.5908594131469727"/>
+            <Control type="ScriptSlider" id="WindowTempo1" value="0.4616875350475311"/>
             <Control type="ScriptButton" id="PowerBtn1" value="0.0"/>
             <Control type="ScriptSlider" id="delcutmod2" value="0.0"/>
             <Control type="ScriptSlider" id="delmod2" value="0.0"/>
@@ -298,13 +298,13 @@
             <Control type="ScriptSlider" id="delcutmod5" value="0.0"/>
             <Control type="ScriptSlider" id="delmod9" value="0.0"/>
             <Control type="ScriptComboBox" id="delmodsel9" value="2.0"/>
-            <Control type="ScriptSlider" id="PostMix1" value="1.0"/>
-            <Control type="ScriptSlider" id="PostMeta2" value="0.9659101963043213"/>
+            <Control type="ScriptSlider" id="PostMix1" value="0.5299999713897705"/>
+            <Control type="ScriptSlider" id="PostMeta2" value="0.6713007688522339"/>
             <Control type="ScriptComboBox" id="redmodsel5" value="1.0"/>
-            <Control type="ScriptSlider" id="PostMeta1" value="0.5600000023841858"/>
+            <Control type="ScriptSlider" id="PostMeta1" value="0.6899999976158142"/>
             <Control type="ScriptComboBox" id="delmodsel10" value="1.0"/>
             <Control type="ScriptSlider" id="delmod10" value="0.0"/>
-            <Control type="ScriptSlider" id="PostMeta3" value="1.0"/>
+            <Control type="ScriptSlider" id="PostMeta3" value="0.7192812561988831"/>
             <Control type="ScriptComboBox" id="redmodsel6" value="1.0"/>
             <Control type="ScriptSlider" id="delcutmod6" value="0.0"/>
             <Control type="ScriptComboBox" id="PostMode1" value="9.0"/>
@@ -866,7 +866,7 @@
             <Control type="ScriptSlider" id="EnvRel4" value="1.0"/>
             <Control type="ScriptButton" id="EnvLoop4" value="1.0"/>
             <Control type="ScriptComboBox" id="TransportMode" value="1.0"/>
-            <Control type="ScriptComboBox" id="ReadMode" value="1.0"/>
+            <Control type="ScriptComboBox" id="ReadMode" value="2.0"/>
             <Control type="ScriptComboBox" id="modQuality" value="6.0"/>
             <Control type="ScriptComboBox" id="Playback" value="1.0"/>
             <Control type="ScriptSlider" id="Knob7" value="0.0"/>
@@ -877,13 +877,13 @@
             <Control type="ScriptSlider" id="Smooth" value="0.4799999892711639"/>
             <Control type="ScriptButton" id="ClosePreset" value="0.0"/>
             <Control type="ScriptComboBox" id="MidiNote" value="44.0"/>
-            <Control type="ScriptSlider" id="FinVol1" value="0.0"/>
+            <Control type="ScriptSlider" id="FinVol1" value="-7.099998474121094"/>
             <Control type="ScriptSlider" id="FinVol2" value="-100.0"/>
             <Control type="ScriptSlider" id="FinVol3" value="-100.0"/>
             <Control type="ScriptSlider" id="FinVol4" value="-100.0"/>
             <Control type="ScriptSlider" id="MasterVol" value="-0.7999985218048096"/>
-            <Control type="ScriptComboBox" id="VoiceNumber" value="4.0"/>
-            <Control type="ScriptComboBox" id="Poly" value="8.0"/>
+            <Control type="ScriptComboBox" id="VoiceNumber" value="1.0"/>
+            <Control type="ScriptComboBox" id="Poly" value="4.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
         </Processor>
@@ -945,10 +945,10 @@
           </UIData>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="Final1" Bypassed="0" Network="sn_fin"
-                   ResoMix="1.0" ResoMixMod="0.0" ResoSrc="1.0" ResPitch="0.5600000023841858"
-                   RespPitchMod="0.0" ResPitchSrc="2.0" ResLp="0.9659101963043213"
-                   ResLpMod="0.0" ResLpSrc="1.0" delMode="9.0" Meta="1.0" MetaMod="0.0"
-                   MetaSrc="1.0">
+                   ResoMix="0.5299999713897705" ResoMixMod="0.0" ResoSrc="1.0" ResPitch="0.6899999976158142"
+                   RespPitchMod="0.0" ResPitchSrc="2.0" ResLp="0.6713007688522339"
+                   ResLpMod="0.0" ResLpSrc="1.0" delMode="9.0" Meta="0.7192812561988831"
+                   MetaMod="0.0" MetaSrc="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
                          Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
@@ -1438,25 +1438,26 @@
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
     </Processor>
     <Processor Type="HardcodedSynth" ID="Granular1" Bypassed="0" Gain="1.0"
-               Balance="0.0" VoiceLimit="8.0" KillFadeTime="20.0" IconColour="0"
-               Network="sn" PitchMode="8.0" MaxGrains="16.0" scrubMode="0.0"
-               scrubBlen="1.0" reverse="2.0" Position="0.2199999988079071" PositionMod="0.6600000262260437"
+               Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
+               Network="sn" PitchMode="7.0" MaxGrains="16.0" scrubMode="0.0"
+               scrubBlen="1.0" reverse="1.0" Position="0.2199999988079071" PositionMod="0.6600000262260437"
                PositionSrc="1.0" Pos2="0.6100000143051147" Pos2Mod="0.6100000143051147"
                Pos2Src="13.0" Pos3="0.6200000047683716" Pos3Mod="0.05999999865889549"
                Pos3Src="9.0" Pos4="0.7400000095367432" Pos4Mod="0.0" Pos4Src="6.0"
                Pitch="1.788139343261719e-7" PitchMod="0.0" PitchSrc="13.0" Dense="0.0"
-               DenseMod="1.0" DenseSrc="2.0" WinShape="0.5908594131469727" WinShapeSrc="3.0"
-               PanSpread="1.0" PanSpreadMod="0.0" PanSprdsrc="16.0" PitchSprd="1.0"
-               PitchSprdMod="0.0" PitchSprdSrc="16.0" GrainSize="324.0" GrainMod="0.009999999776482582"
-               GrainSrc="13.0" GrainTempo="7.0" GrainDiv="1.0" GrainSync="1.0"
-               WinShapeMod="0.0" ResoMix="1.0" ResoMixMod="0.0" ResoSrc="13.0"
-               ResPitch="0.3799999952316284" RespPitchMod="1.0" ResPitchSrc="13.0"
-               ResLp="1.0" ResLpMod="0.0" ResLpSrc="13.0" PostMode="5.0" GrainOut="0.0"
+               DenseMod="1.0" DenseSrc="2.0" WinShape="0.4616875350475311" WinShapeSrc="3.0"
+               PanSpread="0.8600000143051147" PanSpreadMod="0.0" PanSprdsrc="16.0"
+               PitchSprd="0.9100000262260437" PitchSprdMod="0.0" PitchSprdSrc="16.0"
+               GrainSize="324.0" GrainMod="0.009999999776482582" GrainSrc="13.0"
+               GrainTempo="9.0" GrainDiv="1.0" GrainSync="1.0" WinShapeMod="0.0"
+               ResoMix="1.0" ResoMixMod="0.0" ResoSrc="13.0" ResPitch="0.6499999761581421"
+               RespPitchMod="1.0" ResPitchSrc="13.0" ResLp="0.8971406221389771"
+               ResLpMod="0.0" ResLpSrc="13.0" PostMode="5.0" GrainOut="0.0"
                ResOut="0.0" GainMod="0.0" gainSrc="4.0" Vol="1.0" Parn="0.009999999776482582"
                PanMod="0.0" PanSrc="4.0" Fmix1="0.0" Fmix2="1.0" feed="1.0"
                PitchTempo="11.0" PitchDiv="1.0" delMode="2.0" JitSync="0.0"
                Scatter="0.05000000074505806" ScatterMod="0.0" ScatterSrc="6.0"
-               ScatterTempo="7.0" ScatterDiv="7.0" TransportMode="1.0" ReadMode="1.0">
+               ScatterTempo="7.0" ScatterDiv="7.0" TransportMode="1.0" ReadMode="2.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -1518,8 +1519,8 @@
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain1" Bypassed="0" Gain="0.0" Delay="0.0"
-                       Width="100.0" Balance="0.0" InvertPolarity="0.0">
+            <Processor Type="SimpleGain" ID="Simple Gain1" Bypassed="0" Gain="-7.099998474121094"
+                       Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                   <ChildProcessors/>
@@ -1574,8 +1575,8 @@
         <AudioFile EmbeddedData="{PROJECT_FOLDER}OGInit.wav" MinValue="0" MaxValue="1326506"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="0" Gain="1.0"
-               Balance="0.0" VoiceLimit="8.0" KillFadeTime="20.0" IconColour="0"
+    <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="1" Gain="1.0"
+               Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="sn" PitchMode="1.0" MaxGrains="4.0" scrubMode="0.0"
                scrubBlen="0.0" reverse="3.0" Position="0.0" PositionMod="0.6100000143051147"
                PositionSrc="13.0" Pos2="0.7455828785896301" Pos2Mod="0.0" Pos2Src="5.0"
@@ -1593,7 +1594,7 @@
                PanMod="0.0" PanSrc="1.0" Fmix1="0.300000011920929" Fmix2="0.0"
                feed="0.921221137046814" PitchTempo="10.0" PitchDiv="1.0" delMode="1.0"
                JitSync="0.0" Scatter="0.2906782627105713" ScatterMod="0.0" ScatterSrc="1.0"
-               ScatterTempo="15.0" ScatterDiv="16.0" TransportMode="1.0" ReadMode="1.0">
+               ScatterTempo="15.0" ScatterDiv="16.0" TransportMode="1.0" ReadMode="2.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -1729,8 +1730,8 @@
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="0" Gain="1.0"
-               Balance="0.0" VoiceLimit="8.0" KillFadeTime="20.0" IconColour="0"
+    <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="1" Gain="1.0"
+               Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="sn" PitchMode="3.0" MaxGrains="32.0" scrubMode="3.0"
                scrubBlen="1.0" reverse="1.0" Position="0.2599999904632568" PositionMod="0.05999999865889549"
                PositionSrc="6.0" Pos2="0.8505748510360718" Pos2Mod="-0.5400000214576721"
@@ -1749,7 +1750,7 @@
                PanSrc="1.0" Fmix1="0.9200000166893005" Fmix2="0.0" feed="0.922978937625885"
                PitchTempo="5.0" PitchDiv="2.0" delMode="1.0" JitSync="0.0" Scatter="0.670866072177887"
                ScatterMod="0.0" ScatterSrc="1.0" ScatterTempo="15.0" ScatterDiv="16.0"
-               TransportMode="1.0" ReadMode="1.0">
+               TransportMode="1.0" ReadMode="2.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -1848,8 +1849,8 @@
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular4" Bypassed="0" Gain="1.0"
-               Balance="0.0" VoiceLimit="8.0" KillFadeTime="20.0" IconColour="0"
+    <Processor Type="HardcodedSynth" ID="Granular4" Bypassed="1" Gain="1.0"
+               Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="sn" PitchMode="1.0" MaxGrains="8.0" scrubMode="3.0"
                scrubBlen="0.0" reverse="2.0" Position="0.6630394458770752" PositionMod="0.0"
                PositionSrc="9.0" Pos2="0.2929805219173431" Pos2Mod="0.0" Pos2Src="3.0"
@@ -1868,7 +1869,7 @@
                Parn="0.0" PanMod="0.0" PanSrc="1.0" Fmix1="0.0" Fmix2="0.0"
                feed="0.922978937625885" PitchTempo="18.0" PitchDiv="1.0" delMode="1.0"
                JitSync="0.0" Scatter="0.0" ScatterMod="-1.0" ScatterSrc="1.0"
-               ScatterTempo="15.0" ScatterDiv="16.0" TransportMode="1.0" ReadMode="1.0">
+               ScatterTempo="15.0" ScatterDiv="16.0" TransportMode="1.0" ReadMode="2.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -2033,7 +2034,7 @@
                  Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
                  Send7="-1"/>
   <macro_controls>
-    <macro name="Slot 1" value="74.53880310058594" midi_cc="-1">
+    <macro name="Slot 1" value="127.0" midi_cc="-1">
       <controlled_parameter id="Macro Control Modulator1" parameter="3" parameter_name="MacroValue"
                             min="0.0" max="1.0" low="0.0" high="1.0" skew="1.0" step="0.01"
                             inverted="0" readonly="1" converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADv..."/>
