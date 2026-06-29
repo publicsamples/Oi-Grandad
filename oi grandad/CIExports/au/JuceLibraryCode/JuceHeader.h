@@ -69,7 +69,7 @@ namespace ProjectInfo
 {
     const char* const  projectName    = "oi grandad";
     const char* const  companyName    = "modularsamples";
-    const char* const  versionString  = "2.4.2";
-    const int          versionNumber  = 0x20402;
+    const char* const  versionString  = "2.4.3";
+    const int          versionNumber  = 0x20403;
 }
 #endif

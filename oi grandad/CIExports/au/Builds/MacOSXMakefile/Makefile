@@ -47,7 +47,7 @@ ifeq ($(CONFIG),Debug)
   JUCE_PCH     :=
   JUCE_PCH_INC :=
 
-  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.2" "-DJUCE_APP_VERSION_HEX=0x20402" -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.3" "-DJUCE_APP_VERSION_HEX=0x20403" -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_AU :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=0" "-DJucePlugin_Build_AU=1" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_AU := -fvisibility=hidden
@@ -216,7 +216,7 @@ ifeq ($(CONFIG),Release)
   JUCE_PCH     :=
   JUCE_PCH_INC :=
 
-  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.2" "-DJUCE_APP_VERSION_HEX=0x20402" -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.3" "-DJUCE_APP_VERSION_HEX=0x20403" -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules -I/Users/rick/Documents/GitHub/HISE/tools/faust/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_AU :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=0" "-DJucePlugin_Build_AU=1" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_AU := -fvisibility=hidden

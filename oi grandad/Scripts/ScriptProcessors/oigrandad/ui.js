@@ -155,7 +155,6 @@ onButtonControl(buttons[0], true);
  const var gran3 = Synth.getChildSynth("Granular4");
 
 
-const var psync1 = Content.getComponent("psync1");
 const var pitch8 = Content.getComponent("pitch8");
 const var ps1 = Synth.getChildSynth("Granular1");
 const var pmod1 = Content.getComponent("pmod1");
@@ -189,6 +188,21 @@ PlgInPk.setMouseCallback(function(event)
   if (event.clicked)
   {
     Engine.openWebsite("https://modularsamples.gumroad.com/l/esioxy");
+  } 
+  else 
+  {
+    link_hover = event.hover;
+    this.repaint();
+  }
+});
+
+const var XolLink = Content.getComponent("XolLink");
+
+XolLink.setMouseCallback(function(event)
+{
+  if (event.clicked)
+  {
+    Engine.openWebsite("https://github.com/publicsamples/Xolotl");
   } 
   else 
   {
@@ -1032,6 +1046,22 @@ inline function onReadModeControl(component, value)
 };
 
 Content.getComponent("ReadMode").setControlCallback(onReadModeControl);
+
+const var Mgain1 = Synth.getEffect("Mgain1");
+const var Mgain2 = Synth.getEffect("Mgain2");
+const var Mgain3 = Synth.getEffect("Mgain3");
+const var Mgain4 = Synth.getEffect("Mgain4");
+
+
+inline function onMasterVolControl(component, value)
+{
+	Mgain1.setAttribute(Mgain1.Gain, value);
+	Mgain2.setAttribute(Mgain2.Gain, value);
+	Mgain3.setAttribute(Mgain3.Gain, value);
+	Mgain4.setAttribute(Mgain4.Gain, value);
+};
+
+Content.getComponent("MasterVol").setControlCallback(onMasterVolControl);
 
 function onNoteOn()
 {
