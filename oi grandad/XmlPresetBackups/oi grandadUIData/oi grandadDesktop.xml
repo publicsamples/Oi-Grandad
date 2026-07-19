@@ -4579,7 +4579,8 @@
                  bgColour="3001935573" itemColour="3001935573" textColour="3001935573"/>
       <Component type="ScriptPanel" id="MOD1" x="-1" y="0" width="610" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
+                 visible="0">
         <Component type="ScriptPanel" id="seq1" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
@@ -4859,8 +4860,7 @@
       </Component>
       <Component type="ScriptPanel" id="MOD2" x="-1" y="0" width="620" height="170"
                  itemColour="16118508" itemColour2="15394781" textColour="16777215"
-                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod"
-                 visible="0">
+                 saveInPreset="1" bgColour="3052524467" parentComponent="Mod">
         <Component type="ScriptPanel" id="seq3" x="7" y="8" width="290" height="160"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD2">
@@ -6640,7 +6640,8 @@
       <Component type="ScriptComboBox" id="ReadMode" x="462" y="484" max="3" items="Varispeed&#10;Time-Invariant&#10;Formant"
                  parentComponent="V5" width="96" height="30"/>
       <Component type="ScriptComboBox" id="modQuality" x="80" y="484" width="96"
-                 height="30" max="6" parentComponent="V5" items="16 samples&#10;32 samples&#10;64 samples&#10;128 samples&#10;256 samples&#10;512 samples"/>
+                 height="30" max="6" parentComponent="V5" items="16 samples&#10;32 samples&#10;64 samples&#10;128 samples&#10;256 samples&#10;512 samples"
+                 defaultValue="5"/>
       <Component type="ScriptPanel" id="Settings" x="616" y="350" width="200"
                  height="190" parentComponent="V5" bgColour="16777215" textColour="4294967295">
         <Component type="ScriptFloatingTile" id="ScriptFloatingTile10" x="4" y="28"
@@ -6915,8 +6916,8 @@
              textColour="16776960"/>
   <Component type="ScriptSlider" id="MasterVol" x="304" y="604" style="Vertical"
              width="15" height="40" stepSize="0.1000000014901161" suffix=" dB"
-             middlePosition="-18.0" itemColour="1721839150" showValuePopup="Below"
-             mode="Decibel" max="0.0" min="-100.0" textColour="16776960"/>
+             middlePosition="-12" itemColour="1721839150" showValuePopup="Below"
+             mode="Decibel" max="12.0" min="-100.0" textColour="16776960"/>
   <Component type="ScriptLabel" id="Label22" x="188" y="648" width="20" height="20"
              fontName="Montserrat" fontSize="15.0" textColour="4294109134"
              text="1" editable="0" itemColour2="4092454613" itemColour="15848371"/>
@@ -6934,7 +6935,7 @@
              text="master" editable="0" itemColour2="4092454613" itemColour="15848371"/>
   <Component type="ScriptLabel" id="Label38" x="779" y="643" width="50" height="20"
              fontName="Montserrat" fontSize="15.0" textColour="3706906574"
-             text="v2.4.3" editable="0" alignment="left" itemColour2="3001935573"
+             text="v2.4.5" editable="0" alignment="left" itemColour2="3001935573"
              itemColour="15848371"/>
   <Component type="ScriptComboBox" id="VoiceNumber" x="352" y="623" max="4"
              width="20" height="20" items="1&#10;2&#10;3&#10;4" bgColour="4294038451"
