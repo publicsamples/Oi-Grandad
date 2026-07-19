@@ -228,6 +228,17 @@ jobs:
             fi
           fi
 
+          # Xcode 26 / macOS 26 SDK compatibility: Objective-C headers define NO/YES macros.
+          complex_group_manager="$GITHUB_WORKSPACE/HISE/hi_core/hi_sampler/sampler/ComplexGroupManager.cpp"
+          if [[ -f "$complex_group_manager" ]]; then
+            perl -0pi -e '
+              s/\bstatic constexpr int NO = 0;/static constexpr int NO_VALUE = 0;/g;
+              s/\bstatic constexpr int YES = 1;/static constexpr int YES_VALUE = 1;/g;
+              s/\breturn NO;/return NO_VALUE;/g;
+              s/\breturn YES;/return YES_VALUE;/g;
+            ' "$complex_group_manager"
+          fi
+
       - name: Build available macOS targets
         shell: bash
         run: |
