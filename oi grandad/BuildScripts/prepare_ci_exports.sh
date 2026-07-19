@@ -43,6 +43,7 @@ EOF
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd "$PROJECT_DIR/.." && pwd)"
 PROJECT_FILE="XmlPresetBackups/oi grandad.xml"
 PLUGIN_TARGET="instrument"
 VST3_FORMAT="VST3"
@@ -58,6 +59,8 @@ DO_AU=1
 DO_STANDALONE=1
 HISE_BIN=""
 SNAPSHOT_CURRENT_MODE=""
+HISE_SOURCE_COMMIT=""
+REPO_HISE_SUBMODULE_COMMIT=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -284,6 +287,21 @@ if [[ -z "$SNAPSHOT_CURRENT_MODE" ]]; then
     exit 1
   fi
 
+  if git -C "$HISE_SOURCE_DIR" rev-parse --verify HEAD >/dev/null 2>&1; then
+    HISE_SOURCE_COMMIT="$(git -C "$HISE_SOURCE_DIR" rev-parse HEAD)"
+  fi
+
+  if git -C "$REPO_ROOT" rev-parse --verify HEAD >/dev/null 2>&1; then
+    REPO_HISE_SUBMODULE_COMMIT="$(git -C "$REPO_ROOT" ls-tree HEAD HISE 2>/dev/null | awk '{print $3}')"
+  fi
+
+  if [[ -n "$HISE_SOURCE_COMMIT" && -n "$REPO_HISE_SUBMODULE_COMMIT" && "$HISE_SOURCE_COMMIT" != "$REPO_HISE_SUBMODULE_COMMIT" ]]; then
+    echo "WARNING: local HISE source commit does not match repo HISE submodule pin." >&2
+    echo "  local HISE source: $HISE_SOURCE_COMMIT" >&2
+    echo "  repo submodule:    $REPO_HISE_SUBMODULE_COMMIT" >&2
+    echo "  CI will build against the repo submodule commit unless you update the submodule pointer." >&2
+  fi
+
   if [[ -z "$PROJUCER_BIN" || ! -x "$PROJUCER_BIN" ]]; then
     echo "Could not locate a runnable Projucer executable. Pass --projucer-bin PATH." >&2
     exit 1
@@ -480,6 +498,8 @@ plugin_target=$PLUGIN_TARGET
 vst3_format=$VST3_FORMAT
 au_format=$AU_FORMAT
 hise_source_dir=$HISE_SOURCE_DIR
+hise_source_commit=$HISE_SOURCE_COMMIT
+repo_hise_submodule_commit=$REPO_HISE_SUBMODULE_COMMIT
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 EOF
 }

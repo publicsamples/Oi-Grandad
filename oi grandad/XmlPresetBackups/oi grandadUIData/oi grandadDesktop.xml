@@ -32,7 +32,7 @@
                      fontSize="12.0" textColour="4278190080"/>
           <Component type="ScriptLabel" id="FxLabelA1" x="1" y="43" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="CUT"/>
+                     fontStyle="Regular" fontSize="15.0" text="TRASH"/>
           <Component type="ScriptSlider" id="PolyMix1" x="129" y="2" parentComponent="VoiceParam11"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="40" height="40" processorId="Granular1"
@@ -49,7 +49,7 @@
                      isPluginParameter="1"/>
           <Component type="ScriptLabel" id="FxLabelA2" x="65" y="43" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                     fontStyle="Regular" fontSize="15.0" text="Q"/>
+                     fontStyle="Regular" fontSize="15.0" text="LP"/>
           <Component type="ScriptComboBox" id="redmodsel1" x="106" y="8" width="20"
                      height="20" text="" items="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4"
                      parentComponent="VoiceParam11" bgColour="4278190080" itemColour="5166303"
@@ -6896,23 +6896,27 @@
   <Component type="ScriptSlider" id="FinVol1" x="191" y="604" style="Vertical"
              width="15" height="40" processorId="Simple Gain1" parameterId="Gain"
              mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"/>
+             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"
+             textColour="16776960"/>
   <Component type="ScriptSlider" id="FinVol2" x="218" y="604" style="Vertical"
              width="15" height="40" processorId="Simple Gain2" parameterId="Gain"
              mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"/>
+             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"
+             textColour="16776960"/>
   <Component type="ScriptSlider" id="FinVol3" x="245" y="604" style="Vertical"
              width="15" height="40" processorId="Simple Gain3" parameterId="Gain"
              mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"/>
+             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"
+             textColour="16776960"/>
   <Component type="ScriptSlider" id="FinVol4" x="272" y="604" style="Vertical"
              width="15" height="40" processorId="Simple Gain4" parameterId="Gain"
              mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
-             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"/>
+             suffix=" dB" middlePosition="-18.0" itemColour="4281680473" showValuePopup="Below"
+             textColour="16776960"/>
   <Component type="ScriptSlider" id="MasterVol" x="304" y="604" style="Vertical"
              width="15" height="40" stepSize="0.1000000014901161" suffix=" dB"
-             middlePosition="-18" itemColour="1721839150" showValuePopup="Below"
-             mode="Decibel" max="0.0" min="-100.0"/>
+             middlePosition="-18.0" itemColour="1721839150" showValuePopup="Below"
+             mode="Decibel" max="0.0" min="-100.0" textColour="16776960"/>
   <Component type="ScriptLabel" id="Label22" x="188" y="648" width="20" height="20"
              fontName="Montserrat" fontSize="15.0" textColour="4294109134"
              text="1" editable="0" itemColour2="4092454613" itemColour="15848371"/>

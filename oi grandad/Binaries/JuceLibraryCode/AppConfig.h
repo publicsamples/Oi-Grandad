@@ -314,7 +314,7 @@
 // hi_faust flags:
 
 #ifndef    HISE_INCLUDE_FAUST
- #define   HISE_INCLUDE_FAUST 1
+ #define   HISE_INCLUDE_FAUST 0
 #endif
 
 #ifndef    HISE_FAUST_USE_LLVM_JIT

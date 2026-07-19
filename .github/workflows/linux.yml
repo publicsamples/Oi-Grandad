@@ -23,7 +23,13 @@ jobs:
           apt-get install -y git ca-certificates
 
       - uses: actions/checkout@v4
+
+      - name: Checkout HISE
+        uses: actions/checkout@v4
         with:
+          repository: RickTaylor79/HISE
+          ref: de5a95e910db9b60753ad61701a3119ba107f0ce
+          path: HISE
           submodules: recursive
 
       - name: Resolve export roots

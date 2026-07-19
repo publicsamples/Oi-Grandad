@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.3"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.4"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
               companyName="modularsamples" companyWebsite="http://modularsamples.com"
               companyCopyright="2024 MS" displaySplashScreen="0" reportAppUsage="0"
@@ -17,43 +17,43 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="vjuFqi" name="nodes">
-        <FILE id="CcUyqQ" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="taesGi" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="H86F57" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="c51VgP" name="nodes">
+        <FILE id="mrySWo" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="KZorAp" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="zAe7zB" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="u55prV" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="lBC2CF" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="xFWXLc" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="GMAEqq" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="IjCZpo" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="iOani3" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="vhCmXh" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="nqjUH1" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="dUUZTN" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="QGeCoW" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="RGlbCs" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="OFXD0Q" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="Oar0u7" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
-        <FILE id="j7cuJF" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="LLw0p9" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="EWrZvO" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="W85HcC" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="FA3wWT" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="fUvqkJ" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="itoLIu" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="JaqUut" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="ikhrUU" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="rmgGSt" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="NzPzQs" name="test_networkdata.h" compile="0" resource="0"
+        <FILE id="Qtv7E7" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="FesCUb" name="test_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/test_networkdata.h"/>
-        <FILE id="yAf2bK" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="paFoX6" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="pHAo1j" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="YUs2HH" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="tsTF1d" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="Y2iQo8" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="LlnlLg" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="JlBSyM" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="PSUYql" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="eGplts" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="TELUtb" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="UDBEM6" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="FF0ql6" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="xScQNk" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
@@ -64,11 +64,11 @@
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="1" generateManifest="1" winArchitecture="x64"
                        libraryPath="%WIN_STATIC_LIB_FOLDER_D64%" isDebug="1" optimisation="1"
-                       targetName="oi grandad Debug" binaryPath="Compiled/" headerPath="%FFT_HEADER_PATH%&#10;;/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       targetName="oi grandad Debug" binaryPath="Compiled/" headerPath="%FFT_HEADER_PATH%&#10;;"
                        useRuntimeLibDLL="0" prebuildCommand="%PREBUILD_COMMAND%"/>
         <CONFIGURATION name="Release" winWarningLevel="1" generateManifest="1" winArchitecture="x64"
                        libraryPath="%WIN_STATIC_LIB_FOLDER_R64%" isDebug="0" optimisation="3"
-                       targetName="oi grandad" binaryPath="Compiled/" headerPath="%FFT_HEADER_PATH%&#10;;/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       targetName="oi grandad" binaryPath="Compiled/" headerPath="%FFT_HEADER_PATH%&#10;;"
                        linkTimeOptimisation="0" useRuntimeLibDLL="0" prebuildCommand="%PREBUILD_COMMAND%;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -111,10 +111,10 @@
                xcodeValidArchs="arm64,arm64e,x86_64" externalLibraries=";">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="11.0 SDK" osxArchitecture="64BitIntel"
-                       isDebug="1" optimisation="1" targetName="oi grandad Debug" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       isDebug="1" optimisation="1" targetName="oi grandad Debug" headerPath=""
                        libraryPath=";" cppLibType="libc++" binaryPath="Compiled/"/>
         <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="11.0 SDK" osxArchitecture="64BitIntel"
-                       isDebug="0" optimisation="3" targetName="oi grandad" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
+                       isDebug="0" optimisation="3" targetName="oi grandad" headerPath=""
                        libraryPath=";" cppLibType="libc++" linkTimeOptimisation="0"
                        binaryPath="Compiled/" stripLocalSymbols="1"/>
       </CONFIGURATIONS>
@@ -159,12 +159,10 @@
                  featureGatedModules="hi_rlottie:HISE_INCLUDE_RLOTTIE, hi_loris:HISE_INCLUDE_LORIS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxArchitecture="x86_64" isDebug="1" optimisation="1"
-                       targetName="oi grandad Debug" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath=";" binaryPath="Compiled/"/>
+                       targetName="oi grandad Debug" headerPath="" libraryPath=";" binaryPath="Compiled/"/>
         <CONFIGURATION name="Release" osxArchitecture="x86_64" isDebug="0" optimisation="3"
-                       targetName="oi grandad" headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath=";" binaryPath="Compiled/" linkTimeOptimisation="0"
-                       stripLocalSymbols="1"/>
+                       targetName="oi grandad" headerPath="" libraryPath=";" binaryPath="Compiled/"
+                       linkTimeOptimisation="0" stripLocalSymbols="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Documents/GitHub/HISE/JUCE/modules"/>
@@ -204,11 +202,9 @@
                 extraCompilerFlags="-fpermissive" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_USE_SYSTEM_APP_DATA_FOLDER=0&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;&#10;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="oi grandad"
-                       headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath=""/>
+                       headerPath="" libraryPath=""/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="oi grandad"
-                       headerPath="/Users/rick/Documents/GitHub/HISE/tools/faust/include"
-                       libraryPath="" linkTimeOptimisation="0"/>
+                       headerPath="" libraryPath="" linkTimeOptimisation="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_product_unlocking" path="/Users/rick/Documents/GitHub/HISE"/>
@@ -286,7 +282,7 @@
                ENABLE_PLOTTER="0" ENABLE_SCRIPTING_SAFE_CHECKS="0" ENABLE_ALL_PEAK_METERS="0"
                ENABLE_CONSOLE_OUTPUT="0" JUCE_ASIO="0" JUCE_JACK="0" USE_SPLASH_SCREEN="0"
                HISE_OVERWRITE_OLD_USER_PRESETS="0" HI_ENABLE_LEGACY_CPU_SUPPORT="0"
-               HISE_INCLUDE_RLOTTIE="1" HISE_INCLUDE_FAUST="1" HISE_USE_SYSTEM_APP_DATA_FOLDER="1"
+               HISE_INCLUDE_RLOTTIE="1" HISE_INCLUDE_FAUST="0" HISE_USE_SYSTEM_APP_DATA_FOLDER="1"
                HLAC_MEASURE_DECODING_PERFORMANCE="0" HLAC_DEBUG_LOG="0" HLAC_INCLUDE_TEST_SUITE="0"
                STANDALONE_STREAMING="0" JUCE_DSP_USE_INTEL_MKL="0" JUCE_WEB_BROWSER="0"
                JUCE_USE_CURL="1" JUCE_DSP_USE_SHARED_FFTW="0" JUCE_DSP_USE_STATIC_FFTW="0"
