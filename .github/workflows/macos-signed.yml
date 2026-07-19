@@ -234,6 +234,8 @@ jobs:
               -project "$project" \
               -scheme "$scheme" \
               -configuration Release \
+              ARCHS="arm64 x86_64" \
+              ONLY_ACTIVE_ARCH=NO \
               MACOSX_DEPLOYMENT_TARGET=10.13 \
               OTHER_CPLUSPLUSFLAGS="-x objective-c++ -DFAUSTMAJORVERSION=2 -DFAUSTMINORVERSION=74 -DFAUSTPATCHVERSION=6" \
               CODE_SIGNING_ALLOWED=NO \
@@ -301,6 +303,61 @@ jobs:
             fi
           done
           find "$compiled_dir" -mindepth 1 -maxdepth 1 | sort
+
+      - name: Verify macOS binaries are universal
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          verify_universal_bundle() {
+            local bundle="$1"
+            local binary=""
+
+            case "$bundle" in
+              *.app)
+                local stem
+                stem="$(basename "$bundle" .app)"
+                binary="$bundle/Contents/MacOS/$stem"
+                ;;
+              *.vst3)
+                local stem
+                stem="$(basename "$bundle" .vst3)"
+                binary="$bundle/Contents/MacOS/$stem"
+                ;;
+              *.component)
+                local stem
+                stem="$(basename "$bundle" .component)"
+                binary="$bundle/Contents/MacOS/$stem"
+                ;;
+            esac
+
+            if [[ -z "$binary" || ! -f "$binary" ]]; then
+              echo "ERROR: Could not locate executable inside bundle: $bundle"
+              exit 1
+            fi
+
+            echo "Inspecting: $binary"
+            arch_info="$(lipo -info "$binary")"
+            echo "$arch_info"
+
+            if [[ "$arch_info" != *"arm64"* || "$arch_info" != *"x86_64"* ]]; then
+              echo "ERROR: Bundle is not universal: $bundle"
+              exit 1
+            fi
+          }
+
+          compiled_dir="$GITHUB_WORKSPACE/oi grandad/Binaries/Compiled"
+          found_any=0
+          while IFS= read -r bundle; do
+            [[ -z "$bundle" ]] && continue
+            found_any=1
+            verify_universal_bundle "$bundle"
+          done < <(find "$compiled_dir" -mindepth 1 -maxdepth 1 -type d \( -name "*.vst3" -o -name "*.component" -o -name "*.app" \) | sort)
+
+          if [[ "$found_any" -eq 0 ]]; then
+            echo "ERROR: No macOS bundles found to verify."
+            exit 1
+          fi
 
       - name: Import Developer ID certificate
         shell: bash
