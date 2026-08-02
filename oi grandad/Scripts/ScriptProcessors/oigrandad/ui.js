@@ -29,7 +29,10 @@ inline function onmodQualityControl(component, value)
 
 modQuality.setControlCallback(onmodQualityControl);
 
-const var defaultRef = "{PROJECT_FOLDER}OGInit.wav";
+const var defaultRef = "{PROJECT_FOLDER}FmSeq.wav";
+const var defaultRef2 = "{PROJECT_FOLDER}SubKick125_2.wav";
+const var defaultRef3 = "{PROJECT_FOLDER}electro135.wav";
+const var defaultRef4 = "{PROJECT_FOLDER}MuxBeatLo4.aif";
 
 const var g1 = Synth.getAudioSampleProcessor("Granular1");
 const var g2 = Synth.getAudioSampleProcessor("Granular2");
@@ -50,9 +53,9 @@ const var gran3 = Synth.getChildSynth("Granular4");
 Content.callAfterDelay(10, function()
 {
     slot1.loadFile(defaultRef);
- //   slot2.loadFile(defaultRef);
- //   slot3.loadFile(defaultRef);
- //   slot4.loadFile(defaultRef);
+    slot2.loadFile(defaultRef2);
+    slot3.loadFile(defaultRef3);
+    slot4.loadFile(defaultRef4);
 });
 
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
@@ -1026,26 +1029,6 @@ inline function onPostMode1Control(component, value)
 Content.getComponent("PostMode1").setControlCallback(onPostMode1Control);
 
 
-inline function onTransportModeControl(component, value)
-{
-	gran.setAttribute(gran.TransportMode, value);
-	gran1.setAttribute(gran1.TransportMode, value);
-	gran2.setAttribute(gran2.TransportMode, value);
-	gran3.setAttribute(gran3.TransportMode, value);
-};
-
-Content.getComponent("TransportMode").setControlCallback(onTransportModeControl);
-
-
-inline function onReadModeControl(component, value)
-{
-	gran.setAttribute(gran.ReadMode, value);
-	gran1.setAttribute(gran1.ReadMode, value);
-	gran2.setAttribute(gran2.ReadMode, value);
-	gran3.setAttribute(gran3.ReadMode, value);
-};
-
-Content.getComponent("ReadMode").setControlCallback(onReadModeControl);
 
 const var Mgain1 = Synth.getEffect("Mgain1");
 const var Mgain2 = Synth.getEffect("Mgain2");

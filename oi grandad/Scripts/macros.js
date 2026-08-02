@@ -104,19 +104,17 @@ inline function onMacroPos4Control(component, value)
 
 Content.getComponent("MacroPos4").setControlCallback(onMacroPos4Control);
 
-const var pitchoffset1 = Content.getComponent("pitchoffset1");
-const var pitchoffset2 = Content.getComponent("pitchoffset2");
-const var pitchoffset3 = Content.getComponent("pitchoffset3");
-const var pitchoffset4 = Content.getComponent("pitchoffset4");
+const var pitch = Content.getComponent("pitch");
+const var pitch1 = Content.getComponent("pitch1");
+const var pitch2 = Content.getComponent("pitch2");
+const var pitch3 = Content.getComponent("pitch3");
+
 
 
 inline function onMacroPitch1Control(component, value)
 {
 	
-
-		pitchoffset1.setValue(value);
-		pitchoffset1.changed();
-		pitch.setValueNormalized(value);
+		pitch.setValue(value);
 		pitch.changed();
 };
 
@@ -126,10 +124,7 @@ Content.getComponent("MacroPitch1").setControlCallback(onMacroPitch1Control);
 inline function onMacroPitch2Control(component, value)
 {
 	
-
-	pitchoffset2.setValue(value);
-		pitchoffset2.changed();
-		pitch1.setValueNormalized(value);
+		pitch1.setValue(value);
 		pitch1.changed();
 };
 
@@ -139,10 +134,7 @@ Content.getComponent("MacroPitch2").setControlCallback(onMacroPitch2Control);
 inline function onMacroPitch3Control(component, value)
 {
 	
-
-		pitchoffset3.setValue(value);
-		pitchoffset3.changed();
-		pitch2.setValueNormalized(value);
+		pitch2.setValue(value);
 		pitch2.changed();
 };
 
@@ -152,10 +144,7 @@ Content.getComponent("MacroPitch3").setControlCallback(onMacroPitch3Control);
 inline function onMacroPitch4Control(component, value)
 {
 	
-
-		pitchoffset4.setValue(value);
-		pitchoffset4.changed();
-		pitch3.setValueNormalized(value);
+		pitch3.setValue(value);
 		pitch3.changed();
 };
 

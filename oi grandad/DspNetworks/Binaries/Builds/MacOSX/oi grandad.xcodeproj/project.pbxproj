@@ -369,11 +369,10 @@
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"/Users/rick/Documents/GitHub/HISE",
 					"/Users/rick/Documents/GitHub/HISE/JUCE/modules",
-					"/Users/rick/Documents/GitHub/HISE/tools/faust/include",
 					"$(inherited)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules /Users/rick/Documents/GitHub/HISE/tools/faust/include";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules";
 				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.oigrandad;
@@ -420,12 +419,11 @@
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"/Users/rick/Documents/GitHub/HISE",
 					"/Users/rick/Documents/GitHub/HISE/JUCE/modules",
-					"/Users/rick/Documents/GitHub/HISE/tools/faust/include",
 					"$(inherited)",
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules /Users/rick/Documents/GitHub/HISE/tools/faust/include";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules";
 				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.oigrandad;
@@ -472,11 +470,10 @@
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"/Users/rick/Documents/GitHub/HISE",
 					"/Users/rick/Documents/GitHub/HISE/JUCE/modules",
-					"/Users/rick/Documents/GitHub/HISE/tools/faust/include",
 					"$(inherited)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules /Users/rick/Documents/GitHub/HISE/tools/faust/include";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode /Users/rick/Documents/GitHub/HISE /Users/rick/Documents/GitHub/HISE/JUCE/modules";
 				OTHER_CFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				OTHER_CPLUSPLUSFLAGS = "-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.oigrandad;

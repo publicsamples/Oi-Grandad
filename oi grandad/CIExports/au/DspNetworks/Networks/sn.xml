@@ -2678,7 +2678,7 @@
               <Node ID="chain151" FactoryPath="container.chain" Bypassed="0" Name="WinShape">
                 <Nodes>
                   <Node ID="branch9" FactoryPath="container.branch" Bypassed="0" Name="branch"
-                        Folded="1" ShowParameters="1">
+                        ShowParameters="1">
                     <Nodes>
                       <Node ID="chain152" FactoryPath="container.chain" Bypassed="0" Name="chain1">
                         <Nodes>
@@ -5020,11 +5020,11 @@
                       <Connection NodeId="svf" ParameterId="Frequency"/>
                       <Connection NodeId="svf5" ParameterId="Frequency"/>
                       <Connection NodeId="svf6" ParameterId="Frequency"/>
-                      <Connection NodeId="svf3" ParameterId="Frequency"/>
                       <Connection NodeId="sampleandhold" ParameterId="Counter"/>
                       <Connection NodeId="ring_mod" ParameterId="Frequency"/>
                       <Connection NodeId="cable_table6" ParameterId="Value"/>
                       <Connection NodeId="pma1" ParameterId="Multiply"/>
+                      <Connection NodeId="biquad" ParameterId="Frequency"/>
                     </ModulationTargets>
                   </Node>
                 </Nodes>
@@ -5416,12 +5416,12 @@
                       <Connection NodeId="one_pole5" ParameterId="Frequency"/>
                       <Connection NodeId="allpass" ParameterId="Q"/>
                       <Connection NodeId="cable_table5" ParameterId="Value"/>
-                      <Connection NodeId="svf3" ParameterId="Q"/>
                       <Connection NodeId="svf6" ParameterId="Q"/>
                       <Connection NodeId="svf5" ParameterId="Q"/>
                       <Connection NodeId="svf" ParameterId="Q"/>
                       <Connection NodeId="ring_mod" ParameterId="Q"/>
                       <Connection NodeId="one_pole" ParameterId="Frequency"/>
+                      <Connection NodeId="biquad" ParameterId="Q"/>
                     </ModulationTargets>
                   </Node>
                 </Nodes>
@@ -6698,15 +6698,14 @@
               <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Automated="1"/>
               <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" StepSize="1"
                          DefaultValue="1.0" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" Automated="1"
+                         SkewFactor="0.3289256393909454"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" Automated="1"/>
-              <Parameter MinValue="1.0" MaxValue="6.0" ID="TransportMode" StepSize="1"
+              <Parameter MinValue="1.0" MaxValue="3.0" ID="TransportMode" StepSize="1"
                          DefaultValue="1.0" Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="WrapMode" Value="0.411490234375"
-                         DefaultValue="0.0"/>
-              <Parameter MinValue="1.0" MaxValue="3.0" ID="ReadMode" StepSize="1" DefaultValue="1.0"
+              <Parameter MinValue="1.0" MaxValue="4.0" ID="ReadMode" StepSize="1" DefaultValue="1.0"
                          Automated="1"/>
             </Parameters>
           </Node>
@@ -6952,7 +6951,7 @@
                       </Node>
                       <Node ID="chain39" FactoryPath="container.chain" Bypassed="0" Name="chain38">
                         <Nodes>
-                          <Node ID="svf3" FactoryPath="filters.svf" Bypassed="0" Name="svf">
+                          <Node ID="biquad" FactoryPath="filters.biquad" Bypassed="0" Name="biquad">
                             <ComplexData>
                               <Filters>
                                 <Filter Index="-1"/>
@@ -6968,7 +6967,7 @@
                                          Value="0.0"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
                                          ID="Smoothing" Value="0.009999999776482582"/>
-                              <Parameter MinValue="0.0" MaxValue="4.0" StepSize="1.0" ID="Mode" Value="3.0"
+                              <Parameter MinValue="0.0" MaxValue="5.0" StepSize="1.0" ID="Mode" Value="5.0"
                                          DefaultValue="0.0"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
                             </Parameters>
@@ -7673,19 +7672,20 @@
           <Connection NodeId="pma6" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" ID="PitchSrc" Value="13.0" StepSize="1"
+      <Parameter MinValue="1.0" MaxValue="16.0" ID="PitchSrc" Value="16.0" StepSize="1"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="branch6" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.5400000214576721"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Dense" Value="0.5572851777076721"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma9" ParameterId="Add"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="DenseMod" Value="0.0" TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="DenseMod" Value="0.2900390624999996"
+                 TextToValueConverter="" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="pma9" ParameterId="Multiply"/>
         </Connections>
@@ -7744,7 +7744,7 @@
           <Connection NodeId="branch11" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="5.0" MaxValue="1000.0" ID="GrainSize" Value="543.0"
+      <Parameter MinValue="5.0" MaxValue="1000.0" ID="GrainSize" Value="566.02880859375"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="5.0">
         <Connections>
           <Connection NodeId="pma8" ParameterId="Add"/>
@@ -7914,7 +7914,7 @@
           <Connection NodeId="tempo_sync1" ParameterId="Multiplier"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="10.0" ID="delMode" Value="2.0" StepSize="1"
+      <Parameter MinValue="1.0" MaxValue="10.0" ID="delMode" Value="5.0" StepSize="1"
                  ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="branch1" ParameterId="Index"/>
@@ -7950,14 +7950,15 @@
                  Value="7.0" DefaultValue="0.0">
         <Connections/>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="6.0" StepSize="1.0" ID="TransportMode"
-                 Value="1.0" DefaultValue="0.0" TextToValueConverter="">
+      <Parameter MinValue="1.0" MaxValue="3.0" StepSize="1.0" ID="TransportMode"
+                 Value="1.0" TextToValueConverter="" ExternalModulation="Disabled"
+                 ModColour="0">
         <Connections>
           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="TransportMode"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="3.0" StepSize="1.0" ID="ReadMode" Value="1.0"
-                 DefaultValue="0.0">
+      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1.0" ID="ReadMode" Value="1.0"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="ReadMode"/>
         </Connections>

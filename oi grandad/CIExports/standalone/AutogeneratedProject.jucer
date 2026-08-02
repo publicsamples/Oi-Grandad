@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.5"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="guiapp" version="2.4.6"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
               companyName="modularsamples" companyWebsite="http://modularsamples.com"
               companyCopyright="2024 MS" displaySplashScreen="0" reportAppUsage="0"
@@ -17,43 +17,43 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="ZM5Nq9" name="nodes">
-        <FILE id="xpQHko" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="SMZAfa" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="Kdu0w8" name="FoldTests_networkdata.h" compile="0" resource="0"
+      <GROUP id="GINXq7" name="nodes">
+        <FILE id="f2QbY7" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="ZO4iKF" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="ZGczfT" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="DL7jah" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="BenCUV" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="hGRlRA" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="wUyK1i" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="WTlWJt" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="EPBnRI" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="j4l3sJ" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="vHzmZ1" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="mWmnn7" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="xu2rPF" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="d3YhDu" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="K8xOxL" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="BL6bwM" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
-        <FILE id="EwV3Ie" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="RD8BHx" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="oT02be" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="esyLsB" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="Y02vVX" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="SXrKbF" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="IbNTre" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="W4aGB2" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="HOzWNF" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="xpUroA" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="OiiSey" name="test_networkdata.h" compile="0" resource="0"
+        <FILE id="eZrn05" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="XSXk0S" name="test_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/test_networkdata.h"/>
-        <FILE id="Sk5xBa" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="yKzeWA" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="gnwCu7" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="eDmMOP" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="Y8QOSG" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="Wj9wgx" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="QUpynw" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="OdXOnI" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="SOBI63" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="z67XAc" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="yZHvhy" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="sbs7K1" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="tVa4AL" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="qTb1qu" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>

@@ -768,15 +768,6 @@ dependencies: \
   /Users/rick/Documents/GitHub/HISE/hi_dsp_library/dsp_library/HiseLibraryHeader.h \
   /Users/rick/Documents/GitHub/HISE/hi_dsp_library/node_api/helpers/UIUpdater.h \
   /Users/rick/Documents/GitHub/HISE/hi_faust/hi_faust.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/../hi_faust_types/hi_faust_types.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/../hi_faust_types/faust_wrap/dsp/dsp.h \
-  /Users/rick/Documents/GitHub/HISE/tools/faust/include/faust/export.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/../hi_faust_types/faust_wrap/gui/UI.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/../hi_faust_types/faust_wrap/gui/meta.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/../hi_dsp_library/hi_dsp_library.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/FaustUI.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/FaustWrapper.h \
-  /Users/rick/Documents/GitHub/HISE/hi_faust/FaustStaticWrapper.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/includes.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/granular_player_stepquant_density_hybrid_native.h \
   /Users/rick/Documents/GitHub/Oi-Grandad/oi\ grandad/DspNetworks/Binaries/Source/../../ThirdParty/granular_player_stepquant_density_hybrid_native.h \

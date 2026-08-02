@@ -323,8 +323,19 @@ const var V2StageMods = [Content.getComponent("PosHeadSrcA1"),
             
             
 for(s in Pb)
-       s.setLocalLookAndFeel(cBLaf);                        
-                      
+       s.setLocalLookAndFeel(cBLaf);        
+       
+const var ModeMenus = [Content.getComponent("TransPort1"),
+Content.getComponent("TransPort2"),
+Content.getComponent("TransPort3"),
+Content.getComponent("TransPort4"),
+                       Content.getComponent("Read1"),
+                       Content.getComponent("Read2"),
+                       Content.getComponent("Read3"),
+                       Content.getComponent("Read4") ];
+    
+    for(s in ModeMenus)
+           s.setLocalLookAndFeel(cBLaf);            
        
 const var xfSel = [Content.getComponent("ComboBox26"),
                    Content.getComponent("ComboBox1")];

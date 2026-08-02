@@ -2021,9 +2021,16 @@ using branch21_t = container::branch<parameter::empty,
                                      chain353_t<NV>, 
                                      chain354_t<NV>>;
 
+DECLARE_PARAMETER_RANGE_SKEW(pma22_modRange, 
+                             0., 
+                             1., 
+                             0.328926);
+
 template <int NV>
-using pma22_mod = parameter::plain<granular_player_stepquant_density_hybrid_native_t<NV>, 
-                                   12>;
+using pma22_mod = parameter::from0To1<granular_player_stepquant_density_hybrid_native_t<NV>, 
+                                      12, 
+                                      pma22_modRange>;
+
 template <int NV>
 using pma22_t = control::pma<NV, pma22_mod<NV>>;
 template <int NV>
@@ -2570,31 +2577,34 @@ template <int NV> using pma16_mod_3 = pma16_mod_2<NV>;
 
 template <int NV> using pma16_mod_4 = pma16_mod_2<NV>;
 
-template <int NV> using pma16_mod_5 = pma16_mod_2<NV>;
-
-DECLARE_PARAMETER_RANGE_STEP(pma16_mod_6Range, 
+DECLARE_PARAMETER_RANGE_STEP(pma16_mod_5Range, 
                              1., 
                              64., 
                              1.);
 
 template <int NV>
-using pma16_mod_6 = parameter::from0To1<fx::sampleandhold<NV>, 
+using pma16_mod_5 = parameter::from0To1<fx::sampleandhold<NV>, 
                                         0, 
-                                        pma16_mod_6Range>;
+                                        pma16_mod_5Range>;
 
 template <int NV>
-using pma16_mod_7 = parameter::from0To1<filters::ring_mod<NV>, 
+using pma16_mod_6 = parameter::from0To1<filters::ring_mod<NV>, 
                                         0, 
                                         pma16_mod_2Range>;
 
-DECLARE_PARAMETER_RANGE(pma16_mod_9Range, 
+DECLARE_PARAMETER_RANGE(pma16_mod_8Range, 
                         0.03, 
                         1.);
 
 template <int NV>
-using pma16_mod_9 = parameter::from0To1<pma1_t<NV>, 
+using pma16_mod_8 = parameter::from0To1<pma1_t<NV>, 
                                         1, 
-                                        pma16_mod_9Range>;
+                                        pma16_mod_8Range>;
+
+template <int NV>
+using pma16_mod_9 = parameter::from0To1<filters::biquad<NV>, 
+                                        0, 
+                                        pma16_mod_2Range>;
 
 template <int NV>
 using pma16_mod = parameter::chain<ranges::Identity, 
@@ -2605,8 +2615,8 @@ using pma16_mod = parameter::chain<ranges::Identity,
                                    pma16_mod_4<NV>, 
                                    pma16_mod_5<NV>, 
                                    pma16_mod_6<NV>, 
-                                   pma16_mod_7<NV>, 
                                    parameter::plain<cable_table6_t<NV>, 0>, 
+                                   pma16_mod_8<NV>, 
                                    pma16_mod_9<NV>>;
 
 template <int NV>
@@ -2922,14 +2932,17 @@ template <int NV> using pma18_mod_4 = pma18_mod_3<NV>;
 
 template <int NV> using pma18_mod_5 = pma18_mod_3<NV>;
 
-template <int NV> using pma18_mod_6 = pma18_mod_3<NV>;
-
 template <int NV>
-using pma18_mod_7 = parameter::from0To1<filters::ring_mod<NV>, 
+using pma18_mod_6 = parameter::from0To1<filters::ring_mod<NV>, 
                                         1, 
                                         pma18_mod_1Range>;
 
-template <int NV> using pma18_mod_8 = pma18_mod_0<NV>;
+template <int NV> using pma18_mod_7 = pma18_mod_0<NV>;
+
+template <int NV>
+using pma18_mod_8 = parameter::from0To1<filters::biquad<NV>, 
+                                        1, 
+                                        pma18_mod_1Range>;
 
 template <int NV>
 using pma18_mod = parameter::chain<ranges::Identity, 
@@ -3740,7 +3753,9 @@ template <int NV> using chain43_t = chain38_t<NV>;
 
 template <int NV> using chain45_t = chain38_t<NV>;
 
-template <int NV> using chain39_t = chain38_t<NV>;
+template <int NV>
+using chain39_t = container::chain<parameter::empty, 
+                                   wrap::fix<2, filters::biquad<NV>>>;
 
 template <int NV>
 using chain44_t = container::chain<parameter::empty, 
@@ -4348,7 +4363,7 @@ using TransportMode = parameter::plain<sn_impl::granular_player_stepquant_densit
                                        16>;
 template <int NV>
 using ReadMode = parameter::plain<sn_impl::granular_player_stepquant_density_hybrid_native_t<NV>, 
-                                  18>;
+                                  17>;
 template <int NV>
 using sn_t_plist = parameter::list<PitchMode<NV>, 
                                    MaxGrains<NV>, 
@@ -4493,12 +4508,12 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x0000, 0x6950, 0x6374, 0x4D68, 0x646F, 0x0000, 0x0000, 0xBF80, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x0013, 0x0000, 0x6950, 0x6374, 0x5368, 0x6372, 0x0000, 
-            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4150, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 0x4180, 0x0000, 0x3F80, 
             0x0000, 0x3F80, 0x005C, 0x0014, 0x0000, 0x6544, 0x736E, 0x0065, 
-            0x0000, 0x0000, 0x0000, 0x8000, 0x713F, 0x0A3D, 0x003F, 0x8000, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x3E3F, 0x0EAA, 0x003F, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x1500, 0x0000, 0x4400, 0x6E65, 0x6573, 
-            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
-            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1600, 0x0000, 0x4400, 
+            0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x9480, 
+            0x003E, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1600, 0x0000, 0x4400, 
             0x6E65, 0x6573, 0x7253, 0x0063, 0x0000, 0x8000, 0x003F, 0x8000, 
             0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1700, 
             0x0000, 0x5700, 0x6E69, 0x6853, 0x7061, 0x0065, 0x0000, 0x0000, 
@@ -4521,7 +4536,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x6374, 0x5368, 0x7270, 0x5364, 0x6372, 0x0000, 0x0000, 0x3F80, 
             0x0000, 0x4180, 0x0000, 0x4180, 0x0000, 0x3F80, 0x0000, 0x3F80, 
             0x005C, 0x001F, 0x0000, 0x7247, 0x6961, 0x536E, 0x7A69, 0x0065, 
-            0x0000, 0xA000, 0x0040, 0x7A00, 0x0044, 0x07C0, 0x0044, 0x8000, 
+            0x0000, 0xA000, 0x0040, 0x7A00, 0xD844, 0x0D81, 0x0044, 0x8000, 
             0x003F, 0x0000, 0x5C00, 0x2000, 0x0000, 0x4700, 0x6172, 0x6E69, 
             0x6F4D, 0x0064, 0x0000, 0x8000, 0x00BF, 0x8000, 0x003F, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2100, 0x0000, 0x4700, 
@@ -4588,7 +4603,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x4468, 0x7669, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4180, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x003D, 0x0000, 
             0x6564, 0x4D6C, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x2000, 
-            0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3E00, 
+            0x0041, 0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x3E00, 
             0x0000, 0x4A00, 0x7469, 0x7953, 0x636E, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x003F, 0x0000, 0x6353, 0x7461, 0x6574, 0x0072, 0x0000, 
@@ -4604,9 +4619,9 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
             0x7474, 0x7265, 0x6944, 0x0076, 0x0000, 0x8000, 0x003F, 0x8000, 
             0x0041, 0xE000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x4400, 
             0x0000, 0x5400, 0x6172, 0x736E, 0x6F70, 0x7472, 0x6F4D, 0x6564, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x40C0, 0x0000, 0x3F80, 0x0000, 
+            0x0000, 0x0000, 0x3F80, 0x0000, 0x4040, 0x0000, 0x3F80, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x005C, 0x0045, 0x0000, 0x6552, 0x6461, 
-            0x6F4D, 0x6564, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4040, 0x0000, 
+            0x6F4D, 0x6564, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4080, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(2)
@@ -5539,7 +5554,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		auto& chain45 = this->getT(4).getT(0).getT(1).getT(0).getT(3);                                     // sn_impl::chain45_t<NV>
 		auto& svf6 = this->getT(4).getT(0).getT(1).getT(0).getT(3).getT(0);                                // filters::svf<NV>
 		auto& chain39 = this->getT(4).getT(0).getT(1).getT(0).getT(4);                                     // sn_impl::chain39_t<NV>
-		auto& svf3 = this->getT(4).getT(0).getT(1).getT(0).getT(4).getT(0);                                // filters::svf<NV>
+		auto& biquad = this->getT(4).getT(0).getT(1).getT(0).getT(4).getT(0);                              // filters::biquad<NV>
 		auto& chain44 = this->getT(4).getT(0).getT(1).getT(0).getT(5);                                     // sn_impl::chain44_t<NV>
 		auto& ring_mod = this->getT(4).getT(0).getT(1).getT(0).getT(5).getT(0);                            // filters::ring_mod<NV>
 		auto& chain46 = this->getT(4).getT(0).getT(1).getT(0).getT(6);                                     // sn_impl::chain46_t<NV>
@@ -5993,11 +6008,11 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		pma16.getWrappedObject().getParameter().connectT(2, svf);                               // pma16 -> svf::Frequency
 		pma16.getWrappedObject().getParameter().connectT(3, svf5);                              // pma16 -> svf5::Frequency
 		pma16.getWrappedObject().getParameter().connectT(4, svf6);                              // pma16 -> svf6::Frequency
-		pma16.getWrappedObject().getParameter().connectT(5, svf3);                              // pma16 -> svf3::Frequency
-		pma16.getWrappedObject().getParameter().connectT(6, sampleandhold);                     // pma16 -> sampleandhold::Counter
-		pma16.getWrappedObject().getParameter().connectT(7, ring_mod);                          // pma16 -> ring_mod::Frequency
-		pma16.getWrappedObject().getParameter().connectT(8, cable_table6);                      // pma16 -> cable_table6::Value
-		pma16.getWrappedObject().getParameter().connectT(9, pma1);                              // pma16 -> pma1::Multiply
+		pma16.getWrappedObject().getParameter().connectT(5, sampleandhold);                     // pma16 -> sampleandhold::Counter
+		pma16.getWrappedObject().getParameter().connectT(6, ring_mod);                          // pma16 -> ring_mod::Frequency
+		pma16.getWrappedObject().getParameter().connectT(7, cable_table6);                      // pma16 -> cable_table6::Value
+		pma16.getWrappedObject().getParameter().connectT(8, pma1);                              // pma16 -> pma1::Multiply
+		pma16.getWrappedObject().getParameter().connectT(9, biquad);                            // pma16 -> biquad::Frequency
 		peak15.getParameter().connectT(0, pma16);                                               // peak15 -> pma16::Value
 		global_cable270.getWrappedObject().getParameter().connectT(0, add270);                  // global_cable270 -> add270::Value
 		global_cable271.getWrappedObject().getParameter().connectT(0, add271);                  // global_cable271 -> add271::Value
@@ -6019,12 +6034,12 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		pma18.getWrappedObject().getParameter().connectT(0, one_pole5);                         // pma18 -> one_pole5::Frequency
 		pma18.getWrappedObject().getParameter().connectT(1, allpass);                           // pma18 -> allpass::Q
 		pma18.getWrappedObject().getParameter().connectT(2, cable_table5);                      // pma18 -> cable_table5::Value
-		pma18.getWrappedObject().getParameter().connectT(3, svf3);                              // pma18 -> svf3::Q
-		pma18.getWrappedObject().getParameter().connectT(4, svf6);                              // pma18 -> svf6::Q
-		pma18.getWrappedObject().getParameter().connectT(5, svf5);                              // pma18 -> svf5::Q
-		pma18.getWrappedObject().getParameter().connectT(6, svf);                               // pma18 -> svf::Q
-		pma18.getWrappedObject().getParameter().connectT(7, ring_mod);                          // pma18 -> ring_mod::Q
-		pma18.getWrappedObject().getParameter().connectT(8, one_pole);                          // pma18 -> one_pole::Frequency
+		pma18.getWrappedObject().getParameter().connectT(3, svf6);                              // pma18 -> svf6::Q
+		pma18.getWrappedObject().getParameter().connectT(4, svf5);                              // pma18 -> svf5::Q
+		pma18.getWrappedObject().getParameter().connectT(5, svf);                               // pma18 -> svf::Q
+		pma18.getWrappedObject().getParameter().connectT(6, ring_mod);                          // pma18 -> ring_mod::Q
+		pma18.getWrappedObject().getParameter().connectT(7, one_pole);                          // pma18 -> one_pole::Frequency
+		pma18.getWrappedObject().getParameter().connectT(8, biquad);                            // pma18 -> biquad::Q
 		peak17.getParameter().connectT(0, pma18);                                               // peak17 -> pma18::Value
 		global_cable286.getWrappedObject().getParameter().connectT(0, add286);                  // global_cable286 -> add286::Value
 		global_cable287.getWrappedObject().getParameter().connectT(0, add287);                  // global_cable287 -> add287::Value
@@ -7405,25 +7420,24 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		; // input_toggle::Value1 is automated
 		; // input_toggle::Value2 is automated
 		
-		;                                                                           // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::Scrub is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::GrainMs is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::Density is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::WindowShape is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::PanSpread is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::PitchMode is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::PitchSpreadOrSync is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::MaxGrains is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubMode is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubBlend is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::DirectionMode is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::PhaseScatter is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubB is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubC is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::ScrubD is automated
-		;                                                                           // granular_player_stepquant_density_hybrid_native::TransportMode is automated
-		granular_player_stepquant_density_hybrid_native.setParameterT(17, 0.41149); // project::granular_player_stepquant_density_hybrid_native::WrapMode
-		;                                                                           // granular_player_stepquant_density_hybrid_native::ReadMode is automated
+		; // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
+		; // granular_player_stepquant_density_hybrid_native::Scrub is automated
+		; // granular_player_stepquant_density_hybrid_native::GrainMs is automated
+		; // granular_player_stepquant_density_hybrid_native::Density is automated
+		; // granular_player_stepquant_density_hybrid_native::WindowShape is automated
+		; // granular_player_stepquant_density_hybrid_native::PanSpread is automated
+		; // granular_player_stepquant_density_hybrid_native::PitchMode is automated
+		; // granular_player_stepquant_density_hybrid_native::PitchSpreadOrSync is automated
+		; // granular_player_stepquant_density_hybrid_native::MaxGrains is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubMode is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubBlend is automated
+		; // granular_player_stepquant_density_hybrid_native::DirectionMode is automated
+		; // granular_player_stepquant_density_hybrid_native::PhaseScatter is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubB is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubC is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubD is automated
+		; // granular_player_stepquant_density_hybrid_native::TransportMode is automated
+		; // granular_player_stepquant_density_hybrid_native::ReadMode is automated
 		
 		; // branch2::Index is automated
 		
@@ -7464,12 +7478,12 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		svf6.setParameterT(4, 2.);   // filters::svf::Mode
 		svf6.setParameterT(5, 1.);   // filters::svf::Enabled
 		
-		;                            // svf3::Frequency is automated
-		;                            // svf3::Q is automated
-		svf3.setParameterT(2, 0.);   // filters::svf::Gain
-		svf3.setParameterT(3, 0.01); // filters::svf::Smoothing
-		svf3.setParameterT(4, 3.);   // filters::svf::Mode
-		svf3.setParameterT(5, 1.);   // filters::svf::Enabled
+		;                              // biquad::Frequency is automated
+		;                              // biquad::Q is automated
+		biquad.setParameterT(2, 0.);   // filters::biquad::Gain
+		biquad.setParameterT(3, 0.01); // filters::biquad::Smoothing
+		biquad.setParameterT(4, 5.);   // filters::biquad::Mode
+		biquad.setParameterT(5, 1.);   // filters::biquad::Enabled
 		
 		;                                // ring_mod::Frequency is automated
 		;                                // ring_mod::Q is automated
@@ -7598,9 +7612,9 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(16, 6.);
 		this->setParameterT(17, 12.);
 		this->setParameterT(18, 0.);
-		this->setParameterT(19, 13.);
-		this->setParameterT(20, 0.54);
-		this->setParameterT(21, 0.);
+		this->setParameterT(19, 16.);
+		this->setParameterT(20, 0.557285);
+		this->setParameterT(21, 0.290039);
 		this->setParameterT(22, 1.);
 		this->setParameterT(23, 0.535125);
 		this->setParameterT(24, 3.);
@@ -7610,7 +7624,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(28, 0.86);
 		this->setParameterT(29, 0.);
 		this->setParameterT(30, 16.);
-		this->setParameterT(31, 543.);
+		this->setParameterT(31, 566.029);
 		this->setParameterT(32, 0.);
 		this->setParameterT(33, 1.);
 		this->setParameterT(34, 0.);
@@ -7640,7 +7654,7 @@ template <int NV> struct instance: public sn_impl::sn_t_<NV>
 		this->setParameterT(58, 0.994141);
 		this->setParameterT(59, 14.);
 		this->setParameterT(60, 1.);
-		this->setParameterT(61, 2.);
+		this->setParameterT(61, 5.);
 		this->setParameterT(62, 0.);
 		this->setParameterT(63, 1.);
 		this->setParameterT(64, 0.);

@@ -80,7 +80,7 @@ DLL_EXPORT int getHash(int index)
 		-1204483163,
 		225970153,
 		1021442333,
-		475809066,
+		-1424675751,
 		40102764
 	};
 	return (index >= thirdPartyOffset) ? hashIndexes[index - thirdPartyOffset] : 0;
