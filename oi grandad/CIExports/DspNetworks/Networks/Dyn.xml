@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="Dyn" Version="0.0.0" AllowCompilation="1">
+<Network ID="Dyn" Version="0.0.0">
   <Node FactoryPath="container.chain" ID="Dyn" Bypassed="0" Name="Dyn"
         ShowParameters="1">
     <Nodes>
@@ -109,7 +109,7 @@
       </Parameter>
       <Parameter ID="Makeup" MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
                  SkewFactor="0.5" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="12.00000017881393">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="9.000000134110449">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="MakeupGain"/>
         </Connections>
@@ -136,7 +136,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="POWER" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.0">
+                 DefaultValue="" Value="1.0">
         <Connections>
           <Connection NodeId="minmax" ParameterId="Value"/>
         </Connections>

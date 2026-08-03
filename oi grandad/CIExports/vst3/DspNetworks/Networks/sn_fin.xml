@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="sn_fin" AllowCompilation="1" AllowPolyphonic="1" Version="0.0.0"
-         HasTail="0" SuspendOnSilence="1">
+<Network ID="sn_fin" AllowCompilation="1" Version="0.0.0" HasTail="0">
   <Node FactoryPath="container.chain" ID="sn_fin" Bypassed="0" Name="sn_fin"
         ShowParameters="1">
     <Nodes>

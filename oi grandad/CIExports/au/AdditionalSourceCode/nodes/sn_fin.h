@@ -2149,7 +2149,7 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 	
 	static constexpr bool hasTail() { return false; };
 	
-	static constexpr bool isSuspendedOnSilence() { return true; };
+	static constexpr bool isSuspendedOnSilence() { return false; };
 	
 	void connectToRuntimeTarget(bool addConnection, const runtime_target::connection& c)
 	{
