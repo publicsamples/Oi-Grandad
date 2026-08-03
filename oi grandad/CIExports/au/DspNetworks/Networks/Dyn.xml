@@ -102,21 +102,21 @@
     <Parameters>
       <Parameter ID="Thresh" MinValue="-30.0" MaxValue="0.0" StepSize="0.1000000014901161"
                  SkewFactor="1.709511280059814" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="-30.0">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="0.0">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Threshold"/>
         </Connections>
       </Parameter>
       <Parameter ID="Makeup" MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
                  SkewFactor="0.5" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="9.000000134110449">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="0.0">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="MakeupGain"/>
         </Connections>
       </Parameter>
       <Parameter ID="Atk" MinValue="0.1000000014901161" MaxValue="30.0" StepSize="0.1000000014901161"
                  SkewFactor="0.6270987987518311" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Time" Value="10.60000015795231">
+                 DefaultValue="" TextToValueConverter="Time" Value="0.1000000014901161">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Attack"/>
         </Connections>
@@ -130,7 +130,7 @@
       </Parameter>
       <Parameter ID="Ratio" MinValue="1.0" MaxValue="10.0" StepSize="0.1000000014901161"
                  SkewFactor="0.6309297680854797" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="" Value="3.100000031292438">
+                 DefaultValue="" TextToValueConverter="" Value="2.100000016391277">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Ratio"/>
         </Connections>
