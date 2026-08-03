@@ -129,6 +129,9 @@ const var vMenu1 = [Content.getComponent("pos1modsel"),
                     Content.getComponent("redmodsel5"),
                     Content.getComponent("delmodsel10"),
                     Content.getComponent("PostMode1"),
+                    Content.getComponent("PostMode2"),
+                    Content.getComponent("PostMode3"),
+                    Content.getComponent("PostMode4"),
                     Content.getComponent("ampmodsel"),
                     Content.getComponent("PanModSel1"),
                     Content.getComponent("delmodsel1"),
@@ -264,8 +267,24 @@ const var ModeMenus4 = [Content.getComponent("maxGrains4"),
                         Content.getComponent("PitchMode4"),
                         Content.getComponent("OutputSelector3")];
   
+  for(s in ModeMenus4)
+         s.setLocalLookAndFeel(cBLaf);
+         
+  const var PostMods = [Content.getComponent("delmodsel11"),
+                        Content.getComponent("redmodsel8"),
+                        Content.getComponent("redmodsel7"),
+                        Content.getComponent("delmodsel12"),
+  						Content.getComponent("redmodsel10"),
+                         Content.getComponent("delmodsel13"),
+                         Content.getComponent("redmodsel9"),
+                         Content.getComponent("delmodsel14"),
+                         Content.getComponent("delmodsel15"),
+                  Content.getComponent("redmodsel11"),
+                  Content.getComponent("delmodsel16"),
+                  Content.getComponent("redmodsel12")];
+  
 
-for(s in ModeMenus4)
+for(s in PostMods)
        s.setLocalLookAndFeel(cBLaf);
        
 const var GlbMenus = [Content.getComponent("MidiNote"),

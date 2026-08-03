@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="DspNetwork" Version="0.0.0" SuspendOnSilence="1" CompileChannelAmount="1"
-         AllowCompilation="1">
+         AllowCompilation="1" HasTail="0">
   <Node FactoryPath="container.chain" ID="DspNetwork" Bypassed="0" ShowParameters="1"
         Name="DspNetwork">
     <Nodes>

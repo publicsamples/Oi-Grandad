@@ -10,6 +10,7 @@
 // Include third party header files ------------------------
 
 #include "granular_player_stepquant_density_hybrid_native.h"
+#include "master_bus_compressor_native.h"
 
 // Include compiled network files --------------------------
 

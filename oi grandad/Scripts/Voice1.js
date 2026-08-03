@@ -101,18 +101,16 @@ inline function onposControl(component, value)
 
 Content.getComponent("pos").setControlCallback(onposControl);
 
+
+
 inline function onMacroPos1Control(component, value)
 {
-
-
-	pos.setValue(value);
+		pos.setValue(value);
+	 MultPosA1.setValue(value);
 	pos.changed();
-	MultPosA1.setValue(value);
-	
 };
 
 Content.getComponent("MacroPos1").setControlCallback(onMacroPos1Control);
-
 
 
 inline function onposmodControl(component, value)

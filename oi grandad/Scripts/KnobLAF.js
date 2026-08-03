@@ -304,3 +304,14 @@ for (i = 1; i < 5; i++)
     TrigPeak[i] = Content.getComponent("TrigPeak"+(i)).setLocalLookAndFeel(LAF_Button);
 
 }
+
+const var Comp = [Content.getComponent("Attack"),
+                  Content.getComponent("MakeUp"),
+                  Content.getComponent("Thresh"),
+                  Content.getComponent("Release"),
+                  Content.getComponent("Ratio")];
+
+
+
+for(s in Comp)
+      s.setLocalLookAndFeel(KnobLaf);

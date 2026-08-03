@@ -6615,6 +6615,9 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn_networkdata.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\FoldTests_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
@@ -6630,6 +6633,9 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\MacroMod.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\master_bus_compressor_native.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\modcont_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
@@ -6637,6 +6643,9 @@
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\OutMods.h">
+      <Filter>oi grandad\Source\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\recorder_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\res2.h">

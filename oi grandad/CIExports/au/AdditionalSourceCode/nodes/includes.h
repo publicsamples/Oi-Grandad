@@ -10,16 +10,19 @@
 // Include third party header files ------------------------
 
 #include "granular_player_stepquant_density_hybrid_native.h"
+#include "master_bus_compressor_native.h"
 
 // Include compiled network files --------------------------
 
 #include "DspNetwork.h"
+#include "Dyn_networkdata.h"
 #include "FoldTests_networkdata.h"
 #include "ggg_networkdata.h"
 #include "MacroMod.h"
 #include "modcont_networkdata.h"
 #include "NuTest_networkdata.h"
 #include "OutMods.h"
+#include "recorder_networkdata.h"
 #include "res2.h"
 #include "sn.h"
 #include "sndummy_networkdata.h"

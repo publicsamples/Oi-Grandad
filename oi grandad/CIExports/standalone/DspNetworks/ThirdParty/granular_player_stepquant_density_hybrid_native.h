@@ -77,6 +77,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double deltaTarget = 1.0;
 		int noteNumber = 60;
 		double scrubQ = 0.0;
+		double lastPhaseScatter = -1.0;
+		double lastScatterMaxStart = -1.0;
 		std::array<double, 4> previousScrubSource {};
 		std::array<int, 4> previousOneShotStep {};
 		double densityMorphSmoothed = -1.0;
@@ -95,6 +97,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			deltaTarget = 1.0;
 			noteNumber = 60;
 			scrubQ = 0.0;
+			lastPhaseScatter = -1.0;
+			lastScatterMaxStart = -1.0;
 			previousScrubSource = { 0.0, 0.0, 0.0, 0.0 };
 			previousOneShotStep = { -1, -1, -1, -1 };
 			densityMorphSmoothed = -1.0;
@@ -969,6 +973,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const double oneShotStepSize = getOneShotStepSize(maxStart);
 		double spreadNorm = isStackMode ? 1.0 : morphDensity;
 		bool scrubMoved = std::abs(previousScrub - scrub) > 0.0005;
+		const bool scatterParamsChanged = std::abs(voice.lastPhaseScatter - phaseScatter) > 0.000001
+			|| std::abs(voice.lastScatterMaxStart - maxStart) > 0.5;
+		voice.lastPhaseScatter = phaseScatter;
+		voice.lastScatterMaxStart = maxStart;
 
 		if (stretchMode && (voice.stretchBasePos < 0.0 || scrubMoved))
 			voice.stretchBasePos = scrubSmoothed * maxStart;
@@ -1000,7 +1008,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			}
 
 			auto& grain = voice.grains[(size_t) i];
-			double scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 			auto getQStyleReadPhase = [&]() -> double
 			{
 				if (!qStyleRead || grainSize <= 0.0)
@@ -1029,8 +1036,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
 				grain.readPhase = getQStyleReadPhase();
 				grain.respawnCount = 0;
-				scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-				grain.scatterOffset = scatterOffset;
+				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 				double scatterBase = base + grain.scatterOffset;
 				if (scatterBase < 0.0)
 					scatterBase = 0.0;
@@ -1044,9 +1050,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					grain.start = maxStart;
 				grain.wrapFade = 0.0;
 			}
-			else
+			else if (scatterParamsChanged)
 			{
-				grain.scatterOffset = scatterOffset;
+				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 			}
 
 			if (oneShotMode && oneShotTriggered)
@@ -1055,8 +1061,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase();
-				scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-				grain.scatterOffset = scatterOffset;
+				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 				grain.start = base + grain.scatterOffset;
 				if (grain.start < 0.0)
 					grain.start = 0.0;
@@ -1074,8 +1079,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase();
-				scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-				grain.scatterOffset = scatterOffset;
+				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 				grain.start = base + grain.scatterOffset;
 				grain.latchedStart = grain.start;
 				if (grain.start < 0.0)
@@ -1158,16 +1162,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				if (legacyExact)
 				{
 					++grain.respawnCount;
-					scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-					grain.scatterOffset = scatterOffset;
+					grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 					grain.start = base + grain.scatterOffset;
 					grain.latchedStart = grain.start;
 				}
 				else if (transportState == 2)
 				{
 					++grain.respawnCount;
-					scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-					grain.scatterOffset = scatterOffset;
+					grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 					grain.latchedStart = base + grain.scatterOffset;
 					if (grain.latchedStart < 0.0)
 						grain.latchedStart = 0.0;
@@ -1206,16 +1208,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				if (legacyExact)
 				{
 					++grain.respawnCount;
-					scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-					grain.scatterOffset = scatterOffset;
+					grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 					grain.start = base + grain.scatterOffset;
 					grain.latchedStart = grain.start;
 				}
 				else if (transportState == 2)
 				{
 					++grain.respawnCount;
-					scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-					grain.scatterOffset = scatterOffset;
+					grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
 					grain.latchedStart = base + grain.scatterOffset;
 					if (grain.latchedStart < 0.0)
 						grain.latchedStart = 0.0;

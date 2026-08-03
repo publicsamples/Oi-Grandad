@@ -394,8 +394,7 @@
           <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
           <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" DefaultValue="1.0"
                      Automated="1"/>
-          <Parameter MinValue="6.661338147750939e-16" MaxValue="1.0" ID="Add" DefaultValue="0.0"
-                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
         </Parameters>
       </Node>
       <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add">
@@ -405,20 +404,20 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="mod" Value="0.04798505434782602"
-                 DefaultValue="0.0" TextToValueConverter="">
+      <Parameter MinValue="-1.0" MaxValue="1.0" ID="mod" Value="1.0" DefaultValue="0.0"
+                 TextToValueConverter="">
         <Connections>
           <Connection NodeId="pma12" ParameterId="Multiply"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="src" Value="1.0"
+      <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="src" Value="3.0"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="branch4" ParameterId="Index"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="6.661338147750939e-16" MaxValue="1.0" ID="macro" Value="6.661338147750939e-16"
-                 DefaultValue="0.0">
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="pma12" ParameterId="Add"/>
         </Connections>

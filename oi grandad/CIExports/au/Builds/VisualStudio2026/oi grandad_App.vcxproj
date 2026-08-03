@@ -5297,14 +5297,17 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\PresetData.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\FoldTests_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ggg_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\granular_player_stepquant_density_hybrid_native.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\includes.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\MacroMod.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\master_bus_compressor_native.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\modcont_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\NuTest_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\OutMods.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\recorder_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\res2.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy_networkdata.h"/>

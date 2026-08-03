@@ -27,6 +27,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		TempoSyncer::initTempoData();
 		// Node registrations ----------------------------------------------------------------------
 		
+		registerPolyNode<project::master_bus_compressor_native<1>, scriptnode::wrap::illegal_poly<project::master_bus_compressor_native<1>>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
@@ -34,10 +35,12 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, project::sn_fin<NUM_POLYPHONIC_VOICES>>();
+		registerDataNode<project::Dyn_networkdata>();
 		registerDataNode<project::FoldTests_networkdata>();
 		registerDataNode<project::ggg_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
 		registerDataNode<project::NuTest_networkdata>();
+		registerDataNode<project::recorder_networkdata>();
 		registerDataNode<project::sndummy_networkdata>();
 		registerDataNode<project::test_networkdata>();
 		registerDataNode<project::track_networkdata>();

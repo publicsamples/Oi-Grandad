@@ -2617,7 +2617,7 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 	
 	static constexpr bool isProcessingHiseEvent() { return true; };
 	
-	static constexpr bool hasTail() { return true; };
+	static constexpr bool hasTail() { return false; };
 	
 	static constexpr bool isSuspendedOnSilence() { return true; };
 	

@@ -132,7 +132,7 @@ inline function onButtonControl(component, value)
         	buttons[i].setValue(shouldBeOn);
     }
     
-    Post1.showControl(idx < 4);
+  //  Post1.showControl(idx < 4);
     RandomControls1.showControl(0);
     RandomControls2.showControl(0);
     RandomControls3.showControl(0);
@@ -1028,6 +1028,275 @@ inline function onPostMode1Control(component, value)
 
 Content.getComponent("PostMode1").setControlCallback(onPostMode1Control);
 
+const var FxLabelB4 = Content.getComponent("FxLabelB4");
+const var FxLabelB5 = Content.getComponent("FxLabelB5");
+const var FxLabelB6 = Content.getComponent("FxLabelB6");
+
+const var Final2 = Synth.getEffect("Final2");
+
+inline function onPostMode2Control(component, value)
+{
+		if(value == 1)
+	{
+	 Final2.setAttribute(Final2.delMode, 1);
+	 FxLabelB4.setValue("OFF");
+	 FxLabelB5.setValue("OFF");
+	 FxLabelB6.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  Final2.setAttribute(Final2.delMode, 2);
+	  FxLabelB4.setValue("LP");
+	  FxLabelB5.setValue("Q");
+	  FxLabelB6.setValue("HP");
+	  }
+	  if(value == 3)
+	  {
+	   Final2.setAttribute(Final2.delMode, 3);
+	   FxLabelB4.setValue("HP");
+	   FxLabelB5.setValue("Q");
+	   FxLabelB6.setValue("LP");
+	   }
+	   if(value == 4)
+	   {
+	    Final2.setAttribute(Final2.delMode, 4);
+	    FxLabelB4.setValue("BP");
+	    FxLabelB5.setValue("Q");
+	    FxLabelB6.setValue("LP");
+	    }	
+		if(value == 5)
+	   {
+	    Final2.setAttribute(Final2.delMode, 5);
+	      FxLabelB4.setValue("BP");
+	    FxLabelB5.setValue("Q");
+	    FxLabelB6.setValue("HP");
+	    }
+	    if(value == 6)
+	       {
+	        Final2.setAttribute(Final2.delMode, 6);
+	          FxLabelB4.setValue("CUT");
+	    FxLabelB5.setValue("Q");
+	    FxLabelB6.setValue("GAIN");
+	        }
+	    if(value == 7)
+	       {
+	        Final2.setAttribute(Final2.delMode, 7);
+	          FxLabelB4.setValue("CUT");
+	    FxLabelB5.setValue("Q");
+	    FxLabelB6.setValue("GAIN");
+	        } 
+	   if(value == 8)
+	      {
+	       Final2.setAttribute(Final2.delMode, 8);
+	       FxLabelB4.setValue("AP");
+	       FxLabelB5.setValue("Q");
+	       FxLabelB6.setValue("HP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       Final2.setAttribute(Final2.delMode, 9);
+	   	       FxLabelB4.setValue("Time");
+	       FxLabelB5.setValue("LP");
+	       FxLabelB6.setValue("FEED");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       Final2.setAttribute(Final2.delMode, 10);
+	   	 	       FxLabelB4.setValue("DELAY");
+	   	 	       FxLabelB5.setValue("LP");
+	   	 	       FxLabelB6.setValue("FEED");
+	   	 	       }                                
+	     if(value == 11)
+	     	   	 	      {
+	     	   	 	       Final2.setAttribute(Final2.delMode, 11);
+	     	   	 	       FxLabelB4.setValue("SIZE");
+	     	   	 	       FxLabelB5.setValue("DAMP");
+	     	   	 	       FxLabelB6.setValue("WIDTH");
+	     	   	 	       }         
+
+};
+
+Content.getComponent("PostMode2").setControlCallback(onPostMode2Control);
+
+const var FxLabelB7 = Content.getComponent("FxLabelB7");
+const var FxLabelB8 = Content.getComponent("FxLabelB8");
+const var FxLabelB9 = Content.getComponent("FxLabelB9");
+
+const var Final3 = Synth.getEffect("Final3");
+
+inline function onPostMode3Control(component, value)
+{
+		if(value == 1)
+	{
+	 Final3.setAttribute(Final3.delMode, 1);
+	 FxLabelB7.setValue("OFF");
+	 FxLabelB8.setValue("OFF");
+	 FxLabelB9.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  Final3.setAttribute(Final3.delMode, 2);
+	  FxLabelB7.setValue("LP");
+	  FxLabelB8.setValue("Q");
+	  FxLabelB9.setValue("HP");
+	  }
+	  if(value == 3)
+	  {
+	   Final3.setAttribute(Final3.delMode, 3);
+	   FxLabelB7.setValue("HP");
+	   FxLabelB8.setValue("Q");
+	   FxLabelB9.setValue("LP");
+	   }
+	   if(value == 4)
+	   {
+	    Final3.setAttribute(Final3.delMode, 4);
+	    FxLabelB7.setValue("BP");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("LP");
+	    }	
+		if(value == 5)
+	   {
+	    Final3.setAttribute(Final3.delMode, 5);
+	      FxLabelB7.setValue("BP");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("HP");
+	    }
+	    if(value == 6)
+	       {
+	        Final3.setAttribute(Final3.delMode, 6);
+	          FxLabelB7.setValue("CUT");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("GAIN");
+	        }
+	    if(value == 7)
+	       {
+	        Final3.setAttribute(Final3.delMode, 7);
+	          FxLabelB7.setValue("CUT");
+	    FxLabelB8.setValue("Q");
+	    FxLabelB9.setValue("GAIN");
+	        } 
+	   if(value == 8)
+	      {
+	       Final3.setAttribute(Final3.delMode, 8);
+	       FxLabelB7.setValue("AP");
+	       FxLabelB8.setValue("Q");
+	       FxLabelB9.setValue("HP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       Final3.setAttribute(Final3.delMode, 9);
+	   	       FxLabelB7.setValue("Time");
+	       FxLabelB8.setValue("LP");
+	       FxLabelB9.setValue("FEED");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       Final3.setAttribute(Final3.delMode, 10);
+	   	 	       FxLabelB7.setValue("DELAY");
+	   	 	       FxLabelB8.setValue("LP");
+	   	 	       FxLabelB9.setValue("FEED");
+	   	 	       }                                
+	     if(value == 11)
+	     	   	 	      {
+	     	   	 	       Final3.setAttribute(Final3.delMode, 11);
+	     	   	 	       FxLabelB7.setValue("SIZE");
+	     	   	 	       FxLabelB8.setValue("DAMP");
+	     	   	 	       FxLabelB9.setValue("WIDTH");
+	     	   	 	       }         
+
+};
+
+Content.getComponent("PostMode3").setControlCallback(onPostMode3Control);
+
+const var FxLabelB10 = Content.getComponent("FxLabelB10");
+const var FxLabelB11 = Content.getComponent("FxLabelB11");
+const var FxLabelB12 = Content.getComponent("FxLabelB12");
+
+const var Final4 = Synth.getEffect("Final4");
+
+inline function onPostMode4Control(component, value)
+{
+		if(value == 1)
+	{
+	 Final4.setAttribute(Final4.delMode, 1);
+	 FxLabelB10.setValue("OFF");
+	 FxLabelB11.setValue("OFF");
+	 FxLabelB12.setValue("OFF");
+	 }
+	 if(value == 2)
+	 {
+	  Final4.setAttribute(Final4.delMode, 2);
+	  FxLabelB10.setValue("LP");
+	  FxLabelB11.setValue("Q");
+	  FxLabelB12.setValue("HP");
+	  }
+	  if(value == 3)
+	  {
+	   Final4.setAttribute(Final4.delMode, 3);
+	   FxLabelB10.setValue("HP");
+	   FxLabelB11.setValue("Q");
+	   FxLabelB12.setValue("LP");
+	   }
+	   if(value == 4)
+	   {
+	    Final4.setAttribute(Final4.delMode, 4);
+	    FxLabelB10.setValue("BP");
+	    FxLabelB11.setValue("Q");
+	    FxLabelB12.setValue("LP");
+	    }	
+		if(value == 5)
+	   {
+	    Final4.setAttribute(Final4.delMode, 5);
+	      FxLabelB10.setValue("BP");
+	    FxLabelB11.setValue("Q");
+	    FxLabelB12.setValue("HP");
+	    }
+	    if(value == 6)
+	       {
+	        Final4.setAttribute(Final4.delMode, 6);
+	          FxLabelB10.setValue("CUT");
+	    FxLabelB11.setValue("Q");
+	    FxLabelB12.setValue("GAIN");
+	        }
+	    if(value == 7)
+	       {
+	        Final4.setAttribute(Final4.delMode, 7);
+	          FxLabelB10.setValue("CUT");
+	    FxLabelB11.setValue("Q");
+	    FxLabelB12.setValue("GAIN");
+	        } 
+	   if(value == 8)
+	      {
+	       Final4.setAttribute(Final4.delMode, 8);
+	       FxLabelB10.setValue("AP");
+	       FxLabelB11.setValue("Q");
+	       FxLabelB12.setValue("HP");
+	       }  
+	   if(value == 9)
+	   	      {
+	   	       Final4.setAttribute(Final4.delMode, 9);
+	   	       FxLabelB10.setValue("Time");
+	       FxLabelB11.setValue("LP");
+	       FxLabelB12.setValue("FEED");
+	   	       }   
+	   	 if(value == 10)
+	   	 	      {
+	   	 	       Final4.setAttribute(Final4.delMode, 10);
+	   	 	       FxLabelB10.setValue("DELAY");
+	   	 	       FxLabelB11.setValue("LP");
+	   	 	       FxLabelB12.setValue("FEED");
+	   	 	       }                                
+	     if(value == 11)
+	     	   	 	      {
+	     	   	 	       Final4.setAttribute(Final4.delMode, 11);
+	     	   	 	       FxLabelB10.setValue("SIZE");
+	     	   	 	       FxLabelB11.setValue("DAMP");
+	     	   	 	       FxLabelB12.setValue("WIDTH");
+	     	   	 	       }         
+
+};
+
+Content.getComponent("PostMode4").setControlCallback(onPostMode4Control);
 
 
 const var Mgain1 = Synth.getEffect("Mgain1");

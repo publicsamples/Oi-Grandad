@@ -1,0 +1,44 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "e7d8ffdcab4e7b6b7d1a16819b0eec9f4804ac7efff142093be0cd516c25ac3d"
+    }
+  ],
+  "containerPath" : "/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/DspNetworks/Binaries/Builds/MacOSX/oi grandad.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "configurationName" : "Release",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "ARCHS" : "x86_64",
+          "CLANG_MODULE_CACHE_PATH" : "/Users/rick/Documents/GitHub/Oi-Grandad/.xcode-build/ModuleCache.noindex",
+          "OBJROOT" : "/Users/rick/Documents/GitHub/Oi-Grandad/.xcode-build/obj",
+          "SHARED_PRECOMPS_DIR" : "/Users/rick/Documents/GitHub/Oi-Grandad/.xcode-build/pch",
+          "SYMROOT" : "/Users/rick/Documents/GitHub/Oi-Grandad/.xcode-build/sym"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : false
+}

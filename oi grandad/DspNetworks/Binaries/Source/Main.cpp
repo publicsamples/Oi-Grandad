@@ -27,6 +27,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		TempoSyncer::initTempoData();
 		// Node registrations ----------------------------------------------------------------------
 		
+		registerPolyNode<project::master_bus_compressor_native<1>, scriptnode::wrap::illegal_poly<project::master_bus_compressor_native<1>>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
@@ -54,7 +55,7 @@ DLL_EXPORT size_t getNodeId(int index, char* t)
 
 DLL_EXPORT bool isThirdPartyNode(int index)
 {
-	return index < 1;
+	return index < 2;
 }
 
 DLL_EXPORT int getNumDataObjects(int nodeIndex, int dataTypeAsInt)
@@ -73,15 +74,15 @@ DLL_EXPORT void initOpaqueNode(scriptnode::OpaqueNode* n, int index, bool polyIf
 }
 DLL_EXPORT int getHash(int index)
 {
-	static const int thirdPartyOffset = 1;
+	static const int thirdPartyOffset = 2;
 	static const int hashIndexes[6] =
 	{
-		-1868987259,
-		-1204483163,
+		767699760,
+		-1054421937,
 		225970153,
 		1021442333,
-		-1424675751,
-		40102764
+		-1561537111,
+		-1697591571
 	};
 	return (index >= thirdPartyOffset) ? hashIndexes[index - thirdPartyOffset] : 0;
 }
