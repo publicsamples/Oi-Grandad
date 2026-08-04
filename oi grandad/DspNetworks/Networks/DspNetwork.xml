@@ -2418,7 +2418,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="morphmod" MinValue="5.551115123125783e-17" MaxValue="1.0"
-                 Value="0.5" DefaultValue="1.0">
+                 Value="5.551115123125783e-17" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="pma" ParameterId="Multiply"/>
         </Connections>

@@ -29,10 +29,10 @@ inline function onmodQualityControl(component, value)
 
 modQuality.setControlCallback(onmodQualityControl);
 
-const var defaultRef = "{PROJECT_FOLDER}FmSeq.wav";
-const var defaultRef2 = "{PROJECT_FOLDER}SubKick125_2.wav";
-const var defaultRef3 = "{PROJECT_FOLDER}electro135.wav";
-const var defaultRef4 = "{PROJECT_FOLDER}MuxBeatLo4.aif";
+const var defaultRef = "{PROJECT_FOLDER}OGInit.aif";
+//const var defaultRef2 = "{PROJECT_FOLDER}SubKick125_2.wav";
+//const var defaultRef3 = "{PROJECT_FOLDER}electro135.wav";
+//const var defaultRef4 = "{PROJECT_FOLDER}MuxBeatLo4.aif";
 
 const var g1 = Synth.getAudioSampleProcessor("Granular1");
 const var g2 = Synth.getAudioSampleProcessor("Granular2");
@@ -53,9 +53,9 @@ const var gran3 = Synth.getChildSynth("Granular4");
 Content.callAfterDelay(10, function()
 {
     slot1.loadFile(defaultRef);
-    slot2.loadFile(defaultRef2);
-    slot3.loadFile(defaultRef3);
-    slot4.loadFile(defaultRef4);
+  //  slot2.loadFile(defaultRef2);
+ //   slot3.loadFile(defaultRef3);
+  //  slot4.loadFile(defaultRef4);
 });
 
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");

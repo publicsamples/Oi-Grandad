@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptSlider" id="Position" x="322" y="77" matrixTargetId="Position"
+             processorId="Scriptnode Synthesiser" parameterId="Position" middlePosition="0.5"/>
+</ContentProperties>
