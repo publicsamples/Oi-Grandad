@@ -31,11 +31,8 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerPolyNode<project::MacroMod<1>, project::MacroMod<NUM_POLYPHONIC_VOICES>>();
-		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
-		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
-		registerPolyNode<project::sndummy<1>, project::sndummy<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, wrap::illegal_poly<project::sn_fin<1>>>();
 		registerPolyNode<project::vecfade<1>, wrap::illegal_poly<project::vecfade<1>>>();
 		registerDataNode<project::Dyn_networkdata>();
@@ -44,12 +41,15 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::ggg_networkdata>();
 		registerDataNode<project::gtest_networkdata>();
 		registerDataNode<project::MatrixTest_networkdata>();
+		registerDataNode<project::MatrixTest2_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
 		registerDataNode<project::ModNew_networkdata>();
 		registerDataNode<project::NuTest_networkdata>();
 		registerDataNode<project::_networkdata>();
 		registerDataNode<project::recorder_networkdata>();
 		registerDataNode<project::slotty_networkdata>();
+		registerDataNode<project::sn_networkdata>();
+		registerDataNode<project::sndummy_networkdata>();
 		registerDataNode<project::test_networkdata>();
 		registerDataNode<project::track_networkdata>();
 		registerDataNode<project::trash2_networkdata>();

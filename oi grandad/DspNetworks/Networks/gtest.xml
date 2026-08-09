@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Network ID="gtest" AllowPolyphonic="1" Version="0.0.0">
-  <Node FactoryPath="container.chain" ID="gtest" Bypassed="0" Name="gtest">
+  <Node FactoryPath="container.chain" ID="gtest" Bypassed="0" Name="gtest"
+        ShowParameters="1">
     <Nodes>
-      <Node ID="granular_player_stepquant_density_hybrid_native" FactoryPath="project.granular_player_stepquant_density_hybrid_native"
-            Bypassed="0" Name="granular_player_stepquant_density_hybrid_native">
+      <Node ID="pack5_writer" FactoryPath="control.pack5_writer" Bypassed="0"
+            Name="pack5_writer">
         <ComplexData>
           <SliderPacks>
-            <SliderPack Index="-1" EmbeddedData="20....................f+......"/>
+            <SliderPack Index="0" EmbeddedData="20............................"/>
+          </SliderPacks>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value3" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value4" Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value5" Value="0.0"/>
+        </Parameters>
+      </Node>
+      <Node ID="granular_player_stepquant_density_hybrid_native1" FactoryPath="project.granular_player_stepquant_density_hybrid_native"
+            Bypassed="0" Name="granular_player_stepquant_density_hybrid_native1">
+        <ComplexData>
+          <SliderPacks>
+            <SliderPack Index="0" EmbeddedData="20......................nv0ixC"/>
           </SliderPacks>
           <AudioFiles>
             <AudioFile Index="-1" EmbeddedData="{PROJECT_FOLDER}OGInit.wav" MinValue="0"
@@ -16,36 +32,40 @@
         </ComplexData>
         <Parameters>
           <Parameter MinValue="-12.0" MaxValue="12.0" ID="PitchSemitones" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.650828125"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" Value="0.649578125"
                      DefaultValue="0.0"/>
-          <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" Value="75.22289062500005"
+          <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" Value="256.7686875000001"
                      DefaultValue="50.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.96396875"
-                     DefaultValue="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" Value="0.9794218749999999"
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="0.110375" DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" Value="0.7163906250000001"
                      DefaultValue="0.0"/>
           <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Respawn" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpreadOrSync" Value="0.506640625"
-                     DefaultValue="0.0"/>
-          <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" Value="32.0" DefaultValue="4.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Drift" Value="0.0"/>
-          <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" Value="0.05474999999999997"
-                     DefaultValue="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" Value="0.982328125"
-                     DefaultValue="0.0"/>
           <Parameter MinValue="1.0" MaxValue="10.0" ID="PitchMode" Value="1.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubMode" Value="0.0"/>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpreadOrSync" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" Value="32.0" DefaultValue="4.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Respawn" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" Value="0.71996875"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" Value="0.47040625"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Value="0.215703125"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" Value="0.0"/>
           <Parameter MinValue="1.0" MaxValue="3.0" ID="TransportMode" Value="1.0"/>
           <Parameter MinValue="1.0" MaxValue="4.0" ID="ReadMode" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Drift" Value="0.98915625" DefaultValue="0.0"/>
         </Parameters>
       </Node>
     </Nodes>
-    <Parameters/>
+    <Parameters>
+      <Parameter ID="Parameter" MinValue="1.0" MaxValue="5.0" StepSize="1" ModColour="0"
+                 ExternalModulation="Disabled" DefaultValue="1.0" Value="2.0">
+        <Connections>
+          <Connection NodeId="pack5_writer" ParameterId="Value4"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
   </Node>
 </Network>

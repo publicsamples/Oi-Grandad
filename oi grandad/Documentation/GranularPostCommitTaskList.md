@@ -34,6 +34,11 @@ Why it matters:
 - it reduced the rigid rhythmic locking of the cloud
 - it got closer to the "smooth while moving MaxGrains" sound without requiring manual performance tricks
 
+Current decision:
+
+- keep bloom / note-on decorrelation internal and static for now
+- revisit exposing a dedicated control only if later testing shows a real need
+
 ## 3. Keep the performance fixes that do not cost sound quality
 
 The clearest low-risk engine optimizations were:

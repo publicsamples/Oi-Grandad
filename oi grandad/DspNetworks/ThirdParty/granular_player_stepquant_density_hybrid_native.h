@@ -35,7 +35,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	static constexpr int getFixChannelAmount() { return 2; }
 
 	static constexpr int NumTables = 0;
-	static constexpr int NumSliderPacks = 0;
+	static constexpr int NumSliderPacks = 1;
 	static constexpr int NumAudioFiles = 1;
 	static constexpr int NumFilters = 0;
 	static constexpr int NumDisplayBuffers = 0;
@@ -187,6 +187,13 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	void setExternalData(const ExternalData& data, int index)
 	{
+		if (auto sp = dynamic_cast<SliderPackData*>(data.obj))
+		{
+			sp->setNumSliders(5);
+			data.referBlockTo(modePack, 0);
+			return;
+		}
+
 		if (index != 0)
 			return;
 
@@ -237,12 +244,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (P == 4) windowShape = clamp01(v);
 		if (P == 5) panSpread = clamp01(v);
 
-		if (P == 6)
-		{
-			pitchMode = decodeMenuValue(v, 10);
-			for (auto& voice : voiceStates)
-				updateDelta(voice);
-		}
+		if (P == 6) respawn = clamp01(v);
 
 		if (P == 7)
 		{
@@ -252,8 +254,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		if (P == 8)
 			maxGrainsValue = jlimit(1.0, (double) MaxGrains, v);
-		if (P == 9) scrubMode = jlimit(0.0, 1.0, std::round(v));
-		if (P == 10) scrubBlend = clamp01(v);
+		if (P == 9) diffusion = clamp01(v);
+		if (P == 10) drift = clamp01(v);
 
 		if (P == 11)
 		{
@@ -276,18 +278,16 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		addParameter<3>(data, "Density", 0.0, 1.0, 1.0);
 		addParameter<4>(data, "WindowShape", 0.0, 1.0, 0.0);
 		addParameter<5>(data, "PanSpread", 0.0, 1.0, 0.0);
-		addParameter<6>(data, "PitchMode", 1.0, 10.0, 1.0);
+		addParameter<6>(data, "Respawn", 0.0, 1.0, 0.0);
 		addParameter<7>(data, "PitchSpreadOrSync", 0.0, 1.0, 0.0);
 		addParameter<8>(data, "MaxGrains", 1.0, 32.0, 4.0);
-		addParameter<9>(data, "ScrubMode", 0.0, 1.0, 0.0);
-		addParameter<10>(data, "ScrubBlend", 0.0, 1.0, 0.0);
+		addParameter<9>(data, "Diffusion", 0.0, 1.0, 0.0);
+		addParameter<10>(data, "Drift", 0.0, 1.0, 0.0);
 		addParameter<11>(data, "DirectionMode", 1.0, 4.0, 1.0);
 		addParameter<12>(data, "PhaseScatter", 0.0, 1.0, 0.0);
 		addParameter<13>(data, "ScrubB", 0.0, 1.0, 0.0);
 		addParameter<14>(data, "ScrubC", 0.0, 1.0, 0.0);
 		addParameter<15>(data, "ScrubD", 0.0, 1.0, 0.0);
-		addParameter<16>(data, "TransportMode", 1.0, 3.0, 1.0);
-		addParameter<17>(data, "ReadMode", 1.0, 4.0, 1.0);
 	}
 
 	template <int P> void addParameter(ParameterDataList& data, const char* id, double min, double max, double defaultValue)
@@ -306,6 +306,20 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double decodeMenuValue(double v, int maxValue) const
 	{
 		return jlimit(1.0, (double) maxValue, std::round(v));
+	}
+
+	double getModePackValue(int index, double fallback) const
+	{
+		if (index >= 0 && index < modePack.size())
+			return clamp01(modePack[(size_t) index]);
+
+		return fallback;
+	}
+
+	double decodeModePackMenuValue(int index, int maxValue, double fallback) const
+	{
+		double value = getModePackValue(index, fallback);
+		return decodeMenuValue(1.0 + value * (double) (maxValue - 1), maxValue);
 	}
 
 	double smooth01(double x) const
@@ -499,7 +513,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	int getPitchState()
 	{
-		return jlimit(0, 9, (int)std::round(pitchMode) - 1);
+		return jlimit(0, 9, (int)std::round(decodeModePackMenuValue(0, 10, 0.0)) - 1);
 	}
 
 	void updateGlideSmoothing(VoiceState& voice)
@@ -611,7 +625,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	int getPlayheadModeState() const
 	{
-		return jlimit(0, 1, (int)std::round(scrubMode));
+		return jlimit(0, 1, (int)std::round(getModePackValue(1, 0.0)));
 	}
 
 	int getSchedulerModeState() const
@@ -619,31 +633,47 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return 1;
 	}
 
-	void getTransportModeState(int& transportState, bool& stretchEnabled, bool& legacyExact, bool& legacyWrapFade) const
+	void getPlaybackPresetState(int& transportState, bool& stretchEnabled, bool& legacyExact, bool& legacyWrapFade,
+		bool& timeInvariant, bool& smoothTimeInvariant) const
 	{
-		int mode = jlimit(1, 3, (int)std::round(transportMode));
-		stretchEnabled = (mode != 2);
-		legacyWrapFade = (mode == 3);
-		legacyExact = (mode == 1 && jlimit(1, 4, (int)std::round(readMode)) == 1);
+		int mode = jlimit(1, 5, (int)std::round(decodeModePackMenuValue(3, 5, 0.0)));
+		stretchEnabled = true;
+		legacyWrapFade = false;
+		legacyExact = false;
+		timeInvariant = false;
+		smoothTimeInvariant = false;
 
 		switch (mode)
 		{
-			case 1: // Latched Stretch
+			case 1: // Loop
 				transportState = 2;
+				stretchEnabled = true;
+				legacyExact = true;
 				break;
-			case 2: // Latched
+			case 2: // Smooth
 				transportState = 2;
+				stretchEnabled = true;
+				timeInvariant = true;
+				smoothTimeInvariant = true;
 				break;
-			case 3: // Latched Stretch Fade
+			case 3: // Grain
+				transportState = 2;
+				stretchEnabled = false;
+				break;
+			case 4: // Hold
+				transportState = 2;
+				stretchEnabled = false;
+				timeInvariant = true;
+				smoothTimeInvariant = true;
+				break;
+			case 5: // Fade
 			default:
 				transportState = 2;
+				stretchEnabled = true;
+				legacyExact = true;
+				legacyWrapFade = true;
 				break;
 		}
-	}
-
-	int getReadModeState() const
-	{
-		return jlimit(0, 3, (int)std::round(readMode) - 1);
 	}
 
 	bool isQStyleReadMode(int readState) const
@@ -733,9 +763,22 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double rerollSeed = stableSeed + (double) respawnCount * 173.31;
 		double stableRand = grainRandomFromSeed(stableSeed);
 		double rerollRand = grainRandomFromSeed(rerollSeed);
-		double rerollBlend = clamp01((spread - 0.1) / 0.9);
+		double rerollBlend = clamp01(respawn);
 		double random01 = stableRand + (rerollRand - stableRand) * rerollBlend;
-		double halfWidth = jmax(2.0, maxStart * 0.85) * spread;
+		double halfWidth = 0.0;
+		if (spread <= 0.5)
+		{
+			double localSpread = smooth01(spread * 2.0);
+			halfWidth = jmax(2.0, maxStart * 0.08) * localSpread;
+		}
+		else
+		{
+			double broadSpread = smooth01((spread - 0.5) * 2.0);
+			double localWidth = jmax(2.0, maxStart * 0.08);
+			double broadWidth = jmax(localWidth, maxStart * 0.3);
+			halfWidth = localWidth + (broadWidth - localWidth) * broadSpread;
+		}
+
 		double offset = (random01 * 2.0 - 1.0) * halfWidth;
 		return offset;
 	}
@@ -1000,12 +1043,13 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		bool stretchEnabled = true;
 		bool legacyExact = true;
 		bool legacyWrapFade = false;
-		getTransportModeState(transportState, stretchEnabled, legacyExact, legacyWrapFade);
-		const int readState = getReadModeState();
-		const bool qStyleRead = isQStyleReadMode(readState);
-		const bool timeInvariant = legacyExact ? false : (readState == 1 || readState == 3);
+		bool timeInvariant = false;
+		bool smoothTimeInvariant = false;
+		getPlaybackPresetState(transportState, stretchEnabled, legacyExact, legacyWrapFade, timeInvariant, smoothTimeInvariant);
+		const int readState = 0;
+		const bool qStyleRead = false;
 		const int g = jlimit(1, MaxGrains, (int) std::round(maxGrainsValue));
-		const bool isStackMode = (scrubBlend < 0.5);
+		const bool isStackMode = (getModePackValue(2, 0.0) < 0.5);
 		const bool stretchMode = legacyExact ? true : stretchEnabled;
 		const int densitySlots = g;
 
@@ -1238,7 +1282,12 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double schedulerInc = timeInvariant ? dir : (voice.delta * grainPitchMul * dir);
 			double readInc = schedulerInc;
 
-			if (stretchMode)
+			if (timeInvariant)
+			{
+				schedulerInc = dir;
+				readInc = voice.delta * grainPitchMul * dir;
+			}
+			else if (stretchMode)
 			{
 				// In stretch mode the grain window should advance in output time,
 				// while note / semitone pitch only affects the source-read phase.
@@ -1260,7 +1309,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				}
 
 				grain.phase -= grainSize;
-				if (stretchMode)
+				if (stretchMode || timeInvariant)
 				{
 					if (qStyleRead)
 					{
@@ -1306,7 +1355,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				}
 
 				grain.phase += grainSize;
-				if (stretchMode)
+				if (stretchMode || timeInvariant)
 				{
 					if (qStyleRead)
 					{
@@ -1355,7 +1404,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (grain.start > maxStart)
 				grain.start = maxStart;
 
-			double readCarrier = stretchMode ? grain.readPhase : grain.phase;
+			double readCarrier = (stretchMode || timeInvariant) ? grain.readPhase : grain.phase;
 			double readRate = stretchMode ? grainPitchMul : (voice.delta * grainPitchMul);
 			double pos = grain.start + getReadPhaseForMode(getTimelinePhaseForRead(readCarrier, timeInvariant, readRate), readState, grainPitchMul);
 			if (pos < 0.0) pos = 0.0;
@@ -1366,6 +1415,41 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double monoL = 0.0;
 			double monoR = 0.0;
 			readGrainStereo(i, g, pos, monoL, monoR);
+
+			if (smoothTimeInvariant && grainSize > 1.0)
+			{
+				double timelinePhase = getTimelinePhaseForRead(readCarrier, timeInvariant, readRate);
+				double fadeSamples = jlimit(4.0, 128.0, grainSize * 0.04);
+				double wrapMix = 0.0;
+				double altPhase = timelinePhase;
+
+				if (timelinePhase < fadeSamples)
+				{
+					wrapMix = smooth01(1.0 - (timelinePhase / fadeSamples));
+					altPhase = timelinePhase + grainSize;
+				}
+				else if (timelinePhase > (grainSize - fadeSamples))
+				{
+					wrapMix = smooth01((timelinePhase - (grainSize - fadeSamples)) / fadeSamples);
+					altPhase = timelinePhase - grainSize;
+				}
+
+				if (wrapMix > 0.0)
+				{
+					double altPos = grain.start + getReadPhaseForMode(altPhase, readState, grainPitchMul);
+					if (altPos < 0.0) altPos = 0.0;
+					if (altPos >= audioFile.numSamples - 1.0)
+						altPos = audioFile.numSamples - 2.0;
+
+					double altL = 0.0;
+					double altR = 0.0;
+					readGrainStereo(i, g, altPos, altL, altR);
+
+					double dry = 1.0 - wrapMix;
+					monoL = monoL * dry + altL * wrapMix;
+					monoR = monoR * dry + altR * wrapMix;
+				}
+			}
 
 			double panSlot = panOrderIndex(i, g);
 			double normPan = ((panSlot - center) * invDenom);
@@ -1386,11 +1470,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		voice.noteAgeSamples += 1.0;
 
-		double diffusion = 0.0;
-		if (diffusion > 0.0001)
+		double diffusionAmount = clamp01(diffusion);
+		if (diffusionAmount > 0.0001)
 		{
-			double a1 = 0.08 + 0.62 * diffusion;
-			double a2 = 0.04 + 0.47 * diffusion;
+			double a1 = 0.08 + 0.62 * diffusionAmount;
+			double a2 = 0.04 + 0.47 * diffusionAmount;
 
 			double yL1 = (0.0 - a1) * Lsum + voice.ap1L;
 			voice.ap1L = Lsum + a1 * yL1;
@@ -1402,7 +1486,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double yR2 = (0.0 - a2) * yR1 + voice.ap2R;
 			voice.ap2R = yR1 + a2 * yR2;
 
-			double wet = 0.75 * diffusion;
+			double wet = 0.75 * diffusionAmount;
 			double dry = 1.0 - wet;
 			Lsum = Lsum * dry + yL2 * wet;
 			Rsum = Rsum * dry + yR2 * wet;
@@ -1414,6 +1498,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	ExternalData audioFile;
 	PolyData<VoiceState, NV> voiceStates;
+	block modePack;
 	std::array<block, MaxSourceChannels> sourceSample {};
 
 	double sampleRate = 0.0;
@@ -1439,6 +1524,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double maxGrainsValue = 4.0;
 	double scrubMode = 1.0;
 	double scrubBlend = 0.0;
+	double respawn = 0.0;
+	double diffusion = 0.0;
+	double drift = 0.0;
 	double directionMode = 0.0;
 	double phaseScatter = 0.0;
 	double transportMode = 1.0;
