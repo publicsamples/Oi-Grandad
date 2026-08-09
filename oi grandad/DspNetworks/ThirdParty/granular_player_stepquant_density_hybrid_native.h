@@ -583,7 +583,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return getScaleRatioFromSemitones(semitoneSteps[stepIndex]);
 	}
 
-	double getGrainWeight(int i, int grainCount, bool isStackMode) const
+	double getGrainWeight(int i, int grainCount, bool isStackMode, double densityValue) const
 	{
 		if (i < 0 || i >= grainCount)
 			return 0.0;
@@ -594,7 +594,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (grainCount <= 1)
 			return 1.0;
 
-		double d = clamp01(density);
+		double d = clamp01(densityValue);
 		double coverage = 1.0 + d * (double) (grainCount - 1);
 		if (coverage > (double) grainCount)
 			coverage = (double) grainCount;
@@ -676,6 +676,46 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double progress = jlimit(0.0, 1.0, voice.noteAgeSamples / bloomSamples);
 		int activeCount = 1 + (int)std::floor(progress * (double)jmax(0, targetGrainCount - 1) + 0.000001);
 		return jlimit(1, targetGrainCount, activeCount);
+	}
+
+	double getBloomProgress(const VoiceState& voice) const
+	{
+		if (sampleRate <= 0.0)
+			return 1.0;
+
+		const double bloomSamples = 0.25 * sampleRate;
+		if (bloomSamples <= 1.0)
+			return 1.0;
+
+		return jlimit(0.0, 1.0, voice.noteAgeSamples / bloomSamples);
+	}
+
+	double getBloomPhaseJitter(const VoiceState& voice, int grainIndex) const
+	{
+		if (grainSize <= 0.0)
+			return 0.0;
+
+		double bloomAmount = 1.0 - getBloomProgress(voice);
+		if (bloomAmount <= 0.0)
+			return 0.0;
+
+		double signedRand = grainRandomFromSeed((double) (grainIndex + 1) * 41.17 + (double) voice.noteNumber * 3.71) * 2.0 - 1.0;
+		double maxJitter = grainSize * 0.18 * bloomAmount;
+		return signedRand * maxJitter;
+	}
+
+	double getBloomStartJitter(const VoiceState& voice, int grainIndex, double maxStart) const
+	{
+		if (maxStart <= 0.0)
+			return 0.0;
+
+		double bloomAmount = 1.0 - getBloomProgress(voice);
+		if (bloomAmount <= 0.0)
+			return 0.0;
+
+		double signedRand = grainRandomFromSeed((double) (grainIndex + 1) * 67.91 + (double) voice.noteNumber * 5.13) * 2.0 - 1.0;
+		double maxJitter = jmax(2.0, maxStart * 0.015) * bloomAmount;
+		return signedRand * maxJitter;
 	}
 
 	double getScatterStartOffset(int grainIndex, int grainCount, double maxStart, int respawnCount) const
@@ -970,22 +1010,15 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const int densitySlots = g;
 
 		double morphDensity = clamp01(density);
-		if (!isStackMode)
-		{
-			if (voice.densityMorphSmoothed < 0.0)
-				voice.densityMorphSmoothed = morphDensity;
-
-			double densitySmoothCoeff = 1.0;
-			if (sampleRate > 0.0)
-				densitySmoothCoeff = 1.0 - std::exp(-1.0 / (0.01 * sampleRate));
-
-			voice.densityMorphSmoothed += (morphDensity - voice.densityMorphSmoothed) * densitySmoothCoeff;
-			morphDensity = voice.densityMorphSmoothed;
-		}
-		else
-		{
+		if (voice.densityMorphSmoothed < 0.0)
 			voice.densityMorphSmoothed = morphDensity;
-		}
+
+		double densitySmoothCoeff = 1.0;
+		if (sampleRate > 0.0)
+			densitySmoothCoeff = 1.0 - std::exp(-1.0 / (0.02 * sampleRate));
+
+		voice.densityMorphSmoothed += (morphDensity - voice.densityMorphSmoothed) * densitySmoothCoeff;
+		morphDensity = voice.densityMorphSmoothed;
 
 		std::array<double, MaxGrains> weights {};
 		std::array<int, MaxGrains> grainGroup {};
@@ -1027,15 +1060,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		for (int i = 0; i < g; ++i)
 		{
-			double w = getGrainWeight(i, densitySlots, isStackMode);
-			if (isStackMode)
-			{
-				double driftAmount = 0.35 * clamp01(density);
-				double driftPhase = wrap01(voice.speedPhase + 0.61803398875 * (double) i);
-				double driftTri = 1.0 - std::abs(2.0 * driftPhase - 1.0);
-				double driftGain = (1.0 - driftAmount) + driftAmount * driftTri;
-				w *= driftGain;
-			}
+			double w = getGrainWeight(i, densitySlots, isStackMode, morphDensity);
 			if (!isStackMode)
 			{
 				int group = grainGroup[(size_t)i];
@@ -1047,7 +1072,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				}
 				else
 				{
-					w = getGrainWeight(groupIndex, groupCount, true) * groupMorphWeights[(size_t)group];
+					w = getGrainWeight(groupIndex, groupCount, true, morphDensity) * groupMorphWeights[(size_t)group];
 				}
 			}
 			weights[(size_t) i] = w;
@@ -1065,11 +1090,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const double oneShotStepSize = getOneShotStepSize(maxStart);
 		double spreadNorm = isStackMode ? 1.0 : morphDensity;
 		bool scrubMoved = std::abs(previousScrub - scrub) > 0.0005;
-		if (isStackMode && sampleRate > 0.0)
-		{
-			double driftHz = 0.03 + 0.17 * clamp01(density);
-			voice.speedPhase = wrap01(voice.speedPhase + driftHz / sampleRate);
-		}
 		const int bloomActiveGrainCount = getBloomActiveGrainCount(voice, g);
 		const bool scatterParamsChanged = std::abs(voice.lastPhaseScatter - phaseScatter) > 0.000001
 			|| std::abs(voice.lastScatterMaxStart - maxStart) > 0.5;
@@ -1124,12 +1144,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (!grain.active && !oneShotMode && bloomActivationAllowed)
 			{
+				double bloomPhaseJitter = getBloomPhaseJitter(voice, i);
+				double bloomStartJitter = getBloomStartJitter(voice, i, maxStart);
 				grain.active = true;
-				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
+				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) + bloomPhaseJitter : 0.0;
+				if (grain.phase < 0.0)
+					grain.phase += grainSize;
+				if (grain.phase >= grainSize)
+					grain.phase -= grainSize;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead);
 				grain.respawnCount = 0;
 				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
-				double scatterBase = base + grain.scatterOffset;
+				double scatterBase = base + grain.scatterOffset + bloomStartJitter;
 				if (scatterBase < 0.0)
 					scatterBase = 0.0;
 				if (scatterBase > maxStart)
