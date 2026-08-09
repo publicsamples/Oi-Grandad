@@ -147,6 +147,12 @@ Important constraint:
 
 - this should be isolated as a dedicated playback option so the existing punchier / loop-like behaviour remains available
 
+Current status:
+
+- the first cloud-mode implementation has been parked
+- playback preset slot 6 currently falls back to the stable loop baseline
+- `CloudAmount` is intentionally inert until the mode is redesigned from first principles
+
 ## 10. Keep the "one useful behaviour per control" discipline
 
 The chat repeatedly converged on a better design rule:

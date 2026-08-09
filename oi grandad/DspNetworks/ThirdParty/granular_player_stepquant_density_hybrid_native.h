@@ -255,7 +255,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (P == 8)
 			maxGrainsValue = jlimit(1.0, (double) MaxGrains, v);
 		if (P == 9) diffusion = clamp01(v);
-		if (P == 10) drift = clamp01(v);
+		if (P == 10) cloudAmount = clamp01(v);
 
 		if (P == 11)
 		{
@@ -266,8 +266,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (P == 13) scrubB = v;
 		if (P == 14) scrubC = v;
 		if (P == 15) scrubD = v;
-		if (P == 16) transportMode = decodeMenuValue(v, 3);
-		if (P == 17) readMode = decodeMenuValue(v, 4);
+		if (P == 16) bloomDuration = clamp01(v);
+		if (P == 17) test2 = clamp01(v);
+		if (P == 18) test3 = clamp01(v);
+		if (P == 19) test4 = clamp01(v);
+		if (P == 20) test5 = clamp01(v);
 	}
 
 	void createParameters(ParameterDataList& data)
@@ -282,12 +285,17 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		addParameter<7>(data, "PitchSpreadOrSync", 0.0, 1.0, 0.0);
 		addParameter<8>(data, "MaxGrains", 1.0, 32.0, 4.0);
 		addParameter<9>(data, "Diffusion", 0.0, 1.0, 0.0);
-		addParameter<10>(data, "Drift", 0.0, 1.0, 0.0);
+		addParameter<10>(data, "CloudAmount", 0.0, 1.0, 0.0);
 		addParameter<11>(data, "DirectionMode", 1.0, 4.0, 1.0);
 		addParameter<12>(data, "PhaseScatter", 0.0, 1.0, 0.0);
 		addParameter<13>(data, "ScrubB", 0.0, 1.0, 0.0);
 		addParameter<14>(data, "ScrubC", 0.0, 1.0, 0.0);
 		addParameter<15>(data, "ScrubD", 0.0, 1.0, 0.0);
+		addParameter<16>(data, "BloomDuration", 0.0, 1.0, 0.3);
+		addParameter<17>(data, "Test2", 0.0, 1.0, 1.0);
+		addParameter<18>(data, "Test3", 0.0, 1.0, 1.0);
+		addParameter<19>(data, "Test4", 0.0, 1.0, 1.0);
+		addParameter<20>(data, "Test5", 0.0, 1.0, 1.0);
 	}
 
 	template <int P> void addParameter(ParameterDataList& data, const char* id, double min, double max, double defaultValue)
@@ -438,12 +446,6 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			return -1.0;
 
 		return ((grainIndex % 2) == 1) ? -1.0 : 1.0;
-	}
-
-	double cloudWindowPhase(double phaseNorm, int grainIndex) const
-	{
-		ignoreUnused(grainIndex);
-		return wrap01(phaseNorm);
 	}
 
 	void updateGrainSize()
@@ -636,7 +638,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	void getPlaybackPresetState(int& transportState, bool& stretchEnabled, bool& legacyExact, bool& legacyWrapFade,
 		bool& timeInvariant, bool& smoothTimeInvariant) const
 	{
-		int mode = jlimit(1, 5, (int)std::round(decodeModePackMenuValue(3, 5, 0.0)));
+		int mode = jlimit(1, 6, (int)std::round(decodeModePackMenuValue(3, 6, 0.0)));
 		stretchEnabled = true;
 		legacyWrapFade = false;
 		legacyExact = false;
@@ -667,11 +669,16 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				smoothTimeInvariant = true;
 				break;
 			case 5: // Fade
-			default:
 				transportState = 2;
 				stretchEnabled = true;
 				legacyExact = true;
 				legacyWrapFade = true;
+				break;
+			case 6: // Reserved
+			default:
+				transportState = 2;
+				stretchEnabled = true;
+				legacyExact = true;
 				break;
 		}
 	}
@@ -694,12 +701,30 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return evenOffset * spread;
 	}
 
+	double getInitialSchedulerPhase(int grainIndex, int grainCount, bool stretchMode) const
+	{
+		if (!stretchMode)
+			return 0.0;
+
+		return getSchedulerPhaseOffset(grainIndex, grainCount);
+	}
+
+	double getBloomDurationSeconds() const
+	{
+		// Default stays close to the current behaviour, but the user can extend it.
+		return 0.04 + clamp01(bloomDuration) * 0.76;
+	}
+
 	int getBloomActiveGrainCount(const VoiceState& voice, int targetGrainCount) const
 	{
+		double amount = clamp01(cloudAmount);
+		if (amount <= 0.0)
+			return targetGrainCount;
+
 		if (sampleRate <= 0.0)
 			return targetGrainCount;
 
-		const double bloomSamples = 0.25 * sampleRate;
+		const double bloomSamples = getBloomDurationSeconds() * sampleRate;
 		if (bloomSamples <= 1.0)
 			return targetGrainCount;
 
@@ -710,10 +735,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	double getBloomProgress(const VoiceState& voice) const
 	{
+		double amount = clamp01(cloudAmount);
+		if (amount <= 0.0)
+			return 1.0;
+
 		if (sampleRate <= 0.0)
 			return 1.0;
 
-		const double bloomSamples = 0.25 * sampleRate;
+		const double bloomSamples = getBloomDurationSeconds() * sampleRate;
 		if (bloomSamples <= 1.0)
 			return 1.0;
 
@@ -722,10 +751,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	double getBloomPhaseJitter(const VoiceState& voice, int grainIndex) const
 	{
+		double amount = clamp01(cloudAmount);
+		if (amount <= 0.0)
+			return 0.0;
+
 		if (grainSize <= 0.0)
 			return 0.0;
 
-		double bloomAmount = 1.0 - getBloomProgress(voice);
+		double bloomAmount = (1.0 - getBloomProgress(voice)) * amount;
 		if (bloomAmount <= 0.0)
 			return 0.0;
 
@@ -736,10 +769,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	double getBloomStartJitter(const VoiceState& voice, int grainIndex, double maxStart) const
 	{
+		double amount = clamp01(cloudAmount);
+		if (amount <= 0.0)
+			return 0.0;
+
 		if (maxStart <= 0.0)
 			return 0.0;
 
-		double bloomAmount = 1.0 - getBloomProgress(voice);
+		double bloomAmount = (1.0 - getBloomProgress(voice)) * amount;
 		if (bloomAmount <= 0.0)
 			return 0.0;
 
@@ -1134,7 +1171,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const double oneShotStepSize = getOneShotStepSize(maxStart);
 		double spreadNorm = isStackMode ? 1.0 : morphDensity;
 		bool scrubMoved = std::abs(previousScrub - scrub) > 0.0005;
-		const int bloomActiveGrainCount = getBloomActiveGrainCount(voice, g);
+		const bool enableBloom = cloudAmount > 0.0001;
+		const int bloomActiveGrainCount = enableBloom ? getBloomActiveGrainCount(voice, g) : g;
 		const bool scatterParamsChanged = std::abs(voice.lastPhaseScatter - phaseScatter) > 0.000001
 			|| std::abs(voice.lastScatterMaxStart - maxStart) > 0.5;
 		voice.lastPhaseScatter = phaseScatter;
@@ -1188,10 +1226,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (!grain.active && !oneShotMode && bloomActivationAllowed)
 			{
-				double bloomPhaseJitter = getBloomPhaseJitter(voice, i);
-				double bloomStartJitter = getBloomStartJitter(voice, i, maxStart);
+				double bloomPhaseJitter = enableBloom ? getBloomPhaseJitter(voice, i) : 0.0;
+				double bloomStartJitter = enableBloom ? getBloomStartJitter(voice, i, maxStart) : 0.0;
 				grain.active = true;
-				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) + bloomPhaseJitter : 0.0;
+				double schedulerOffset = getInitialSchedulerPhase(i, g, stretchMode);
+				grain.phase = schedulerOffset + bloomPhaseJitter;
 				if (grain.phase < 0.0)
 					grain.phase += grainSize;
 				if (grain.phase >= grainSize)
@@ -1220,7 +1259,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (oneShotMode && oneShotTriggered)
 			{
 				grain.active = true;
-				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
+				grain.phase = getInitialSchedulerPhase(i, g, stretchMode);
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead);
 				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
@@ -1238,7 +1277,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (legacyExact && transportWrapped)
 			{
-				grain.phase = stretchMode ? getSchedulerPhaseOffset(i, g) : 0.0;
+				grain.phase = getInitialSchedulerPhase(i, g, stretchMode);
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead);
 				grain.scatterOffset = getScatterStartOffset(i, g, maxStart, grain.respawnCount);
@@ -1411,7 +1450,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (pos >= audioFile.numSamples - 1.0)
 				pos = audioFile.numSamples - 2.0;
 
-			double w = morphedWindow(cloudWindowPhase(grain.phase / grainSize, i));
+			double envelopePhase = grain.phase;
+
+			while (envelopePhase >= grainSize)
+				envelopePhase -= grainSize;
+			while (envelopePhase < 0.0)
+				envelopePhase += grainSize;
+
+			double w = morphedWindow(wrap01(envelopePhase / grainSize));
 			double monoL = 0.0;
 			double monoR = 0.0;
 			readGrainStereo(i, g, pos, monoL, monoR);
@@ -1492,6 +1538,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			Rsum = Rsum * dry + yR2 * wet;
 		}
 
+		const double testGain = (test2 + test3 + test4 + test5) * 0.25;
+		Lsum *= testGain;
+		Rsum *= testGain;
+
 		fd[0] += (float) Lsum;
 		fd[1] += (float) Rsum;
 	}
@@ -1526,11 +1576,16 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double scrubBlend = 0.0;
 	double respawn = 0.0;
 	double diffusion = 0.0;
-	double drift = 0.0;
+	double cloudAmount = 0.0;
 	double directionMode = 0.0;
 	double phaseScatter = 0.0;
 	double transportMode = 1.0;
 	double readMode = 1.0;
+	double bloomDuration = 0.3;
+	double test2 = 1.0;
+	double test3 = 1.0;
+	double test4 = 1.0;
+	double test5 = 1.0;
 };
 
 } // namespace project
