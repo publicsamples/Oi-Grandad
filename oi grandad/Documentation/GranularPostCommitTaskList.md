@@ -174,3 +174,94 @@ Why it matters:
 4. Reapply the simplified playback presets and time-invariant smoothing.
 5. Reapply pitch-mode improvements.
 6. Only then explore any new homogeneous-cloud mode in isolation.
+
+## Next Batch
+
+The items below are the current follow-up tasks on top of the rebuilt engine state. These are intended to be worked through one at a time.
+
+### 1. Grain Spread switch
+
+Add a grain-spread mode switch and initially keep it fixed to the spread behaviour that is now proving useful.
+
+Targets:
+
+- preserve the current spread-style behaviour as the baseline
+- expose the grain spread policy explicitly instead of leaving it implicit in the engine
+- keep room for a future synced variant
+
+Important note:
+
+- because `GrainMs` can already be driven from DAW-synced modulation upstream in scriptnode, we may eventually want the spread timing / spacing logic to live directly in the C++ node instead of relying on external modulation alone
+
+### 2. PhaseScatter spread switch
+
+Split the PhaseScatter behaviour into an explicit mode switch:
+
+- `Random`
+- `Spread`
+
+Targets:
+
+- keep the existing random scatter available
+- restore / preserve the more ordered spread-style scatter as a distinct option
+- make it easier to audition the two behaviours without changing any other grain logic
+
+### 3. Simplify PitchMode
+
+Remove the glide behaviour from `PitchMode`.
+
+Targets:
+
+- keep `PitchMode` focused only on pitch-distribution behaviour
+- avoid burying time-based pitch motion inside a menu that otherwise describes static pitch relationships
+
+Implementation note:
+
+- glide now belongs to the global glide control path instead
+
+### 4. Remove pitch sync from PitchMode and give it dedicated controls
+
+Pitch sync should no longer live inside `PitchMode`. It now needs its own control set and some new behaviour.
+
+Targets:
+
+- add `PitchSync` on / off
+- add a dedicated pitch input that can receive millisecond values
+- keep the sync behaviour isolated from the scale / detune / interval spread logic
+
+Why this matters:
+
+- it follows the "one useful behaviour per control" rule
+- it should make the pitch section easier to understand and easier to modulate
+
+### 5. Audit playback modes for residual clicks
+
+Some playback modes can still click on grain transitions or when pitch changes.
+
+Targets:
+
+- audit every current playback mode
+- identify which clicks come from grain wrap, which come from read-phase treatment, and which come from pitch-change handling
+- decide which modes need additional smoothing, crossfades, or constraints
+
+Testing focus:
+
+- clicks on grain boundaries
+- clicks on pitch change
+- mode-specific behaviour rather than global assumptions
+
+Current known finding:
+
+- playback mode `4` (`Hold`) produces scratchy behaviour when pitch is adjusted
+- switching between playback modes can sometimes also shift the perceived pitch
+- playback modes `1`, `3`, and `5` currently share the same pitch baseline
+- playback mode `2` has a different pitch baseline from `1`, `3`, and `5`
+- playback mode `4` has a different pitch baseline again, separate from both of the above groups
+
+## Suggested working order for this batch
+
+1. Audit playback modes for clicks, because that affects judgement of every other change.
+2. Remove glide from `PitchMode`.
+3. Remove pitch sync from `PitchMode` and give it dedicated controls.
+4. Add the `PhaseScatter` mode switch.
+5. Add the grain-spread switch and then decide whether the synced behaviour belongs inside the C++ engine.

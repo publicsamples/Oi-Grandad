@@ -266,7 +266,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (P == 13) scrubB = v;
 		if (P == 14) scrubC = v;
 		if (P == 15) scrubD = v;
-		if (P == 16) bloomDuration = clamp01(v);
+		if (P == 16) bloomDuration = v;
 		if (P == 17) test2 = clamp01(v);
 		if (P == 18) test3 = clamp01(v);
 		if (P == 19) test4 = clamp01(v);
@@ -291,7 +291,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		addParameter<13>(data, "ScrubB", 0.0, 1.0, 0.0);
 		addParameter<14>(data, "ScrubC", 0.0, 1.0, 0.0);
 		addParameter<15>(data, "ScrubD", 0.0, 1.0, 0.0);
-		addParameter<16>(data, "BloomDuration", 0.0, 1.0, 0.3);
+		addParameter<16>(data, "BloomDuration", 1.0, 500.0, 250.0);
 		addParameter<17>(data, "Test2", 0.0, 1.0, 1.0);
 		addParameter<18>(data, "Test3", 0.0, 1.0, 1.0);
 		addParameter<19>(data, "Test4", 0.0, 1.0, 1.0);
@@ -515,7 +515,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	int getPitchState()
 	{
-		return jlimit(0, 9, (int)std::round(decodeModePackMenuValue(0, 10, 0.0)) - 1);
+		return jlimit(0, 7, (int)std::round(decodeModePackMenuValue(0, 8, 0.0)) - 1);
 	}
 
 	void updateGlideSmoothing(VoiceState& voice)
@@ -544,38 +544,30 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		}
 		else if (pitchState == 2)
 		{
-			return tempoSyncRatioFromInput(pitchSyncInput);
-		}
-		else if (pitchState == 3)
-		{
-			return 1.0;
-		}
-		else if (pitchState == 4)
-		{
 			static constexpr int majorSteps[] = { 0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24 };
 			return getScaleModeMul(majorSteps, (int)(sizeof(majorSteps) / sizeof(majorSteps[0])), harmonicTarget);
 		}
-		else if (pitchState == 5)
+		else if (pitchState == 3)
 		{
 			static constexpr int minorSteps[] = { 0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24 };
 			return getScaleModeMul(minorSteps, (int)(sizeof(minorSteps) / sizeof(minorSteps[0])), harmonicTarget);
 		}
-		else if (pitchState == 6)
+		else if (pitchState == 4)
 		{
 			static constexpr int maj7Steps[] = { 0, 4, 7, 11, 12, 16, 19, 23, 24 };
 			return getScaleModeMul(maj7Steps, (int)(sizeof(maj7Steps) / sizeof(maj7Steps[0])), harmonicTarget);
 		}
-		else if (pitchState == 7)
+		else if (pitchState == 5)
 		{
 			static constexpr int min7Steps[] = { 0, 3, 7, 10, 12, 15, 19, 22, 24 };
 			return getScaleModeMul(min7Steps, (int)(sizeof(min7Steps) / sizeof(min7Steps[0])), harmonicTarget);
 		}
-		else if (pitchState == 8)
+		else if (pitchState == 6)
 		{
 			static constexpr int fifthSteps[] = { 0, 7, 12, 19, 24 };
 			return getScaleModeMul(fifthSteps, (int)(sizeof(fifthSteps) / sizeof(fifthSteps[0])), harmonicTarget);
 		}
-		else if (pitchState == 9)
+		else if (pitchState == 7)
 		{
 			static constexpr int seventhSteps[] = { 0, 10, 12, 22, 24 };
 			return getScaleModeMul(seventhSteps, (int)(sizeof(seventhSteps) / sizeof(seventhSteps[0])), harmonicTarget);
@@ -711,8 +703,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	double getBloomDurationSeconds() const
 	{
-		// Default stays close to the current behaviour, but the user can extend it.
-		return 0.04 + clamp01(bloomDuration) * 0.76;
+		return jmax(1.0, bloomDuration) * 0.001;
 	}
 
 	int getBloomActiveGrainCount(const VoiceState& voice, int targetGrainCount) const
@@ -828,13 +819,16 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	double getTimelinePhaseForRead(double carrierPhase, bool timeInvariant, double readRate) const
 	{
+		ignoreUnused(readRate);
+
 		if (!timeInvariant)
 			return carrierPhase;
 		if (grainSize <= 0.0)
 			return 0.0;
 
-		double ph = carrierPhase * readRate;
-		return wrap01(ph / grainSize) * grainSize;
+		// In time-invariant modes the source-read phase is already advanced explicitly
+		// via grain.readPhase, so multiplying by readRate again shifts the pitch baseline.
+		return wrap01(carrierPhase / grainSize) * grainSize;
 	}
 
 	void readStereoPairAt(int pairIndex, double pos, double& outL, double& outR) const
@@ -1581,7 +1575,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double phaseScatter = 0.0;
 	double transportMode = 1.0;
 	double readMode = 1.0;
-	double bloomDuration = 0.3;
+	double bloomDuration = 250.0;
 	double test2 = 1.0;
 	double test3 = 1.0;
 	double test4 = 1.0;
