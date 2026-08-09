@@ -30,16 +30,58 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::master_bus_compressor_native<1>, scriptnode::wrap::illegal_poly<project::master_bus_compressor_native<1>>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
-		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
+		registerPolyNode<project::MacroMod<1>, project::MacroMod<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::sndummy<1>, project::sndummy<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, wrap::illegal_poly<project::sn_fin<1>>>();
+		registerPolyNode<project::vecfade<1>, wrap::illegal_poly<project::vecfade<1>>>();
 	}
 };
+
+#if HISE_INCLUDE_RT_NEURAL
+
+struct NeuralFactory: public hise::NeuralNetwork::Factory
+{
+	NeuralFactory()
+	{
+	}
+	void* cloneModel(void* model) const
+	{
+		if(auto m = static_cast<hise::NeuralNetwork::ModelBase*>(model))
+		{
+			return m->clone();
+		}
+		return nullptr;
+	}
+	void destroyModel(void* model) const
+	{
+		delete static_cast<hise::NeuralNetwork::ModelBase*>(model);
+	}
+	void resetModel(void* model) const
+	{
+		if(auto m = static_cast<hise::NeuralNetwork::ModelBase*>(model))
+		{
+			m->reset();
+		}
+	}
+	void processModel(void* model, const float* input, float* output) const
+	{
+		if(auto m = static_cast<hise::NeuralNetwork::ModelBase*>(model))
+		{
+			m->process(input, output);
+		}
+	}
+};
+#endif
 }
 
 project::Factory f;
+#if HISE_INCLUDE_RT_NEURAL
+project::NeuralFactory nf;
+#endif
 
 // ====================================| Exported DLL functions |====================================
 
@@ -75,14 +117,17 @@ DLL_EXPORT void initOpaqueNode(scriptnode::OpaqueNode* n, int index, bool polyIf
 DLL_EXPORT int getHash(int index)
 {
 	static const int thirdPartyOffset = 2;
-	static const int hashIndexes[6] =
+	static const int hashIndexes[9] =
 	{
-		767699760,
-		-1054421937,
+		305747626,
+		751604786,
+		1159818123,
 		225970153,
 		1021442333,
-		-1561537111,
-		108218078
+		-252402389,
+		-415808479,
+		1242837237,
+		178350427
 	};
 	return (index >= thirdPartyOffset) ? hashIndexes[index - thirdPartyOffset] : 0;
 }
@@ -97,6 +142,111 @@ DLL_EXPORT ErrorC getError()
 DLL_EXPORT void clearError()
 {
 	f.clearError();
+}
+DLL_EXPORT int getNumNeuralModels()
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return nf.getNumModels();
+#else
+	return 0;
+#endif
+}
+
+DLL_EXPORT size_t getNeuralModelId(int index, char* t)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return HelperFunctions::writeString(t, nf.getModelId(index).getCharPointer());
+#else
+	ignoreUnused(index);
+#endif
+	return HelperFunctions::writeString(t, "");
+}
+
+DLL_EXPORT size_t getNeuralModelQualityId(int index, char* t)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return HelperFunctions::writeString(t, nf.getModelQualityId(index).getCharPointer());
+#else
+	ignoreUnused(index);
+#endif
+	return HelperFunctions::writeString(t, "");
+}
+
+DLL_EXPORT size_t getNeuralModelMetadata(int index, char* t)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return HelperFunctions::writeString(t, nf.getModelMetadata(index).getCharPointer());
+#else
+	ignoreUnused(index);
+#endif
+	return HelperFunctions::writeString(t, "");
+}
+
+DLL_EXPORT int getNeuralModelNumInputs(int index)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return nf.getModelNumInputs(index);
+#else
+	ignoreUnused(index);
+#endif
+	return 0;
+}
+
+DLL_EXPORT int getNeuralModelNumOutputs(int index)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return nf.getModelNumOutputs(index);
+#else
+	ignoreUnused(index);
+#endif
+	return 0;
+}
+
+DLL_EXPORT void* createNeuralModel(int index)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return nf.createByIndex(index);
+#else
+	ignoreUnused(index);
+#endif
+	return nullptr;
+}
+
+DLL_EXPORT void* cloneNeuralModel(void* model)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	return nf.cloneModel(model);
+#else
+	ignoreUnused(model);
+#endif
+	return nullptr;
+}
+
+DLL_EXPORT void destroyNeuralModel(void* model)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	nf.destroyModel(model);
+#else
+	ignoreUnused(model);
+#endif
+}
+
+DLL_EXPORT void resetNeuralModel(void* model)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	nf.resetModel(model);
+#else
+	ignoreUnused(model);
+#endif
+}
+
+DLL_EXPORT void processNeuralModel(void* model, const float* input, float* output)
+{
+#if HISE_INCLUDE_RT_NEURAL
+	nf.processModel(model, input, output);
+#else
+	ignoreUnused(model, input, output);
+#endif
 }
 DLL_EXPORT int getDllVersionCounter()
 {

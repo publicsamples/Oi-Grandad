@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptSlider" id="PitchDepth" x="20" y="60" stepSize="0.1000000014901161"
+             min="-1.0" max="1.0" processorId="Constant" parameterId="Intensity"
+             text="Pitch Depth" matrixTargetId="pitch_native"/>
+  <Component type="ScriptSlider" id="Position" x="170" y="60" stepSize="0.0"
+             processorId="Scriptnode Synthesiser" parameterId="Scrub" middlePosition="0.5"
+             matrixTargetId="position_precision" text="Position"/>
+  <Component type="ScriptSlider" id="GrainSize" x="310" y="50" processorId="Scriptnode Synthesiser"
+             parameterId="GrainSize" matrixTargetId="grainsize_precision" text="Grain Size"/>
+</ContentProperties>

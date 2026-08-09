@@ -1,4 +1,4 @@
-Content.makeFrontInterface(860, 690);
+Content.makeFrontInterface(960, 720);
 
 const var rm = Engine.getGlobalRoutingManager();
 
@@ -7,27 +7,6 @@ Engine.loadAudioFilesIntoPool();
 reg g_isPresetLoadInProgress = false;
 reg g_isUpdatingTabButtons = false;
 
-const var modQuality = Content.getComponent("modQuality");
-
-const var modBlockSizes = [16, 32, 64, 128, 256, 512];
-
-//Engine.setMaximumBlockSize(512);
-
-
-modQuality.set("items", "16 samples\n32 samples\n64 samples\n128 samples\n256 samples\n512 samples");
-modQuality.setValue(6); // 64 samples as default selection
-modQuality.changed();
-
-inline function onmodQualityControl(component, value)
-{
-	if (value < 1 || value > modBlockSizes.length)
-		return;
-
-	Engine.allNotesOff();
-	Engine.setMaximumBlockSize(modBlockSizes[value - 1]);
-}
-
-modQuality.setControlCallback(onmodQualityControl);
 
 const var defaultRef = "{PROJECT_FOLDER}OGInit.aif";
 //const var defaultRef2 = "{PROJECT_FOLDER}SubKick125_2.wav";
@@ -64,7 +43,7 @@ include("RR.js");
 include("rec.js");
 
 include("MultiChannel.js");
-include("ModControls.js");
+//include("ModControls.js");
 include("Rect.js");
 
 include("GeneralLAF.js");
@@ -591,61 +570,61 @@ inline function onResMode1Control(component, value)
 
 	if(value == 1)
 	{
-	 gran.setAttribute(gran.delMode, 1);
+	 gran.setAttribute(gran.FxMode, 1);
 	 FxLabelA1.setValue("OFF");
 	 FxLabelA2.setValue("OFF");
 	 }
 	 if(value == 2)
 	 {
-	  gran.setAttribute(gran.delMode, 2);
+	  gran.setAttribute(gran.FxMode, 2);
 	  FxLabelA1.setValue("CUT");
 	  FxLabelA2.setValue("Q");
 	  }
 	  if(value == 3)
 	  {
-	   gran.setAttribute(gran.delMode, 3);
+	   gran.setAttribute(gran.FxMode, 3);
 	   FxLabelA1.setValue("CUT");
 	   FxLabelA2.setValue("Q");
 	   }
 	   if(value == 4)
 	   {
-	    gran.setAttribute(gran.delMode, 4);
+	    gran.setAttribute(gran.FxMode, 4);
 	    FxLabelA1.setValue("CUT");
 	    FxLabelA2.setValue("Q");
 	    }	
 		if(value == 5)
 	   {
-	    gran.setAttribute(gran.delMode, 5);
+	    gran.setAttribute(gran.FxMode, 5);
 	      FxLabelA1.setValue("CUT");
 	    FxLabelA2.setValue("Q");
 	    }
 	    if(value == 6)
 	       {
-	        gran.setAttribute(gran.delMode, 6);
+	        gran.setAttribute(gran.FxMode, 6);
 	          FxLabelA1.setValue("FREQ");
 	    FxLabelA2.setValue("Q");
 	        }
 	    if(value == 7)
 	       {
-	        gran.setAttribute(gran.delMode, 7);
+	        gran.setAttribute(gran.FxMode, 7);
 	          FxLabelA1.setValue("TRASH");
 	    FxLabelA2.setValue("LP");
 	        } 
 	   if(value == 8)
 	      {
-	       gran.setAttribute(gran.delMode, 8);
+	       gran.setAttribute(gran.FxMode, 8);
 	       FxLabelA1.setValue("Pitch");
 	       FxLabelA2.setValue("LP");
 	       }  
 	   if(value == 9)
 	   	      {
-	   	       gran.setAttribute(gran.delMode, 9);
+	   	       gran.setAttribute(gran.FxMode, 9);
 	   	       FxLabelA1.setValue("Pitch");
 	       FxLabelA2.setValue("LP");
 	   	       }   
 	   	 if(value == 10)
 	   	 	      {
-	   	 	       gran.setAttribute(gran.delMode, 10);
+	   	 	       gran.setAttribute(gran.FxMode, 10);
 	   	 	       FxLabelA1.setValue("Bit");
 	   	 	       FxLabelA2.setValue("S&H");
 	   	 	       }                                
@@ -1315,6 +1294,209 @@ inline function onMasterVolControl(component, value)
 
 Content.getComponent("MasterVol").setControlCallback(onMasterVolControl);
 
+
+const var ModulationMatrix = Content.getComponent("ModulationMatrix");
+const var ModulationMatrixTile = Content.getComponent("ScriptFloatingTile1");
+const var ModulationMatrixLaf = Content.createLocalLookAndFeel();
+
+ModulationMatrixLaf.setInlineStyleSheet("
+/** The background panel for the matrix. */
+.matrix
+{
+	content: '';
+	background: #354259;
+	border-radius: 3px;
+	padding-left:10px;
+	color: #FF354259; 
+	
+}
+
+/** If there are no connections we show a empty message. */
+.matrix:empty { 
+  color: #ccc; 
+  content: 'No connections..'; 
+}
+
+
+/** The matrix table header. */
+th { background: transparent; 
+	padding:0px;
+	margin-top: -40px;}
+
+td { background: transparent; 
+	padding:10px;
+	height:30px;
+	}
+	
+	.search
+	{
+	
+		height: 0px;
+	width: 0px;
+	}
+	
+	.search::before
+	{
+		
+	}
+	
+	#clearsearch
+	{
+	
+		height: 0px;
+		width: 0px;
+	
+	}
+
+
+td, .targetLabel
+{
+	color: #999;
+	font-size: 15px;
+}
+
+.targetLabel
+{
+	width: 130px;
+}
+
+.slider
+{
+	background: #5e6270;
+	border-radius: 3px;
+	margin: 2px;
+	color: #FB122111;
+	height:25px;
+	width:80px;
+
+}
+
+.slider:empty
+{
+	color: #FB122111;
+}
+
+.slider::before
+{
+	content: '';
+	width: calc(var(--value) * 100%);
+	height: 100%;
+	background-color: #777;
+	position: absolute;
+	margin: 5px;
+}
+
+.unipolar::before, .bipolar::before
+{
+	
+	
+	/* this calculates the bipolar width with some advanced
+	   CSS math expression skills. */
+	width: max(calc(calc(0.5 - var(--value)) * 100%),  
+	           calc(calc(var(--value) - 0.5) * 100%)); 
+	           
+	/* this calculates the leftmost position of the value rectangle. */
+	left: min(calc(var(--value) * 100%), 50%);
+}
+
+select
+{
+	background: #5e6270;
+	border-radius: 3px;
+	color: ##EDE6D5;
+	text-align: center;
+	padding-left: 0px;
+	width:90px;
+	font-size:12px;
+	height:25px;
+}
+
+/** Draw the drop down arrow. */
+select::before
+{
+	/** CSS requires that you specify a content property for
+	    any pseudo element that is supposed to be shown. */
+	content: '';
+	
+	/** Pass in a Base64 string for any path using the standard HISE Path converter. */
+	background-image: \"84.t0lavsBQ76.tCwF..VDQX+9fCw1WJBDQnj.cCwFp5YBQ3NhqCwly0w.QzMCcCwF..d.QTV.gCwFD6YBQpsevCwVtvsBQn.AtCwlavsBQ76.tCMVY\";
+	
+	background-color: rgba(255,255,255, 0.4);
+	
+	/** Set the position to absolute so that it won't cut into the text area. */
+	position: absolute;
+	width: 100vh;
+	margin: 8px;
+	right: 0px;
+}
+
+/** Make the arrow light up at hover. */
+select::before:hover
+{
+	background-color: black;
+}
+
+button
+{
+	
+	border-radius: 3px;
+	background: #5e6270;
+	color: #C96868;
+	width:40px;
+	height:25px;
+	content: 'Off';
+}
+
+.modplotter
+{
+		background: #5e6270;
+	color: #C96868;
+	width:0px;
+		height:0px;
+}
+
+/** The add/remove/clear buttons. */
+.control-button
+{
+	width: 70px;
+	/** Reset the content property so that the original text is displayed. */
+	content: ''; 
+}
+
+
+button:checked
+{
+	background: #999;
+	color: #333;
+	content: 'On';
+}
+
+
+");
+
+
+ModulationMatrix.setPaintRoutine(function(g)
+{
+	local area = this.getLocalBounds(0);
+//	local padding = 2;
+	local inner = [area[0] + padding, area[1] + padding, area[2] - padding * 2, area[3] - padding * q];
+	local header = [inner[0], inner[1], inner[2], 40];
+	local body = [inner[0], inner[1] + 30, inner[2], inner[3] - 30];
+
+	g.setGradientFill([0xFF354259, inner[0], inner[1], 0xFF354259, inner[0], inner[1] + inner[3]]);
+	g.fillRoundedRectangle(inner, 1.0);
+
+
+	g.setColour(0xFFB7C0CC);
+	g.setFont("Montserrat", 18.0);
+
+
+//	g.setColour(0x16FFFFFF);
+//	g.fillRoundedRectangle(body, 10.0);
+
+});
+
+ModulationMatrixTile.setLocalLookAndFeel(ModulationMatrixLaf);
 function onNoteOn()
 {
 // the index is zero based like everything else in good

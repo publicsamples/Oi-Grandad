@@ -16,10 +16,13 @@
 
 #include "DspNetwork.h"
 #include "MacroMod.h"
+#include "MatrixTest2.h"
 #include "OutMods.h"
 #include "res2.h"
 #include "sn.h"
+#include "sndummy.h"
 #include "sn_fin.h"
+#include "vecfade.h"
 
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )

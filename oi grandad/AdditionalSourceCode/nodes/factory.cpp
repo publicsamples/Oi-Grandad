@@ -30,18 +30,26 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::master_bus_compressor_native<1>, scriptnode::wrap::illegal_poly<project::master_bus_compressor_native<1>>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
-		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
+		registerPolyNode<project::MacroMod<1>, project::MacroMod<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::sndummy<1>, project::sndummy<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, wrap::illegal_poly<project::sn_fin<1>>>();
+		registerPolyNode<project::vecfade<1>, wrap::illegal_poly<project::vecfade<1>>>();
 		registerDataNode<project::Dyn_networkdata>();
 		registerDataNode<project::FoldTests_networkdata>();
+		registerDataNode<project::_networkdata>();
 		registerDataNode<project::ggg_networkdata>();
+		registerDataNode<project::gtest_networkdata>();
+		registerDataNode<project::MatrixTest_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
+		registerDataNode<project::ModNew_networkdata>();
 		registerDataNode<project::NuTest_networkdata>();
+		registerDataNode<project::_networkdata>();
 		registerDataNode<project::recorder_networkdata>();
-		registerDataNode<project::sndummy_networkdata>();
+		registerDataNode<project::slotty_networkdata>();
 		registerDataNode<project::test_networkdata>();
 		registerDataNode<project::track_networkdata>();
 		registerDataNode<project::trash2_networkdata>();
@@ -49,15 +57,56 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::vec2b_networkdata>();
 		registerDataNode<project::vec3_networkdata>();
 		registerDataNode<project::vec4_networkdata>();
-		registerDataNode<project::vecfade_networkdata>();
 	}
 };
+
+#if HISE_INCLUDE_RT_NEURAL
+
+struct NeuralFactory: public hise::NeuralNetwork::Factory
+{
+	NeuralFactory()
+	{
+	}
+	void* cloneModel(void* model) const
+	{
+		if(auto m = static_cast<hise::NeuralNetwork::ModelBase*>(model))
+		{
+			return m->clone();
+		}
+		return nullptr;
+	}
+	void destroyModel(void* model) const
+	{
+		delete static_cast<hise::NeuralNetwork::ModelBase*>(model);
+	}
+	void resetModel(void* model) const
+	{
+		if(auto m = static_cast<hise::NeuralNetwork::ModelBase*>(model))
+		{
+			m->reset();
+		}
+	}
+	void processModel(void* model, const float* input, float* output) const
+	{
+		if(auto m = static_cast<hise::NeuralNetwork::ModelBase*>(model))
+		{
+			m->process(input, output);
+		}
+	}
+};
+#endif
 }
 
 scriptnode::dll::FactoryBase* scriptnode::DspNetwork::createStaticFactory()
 {
 	return new project::Factory();
 }
+
+#if HISE_INCLUDE_RT_NEURAL
+void scriptnode::DspNetwork::registerStaticNeuralNetworks(hise::NeuralNetwork::Factory* f)
+{
+}
+#endif
 
 #if !JUCE_WINDOWS
 #pragma clang diagnostic pop

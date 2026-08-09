@@ -74,109 +74,11 @@ laf.registerFunction("drawTableRuler", function(g, obj)
     g.drawLine(x, x, 0, obj.area[3], 1);
 });
 
-const var ModulationMenus = [Content.getComponent("TempoModSel1"),
-					  Content.getComponent("TempoModSel2"),
-					  Content.getComponent("TempoModSel3"),
-					  Content.getComponent("TempoModSel4"),
-					  Content.getComponent("TempoModSel5"),
-					  Content.getComponent("TempoModSel6"),
-					  Content.getComponent("TempoModSel7"),
-					  Content.getComponent("TempoModSel8"),
-					  Content.getComponent("TempoModSel9"),
-					  Content.getComponent("TempoModSel10"),
-					  Content.getComponent("TempoModSel11"),
-					  Content.getComponent("TempoModSel12"),
-                      Content.getComponent("MorphModSel1"),
-                      Content.getComponent("MorphModSel2"),
-                      Content.getComponent("MorphModSel3"),
-                      Content.getComponent("MorphModSel4"),
-                      Content.getComponent("MorphModSel5"),
-                      Content.getComponent("MorphModSel6"),
-                      Content.getComponent("MorphModSel7"),
-                      Content.getComponent("MorphModSel8"),
-                      Content.getComponent("MorphModSel9"),
-                      Content.getComponent("MorphModSel10"),
-                      Content.getComponent("MorphModSel11"),
-                      Content.getComponent("MorphModSel12"),
-                      Content.getComponent("TrigSel1"),
-                      Content.getComponent("TrigSel2"),
-                      Content.getComponent("TrigSel3"),
-                      Content.getComponent("TrigSel4"),
-                      Content.getComponent("TrigSel5"),
-                      Content.getComponent("TrigSel6"),
-                      Content.getComponent("TrigSel7"),
-                      Content.getComponent("TrigSel8"),
-                      Content.getComponent("TrigSel9"),
-                      Content.getComponent("TrigSel10"),
-                      Content.getComponent("TrigSel11"),
-                      Content.getComponent("TrigSel12"),
-                      Content.getComponent("EnvVoiceSel1"),
-                      Content.getComponent("EnvVoiceSel2"),
-                      Content.getComponent("EnvVoiceSel3"),
-                      Content.getComponent("EnvVoiceSel4")];
-                   
-
-const var vMenu1 = [Content.getComponent("pos1modsel"),
-                    Content.getComponent("PmodSel1"),
-                    Content.getComponent("detmodsel"),
-                    Content.getComponent("spreadmodsel"),
-                    Content.getComponent("densemodsel"),
-                    Content.getComponent("spreadmodsel4"),
-                    Content.getComponent("winmodsrc1"),
-                    Content.getComponent("GrainModSel1"),
-                    Content.getComponent("delmodsel9"),
-                    Content.getComponent("redmodsel6"),
-                    Content.getComponent("redmodsel5"),
-                    Content.getComponent("delmodsel10"),
-                    Content.getComponent("PostMode1"),
-                    Content.getComponent("PostMode2"),
-                    Content.getComponent("PostMode3"),
-                    Content.getComponent("PostMode4"),
-                    Content.getComponent("ampmodsel"),
-                    Content.getComponent("PanModSel1"),
-                    Content.getComponent("delmodsel1"),
-                    Content.getComponent("redmodsel1"),
-                    Content.getComponent("delmodsel5")];
-
-
-for(s in ModulationMenus)
-       s.setLocalLookAndFeel(cBLaf); 
-       
-for(s in vMenu1)
-       s.setLocalLookAndFeel(cBLaf);  
 
 
          
-const var vMenu4 = [Content.getComponent("delmodsel19"),
-                    Content.getComponent("ResMode4"),
-                    Content.getComponent("redmodsel14"),
-                    Content.getComponent("delmodsel20")];
 
-for(s in vMenu4)
-       s.setLocalLookAndFeel(cBLaf); 
-      
 
-const var ModMenus1 = [Content.getComponent("PosHeadSrcA1"),
-                       Content.getComponent("PosHeadSrcA2"),
-                       Content.getComponent("PosHeadSrcA4"),
-                       Content.getComponent("PosHeadSrcA3"),
-                       Content.getComponent("pos1modsel"),
-                       Content.getComponent("PmodSel1"),
-                       Content.getComponent("detmodsel"),
-                       Content.getComponent("spreadmodsel4"),
-                       Content.getComponent("densemodsel"),
-                       Content.getComponent("spreadmodsel"),
-                       Content.getComponent("winmodsrc1"),
-                       Content.getComponent("GrainModSel1"),
-                       Content.getComponent("delmodsel1"),
-                       Content.getComponent("redmodsel1"),
-                       Content.getComponent("delmodsel5"),
-                       Content.getComponent("ampmodsel"),
-                       Content.getComponent("PanModSel1")];
-
-//for(s in ModMenus1)
- //      s.setLocalLookAndFeel(cBLaf); 
-       
 const var ModeMenus1 = [Content.getComponent("OutputSelector"),
                         Content.getComponent("maxGrains1"),
                         Content.getComponent("PitchMode1")];
@@ -185,107 +87,34 @@ const var ModeMenus1 = [Content.getComponent("OutputSelector"),
 for(s in ModeMenus1)
        s.setLocalLookAndFeel(cBLaf); 
   
-const var ModMenus2 = [Content.getComponent("PmodSel2"),
-                       Content.getComponent("detmodsel1"),
-                       Content.getComponent("spreadmodsel5"),
-                       Content.getComponent("spread1"),
-                       Content.getComponent("pos1modsel1"),
-                       Content.getComponent("densemodsel1"),
-                       Content.getComponent("GrainModSel2"),
-                       Content.getComponent("winmodsrc2"),
-                       Content.getComponent("spreadmodsel1"),
-                       Content.getComponent("ampmodsel1"),
-                       Content.getComponent("PanModSel2"),
-                       
-                       Content.getComponent("delmodsel2"),
-                       Content.getComponent("redmodsel2"),
-                       Content.getComponent("delmodsel6"),];
-                       
-for(s in ModMenus2)
-       s.setLocalLookAndFeel(cBLaf);  
+
        
        
 const var ModeMenus2 = [Content.getComponent("maxGrains2"),
                        
-                        Content.getComponent("OutputSelector1"),
-                        
-                        Content.getComponent("PitchMode2")];
+                        Content.getComponent("OutputSelector1")];
 
 
  for(s in ModeMenus2)
         s.setLocalLookAndFeel(cBLaf);  
         
-const var ModMenus3 = [Content.getComponent("PosHeadSrcA9"),
-                       Content.getComponent("PosHeadSrcA10"),
-                       Content.getComponent("PosHeadSrcA12"),
-                       Content.getComponent("PosHeadSrcA11"),
-                       Content.getComponent("densemodsel2"),
-                       Content.getComponent("spreadmodsel6"),
-                       Content.getComponent("detmodsel2"),
-                       Content.getComponent("PmodSel3"),
-                       Content.getComponent("spreadmodsel2"),
-                       Content.getComponent("pos1modsel2"),
-                       Content.getComponent("GrainModSel3"),
-                       Content.getComponent("winmodsrc3"),
-                       Content.getComponent("ampmodsel2"),
-                       Content.getComponent("PanModSel3")];
-
-       for(s in ModMenus3)
-              s.setLocalLookAndFeel(cBLaf);      
 
 const var ModeMenus3 = [Content.getComponent("maxGrains3"),
                         
-                        Content.getComponent("OutputSelector2"),
-                        Content.getComponent("PitchMode3")];
+                        Content.getComponent("OutputSelector2")];
 
 for(s in ModeMenus3)
        s.setLocalLookAndFeel(cBLaf);  
        
-const var ModMenus4 = [Content.getComponent("PosHeadSrcA13"),
-                       Content.getComponent("PosHeadSrcA14"),
-                       Content.getComponent("PosHeadSrcA16"),
-                       Content.getComponent("PosHeadSrcA15"),
-                       Content.getComponent("densemodsel3"),
-                       Content.getComponent("GrainModSel4"),
-                       Content.getComponent("winmodsrc4"),
-                       Content.getComponent("pos1modsel3"),
-                       Content.getComponent("spreadmodsel3"),
-                       Content.getComponent("spreadmodsel7"),
-                       Content.getComponent("PmodSel4"),
-                       Content.getComponent("detmodsel3"),
-                       Content.getComponent("ampmodsel3"),
-                       Content.getComponent("PanModSel4"),
-                       Content.getComponent("delmodsel4"),
-                       Content.getComponent("redmodsel4"),
-                       Content.getComponent("delmodsel8")];
 
-for(s in ModMenus4)
-       s.setLocalLookAndFeel(cBLaf);
 
 const var ModeMenus4 = [Content.getComponent("maxGrains4"),
-                       
-                        Content.getComponent("PitchMode4"),
                         Content.getComponent("OutputSelector3")];
   
   for(s in ModeMenus4)
          s.setLocalLookAndFeel(cBLaf);
          
-  const var PostMods = [Content.getComponent("delmodsel11"),
-                        Content.getComponent("redmodsel8"),
-                        Content.getComponent("redmodsel7"),
-                        Content.getComponent("delmodsel12"),
-  						Content.getComponent("redmodsel10"),
-                         Content.getComponent("delmodsel13"),
-                         Content.getComponent("redmodsel9"),
-                         Content.getComponent("delmodsel14"),
-                         Content.getComponent("delmodsel15"),
-                  Content.getComponent("redmodsel11"),
-                  Content.getComponent("delmodsel16"),
-                  Content.getComponent("redmodsel12")];
-  
-
-for(s in PostMods)
-       s.setLocalLookAndFeel(cBLaf);
+ 
        
 const var GlbMenus = [Content.getComponent("MidiNote"),
                       Content.getComponent("Playback"),
@@ -297,17 +126,6 @@ const var GlbMenus = [Content.getComponent("MidiNote"),
   for(s in GlbMenus)
          s.setLocalLookAndFeel(cBLaf);      
          
-const var macroMods = [Content.getComponent("MacroScr1"),
-                       Content.getComponent("MacroScr2"),
-                       Content.getComponent("MacroScr3"),
-                       Content.getComponent("MacroScr4"),
-                       Content.getComponent("MacroScr5"),
-                       Content.getComponent("MacroScr6"),
-                       Content.getComponent("MacroScr7"),
-                       Content.getComponent("MacroScr8")];
- 
- for(s in macroMods)
-         s.setLocalLookAndFeel(cBLaf);       
        
        
 const var ResMode = [Content.getComponent("ResMode1"),
@@ -327,18 +145,7 @@ const var ResMode = [Content.getComponent("ResMode1"),
             Content.getComponent("StgSel3"),
             Content.getComponent("StgSel4")];    
 
-const var V2StageMods = [Content.getComponent("PosHeadSrcA1"),
-						Content.getComponent("PosHeadSrcA2"),
-						Content.getComponent("PosHeadSrcA3"),
-						Content.getComponent("PosHeadSrcA4"),
-						Content.getComponent("PosHeadSrcA5"),
-                         Content.getComponent("PosHeadSrcA6"),
-                         Content.getComponent("PosHeadSrcA8"),
-                         Content.getComponent("PosHeadSrcA7")];
-  
-  
-  for(s in V2StageMods)
-         s.setLocalLookAndFeel(cBLaf);              
+        
             
             
 for(s in Pb)
@@ -356,9 +163,5 @@ Content.getComponent("TransPort4"),
     for(s in ModeMenus)
            s.setLocalLookAndFeel(cBLaf);            
        
-const var xfSel = [Content.getComponent("ComboBox26"),
-                   Content.getComponent("ComboBox1")];
-     
-    for(s in xfSel)
-           s.setLocalLookAndFeel(cBLaf);   
+
                             

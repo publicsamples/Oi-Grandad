@@ -122,7 +122,7 @@ for (i = 0; i < 4; i++)
 
 const var MasterXf = Content.getComponent("MasterXf").setLocalLookAndFeel(KnobLaf4);
 const var Smooth = Content.getComponent("Smooth").setLocalLookAndFeel(KnobLaf4);
-const var XfModMaster = Content.getComponent("XfModMaster").setLocalLookAndFeel(KnobLaf4);
+
 
 
 const var EnkNkbs = [Content.getComponent("EnvAtk1"),

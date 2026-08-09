@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="vecfade" Version="0.0.0">
+<Network ID="vecfade" Version="0.0.0" AllowCompilation="1">
   <Node FactoryPath="container.chain" ID="vecfade" Bypassed="0" ShowParameters="1"
         Name="vecfade">
     <Nodes>
@@ -42,27 +42,6 @@
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="global_mod1" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod1">
-                <ModulationTargets>
-                  <Connection NodeId="pma5" ParameterId="Value"/>
-                  <Connection NodeId="pma10" ParameterId="Value"/>
-                  <Connection NodeId="pma11" ParameterId="Value"/>
-                  <Connection NodeId="pma12" ParameterId="Value"/>
-                </ModulationTargets>
-                <ComplexData>
-                  <DisplayBuffers>
-                    <DisplayBuffer Index="-1"/>
-                  </DisplayBuffers>
-                </ComplexData>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="1.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
-                             Value="0.0"/>
-                  <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Mode" Value="0.0"/>
-                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Intensity" Value="1.0"/>
-                </Parameters>
-              </Node>
               <Node ID="sb_container1" FactoryPath="container.chain" NodeColour="4284971161"
                     Bypassed="0" Name="sb_container1">
                 <Properties>
@@ -74,21 +53,6 @@
                     <Nodes>
                       <Node ID="chain110" FactoryPath="container.chain" Bypassed="0" Name="chain110">
                         <Nodes>
-                          <Node ID="chain122" FactoryPath="container.chain" Bypassed="0" Name="chain122">
-                            <Nodes>
-                              <Node ID="pma5" FactoryPath="control.pma" Bypassed="0" Name="pma5">
-                                <ModulationTargets>
-                                  <Connection NodeId="xfader13" ParameterId="Value"/>
-                                </ModulationTargets>
-                                <Parameters>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                                </Parameters>
-                              </Node>
-                            </Nodes>
-                            <Parameters/>
-                          </Node>
                           <Node ID="xfader13" FactoryPath="control.xfader" Bypassed="0" Name="xfader13">
                             <Properties>
                               <Property ID="NumParameters" Value="4"/>
@@ -256,21 +220,6 @@
                     <Nodes>
                       <Node ID="chain91" FactoryPath="container.chain" Bypassed="0" Name="chain91">
                         <Nodes>
-                          <Node ID="chain121" FactoryPath="container.chain" Bypassed="0" Name="chain121">
-                            <Nodes>
-                              <Node ID="pma10" FactoryPath="control.pma" Bypassed="0" Name="pma10">
-                                <ModulationTargets>
-                                  <Connection NodeId="xfader12" ParameterId="Value"/>
-                                </ModulationTargets>
-                                <Parameters>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                                </Parameters>
-                              </Node>
-                            </Nodes>
-                            <Parameters/>
-                          </Node>
                           <Node ID="xfader12" FactoryPath="control.xfader" Bypassed="0" Name="xfader12">
                             <Properties>
                               <Property ID="NumParameters" Value="4"/>
@@ -439,21 +388,6 @@
                       <Node ID="chain90" FactoryPath="container.chain" Bypassed="0" ShowParameters="0"
                             Name="chain90">
                         <Nodes>
-                          <Node ID="chain120" FactoryPath="container.chain" Bypassed="0" Name="chain120">
-                            <Nodes>
-                              <Node ID="pma11" FactoryPath="control.pma" Bypassed="0" Name="pma11">
-                                <ModulationTargets>
-                                  <Connection NodeId="xfader10" ParameterId="Value"/>
-                                </ModulationTargets>
-                                <Parameters>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                                </Parameters>
-                              </Node>
-                            </Nodes>
-                            <Parameters/>
-                          </Node>
                           <Node ID="xfader10" FactoryPath="control.xfader" Bypassed="0" Name="xfader10">
                             <Properties>
                               <Property ID="NumParameters" Value="4"/>
@@ -621,21 +555,6 @@
                     <Nodes>
                       <Node ID="chain100" FactoryPath="container.chain" Bypassed="0" Name="chain100">
                         <Nodes>
-                          <Node ID="chain101" FactoryPath="container.chain" Bypassed="0" Name="chain101">
-                            <Nodes>
-                              <Node ID="pma12" FactoryPath="control.pma" Bypassed="0" Name="pma12">
-                                <ModulationTargets>
-                                  <Connection NodeId="xfader11" ParameterId="Value"/>
-                                </ModulationTargets>
-                                <Parameters>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                                  <Parameter MinValue="-1.0" MaxValue="1.0" ID="Multiply" Automated="1"/>
-                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Add" Automated="1"/>
-                                </Parameters>
-                              </Node>
-                            </Nodes>
-                            <Parameters/>
-                          </Node>
                           <Node ID="xfader11" FactoryPath="control.xfader" Bypassed="0" Name="xfader11">
                             <Properties>
                               <Property ID="NumParameters" Value="4"/>
@@ -813,8 +732,7 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.4799999892711639"
-                 DefaultValue="0.7700781250000001">
+      <Parameter ID="smooth" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="0.7700781250000001">
         <Connections>
           <Connection NodeId="smoothed_parameter41" ParameterId="SmoothingTime"/>
           <Connection NodeId="smoothed_parameter42" ParameterId="SmoothingTime"/>
@@ -836,118 +754,16 @@
       </Parameter>
       <Parameter ID="scan" MinValue="0.0" MaxValue="1.0" Value="0.0" DefaultValue="0.7056249999999999">
         <Connections>
-          <Connection NodeId="pma5" ParameterId="Add"/>
-          <Connection NodeId="pma10" ParameterId="Add"/>
-          <Connection NodeId="pma11" ParameterId="Add"/>
-          <Connection NodeId="pma12" ParameterId="Add"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="moddest" MinValue="0.0" MaxValue="16.0" Value="1.0" StepSize="0.1"
-                 DefaultValue="1.5">
-        <Connections>
-          <Connection NodeId="global_mod1" ParameterId="Index"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="modamount" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections>
-          <Connection NodeId="pma5" ParameterId="Multiply"/>
-          <Connection NodeId="pma10" ParameterId="Multiply"/>
-          <Connection NodeId="pma11" ParameterId="Multiply"/>
-          <Connection NodeId="pma12" ParameterId="Multiply"/>
+          <Connection NodeId="xfader13" ParameterId="Value"/>
+          <Connection NodeId="xfader12" ParameterId="Value"/>
+          <Connection NodeId="xfader10" ParameterId="Value"/>
+          <Connection NodeId="xfader11" ParameterId="Value"/>
         </Connections>
       </Parameter>
       <Parameter ID="fadetype" MinValue="1.0" MaxValue="4.0" Value="1.0" StepSize="1.0">
         <Connections>
           <Connection NodeId="switcher1" ParameterId="Value"/>
         </Connections>
-      </Parameter>
-      <Parameter ID="tempo" MinValue="0.0" MaxValue="18.0" Value="0.0" StepSize="1.0"
-                 DefaultValue="0.4949346923828125">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="multi" MinValue="1.000000014901161" MaxValue="32.0" Value="1.000000014901161"
-                 StepSize="0.1000000014901161" DefaultValue="0.2634045410156249">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="scale" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="gamma" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="tempomod" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="tempomoddest" MinValue="0.0" MaxValue="16.0" Value="1.000000014901161"
-                 StepSize="0.1000000014901161" DefaultValue="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="type" MinValue="0.0" MaxValue="1.0" Value="0.0" StepSize="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="dir" MinValue="0.0" MaxValue="1.0" Value="1.0" StepSize="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="keysync" MinValue="0.0" MaxValue="19.0" Value="1.0" StepSize="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="onshot" MinValue="0.0" MaxValue="1.0" Value="1.0" StepSize="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="trigdecay" MinValue="3.0" MaxValue="10000.0" Value="3.0"
-                 StepSize="0.1000000014901161" SkewFactor="0.1976716816425323"
-                 DefaultValue="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="temp" MinValue="0.0" MaxValue="18.0" StepSize="1.0" Value="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="div" MinValue="1.000000014901161" MaxValue="32.0" StepSize="0.1000000014901161"
-                 Value="1.000000014901161">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="tempomod" MinValue="0.0" MaxValue="1.0" Value="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="mdest" MinValue="0.0" MaxValue="16.0" StepSize="0.1000000014901161"
-                 Value="1.000000014901161" DefaultValue="1.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="direction" MinValue="0.0" MaxValue="1.0" StepSize="1.0" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="ksync" MinValue="0.0" MaxValue="1.0" StepSize="0.1" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="one" MinValue="0.0" MaxValue="1.0" StepSize="1.0" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="stempmd" MinValue="0.0" MaxValue="1.0" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="envmod" MinValue="0.0" MaxValue="1.0" Value="0.499179931640625">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="atk" MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.1976716816425323" Value="0.0">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="dcy" MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.1976716816425323" Value="323.7000048235058">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="sus" MinValue="0.0" MaxValue="1.0" Value="0.140629638671875">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="rel" MinValue="0.0" MaxValue="10000.0" StepSize="0.1000000014901161"
-                 SkewFactor="0.1976716816425323" Value="84.00000125169753">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="crv" MinValue="0.0" MaxValue="1.0" Value="0.49528125">
-        <Connections/>
-      </Parameter>
-      <Parameter ID="hold" MinValue="0.0" MaxValue="10000.0" Value="1274.998413085938">
-        <Connections/>
       </Parameter>
     </Parameters>
   </Node>

@@ -15,7 +15,7 @@ const var MacroGain3 = Content.getComponent("MacroGain3");
 
 inline function onpitchControl(component, value)
 {
-	gran.setAttribute(gran.Pitch, value);
+//gran.setAttribute(gran.Pitch, value);
 	MacroPitch1.setValue(value);
 };
 
@@ -173,13 +173,48 @@ inline function onMacroGain3Control(component, value)
 Content.getComponent("MacroGain3").setControlCallback(onMacroGain3Control);
 
 
-inline function shouldExcludeMatrixTarget(componentId)
+inline function shouldExcludeMatrixTarget(component)
 {
+	local componentId = component.getId();
+
 	if(componentId == "")
+		return true;
+
+	if(componentId.indexOf("RandMin") == 0 || componentId.indexOf("RandMax") == 0)
+		return true;
+
+	if(componentId.indexOf("SampleMin") == 0 || componentId.indexOf("SampleMax") == 0)
+		return true;
+
+	if(componentId.indexOf("Matrix") != -1)
+		return true;
+
+	local processorId = component.get("processorId");
+
+	if(processorId.indexOf("Matrix") != -1)
+		return true;
+
+	if(componentId.indexOf("MultPosA") == 0 || componentId.indexOf("MultPosB") == 0 || componentId.indexOf("MultPosC") == 0 || componentId.indexOf("MultPosD") == 0)
 		return true;
 
 	local excludedIds =
 	[
+		"pos",
+		"pos1",
+		"pos2",
+		"pos3",
+		"pitch",
+		"pitch1",
+		"pitch2",
+		"pitch3",
+		"grainsize1",
+		"grainsize2",
+		"grainsize3",
+		"grainsize4",
+		"PolyMeta1",
+		"PolyMeta2",
+		"PolyMeta3",
+		"PolyMeta4",
 		"MacroGain",
 		"MacroGain1",
 		"MacroGain2",
@@ -202,6 +237,9 @@ inline function shouldExcludeMatrixTarget(componentId)
 		local index = parseInt(suffix);
 		return index >= 1 && index <= 8;
 	}
+	
+	
+
 
 	return false;
 }
@@ -210,6 +248,273 @@ inline function autoRegisterMatrixTargets()
 {
 	local all = Content.getAllComponents(".*");
 	local registeredTargets = {};
+	local manualTargets =
+	{
+		"Voice_1_Pitch":
+		{
+			Intensity: 1.0,
+			Mode: "Bipolar",
+			IsNormalized: false
+		},
+		"Voice_1_Volume":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_1_PositionA":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_1_PositionB":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_1_PositionC":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_1_PositionD":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_1_GrainMs":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_1_GrainDivide":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_1_GrainTempo":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_1_WindowShape":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_1_Meta1":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_Pitch":
+		{
+			Intensity: 1.0,
+			Mode: "Bipolar",
+			IsNormalized: false
+		},
+		"Voice_2_Volume":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_Position_A":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_Position_B":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_Position_C":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_Position_D":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_GrainMs":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_2_GrainDivide":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_2_GrainTempo":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_2_WindowShape":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_2_FX_Meta_1":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_Pitch":
+		{
+			Intensity: 1.0,
+			Mode: "Bipolar",
+			IsNormalized: false
+		},
+		"Voice_3_Volume":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_Position_A":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_Position_B":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_Position_C":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_Position_D":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_GrainMs":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_3_GrainDivide":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_3_GrainTempo":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_3_WindowShape":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_3_FX_Meta_1":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_Pitch":
+		{
+			Intensity: 1.0,
+			Mode: "Bipolar",
+			IsNormalized: false
+		},
+		"Voice_4_Volume":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_Position_A":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_Position_B":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_Position_C":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_Position_D":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_GrainMs":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_4_GrainDivide":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_4_GrainTempo":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: false
+		},
+		"Voice_4_WindowShape":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		},
+		"Voice_4_FX_Meta_1":
+		{
+			Intensity: 1.0,
+			Mode: "Unipolar",
+			IsNormalized: true
+		}
+	};
 
 	for (c in all)
 	{
@@ -218,15 +523,20 @@ inline function autoRegisterMatrixTargets()
 
 		local componentId = c.getId();
 
-		if (shouldExcludeMatrixTarget(componentId))
+		if (shouldExcludeMatrixTarget(c))
 			continue;
 
+		local existingTargetId = c.get("matrixTargetId");
 		local processorId = c.get("processorId");
 		local parameterId = c.get("parameterId");
+		local minValue = c.get("min");
+		local maxValue = c.get("max");
 
 		local targetId = "";
 
-		if (processorId != "" && parameterId != "")
+		if (existingTargetId != "")
+			targetId = existingTargetId;
+		else if (processorId != "" && parameterId != "")
 			targetId = processorId + "_" + parameterId;
 		else if (componentId != "")
 			targetId = componentId;
@@ -234,14 +544,22 @@ inline function autoRegisterMatrixTargets()
 		if (targetId == "")
 			continue;
 
-		c.set("matrixTargetId", targetId);
+		if (existingTargetId == "")
+			c.set("matrixTargetId", targetId);
+
+		local isNormalized = (minValue == 0.0 && maxValue == 1.0);
+		local mode = minValue < 0.0 ? "Bipolar" : "Unipolar";
+
 		registeredTargets[targetId] =
 		{
 			Intensity: 1.0,
-			Mode: "Unipolar",
-			IsNormalized: true
+			Mode: mode,
+			IsNormalized: isNormalized
 		};
 	}
+
+	for(targetId in manualTargets)
+		registeredTargets[targetId] = manualTargets[targetId];
 
 	return registeredTargets;
 }

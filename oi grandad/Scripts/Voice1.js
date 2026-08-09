@@ -17,7 +17,7 @@ if(value == 1)
   	VoiceParam1.showControl(1);
   	VoiceParamB1.showControl(0);
              
-        gran.setAttribute(gran.scrubMode, 0);  
+        gran.setAttribute(gran.ScrubMode, 0);  
       
        for(s in StackItem1)
             s.showControl(0);
@@ -30,7 +30,7 @@ if(value == 2)
 	VoiceParamB1.showControl(1);
 	  	
 	  	
-          gran.setAttribute(gran.scrubMode, 1);  
+          gran.setAttribute(gran.ScrubMode, 1);  
 
               for(s in StackItem1)
                   s.showControl(1);
@@ -43,7 +43,7 @@ if(value == 2)
 	  	VoiceParam1.showControl(1);
 	  	VoiceParamB1.showControl(0);
 	             
-	        gran.setAttribute(gran.scrubMode, 3);  
+	        gran.setAttribute(gran.ScrubMode, 3);  
 	      
 	       for(s in StackItem1)
 	            s.showControl(0);
@@ -56,7 +56,7 @@ if(value == 2)
 			VoiceParamB1.showControl(1);
 			  	
 			  	
-		          gran.setAttribute(gran.scrubMode, 4);  
+		          gran.setAttribute(gran.ScrubMode, 4);  
 		
 		              for(s in StackItem1)
 		                  s.showControl(1);
@@ -94,7 +94,7 @@ inline function onposControl(component, value)
 {
 
 
-	 gran.setAttribute(gran.Position, value); 
+	 gran.setAttribute(gran.Scrub, value); 
 	 MultPosA1.setValue(value);
 	 MacroPos1.setValue(value);
 };
@@ -113,47 +113,6 @@ inline function onMacroPos1Control(component, value)
 Content.getComponent("MacroPos1").setControlCallback(onMacroPos1Control);
 
 
-inline function onposmodControl(component, value)
-{
-
-	gran.setAttribute(gran.PositionMod, value); 
-	PosHeadModA1.setValue(value);
-};
-
-Content.getComponent("posmod").setControlCallback(onposmodControl);
-
-inline function onPosHeadModA1Control(component, value)
-{
-
-
-	posmod.setValue(value);
-	posmod.changed();
-};
-
-Content.getComponent("PosHeadModA1").setControlCallback(onPosHeadModA1Control);
-
-
-inline function onpos1modselControl(component, value)
-{
-
-
-
-	gran.setAttribute(gran.PositionSrc, value); 
-	PosHeadSrcA1.setValue(value);
-};
-
-Content.getComponent("pos1modsel").setControlCallback(onpos1modselControl);
-
-
-inline function onPosHeadSrcA1Control(component, value)
-{
-	
-
-	pos1modsel.setValue(value);
-	pos1modsel.changed();
-};
-
-Content.getComponent("PosHeadSrcA1").setControlCallback(onPosHeadSrcA1Control);
 
 const var DenseLabel1 = Content.getComponent("DenseLabel1");
 const var DenseLabelB1 = Content.getComponent("DenseLabelB1");
@@ -164,7 +123,7 @@ inline function onGrainXf1Control(component, value)
 {
 	
 
-	gran.setAttribute(gran.scrubBlen, value); 
+	gran.setAttribute(gran.ScrubBlend, value); 
 	
 	if(value == 0)
 	  {

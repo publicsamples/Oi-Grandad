@@ -122,48 +122,6 @@ Content.getComponent("MacroPos2").setControlCallback(onMacroPos2Control);
 
 
 
-inline function onposmod1Control(component, value)
-{
-	
-
-	gran1.setAttribute(gran1.PositionMod, value); 
-	PosHeadModA2.setValue(value);
-};
-
-Content.getComponent("posmod1").setControlCallback(onposmod1Control);
-
-inline function onPosHeadModA2Control(component, value)
-{
-	
-
-	posmod1.setValue(value);
-	posmod1.changed();
-};
-
-Content.getComponent("PosHeadModA2").setControlCallback(onPosHeadModA2Control);
-
-
-inline function onpos1modsel1Control(component, value)
-{
-	
-
-	gran1.setAttribute(gran1.PositionSrc, value); 
-	PosHeadSrcA2.setValue(value);
-};
-
-Content.getComponent("pos1modsel1").setControlCallback(onpos1modsel1Control);
-
-
-inline function onPosHeadSrcA2Control(component, value)
-{
-	
-
-	pos1modsel1.setValue(value);
-	pos1modsel1.changed();
-};
-
-Content.getComponent("PosHeadSrcA2").setControlCallback(onPosHeadSrcA2Control);
-
 const var DenseLabel2 = Content.getComponent("DenseLabel2");
 const var DenseLabelB2 = Content.getComponent("DenseLabelB2");
 

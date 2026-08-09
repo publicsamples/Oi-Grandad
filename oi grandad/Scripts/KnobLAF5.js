@@ -86,44 +86,5 @@ KnobLaf5.registerFunction("drawRotarySlider", function(g, obj)
 });
 
 
-const var miniPos =[];
-
-for (i = 0; i < 16; i++)
-{
-    miniPos[i] = Content.getComponent("PosHeadModA"+(i+1)).setLocalLookAndFeel(KnobLaf5);
-
-} 
-
-const var Delmds = [Content.getComponent("delmod1"),
-                    Content.getComponent("delcutmod1"),
-                    Content.getComponent("delmod5"),
-                    Content.getComponent("delmod2"),
-                    Content.getComponent("delcutmod2"),
-                     Content.getComponent("delmod6"),
-                      Content.getComponent("delmod4"),
-                      Content.getComponent("delmod9"),
-                      Content.getComponent("delmod10"),
-                      Content.getComponent("delmod11"),
-                       Content.getComponent("delmod12"),
-                       Content.getComponent("delmod13"),
-                       Content.getComponent("delmod14"),
-                       Content.getComponent("delmod15"),
-                        Content.getComponent("delmod16"),
-                      Content.getComponent("delmod19"),
-                      Content.getComponent("delmod20"),
-                      Content.getComponent("delcutmod4"),
-                      Content.getComponent("delcutmod5"),
-                      Content.getComponent("delcutmod6"),
-                      Content.getComponent("delcutmod7"),
-                      Content.getComponent("delcutmod8"),
-                      Content.getComponent("delcutmod9"),
-                      Content.getComponent("delcutmod10"),
-                      Content.getComponent("delcutmod11"),
-                     Content.getComponent("delcutmod12"),
-                       Content.getComponent("delcutmod14"),
-                      Content.getComponent("delmod8")];
-
-for(s in Delmds)
-      s.setLocalLookAndFeel(KnobLaf5);  
 
       

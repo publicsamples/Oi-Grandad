@@ -1,5 +1,27 @@
 const var KnobLaf2 = Content.createLocalLookAndFeel();
 
+inline function drawKnobModulationArc(g, obj, area, thickness)
+{
+	if(!obj.modulationActive)
+		return;
+
+	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
+	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
+	local modRange = Content.createPath();
+	modRange.setBounds(n);
+	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
+
+	g.setColour(0x33FFFFFF);
+	g.drawPath(modRange, area, thickness);
+
+	local valueArc = Content.createPath();
+	valueArc.setBounds(n);
+	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
+
+	g.setColour(Colours.withAlpha(obj.itemColour1, 0.8));
+	g.drawPath(valueArc, area, Math.max(1.5, thickness - 1.0));
+}
+
 
 
 KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
@@ -55,6 +77,8 @@ KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
 	
 	g.setColour(Colours.withAlpha(obj.itemColour1, obj.clicked ? 0.8 : 0.5));
 	g.drawPath(p, Rect.reduced(obj.area, 1), 2);
+
+	drawKnobModulationArc(g, obj, Rect.reduced(obj.area, 5), 3.0);
 
 //	g.addDropShadowFromAlpha(0x44000000, 2);
 	
@@ -245,5 +269,45 @@ for(s in MacroSliders)
       s.setLocalLookAndFeel(KnobLaf2);
       
       
+const var WindowTempo =[];
+
+for (i = 0; i < 4; i++)
+{
+    WindowTempo[i] = Content.getComponent("WindowTempo"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+}  
+
+const var Dense =[];
+
+for (i = 0; i < 4; i++)
+{
+    Dense[i] = Content.getComponent("Dense"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
 
 
+const var Jitter =[];
+
+for (i = 0; i < 4; i++)
+{
+    Jitter[i] = Content.getComponent("Jitter"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+
+const var Diff =[];
+
+for (i = 0; i < 1; i++)
+{
+    Diff[i] = Content.getComponent("Diff"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+
+const var Respawn =[];
+
+for (i = 0; i < 1; i++)
+{
+    Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 

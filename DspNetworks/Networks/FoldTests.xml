@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="FoldTests" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="FoldTests" Bypassed="0" Name="FoldTests"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="sub" FactoryPath="math.sub" Bypassed="0" Name="sub">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="chain2" FactoryPath="container.chain" Bypassed="0" Name="chain2">
+        <Nodes>
+          <Node ID="multi" FactoryPath="container.multi" Bypassed="0" Name="multi"
+                ShowParameters="1">
+            <Nodes>
+              <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
+                <Nodes>
+                  <Node ID="smoother" FactoryPath="core.smoother" Bypassed="0" Name="smoother">
+                    <Parameters>
+                      <Parameter MinValue="255.1000038012862" MaxValue="1.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.2313782125711441" ID="SmoothingTime" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="DefaultValue" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+              <Node ID="chain1" FactoryPath="container.chain" Bypassed="0" Name="chain1">
+                <Nodes>
+                  <Node ID="smoother2" FactoryPath="core.smoother" Bypassed="0" Name="smoother">
+                    <Parameters>
+                      <Parameter MinValue="255.0" MaxValue="1.0" StepSize="0.1000000014901161"
+                                 SkewFactor="0.2313782125711441" ID="SmoothingTime" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="DefaultValue" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="expr2" FactoryPath="math.expr" Bypassed="0" Name="expr2">
+        <Properties>
+          <Property ID="Code" Value="input * Math.sin(Math.PI * 24.0 * value * input) * (2 - Math.PI);&#10;"/>
+          <Property ID="Debug" Value="0"/>
+        </Properties>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="ladder" FactoryPath="filters.ladder" Bypassed="0" Name="ladder">
+        <ComplexData>
+          <Filters>
+            <Filter Index="-1"/>
+          </Filters>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
+                     ID="Frequency" Automated="1"/>
+          <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
+                     ID="Q" Automated="1"/>
+          <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
+                     ID="Smoothing" Value="0.009999999776482582"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Mode" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="Offset" MinValue="0.0" MaxValue="1.0" Value="0.529953125">
+        <Connections>
+          <Connection NodeId="expr2" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Lp" MinValue="0.0" MaxValue="1.0" Value="1.0">
+        <Connections>
+          <Connection NodeId="ladder" ParameterId="Frequency"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Res" MinValue="0.300000011920929" MaxValue="9.899999618530273"
+                 SkewFactor="0.2647178173065186" Value="4.539322117263705">
+        <Connections>
+          <Connection NodeId="ladder" ParameterId="Q"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Fold" MinValue="0.0" MaxValue="1.0" Value="0.4768593750000001">
+        <Connections>
+          <Connection NodeId="smoother" ParameterId="SmoothingTime"/>
+          <Connection NodeId="smoother2" ParameterId="SmoothingTime"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="sub" MinValue="0.0" MaxValue="1.0" Value="0.513734375">
+        <Connections>
+          <Connection NodeId="sub" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

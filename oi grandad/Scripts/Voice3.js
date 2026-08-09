@@ -120,49 +120,6 @@ inline function onMacroPos3Control(component, value)
 Content.getComponent("MacroPos3").setControlCallback(onMacroPos3Control);
 
 
-
-inline function onposmod2Control(component, value)
-{
-	
-
-	gran2.setAttribute(gran2.PositionMod, value); 
-	PosHeadModA3.setValue(value);
-};
-
-Content.getComponent("posmod2").setControlCallback(onposmod2Control);
-
-inline function onPosHeadModA3Control(component, value)
-{
-	
-
-	posmod2.setValue(value);
-	posmod2.changed();
-};
-
-Content.getComponent("PosHeadModA3").setControlCallback(onPosHeadModA3Control);
-
-
-inline function onpos1modsel2Control(component, value)
-{
-	
-
-	gran2.setAttribute(gran2.PositionSrc, value); 
-	PosHeadSrcA3.setValue(value);
-};
-
-Content.getComponent("pos1modsel2").setControlCallback(onpos1modsel2Control);
-
-
-inline function onPosHeadSrcA3Control(component, value)
-{
-	
-
-	pos1modsel2.setValue(value);
-	pos1modsel2.changed();
-};
-
-Content.getComponent("PosHeadSrcA3").setControlCallback(onPosHeadSrcA3Control);
-
 const var DenseLabel3 = Content.getComponent("DenseLabel3");
 const var DenseLabelB3 = Content.getComponent("DenseLabelB3");
 

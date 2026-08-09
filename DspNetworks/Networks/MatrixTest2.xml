@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="MatrixTest2" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="MatrixTest2" Bypassed="0" Name="MatrixTest2"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
+        <Nodes>
+          <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
+            <Nodes>
+              <Node ID="pitch_mod" FactoryPath="core.pitch_mod" Bypassed="0" Name="pitch_mod">
+                <ModulationTargets>
+                  <Connection NodeId="converter" ParameterId="Value"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                             Value="0.0"/>
+                </Parameters>
+              </Node>
+              <Node ID="extra_mod1" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod">
+                <ModulationTargets>
+                  <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Scrub"/>
+                </ModulationTargets>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                             Value="0.0"/>
+                </Parameters>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+              </Node>
+              <Node ID="extra_mod2" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod">
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="1.0"
+                             DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                             Value="0.0"/>
+                </Parameters>
+                <ComplexData>
+                  <DisplayBuffers>
+                    <DisplayBuffer Index="-1"/>
+                  </DisplayBuffers>
+                </ComplexData>
+                <ModulationTargets>
+                  <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="GrainMs"/>
+                </ModulationTargets>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="converter" FactoryPath="control.converter" Bypassed="0" Name="converter">
+            <Properties>
+              <Property ID="Mode" Value="Pitch2St"/>
+            </Properties>
+            <ModulationTargets>
+              <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PitchSemitones"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="0.5" MaxValue="2.0" ID="Value" Automated="1" SkewFactor="0.6309297535714574"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="granular_player_stepquant_density_hybrid_native" FactoryPath="project.granular_player_stepquant_density_hybrid_native"
+            Bypassed="0" Name="granular_player_stepquant_density_hybrid_native">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="-1" EmbeddedData="/Library/Application Support/modularsamples/oi grandad/AudioFiles/Loops/STBELL-130-03.wav"
+                       MinValue="0" MaxValue="325662"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="PitchSemitones" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" DefaultValue="0.0" Automated="1"/>
+          <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" DefaultValue="50.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" DefaultValue="1.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" Value="0.8956057128906251"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="10.0" ID="PitchMode" Value="10.0" DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpreadOrSync" Value="1.0"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" Value="32.0" DefaultValue="4.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubMode" Value="1.0" DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" Value="3.028984375"
+                     DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" DefaultValue="0.0"
+                     Automated="1"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Value="0.5902031250000001"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Value="0.104546875"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" Value="0.7349375" DefaultValue="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="3.0" ID="TransportMode" Value="1.0"/>
+          <Parameter MinValue="1.0" MaxValue="4.0" ID="ReadMode" Value="1.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="Scrub" MinValue="0.0" MaxValue="1.0" ModColour="2" ExternalModulation="Combined"
+                 DefaultValue="" Value="0.2282031327486038">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="GrainSize" MinValue="1.0" MaxValue="500.0" ModColour="0"
+                 ExternalModulation="Combined" Value="483.0" DefaultValue="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="GrainMix" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="1.0">
+        <Connections>
+          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Density"/>
+        </Connections>
+      </Parameter>
+      <Parameter ID="Scatter" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="1.0">
+        <Connections>
+          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PhaseScatter"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>
