@@ -976,9 +976,9 @@
             </Processor>
           </ChildProcessors>
           <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
-                         Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
-                         Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1"/>
+                         Channel2="0" Send2="-1" Channel3="1" Send3="-1" Channel4="0"
+                         Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
+                         Send7="-1"/>
           <Content/>
           <UIData>
             <ContentProperties DeviceType="Desktop"/>
@@ -1012,9 +1012,9 @@
             </Processor>
           </ChildProcessors>
           <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
-                         Channel2="-1" Send2="-1" Channel3="-1" Send3="-1" Channel4="-1"
-                         Send4="-1" Channel5="-1" Send5="-1" Channel6="-1" Send6="-1"
-                         Channel7="-1" Send7="-1"/>
+                         Channel2="0" Send2="-1" Channel3="1" Send3="-1" Channel4="0"
+                         Send4="-1" Channel5="1" Send5="-1" Channel6="0" Send6="-1" Channel7="1"
+                         Send7="-1"/>
           <Content/>
           <Networks>
             <Network ID="recorder" Version="0.0.0"/>
@@ -1274,8 +1274,8 @@
         <Processor Type="ModulatorChain" ID="Global Modulators" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
             <Processor Type="HardcodedTimevariantModulator" ID="s1" Bypassed="0" Intensity="1.0"
-                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="5.0" tempomod="0.449999988079071"
-                       moddest="0.0" type="1.0" dir="0.0" keysync="2.0" onshot="0.0"
+                       Bipolar="0" Network="DspNetwork" tempo="2.0" multi="3.0" tempomod="0.4899999797344208"
+                       moddest="0.0" type="1.0" dir="0.0" keysync="3.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="0.0">
               <ChildProcessors/>
               <Tables>
@@ -1566,6 +1566,9 @@
                        Bypassed="1" Intensity="1.0" Bipolar="0" NumTables="4" NumSliderPacks="6">
               <ChildProcessors/>
               <Content/>
+              <Networks>
+                <Network ID="modcont" Version="0.0.0"/>
+              </Networks>
               <UIData>
                 <ContentProperties DeviceType="Desktop"/>
               </UIData>

@@ -136,7 +136,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="POWER" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="1.0">
+                 DefaultValue="" Value="0.0">
         <Connections>
           <Connection NodeId="minmax" ParameterId="Value"/>
         </Connections>

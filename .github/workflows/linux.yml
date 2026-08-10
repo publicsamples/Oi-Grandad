@@ -23,14 +23,19 @@ jobs:
           apt-get install -y git ca-certificates
 
       - uses: actions/checkout@v4
-
-      - name: Checkout HISE
-        uses: actions/checkout@v4
         with:
-          repository: RickTaylor79/HISE
-          ref: de5a95e910db9b60753ad61701a3119ba107f0ce
-          path: HISE
           submodules: recursive
+
+      - name: Verify HISE checkout matches repo pin
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$(git ls-tree HEAD HISE | awk '{print $3}')"
+          actual="$(git -C HISE rev-parse HEAD)"
+          echo "Expected HISE: $expected"
+          echo "Actual HISE:   $actual"
+          test -n "$expected"
+          test "$actual" = "$expected"
 
       - name: Resolve export roots
         shell: bash

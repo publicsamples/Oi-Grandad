@@ -14,14 +14,23 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Checkout HISE
-        uses: actions/checkout@v4
         with:
-          repository: RickTaylor79/HISE
-          ref: de5a95e910db9b60753ad61701a3119ba107f0ce
-          path: HISE
           submodules: recursive
+
+      - name: Verify HISE checkout matches repo pin
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $expected = (git ls-tree HEAD HISE | ForEach-Object { ($_ -split '\s+')[2] })
+          $actual = (git -C HISE rev-parse HEAD).Trim()
+          Write-Host "Expected HISE: $expected"
+          Write-Host "Actual HISE:   $actual"
+          if ([string]::IsNullOrWhiteSpace($expected)) {
+            throw "Missing HISE submodule pin in repository tree."
+          }
+          if ($actual -ne $expected) {
+            throw "Checked out HISE revision does not match repo pin."
+          }
 
       - name: Resolve export roots
         shell: pwsh
