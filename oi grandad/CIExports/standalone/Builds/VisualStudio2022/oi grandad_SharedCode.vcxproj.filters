@@ -6576,7 +6576,7 @@
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp">
       <Filter>JUCE Library Code</Filter>
-    </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_processors.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>

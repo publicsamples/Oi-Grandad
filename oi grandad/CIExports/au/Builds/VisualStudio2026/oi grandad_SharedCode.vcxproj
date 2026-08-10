@@ -6311,6 +6311,7 @@
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\RTNeural\RTNeural\ModelT.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\RTNeural\RTNeural\RTNeural.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\RTNeural\RTNeural\torch_helpers.h"/>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\CompiledRTNeuralIncludes.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\hi_neural.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\onnx_loader.h"/>
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_standalone_components\choc\containers\choc_Value.h"/>

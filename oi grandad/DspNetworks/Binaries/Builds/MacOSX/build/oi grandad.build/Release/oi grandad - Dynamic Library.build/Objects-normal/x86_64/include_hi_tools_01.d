@@ -816,6 +816,7 @@ dependencies: \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_standalone_components/eq_plot/FilterInfo.cpp \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_standalone_components/eq_plot/FilterGraph.cpp \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/hi_neural.cpp \
+  /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/CompiledRTNeuralIncludes.h \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/RTNeural/modules/xsimd/xsimd.hpp \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/RTNeural/RTNeural/RTNeural.h \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/RTNeural/RTNeural/config.h \
@@ -901,4 +902,5 @@ dependencies: \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/RTNeural/RTNeural/wavenet/wavenet_model.hpp \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/RTNeural/RTNeural/wavenet/wavenet_layer_array.hpp \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/RTNeural/RTNeural/wavenet/wavenet_layer.hpp \
+  /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/hi_neural.h \
   /Users/rick/Documents/GitHub/HISE/hi_tools/hi_neural/onnx_loader.cpp

@@ -9666,6 +9666,9 @@
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\RTNeural\RTNeural\torch_helpers.h">
       <Filter>JUCE Modules\hi_tools\hi_neural\RTNeural\RTNeural</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\CompiledRTNeuralIncludes.h">
+      <Filter>JUCE Modules\hi_tools\hi_neural</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\HISE\hi_tools\hi_neural\hi_neural.h">
       <Filter>JUCE Modules\hi_tools\hi_neural</Filter>
     </ClInclude>

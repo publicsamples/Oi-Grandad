@@ -4,16 +4,27 @@
       {
         "text": {
           "global": [
+            "_getNeuralModelId",
             "_getDllVersionCounter",
             "_getNumDataObjects",
             "_getError",
+            "_destroyNeuralModel",
             "_deInitOpaqueNode",
+            "_getNeuralModelNumInputs",
             "_clearError",
             "_getWrapperType",
             "_getNodeId",
+            "_createNeuralModel",
+            "_processNeuralModel",
+            "_getNeuralModelQualityId",
+            "_resetNeuralModel",
             "_getNumNodes",
+            "_getNeuralModelMetadata",
             "_getHash",
+            "_getNeuralModelNumOutputs",
+            "_getNumNeuralModels",
             "_initOpaqueNode",
+            "_cloneNeuralModel",
             "_isThirdPartyNode"
           ]
         }

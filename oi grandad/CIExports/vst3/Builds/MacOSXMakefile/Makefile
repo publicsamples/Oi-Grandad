@@ -64,7 +64,7 @@ ifeq ($(CONFIG),Debug)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 -isysroot $(shell xcrun --sdk macosx --show-sdk-path) -mmacosx-version-min=11.0 -Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++17 -stdlib=libc++ $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden -stdlib=libc++ -mmacosx-version-min=11.0 -Wl,-ld_new -framework Accelerate -framework CoreAudio -framework CoreMIDI -framework AudioToolbox -framework QuartzCore -framework CoreAudioKit -framework DiscRecording -framework Cocoa -framework Foundation -framework IOKit -framework Carbon -framework WebKit -framework OpenGL $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden -stdlib=libc++ -mmacosx-version-min=11.0 -Wl,-ld_new -framework Accelerate -framework CoreAudio -framework CoreMIDI -framework AudioToolbox -framework QuartzCore -framework CoreAudioKit -framework DiscRecording -framework Cocoa -framework Foundation -framework IOKit -framework Carbon -framework WebKit -framework OpenGL -framework Security $(LDFLAGS)
 
   OBJECTS_VST3 := \
     $(JUCE_OBJDIR)/include_juce_audio_plugin_client_VST3_dd633589.o \
@@ -231,7 +231,7 @@ ifeq ($(CONFIG),Release)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -isysroot $(shell xcrun --sdk macosx --show-sdk-path) -mmacosx-version-min=11.0 -Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++17 -stdlib=libc++ $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden -stdlib=libc++ -mmacosx-version-min=11.0 -Wl,-ld_new -framework Accelerate -framework CoreAudio -framework CoreMIDI -framework AudioToolbox -framework QuartzCore -framework CoreAudioKit -framework DiscRecording -framework Cocoa -framework Foundation -framework IOKit -framework Carbon -framework WebKit -framework OpenGL $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden -stdlib=libc++ -mmacosx-version-min=11.0 -Wl,-ld_new -framework Accelerate -framework CoreAudio -framework CoreMIDI -framework AudioToolbox -framework QuartzCore -framework CoreAudioKit -framework DiscRecording -framework Cocoa -framework Foundation -framework IOKit -framework Carbon -framework WebKit -framework OpenGL -framework Security $(LDFLAGS)
 
   OBJECTS_VST3 := \
     $(JUCE_OBJDIR)/include_juce_audio_plugin_client_VST3_dd633589.o \

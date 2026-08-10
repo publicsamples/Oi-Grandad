@@ -17,49 +17,49 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="sWLPfZ" name="nodes">
-        <FILE id="WeMLld" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="s7CmjH" name="Dyn_networkdata.h" compile="0" resource="0"
+      <GROUP id="m2IGZN" name="nodes">
+        <FILE id="yh3iCA" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="HLaOJZ" name="Dyn_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/Dyn_networkdata.h"/>
-        <FILE id="poBX5n" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="GD12jy" name="FoldTests_networkdata.h" compile="0" resource="0"
+        <FILE id="hJQ5Wg" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="kJOLVy" name="FoldTests_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="t3ydiK" name="ggg_networkdata.h" compile="0" resource="0"
+        <FILE id="Jzv1Fu" name="ggg_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="xMvssL" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="p6mxr7" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="qwt8KI" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="YMsCdM" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="g0NPGF" name="master_bus_compressor_native.h" compile="0"
+        <FILE id="VxT15n" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="CCLgdb" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="SSDi2d" name="master_bus_compressor_native.h" compile="0"
               resource="0" file="../AdditionalSourceCode/nodes/master_bus_compressor_native.h"/>
-        <FILE id="OK2YxT" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="EQejkc" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="tULHnF" name="NuTest_networkdata.h" compile="0" resource="0"
+        <FILE id="jNyuth" name="NuTest_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="ZvWUn1" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
-        <FILE id="h4fkys" name="recorder_networkdata.h" compile="0" resource="0"
+        <FILE id="bGZUjl" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="EtZXr9" name="recorder_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/recorder_networkdata.h"/>
-        <FILE id="afmRZ8" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="aw6tGd" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="IUqidr" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="XXxwRF" name="sndummy_networkdata.h" compile="0" resource="0"
+        <FILE id="hRtQtK" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="zM1Zzy" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="DnAkBq" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
+        <FILE id="JxZ4AV" name="sndummy_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="HOuCJF" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="BSkmli" name="test_networkdata.h" compile="0" resource="0"
+        <FILE id="qJIAJ1" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="JlR9jd" name="test_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/test_networkdata.h"/>
-        <FILE id="E1VBqZ" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="aSaWzz" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="pte1nJ" name="trash2_networkdata.h" compile="0" resource="0"
+        <FILE id="F6C4j5" name="trash2_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="GjKIri" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="RCCExA" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="Ma1RHB" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="TuQA47" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="YbFJTk" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="MIgnp3" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="FInJF0" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="ndhdYw" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="bY0E0B" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="SfGjcn" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
@@ -114,7 +114,8 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="%VSTSDK_FOLDER%" extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off"
                extraLinkerFlags="" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"
                hardenedRuntime="0" hardenedRuntimeOptions="com.apple.security.cs.allow-jit,com.apple.security.cs.allow-unsigned-executable-memory,com.apple.security.device.audio-input"
-               xcodeValidArchs="arm64,arm64e,x86_64" externalLibraries=";">
+               xcodeValidArchs="arm64,arm64e,x86_64" extraFrameworks="Security"
+               externalLibraries=";">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="11.0 SDK" osxArchitecture="64BitIntel"
                        isDebug="1" optimisation="1" targetName="oi grandad Debug" headerPath=""
@@ -161,7 +162,7 @@
     <MACOSX_MAKE targetFolder="Builds/MacOSXMakefile" vstLegacyFolder="%VSTSDK_FOLDER%"
                  extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
                  extraLinkerFlags=" -Wl,-ld_new" extraDefs="HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_INCLUDE_LORIS=0"
-                 externalLibraries=";" compileFirstPatterns="*hi_scripting_01*, *hi_tools_01*, *hi_scripting_03*"
+                 externalLibraries=";" extraFrameworks="Security" compileFirstPatterns="*hi_scripting_01*, *hi_tools_01*, *hi_scripting_03*"
                  featureGatedModules="hi_rlottie:HISE_INCLUDE_RLOTTIE, hi_loris:HISE_INCLUDE_LORIS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxArchitecture="x86_64" isDebug="1" optimisation="1"
