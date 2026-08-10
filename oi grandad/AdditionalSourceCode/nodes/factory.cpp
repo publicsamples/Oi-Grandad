@@ -95,7 +95,12 @@ scriptnode::dll::FactoryBase* scriptnode::DspNetwork::createStaticFactory()
 	return new project::Factory();
 }
 
+#if HISE_INCLUDE_RT_NEURAL
+void scriptnode::DspNetwork::registerStaticNeuralNetworks(hise::NeuralNetwork::Factory*)
+{
+}
+#endif
+
 #if !JUCE_WINDOWS
 #pragma clang diagnostic pop
 #endif
-

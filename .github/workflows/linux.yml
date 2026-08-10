@@ -30,6 +30,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           expected="$(git ls-tree HEAD HISE | awk '{print $3}')"
           actual="$(git -C HISE rev-parse HEAD)"
           echo "Expected HISE: $expected"
