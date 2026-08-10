@@ -16,7 +16,7 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 
 	g.setColour(obj.textColour);
 
-	var radius = 25 - obj.clicked;
+	var radius = 20 - obj.clicked;
 
 	g.fillEllipse(Rect.translated(Rect.withSizeKeepingCentre(obj.area, radius + 2, radius +2), 0, 2));
 	g.fillEllipse(Rect.translated(Rect.withSizeKeepingCentre(obj.area, radius + 2, radius +2), 0, 3));
@@ -84,5 +84,4 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 	
 	//g.drawAlignedText(obj.text, obj.area, "centred");
 });
-
 

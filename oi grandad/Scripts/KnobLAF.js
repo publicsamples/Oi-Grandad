@@ -1,27 +1,5 @@
 const var KnobLaf = Content.createLocalLookAndFeel();
 
-inline function drawKnobModulationArc(g, obj, area, thickness)
-{
-	if(!obj.modulationActive)
-		return;
-
-	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
-	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
-	local modRange = Content.createPath();
-	modRange.setBounds(n);
-	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
-
-	g.setColour(0x33FFFFFF);
-	g.drawPath(modRange, area, thickness);
-
-	local valueArc = Content.createPath();
-	valueArc.setBounds(n);
-	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
-
-	g.setColour(Colours.withAlpha(obj.itemColour1, 0.8));
-	g.drawPath(valueArc, area, Math.max(1.5, thickness - 1.0));
-}
-
 
 
 KnobLaf.registerFunction("drawRotarySlider", function(g, obj)
@@ -78,8 +56,6 @@ KnobLaf.registerFunction("drawRotarySlider", function(g, obj)
 	g.setColour(Colours.withAlpha(obj.itemColour1, obj.clicked ? 0.8 : 0.5));
 	g.drawPath(p, Rect.reduced(obj.area, 1), 2);
 
-	drawKnobModulationArc(g, obj, Rect.reduced(obj.area, 5), 3.0);
-
 //	g.addDropShadowFromAlpha(0x44000000, 2);
 	
 	g.setGradientFill([obj.bgColour, 0.0, 0.0,
@@ -119,7 +95,22 @@ for (i = 0; i < 3; i++)
 	
 Content.getComponent("pos").setLocalLookAndFeel(KnobLaf);
 
+const var WindowTempo =[];
 
+for (i = 0; i < 4; i++)
+{
+    WindowTempo[i] = Content.getComponent("WindowTempo"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+}  	
+
+
+const var grainsize =[];
+
+for (i = 0; i < 4; i++)
+{
+    grainsize[i] = Content.getComponent("grainsize"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+}  	
 
 const var PitchTempo =[];
 
@@ -139,14 +130,32 @@ for (i = 0; i < 3; i++)
 
 }  
 
+const var Glide =[];
 
-const var grainsize =[];
+for (i = 0; i < 1; i++)
+{
+    Glide[i] = Content.getComponent("Glide"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+} 
+
+
+const var Dense =[];
 
 for (i = 0; i < 4; i++)
 {
-    grainsize[i] = Content.getComponent("grainsize"+(i+1)).setLocalLookAndFeel(KnobLaf);
+    Dense[i] = Content.getComponent("Dense"+(i+1)).setLocalLookAndFeel(KnobLaf);
 
-}  	
+} 
+
+
+const var Jitter =[];
+
+for (i = 0; i < 4; i++)
+{
+    Jitter[i] = Content.getComponent("Jitter"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+} 
+
 
 
 const var graintempo =[];

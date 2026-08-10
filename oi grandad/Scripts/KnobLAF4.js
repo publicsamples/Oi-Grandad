@@ -146,3 +146,21 @@ const var EnkNkbs = [Content.getComponent("EnvAtk1"),
 for(s in EnkNkbs)
       s.setLocalLookAndFeel(KnobLaf);
 
+
+
+const var Diff =[];
+
+for (i = 0; i < 1; i++)
+{
+    Diff[i] = Content.getComponent("Diff"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+}
+
+const var Respawn =[];
+
+for (i = 0; i < 1; i++)
+{
+    Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+}
+

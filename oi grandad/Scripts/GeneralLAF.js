@@ -155,10 +155,8 @@ const var ModeMenus = [Content.getComponent("TransPort1"),
 Content.getComponent("TransPort2"),
 Content.getComponent("TransPort3"),
 Content.getComponent("TransPort4"),
-                       Content.getComponent("Read1"),
-                       Content.getComponent("Read2"),
-                       Content.getComponent("Read3"),
-                       Content.getComponent("Read4") ];
+                       Content.getComponent("GrainDirMode1"),
+                        Content.getComponent("SpreadDirMode1")];
     
     for(s in ModeMenus)
            s.setLocalLookAndFeel(cBLaf);            

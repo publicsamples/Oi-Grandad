@@ -31,6 +31,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
 		registerPolyNode<project::MacroMod<1>, project::MacroMod<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, wrap::illegal_poly<project::sn_fin<1>>>();
@@ -114,10 +115,11 @@ DLL_EXPORT void initOpaqueNode(scriptnode::OpaqueNode* n, int index, bool polyIf
 DLL_EXPORT int getHash(int index)
 {
 	static const int thirdPartyOffset = 2;
-	static const int hashIndexes[6] =
+	static const int hashIndexes[7] =
 	{
 		305747626,
 		751604786,
+		-2038126498,
 		225970153,
 		1021442333,
 		1242837237,

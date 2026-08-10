@@ -16,6 +16,7 @@
 
 #include "DspNetwork.h"
 #include "MacroMod.h"
+#include "MatrixTest2.h"
 #include "OutMods.h"
 #include "res2.h"
 #include "sn_fin.h"

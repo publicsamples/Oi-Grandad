@@ -281,27 +281,17 @@ const var Dense =[];
 
 for (i = 0; i < 4; i++)
 {
-    Dense[i] = Content.getComponent("Dense"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    Dense[i] = Content.getComponent("Dense"+(i+1)).setLocalLookAndFeel(KnobLaf);
 
 } 
 
+const var detune =[];
 
-const var Jitter =[];
-
-for (i = 0; i < 4; i++)
+for (i = 0; i < 3; i++)
 {
-    Jitter[i] = Content.getComponent("Jitter"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+    detune[i] = Content.getComponent("det"+(i+1)).setLocalLookAndFeel(KnobLaf3);
+ }
 
-} 
-
-
-const var Diff =[];
-
-for (i = 0; i < 1; i++)
-{
-    Diff[i] = Content.getComponent("Diff"+(i+1)).setLocalLookAndFeel(KnobLaf2);
-
-} 
 
 
 const var Respawn =[];
