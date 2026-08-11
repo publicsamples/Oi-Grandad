@@ -200,6 +200,7 @@
             <Control type="ScriptComboBox" id="XfMode8" value="1.0"/>
             <Control type="ScriptSlider" id="Macro7" value="0.0"/>
             <Control type="ScriptSlider" id="Macro8" value="0.0"/>
+            <Control type="ScriptComboBox" id="ModPage" value="1.0"/>
             <Control type="ScriptPanel" id="MOD1" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA1" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -263,9 +264,7 @@
             <Control type="ScriptSlider" id="Stage4" value="1.0"/>
             <Control type="ScriptSlider" id="MorphMod4" value="0.5"/>
             <Control type="ScriptSliderPack" id="TableVis4" value="-1.0" data="16....f+....9C...3O...f+."/>
-            <Control type="ScriptComboBox" id="ModPage" value="1.0"/>
             <Control type="ScriptPanel" id="MOD2" value="0.0"/>
-            <Control type="ScriptPanel" id="MOD3" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA16" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA17" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA18" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -298,7 +297,6 @@
             <Control type="ScriptSlider" id="Stage6" value="1.0"/>
             <Control type="ScriptSlider" id="MorphMod6" value="0.5"/>
             <Control type="ScriptSliderPack" id="TableVis6" value="-1.0" data="16....f+....9C...3O...f+."/>
-            <Control type="ScriptPanel" id="MOD4" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA24" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA25" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA26" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -331,7 +329,7 @@
             <Control type="ScriptSlider" id="Stage8" value="1.0"/>
             <Control type="ScriptSlider" id="MorphMod8" value="0.1499999910593033"/>
             <Control type="ScriptSliderPack" id="TableVis8" value="-1.0" data="16....f+....9C...3O...f+."/>
-            <Control type="ScriptPanel" id="MOD5" value="0.0"/>
+            <Control type="ScriptPanel" id="MOD3" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA32" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA33" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA34" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -364,7 +362,6 @@
             <Control type="ScriptSlider" id="Stage10" value="1.0"/>
             <Control type="ScriptSlider" id="MorphMod10" value="0.5"/>
             <Control type="ScriptSliderPack" id="TableVis10" value="-1.0" data="16....f+....9C...3O...f+."/>
-            <Control type="ScriptPanel" id="MOD6" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA40" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA41" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
             <Control type="ScriptSliderPack" id="SliderPackA42" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
@@ -396,7 +393,7 @@
             <Control type="ScriptComboBox" id="TrigSel12" value="0.0"/>
             <Control type="ScriptSlider" id="Stage12" value="1.0"/>
             <Control type="ScriptSliderPack" id="TableVis12" value="-1.0" data="16....f+....9C...3O...f+."/>
-            <Control type="ScriptPanel" id="MOD7" value="0.0"/>
+            <Control type="ScriptPanel" id="MOD4" value="0.0"/>
             <Control type="ScriptButton" id="TrigPeak1" value="0.0"/>
             <Control type="ScriptSlider" id="EnvAtk1" value="0.5"/>
             <Control type="ScriptButton" id="ModType13" value="0.0"/>
@@ -413,7 +410,6 @@
             <Control type="ScriptSlider" id="EnvSus2" value="0.5"/>
             <Control type="ScriptSlider" id="EnvRel2" value="0.0"/>
             <Control type="ScriptButton" id="EnvLoop2" value="0.0"/>
-            <Control type="ScriptPanel" id="MOD8" value="0.0"/>
             <Control type="ScriptComboBox" id="EnvVoiceSel3" value="1.0"/>
             <Control type="ScriptButton" id="TrigPeak3" value="0.0"/>
             <Control type="ScriptSlider" id="EnvAtk3" value="207.0"/>
@@ -986,10 +982,11 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="LFO10" Bypassed="1" Intensity="1.0"
-                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
-                       moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
-                       morph="1.0" morphmod="0.5" morphmodest="0.0" Out="9.0">
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO10" Bypassed="1"
+                       Intensity="1.0" Bipolar="0" Network="DspNetwork" tempo="0.0"
+                       multi="1.0" tempomod="0.5" moddest="0.0" type="1.0" dir="0.0"
+                       keysync="0.0" onshot="0.0" morph="1.0" morphmod="0.5" morphmodest="0.0"
+                       Out="9.0">
               <ChildProcessors/>
               <Tables>
                 <Table EmbeddedData=""/>
@@ -1006,10 +1003,11 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="LFO11" Bypassed="1" Intensity="1.0"
-                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
-                       moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
-                       morph="1.0" morphmod="0.5" morphmodest="0.0" Out="10.0">
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO11" Bypassed="1"
+                       Intensity="1.0" Bipolar="0" Network="DspNetwork" tempo="0.0"
+                       multi="1.0" tempomod="0.5" moddest="0.0" type="1.0" dir="0.0"
+                       keysync="0.0" onshot="0.0" morph="1.0" morphmod="0.5" morphmodest="0.0"
+                       Out="10.0">
               <ChildProcessors/>
               <Tables>
                 <Table EmbeddedData=""/>
@@ -1026,10 +1024,11 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="LFO12" Bypassed="1" Intensity="1.0"
-                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
-                       moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
-                       morph="1.0" morphmod="0.5" morphmodest="0.0" Out="11.0">
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO12" Bypassed="1"
+                       Intensity="1.0" Bipolar="0" Network="DspNetwork" tempo="0.0"
+                       multi="1.0" tempomod="0.5" moddest="0.0" type="1.0" dir="0.0"
+                       keysync="0.0" onshot="0.0" morph="1.0" morphmod="0.5" morphmodest="0.0"
+                       Out="11.0">
               <ChildProcessors/>
               <Tables>
                 <Table EmbeddedData=""/>

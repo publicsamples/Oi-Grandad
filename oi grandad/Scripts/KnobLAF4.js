@@ -144,7 +144,7 @@ const var EnkNkbs = [Content.getComponent("EnvAtk1"),
                      
                     
 for(s in EnkNkbs)
-      s.setLocalLookAndFeel(KnobLaf);
+      s.setLocalLookAndFeel(KnobLaf2);
 
 
 
