@@ -7,8 +7,8 @@ Add a single source-of-truth function that counts active matrix routes per mod s
 Enable a modulator when its route count is > 0.
 Disable or bypass it when its route count is 0.
 Hook this into matrix add/remove/clear operations and preset restore.
-Decision to confirm in code:
-whether “off” means Bypassed, Enabled = false, or a source-specific neutral state.
+Decision confirmed:
+“off” means Enabled = false.
 2. Destination Hygiene Pass
 Files:
 [macros.js](/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/Scripts/macros.js)

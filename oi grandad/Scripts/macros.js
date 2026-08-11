@@ -571,6 +571,7 @@ const var matrixDefaultTargetValues = autoRegisterMatrixTargets();
 // Note that as soon as you create this object it will also write the modulation connections into the user preset
 // so that they are restored correctly.
 const var matrixHandler = Engine.createModulationMatrix("Global Modulator Container1");
+const var matrixSourceModulators = {};
 
 inline function hideModulationDragBackground(g, obj)
 {
@@ -601,9 +602,69 @@ installMatrixHoverSuppressor(KnobLaf3);
 installMatrixHoverSuppressor(KnobLaf4);
 installMatrixHoverSuppressor(KnobLaf5);
 
+inline function buildMatrixSourceModulatorMap()
+{
+	local sources = matrixHandler.getSourceList();
+
+	for(sourceId in sources)
+	{
+		local mod = Synth.getModulator(sourceId);
+
+		if(isDefined(mod))
+			matrixSourceModulators[sourceId] = mod;
+	}
+}
+
+inline function getMatrixSourceRouteCount(sourceId)
+{
+	local count = 0;
+	local targets = matrixHandler.getTargetList();
+
+	for(targetId in targets)
+	{
+		if(!matrixHandler.canConnect(sourceId, targetId))
+			count += 1;
+	}
+
+	return count;
+}
+
+inline function setMatrixSourceEnabledState(sourceId, shouldEnable)
+{
+	local mod = matrixSourceModulators[sourceId];
+
+	if(!isDefined(mod))
+		return;
+
+	// The script API exposes bypass state directly, so we mirror the desired enabled state here.
+	mod.setBypassed(!shouldEnable);
+}
+
+inline function refreshMatrixSourceEnabledState(sourceId)
+{
+	setMatrixSourceEnabledState(sourceId, getMatrixSourceRouteCount(sourceId) > 0);
+}
+
+inline function refreshAllMatrixSourceEnabledStates()
+{
+	local sources = matrixHandler.getSourceList();
+
+	for(sourceId in sources)
+		refreshMatrixSourceEnabledState(sourceId);
+}
+
 matrixHandler.setMatrixModulationProperties({
 	DefaultInitValues: matrixDefaultTargetValues
 });
+
+buildMatrixSourceModulatorMap();
+
+matrixHandler.setConnectionCallback(function(source, target, wasAdded)
+{
+	refreshMatrixSourceEnabledState(source);
+});
+
+refreshAllMatrixSourceEnabledStates();
 
 inline function connectMatrixSourceToComponent(sourceId, component)
 {

@@ -183,7 +183,6 @@
             <Control type="ScriptSlider" id="Jitter4" value="0.0"/>
             <Control type="ScriptSlider" id="WindowTempo4" value="0.0"/>
             <Control type="ScriptButton" id="PowerBtn4" value="0.0"/>
-            <Control type="ScriptButton" id="Direction17" value="0.0"/>
             <Control type="ScriptSlider" id="Attack" value="2.099999904632568"/>
             <Control type="ScriptSlider" id="MakeUp" value="0.0"/>
             <Control type="ScriptSlider" id="Thresh" value="0.0"/>
@@ -241,7 +240,6 @@
             <Control type="ScriptTable" id="ScriptTableA9" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA10" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot3" value="0.0"/>
-            <Control type="ScriptButton" id="Direction3" value="0.0"/>
             <Control type="ScriptSlider" id="Div3" value="1.0"/>
             <Control type="ScriptSlider" id="tempo3" value="0.0"/>
             <Control type="ScriptButton" id="ModType3" value="0.0"/>
@@ -258,7 +256,6 @@
             <Control type="ScriptTable" id="ScriptTableA12" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA13" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot4" value="0.0"/>
-            <Control type="ScriptButton" id="Direction4" value="0.0"/>
             <Control type="ScriptSlider" id="Div4" value="23.0"/>
             <Control type="ScriptSlider" id="tempo4" value="0.0"/>
             <Control type="ScriptButton" id="ModType4" value="0.0"/>
@@ -278,7 +275,6 @@
             <Control type="ScriptTable" id="ScriptTableA15" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA16" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot5" value="0.0"/>
-            <Control type="ScriptButton" id="Direction5" value="0.0"/>
             <Control type="ScriptSlider" id="Div5" value="16.0"/>
             <Control type="ScriptSlider" id="tempo5" value="0.0"/>
             <Control type="ScriptButton" id="ModType5" value="0.0"/>
@@ -295,7 +291,6 @@
             <Control type="ScriptTable" id="ScriptTableA18" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA19" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot6" value="0.0"/>
-            <Control type="ScriptButton" id="Direction6" value="0.0"/>
             <Control type="ScriptSlider" id="Div6" value="1.0"/>
             <Control type="ScriptSlider" id="tempo6" value="0.0"/>
             <Control type="ScriptButton" id="ModType6" value="0.0"/>
@@ -313,7 +308,6 @@
             <Control type="ScriptTable" id="ScriptTableA21" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA22" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot7" value="0.0"/>
-            <Control type="ScriptButton" id="Direction7" value="0.0"/>
             <Control type="ScriptSlider" id="Div7" value="10.0"/>
             <Control type="ScriptSlider" id="tempo7" value="0.0"/>
             <Control type="ScriptButton" id="ModType7" value="0.0"/>
@@ -330,7 +324,6 @@
             <Control type="ScriptTable" id="ScriptTableA24" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA25" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot8" value="0.0"/>
-            <Control type="ScriptButton" id="Direction8" value="0.0"/>
             <Control type="ScriptSlider" id="Div8" value="1.0"/>
             <Control type="ScriptSlider" id="tempo8" value="0.0"/>
             <Control type="ScriptButton" id="ModType8" value="0.0"/>
@@ -348,7 +341,6 @@
             <Control type="ScriptTable" id="ScriptTableA27" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA28" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot9" value="0.0"/>
-            <Control type="ScriptButton" id="Direction9" value="0.0"/>
             <Control type="ScriptSlider" id="Div9" value="1.0"/>
             <Control type="ScriptSlider" id="tempo9" value="0.0"/>
             <Control type="ScriptButton" id="ModType9" value="0.0"/>
@@ -365,7 +357,6 @@
             <Control type="ScriptTable" id="ScriptTableA30" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA31" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot10" value="0.0"/>
-            <Control type="ScriptButton" id="Direction10" value="0.0"/>
             <Control type="ScriptSlider" id="Div10" value="1.0"/>
             <Control type="ScriptSlider" id="tempo10" value="0.0"/>
             <Control type="ScriptButton" id="ModType10" value="0.0"/>
@@ -383,7 +374,6 @@
             <Control type="ScriptTable" id="ScriptTableA33" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA34" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot11" value="0.0"/>
-            <Control type="ScriptButton" id="Direction11" value="0.0"/>
             <Control type="ScriptSlider" id="Div11" value="1.0"/>
             <Control type="ScriptSlider" id="tempo11" value="0.0"/>
             <Control type="ScriptButton" id="ModType11" value="0.0"/>
@@ -400,7 +390,6 @@
             <Control type="ScriptTable" id="ScriptTableA36" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA37" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot12" value="0.0"/>
-            <Control type="ScriptButton" id="Direction12" value="0.0"/>
             <Control type="ScriptSlider" id="Div12" value="1.0"/>
             <Control type="ScriptSlider" id="tempo12" value="0.0"/>
             <Control type="ScriptButton" id="ModType12" value="0.0"/>
@@ -409,7 +398,6 @@
             <Control type="ScriptSliderPack" id="TableVis12" value="-1.0" data="16....f+....9C...3O...f+."/>
             <Control type="ScriptPanel" id="MOD7" value="0.0"/>
             <Control type="ScriptButton" id="TrigPeak1" value="0.0"/>
-            <Control type="ScriptButton" id="Direction13" value="0.0"/>
             <Control type="ScriptSlider" id="EnvAtk1" value="0.5"/>
             <Control type="ScriptButton" id="ModType13" value="0.0"/>
             <Control type="ScriptSlider" id="EnvDec1" value="0.5"/>
@@ -419,7 +407,6 @@
             <Control type="ScriptComboBox" id="EnvVoiceSel1" value="1.0"/>
             <Control type="ScriptComboBox" id="EnvVoiceSel2" value="1.0"/>
             <Control type="ScriptButton" id="TrigPeak2" value="0.0"/>
-            <Control type="ScriptButton" id="Direction14" value="0.0"/>
             <Control type="ScriptSlider" id="EnvAtk2" value="0.5"/>
             <Control type="ScriptButton" id="ModType14" value="0.0"/>
             <Control type="ScriptSlider" id="EnvDec2" value="0.5"/>
@@ -429,7 +416,6 @@
             <Control type="ScriptPanel" id="MOD8" value="0.0"/>
             <Control type="ScriptComboBox" id="EnvVoiceSel3" value="1.0"/>
             <Control type="ScriptButton" id="TrigPeak3" value="0.0"/>
-            <Control type="ScriptButton" id="Direction15" value="0.0"/>
             <Control type="ScriptSlider" id="EnvAtk3" value="207.0"/>
             <Control type="ScriptButton" id="ModType15" value="0.0"/>
             <Control type="ScriptSlider" id="EnvDec3" value="0.0"/>
@@ -438,7 +424,6 @@
             <Control type="ScriptButton" id="EnvLoop3" value="0.0"/>
             <Control type="ScriptComboBox" id="EnvVoiceSel4" value="1.0"/>
             <Control type="ScriptButton" id="TrigPeak4" value="0.0"/>
-            <Control type="ScriptButton" id="Direction16" value="0.0"/>
             <Control type="ScriptSlider" id="EnvAtk4" value="0.5"/>
             <Control type="ScriptButton" id="ModType16" value="0.0"/>
             <Control type="ScriptSlider" id="EnvDec4" value="16.0"/>
@@ -787,39 +772,39 @@
         </Processor>
         <Processor Type="ModulatorChain" ID="Global Modulators" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod1" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod1" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.4607608020305634">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod2" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod2" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod3" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod3" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod4" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod4" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod5" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod5" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod6" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod6" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod7" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod7" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod8" Bypassed="0"
+            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod8" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s1" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s1" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="2.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="2.0" onshot="0.0"
                        morph="1.0" morphmod="5.551115123125783e-17" morphmodest="0.0"
@@ -840,7 +825,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s2" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s2" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="4.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="1.0" onshot="0.0"
                        morph="1.0" morphmod="5.551115123125783e-17" morphmodest="0.0"
@@ -861,7 +846,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s3" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s3" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.2199999988079071" morphmodest="0.0" Out="2.0">
@@ -881,7 +866,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s4" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s4" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="23.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="3.0">
@@ -901,7 +886,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s5" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s5" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="16.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.8499999642372131" morphmodest="0.0" Out="4.0">
@@ -921,7 +906,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s6" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s6" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="5.0">
@@ -941,7 +926,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s7" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s7" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="10.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="6.0">
@@ -961,7 +946,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s8" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s8" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.1499999910593033" morphmodest="0.0" Out="7.0">
@@ -981,7 +966,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s9" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s9" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.8199999928474426" morphmodest="0.0" Out="8.0">
@@ -1001,7 +986,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s10" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s10" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="9.0">
@@ -1021,7 +1006,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s11" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s11" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="10.0">
@@ -1041,7 +1026,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s12" Bypassed="0" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="s12" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="11.0">
@@ -1061,32 +1046,32 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedEnvelopeModulator" ID="ENV1" Bypassed="0" Monophonic="0.0"
+            <Processor Type="HardcodedEnvelopeModulator" ID="ENV1" Bypassed="1" Monophonic="0.0"
                        Retrigger="1.0" Bipolar="0" Intensity="1.0" Network="OutMods"
                        Input="1.0" Output="0.0" A="0.5" D="0.5" S="0.5" R="4218.0" Loop="0.0"
                        TrigPeak="0.0" Mode="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedEnvelopeModulator" ID="ENV2" Bypassed="0" Monophonic="0.0"
+            <Processor Type="HardcodedEnvelopeModulator" ID="ENV2" Bypassed="1" Monophonic="0.0"
                        Retrigger="1.0" Bipolar="0" Intensity="1.0" Network="OutMods"
                        Input="1.0" Output="1.0" A="0.5" D="0.5" S="0.5" R="0.0" Loop="0.0"
                        TrigPeak="0.0" Mode="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedEnvelopeModulator" ID="ENV3" Bypassed="0" Monophonic="0.0"
+            <Processor Type="HardcodedEnvelopeModulator" ID="ENV3" Bypassed="1" Monophonic="0.0"
                        Retrigger="1.0" Bipolar="0" Intensity="1.0" Network="OutMods"
                        Input="1.0" Output="2.0" A="207.0" D="0.0" S="0.03999999910593033"
                        R="0.0" Loop="0.0" TrigPeak="0.0" Mode="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedEnvelopeModulator" ID="ENV4" Bypassed="0" Monophonic="0.0"
+            <Processor Type="HardcodedEnvelopeModulator" ID="ENV4" Bypassed="1" Monophonic="0.0"
                        Retrigger="1.0" Bipolar="0" Intensity="1.0" Network="OutMods"
                        Input="1.0" Output="3.0" A="0.5" D="16.0" S="0.5" R="460.0" Loop="0.0"
                        TrigPeak="0.0" Mode="0.0">
               <ChildProcessors/>
             </Processor>
             <Processor Type="ScriptEnvelopeModulator" ID="Script Envelope Modulator"
-                       Bypassed="0" Monophonic="0.0" Retrigger="1.0" Bipolar="0" Intensity="1.0"
+                       Bypassed="1" Monophonic="0.0" Retrigger="1.0" Bipolar="0" Intensity="1.0"
                        NumDisplayBuffers="3">
               <ChildProcessors/>
               <Content/>
@@ -1104,14 +1089,7 @@
         </Processor>
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-      <MatrixData>
-        <Connection TargetId="Voice_1_PositionA" Mode="1" SourceIndex="8" Intensity="1.0"
-                    AuxIndex="-1.0" AuxIntensity="0.0" Inverted="0"/>
-        <Connection TargetId="Voice_1_PitchSpread" Mode="1" SourceIndex="9" Intensity="0.9007919520547945"
-                    AuxIndex="17" AuxIntensity="0.8994006849315068" Inverted="0"/>
-        <Connection TargetId="Voice_1_GrainSize" Mode="1" SourceIndex="13" Intensity="0.5"
-                    AuxIndex="-1.0" AuxIntensity="0.0" Inverted="0"/>
-      </MatrixData>
+      <MatrixData/>
     </Processor>
     <Processor Type="GlobalModulatorContainer" ID="Global Modulator Container2"
                Bypassed="0" Gain="0.25" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
@@ -1177,7 +1155,7 @@
                Balance="0.0" VoiceLimit="4.0" KillFadeTime="20.0" IconColour="0"
                Network="MatrixTest2" Scrub="0.0" GrainSize="320.0" GrainMix="0.7699999809265137"
                Scatter="0.1299999952316284" WindowShape="1.0" PanSpread="1.0"
-               PitchMode="6.0" PitchSpread="0.7980602979660034" MaxGrains="32.0"
+               PitchMode="6.0" PitchSpread="0.4600000083446503" MaxGrains="32.0"
                ScrubMode="0.0" ScrubBlend="0.0" Direction="1.0" ScrubB="0.8100000023841858"
                ScrubC="0.4900000095367432" ScrubD="0.5" TransportMode="1.0"
                ModOut1="0.0" FxMix="0.0" FxMode="5.0" FxMeta1="0.4909999966621399"
@@ -1362,7 +1340,7 @@
         </Processor>
         <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
-            <Processor Type="MatrixModulator" ID="Voice_1_PositionA" Bypassed="0" Monophonic="0.0"
+            <Processor Type="MatrixModulator" ID="Voice_1_PositionA" Bypassed="1" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
                        Value="0.0" SmoothingTime="0.0">
               <ChildProcessors/>
@@ -1377,7 +1355,7 @@
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_1_GrainMs" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
-                       Value="256.1494750976562" SmoothingTime="1.600000023841858">
+                       Value="28.0" SmoothingTime="1.600000023841858">
               <ChildProcessors/>
               <ValueRange>
                 <InputRange min="1.0" max="500.0" Inverted="0" stepSize="0.0" TextConverter="Time"/>

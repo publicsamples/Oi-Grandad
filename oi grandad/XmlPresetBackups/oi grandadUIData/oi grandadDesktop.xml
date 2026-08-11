@@ -301,7 +301,7 @@
                      parentComponent="VoicePitch1" tooltip="Select Sync Mode" bgColour="4294901760"
                      itemColour="4294175719" itemColour2="4294175719" textColour="16777215"/>
           <Component type="ScriptSlider" id="Glide1" x="147" y="22" width="50" height="50"
-                     parentComponent="VoicePitch1" matrixTargetId="ScriptSlider1"
+                     parentComponent="VoicePitch1" matrixTargetId="Voice_1_Glide"
                      processorId="Granular1" parameterId="Glide" itemColour2="4279308561"
                      bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
           <Component type="ScriptLabel" id="ParamLabel18" x="175" y="69" textColour="4280884766"
@@ -411,10 +411,10 @@
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="Diffusion" showValuePopup="Below" bgColour="11306949"
                      isPluginParameter="1" pluginParameterName="Voice 1: Density"
-                     defaultValue="1.0" matrixTargetId="Voice_1_GrainMix" textColour="4293781205"
+                     defaultValue="1.0" matrixTargetId="Voice_1_Diffusion" textColour="4293781205"
                      itemColour2="4279308561" itemColour="4293781205"/>
           <Component type="ScriptSlider" id="Respawn1" x="298" y="-2" width="40" height="40"
-                     parentComponent="VoiceGrain1" matrixTargetId="ScriptSlider1"
+                     parentComponent="VoiceGrain1" matrixTargetId="Voice_1_Respawn"
                      processorId="Granular1" parameterId="Respawn" itemColour2="4279308561"
                      bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
           <Component type="ScriptLabel" id="DenseLabel5" x="257" y="34" textColour="4280884766"
@@ -429,7 +429,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain Size"
                      showValuePopup="Below" parameterId="Value" middlePosition="100.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
-                     max="500.0" mode="Time" stepSize="1.0" defaultValue="400.0" matrixTargetId="Voice_1_GrainSize"
+                     max="500.0" mode="Time" stepSize="1.0" defaultValue="400.0" matrixTargetId="Voice_1_GrainMs"
                      min="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel9" x="-3" y="71" textColour="4280884766"
                      width="90" height="15" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
@@ -469,7 +469,7 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931" showTextBox="1" matrixTargetId="Granular1_GrainTempo"
+                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_1_GrainTempo"
                      visible="0"/>
           <Component type="ScriptLabel" id="ParamLabel181" x="353" y="69" textColour="4280884766"
                      width="30" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
@@ -493,7 +493,7 @@
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
           <Component type="ScriptSlider" id="Respawn2" x="352" y="38" width="30" height="30"
-                     parentComponent="VoiceGrain1" matrixTargetId="ScriptSlider1"
+                     parentComponent="VoiceGrain1" matrixTargetId="Voice_1_BloomDiv"
                      processorId="Granular1" parameterId="BloomDiv" itemColour2="4279308561"
                      bgColour="11306949" itemColour="4293781205" textColour="4293781205"
                      min="1.0" max="32.0" stepSize="1.0"/>
@@ -2092,11 +2092,6 @@
       <Component type="ScriptPanel" id="Post5" x="820" y="8" width="90" height="330"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V4"
                  textColour="587202560">
-        <Component type="ScriptButton" id="Direction17" x="5" y="4" width="20" height="20"
-                   parentComponent="Post5" itemColour="4294175719" itemColour2="4294175719"
-                   bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="END"
-                   parameterId="POWER" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                   enableMidiLearn="0"/>
         <Component type="ScriptPanel" id="VoiceParam44" x="-10" y="24" width="120"
                    height="310" parentComponent="Post5" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="0" bgColour="16777215">
@@ -2814,11 +2809,6 @@
                    parentComponent="seq3" itemColour="4294175719" itemColour2="4294175719"
                    textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                    processorId="s3" parameterId="onshot"/>
-        <Component type="ScriptButton" id="Direction3" x="27" y="5" width="20" height="20"
-                   parentComponent="seq3" itemColour="4294175719" itemColour2="4294175719"
-                   bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s3"
-                   parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                   enableMidiLearn="0"/>
         <Component type="ScriptSlider" id="Div3" x="56" y="97" width="40" height="40"
                    processorId="s3" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                    numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq3"
@@ -2938,11 +2928,6 @@
                    parentComponent="seq4" itemColour="4294175719" itemColour2="4294175719"
                    textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                    processorId="s4" parameterId="onshot"/>
-        <Component type="ScriptButton" id="Direction4" x="27" y="5" width="20" height="20"
-                   parentComponent="seq4" itemColour="4294175719" itemColour2="4294175719"
-                   bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s4"
-                   parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                   enableMidiLearn="0"/>
         <Component type="ScriptSlider" id="Div4" x="56" y="97" width="40" height="40"
                    processorId="s4" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                    numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq4"
@@ -3082,11 +3067,6 @@
                      parentComponent="seq5" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s5" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction5" x="27" y="5" width="20" height="20"
-                     parentComponent="seq5" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s5"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div5" x="56" y="97" width="40" height="40"
                      processorId="s5" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq5"
@@ -3206,11 +3186,6 @@
                      parentComponent="seq6" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s6" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction6" x="27" y="5" width="20" height="20"
-                     parentComponent="seq6" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s6"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div6" x="56" y="97" width="40" height="40"
                      processorId="s6" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq6"
@@ -3335,11 +3310,6 @@
                      parentComponent="seq7" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s7" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction7" x="27" y="5" width="20" height="20"
-                     parentComponent="seq7" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s7"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div7" x="56" y="97" width="40" height="40"
                      processorId="s7" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq7"
@@ -3459,11 +3429,6 @@
                      parentComponent="seq8" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s8" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction8" x="27" y="5" width="20" height="20"
-                     parentComponent="seq8" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s8"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div8" x="56" y="97" width="40" height="40"
                      processorId="s8" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq8"
@@ -3588,11 +3553,6 @@
                      parentComponent="seq9" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s9" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction9" x="27" y="5" width="20" height="20"
-                     parentComponent="seq9" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s9"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div9" x="56" y="97" width="40" height="40"
                      processorId="s9" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq9"
@@ -3712,11 +3672,6 @@
                      parentComponent="seq10" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s10" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction10" x="27" y="5" width="20"
-                     height="20" parentComponent="seq10" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s10"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div10" x="56" y="97" width="40" height="40"
                      processorId="s10" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq10"
@@ -3841,11 +3796,6 @@
                      parentComponent="seq11" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s11" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction11" x="27" y="5" width="20"
-                     height="20" parentComponent="seq11" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s11"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div11" x="56" y="97" width="40" height="40"
                      processorId="s11" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq11"
@@ -3965,11 +3915,6 @@
                      parentComponent="seq12" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="s12" parameterId="onshot"/>
-          <Component type="ScriptButton" id="Direction12" x="27" y="5" width="20"
-                     height="20" parentComponent="seq12" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="s12"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="Div12" x="56" y="97" width="40" height="40"
                      processorId="s12" parameterId="multi" filmstripImage="{PROJECT_FOLDER}k2.png"
                      numStrips="200.0" scaleFactor="0.699999988079071" parentComponent="seq12"
@@ -4043,11 +3988,6 @@
                      parentComponent="seq13" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="ENV1" parameterId="TrigPeak"/>
-          <Component type="ScriptButton" id="Direction13" x="55" y="5" width="20"
-                     height="20" parentComponent="seq13" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="ENV1"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="EnvAtk1" x="22" y="97" width="40" height="40"
                      processorId="ENV1" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq13" middlePosition="300.0" defaultValue="0.5"
@@ -4130,11 +4070,6 @@
                      parentComponent="seq14" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="ENV2" parameterId="TrigPeak"/>
-          <Component type="ScriptButton" id="Direction14" x="55" y="5" width="20"
-                     height="20" parentComponent="seq14" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="ENV2"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="EnvAtk2" x="21" y="97" width="40" height="40"
                      processorId="ENV2" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq14" middlePosition="300.0" defaultValue="0.5"
@@ -4218,11 +4153,6 @@
                      parentComponent="seq15" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="ENV3" parameterId="TrigPeak"/>
-          <Component type="ScriptButton" id="Direction15" x="55" y="5" width="20"
-                     height="20" parentComponent="seq15" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="ENV3"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="EnvAtk3" x="22" y="97" width="40" height="40"
                      processorId="ENV3" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq15" middlePosition="300.0" defaultValue="0.5"
@@ -4301,11 +4231,6 @@
                      parentComponent="seq16" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="ENV4" parameterId="TrigPeak"/>
-          <Component type="ScriptButton" id="Direction16" x="55" y="5" width="20"
-                     height="20" parentComponent="seq16" itemColour="4294175719" itemColour2="4294175719"
-                     bgColour="4294901760" scaleFactor="0.02999999932944775" processorId="ENV4"
-                     parameterId="Bypass" textColour="16777215" filmstripImage="{PROJECT_FOLDER}power.png"
-                     enableMidiLearn="0"/>
           <Component type="ScriptSlider" id="EnvAtk4" x="22" y="97" width="40" height="40"
                      processorId="ENV4" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq16" middlePosition="300.0" defaultValue="0.5"
