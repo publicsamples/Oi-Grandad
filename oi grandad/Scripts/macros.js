@@ -231,9 +231,9 @@ inline function shouldExcludeMatrixTarget(component)
 		return index >= 1 && index <= 4;
 	}
 
-	if(componentId.indexOf("MacroMod") == 0 || componentId.indexOf("Macro") == 0)
+	if(componentId.indexOf("Macro") == 0)
 	{
-		local suffix = componentId.replace("MacroMod", "").replace("Macro", "");
+		local suffix = componentId.replace("Macro", "");
 		local index = parseInt(suffix);
 		return index >= 1 && index <= 8;
 	}

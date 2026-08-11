@@ -772,39 +772,39 @@
         </Processor>
         <Processor Type="ModulatorChain" ID="Global Modulators" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod1" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO1" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.4607608020305634">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod2" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO2" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod3" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO3" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod4" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO4" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod5" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO5" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod6" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO6" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod7" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO7" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MacroMod8" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO8" Bypassed="1"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s1" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO1" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="2.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="2.0" onshot="0.0"
                        morph="1.0" morphmod="5.551115123125783e-17" morphmodest="0.0"
@@ -825,7 +825,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s2" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO2" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="4.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="1.0" onshot="0.0"
                        morph="1.0" morphmod="5.551115123125783e-17" morphmodest="0.0"
@@ -846,7 +846,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s3" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO3" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.2199999988079071" morphmodest="0.0" Out="2.0">
@@ -866,7 +866,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s4" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO4" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="23.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="3.0">
@@ -886,7 +886,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s5" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO5" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="16.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.8499999642372131" morphmodest="0.0" Out="4.0">
@@ -906,7 +906,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s6" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO6" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="5.0">
@@ -926,7 +926,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s7" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO7" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="10.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="6.0">
@@ -946,7 +946,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s8" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO8" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.1499999910593033" morphmodest="0.0" Out="7.0">
@@ -966,7 +966,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s9" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO9" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.8199999928474426" morphmodest="0.0" Out="8.0">
@@ -986,7 +986,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s10" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO10" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="9.0">
@@ -1006,7 +1006,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s11" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO11" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="10.0">
@@ -1026,7 +1026,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="s12" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO12" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="11.0">
