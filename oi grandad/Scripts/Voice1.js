@@ -214,6 +214,7 @@ if(value == 0)
 	gran.setAttribute(gran.PitchSync, value);
 	 PitchTempo1.showControl(0);
 	 pitch.showControl(1);
+	 PitchDiv1.showControl(0);
 	 
 	 }
 	 
@@ -222,6 +223,7 @@ if(value == 0)
 		gran.setAttribute(gran.PitchSync, value);
 	 	 PitchTempo1.showControl(1);
 	 	 pitch.showControl(0);
+	 	 PitchDiv1.showControl(1);
 	 	 
 	 	 }
 };
