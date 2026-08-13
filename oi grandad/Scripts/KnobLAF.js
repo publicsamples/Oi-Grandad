@@ -177,15 +177,7 @@ for (i = 0; i < 3; i++)
 
 Content.getComponent("spread").setLocalLookAndFeel(KnobLaf);
 
-const var spreads =[];
 
-for (i = 0; i < 3; i++)
-{
-    spreads[i] = Content.getComponent("spread"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-} 
-
-Content.getComponent("spread").setLocalLookAndFeel(KnobLaf);
 
 
 ////////////////// CONSTANTS //////////////////
@@ -303,6 +295,14 @@ for (i = 1; i < 5; i++)
     TrigPeak[i] = Content.getComponent("TrigPeak"+(i)).setLocalLookAndFeel(LAF_Button);
 
 }
+
+
+
+const var psync = [Content.getComponent("PtichSync1")];
+
+for(s in psync)
+      s.setLocalLookAndFeel(LAF_Button);
+
 
 const var Comp = [Content.getComponent("Attack"),
                   Content.getComponent("MakeUp"),

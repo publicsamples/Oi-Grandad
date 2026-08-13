@@ -42,6 +42,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::FreshNetwork_networkdata>();
 		registerDataNode<project::_networkdata>();
 		registerDataNode<project::ggg_networkdata>();
+		registerDataNode<project::grangran_networkdata>();
 		registerDataNode<project::gtest_networkdata>();
 		registerDataNode<project::MatrixTest_networkdata>();
 		registerDataNode<project::modcont_networkdata>();

@@ -4,170 +4,172 @@
   <Component type="ScriptPanel" id="BG" x="0" y="0" width="960" height="720"
              itemColour="4281680473" itemColour2="4281680473" textColour="16777215"
              borderRadius="0.0" locked="1"/>
-  <Component type="ScriptPanel" id="Og" x="11" y="11" width="940" height="700"
+  <Component type="ScriptPanel" id="Og" x="7" y="7" width="945" height="700"
              textColour="15919073" processorId="Granular2" bgColour="16777215">
-    <Component type="ScriptPanel" id="V0" x="10" y="45" width="920" height="640"
+    <Component type="ScriptPanel" id="V0" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
                bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Grain" x="10" y="10" width="670" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V0"
                  borderRadius="7.0">
-        <Component type="ScriptPanel" id="PostFx1" x="575" y="131" width="90" height="190"
+        <Component type="ScriptPanel" id="PostFx1" x="574" y="7" width="90" height="215"
                    itemColour="3001935573" itemColour2="3001935573" parentComponent="Grain"
                    textColour="587202560">
-          <Component type="ScriptLabel" id="FxLabelB1" x="6" y="92" textColour="4280884766"
+          <Component type="ScriptLabel" id="FxLabelB1" x="6" y="110" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="PostFx1"
                      fontStyle="Regular" fontSize="15.0" text="DELAY"/>
-          <Component type="ScriptSlider" id="PostMix1" x="41" y="112" parentComponent="PostFx1"
+          <Component type="ScriptSlider" id="PostMix1" x="41" y="134" parentComponent="PostFx1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="50" height="50" processorId="Final1"
                      parameterId="ResoMix" bgColour="4292665834" showValuePopup="Below"
                      pluginParameterName="Post FX: Mix" matrixTargetId="Voice_1_PostFX_Mix"/>
-          <Component type="ScriptLabel" id="ParamLabel38" x="44" y="162" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel38" x="47" y="184" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="PostFx1"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
-          <Component type="ScriptSlider" id="PostMeta2" x="42" y="45" parentComponent="PostFx1"
+          <Component type="ScriptSlider" id="PostMeta2" x="42" y="63" parentComponent="PostFx1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="50" height="50" processorId="Final1"
                      parameterId="ResLp" bgColour="4292665834" stepSize="0.0" middlePosition="0.5"
                      showValuePopup="Below" isPluginParameter="1" pluginParameterName="Post FX: Param 2"
                      matrixTargetId="Voice_1_PostFX_Meta2"/>
-          <Component type="ScriptLabel" id="FxLabelB2" x="48" y="92" textColour="4280884766"
+          <Component type="ScriptLabel" id="FxLabelB2" x="48" y="110" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="PostFx1"
                      fontStyle="Regular" fontSize="15.0" text="LP"/>
-          <Component type="ScriptSlider" id="PostMeta1" x="2" y="45" parentComponent="PostFx1"
+          <Component type="ScriptSlider" id="PostMeta1" x="2" y="63" parentComponent="PostFx1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Final1"
                      parameterId="ResPitch" middlePosition="0.5" bgColour="4292665834"
                      defaultValue="0.5" showValuePopup="Below" pluginParameterName="Post FX: Param 1"
                      isPluginParameter="1" matrixTargetId="Voice_1_PostFX_Meta1"/>
-          <Component type="ScriptSlider" id="PostMeta3" x="2" y="112" parentComponent="PostFx1"
+          <Component type="ScriptSlider" id="PostMeta3" x="2" y="134" parentComponent="PostFx1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="50" height="50" processorId="Final1"
                      parameterId="Meta" bgColour="4292665834" stepSize="0.0" middlePosition="0.5"
                      showValuePopup="Below" isPluginParameter="1" pluginParameterName="Post FX: Param 3"
                      matrixTargetId="Voice_1_PostFX_Meta3"/>
-          <Component type="ScriptLabel" id="FxLabelB3" x="3" y="162" textColour="4280884766"
+          <Component type="ScriptLabel" id="FxLabelB3" x="3" y="184" textColour="4280884766"
                      width="50" height="20" fontName="Montserrat" editable="0" parentComponent="PostFx1"
                      fontStyle="Regular" fontSize="15.0" text="FEED"/>
           <Component type="ScriptLabel" id="semi55" x="5" y="3" textColour="4280884766"
                      width="90" height="20" fontName="Montserrat" editable="0" parentComponent="PostFx1"
                      fontStyle="Regular" fontSize="20.0" text="POST FX" alignment="left"/>
         </Component>
-        <Component type="ScriptComboBox" id="PostMode1" x="587" y="157" width="70"
-                   height="20" max="11" parentComponent="Grain" items="Off&#10;LP/HP&#10;HP/LP&#10;BP/LP&#10;BP/LP&#10;Low Shelf&#10;High Shelf&#10;AP/HP&#10;Delay&#10;Space&#10;Reverb"
+        <Component type="ScriptComboBox" id="PostMode1" x="585" y="35" width="70"
+                   height="30" max="11" parentComponent="Grain" items="Off&#10;LP/HP&#10;HP/LP&#10;BP/LP&#10;BP/LP&#10;Low Shelf&#10;High Shelf&#10;AP/HP&#10;Delay&#10;Space&#10;Reverb"
                    bgColour="4278190080" textColour="4278190080" itemColour2="4278190080"
                    itemColour="4278190080"/>
-        <Component type="ScriptPanel" id="VoiceParam14" x="408" y="230" width="160"
-                   height="90" parentComponent="Grain" borderRadius="0.0" itemColour="3002330087"
+        <Component type="ScriptPanel" id="VoiceParam14" x="404" y="226" width="260"
+                   height="95" parentComponent="Grain" borderRadius="0.0" itemColour="3002330087"
                    itemColour2="3001935573" textColour="587202560">
-          <Component type="ScriptLabel" id="ParamLabel45" x="14" y="63" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel45" x="14" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="A" alignment="left"/>
-          <Component type="ScriptSlider" id="attack0" x="1" y="7" parentComponent="VoiceParam14"
+          <Component type="ScriptSlider" id="attack0" x="1" y="34" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Attack" mode="Time" max="40000.0" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" showValuePopup="Below"
                      matrixTargetId="Voice_1__ENV_Attack"/>
-          <Component type="ScriptLabel" id="ParamLabel46" x="51" y="63" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel46" x="51" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="D" alignment="left"/>
-          <Component type="ScriptSlider" id="decay0" x="34" y="7" parentComponent="VoiceParam14"
+          <Component type="ScriptSlider" id="decay0" x="34" y="34" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Decay" mode="Time" suffix=" ms" middlePosition="2000.0"
                      max="40000.0" bgColour="4294937226" itemColour2="4211081216"
                      showValuePopup="Below" matrixTargetId="Voice_1__ENV_Decay"/>
-          <Component type="ScriptLabel" id="ParamLabel47" x="92" y="63" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel47" x="92" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="S" alignment="left"/>
-          <Component type="ScriptSlider" id="sustain0" x="72" y="7" parentComponent="VoiceParam14"
+          <Component type="ScriptSlider" id="sustain0" x="72" y="34" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Sustain" mode="Decibel" suffix=" ms" middlePosition="-50.0"
                      bgColour="4294937226" itemColour2="4211081216" min="-100.0" max="0.0"
                      showValuePopup="Below" matrixTargetId="Voice_1__ENV_Sustain"/>
-          <Component type="ScriptSlider" id="release0" x="110" y="7" parentComponent="VoiceParam14"
+          <Component type="ScriptSlider" id="release0" x="110" y="34" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Release" mode="Time" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" max="40000.0"
                      showValuePopup="Below" matrixTargetId="Voice_1__ENV_Release"/>
-          <Component type="ScriptLabel" id="ParamLabel48" x="127" y="63" textColour="4280884766"
-                     width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
-                     fontStyle="Regular" fontSize="14.0" text="R" alignment="left"/>
-        </Component>
-        <Component type="ScriptPanel" id="VoiceParam13" x="583" y="6" width="80"
-                   height="120" parentComponent="Grain" borderRadius="0.0" itemColour="3001935573"
-                   itemColour2="3001935573" textColour="587202560">
-          <Component type="ScriptLabel" id="ParamLabel41" x="17" y="48" textColour="4280884766"
-                     width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceParam13"
+          <Component type="ScriptLabel" id="ParamLabel41" x="209" y="13" textColour="4280884766"
+                     width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="VOL" alignment="left"/>
-          <Component type="ScriptSlider" id="Vol0" x="10" y="1" parentComponent="VoiceParam13"
+          <Component type="ScriptSlider" id="Vol0" x="164" y="2" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" middlePosition="0.5"
+                     scaleFactor="0.1599999964237213" width="40" height="40" middlePosition="0.5"
                      isMetaParameter="1" bgColour="4294937226" itemColour2="4211081216"
                      deferControlCallback="1" showValuePopup="Below" isPluginParameter="1"
                      pluginParameterName="Voice 1: Volume" matrixTargetId="Voice_1_Volume"
                      processorId="Granular1" parameterId="Vol"/>
-          <Component type="ScriptSlider" id="spread" x="36" y="38" parentComponent="VoiceParam13"
+          <Component type="ScriptSlider" id="spread" x="204" y="34" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular1"
+                     scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular1"
                      parameterId="PanSpread" showValuePopup="Below" bgColour="4294951129"
                      pluginParameterName="Voice 1: Pan Spread" isPluginParameter="1"
                      matrixTargetId="Voice_1_PanSpread"/>
-          <Component type="ScriptLabel" id="ParamLabel43" x="16" y="100" textColour="4280884766"
-                     width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam13"
+          <Component type="ScriptLabel" id="ParamLabel43" x="163" y="77" textColour="4280884766"
+                     width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="PAN" alignment="left"/>
-          <Component type="ScriptSlider" id="pan0" x="10" y="57" parentComponent="VoiceParam13"
+          <Component type="ScriptSlider" id="pan0" x="164" y="41" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="Granular1"
+                     scaleFactor="0.1599999964237213" width="40" height="40" processorId="Granular1"
                      parameterId="Pan" bgColour="4294937226" itemColour2="4211081216"
                      min="-1.0" middlePosition="0.0" showValuePopup="Below" matrixTargetId="Voice_1_Pan"/>
+          <Component type="ScriptLabel" id="ParamLabel48" x="127" y="77" textColour="4280884766"
+                     width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
+                     fontStyle="Regular" fontSize="14.0" text="R" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel44" x="20" y="13" textColour="4280884766"
+                     width="130" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
+                     fontStyle="Regular" fontSize="18.0" text="AMP ENVELOPE" alignment="left"/>
+          <Component type="ScriptLabel" id="ParamLabel42" x="197" y="77" textColour="4280884766"
+                     width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
+                     fontStyle="Regular" fontSize="14.0" text="SPREAD" alignment="left"/>
         </Component>
-        <Component type="ScriptPanel" id="Delay1" x="410" y="131" width="160" height="90"
+        <Component type="ScriptPanel" id="Delay1" x="404" y="131" width="165" height="90"
                    itemColour="3001935573" itemColour2="3001935573" parentComponent="Grain">
-          <Component type="ScriptPanel" id="VoiceParam11" x="6" y="26" width="150"
+          <Component type="ScriptPanel" id="VoiceParam11" x="8" y="26" width="150"
                      height="60" parentComponent="Delay1" borderRadius="0.0" itemColour="3002330087"
                      itemColour2="3001935573" textColour="587202560">
-            <Component type="ScriptLabel" id="FxLabelA1" x="1" y="43" textColour="4280884766"
+            <Component type="ScriptLabel" id="FxLabelA1" x="1" y="40" textColour="4280884766"
                        width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                       fontStyle="Regular" fontSize="15.0" text="CUT"/>
-            <Component type="ScriptSlider" id="PolyMix1" x="98" y="3" parentComponent="VoiceParam11"
+                       fontStyle="Regular" fontSize="15.0" text="OFF"/>
+            <Component type="ScriptSlider" id="PolyMix1" x="98" y="0" parentComponent="VoiceParam11"
                        filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                        scaleFactor="0.1400000005960464" width="50" height="50" processorId="Granular1"
                        parameterId="FxMix" bgColour="4294885004" showValuePopup="Below"
                        isPluginParameter="1" pluginParameterName="Voice 1: Poly Fx Mix"
                        matrixTargetId="Voice_1_FX_Mix"/>
-            <Component type="ScriptLabel" id="ParamLabel37" x="104" y="43" textColour="4280884766"
+            <Component type="ScriptLabel" id="ParamLabel37" x="104" y="40" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
                        fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
-            <Component type="ScriptSlider" id="PolyMetaB1" x="49" y="3" parentComponent="VoiceParam11"
+            <Component type="ScriptSlider" id="PolyMetaB1" x="49" y="0" parentComponent="VoiceParam11"
                        filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                        scaleFactor="0.1299999952316284" width="50" height="50" processorId="Granular1"
                        parameterId="Resonance" bgColour="4294885004" stepSize="0.0"
                        middlePosition="0.5" showValuePopup="Below" pluginParameterName="Voice 1: Poly Fx param 2"
                        isPluginParameter="1" matrixTargetId="Voice_1_FX_Meta_2"/>
-            <Component type="ScriptLabel" id="FxLabelA2" x="53" y="43" textColour="4280884766"
+            <Component type="ScriptLabel" id="FxLabelA2" x="53" y="40" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam11"
-                       fontStyle="Regular" fontSize="15.0" text="Q"/>
-            <Component type="ScriptSlider" id="PolyMeta1" x="-1" y="3" parentComponent="VoiceParam11"
+                       fontStyle="Regular" fontSize="15.0" text="OFF"/>
+            <Component type="ScriptSlider" id="PolyMeta1" x="-1" y="0" parentComponent="VoiceParam11"
                        filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                        scaleFactor="0.1299999952316284" width="50" height="50" processorId="Voice_1_Meta1"
                        parameterId="Value" middlePosition="0.5" bgColour="4294885004"
                        defaultValue="0.5" showValuePopup="Below" isPluginParameter="1"
                        pluginParameterName="Voice 1: Poly Fx param 1" matrixTargetId="Voice_1_Meta1"/>
           </Component>
-          <Component type="ScriptLabel" id="semi48" x="10" y="3" textColour="4280884766"
+          <Component type="ScriptLabel" id="semi48" x="12" y="3" textColour="4280884766"
                      width="90" height="20" fontName="Montserrat" editable="0" parentComponent="Delay1"
                      fontStyle="Regular" fontSize="20.0" text="POLY FX" alignment="left"/>
-          <Component type="ScriptComboBox" id="ResMode1" x="95" y="2" width="60" height="20"
+          <Component type="ScriptComboBox" id="ResMode1" x="97" y="2" width="60" height="20"
                      max="10" parentComponent="Delay1" items="Off&#10;Low pass&#10;High Pass&#10;Band Pass&#10;Notch&#10;Ring Mod&#10;AM Trash&#10;Resonator 1&#10;Resonator 2&#10;Degrade"
                      bgColour="4278190080" textColour="4282519608" itemColour2="4279308561"/>
         </Component>
-        <Component type="ScriptPanel" id="ScriptPanel1" x="8" y="7" width="570"
+        <Component type="ScriptPanel" id="ScriptPanel1" x="8" y="7" width="560"
                    height="120" parentComponent="Grain" itemColour="4281680473"
                    itemColour2="4281680473" textColour="4280686081">
           <Component type="ScriptComboBox" id="OutputSelector" x="419" y="100" max="4"
@@ -175,25 +177,25 @@
                      parentComponent="ScriptPanel1" bgColour="4293781205" itemColour="5166303"
                      itemColour2="4293781205" textColour="4293781205"/>
           <Component type="ScriptAudioWaveform" id="AudioWaveform" x="10" y="4" processorId="Granular1"
-                     width="550" height="90" itemColour2="3534522309" itemColour="4289497029"
+                     width="540" height="90" itemColour2="3534522309" itemColour="4289497029"
                      parentComponent="ScriptPanel1" bgColour="11306949" itemColour3="4278255873"
                      tooltip="Load files 1mb and larger" textColour="4284254596" enableRange="0"
                      opaque="0"/>
-          <Component type="ScriptTable" id="PosIndicator1" x="10" y="4" width="550"
+          <Component type="ScriptTable" id="PosIndicator1" x="10" y="4" width="540"
                      height="90" parentComponent="ScriptPanel1" bgColour="4227832731"
                      itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular1"
                      customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator2" x="10" y="4" width="550"
+          <Component type="ScriptTable" id="PosIndicator2" x="10" y="4" width="540"
                      height="90" parentComponent="ScriptPanel1" bgColour="4294956709"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
                      customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator3" x="10" y="4" width="550"
+          <Component type="ScriptTable" id="PosIndicator3" x="10" y="4" width="540"
                      height="90" parentComponent="ScriptPanel1" bgColour="4294966980"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
                      customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator4" x="10" y="4" width="550"
+          <Component type="ScriptTable" id="PosIndicator4" x="10" y="4" width="540"
                      height="90" parentComponent="ScriptPanel1" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
@@ -268,17 +270,17 @@
           <Component type="ScriptSlider" id="MultPosB1" x="48" y="23" width="25" height="45"
                      parentComponent="PosParamB1" style="Vertical" bgColour="4281680473"
                      textColour="4278190080" itemColour2="13247010" itemColour="4294956709"
-                     processorId="Granular1" parameterId="ScrubB" showValuePopup="Below"
+                     processorId="Voice_1_PositionB" parameterId="Value" showValuePopup="Below"
                      matrixTargetId="Voice_1_PositionB"/>
           <Component type="ScriptSlider" id="MultPosC1" x="82" y="23" width="25" height="45"
                      parentComponent="PosParamB1" style="Vertical" bgColour="4281680473"
                      textColour="4278190080" itemColour2="13247010" itemColour="4294966980"
-                     processorId="Granular1" parameterId="ScrubC" showValuePopup="Below"
+                     processorId="Voice_1_PositionC" parameterId="Value" showValuePopup="Below"
                      matrixTargetId="Voice_1_PositionC"/>
           <Component type="ScriptSlider" id="MultPosD1" x="116" y="23" width="25"
                      height="45" parentComponent="PosParamB1" style="Vertical" bgColour="4281680473"
                      textColour="4278190080" itemColour2="13247010" itemColour="4291559337"
-                     processorId="Granular1" parameterId="ScrubD" showValuePopup="Below"
+                     processorId="Voice_1_PositionD" parameterId="Value" showValuePopup="Below"
                      matrixTargetId="Voice_1_PositionD"/>
         </Component>
         <Component type="ScriptComboBox" id="StgSel1" x="118" y="134" width="41"
@@ -297,9 +299,6 @@
                      scaleFactor="0.1800000071525574" width="50" height="50" processorId="Granular1"
                      parameterId="PitchSpread" showValuePopup="Below" bgColour="4293838681"
                      isPluginParameter="1" pluginParameterName="Voice 1: Spread" matrixTargetId="Voice_1_PitchSpread"/>
-          <Component type="ScriptButton" id="Bloom2" x="42" y="-1" width="20" height="20"
-                     parentComponent="VoicePitch1" tooltip="Select Sync Mode" bgColour="4294901760"
-                     itemColour="4294175719" itemColour2="4294175719" textColour="16777215"/>
           <Component type="ScriptSlider" id="Glide1" x="147" y="22" width="50" height="50"
                      parentComponent="VoicePitch1" matrixTargetId="Voice_1_Glide"
                      processorId="Granular1" parameterId="Glide" itemColour2="4279308561"
@@ -317,54 +316,65 @@
                      middlePosition="0.0" showValuePopup="Below" bgColour="4291389544"
                      stepSize="0.1000000014901161" isPluginParameter="1" pluginParameterName="Voice 1: Pitch"
                      matrixTargetId="Voice_1_Pitch" processorId="Voice_1_Pitch" parameterId="Value"
-                     max="12.0"/>
+                     max="12.0" visible="0"/>
+          <Component type="ScriptPanel" id="ScriptPanel9" x="11" y="3" width="50"
+                     height="15" parentComponent="VoicePitch1" borderRadius="0.0"
+                     bgColour="16777215" textColour="4278190080" borderSize="1.0"
+                     itemColour="0" itemColour2="0">
+            <Component type="ScriptButton" id="PtichSync1" x="-5" y="-27" width="70"
+                       height="50" parentComponent="ScriptPanel9" tooltip="Select Sync Mode"
+                       bgColour="4294901760" itemColour="15985639" itemColour2="15985639"
+                       textColour="16777215" locked="1">
+              <Component type="ScriptLabel" id="ParamLabel27" x="18" y="24" textColour="4280884766"
+                         width="50" height="20" fontName="Montserrat" editable="0" parentComponent="PtichSync1"
+                         fontStyle="Regular" fontSize="15.0" text="sync" alignment="left"
+                         locked="1"/>
+            </Component>
+          </Component>
           <Component type="ScriptLabel" id="ParamLabel6" x="62" y="69" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"
                      visible="0"/>
           <Component type="ScriptLabel" id="DetuneLabel" x="73" y="69" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
-                     fontStyle="Regular" fontSize="15.0" text="SPREAD"/>
+                     fontStyle="Regular" fontSize="15.0" text="TIME"/>
           <Component type="ScriptComboBox" id="PitchMode1" x="77" y="3" width="50"
                      height="15" text="" items="Detune&#10;Harmonic&#10;Major&#10;Minor&#10;Maj7&#10;Min7&#10;Fifths&#10;Sevenths"
                      parentComponent="VoicePitch1" bgColour="4278190080" itemColour="5166303"
                      itemColour2="3825139712" macroControl="No MacroControl" fontName="Montserrat"
                      max="8" fontSize="12.0" textColour="4278190080"/>
-          <Component type="ScriptLabel" id="DivLabel" x="30" y="5" textColour="4280884766"
-                     width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
-                     fontStyle="Regular" fontSize="12.0" text="div" alignment="left"
-                     visible="0"/>
-          <Component type="ScriptSlider" id="PitchDiv1" x="8" y="0" parentComponent="VoicePitch1"
+          <Component type="ScriptSlider" id="PitchDiv1" x="56" y="56" parentComponent="VoicePitch1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1000000014901161" width="20" height="20" processorId="Granular1"
                      parameterId="PitchDivide" min="1.0" max="16.0" middlePosition="8.5"
                      showValuePopup="Below" bgColour="16777215" stepSize="1.0" itemColour="1630745395"
-                     matrixTargetId="Voice_1_PitchDivide" visible="0"/>
+                     matrixTargetId="Voice_1_PitchDivide"/>
           <Component type="ScriptSlider" id="PitchTempo1" x="5" y="17" parentComponent="VoicePitch1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular1"
                      parameterId="PitchTempo" showValuePopup="Below" bgColour="4293838681"
                      mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
                      isPluginParameter="1" pluginParameterName="Voice 1: Pitch Tempo"
-                     matrixTargetId="Voice_1_PitchTempo" visible="0"/>
+                     matrixTargetId="Voice_1_PitchTempo"/>
           <Component type="ScriptLabel" id="DetuneLabel4" x="142" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="15.0" text="GLIDE"/>
         </Component>
-        <Component type="ScriptPanel" id="VoiceGrain1" x="8" y="227" width="390"
-                   height="90" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
+        <Component type="ScriptPanel" id="VoiceGrain1" x="9" y="226" width="390"
+                   height="95" parentComponent="Grain" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
-          <Component type="ScriptButton" id="GrainXf1" x="203" y="-16" width="55"
-                     height="40" parentComponent="VoiceGrain1" scaleFactor="0.1299999952316284"
-                     bgColour="1442779923" text="XF">
-            <Component type="ScriptLabel" id="ScriptLabel123" x="12" y="22" width="40"
-                       height="10" parentComponent="GrainXf1" text="xfade" fontName="Montserrat"
-                       fontSize="12.0" textColour="4278190080" editable="0"/>
-          </Component>
-          <Component type="ScriptLabel" id="ParamLabel199" x="145" y="71" textColour="4280884766"
-                     width="60" height="15" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
-                     fontStyle="Regular" fontSize="15.0" text="SPREAD" alignment="left"/>
-          <Component type="ScriptSlider" id="Jitter1" x="145" y="14" parentComponent="VoiceGrain1"
+          <Component type="ScriptComboBox" id="SpreadDirMode1" x="171" y="2" max="4"
+                     width="50" height="15" processorId="Granular1" parameterId="PhaseScatterShape"
+                     items="Random&#10;Spread&#10;Mirror&#10;Cluster" bgColour="4278190080"
+                     textColour="4278190080" parentComponent="VoiceGrain1"/>
+          <Component type="ScriptComboBox" id="GrainDirMode1" x="16" y="2" max="5"
+                     width="50" height="15" processorId="Granular1" parameterId="GrainTravelShape"
+                     items="Fixed&#10;Random&#10;Spread&#10;Mirror&#10;Cluster" bgColour="4278190080"
+                     textColour="4278190080" parentComponent="VoiceGrain1"/>
+          <Component type="ScriptLabel" id="ParamLabel199" x="162" y="72" textColour="4280884766"
+                     width="70" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+                     fontStyle="Regular" fontSize="15.0" text="SCATTER" alignment="left"/>
+          <Component type="ScriptSlider" id="Jitter1" x="165" y="14" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular1"
                      parameterId="Scatter" showValuePopup="Below" bgColour="4294951129"
@@ -374,10 +384,10 @@
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"
                      visible="0"/>
-          <Component type="ScriptLabel" id="DenseLabel1" x="213" y="67" textColour="4280884766"
-                     width="30" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+          <Component type="ScriptLabel" id="DenseLabel1" x="243" y="72" textColour="4280884766"
+                     width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="MIX" alignment="left"/>
-          <Component type="ScriptSlider" id="Dense1" x="209" y="26" parentComponent="VoiceGrain1"
+          <Component type="ScriptSlider" id="Dense1" x="241" y="26" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="GrainMix" showValuePopup="Below" bgColour="4289497029"
@@ -387,18 +397,18 @@
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"
                      visible="0"/>
-          <Component type="ScriptLabel" id="DenseLabelB1" x="207" y="68" textColour="4280884766"
+          <Component type="ScriptLabel" id="DenseLabelB1" x="234" y="72" textColour="4280884766"
                      width="50" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="XFADE" alignment="left"
                      visible="0"/>
-          <Component type="ScriptLabel" id="ParamLabel11" x="293" y="62" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel11" x="329" y="65" textColour="4280884766"
                      width="50" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="SHAPE"/>
           <Component type="ScriptLabel" id="ParamLabel19" x="223" y="68" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"
                      visible="0"/>
-          <Component type="ScriptSlider" id="WindowTempo1" x="255" y="46" parentComponent="VoiceGrain1"
+          <Component type="ScriptSlider" id="WindowTempo1" x="290" y="49" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1599999964237213" width="40" height="40" processorId="Granular1"
                      tooltip="The size of the grains in MS, or if synced various clock divisions"
@@ -406,24 +416,24 @@
                      showValuePopup="Below" parameterId="WindowShape" middlePosition="0.5"
                      stepSize="0.0" bgColour="11306949" isPluginParameter="1" matrixTargetId="Voice_1_WindowShape"
                      itemColour2="4279308561" itemColour="4293781205" textColour="4293781205"/>
-          <Component type="ScriptSlider" id="Diff1" x="256" y="-2" parentComponent="VoiceGrain1"
+          <Component type="ScriptSlider" id="Diff1" x="297" y="-2" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="Diffusion" showValuePopup="Below" bgColour="11306949"
                      isPluginParameter="1" pluginParameterName="Voice 1: Density"
                      defaultValue="1.0" matrixTargetId="Voice_1_Diffusion" textColour="4293781205"
                      itemColour2="4279308561" itemColour="4293781205"/>
-          <Component type="ScriptSlider" id="Respawn1" x="298" y="-2" width="40" height="40"
+          <Component type="ScriptSlider" id="Respawn1" x="339" y="-2" width="40" height="40"
                      parentComponent="VoiceGrain1" matrixTargetId="Voice_1_Respawn"
                      processorId="Granular1" parameterId="Respawn" itemColour2="4279308561"
                      bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
-          <Component type="ScriptLabel" id="DenseLabel5" x="257" y="34" textColour="4280884766"
+          <Component type="ScriptLabel" id="DenseLabel5" x="298" y="34" textColour="4280884766"
                      width="40" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="DIFF" alignment="left"/>
-          <Component type="ScriptLabel" id="DenseLabel6" x="294" y="33" textColour="4280884766"
+          <Component type="ScriptLabel" id="DenseLabel6" x="335" y="34" textColour="4280884766"
                      width="50" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="SPAWN" alignment="left"/>
-          <Component type="ScriptSlider" id="grainsize1" x="10" y="15" parentComponent="VoiceGrain1"
+          <Component type="ScriptSlider" id="grainsize1" x="12" y="15" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Voice_1_GrainMs"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain Size"
@@ -431,31 +441,24 @@
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
                      max="500.0" mode="Time" stepSize="1.0" defaultValue="400.0" matrixTargetId="Voice_1_GrainMs"
                      min="1.0"/>
-          <Component type="ScriptLabel" id="ParamLabel9" x="-3" y="71" textColour="4280884766"
-                     width="90" height="15" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+          <Component type="ScriptLabel" id="ParamLabel9" x="-4" y="72" textColour="4280884766"
+                     width="90" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN SIZE"/>
           <Component type="ScriptLabel" id="ParamLabel10" x="79" y="67" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"
                      visible="0"/>
-          <Component type="ScriptLabel" id="ParamLabel12" x="121" y="2" textColour="4280884766"
-                     width="30" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
-                     fontStyle="Regular" fontSize="12.0" text="sync" alignment="left"/>
-          <Component type="ScriptButton" id="GrainSync1" x="105" y="2" width="20"
-                     height="20" parentComponent="VoiceGrain1" tooltip="Select Sync Mode"
-                     bgColour="4294901760" itemColour="4294175719" itemColour2="4294175719"
-                     textColour="16777215"/>
-          <Component type="ScriptSlider" id="graindiv1" x="51" y="-17" parentComponent="VoiceGrain1"
+          <Component type="ScriptSlider" id="graindiv1" x="60" y="44" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.09000000357627869" width="60" height="50" processorId="Granular1"
+                     scaleFactor="0.09000000357627869" width="30" height="30" processorId="Granular1"
                      tooltip="The size of the grains in MS, or if synced various clock divisions"
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
                      bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_1_GrainDivide"
                      visible="0">
-            <Component type="ScriptLabel" id="ParamLabel13" x="40" y="19" textColour="4280884766"
-                       width="26" height="20" fontName="Montserrat" editable="0" parentComponent="graindiv1"
+            <Component type="ScriptLabel" id="ParamLabel13" x="-27" y="73" textColour="4280884766"
+                       width="20" height="10" fontName="Montserrat" editable="0" parentComponent="graindiv1"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
           </Component>
           <Component type="ScriptLabel" id="ParamLabel50" x="118" y="67" textColour="4280884766"
@@ -471,36 +474,55 @@
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
                      bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_1_GrainTempo"
                      visible="0"/>
-          <Component type="ScriptLabel" id="ParamLabel181" x="353" y="69" textColour="4280884766"
-                     width="30" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
-                     fontStyle="Regular" fontSize="15.0" text="DIV" alignment="left"/>
-          <Component type="ScriptSlider" id="GrainDir1" x="72" y="21" width="80" height="70"
+          <Component type="ScriptSlider" id="GrainDir1" x="82" y="6" width="80" height="70"
                      processorId="Granular1" parameterId="Direction" parentComponent="VoiceGrain1"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
                      showValuePopup="Below" scaleFactor="0.699999988079071" tooltip="Grain Size Moduation Amount"
                      min="1.0" textColour="4293781205" itemColour2="4279308561" itemColour="4293781205"
                      bgColour="16777215" max="4.0" stepSize="1.0" matrixTargetId="Voice_1_GrainDirection"/>
-          <Component type="ScriptLabel" id="ParamLabel251" x="111" y="75" textColour="4280884766"
+          <Component type="ScriptLabel" id="ParamLabel251" x="121" y="61" textColour="4280884766"
                      width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="12.0" text="one" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel182" x="82" y="43" textColour="4280884766"
-                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+          <Component type="ScriptLabel" id="ParamLabel182" x="91" y="24" textColour="4280884766"
+                     width="20" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&lt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel189" x="87" y="76" textColour="4280884766"
-                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+          <Component type="ScriptLabel" id="ParamLabel189" x="97" y="62" textColour="4280884766"
+                     width="20" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="&gt;&gt;" alignment="left"/>
-          <Component type="ScriptLabel" id="ParamLabel252" x="116" y="43" textColour="4280884766"
-                     width="30" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+          <Component type="ScriptLabel" id="ParamLabel252" x="133" y="24" textColour="4280884766"
+                     width="20" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="&lt;&gt;" alignment="left"/>
-          <Component type="ScriptSlider" id="Respawn2" x="352" y="38" width="30" height="30"
-                     parentComponent="VoiceGrain1" matrixTargetId="Voice_1_BloomDiv"
-                     processorId="Granular1" parameterId="BloomDiv" itemColour2="4279308561"
-                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"
-                     min="1.0" max="32.0" stepSize="1.0"/>
-          <Component type="ScriptButton" id="Bloom1" x="358" y="7" width="20" height="20"
-                     parentComponent="VoiceGrain1" tooltip="Select Sync Mode" bgColour="4294901760"
-                     itemColour="4294175719" itemColour2="4294175719" textColour="16777215"
-                     processorId="Granular1" parameterId="BloomOn"/>
+          <Component type="ScriptPanel" id="ScriptPanel7" x="93" y="2" width="50"
+                     height="15" parentComponent="VoiceGrain1" borderRadius="0.0"
+                     bgColour="16777215" textColour="4278190080" borderSize="1.0"
+                     itemColour="0" itemColour2="0">
+            <Component type="ScriptButton" id="GrainSync1" x="-5" y="-27" width="70"
+                       height="50" parentComponent="ScriptPanel7" tooltip="Select Sync Mode"
+                       bgColour="4294901760" itemColour="15985639" itemColour2="15985639"
+                       textColour="16777215" locked="1">
+              <Component type="ScriptLabel" id="ParamLabel12" x="18" y="24" textColour="4280884766"
+                         width="50" height="20" fontName="Montserrat" editable="0" parentComponent="GrainSync1"
+                         fontStyle="Regular" fontSize="15.0" text="sync" alignment="left"
+                         locked="1"/>
+            </Component>
+          </Component>
+          <Component type="ScriptPanel" id="ScriptPanel8" x="240" y="2" width="50"
+                     height="15" parentComponent="VoiceGrain1" borderRadius="0.0"
+                     bgColour="16777215" textColour="4278190080" borderSize="1.0"
+                     itemColour="0" itemColour2="0">
+            <Component type="ScriptButton" id="GrainXf1" x="-5" y="-17" width="50" height="40"
+                       parentComponent="ScriptPanel8" tooltip="Select Sync Mode" bgColour="4294901760"
+                       itemColour="4294175719" itemColour2="4294175719" textColour="16777215"
+                       locked="1">
+              <Component type="ScriptLabel" id="ParamLabel15" x="15" y="14" textColour="4280884766"
+                         width="40" height="20" fontName="Montserrat" editable="0" parentComponent="GrainXf1"
+                         fontStyle="Regular" fontSize="15.0" text="xfade" alignment="left"
+                         locked="1"/>
+            </Component>
+          </Component>
+          <Component type="ScriptLabel" id="ParamLabel16" x="75" y="72" textColour="4280884766"
+                     width="90" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
+                     fontStyle="Regular" fontSize="15.0" text="DIRECTION"/>
         </Component>
         <Component type="ScriptLabel" id="ParamLabel53" x="512" y="260" textColour="4280884766"
                    width="80" height="30" fontName="Montserrat" editable="0" parentComponent="Grain"
@@ -529,7 +551,7 @@
                  parentComponent="V0" processorId="Container1" parameterId="Bypass"
                  filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
-    <Component type="ScriptPanel" id="V1" x="9" y="47" width="920" height="640"
+    <Component type="ScriptPanel" id="V1" x="6" y="47" width="930" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
                bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Post2" x="612" y="329" width="200" height="130"
@@ -1048,7 +1070,7 @@
                  parentComponent="V1" processorId="Container1" parameterId="Bypass"
                  filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
-    <Component type="ScriptPanel" id="V2" x="9" y="47" width="920" height="640"
+    <Component type="ScriptPanel" id="V2" x="6" y="47" width="930" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
                bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Post3" x="612" y="329" width="200" height="130"
@@ -1567,7 +1589,7 @@
                  parentComponent="V2" processorId="Container1" parameterId="Bypass"
                  filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
-    <Component type="ScriptPanel" id="V3" x="9" y="47" width="920" height="640"
+    <Component type="ScriptPanel" id="V3" x="6" y="47" width="930" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1139663329"
                bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Post4" x="612" y="329" width="200" height="130"
@@ -2086,13 +2108,13 @@
                  parentComponent="V3" processorId="Container1" parameterId="Bypass"
                  filmstripImage="{PROJECT_FOLDER}power.png" scaleFactor="0.02999999932944775"/>
     </Component>
-    <Component type="ScriptPanel" id="V4" x="9" y="47" width="920" height="640"
+    <Component type="ScriptPanel" id="V4" x="6" y="47" width="930" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
                bgColour="16777215" textColour="16777215" visible="0">
-      <Component type="ScriptPanel" id="Post5" x="820" y="8" width="90" height="330"
+      <Component type="ScriptPanel" id="Post5" x="589" y="8" width="90" height="330"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V4"
                  textColour="587202560">
-        <Component type="ScriptPanel" id="VoiceParam44" x="-10" y="24" width="120"
+        <Component type="ScriptPanel" id="VoiceParam44" x="-12" y="21" width="120"
                    height="310" parentComponent="Post5" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="0" bgColour="16777215">
           <Component type="ScriptSlider" id="Attack" x="35" y="127" parentComponent="VoiceParam44"
@@ -2144,37 +2166,38 @@
                      width="70" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam44"
                      fontStyle="Regular" fontSize="12.0" text="RELEASE" processorId="Final2"/>
         </Component>
-        <Component type="ScriptLabel" id="semi59" x="26" y="3" textColour="4280884766"
+        <Component type="ScriptLabel" id="semi59" x="25" y="3" textColour="4280884766"
                    width="59" height="20" fontName="Montserrat" editable="0" parentComponent="Post5"
                    fontStyle="Regular" fontSize="20.0" text="COMP" alignment="left"/>
       </Component>
-      <Component type="ScriptPanel" id="EzVoice1" x="10" y="10" width="190" height="190"
+      <Component type="ScriptPanel" id="EzVoice1" x="10" y="7" width="130" height="190"
                  text="wave1" bgColour="3052524467" itemColour="4293781205" itemColour2="4293781205"
                  borderSize="1.0" textColour="4278190080" parentComponent="V4"
                  borderRadius="7.0">
-        <Component type="ScriptPanel" id="ScriptPanel11" x="12" y="27" width="170"
+        <Component type="ScriptPanel" id="ScriptPanel11" x="10" y="29" width="110"
                    height="90" parentComponent="EzVoice1" itemColour="4281680473"
                    itemColour2="4281680473" textColour="4280686081">
-          <Component type="ScriptAudioWaveform" id="AudioWaveform8" x="10" y="5" processorId="Granular1"
-                     width="150" height="75" itemColour2="4289497029" itemColour="4289497029"
-                     parentComponent="ScriptPanel11" bgColour="15648601" itemColour3="4278255873"
-                     tooltip="Load files 1mb and larger" textColour="4284254596" enableRange="0"
-                     opaque="0" showFileName="0" saveInPreset="0"/>
-          <Component type="ScriptTable" id="PosIndicator17" x="10" y="5" width="150"
+          <Component type="ScriptAudioWaveform" id="AudioWaveform8" x="11" y="10"
+                     processorId="Granular1" width="90" height="70" itemColour2="4289497029"
+                     itemColour="4289497029" parentComponent="ScriptPanel11" bgColour="15648601"
+                     itemColour3="4278255873" tooltip="Load files 1mb and larger"
+                     textColour="4284254596" enableRange="0" opaque="0" showFileName="0"
+                     saveInPreset="0"/>
+          <Component type="ScriptTable" id="PosIndicator17" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel11" bgColour="4227832731"
                      itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular1"
                      customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator18" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator18" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel11" bgColour="4294956709"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
                      customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator19" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator19" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel11" bgColour="4294966980"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
                      customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator20" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator20" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel11" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
@@ -2183,85 +2206,158 @@
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel11"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
         </Component>
-        <Component type="ScriptLabel" id="semi42" x="2" y="4" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice1"
+        <Component type="ScriptLabel" id="semi42" x="0" y="4" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice1"
                    fontStyle="Regular" fontSize="20.0" text="VOICE 1"/>
-        <Component type="ScriptLabel" id="ParamLabel207" x="5" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel207" x="1" y="165" textColour="4280884766"
                    width="70" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice1"
                    fontStyle="Regular" fontSize="12.0" text="POSITION" alignment="left"/>
-        <Component type="ScriptSlider" id="MacroPos1" x="15" y="121" parentComponent="EzVoice1"
+        <Component type="ScriptSlider" id="MacroPos1" x="8" y="123" parentComponent="EzVoice1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" matrixTargetId="Voice_1_PositionA"/>
-        <Component type="ScriptSlider" id="MacroPitch1" x="78" y="121" parentComponent="EzVoice1"
+        <Component type="ScriptSlider" id="MacroPitch1" x="47" y="123" parentComponent="EzVoice1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" min="-12.0"
                    max="12.0" stepSize="0.1000000014901161" middlePosition="0.0"
                    matrixTargetId="Voice_1_Pitch"/>
-        <Component type="ScriptSlider" id="MacroGain" x="141" y="121" parentComponent="EzVoice1"
+        <Component type="ScriptSlider" id="MacroGain" x="87" y="123" parentComponent="EzVoice1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" defaultValue="1.0"
                    matrixTargetId="Voice_1_Volume"/>
-        <Component type="ScriptLabel" id="ParamLabel213" x="78" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel213" x="53" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice1"
                    fontStyle="Regular" fontSize="12.0" text="PITCH" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel214" x="145" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel214" x="91" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice1"
                    fontStyle="Regular" fontSize="12.0" text="VOL" alignment="left"/>
       </Component>
-      <Component type="ScriptPanel" id="MacroCont1" x="10" y="214" width="190"
+      <Component type="ScriptPanel" id="MacroCont1" x="10" y="210" width="130"
                  height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
                  itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
                  parentComponent="V4" borderRadius="7.0">
-        <Component type="ScriptLabel" id="semi43" x="-1" y="6" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
+        <Component type="ScriptLabel" id="semi43" x="0" y="5" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
                    fontStyle="Regular" fontSize="20.0" text="MACRO 1 &amp; 2"/>
-        <Component type="ScriptSlider" id="Macro1" x="14" y="44" parentComponent="MacroCont1"
+        <Component type="ScriptSlider" id="Macro1" x="11" y="32" parentComponent="MacroCont1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO1" parameterId="macro"/>
-        <Component type="ScriptLabel" id="ParamLabel210" x="6" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel212" x="98" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptSlider" id="Macro2" x="106" y="44" parentComponent="MacroCont1"
+                   stepSize="0.0" processorId="MACRO1" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+        <Component type="ScriptLabel" id="ParamLabel210" x="26" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
+                   fontStyle="Regular" fontSize="12.0" text="1"/>
+        <Component type="ScriptLabel" id="ParamLabel212" x="83" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
+                   fontStyle="Regular" fontSize="12.0" text="2"/>
+        <Component type="ScriptSlider" id="Macro2" x="68" y="32" parentComponent="MacroCont1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO2" parameterId="macro"/>
+                   stepSize="0.0" processorId="MACRO2" parameterId="macro" matrixTargetId="MACRO2_macro"/>
       </Component>
-      <Component type="ScriptPanel" id="EzVoice2" x="213" y="10" width="190" height="190"
+      <Component type="ScriptPanel" id="MacroCont2" x="154" y="210" width="130"
+                 height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
+                 itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
+                 parentComponent="V4" borderRadius="7.0">
+        <Component type="ScriptLabel" id="semi45" x="0" y="5" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont2"
+                   fontStyle="Regular" fontSize="20.0" text="MACRO 3 &amp; 4"/>
+        <Component type="ScriptSlider" id="Macro3" x="11" y="32" parentComponent="MacroCont2"
+                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
+                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
+                   stepSize="0.0" processorId="MACRO3" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+        <Component type="ScriptLabel" id="ParamLabel211" x="26" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont2"
+                   fontStyle="Regular" fontSize="12.0" text="3"/>
+        <Component type="ScriptLabel" id="ParamLabel219" x="83" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont2"
+                   fontStyle="Regular" fontSize="12.0" text="4"/>
+        <Component type="ScriptSlider" id="Macro4" x="68" y="32" parentComponent="MacroCont2"
+                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
+                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
+                   stepSize="0.0" processorId="MACRO4" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+      </Component>
+      <Component type="ScriptPanel" id="MacroCont3" x="444" y="210" width="130"
+                 height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
+                 itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
+                 parentComponent="V4" borderRadius="7.0">
+        <Component type="ScriptLabel" id="semi46" x="0" y="5" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont3"
+                   fontStyle="Regular" fontSize="20.0" text="MACRO 7 &amp; 8"/>
+        <Component type="ScriptSlider" id="Macro5" x="11" y="32" parentComponent="MacroCont3"
+                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
+                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
+                   stepSize="0.0" processorId="MACRO7" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+        <Component type="ScriptLabel" id="ParamLabel220" x="26" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont3"
+                   fontStyle="Regular" fontSize="12.0" text="7"/>
+        <Component type="ScriptLabel" id="ParamLabel221" x="83" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont3"
+                   fontStyle="Regular" fontSize="12.0" text="8"/>
+        <Component type="ScriptSlider" id="Macro6" x="68" y="32" parentComponent="MacroCont3"
+                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
+                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
+                   stepSize="0.0" processorId="MACRO8" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+      </Component>
+      <Component type="ScriptPanel" id="MacroCont4" x="299" y="210" width="130"
+                 height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
+                 itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
+                 parentComponent="V4" borderRadius="7.0">
+        <Component type="ScriptLabel" id="semi52" x="0" y="5" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont4"
+                   fontStyle="Regular" fontSize="20.0" text="MACRO 5 &amp; 6"/>
+        <Component type="ScriptSlider" id="Macro7" x="11" y="32" parentComponent="MacroCont4"
+                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
+                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
+                   stepSize="0.0" processorId="MACRO5" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+        <Component type="ScriptLabel" id="ParamLabel222" x="26" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont4"
+                   fontStyle="Regular" fontSize="12.0" text="5"/>
+        <Component type="ScriptLabel" id="ParamLabel227" x="83" y="84" textColour="4278190080"
+                   width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont4"
+                   fontStyle="Regular" fontSize="12.0" text="6"/>
+        <Component type="ScriptSlider" id="Macro8" x="68" y="32" parentComponent="MacroCont4"
+                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                   scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
+                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
+                   stepSize="0.0" processorId="MACRO6" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+      </Component>
+      <Component type="ScriptPanel" id="EzVoice2" x="154" y="7" width="130" height="190"
                  text="wave1" bgColour="3052524467" itemColour="4293781205" itemColour2="4293781205"
                  borderSize="1.0" textColour="4278190080" parentComponent="V4"
                  borderRadius="7.0">
-        <Component type="ScriptPanel" id="ScriptPanel12" x="12" y="27" width="170"
+        <Component type="ScriptPanel" id="ScriptPanel12" x="10" y="29" width="110"
                    height="90" parentComponent="EzVoice2" itemColour="4281680473"
                    itemColour2="4281680473" textColour="4280686081">
-          <Component type="ScriptAudioWaveform" id="AudioWaveform9" x="10" y="5" processorId="Granular2"
-                     width="150" height="75" itemColour2="4294951129" itemColour="4294951129"
-                     parentComponent="ScriptPanel12" bgColour="16761049" itemColour3="4278255873"
-                     tooltip="Load files 1mb and larger" textColour="6064516" enableRange="0"
-                     opaque="0" showFileName="0" saveInPreset="0"/>
-          <Component type="ScriptTable" id="PosIndicator21" x="10" y="5" width="150"
+          <Component type="ScriptAudioWaveform" id="AudioWaveform9" x="11" y="10"
+                     processorId="Granular2" width="90" height="70" itemColour2="4294951129"
+                     itemColour="4294951129" parentComponent="ScriptPanel12" bgColour="15648601"
+                     itemColour3="4278255873" tooltip="Load files 1mb and larger"
+                     textColour="4284254596" enableRange="0" opaque="0" showFileName="0"
+                     saveInPreset="0"/>
+          <Component type="ScriptTable" id="PosIndicator21" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel12" bgColour="4227832731"
                      itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular2"
                      customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator22" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator22" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel12" bgColour="4294956709"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular2"
                      customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator23" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator23" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel12" bgColour="4294966980"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular2"
                      customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator24" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator24" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel12" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular2"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
@@ -2270,86 +2366,62 @@
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel12"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
         </Component>
-        <Component type="ScriptLabel" id="semi44" x="2" y="4" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice2"
+        <Component type="ScriptLabel" id="semi44" x="0" y="4" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice2"
                    fontStyle="Regular" fontSize="20.0" text="VOICE 2"/>
-        <Component type="ScriptLabel" id="ParamLabel215" x="5" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel209" x="1" y="165" textColour="4280884766"
                    width="70" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice2"
                    fontStyle="Regular" fontSize="12.0" text="POSITION" alignment="left"/>
-        <Component type="ScriptSlider" id="MacroPos2" x="15" y="121" parentComponent="EzVoice2"
+        <Component type="ScriptSlider" id="MacroPos2" x="8" y="123" parentComponent="EzVoice2"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" matrixTargetId="Voice_2_Position_A"/>
-        <Component type="ScriptSlider" id="MacroPitch2" x="78" y="121" parentComponent="EzVoice2"
+                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" matrixTargetId="Voice_1_PositionA"/>
+        <Component type="ScriptSlider" id="MacroPitch2" x="47" y="123" parentComponent="EzVoice2"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" min="-12.0"
                    max="12.0" stepSize="0.1000000014901161" middlePosition="0.0"
-                   matrixTargetId="Voice_2_Pitch"/>
-        <Component type="ScriptSlider" id="MacroGain1" x="141" y="121" parentComponent="EzVoice2"
+                   matrixTargetId="Voice_1_Pitch"/>
+        <Component type="ScriptSlider" id="MacroGain1" x="87" y="123" parentComponent="EzVoice2"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" defaultValue="1.0"
-                   matrixTargetId="Voice_2_Volume"/>
-        <Component type="ScriptLabel" id="ParamLabel217" x="78" y="163" textColour="4280884766"
+                   matrixTargetId="Voice_1_Volume"/>
+        <Component type="ScriptLabel" id="ParamLabel215" x="53" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice2"
                    fontStyle="Regular" fontSize="12.0" text="PITCH" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel218" x="145" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel217" x="91" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice2"
                    fontStyle="Regular" fontSize="12.0" text="VOL" alignment="left"/>
       </Component>
-      <Component type="ScriptPanel" id="MacroCont2" x="213" y="214" width="190"
-                 height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
-                 itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
-                 parentComponent="V4" borderRadius="7.0">
-        <Component type="ScriptLabel" id="semi45" x="-1" y="6" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont2"
-                   fontStyle="Regular" fontSize="20.0" text="MACRO 3 &amp; 4"/>
-        <Component type="ScriptSlider" id="Macro3" x="14" y="44" parentComponent="MacroCont2"
-                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO3" parameterId="macro"/>
-        <Component type="ScriptLabel" id="ParamLabel220" x="6" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont2"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel222" x="98" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont2"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptSlider" id="Macro4" x="106" y="44" parentComponent="MacroCont2"
-                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO4" parameterId="macro"/>
-      </Component>
-      <Component type="ScriptPanel" id="EzVoice3" x="416" y="10" width="190" height="190"
+      <Component type="ScriptPanel" id="EzVoice3" x="299" y="7" width="130" height="190"
                  text="wave1" bgColour="3052524467" itemColour="4293781205" itemColour2="4293781205"
                  borderSize="1.0" textColour="4278190080" parentComponent="V4"
                  borderRadius="7.0">
-        <Component type="ScriptPanel" id="ScriptPanel13" x="12" y="27" width="170"
+        <Component type="ScriptPanel" id="ScriptPanel13" x="10" y="29" width="110"
                    height="90" parentComponent="EzVoice3" itemColour="4281680473"
                    itemColour2="4281680473" textColour="4280686081">
-          <Component type="ScriptAudioWaveform" id="AudioWaveform10" x="10" y="5"
-                     processorId="Granular3" width="150" height="75" itemColour2="4290759931"
+          <Component type="ScriptAudioWaveform" id="AudioWaveform10" x="11" y="10"
+                     processorId="Granular3" width="90" height="70" itemColour2="4290759931"
                      itemColour="4290759931" parentComponent="ScriptPanel13" bgColour="15648601"
                      itemColour3="4278255873" tooltip="Load files 1mb and larger"
                      textColour="4284254596" enableRange="0" opaque="0" showFileName="0"
                      saveInPreset="0"/>
-          <Component type="ScriptTable" id="PosIndicator25" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator25" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel13" bgColour="4227832731"
                      itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular3"
                      customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator26" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator26" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel13" bgColour="4294956709"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular3"
                      customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator27" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator27" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel13" bgColour="4294966980"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular3"
                      customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator28" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator28" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel13" bgColour="4291559337"
                      itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular3"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
@@ -2358,143 +2430,97 @@
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel13"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
         </Component>
-        <Component type="ScriptLabel" id="semi47" x="2" y="4" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice3"
+        <Component type="ScriptLabel" id="semi47" x="0" y="4" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice3"
                    fontStyle="Regular" fontSize="20.0" text="VOICE 3"/>
-        <Component type="ScriptLabel" id="ParamLabel223" x="5" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel218" x="1" y="165" textColour="4280884766"
                    width="70" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice3"
                    fontStyle="Regular" fontSize="12.0" text="POSITION" alignment="left"/>
-        <Component type="ScriptSlider" id="MacroPos3" x="15" y="121" parentComponent="EzVoice3"
+        <Component type="ScriptSlider" id="MacroPos3" x="8" y="123" parentComponent="EzVoice3"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" matrixTargetId="Voice_3_Position_A"/>
-        <Component type="ScriptSlider" id="MacroPitch3" x="78" y="121" parentComponent="EzVoice3"
+                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" matrixTargetId="Voice_1_PositionA"/>
+        <Component type="ScriptSlider" id="MacroPitch3" x="47" y="123" parentComponent="EzVoice3"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" min="-12.0"
                    max="12.0" stepSize="0.1000000014901161" middlePosition="0.0"
-                   matrixTargetId="Voice_3_Pitch"/>
-        <Component type="ScriptSlider" id="MacroGain2" x="141" y="121" parentComponent="EzVoice3"
+                   matrixTargetId="Voice_1_Pitch"/>
+        <Component type="ScriptSlider" id="MacroGain2" x="87" y="123" parentComponent="EzVoice3"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
                    bgColour="4286491829" saveInPreset="0" isMetaParameter="1" defaultValue="1.0"
-                   matrixTargetId="Voice_3_Volume"/>
-        <Component type="ScriptLabel" id="ParamLabel225" x="78" y="163" textColour="4280884766"
+                   matrixTargetId="Voice_1_Volume"/>
+        <Component type="ScriptLabel" id="ParamLabel223" x="53" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice3"
                    fontStyle="Regular" fontSize="12.0" text="PITCH" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel226" x="145" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel225" x="91" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice3"
                    fontStyle="Regular" fontSize="12.0" text="VOL" alignment="left"/>
       </Component>
-      <Component type="ScriptPanel" id="MacroCont3" x="416" y="214" width="190"
-                 height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
-                 itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
-                 parentComponent="V4" borderRadius="7.0">
-        <Component type="ScriptLabel" id="semi52" x="-1" y="6" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont3"
-                   fontStyle="Regular" fontSize="20.0" text="MACRO 5 &amp; 6"/>
-        <Component type="ScriptSlider" id="Macro5" x="14" y="44" parentComponent="MacroCont3"
-                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO5" parameterId="macro"/>
-        <Component type="ScriptLabel" id="ParamLabel238" x="6" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont3"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel240" x="98" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont3"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptSlider" id="Macro6" x="106" y="44" parentComponent="MacroCont3"
-                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO6" parameterId="macro"/>
-      </Component>
-      <Component type="ScriptPanel" id="EzVoice4" x="619" y="10" width="190" height="190"
+      <Component type="ScriptPanel" id="EzVoice4" x="444" y="7" width="130" height="190"
                  text="wave1" bgColour="3052524467" itemColour="4293781205" itemColour2="4293781205"
                  borderSize="1.0" textColour="4278190080" parentComponent="V4"
                  borderRadius="7.0">
-        <Component type="ScriptPanel" id="ScriptPanel14" x="12" y="27" width="170"
+        <Component type="ScriptPanel" id="ScriptPanel14" x="10" y="29" width="110"
                    height="90" parentComponent="EzVoice4" itemColour="4281680473"
                    itemColour2="4281680473" textColour="4280686081">
-          <Component type="ScriptAudioWaveform" id="AudioWaveform11" x="10" y="5"
-                     processorId="Granular4" width="150" height="75" itemColour2="4293838681"
+          <Component type="ScriptAudioWaveform" id="AudioWaveform11" x="11" y="10"
+                     processorId="Granular1x" width="90" height="70" itemColour2="4293838681"
                      itemColour="4293838681" parentComponent="ScriptPanel14" bgColour="15648601"
                      itemColour3="4278255873" tooltip="Load files 1mb and larger"
                      textColour="4284254596" enableRange="0" opaque="0" showFileName="0"
                      saveInPreset="0"/>
-          <Component type="ScriptTable" id="PosIndicator29" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator29" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel14" bgColour="4227832731"
-                     itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular4"
+                     itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular1x"
                      customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator30" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator30" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel14" bgColour="4294956709"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular4"
+                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1x"
                      customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator31" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator31" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel14" bgColour="4294966980"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular4"
+                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1x"
                      customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
                      visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator32" x="10" y="5" width="150"
+          <Component type="ScriptTable" id="PosIndicator32" x="10" y="5" width="90"
                      height="75" parentComponent="ScriptPanel14" bgColour="4291559337"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular4"
+                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1x"
                      customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
                      visible="0"/>
           <Component type="ScriptComboBox" id="XfMode8" x="503" y="96" max="4" width="30"
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel14"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
         </Component>
-        <Component type="ScriptLabel" id="semi53" x="2" y="4" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice4"
+        <Component type="ScriptLabel" id="semi53" x="0" y="4" textColour="4280884766"
+                   width="130" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice4"
                    fontStyle="Regular" fontSize="20.0" text="VOICE 4"/>
-        <Component type="ScriptLabel" id="ParamLabel243" x="5" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel226" x="1" y="165" textColour="4280884766"
                    width="70" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice4"
                    fontStyle="Regular" fontSize="12.0" text="POSITION" alignment="left"/>
-        <Component type="ScriptSlider" id="MacroPos4" x="15" y="121" parentComponent="EzVoice4"
+        <Component type="ScriptSlider" id="MacroPos4" x="8" y="123" parentComponent="EzVoice4"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" saveInPreset="0" matrixTargetId="Voice_4_Position_A"/>
-        <Component type="ScriptSlider" id="MacroPitch4" x="80" y="121" parentComponent="EzVoice4"
+                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" matrixTargetId="Voice_1_PositionA"/>
+        <Component type="ScriptSlider" id="MacroPitch4" x="47" y="123" parentComponent="EzVoice4"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" saveInPreset="0" min="-12.0" max="12.0"
-                   stepSize="0.1000000014901161" middlePosition="0.0" matrixTargetId="Voice_4_Pitch"/>
-        <Component type="ScriptSlider" id="MacroGain3" x="141" y="121" parentComponent="EzVoice4"
+                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" min="-12.0"
+                   max="12.0" stepSize="0.1000000014901161" middlePosition="0.0"
+                   matrixTargetId="Voice_1_Pitch"/>
+        <Component type="ScriptSlider" id="MacroGain3" x="87" y="123" parentComponent="EzVoice4"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" saveInPreset="0" defaultValue="1.0" matrixTargetId="Voice_4_Volume"/>
-        <Component type="ScriptLabel" id="ParamLabel253" x="80" y="163" textColour="4280884766"
+                   bgColour="4286491829" saveInPreset="0" isMetaParameter="1" defaultValue="1.0"
+                   matrixTargetId="Voice_1_Volume"/>
+        <Component type="ScriptLabel" id="ParamLabel228" x="53" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice4"
                    fontStyle="Regular" fontSize="12.0" text="PITCH" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel254" x="145" y="163" textColour="4280884766"
+        <Component type="ScriptLabel" id="ParamLabel229" x="91" y="165" textColour="4280884766"
                    width="40" height="20" fontName="Montserrat" editable="0" parentComponent="EzVoice4"
                    fontStyle="Regular" fontSize="12.0" text="VOL" alignment="left"/>
-      </Component>
-      <Component type="ScriptPanel" id="MacroCont4" x="619" y="214" width="190"
-                 height="120" text="wave1" bgColour="3052524467" itemColour="4293781205"
-                 itemColour2="4293781205" borderSize="1.0" textColour="4278190080"
-                 parentComponent="V4" borderRadius="7.0">
-        <Component type="ScriptLabel" id="semi54" x="-1" y="6" textColour="4280884766"
-                   width="190" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont4"
-                   fontStyle="Regular" fontSize="20.0" text="MACRO 7 &amp; 8"/>
-        <Component type="ScriptSlider" id="Macro7" x="14" y="44" parentComponent="MacroCont4"
-                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO7" parameterId="macro"/>
-        <Component type="ScriptLabel" id="ParamLabel268" x="6" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont4"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptLabel" id="ParamLabel272" x="98" y="93" textColour="4287530116"
-                   width="60" height="10" fontName="Montserrat" editable="0" parentComponent="MacroCont4"
-                   fontStyle="Regular" fontSize="12.0" text="MACRO:" alignment="left"/>
-        <Component type="ScriptSlider" id="Macro8" x="106" y="44" parentComponent="MacroCont4"
-                   filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                   scaleFactor="0.1599999964237213" width="40" height="40" showValuePopup="Below"
-                   bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO8" parameterId="macro"/>
       </Component>
     </Component>
     <Component type="ScriptButton" id="VOICE5" x="599" y="9" width="110" height="30"
@@ -2508,23 +2534,23 @@
     <Component type="ScriptButton" id="VOICE1" x="129" y="9" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 2" saveInPreset="0"
                bgColour="4294951129" textColour="4278650374" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE2" x="246" y="9" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 3" saveInPreset="0"
                bgColour="4290759931" textColour="4278255873" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE3" x="364" y="9" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 4" saveInPreset="0"
                bgColour="4293838681" textColour="4278190080" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE4" x="481" y="9" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="MASTER" saveInPreset="0"
                bgColour="4294351196" itemColour="3355443" textColour="4278255873"
                itemColour2="1118481" enableMidiLearn="0"/>
-    <Component type="ScriptComboBox" id="ModPage" x="689" y="639" max="4" items="LFO 1-4&#10;LFO 5-8&#10;LFO 9-12&#10;ENV 1-4"
-               itemColour2="3001935573" parentComponent="Og" width="70" height="30"
+    <Component type="ScriptComboBox" id="ModPage" x="835" y="48" max="4" items="LFO 1-4&#10;LFO 5-8&#10;LFO 9-12&#10;ENV 1-4"
+               itemColour2="3001935573" parentComponent="Og" width="90" height="20"
                bgColour="3001935573" itemColour="3001935573" textColour="3001935573"/>
-    <Component type="ScriptPanel" id="MOD1" x="686" y="45" width="250" height="590"
+    <Component type="ScriptPanel" id="MOD1" x="691" y="61" width="250" height="590"
                itemColour="16118508" itemColour2="15394781" textColour="16777215"
                saveInPreset="1" bgColour="3052524467" parentComponent="Og" locked="1"
                visible="0">
@@ -2535,38 +2561,37 @@
                    parentComponent="seq1" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA" x="0" y="0" processorId="LFO1"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
-                     textColour="16048058" parentComponent="Step1" bgColour="4281811545"
-                     visible="0"/>
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     textColour="16048058" parentComponent="Step1" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA1" x="0" y="0" processorId="LFO1"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step1" SliderPackIndex="1"
-                     bgColour="4281811545"/>
+                     bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA2" x="0" y="0" processorId="LFO1"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step1" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA3" x="0" y="0" processorId="LFO1"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step1" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table1" x="13" y="30" width="215" height="60"
                    parentComponent="seq1" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable1" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable1" x="0" y="0" width="210"
                      height="50" parentComponent="Table1" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO1"
-                     customColours="1" visible="0"/>
+                     customColours="1"/>
           <Component type="ScriptTable" id="ScriptTableA2" x="0" y="0" width="210"
                      height="50" parentComponent="Table1" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO1"
-                     tableIndex="1" customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA3" x="0" y="0" width="215"
+                     tableIndex="1" customColours="1" visible="0"/>
+          <Component type="ScriptTable" id="ScriptTableA3" x="0" y="0" width="210"
                      height="50" parentComponent="Table1" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO1"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA4" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA4" x="0" y="0" width="210"
                      height="50" parentComponent="Table1" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO1"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -2642,41 +2667,44 @@
       <Component type="ScriptPanel" id="seq2" x="7" y="156" width="230" height="140"
                  itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                  textColour="4278190080" text="*" parentComponent="MOD1">
+        <Component type="ScriptLabel" id="ScriptLabel27" x="152" y="90" width="70"
+                   height="20" text="stage mod" textColour="4278190080" parentComponent="seq2"
+                   fontName="Montserrat" editable="0"/>
         <Component type="ScriptPanel" id="Step2" x="13" y="30" width="215" height="60"
                    parentComponent="seq2" itemColour="0" itemColour2="0" textColour="16777215"
-                   bgColour="16777215" visible="0">
+                   bgColour="16777215">
           <Component type="ScriptSliderPack" id="SliderPackA4" x="0" y="0" processorId="LFO2"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step2" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA5" x="0" y="0" processorId="LFO2"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step2" SliderPackIndex="1"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA6" x="0" y="0" processorId="LFO2"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step2" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA7" x="0" y="0" processorId="LFO2"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step2" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table2" x="13" y="30" width="215" height="60"
                    parentComponent="seq2" itemColour="0" itemColour2="0" textColour="16777215"
-                   bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable2" x="0" y="0" width="215"
+                   bgColour="16777215" visible="0">
+          <Component type="ScriptTable" id="ScriptTable2" x="0" y="0" width="210"
                      height="50" parentComponent="Table2" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO2"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA5" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA5" x="0" y="0" width="210"
                      height="50" parentComponent="Table2" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO2"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA6" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA6" x="0" y="0" width="210"
                      height="50" parentComponent="Table2" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO2"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA7" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA7" x="0" y="0" width="210"
                      height="50" parentComponent="Table2" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO2"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -2753,37 +2781,37 @@
                    parentComponent="seq3" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA8" x="0" y="0" processorId="LFO3"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step3" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA9" x="0" y="0" processorId="LFO3"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step3" SliderPackIndex="1"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA10" x="0" y="0" processorId="LFO3"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step3" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA11" x="0" y="0" processorId="LFO3"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step3" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table3" x="13" y="30" width="215" height="60"
                    parentComponent="seq3" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable3" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable3" x="0" y="0" width="210"
                      height="50" parentComponent="Table3" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA8" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA8" x="0" y="0" width="210"
                      height="50" parentComponent="Table3" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA9" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA9" x="0" y="0" width="210"
                      height="50" parentComponent="Table3" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA10" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA10" x="0" y="0" width="210"
                      height="50" parentComponent="Table3" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -2872,33 +2900,33 @@
                    parentComponent="seq4" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA12" x="0" y="0" processorId="LFO4"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step4" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA13" x="0" y="0" processorId="LFO4"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step4" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA14" x="0" y="0" processorId="LFO4"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step4" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA15" x="0" y="0" processorId="LFO4"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step4" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table4" x="13" y="30" width="215" height="60"
                    parentComponent="seq4" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable4" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable4" x="0" y="0" width="210"
                      height="50" parentComponent="Table4" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO4"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA11" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA11" x="0" y="0" width="210"
                      height="50" parentComponent="Table4" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO4"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA12" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA12" x="0" y="0" width="210"
                      height="50" parentComponent="Table4" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO4"
                      tableIndex="2" customColours="1" visible="0"/>
@@ -2986,50 +3014,51 @@
         </Component>
       </Component>
     </Component>
-    <Component type="ScriptPanel" id="MOD2" x="686" y="45" width="250" height="590"
+    <Component type="ScriptPanel" id="MOD2" x="691" y="61" width="250" height="590"
                itemColour="16118508" itemColour2="15394781" textColour="16777215"
-               saveInPreset="1" bgColour="3052524467" parentComponent="Og" visible="0">
+               saveInPreset="1" bgColour="3052524467" parentComponent="Og">
       <Component type="ScriptPanel" id="seq5" x="7" y="9" width="230" height="140"
                  itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                  textColour="4278190080" text="*" parentComponent="MOD2">
         <Component type="ScriptPanel" id="Step5" x="13" y="30" width="215" height="60"
                    parentComponent="seq5" itemColour="0" itemColour2="0" textColour="16777215"
-                   bgColour="16777215" visible="0">
+                   bgColour="16777215">
           <Component type="ScriptSliderPack" id="SliderPackA16" x="0" y="0" processorId="LFO5"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
-                     textColour="16048058" parentComponent="Step5" bgColour="4281811545"/>
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     textColour="16048058" parentComponent="Step5" bgColour="4281811545"
+                     visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA17" x="0" y="0" processorId="LFO5"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step5" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA18" x="0" y="0" processorId="LFO5"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step5" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA19" x="0" y="0" processorId="LFO5"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step5" SliderPackIndex="3"
-                     bgColour="4281811545" visible="0"/>
+                     bgColour="4281811545"/>
         </Component>
         <Component type="ScriptPanel" id="Table5" x="13" y="30" width="215" height="60"
                    parentComponent="seq5" itemColour="0" itemColour2="0" textColour="16777215"
-                   bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable5" x="0" y="0" width="215"
+                   bgColour="16777215" visible="0">
+          <Component type="ScriptTable" id="ScriptTable5" x="0" y="0" width="210"
                      height="50" parentComponent="Table5" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
-                     customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA14" x="0" y="0" width="215"
+                     customColours="1" visible="0"/>
+          <Component type="ScriptTable" id="ScriptTableA14" x="0" y="0" width="210"
                      height="50" parentComponent="Table5" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA15" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA15" x="0" y="0" width="210"
                      height="50" parentComponent="Table5" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA16" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA16" x="0" y="0" width="210"
                      height="50" parentComponent="Table5" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
-                     tableIndex="3" customColours="1" visible="0"/>
+                     tableIndex="3" customColours="1"/>
         </Component>
         <Component type="ScriptLabel" id="ScriptLabel10" x="5" y="4" width="20"
                    height="20" text="5" textColour="4278190080" parentComponent="seq5"
@@ -3113,39 +3142,39 @@
                  textColour="4278190080" text="*" parentComponent="MOD2">
         <Component type="ScriptPanel" id="Step6" x="13" y="30" width="215" height="60"
                    parentComponent="seq6" itemColour="0" itemColour2="0" textColour="16777215"
-                   bgColour="16777215" visible="0">
+                   bgColour="16777215">
           <Component type="ScriptSliderPack" id="SliderPackA20" x="0" y="0" processorId="LFO6"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step6" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA21" x="0" y="0" processorId="LFO6"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step6" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA22" x="0" y="0" processorId="LFO6"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step6" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA23" x="0" y="0" processorId="LFO6"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step6" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table6" x="13" y="30" width="215" height="60"
                    parentComponent="seq6" itemColour="0" itemColour2="0" textColour="16777215"
-                   bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable6" x="0" y="0" width="215"
+                   bgColour="16777215" visible="0">
+          <Component type="ScriptTable" id="ScriptTable6" x="0" y="0" width="210"
                      height="50" parentComponent="Table6" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO6"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA17" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA17" x="0" y="0" width="210"
                      height="50" parentComponent="Table6" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO6"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA18" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA18" x="0" y="0" width="210"
                      height="50" parentComponent="Table6" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO6"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA19" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA19" x="0" y="0" width="210"
                      height="50" parentComponent="Table6" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO6"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3234,37 +3263,37 @@
                    parentComponent="seq7" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA24" x="0" y="0" processorId="LFO7"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step7" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA25" x="0" y="0" processorId="LFO7"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step7" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA26" x="0" y="0" processorId="LFO7"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step7" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA27" x="0" y="0" processorId="LFO7"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step7" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table7" x="13" y="30" width="215" height="60"
                    parentComponent="seq7" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable7" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable7" x="0" y="0" width="210"
                      height="50" parentComponent="Table7" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO7"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA20" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA20" x="0" y="0" width="210"
                      height="50" parentComponent="Table7" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO7"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA21" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA21" x="0" y="0" width="210"
                      height="50" parentComponent="Table7" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO7"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA22" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA22" x="0" y="0" width="210"
                      height="50" parentComponent="Table7" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO7"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3353,37 +3382,37 @@
                    parentComponent="seq8" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA28" x="0" y="0" processorId="LFO8"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step8" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA29" x="0" y="0" processorId="LFO8"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step8" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA30" x="0" y="0" processorId="LFO8"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step8" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA31" x="0" y="0" processorId="LFO8"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step8" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table8" x="13" y="30" width="215" height="60"
                    parentComponent="seq8" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable8" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable8" x="0" y="0" width="210"
                      height="50" parentComponent="Table8" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO8"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA23" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA23" x="0" y="0" width="210"
                      height="50" parentComponent="Table8" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO8"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA24" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA24" x="0" y="0" width="210"
                      height="50" parentComponent="Table8" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO8"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA25" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA25" x="0" y="0" width="210"
                      height="50" parentComponent="Table8" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO8"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3466,7 +3495,7 @@
         </Component>
       </Component>
     </Component>
-    <Component type="ScriptPanel" id="MOD3" x="686" y="45" width="250" height="590"
+    <Component type="ScriptPanel" id="MOD3" x="691" y="61" width="250" height="590"
                itemColour="16118508" itemColour2="15394781" textColour="16777215"
                saveInPreset="1" bgColour="3052524467" parentComponent="Og" visible="0">
       <Component type="ScriptPanel" id="seq9" x="7" y="9" width="230" height="140"
@@ -3476,37 +3505,37 @@
                    parentComponent="seq9" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA32" x="0" y="0" processorId="LFO9"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step9" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA33" x="0" y="0" processorId="LFO9"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step9" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA34" x="0" y="0" processorId="LFO9"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step9" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA35" x="0" y="0" processorId="LFO9"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step9" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table9" x="13" y="30" width="215" height="60"
                    parentComponent="seq9" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable9" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable9" x="0" y="0" width="210"
                      height="50" parentComponent="Table9" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO9"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA26" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA26" x="0" y="0" width="210"
                      height="50" parentComponent="Table9" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO9"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA27" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA27" x="0" y="0" width="210"
                      height="50" parentComponent="Table9" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO9"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA28" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA28" x="0" y="0" width="210"
                      height="50" parentComponent="Table9" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO9"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3595,37 +3624,37 @@
                    parentComponent="seq10" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA36" x="0" y="0" processorId="LFO10"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step10" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA37" x="0" y="0" processorId="LFO10"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step10" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA38" x="0" y="0" processorId="LFO10"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step10" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA39" x="0" y="0" processorId="LFO10"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step10" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table10" x="13" y="30" width="215" height="60"
                    parentComponent="seq10" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable10" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable10" x="0" y="0" width="210"
                      height="50" parentComponent="Table10" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO10"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA29" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA29" x="0" y="0" width="210"
                      height="50" parentComponent="Table10" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO10"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA30" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA30" x="0" y="0" width="210"
                      height="50" parentComponent="Table10" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO10"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA31" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA31" x="0" y="0" width="210"
                      height="50" parentComponent="Table10" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO10"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3715,37 +3744,37 @@
                    parentComponent="seq11" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA40" x="0" y="0" processorId="LFO11"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step11" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA41" x="0" y="0" processorId="LFO11"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step11" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA42" x="0" y="0" processorId="LFO11"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step11" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA43" x="0" y="0" processorId="LFO11"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step11" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table11" x="13" y="30" width="215" height="60"
                    parentComponent="seq11" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable11" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable11" x="0" y="0" width="210"
                      height="50" parentComponent="Table11" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO11"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA32" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA32" x="0" y="0" width="210"
                      height="50" parentComponent="Table11" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO11"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA33" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA33" x="0" y="0" width="210"
                      height="50" parentComponent="Table11" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO11"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA34" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA34" x="0" y="0" width="210"
                      height="50" parentComponent="Table11" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO11"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3834,37 +3863,37 @@
                    parentComponent="seq12" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215" visible="0">
           <Component type="ScriptSliderPack" id="SliderPackA44" x="0" y="0" processorId="LFO12"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step12" bgColour="4281811545"/>
           <Component type="ScriptSliderPack" id="SliderPackA45" x="0" y="0" processorId="LFO12"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step12" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA46" x="0" y="0" processorId="LFO12"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step12" SliderPackIndex="2"
                      bgColour="4281811545" visible="0"/>
           <Component type="ScriptSliderPack" id="SliderPackA47" x="0" y="0" processorId="LFO12"
-                     width="215" height="50" itemColour="4289230454" itemColour2="4289230454"
+                     width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                      textColour="16048058" parentComponent="Step12" SliderPackIndex="3"
                      bgColour="4281811545" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="Table12" x="13" y="30" width="215" height="60"
                    parentComponent="seq12" itemColour="0" itemColour2="0" textColour="16777215"
                    bgColour="16777215">
-          <Component type="ScriptTable" id="ScriptTable12" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTable12" x="0" y="0" width="210"
                      height="50" parentComponent="Table12" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO12"
                      customColours="1"/>
-          <Component type="ScriptTable" id="ScriptTableA35" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA35" x="0" y="0" width="210"
                      height="50" parentComponent="Table12" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO12"
                      tableIndex="1" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA36" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA36" x="0" y="0" width="210"
                      height="50" parentComponent="Table12" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO12"
                      tableIndex="2" customColours="1" visible="0"/>
-          <Component type="ScriptTable" id="ScriptTableA37" x="0" y="0" width="215"
+          <Component type="ScriptTable" id="ScriptTableA37" x="0" y="0" width="210"
                      height="50" parentComponent="Table12" itemColour="2046820352"
                      bgColour="4289230454" itemColour2="4281811545" processorId="LFO12"
                      tableIndex="3" customColours="1" visible="0"/>
@@ -3941,9 +3970,9 @@
         </Component>
       </Component>
     </Component>
-    <Component type="ScriptPanel" id="MOD4" x="686" y="45" width="250" height="590"
+    <Component type="ScriptPanel" id="MOD4" x="691" y="61" width="250" height="590"
                itemColour="16118508" itemColour2="15394781" textColour="16777215"
-               saveInPreset="1" bgColour="3052524467" parentComponent="Og">
+               saveInPreset="1" bgColour="3052524467" parentComponent="Og" visible="0">
       <Component type="ScriptPanel" id="seq13" x="7" y="9" width="230" height="140"
                  itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                  textColour="4278190080" text="*" parentComponent="MOD4">
@@ -4257,9 +4286,9 @@
                    visible="0"/>
       </Component>
     </Component>
-    <Component type="ScriptPanel" id="ModulationMatrix" x="19" y="394" parentComponent="Og"
+    <Component type="ScriptPanel" id="ModulationMatrix" x="18" y="392" parentComponent="Og"
                width="670" height="180" itemColour="4281680473" itemColour2="4281680473"
-               bgColour="4281680473" textColour="4281680473">
+               bgColour="4281680473" textColour="4281680473" borderRadius="7.0">
       <Component type="ScriptLabel" id="Label25" x="686" y="151" width="130" height="20"
                  fontName="Montserrat" fontSize="20.0" textColour="3001935573"
                  text="MODULATORS" alignment="left" editable="0" itemColour2="3001935573"
@@ -4306,260 +4335,247 @@
                  text="REMOVE" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix" visible="0"/>
     </Component>
-    <Component type="ScriptPanel" id="RandomControls1" x="693" y="56" width="230"
-               height="580" itemColour="4293781205" itemColour2="4293781205"
+    <Component type="ScriptPanel" id="RandomControls1" x="23" y="396" width="660"
+               height="170" itemColour="4293781205" itemColour2="4293781205"
                parentComponent="Og" textColour="16777215" visible="0">
-      <Component type="ScriptLabel" id="ScriptLabel183" x="90" y="58" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel183" x="94" y="16" width="40"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Min" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel184" x="133" y="58" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel184" x="137" y="16" width="40"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Max" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel185" x="27" y="58" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel185" x="31" y="16" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Control" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel186" x="28" y="109" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel186" x="32" y="67" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Position 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin1" x="90" y="109" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin1" x="94" y="67" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax1" x="134" y="109" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptLabel" id="ScriptLabel187" x="177" y="58" width="40"
+      <Component type="ScriptSlider" id="RandMax1" x="138" y="67" width="40" height="20"
+                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
+                 itemColour="4291389544"/>
+      <Component type="ScriptLabel" id="ScriptLabel187" x="181" y="16" width="40"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Lock" bgColour="4278190080"/>
-      <Component type="ScriptButton" id="RandLock1" x="188" y="109" width="20"
+      <Component type="ScriptButton" id="RandLock1" x="192" y="67" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock2" x="188" y="133" width="20"
+      <Component type="ScriptButton" id="RandLock2" x="192" y="91" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax2" x="134" y="132" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin2" x="90" y="132" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMax2" x="138" y="90" width="40" height="20"
+                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
+                 itemColour="4291389544"/>
+      <Component type="ScriptSlider" id="RandMin2" x="94" y="90" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel188" x="29" y="132" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel188" x="33" y="90" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Position 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock4" x="188" y="181" width="20"
+      <Component type="ScriptButton" id="RandLock4" x="192" y="139" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax4" x="134" y="180" width="40"
+      <Component type="ScriptSlider" id="RandMax4" x="138" y="138" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock3" x="188" y="157" width="20"
+      <Component type="ScriptButton" id="RandLock3" x="192" y="115" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax3" x="134" y="156" width="40"
+      <Component type="ScriptSlider" id="RandMax3" x="138" y="114" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin3" x="90" y="156" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin3" x="94" y="114" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin4" x="90" y="180" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin4" x="94" y="138" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel189" x="28" y="180" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel189" x="32" y="138" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Position 4" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel190" x="28" y="156" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel190" x="32" y="114" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Position 3" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel191" x="28" y="251" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel191" x="236" y="88" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Spread" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel192" x="28" y="204" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel192" x="236" y="41" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Pitch" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin5" x="90" y="204" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin5" x="298" y="41" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  min="-12.0" max="12.0" stepSize="0.1000000014901161" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax5" x="134" y="204" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
+      <Component type="ScriptSlider" id="RandMax5" x="342" y="41" width="40" height="20"
+                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
+                 min="-12.0" max="12.0" stepSize="0.1000000014901161" itemColour="4291389544"/>
+      <Component type="ScriptButton" id="RandLock5" x="396" y="41" width="20"
+                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
+                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
+      <Component type="ScriptButton" id="RandLock6" x="396" y="65" width="20"
+                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
+                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
+      <Component type="ScriptSlider" id="RandMax6" x="342" y="64" width="40" height="20"
+                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock5" x="188" y="204" width="20"
-                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
-                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock6" x="188" y="228" width="20"
-                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
-                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax6" x="134" y="227" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin6" x="90" y="227" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin6" x="298" y="64" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel193" x="28" y="227" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel193" x="236" y="64" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Detune" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock8" x="188" y="276" width="20"
+      <Component type="ScriptButton" id="RandLock8" x="396" y="113" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax8" x="134" y="275" width="40"
+      <Component type="ScriptSlider" id="RandMax8" x="342" y="112" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock7" x="188" y="252" width="20"
+      <Component type="ScriptButton" id="RandLock7" x="396" y="89" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax7" x="134" y="251" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin7" x="90" y="251" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMax7" x="342" y="88" width="40" height="20"
+                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
+                 itemColour="4291389544"/>
+      <Component type="ScriptSlider" id="RandMin7" x="298" y="88" width="40" height="20"
                  parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin8" x="90" y="275" width="40" height="20"
-                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
-                 max="1000.0" middlePosition="500.0" mode="Time" stepSize="1.0"
-                 min="1.0" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel194" x="28" y="275" width="60"
+      <Component type="ScriptSlider" id="RandMin8" x="298" y="112" width="40"
+                 height="20" parentComponent="RandomControls1" style="Horizontal"
+                 showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
+                 stepSize="1.0" min="1.0" itemColour="4286491829"/>
+      <Component type="ScriptLabel" id="ScriptLabel194" x="236" y="112" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Grain MS" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel195" x="28" y="395" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel195" x="440" y="113" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Poly FX 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel196" x="28" y="299" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel196" x="236" y="136" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Grain Clk" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin9" x="90" y="299" width="40" height="20"
-                 parentComponent="RandomControls1" style="Horizontal" showValuePopup="Below"
-                 mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
-                 itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax9" x="134" y="299" width="40"
+      <Component type="ScriptSlider" id="RandMin9" x="298" y="136" width="40"
+                 height="20" parentComponent="RandomControls1" style="Horizontal"
+                 showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
+                 middlePosition="9.0" itemColour="4286491829"/>
+      <Component type="ScriptSlider" id="RandMax9" x="342" y="136" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock9" x="188" y="299" width="20"
+      <Component type="ScriptButton" id="RandLock9" x="396" y="136" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock10" x="188" y="323" width="20"
+      <Component type="ScriptButton" id="RandLock10" x="600" y="41" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax10" x="134" y="322" width="40"
+      <Component type="ScriptSlider" id="RandMax10" x="546" y="40" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin10" x="90" y="322" width="40"
+      <Component type="ScriptSlider" id="RandMin10" x="502" y="40" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel197" x="28" y="322" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel197" x="440" y="40" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Window" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock12" x="188" y="371" width="20"
+      <Component type="ScriptButton" id="RandLock12" x="600" y="89" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax12" x="134" y="370" width="40"
+      <Component type="ScriptSlider" id="RandMax12" x="546" y="88" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock11" x="188" y="347" width="20"
+      <Component type="ScriptButton" id="RandLock11" x="600" y="65" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax11" x="134" y="346" width="40"
+      <Component type="ScriptSlider" id="RandMax11" x="546" y="64" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin11" x="90" y="346" width="40"
+      <Component type="ScriptSlider" id="RandMin11" x="502" y="64" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin12" x="90" y="370" width="40"
+      <Component type="ScriptSlider" id="RandMin12" x="502" y="88" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel198" x="28" y="419" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel198" x="440" y="137" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Poly FX 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel199" x="28" y="465" width="60"
-                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
-                 editable="0" text="Post FX 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin13" x="90" y="394" width="40"
+      <Component type="ScriptSlider" id="RandMin13" x="502" y="112" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax13" x="134" y="394" width="40"
+      <Component type="ScriptSlider" id="RandMax13" x="546" y="112" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock13" x="188" y="394" width="20"
+      <Component type="ScriptButton" id="RandLock13" x="600" y="112" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock14" x="188" y="418" width="20"
+      <Component type="ScriptButton" id="RandLock14" x="600" y="136" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax14" x="134" y="417" width="40"
+      <Component type="ScriptSlider" id="RandMax14" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin14" x="90" y="417" width="40"
+      <Component type="ScriptSlider" id="RandMin14" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel201" x="28" y="441" width="60"
-                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
-                 editable="0" text="Post FX 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock16" x="188" y="466" width="20"
-                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
-                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax16" x="134" y="465" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock15" x="188" y="442" width="20"
-                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
-                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax15" x="134" y="441" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin15" x="90" y="441" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin16" x="90" y="465" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel202" x="28" y="489" width="60"
-                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
-                 editable="0" text="Post FX 3" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin17" x="90" y="489" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax17" x="134" y="489" width="40"
-                 height="20" parentComponent="RandomControls1" style="Horizontal"
-                 showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock17" x="188" y="489" width="20"
-                 height="20" parentComponent="RandomControls1" bgColour="1426072575"
-                 filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptLabel" id="ScriptLabel204" x="29" y="346" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel204" x="441" y="64" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Scatter" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel205" x="29" y="370" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel205" x="441" y="88" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Density" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel267" x="27" y="52" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel267" x="31" y="10" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Samples" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptButton" id="RandomiseSamples" x="188" y="85" width="20"
+      <Component type="ScriptButton" id="RandomiseSamples" x="192" y="43" width="20"
                  height="20" parentComponent="RandomControls1" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptComboBox" id="HiddenFiles1" x="39" y="493" width="210"
+      <Component type="ScriptComboBox" id="HiddenFiles1" x="43" y="451" width="210"
                  height="110" parentComponent="RandomControls1" saveInPreset="0"
                  visible="0" max="0"/>
-      <Component type="ScriptSlider" id="SampleMax1" x="134" y="85" width="40"
+      <Component type="ScriptSlider" id="SampleMax1" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
                  max="0"/>
-      <Component type="ScriptSlider" id="SampleMin1" x="90" y="85" width="40"
+      <Component type="ScriptSlider" id="SampleMin1" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
                  max="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel268" x="28" y="85" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel268" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptComboBox" id="HiddenFiles2" x="155" y="66" width="90"
+      <Component type="ScriptComboBox" id="HiddenFiles2" x="159" y="24" width="90"
                  height="20" parentComponent="RandomControls1" items="{PROJECT_FOLDER}Crystal Singing Bowls/A_007.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/B_008.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C-_001.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C-_002.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C_001.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/D_002.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/E_003.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/F_004.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/G_005.wav&#10;{PROJECT_FOLDER}OGInit.wav"
                  saveInPreset="0" visible="0" max="10"/>
-      <Component type="ScriptComboBox" id="HiddenFiles3" x="155" y="66" width="90"
+      <Component type="ScriptComboBox" id="HiddenFiles3" x="159" y="24" width="90"
                  height="20" parentComponent="RandomControls1" items="{PROJECT_FOLDER}Crystal Singing Bowls/A_007.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/B_008.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C-_001.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C-_002.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C_001.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/D_002.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/E_003.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/F_004.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/G_005.wav&#10;{PROJECT_FOLDER}OGInit.wav"
                  saveInPreset="0" visible="0" max="10"/>
-      <Component type="ScriptComboBox" id="HiddenFiles4" x="155" y="66" width="90"
+      <Component type="ScriptComboBox" id="HiddenFiles4" x="159" y="24" width="90"
                  height="20" parentComponent="RandomControls1" items="{PROJECT_FOLDER}Crystal Singing Bowls/A_007.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/B_008.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C-_001.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C-_002.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/C_001.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/D_002.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/E_003.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/F_004.wav&#10;{PROJECT_FOLDER}Crystal Singing Bowls/G_005.wav&#10;{PROJECT_FOLDER}OGInit.wav"
                  saveInPreset="0" visible="0" max="10"/>
+      <Component type="ScriptLabel" id="ScriptLabel285" x="383" y="15" width="40"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel287" x="339" y="15" width="40"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel288" x="296" y="15" width="40"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel289" x="233" y="15" width="60"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel290" x="588" y="15" width="40"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel291" x="544" y="15" width="40"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel292" x="501" y="15" width="40"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel293" x="438" y="15" width="60"
+                 height="20" parentComponent="RandomControls1" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
     </Component>
     <Component type="ScriptPanel" id="RandomControls2" x="620" y="59" width="202"
                height="468" itemColour="4293781205" itemColour2="4293781205"
@@ -5356,7 +5372,7 @@
                  textColour="16777215" bgColour="16777215" enabled="0" visible="0"/>
     </Component>
   </Component>
-  <Component type="ScriptPanel" id="Random5" x="29" y="591" width="420" height="100"
+  <Component type="ScriptPanel" id="Random5" x="25" y="586" width="410" height="100"
              itemColour="3490393" itemColour2="3490393" textColour="4278190080"
              bgColour="16777215">
     <Component type="ScriptButton" id="Hold" x="10" y="8" text="" width="30"
@@ -5369,11 +5385,11 @@
                  text="play" editable="0" itemColour2="3001935573" itemColour="15848371"
                  alignment="left" parentComponent="Hold"/>
     </Component>
-    <Component type="ScriptButton" id="RecEnable1" x="63" y="15" text="" width="20"
+    <Component type="ScriptButton" id="RecEnable1" x="66" y="56" text="" width="20"
                height="20" bgColour="4294639616" itemColour="4291361271" itemColour2="4294967295"
                textColour="4290119431" scaleFactor="0.02999999932944775" saveInPreset="0"
                enableMidiLearn="0" parentComponent="Random5"/>
-    <Component type="ScriptLabel" id="Label24" x="59" y="39" width="40" height="19"
+    <Component type="ScriptLabel" id="Label24" x="61" y="75" width="40" height="19"
                fontName="Montserrat" fontSize="14.0" textColour="3706906574"
                text="arm" editable="0" itemColour2="3001935573" itemColour="15848371"
                alignment="left" parentComponent="Random5"/>
@@ -5390,14 +5406,14 @@
                mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
                suffix=" dB" middlePosition="-18.0" itemColour="4294038451" showValuePopup="Below"
                textColour="16776960" matrixTargetId="Voice_1_Final_Vol" parentComponent="Random5"/>
-    <Component type="ScriptButton" id="ShowFolder" x="40" y="3" text="" width="30"
-               height="20" bgColour="15908403" itemColour="4291389544" itemColour2="4291389544"
-               textColour="2293630727" scaleFactor="0.05000000074505806" saveInPreset="0"
+    <Component type="ScriptButton" id="ShowFolder" x="60" y="8" text="" width="50"
+               height="40" bgColour="15908403" itemColour="4291389544" itemColour2="4291389544"
+               textColour="2293630727" scaleFactor="0.07999999821186066" saveInPreset="0"
                filmstripImage="{PROJECT_FOLDER}Folder.png" isMomentary="1" parentComponent="Random5"
                visible="0">
-      <Component type="ScriptLabel" id="Label34" x="27" y="1" width="80" height="20"
+      <Component type="ScriptLabel" id="Label34" x="-2" y="26" width="40" height="20"
                  fontName="Montserrat" fontSize="14.0" textColour="3706906574"
-                 text="show folder" editable="0" itemColour2="3001935573" itemColour="15848371"
+                 text="show" editable="0" itemColour2="3001935573" itemColour="15848371"
                  alignment="left" parentComponent="ShowFolder"/>
     </Component>
     <Component type="ScriptButton" id="Record" x="10" y="8" text="" width="30"
@@ -5578,7 +5594,7 @@
   <Component type="ScriptLabel" id="SucessLabel3" x="546" y="635" bgColour="4294901760"
              width="60" height="30" text="OK" fontName="Avenir" fontStyle="Regular"
              visible="0"/>
-  <Component type="ScriptLabel" id="Label21" x="770" y="656" width="160" height="30"
+  <Component type="ScriptLabel" id="Label21" x="777" y="658" width="160" height="30"
              fontName="Montserrat" fontSize="30.0" textColour="3706906574"
              text="Oi, Grandad!" editable="0" alignment="left" itemColour2="3001935573"
              itemColour="15848371"/>
@@ -5624,12 +5640,4 @@
              fontName="Montserrat" fontSize="15.0" textColour="4294109134"
              text="POLYPHONY" editable="0" itemColour2="4092454613" itemColour="15848371"
              alignment="left"/>
-  <Component type="ScriptComboBox" id="SpreadDirMode1" x="194" y="295" max="4"
-             width="50" height="15" processorId="Granular1" parameterId="PhaseScatterShape"
-             items="Random&#10;Spread&#10;Mirror&#10;Cluster" bgColour="4278190080"
-             textColour="4278190080"/>
-  <Component type="ScriptComboBox" id="GrainDirMode1" x="53" y="297" max="5"
-             width="50" height="15" processorId="Granular1" parameterId="GrainTravelShape"
-             items="Fixed&#10;Random&#10;Spread&#10;Mirror&#10;Cluster" bgColour="4278190080"
-             textColour="4278190080"/>
 </ContentProperties>

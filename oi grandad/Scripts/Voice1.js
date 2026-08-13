@@ -78,9 +78,13 @@ const var MacroPos1 = Content.getComponent("MacroPos1");
 const var PosHeadModA1 = Content.getComponent("PosHeadModA1");
 const var PosHeadSrcA1 = Content.getComponent("PosHeadSrcA1");
 
+const var Voice_1_PositionA = Synth.getModulator("Voice_1_PositionA");
+const var Voice_1_PositionB = Synth.getModulator("Voice_1_PositionB");
+const var Voice_1_PositionD = Synth.getModulator("Voice_1_PositionD");
+const var Voice_1_PositionC = Synth.getModulator("Voice_1_PositionC");
+
 inline function onMultPosA1Control(component, value)
 {
-
 
 	pos.setValue(value);
 	MacroPos1.setValue(value);
@@ -94,7 +98,7 @@ inline function onposControl(component, value)
 {
 
 
-	 gran.setAttribute(gran.Scrub, value); 
+	 Voice_1_PositionA.setAttribute(Voice_1_PositionA.Value, value); 
 	 MultPosA1.setValue(value);
 	 MacroPos1.setValue(value);
 };
@@ -200,113 +204,30 @@ const var PitchTempo1 = Content.getComponent("PitchTempo1");
 const var det = Content.getComponent("det");
 
 
-inline function onPitchMode1Control(component, value)
+inline function onPtichSync1Control(component, value)
 {
 	
 
-	if(value == 1)
-	  {
-	 gran.setAttribute(gran.PitchMode, 1);
-	 DivLabel.showControl(0);
-	 PitchDiv1.showControl(0);
-	 PitchTempo1.showControl(0);;
-	 det.showControl(1);
-	 DetuneLabel.setValue("SPREAD");
+if(value == 0)
+  {
+
+	gran.setAttribute(gran.PitchSync, value);
+	 PitchTempo1.showControl(0);
+	 pitch.showControl(1);
+	 
 	 }
 	 
-	 if(value == 2)
-	 	  {
-	 	 gran.setAttribute(gran.PitchMode, 2);
-	 	 DivLabel.showControl(0);
-	 	 	 PitchDiv1.showControl(0);
-	 	 	 PitchTempo1.showControl(0);;
-	 	 	 det.showControl(1);
-	 	 	 DetuneLabel.setValue("SPREAD");
+	 if(value == 1)
+	   {
+		gran.setAttribute(gran.PitchSync, value);
+	 	 PitchTempo1.showControl(1);
+	 	 pitch.showControl(0);
+	 	 
 	 	 }
-	 	 
-	 if(value == 3)
-	 	  {
-	 	 gran.setAttribute(gran.PitchMode, 3);
-	 	 DivLabel.showControl(1);
-	 	 PitchDiv1.showControl(1);
-	 	 PitchTempo1.showControl(1);;
-	 	 det.showControl(0);
-	 	 DetuneLabel.setValue("TEMPO");
-	 	 }	 
-	 	 
-	 	 if(value == 4)
-	 	 	 	  {
-	 	 	 	 gran.setAttribute(gran.PitchMode, 4);
-	 	 	 	 DivLabel.showControl(0);
-	 	 	 	 	 PitchDiv1.showControl(0);
-	 	 	 	 	 PitchTempo1.showControl(0);;
-	 	 	 	 	 det.showControl(1);
-	 	 	 	 	 DetuneLabel.setValue("TIME");
-	 	 	 	 }
-	 	 	 	 
-	 	if(value == 5)
-	 		 	 	 	  {
-	 		 	 	 	 gran.setAttribute(gran.PitchMode, 5);
-	 		 	 	 	 DivLabel.showControl(0);
-	 		 	 	 	 	 PitchDiv1.showControl(0);
-	 		 	 	 	 	 PitchTempo1.showControl(0);;
-	 		 	 	 	 	 det.showControl(1);
-	 		 	 	 	 	 DetuneLabel.setValue("SPREAD");
-	 		 	 	 	 } 	 
-	 		 	 	 	 
-	 	if(value == 6)
-	 		 	 	 	  {
-	 		 	 	 	 gran.setAttribute(gran.PitchMode, 6);
-	 		 	 	 	 DivLabel.showControl(0);
-	 		 	 	 	 	 PitchDiv1.showControl(0);
-	 		 	 	 	 	 PitchTempo1.showControl(0);;
-	 		 	 	 	 	 det.showControl(1);
-	 		 	 	 	 	 DetuneLabel.setValue("SPREAD");
-	 		 	 	 	 }	 
-	 		 	 	 	 
-	 		 	 	 	 	 	 	 	 
-	 	if(value == 7)
-	 		 	 	 	  {
-	 		 	 	 	 gran.setAttribute(gran.PitchMode, 7);
-	 		 	 	 	 DivLabel.showControl(0);
-	 		 	 	 	 	 PitchDiv1.showControl(0);
-	 		 	 	 	 	 PitchTempo1.showControl(0);;
-	 		 	 	 	 	 det.showControl(1);
-	 		 	 	 	 	 DetuneLabel.setValue("SPREAD");
-	 		 	 	 	 } 
-	 		 	 	 	 
-	 	if(value == 8)
-	 		 	 	 	  {
-	 		 	 	 	 gran.setAttribute(gran.PitchMode, 8);
-	 		 	 	 	 DivLabel.showControl(0);
-	 		 	 	 	 	 PitchDiv1.showControl(0);
-	 		 	 	 	 	 PitchTempo1.showControl(0);;
-	 		 	 	 	 	 det.showControl(1);
-	 		 	 	 	 	 DetuneLabel.setValue("SPREAD");
-	 		 	 	 	 }	 	 
-	 		 	 	 	 
-	 	if(value == 9)
-	 		 	 	 	  {
-	 		 	 	 	 gran.setAttribute(gran.PitchMode, 9);
-	 		 	 	 	 DivLabel.showControl(0);
-	 		 	 	 	 	 PitchDiv1.showControl(0);
-	 		 	 	 	 	 PitchTempo1.showControl(0);;
-	 		 	 	 	 	 det.showControl(1);
-	 		 	 	 	 	 DetuneLabel.setValue("SPREAD");
-	 		 	 	 	 }	 	 
-	 		 	 	 	 
-	 	if(value ==10)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran.setAttribute(gran.PitchMode, 10);
-	 	 		 	 	 	 DivLabel.showControl(0);
-	 	 		 	 	 	 	 PitchDiv1.showControl(0);
-	 	 		 	 	 	 	 PitchTempo1.showControl(0);;
-	 	 		 	 	 	 	 det.showControl(1);
-	 	 		 	 	 	 	 DetuneLabel.setValue("SPREAD");
-	 	 		 	 	 	 }	 	 	 	 	 	 	 	 	 
 };
 
-Content.getComponent("PitchMode1").setControlCallback(onPitchMode1Control);
+Content.getComponent("PtichSync1").setControlCallback(onPtichSync1Control);
+
 
 // RANDOM
 const var pos = Content.getComponent("pos");

@@ -1,0 +1,20 @@
+namespace project
+{
+
+struct grangran_networkdata: public scriptnode::dll::InterpretedNetworkData
+{
+	String getId() const override
+	{
+		return "grangran";
+	}
+	bool isModNode() const override
+	{
+		return false;
+	}
+	String getNetworkData() const override
+	{
+		return "719.nT6K8C10GzhE.XdnqYBvVTM.VxX6jkjzp+j78aueGmnyHpOZ.UDaTLaY1QGEUMBn3SQI+3E.dAvX.7xM4pyMx8yaavemSuavNkC1a.77ZtFsj7217aGEcVDB+0omq13qgmNK6WcXaN5VHvS+RqFOOMjzifmtZma3miF9B3oiypM61QsWcrTJlt5XPdG7zVXDvSKB11I+ZDvzFs4aRqVTFauWNrIU6L6wI8dwD0gcLmYFQOIcZgcJ4vzMTkDIUJnIJOoG4KkOGsJZnDOAd5RdYECQh9E9kSJV6Y2pjmd0rY.3AJG+Pr36qpeRlYutQNwb5x1zkma0uEzTmN9hmARRVdD.yTN+i2psLAkJIXkJvD3vgiXv260ae0lmZOVVLOudL7F.Zh.Gve90bre08EoKUTUWdFThq44nNG0ollDuCj1LKF4gESfXxWsXqIQrIw1rLQQcWabhzkSBcl6VwHV6lrL0XNKMqkRwag1pyTAmfhBfRTnfVdH6QreyytdJ7Rqlb7wKTAlqbVMLRNKMC2GeLspLPsie29Mj9iuXU+5gvzkJWnN3udFVGqrN63kPaIfk2.SPpIJX0DD0EJgbfFVNyLz.ClEfBJrb..DA.D5rp6hc.ZSDLm5vmF.pCv0PgJIv67XC1xRTZsBKRJDEQybNIIF25lPRDRtgPC6bhLH6CeF0oD34.fZhKN.R5oJ4NfsNPms240MSFO3wBOhbH6aRPFNGDPHfOrv4iqJAHlE17Av6UrKbwkscPJbYQq9EkKFHF1hhYfuk.38XhzBDkyGsJFpLfN24vRjlUQnWnrOU1d3cY+LfOYp2DXIuNQGAsoZ.WDbzFDqg4FLiG1AsUgPtDB..ZaG.UJ+p.MTt0sxnpVqOBXm51U9gkoZOb.BVDToCQvWgG014pe.Y4sg1HQ.LjiFCebTLJhXfibG1xh4MTqf3Sm0fAZ5Rcdf55CUBJTA";
+	}
+};
+}
+

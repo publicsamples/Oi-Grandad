@@ -112,6 +112,16 @@
                               <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" Automated="1"/>
                             </Parameters>
                           </Node>
+                          <Node ID="mod2sig" FactoryPath="math.mod2sig" Bypassed="0" Name="mod2sig">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="sig2mod" FactoryPath="math.sig2mod" Bypassed="0" Name="sig2mod">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                            </Parameters>
+                          </Node>
                           <Node ID="branch1" FactoryPath="container.branch" Bypassed="0" Name="branch1"
                                 ShowParameters="1">
                             <Nodes>
@@ -143,6 +153,24 @@
                           <Node ID="clear" FactoryPath="math.clear" Bypassed="0" Name="clear">
                             <Parameters>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="envelope_follower" FactoryPath="dynamics.envelope_follower"
+                                Bypassed="1" Name="envelope_follower">
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.2313782125711441" ID="Attack" TextToValueConverter="Time"
+                                         Value="35.80000053346157" DefaultValue="20.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.2313782125711441" ID="Release" TextToValueConverter="Time"
+                                         Value="301.5000044927001" DefaultValue="20.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
                             </Parameters>
                           </Node>
                           <Node ID="ahdsr" FactoryPath="envelope.ahdsr" Bypassed="0" Name="ahdsr">
@@ -182,9 +210,8 @@
                                          SkewFactor="0.1976716816425323" ID="Release" TextToValueConverter="Time"
                                          DefaultValue="20.0" Automated="1"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" ID="AttackCurve" TextToValueConverter="NormalizedPercentage"
-                                         Value="0.4801875" DefaultValue="0.5"/>
-                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Retrigger" Value="1.0"
-                                         DefaultValue="0.0"/>
+                                         Value="0.53203125" DefaultValue="0.5"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Retrigger" Value="0.0"/>
                               <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Automated="1"/>
                             </Parameters>
                           </Node>
@@ -267,6 +294,7 @@
                         <ModulationTargets>
                           <Connection NodeId="event_data_writer1" ParameterId="Value"/>
                           <Connection NodeId="global_cable1" ParameterId="Value"/>
+                          <Connection NodeId="add1" ParameterId="Value"/>
                         </ModulationTargets>
                         <ComplexData>
                           <DisplayBuffers>
@@ -408,10 +436,20 @@
         </Nodes>
         <Parameters/>
       </Node>
+      <Node ID="add1" FactoryPath="math.add" Bypassed="1" Name="add1">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="sig2mod1" FactoryPath="math.sig2mod" Bypassed="1" Name="sig2mod1">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+        </Parameters>
+      </Node>
     </Nodes>
     <Parameters>
-      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1.0" ID="Input" Value="2.0"
-                 ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
+      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1.0" ID="Input" Value="1.0"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="branch2" ParameterId="Index"/>
         </Connections>
@@ -423,8 +461,8 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="30000.0" SkewFactor="0.2559580206871033"
-                 ID="A" Value="0.0" TextToValueConverter="Time" ExternalModulation="Disabled"
-                 ModColour="0">
+                 ID="A" Value="199.0" TextToValueConverter="Time" ExternalModulation="Disabled"
+                 ModColour="0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Attack"/>
           <Connection NodeId="ahdsr" ParameterId="Attack"/>
@@ -437,15 +475,15 @@
           <Connection NodeId="ahdsr" ParameterId="Decay"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="S" Value="1.0" ExternalModulation="Disabled"
-                 ModColour="0" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="S" Value="0.0" ExternalModulation="Disabled"
+                 ModColour="0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Sustain"/>
           <Connection NodeId="ahdsr" ParameterId="Sustain"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="30000.0" SkewFactor="0.2559580206871033"
-                 ID="R" Value="9715.0" TextToValueConverter="Time" DefaultValue="0.0">
+                 ID="R" Value="330.0" TextToValueConverter="Time" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Release"/>
           <Connection NodeId="ahdsr" ParameterId="Release"/>
@@ -457,7 +495,7 @@
           <Connection NodeId="flex_ahdsr" ParameterId="Mode"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="TrigPeak" Value="1.0" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="TrigPeak" Value="0.0">
         <Connections>
           <Connection NodeId="branch1" ParameterId="Index"/>
         </Connections>

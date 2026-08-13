@@ -89,13 +89,21 @@ using peak_mod = parameter::from0To1<ahdsr_t<NV>,
 template <int NV>
 using peak_t = wrap::mod<peak_mod<NV>, 
                          wrap::data<core::peak, data::external::displaybuffer<1>>>;
+template <int NV>
+using envelope_follower_t_ = dynamics::envelope_follower<NV>;
+
+template <int NV>
+using envelope_follower_t = wrap::no_data<wrap::no_process<envelope_follower_t_<NV>>>;
 
 template <int NV>
 using no_midi_t_ = container::chain<parameter::empty, 
                                     wrap::fix<1, branch2_t<NV>>, 
+                                    math::mod2sig<NV>, 
+                                    math::sig2mod<NV>, 
                                     branch1_t<NV>, 
                                     peak_t<NV>, 
                                     math::clear<NV>, 
+                                    envelope_follower_t<NV>, 
                                     ahdsr_t<NV>>;
 
 template <int NV>
@@ -126,7 +134,8 @@ using global_cable1_t_index = runtime_target::indexers::fix_hash<377786417>;
 template <int NV>
 using peak4_mod = parameter::chain<ranges::Identity, 
                                    parameter::plain<routing::event_data_writer<NV>, 1>, 
-                                   parameter::plain<routing::global_cable<global_cable1_t_index, parameter::empty>, 0>>;
+                                   parameter::plain<routing::global_cable<global_cable1_t_index, parameter::empty>, 0>, 
+                                   parameter::plain<wrap::no_process<math::add<NV>>, 0>>;
 
 template <int NV>
 using peak4_t = wrap::mod<peak4_mod<NV>, 
@@ -341,7 +350,9 @@ using OutMods_t_plist = parameter::list<Input<NV>,
 
 template <int NV>
 using OutMods_t_ = container::chain<OutMods_t_parameters::OutMods_t_plist<NV>, 
-                                    wrap::fix<1, split_t<NV>>>;
+                                    wrap::fix<1, split_t<NV>>, 
+                                    wrap::no_process<math::add<NV>>, 
+                                    wrap::no_process<math::sig2mod<NV>>>;
 
 // =================================| Root node initialiser class |=================================
 
@@ -361,21 +372,21 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		SNEX_METADATA_ENCODED_PARAMETERS(142)
 		{
 			0x005C, 0x0000, 0x0000, 0x6E49, 0x7570, 0x0074, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x0040, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x5C3F, 0x0100, 0x0000, 0x4F00, 0x7475, 0x7570, 0x0074, 0x0000, 
             0x0000, 0x0000, 0x4000, 0x0040, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x0202, 0x0000, 0x4100, 0x0000, 0x0000, 0x0000, 
-            0x6000, 0x46EA, 0x0000, 0x0000, 0x0CEE, 0x3E83, 0x0000, 0x0000, 
+            0x6000, 0x46EA, 0x0000, 0x4347, 0x0CEE, 0x3E83, 0x0000, 0x0000, 
             0x025C, 0x0003, 0x0000, 0x0044, 0x0000, 0x0000, 0x0000, 0xEA60, 
             0x0046, 0xEA60, 0xEE46, 0x830C, 0x003E, 0x0000, 0x5C00, 0x0400, 
             0x0000, 0x5300, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
-            0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x025C, 0x0005, 0x0000, 
-            0x0052, 0x0000, 0x0000, 0x0000, 0xEA60, 0x0046, 0x17CC, 0xEE46, 
+            0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x025C, 0x0005, 0x0000, 
+            0x0052, 0x0000, 0x0000, 0x0000, 0xEA60, 0x0046, 0xA500, 0xEE43, 
             0x830C, 0x003E, 0x0000, 0x5C00, 0x0600, 0x0000, 0x4C00, 0x6F6F, 
             0x0070, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x0700, 0x0000, 0x5400, 0x6972, 
             0x5067, 0x6165, 0x006B, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0800, 0x0000, 
+            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0800, 0x0000, 
             0x4D00, 0x646F, 0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000
 		};
@@ -389,59 +400,64 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 	{
 		// Node References -------------------------------------------------------------------------
 		
-		auto& split = this->getT(0);                                                   // OutMods_impl::split_t<NV>
-		auto& chain = this->getT(0).getT(0);                                           // OutMods_impl::chain_t<NV>
-		auto& branch = this->getT(0).getT(0).getT(0);                                  // OutMods_impl::branch_t<NV>
-		auto& chain4 = this->getT(0).getT(0).getT(0).getT(0);                          // OutMods_impl::chain4_t<NV>
-		auto& no_midi = this->getT(0).getT(0).getT(0).getT(0).getT(0);                 // OutMods_impl::no_midi_t<NV>
-		auto& branch2 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0);         // OutMods_impl::branch2_t<NV>
-		auto& chain7 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(0);  // OutMods_impl::chain7_t<NV>
-		auto& global_cable = this->getT(0).getT(0).getT(0).getT(0).                    // OutMods_impl::global_cable_t<NV>
+		auto& split = this->getT(0);                                                     // OutMods_impl::split_t<NV>
+		auto& chain = this->getT(0).getT(0);                                             // OutMods_impl::chain_t<NV>
+		auto& branch = this->getT(0).getT(0).getT(0);                                    // OutMods_impl::branch_t<NV>
+		auto& chain4 = this->getT(0).getT(0).getT(0).getT(0);                            // OutMods_impl::chain4_t<NV>
+		auto& no_midi = this->getT(0).getT(0).getT(0).getT(0).getT(0);                   // OutMods_impl::no_midi_t<NV>
+		auto& branch2 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0);           // OutMods_impl::branch2_t<NV>
+		auto& chain7 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(0);    // OutMods_impl::chain7_t<NV>
+		auto& global_cable = this->getT(0).getT(0).getT(0).getT(0).                      // OutMods_impl::global_cable_t<NV>
                              getT(0).getT(0).getT(0).getT(0);
-		auto& add = this->getT(0).getT(0).getT(0).getT(0).                             // math::add<NV>
+		auto& add = this->getT(0).getT(0).getT(0).getT(0).                               // math::add<NV>
                     getT(0).getT(0).getT(0).getT(1);
-		auto& chain10 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(1); // OutMods_impl::chain10_t<NV>
-		auto& global_cable10 = this->getT(0).getT(0).getT(0).getT(0).                  // OutMods_impl::global_cable10_t<NV>
+		auto& chain10 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(1);   // OutMods_impl::chain10_t<NV>
+		auto& global_cable10 = this->getT(0).getT(0).getT(0).getT(0).                    // OutMods_impl::global_cable10_t<NV>
                                getT(0).getT(0).getT(1).getT(0);
-		auto& add7 = this->getT(0).getT(0).getT(0).getT(0).                           // math::add<NV>
+		auto& add7 = this->getT(0).getT(0).getT(0).getT(0).                              // math::add<NV>
                      getT(0).getT(0).getT(1).getT(1);
-		auto& chain9 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(2); // OutMods_impl::chain9_t<NV>
-		auto& global_cable9 = this->getT(0).getT(0).getT(0).getT(0).                  // OutMods_impl::global_cable9_t<NV>
+		auto& chain9 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(2);    // OutMods_impl::chain9_t<NV>
+		auto& global_cable9 = this->getT(0).getT(0).getT(0).getT(0).                     // OutMods_impl::global_cable9_t<NV>
                               getT(0).getT(0).getT(2).getT(0);
-		auto& add6 = this->getT(0).getT(0).getT(0).getT(0).                           // math::add<NV>
+		auto& add6 = this->getT(0).getT(0).getT(0).getT(0).                              // math::add<NV>
                      getT(0).getT(0).getT(2).getT(1);
-		auto& chain8 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(3); // OutMods_impl::chain8_t<NV>
-		auto& global_cable8 = this->getT(0).getT(0).getT(0).getT(0).                  // OutMods_impl::global_cable8_t<NV>
+		auto& chain8 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(0).getT(3);    // OutMods_impl::chain8_t<NV>
+		auto& global_cable8 = this->getT(0).getT(0).getT(0).getT(0).                     // OutMods_impl::global_cable8_t<NV>
                               getT(0).getT(0).getT(3).getT(0);
-		auto& add5 = this->getT(0).getT(0).getT(0).getT(0).                           // math::add<NV>
+		auto& add5 = this->getT(0).getT(0).getT(0).getT(0).                              // math::add<NV>
                      getT(0).getT(0).getT(3).getT(1);
-		auto& branch1 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(1);        // OutMods_impl::branch1_t<NV>
-		auto& chain6 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(1).getT(0); // OutMods_impl::chain6_t
-		auto& rect = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(1).getT(1);   // math::rect<NV>
-		auto& peak = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2);           // OutMods_impl::peak_t<NV>
-		auto& clear = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(3);          // math::clear<NV>
-		auto& ahdsr = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(4);          // OutMods_impl::ahdsr_t<NV>
-		auto& add4 = this->getT(0).getT(0).getT(0).getT(0).getT(1);                   // math::add<NV>
-		auto& chain5 = this->getT(0).getT(0).getT(0).getT(1);                         // OutMods_impl::chain5_t<NV>
-		auto& flex_ahdsr = this->getT(0).getT(0).getT(0).getT(1).getT(0);             // OutMods_impl::flex_ahdsr_t<NV>
-		auto& add8 = this->getT(0).getT(0).getT(0).getT(1).getT(1);                   // math::add<NV>
-		auto& branch3 = this->getT(0).getT(0).getT(1);                                // OutMods_impl::branch3_t<NV>
-		auto& chain11 = this->getT(0).getT(0).getT(1).getT(0);                        // OutMods_impl::chain11_t<NV>
-		auto& peak4 = this->getT(0).getT(0).getT(1).getT(0).getT(0);                  // OutMods_impl::peak4_t<NV>
-		auto& event_data_writer1 = this->getT(0).getT(0).getT(1).getT(0).getT(1);     // routing::event_data_writer<NV>
-		auto& global_cable1 = this->getT(0).getT(0).getT(1).getT(0).getT(2);          // routing::global_cable<global_cable1_t_index, parameter::empty>
-		auto& chain14 = this->getT(0).getT(0).getT(1).getT(1);                        // OutMods_impl::chain14_t<NV>
-		auto& peak7 = this->getT(0).getT(0).getT(1).getT(1).getT(0);                  // OutMods_impl::peak7_t<NV>
-		auto& event_data_writer4 = this->getT(0).getT(0).getT(1).getT(1).getT(1);     // routing::event_data_writer<NV>
-		auto& global_cable2 = this->getT(0).getT(0).getT(1).getT(1).getT(2);          // routing::global_cable<global_cable2_t_index, parameter::empty>
-		auto& chain13 = this->getT(0).getT(0).getT(1).getT(2);                        // OutMods_impl::chain13_t<NV>
-		auto& peak6 = this->getT(0).getT(0).getT(1).getT(2).getT(0);                  // OutMods_impl::peak6_t<NV>
-		auto& event_data_writer3 = this->getT(0).getT(0).getT(1).getT(2).getT(1);     // routing::event_data_writer<NV>
-		auto& global_cable3 = this->getT(0).getT(0).getT(1).getT(2).getT(2);          // routing::global_cable<global_cable3_t_index, parameter::empty>
-		auto& chain12 = this->getT(0).getT(0).getT(1).getT(3);                        // OutMods_impl::chain12_t<NV>
-		auto& peak5 = this->getT(0).getT(0).getT(1).getT(3).getT(0);                  // OutMods_impl::peak5_t<NV>
-		auto& event_data_writer2 = this->getT(0).getT(0).getT(1).getT(3).getT(1);     // routing::event_data_writer<NV>
-		auto& global_cable4 = this->getT(0).getT(0).getT(1).getT(3).getT(2);          // routing::global_cable<global_cable4_t_index, parameter::empty>
+		auto& mod2sig = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(1);           // math::mod2sig<NV>
+		auto& sig2mod = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2);           // math::sig2mod<NV>
+		auto& branch1 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(3);           // OutMods_impl::branch1_t<NV>
+		auto& chain6 = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(3).getT(0);    // OutMods_impl::chain6_t
+		auto& rect = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(3).getT(1);      // math::rect<NV>
+		auto& peak = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(4);              // OutMods_impl::peak_t<NV>
+		auto& clear = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(5);             // math::clear<NV>
+		auto& envelope_follower = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(6); // OutMods_impl::envelope_follower_t<NV>
+		auto& ahdsr = this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(7);             // OutMods_impl::ahdsr_t<NV>
+		auto& add4 = this->getT(0).getT(0).getT(0).getT(0).getT(1);                      // math::add<NV>
+		auto& chain5 = this->getT(0).getT(0).getT(0).getT(1);                            // OutMods_impl::chain5_t<NV>
+		auto& flex_ahdsr = this->getT(0).getT(0).getT(0).getT(1).getT(0);                // OutMods_impl::flex_ahdsr_t<NV>
+		auto& add8 = this->getT(0).getT(0).getT(0).getT(1).getT(1);                      // math::add<NV>
+		auto& branch3 = this->getT(0).getT(0).getT(1);                                   // OutMods_impl::branch3_t<NV>
+		auto& chain11 = this->getT(0).getT(0).getT(1).getT(0);                           // OutMods_impl::chain11_t<NV>
+		auto& peak4 = this->getT(0).getT(0).getT(1).getT(0).getT(0);                     // OutMods_impl::peak4_t<NV>
+		auto& event_data_writer1 = this->getT(0).getT(0).getT(1).getT(0).getT(1);        // routing::event_data_writer<NV>
+		auto& global_cable1 = this->getT(0).getT(0).getT(1).getT(0).getT(2);             // routing::global_cable<global_cable1_t_index, parameter::empty>
+		auto& chain14 = this->getT(0).getT(0).getT(1).getT(1);                           // OutMods_impl::chain14_t<NV>
+		auto& peak7 = this->getT(0).getT(0).getT(1).getT(1).getT(0);                     // OutMods_impl::peak7_t<NV>
+		auto& event_data_writer4 = this->getT(0).getT(0).getT(1).getT(1).getT(1);        // routing::event_data_writer<NV>
+		auto& global_cable2 = this->getT(0).getT(0).getT(1).getT(1).getT(2);             // routing::global_cable<global_cable2_t_index, parameter::empty>
+		auto& chain13 = this->getT(0).getT(0).getT(1).getT(2);                           // OutMods_impl::chain13_t<NV>
+		auto& peak6 = this->getT(0).getT(0).getT(1).getT(2).getT(0);                     // OutMods_impl::peak6_t<NV>
+		auto& event_data_writer3 = this->getT(0).getT(0).getT(1).getT(2).getT(1);        // routing::event_data_writer<NV>
+		auto& global_cable3 = this->getT(0).getT(0).getT(1).getT(2).getT(2);             // routing::global_cable<global_cable3_t_index, parameter::empty>
+		auto& chain12 = this->getT(0).getT(0).getT(1).getT(3);                           // OutMods_impl::chain12_t<NV>
+		auto& peak5 = this->getT(0).getT(0).getT(1).getT(3).getT(0);                     // OutMods_impl::peak5_t<NV>
+		auto& event_data_writer2 = this->getT(0).getT(0).getT(1).getT(3).getT(1);        // routing::event_data_writer<NV>
+		auto& global_cable4 = this->getT(0).getT(0).getT(1).getT(3).getT(2);             // routing::global_cable<global_cable4_t_index, parameter::empty>
+		auto& add1 = this->getT(1);                                                      // wrap::no_process<math::add<NV>>
+		auto& sig2mod1 = this->getT(2);                                                  // wrap::no_process<math::sig2mod<NV>>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -484,6 +500,7 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		flex_ahdsr_p.getParameterT(0).connectT(0, add8);      // flex_ahdsr -> add8::Value
 		peak4.getParameter().connectT(0, event_data_writer1); // peak4 -> event_data_writer1::Value
 		peak4.getParameter().connectT(1, global_cable1);      // peak4 -> global_cable1::Value
+		peak4.getParameter().connectT(2, add1);               // peak4 -> add1::Value
 		peak7.getParameter().connectT(0, event_data_writer4); // peak7 -> event_data_writer4::Value
 		peak7.getParameter().connectT(1, global_cable2);      // peak7 -> global_cable2::Value
 		peak6.getParameter().connectT(0, event_data_writer3); // peak6 -> event_data_writer3::Value
@@ -513,11 +530,19 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		
 		; // add5::Value is automated
 		
+		mod2sig.setParameterT(0, 0.); // math::mod2sig::Value
+		
+		sig2mod.setParameterT(0, 0.); // math::sig2mod::Value
+		
 		; // branch1::Index is automated
 		
 		rect.setParameterT(0, 0.); // math::rect::Value
 		
 		clear.setParameterT(0, 0.); // math::clear::Value
+		
+		envelope_follower.setParameterT(0, 35.8);  // dynamics::envelope_follower::Attack
+		envelope_follower.setParameterT(1, 301.5); // dynamics::envelope_follower::Release
+		envelope_follower.setParameterT(2, 0.);    // dynamics::envelope_follower::ProcessSignal
 		
 		;                                 // ahdsr::Attack is automated
 		ahdsr.setParameterT(1, 1.);       // envelope::ahdsr::AttackLevel
@@ -525,8 +550,8 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		;                                 // ahdsr::Decay is automated
 		;                                 // ahdsr::Sustain is automated
 		;                                 // ahdsr::Release is automated
-		ahdsr.setParameterT(6, 0.480187); // envelope::ahdsr::AttackCurve
-		ahdsr.setParameterT(7, 1.);       // envelope::ahdsr::Retrigger
+		ahdsr.setParameterT(6, 0.532031); // envelope::ahdsr::AttackCurve
+		ahdsr.setParameterT(7, 0.);       // envelope::ahdsr::Retrigger
 		;                                 // ahdsr::Gate is automated
 		
 		; // add4::Value is automated
@@ -566,14 +591,18 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		
 		; // global_cable4::Value is automated
 		
-		this->setParameterT(0, 2.);
+		; // add1::Value is automated
+		
+		sig2mod1.setParameterT(0, 0.); // math::sig2mod::Value
+		
+		this->setParameterT(0, 1.);
 		this->setParameterT(1, 0.);
-		this->setParameterT(2, 0.);
+		this->setParameterT(2, 199.);
 		this->setParameterT(3, 30000.);
-		this->setParameterT(4, 1.);
-		this->setParameterT(5, 9715.);
+		this->setParameterT(4, 0.);
+		this->setParameterT(5, 330.);
 		this->setParameterT(6, 0.);
-		this->setParameterT(7, 1.);
+		this->setParameterT(7, 0.);
 		this->setParameterT(8, 0.);
 		this->setExternalData({}, -1);
 	}
@@ -614,8 +643,9 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 	{
 		// External Data Connections ---------------------------------------------------------------
 		
-		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(2).setExternalData(b, index); // OutMods_impl::peak_t<NV>
-		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(4).setExternalData(b, index); // OutMods_impl::ahdsr_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(4).setExternalData(b, index); // OutMods_impl::peak_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(6).setExternalData(b, index); // OutMods_impl::envelope_follower_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(7).setExternalData(b, index); // OutMods_impl::ahdsr_t<NV>
 		this->getT(0).getT(0).getT(0).getT(1).getT(0).setExternalData(b, index);         // OutMods_impl::flex_ahdsr_t<NV>
 		this->getT(0).getT(0).getT(1).getT(0).getT(0).setExternalData(b, index);         // OutMods_impl::peak4_t<NV>
 		this->getT(0).getT(0).getT(1).getT(1).getT(0).setExternalData(b, index);         // OutMods_impl::peak7_t<NV>

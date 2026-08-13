@@ -19,6 +19,7 @@
 #include "FoldTests_networkdata.h"
 #include "FreshNetwork_networkdata.h"
 #include "ggg_networkdata.h"
+#include "grangran_networkdata.h"
 #include "gtest_networkdata.h"
 #include "MacroMod.h"
 #include "MatrixTest2.h"

@@ -8,7 +8,7 @@ reg g_isPresetLoadInProgress = false;
 reg g_isUpdatingTabButtons = false;
 
 
-const var defaultRef = "{PROJECT_FOLDER}OGInit.aif";
+//const var defaultRef = "{PROJECT_FOLDER}OGInit.aif";
 //const var defaultRef2 = "{PROJECT_FOLDER}SubKick125_2.wav";
 //const var defaultRef3 = "{PROJECT_FOLDER}electro135.wav";
 //const var defaultRef4 = "{PROJECT_FOLDER}MuxBeatLo4.aif";
@@ -31,7 +31,7 @@ const var gran3 = Synth.getChildSynth("Granular4");
 // Delay ensures processors exist after compile
 Content.callAfterDelay(10, function()
 {
-    slot1.loadFile(defaultRef);
+   // slot1.loadFile(defaultRef);
   //  slot2.loadFile(defaultRef2);
  //   slot3.loadFile(defaultRef3);
   //  slot4.loadFile(defaultRef4);
@@ -43,7 +43,7 @@ include("RR.js");
 include("rec.js");
 
 include("MultiChannel.js");
-//include("ModControls.js");
+include("ModControls.js");
 include("Rect.js");
 
 include("GeneralLAF.js");

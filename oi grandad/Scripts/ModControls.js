@@ -928,10 +928,7 @@ ModPages[0] = Content.getComponent("MOD1");
 ModPages[1] = Content.getComponent("MOD2");
 ModPages[2] = Content.getComponent("MOD3");
 ModPages[3] = Content.getComponent("MOD4");
-ModPages[4] = Content.getComponent("MOD5");
-ModPages[5] = Content.getComponent("MOD6");
-ModPages[6] = Content.getComponent("MOD7");
-ModPages[7] = Content.getComponent("MOD8");
+
 
 
 inline function onModPageControl(component, value)

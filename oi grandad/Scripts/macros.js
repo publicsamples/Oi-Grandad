@@ -231,16 +231,6 @@ inline function shouldExcludeMatrixTarget(component)
 		return index >= 1 && index <= 4;
 	}
 
-	if(componentId.indexOf("Macro") == 0)
-	{
-		local suffix = componentId.replace("Macro", "");
-		local index = parseInt(suffix);
-		return index >= 1 && index <= 8;
-	}
-	
-	
-
-
 	return false;
 }
 
@@ -566,12 +556,75 @@ inline function autoRegisterMatrixTargets()
 
 const var matrixDefaultTargetValues = autoRegisterMatrixTargets();
 
+inline function autoRegisterMatrixRangeProperties()
+{
+	local all = Content.getAllComponents(".*");
+	local rangeProperties = {};
+
+	for (c in all)
+	{
+		if (c.get("type") != "ScriptSlider")
+			continue;
+
+		if (shouldExcludeMatrixTarget(c))
+			continue;
+
+		local targetId = c.get("matrixTargetId");
+
+		if (targetId == "")
+			continue;
+
+		local minValue = c.get("min");
+		local maxValue = c.get("max");
+		local middlePosition = c.get("middlePosition");
+		local stepSize = c.get("stepSize");
+		local mode = c.get("mode");
+
+		if (middlePosition == 0.0 && minValue < maxValue)
+			middlePosition = minValue + ((maxValue - minValue) * 0.5);
+
+		if (mode == "")
+		{
+			if (minValue == 0.0 && maxValue == 1.0)
+				mode = "NormalizedPercentage";
+			else
+				mode = "Plain";
+		}
+
+		rangeProperties[targetId] =
+		{
+			InputRange:
+			{
+				min: minValue,
+				max: maxValue,
+				middlePosition: middlePosition,
+				mode: mode,
+				stepSize: stepSize
+			},
+			OutputRange:
+			{
+				min: minValue,
+				max: maxValue,
+				middlePosition: middlePosition,
+				stepSize: stepSize,
+				UseMidPositionAsZero: minValue < 0.0
+			}
+		};
+	}
+
+	return rangeProperties;
+}
+
+const var matrixRangeProperties = autoRegisterMatrixRangeProperties();
+
 // Let's create a matrix handler object that can be used to programmatically change
 // query the modulation connections.
 // Note that as soon as you create this object it will also write the modulation connections into the user preset
 // so that they are restored correctly.
 const var matrixHandler = Engine.createModulationMatrix("Global Modulator Container1");
 const var matrixSourceModulators = {};
+const var matrixTargetModulators = {};
+const var matrixHoldButton = Content.getComponent("Hold");
 
 inline function hideModulationDragBackground(g, obj)
 {
@@ -615,6 +668,31 @@ inline function buildMatrixSourceModulatorMap()
 	}
 }
 
+inline function buildMatrixTargetModulatorMap()
+{
+	local all = Content.getAllComponents(".*");
+
+	for(c in all)
+	{
+		if(c.get("type") != "ScriptSlider")
+			continue;
+
+		local targetId = c.get("matrixTargetId");
+		local processorId = c.get("processorId");
+
+		if(targetId == "" || processorId == "" || processorId != targetId)
+			continue;
+
+		if(isDefined(matrixTargetModulators[targetId]))
+			continue;
+
+		local mod = Synth.getModulator(targetId);
+
+		if(isDefined(mod))
+			matrixTargetModulators[targetId] = mod;
+	}
+}
+
 inline function getMatrixSourceRouteCount(sourceId)
 {
 	local count = 0;
@@ -653,18 +731,48 @@ inline function refreshAllMatrixSourceEnabledStates()
 		refreshMatrixSourceEnabledState(sourceId);
 }
 
+inline function refreshMatrixTargetEnabledState(targetId)
+{
+	local mod = matrixTargetModulators[targetId];
+
+	if(!isDefined(mod))
+		return;
+
+	// Dedicated target modulators are also used as the live base-value path for some controls.
+	// Keep them active so disconnecting a route does not leave the UI control pointing at a bypassed modulator.
+	mod.setBypassed(false);
+}
+
+inline function refreshAllMatrixTargetEnabledStates()
+{
+	local targets = matrixHandler.getTargetList();
+
+	for(targetId in targets)
+		refreshMatrixTargetEnabledState(targetId);
+}
+
 matrixHandler.setMatrixModulationProperties({
-	DefaultInitValues: matrixDefaultTargetValues
+	DefaultInitValues: matrixDefaultTargetValues,
+	RangeProperties: matrixRangeProperties
 });
 
 buildMatrixSourceModulatorMap();
+buildMatrixTargetModulatorMap();
 
 matrixHandler.setConnectionCallback(function(source, target, wasAdded)
 {
 	refreshMatrixSourceEnabledState(source);
+	refreshMatrixTargetEnabledState(target);
+
+	if(wasAdded && isDefined(matrixHoldButton))
+	{
+		matrixHoldButton.setValue(0);
+		matrixHoldButton.changed();
+	}
 });
 
 refreshAllMatrixSourceEnabledStates();
+refreshAllMatrixTargetEnabledStates();
 
 inline function connectMatrixSourceToComponent(sourceId, component)
 {

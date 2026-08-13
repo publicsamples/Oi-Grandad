@@ -28,9 +28,9 @@ const var cBLaf = Content.createLocalLookAndFeel();
 cBLaf.registerFunction("drawComboBox", function(g, obj)
 {
     g.setColour(obj.bgColour);
-    g.drawRoundedRectangle(obj.area, 3.0, 3.0);
-    g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
-    g.setFont("Montserrat", 16.0);
+    g.drawRoundedRectangle(obj.area, 3.0, 1.5);
+    g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 1.0));
+    g.setFont("Montserrat", 14.0);
    
   
     var a = obj.area;
@@ -69,7 +69,7 @@ laf.registerFunction("drawTableRuler", function(g, obj)
     
     var x = obj.position * obj.area[2];
     
-    g.drawLine(x, x, 0, obj.area[3], 10.0);
+    g.drawLine(x, x, 0, obj.area[3], 2.0);
     g.setColour(obj.bgColour);
     g.drawLine(x, x, 0, obj.area[3], 1);
 });
@@ -81,6 +81,7 @@ laf.registerFunction("drawTableRuler", function(g, obj)
 
 const var ModeMenus1 = [Content.getComponent("OutputSelector"),
                         Content.getComponent("maxGrains1"),
+                        Content.getComponent("PostMode1"),
                         Content.getComponent("PitchMode1")];
 
 
@@ -126,7 +127,7 @@ const var GlbMenus = [Content.getComponent("MidiNote"),
   for(s in GlbMenus)
          s.setLocalLookAndFeel(cBLaf);      
          
-       
+     
        
 const var ResMode = [Content.getComponent("ResMode1"),
                       Content.getComponent("ResMode2"),
@@ -149,7 +150,24 @@ const var ResMode = [Content.getComponent("ResMode1"),
             
             
 for(s in Pb)
-       s.setLocalLookAndFeel(cBLaf);        
+       s.setLocalLookAndFeel(cBLaf);       
+       
+       
+const var TrigSel = [Content.getComponent("TrigSel1"),
+                     Content.getComponent("TrigSel2"),
+                     Content.getComponent("TrigSel3"),
+                     Content.getComponent("TrigSel4"),
+                     Content.getComponent("TrigSel5"),
+                     Content.getComponent("TrigSel6"),
+                     Content.getComponent("TrigSel7"),
+                     Content.getComponent("TrigSel8"),
+                     Content.getComponent("TrigSel9"),
+                     Content.getComponent("TrigSel10"),
+                     Content.getComponent("TrigSel11"),
+                     Content.getComponent("TrigSel12")];
+  
+  for(s in TrigSel)
+         s.setLocalLookAndFeel(cBLaf);    
        
 const var ModeMenus = [Content.getComponent("TransPort1"),
 Content.getComponent("TransPort2"),

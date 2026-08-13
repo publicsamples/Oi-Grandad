@@ -301,3 +301,13 @@ for (i = 0; i < 1; i++)
     Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 
 } 
+
+const var spreads =[];
+
+for (i = 0; i < 3; i++)
+{
+    spreads[i] = Content.getComponent("spread"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+Content.getComponent("spread").setLocalLookAndFeel(KnobLaf2);

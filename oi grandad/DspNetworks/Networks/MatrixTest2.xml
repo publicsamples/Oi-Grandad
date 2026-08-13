@@ -1504,7 +1504,8 @@
           <Connection NodeId="pack8_writer" ParameterId="Value8"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="BloomOn" Value="1.0" DefaultValue="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="BloomOn" Value="0.9948199356742529"
+                 DefaultValue="0.0">
         <Connections>
           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="CloudAmount"/>
         </Connections>

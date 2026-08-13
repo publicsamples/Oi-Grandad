@@ -84,6 +84,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		std::array<double, 4> previousScrubSource {};
 		std::array<int, 4> previousOneShotStep {};
 		double densityMorphSmoothed = -1.0;
+		double cloudMixSmoothed = -1.0;
 		double speedPhase = 0.0;
 		double ap1L = 0.0;
 		double ap1R = 0.0;
@@ -105,6 +106,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			previousScrubSource = { 0.0, 0.0, 0.0, 0.0 };
 			previousOneShotStep = { -1, -1, -1, -1 };
 			densityMorphSmoothed = -1.0;
+			cloudMixSmoothed = -1.0;
 			speedPhase = 0.0;
 			ap1L = 0.0;
 			ap1R = 0.0;
@@ -763,74 +765,53 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return jmax(1.0, bloomDuration) * 0.001;
 	}
 
-	int getBloomActiveGrainCount(const VoiceState& voice, int targetGrainCount) const
+	double getCloudTransitionCoeff() const
 	{
-		double amount = clamp01(cloudAmount);
-		if (amount <= 0.0)
-			return targetGrainCount;
-
-		if (sampleRate <= 0.0)
-			return targetGrainCount;
-
-		const double bloomSamples = getBloomDurationSeconds() * sampleRate;
-		if (bloomSamples <= 1.0)
-			return targetGrainCount;
-
-		double progress = jlimit(0.0, 1.0, voice.noteAgeSamples / bloomSamples);
-		int activeCount = 1 + (int)std::floor(progress * (double)jmax(0, targetGrainCount - 1) + 0.000001);
-		return jlimit(1, targetGrainCount, activeCount);
-	}
-
-	double getBloomProgress(const VoiceState& voice) const
-	{
-		double amount = clamp01(cloudAmount);
-		if (amount <= 0.0)
-			return 1.0;
-
 		if (sampleRate <= 0.0)
 			return 1.0;
 
-		const double bloomSamples = getBloomDurationSeconds() * sampleRate;
-		if (bloomSamples <= 1.0)
+		double seconds = getBloomDurationSeconds();
+		if (seconds <= 0.001)
 			return 1.0;
 
-		return jlimit(0.0, 1.0, voice.noteAgeSamples / bloomSamples);
+		return 1.0 - std::exp(-1.0 / (seconds * sampleRate));
 	}
 
-	double getBloomPhaseJitter(const VoiceState& voice, int grainIndex) const
+	double getCloudMix(VoiceState& voice) const
 	{
-		double amount = clamp01(cloudAmount);
-		if (amount <= 0.0)
+		double target = clamp01(cloudAmount);
+		if (target <= 0.0)
+		{
+			voice.cloudMixSmoothed = 0.0;
 			return 0.0;
+		}
 
-		if (grainSize <= 0.0)
-			return 0.0;
+		if (voice.cloudMixSmoothed < 0.0)
+			voice.cloudMixSmoothed = 0.0;
 
-		double bloomAmount = (1.0 - getBloomProgress(voice)) * amount;
-		if (bloomAmount <= 0.0)
+		double coeff = getCloudTransitionCoeff();
+		voice.cloudMixSmoothed += (target - voice.cloudMixSmoothed) * coeff;
+		return clamp01(voice.cloudMixSmoothed);
+	}
+
+	double getCloudPhaseOffset(const VoiceState& voice, int grainIndex, double localGrainSize, double cloudMix) const
+	{
+		if (cloudMix <= 0.0 || localGrainSize <= 0.0)
 			return 0.0;
 
 		double signedRand = grainRandomFromSeed((double) (grainIndex + 1) * 41.17 + (double) voice.noteNumber * 3.71) * 2.0 - 1.0;
-		double maxJitter = grainSize * 0.18 * bloomAmount;
-		return signedRand * maxJitter;
+		double maxOffset = localGrainSize * 0.18 * cloudMix;
+		return signedRand * maxOffset;
 	}
 
-	double getBloomStartJitter(const VoiceState& voice, int grainIndex, double maxStart) const
+	double getCloudStartOffset(const VoiceState& voice, int grainIndex, double maxStart, double cloudMix) const
 	{
-		double amount = clamp01(cloudAmount);
-		if (amount <= 0.0)
-			return 0.0;
-
-		if (maxStart <= 0.0)
-			return 0.0;
-
-		double bloomAmount = (1.0 - getBloomProgress(voice)) * amount;
-		if (bloomAmount <= 0.0)
+		if (cloudMix <= 0.0 || maxStart <= 0.0)
 			return 0.0;
 
 		double signedRand = grainRandomFromSeed((double) (grainIndex + 1) * 67.91 + (double) voice.noteNumber * 5.13) * 2.0 - 1.0;
-		double maxJitter = jmax(2.0, maxStart * 0.015) * bloomAmount;
-		return signedRand * maxJitter;
+		double maxOffset = jmax(2.0, maxStart * 0.015) * cloudMix;
+		return signedRand * maxOffset;
 	}
 
 	double getScatterStartOffset(int grainIndex, int grainCount, double maxStart, int respawnCount) const
@@ -1254,8 +1235,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		const double oneShotStepSize = getOneShotStepSize(maxStart);
 		double spreadNorm = isStackMode ? 1.0 : morphDensity;
 		bool scrubMoved = std::abs(previousScrub - scrub) > 0.0005;
-		const bool enableBloom = cloudAmount > 0.0001;
-		const int bloomActiveGrainCount = enableBloom ? getBloomActiveGrainCount(voice, g) : g;
+		double cloudMix = getCloudMix(voice);
+		const bool enableBloom = cloudMix > 0.0001;
+		const int bloomActiveGrainCount = g;
 		const bool scatterParamsChanged = std::abs(voice.lastPhaseScatter - phaseScatter) > 0.000001
 			|| std::abs(voice.lastScatterMaxStart - maxStart) > 0.5;
 		voice.lastPhaseScatter = phaseScatter;
@@ -1311,14 +1293,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			}
 
 			const bool bloomActivationAllowed = i < bloomActiveGrainCount;
+			double cloudPhaseOffset = enableBloom ? getCloudPhaseOffset(voice, i, localGrainSize, cloudMix) : 0.0;
+			double cloudStartOffset = enableBloom ? getCloudStartOffset(voice, i, localMaxStart, cloudMix) : 0.0;
 
 			if (!grain.active && !oneShotMode && bloomActivationAllowed)
 			{
-				double bloomPhaseJitter = enableBloom ? getBloomPhaseJitter(voice, i) : 0.0;
-				double bloomStartJitter = enableBloom ? getBloomStartJitter(voice, i, localMaxStart) : 0.0;
 				grain.active = true;
 				double schedulerOffset = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize);
-				grain.phase = schedulerOffset + bloomPhaseJitter;
+				grain.phase = schedulerOffset + cloudPhaseOffset;
 				if (grain.phase < 0.0)
 					grain.phase += localGrainSize;
 				if (grain.phase >= localGrainSize)
@@ -1326,13 +1308,13 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead, localGrainSize);
 				grain.respawnCount = 0;
 				grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-				double scatterBase = base + grain.scatterOffset + bloomStartJitter;
+				double scatterBase = base + grain.scatterOffset + cloudStartOffset;
 				if (scatterBase < 0.0)
 					scatterBase = 0.0;
 				if (scatterBase > localMaxStart)
 					scatterBase = localMaxStart;
 				grain.latchedStart = scatterBase;
-				grain.start = legacyExact && stretchMode ? (voice.stretchBasePos + grain.scatterOffset) : scatterBase;
+				grain.start = legacyExact && stretchMode ? (voice.stretchBasePos + grain.scatterOffset + cloudStartOffset) : scatterBase;
 				if (grain.start < 0.0)
 					grain.start = 0.0;
 				if (grain.start > localMaxStart)
@@ -1347,11 +1329,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (oneShotMode && oneShotTriggered)
 			{
 				grain.active = true;
-				grain.phase = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize);
+				grain.phase = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize) + cloudPhaseOffset;
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead, localGrainSize);
 				grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-				grain.start = base + grain.scatterOffset;
+				grain.start = base + grain.scatterOffset + cloudStartOffset;
 				if (grain.start < 0.0)
 					grain.start = 0.0;
 				if (grain.start > localMaxStart)
@@ -1365,11 +1347,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (legacyExact && transportWrapped)
 			{
-				grain.phase = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize);
+				grain.phase = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize) + cloudPhaseOffset;
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead, localGrainSize);
 				grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-				grain.start = base + grain.scatterOffset;
+				grain.start = base + grain.scatterOffset + cloudStartOffset;
 				grain.latchedStart = grain.start;
 				if (grain.start < 0.0)
 					grain.start = 0.0;
@@ -1386,13 +1368,13 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			{
 				if (transportState == 0)
 				{
-					grain.start = base;
-					grain.latchedStart = base;
+					grain.start = base + cloudStartOffset;
+					grain.latchedStart = base + cloudStartOffset;
 				}
 				else if (transportState == 1)
 				{
 					double coeff = getTransportFollowCoeff();
-					grain.latchedStart += (base - grain.latchedStart) * coeff;
+					grain.latchedStart += ((base + cloudStartOffset) - grain.latchedStart) * coeff;
 					grain.start = grain.latchedStart;
 				}
 				else
@@ -1457,14 +1439,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				{
 					++grain.respawnCount;
 					grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-					grain.start = base + grain.scatterOffset;
+					grain.start = base + grain.scatterOffset + cloudStartOffset;
 					grain.latchedStart = grain.start;
 				}
 				else if (transportState == 2)
 				{
 					++grain.respawnCount;
 					grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-					grain.latchedStart = base + grain.scatterOffset;
+					grain.latchedStart = base + grain.scatterOffset + cloudStartOffset;
 					if (grain.latchedStart < 0.0)
 						grain.latchedStart = 0.0;
 					if (grain.latchedStart > localMaxStart)
@@ -1503,14 +1485,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				{
 					++grain.respawnCount;
 					grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-					grain.start = base + grain.scatterOffset;
+					grain.start = base + grain.scatterOffset + cloudStartOffset;
 					grain.latchedStart = grain.start;
 				}
 				else if (transportState == 2)
 				{
 					++grain.respawnCount;
 					grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-					grain.latchedStart = base + grain.scatterOffset;
+					grain.latchedStart = base + grain.scatterOffset + cloudStartOffset;
 					if (grain.latchedStart < 0.0)
 						grain.latchedStart = 0.0;
 					if (grain.latchedStart > localMaxStart)
