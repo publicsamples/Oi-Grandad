@@ -396,7 +396,7 @@
                   <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" DefaultValue="1.0"
                              Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" DefaultValue="0.0"
-                             Automated="1"/>
+                             Automated="1" SkewFactor="0.4327682554721832"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" DefaultValue="0.0"
                              Automated="1"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" DefaultValue="0.0"
@@ -1373,7 +1373,7 @@
                  DefaultValue="" Value="0.0">
         <Connections/>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="6.0" ID="TransportMode" Value="1.0"
+      <Parameter MinValue="1.0" MaxValue="3.0" ID="TransportMode" Value="1.0"
                  TextToValueConverter="" ExternalModulation="Disabled" ModColour="0"
                  StepSize="1">
         <Connections>
@@ -1477,9 +1477,6 @@
         <Connections>
           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Diffusion"/>
         </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Drift" Value="1.0" DefaultValue="0.0">
-        <Connections/>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSync" Value="1.0" DefaultValue="0.0">
         <Connections>

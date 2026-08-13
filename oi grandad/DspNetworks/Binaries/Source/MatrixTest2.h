@@ -806,6 +806,16 @@ using GrainMix = parameter::chain<ranges::Identity,
                                   parameter::plain<control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>, 0>, 
                                   parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 3>>;
 
+DECLARE_PARAMETER_RANGE_SKEW(ScatterRange, 
+                             0., 
+                             1., 
+                             0.432768);
+
+template <int NV>
+using Scatter = parameter::from0To1<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                    12, 
+                                    ScatterRange>;
+
 DECLARE_PARAMETER_RANGE_STEP(PitchMode_InputRange, 
                              1., 
                              10., 
@@ -816,7 +826,7 @@ using PitchMode = parameter::chain<PitchMode_InputRange,
 
 DECLARE_PARAMETER_RANGE_STEP(TransportMode_InputRange, 
                              1., 
-                             6., 
+                             3., 
                              1.);
 
 using TransportMode = parameter::chain<TransportMode_InputRange, 
@@ -930,9 +940,6 @@ using GrainTravelShape = parameter::chain<GrainTravelShape_InputRange,
 using Scrub = parameter::empty;
 using GrainSize = Scrub;
 template <int NV>
-using Scatter = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                 12>;
-template <int NV>
 using WindowShape = parameter::plain<MatrixTest2_impl::minmax_t<NV>, 
                                      0>;
 template <int NV>
@@ -987,7 +994,6 @@ using Respawn = parameter::plain<project::granular_player_stepquant_density_hybr
 template <int NV>
 using Diffusion = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
                                    9>;
-using Drift = Scrub;
 using PitchSync = parameter::plain<MatrixTest2_impl::pack8_writer_t, 
                                    4>;
 using Glide = parameter::plain<MatrixTest2_impl::pack8_writer_t, 
@@ -1030,7 +1036,6 @@ using MatrixTest2_t_plist = parameter::list<Scrub,
                                             PitchTempo<NV>, 
                                             Respawn<NV>, 
                                             Diffusion<NV>, 
-                                            Drift, 
                                             PitchSync, 
                                             Glide, 
                                             PhaseScatterShape, 
@@ -1059,7 +1064,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		SNEX_METADATA_ID(MatrixTest2);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(690)
+		SNEX_METADATA_ENCODED_PARAMETERS(674)
 		{
 			0x005C, 0x0000, 0x0000, 0x6353, 0x7572, 0x0062, 0x0000, 0x0000, 
             0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
@@ -1096,7 +1101,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
             0x000E, 0x0000, 0x6353, 0x7572, 0x4462, 0x0000, 0x0000, 0x0000, 
             0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 
             0x005C, 0x000F, 0x0000, 0x7254, 0x6E61, 0x7073, 0x726F, 0x4D74, 
-            0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0xC000, 0x0040, 0x8000, 
+            0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x4000, 0x0040, 0x8000, 
             0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1000, 0x0000, 0x4D00, 
             0x646F, 0x754F, 0x3174, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0011, 
@@ -1131,23 +1136,21 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
             0x8000, 0x003F, 0x0000, 0x5C00, 0x1E00, 0x0000, 0x4400, 0x6669, 
             0x7566, 0x6973, 0x6E6F, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
             0x990B, 0x3E96, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001F, 
-            0x0000, 0x7244, 0x6669, 0x0074, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x2000, 
-            0x0000, 0x5000, 0x7469, 0x6863, 0x7953, 0x636E, 0x0000, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x005C, 0x0021, 0x0000, 0x6C47, 0x6469, 0x0065, 0x0000, 
-            0x0000, 0x0000, 0x8000, 0x333F, 0x4BB3, 0x003E, 0x8000, 0x003F, 
-            0x0000, 0x5C00, 0x2200, 0x0000, 0x5000, 0x6168, 0x6573, 0x6353, 
-            0x7461, 0x6574, 0x5372, 0x6168, 0x6570, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x40A0, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 
-            0x005C, 0x0023, 0x0000, 0x7247, 0x6961, 0x546E, 0x6172, 0x6576, 
-            0x536C, 0x6168, 0x6570, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4080, 
-            0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0024, 
-            0x0000, 0x6C42, 0x6F6F, 0x4F6D, 0x006E, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 
-            0x2500, 0x0000, 0x4200, 0x6F6C, 0x6D6F, 0x6944, 0x0076, 0x0000, 
-            0x8000, 0x003F, 0x0000, 0x0042, 0x8000, 0x003F, 0x8000, 0x003F, 
-            0x8000, 0x003F
+            0x0000, 0x6950, 0x6374, 0x5368, 0x6E79, 0x0063, 0x0000, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 
+            0x5C00, 0x2000, 0x0000, 0x4700, 0x696C, 0x6564, 0x0000, 0x0000, 
+            0x0000, 0x0000, 0x3F80, 0xB333, 0x3E4B, 0x0000, 0x3F80, 0x0000, 
+            0x0000, 0x005C, 0x0021, 0x0000, 0x6850, 0x7361, 0x5365, 0x6163, 
+            0x7474, 0x7265, 0x6853, 0x7061, 0x0065, 0x0000, 0x8000, 0x003F, 
+            0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x2200, 0x0000, 0x4700, 0x6172, 0x6E69, 0x7254, 0x7661, 0x6C65, 
+            0x6853, 0x7061, 0x0065, 0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 
+            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2300, 0x0000, 
+            0x4200, 0x6F6C, 0x6D6F, 0x6E4F, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x3F80, 0xAC85, 0x3F7E, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x0024, 0x0000, 0x6C42, 0x6F6F, 0x446D, 0x7669, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x4200, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(20)
 		{
@@ -1387,17 +1390,17 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		this->getParameterT(30).connectT(0, granular_player_stepquant_density_hybrid_native); // Diffusion -> granular_player_stepquant_density_hybrid_native::Diffusion
 		
-		this->getParameterT(32).connectT(0, pack8_writer); // PitchSync -> pack8_writer::Value5
+		this->getParameterT(31).connectT(0, pack8_writer); // PitchSync -> pack8_writer::Value5
 		
-		this->getParameterT(33).connectT(0, pack8_writer); // Glide -> pack8_writer::Value6
+		this->getParameterT(32).connectT(0, pack8_writer); // Glide -> pack8_writer::Value6
 		
-		this->getParameterT(34).connectT(0, pack8_writer); // PhaseScatterShape -> pack8_writer::Value7
+		this->getParameterT(33).connectT(0, pack8_writer); // PhaseScatterShape -> pack8_writer::Value7
 		
-		this->getParameterT(35).connectT(0, pack8_writer); // GrainTravelShape -> pack8_writer::Value8
+		this->getParameterT(34).connectT(0, pack8_writer); // GrainTravelShape -> pack8_writer::Value8
 		
-		this->getParameterT(36).connectT(0, granular_player_stepquant_density_hybrid_native); // BloomOn -> granular_player_stepquant_density_hybrid_native::CloudAmount
+		this->getParameterT(35).connectT(0, granular_player_stepquant_density_hybrid_native); // BloomOn -> granular_player_stepquant_density_hybrid_native::CloudAmount
 		
-		this->getParameterT(37).connectT(0, tempo_sync3); // BloomDiv -> tempo_sync3::Multiplier
+		this->getParameterT(36).connectT(0, tempo_sync3); // BloomDiv -> tempo_sync3::Multiplier
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -1750,12 +1753,11 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->setParameterT(29, 1.);
 		this->setParameterT(30, 0.294136);
 		this->setParameterT(31, 1.);
-		this->setParameterT(32, 1.);
-		this->setParameterT(33, 0.198926);
+		this->setParameterT(32, 0.198926);
+		this->setParameterT(33, 1.);
 		this->setParameterT(34, 1.);
-		this->setParameterT(35, 1.);
+		this->setParameterT(35, 0.99482);
 		this->setParameterT(36, 1.);
-		this->setParameterT(37, 1.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override

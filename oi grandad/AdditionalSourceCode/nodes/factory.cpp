@@ -53,6 +53,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerDataNode<project::slotty_networkdata>();
 		registerDataNode<project::sn_networkdata>();
 		registerDataNode<project::sndummy_networkdata>();
+		registerDataNode<project::SpreadExample_networkdata>();
 		registerDataNode<project::test_networkdata>();
 		registerDataNode<project::track_networkdata>();
 		registerDataNode<project::trash2_networkdata>();

@@ -34,6 +34,7 @@
 #include "sndummy_networkdata.h"
 #include "sn_fin.h"
 #include "sn_networkdata.h"
+#include "SpreadExample_networkdata.h"
 #include "test_networkdata.h"
 #include "track_networkdata.h"
 #include "trash2_networkdata.h"

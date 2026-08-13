@@ -265,7 +265,7 @@
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="AttackLevel" TextToValueConverter="NormalizedPercentage"
                                      Value="1.0"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="AttackCurve" TextToValueConverter="NormalizedPercentage"
-                                     Value="0.4833333492279053" DefaultValue="0.5"/>
+                                     Value="0.3111110925674438" DefaultValue="0.5"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="DecayCurve" TextToValueConverter="NormalizedPercentage"
                                      Value="0.5166666507720947" DefaultValue="0.5"/>
                           <Parameter MinValue="0.0" MaxValue="1.0" ID="ReleaseCurve" TextToValueConverter="NormalizedPercentage"
@@ -500,7 +500,7 @@
           <Connection NodeId="branch1" ParameterId="Index"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Mode" Value="0.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="Mode" Value="1.0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="branch" ParameterId="Index"/>
         </Connections>

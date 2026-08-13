@@ -1328,25 +1328,6 @@ td { background: transparent;
 	height:30px;
 	}
 	
-	.search
-	{
-	
-		height: 0px;
-	width: 0px;
-	}
-	
-	.search::before
-	{
-		
-	}
-	
-	#clearsearch
-	{
-	
-		height: 0px;
-		width: 0px;
-	
-	}
 
 
 td, .targetLabel
