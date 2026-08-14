@@ -461,7 +461,7 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="30000.0" SkewFactor="0.2559580206871033"
-                 ID="A" Value="199.0" TextToValueConverter="Time" ExternalModulation="Disabled"
+                 ID="A" Value="228.0" TextToValueConverter="Time" ExternalModulation="Disabled"
                  ModColour="0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Attack"/>
@@ -469,7 +469,7 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="30000.0" SkewFactor="0.2559580206871033"
-                 ID="D" Value="30000.0" TextToValueConverter="Time" DefaultValue="0.0">
+                 ID="D" Value="2348.0" TextToValueConverter="Time" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Decay"/>
           <Connection NodeId="ahdsr" ParameterId="Decay"/>
@@ -483,14 +483,14 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="30000.0" SkewFactor="0.2559580206871033"
-                 ID="R" Value="330.0" TextToValueConverter="Time" DefaultValue="0.0">
+                 ID="R" Value="138.0" TextToValueConverter="Time" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Release"/>
           <Connection NodeId="ahdsr" ParameterId="Release"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Loop" Value="0.0"
-                 ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
+      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Loop" Value="1.0"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="flex_ahdsr" ParameterId="Mode"/>
         </Connections>

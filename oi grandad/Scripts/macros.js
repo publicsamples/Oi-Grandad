@@ -318,25 +318,25 @@ inline function autoRegisterMatrixTargets()
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_2_Position_A":
+		"Voice_2_PositionA":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_2_Position_B":
+		"Voice_2_PositionB":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_2_Position_C":
+		"Voice_2_PositionC":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_2_Position_D":
+		"Voice_2_PositionD":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
@@ -366,7 +366,7 @@ inline function autoRegisterMatrixTargets()
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_2_FX_Meta_1":
+		"Voice_2_Meta":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
@@ -384,25 +384,25 @@ inline function autoRegisterMatrixTargets()
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_3_Position_A":
+		"Voice_3_PositionA":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_3_Position_B":
+		"Voice_3_PositionB":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_3_Position_C":
+		"Voice_3_PositionC":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_3_Position_D":
+		"Voice_3_PositionD":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
@@ -432,7 +432,7 @@ inline function autoRegisterMatrixTargets()
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_3_FX_Meta_1":
+		"Voice_3_Meta":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
@@ -450,25 +450,25 @@ inline function autoRegisterMatrixTargets()
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_4_Position_A":
+		"Voice_4_PositionA":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_4_Position_B":
+		"Voice_4_PositionB":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_4_Position_C":
+		"Voice_4_PositionC":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_4_Position_D":
+		"Voice_4_PositionD":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",
@@ -498,7 +498,7 @@ inline function autoRegisterMatrixTargets()
 			Mode: "Unipolar",
 			IsNormalized: true
 		},
-		"Voice_4_FX_Meta_1":
+		"Voice_4_Meta":
 		{
 			Intensity: 1.0,
 			Mode: "Unipolar",

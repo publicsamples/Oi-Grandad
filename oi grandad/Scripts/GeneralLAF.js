@@ -82,7 +82,10 @@ laf.registerFunction("drawTableRuler", function(g, obj)
 const var ModeMenus1 = [Content.getComponent("OutputSelector"),
                         Content.getComponent("maxGrains1"),
                         Content.getComponent("PostMode1"),
-                        Content.getComponent("PitchMode1")];
+                        Content.getComponent("PitchMode1"),
+                        Content.getComponent("PitchMode2"),
+                        Content.getComponent("PitchMode3"),
+                        Content.getComponent("PitchMode4")];
 
 
 for(s in ModeMenus1)
@@ -174,7 +177,13 @@ Content.getComponent("TransPort2"),
 Content.getComponent("TransPort3"),
 Content.getComponent("TransPort4"),
                        Content.getComponent("GrainDirMode1"),
-                        Content.getComponent("SpreadDirMode1")];
+                       
+       Content.getComponent("GrainDirMode2"),
+       Content.getComponent("GrainDirMode3"),
+       Content.getComponent("GrainDirMode4"),              Content.getComponent("SpreadDirMode1"),
+                        Content.getComponent("SpreadDirMode2"),
+                        Content.getComponent("SpreadDirMode3"),
+                        Content.getComponent("SpreadDirMode4")];
     
     for(s in ModeMenus)
            s.setLocalLookAndFeel(cBLaf);            

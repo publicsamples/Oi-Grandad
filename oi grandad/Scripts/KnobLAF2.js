@@ -296,7 +296,7 @@ for (i = 0; i < 3; i++)
 
 const var Respawn =[];
 
-for (i = 0; i < 1; i++)
+for (i = 0; i < 4; i++)
 {
     Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf2);
 

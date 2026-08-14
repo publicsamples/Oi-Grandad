@@ -91,8 +91,15 @@ template <int NV>
 using frame2_block1_t = wrap::frame<2, frame2_block1_t_<NV>>;
 
 template <int NV>
+using fix8_block_t_ = container::chain<parameter::empty, 
+                                       wrap::fix<2, frame2_block1_t<NV>>>;
+
+template <int NV>
+using fix8_block_t = wrap::fix_block<8, fix8_block_t_<NV>>;
+
+template <int NV>
 using chain18_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, frame2_block1_t<NV>>>;
+                                   wrap::fix<2, fix8_block_t<NV>>>;
 
 DECLARE_PARAMETER_RANGE_SKEW(clone_cable_modRange, 
                              0., 
@@ -329,8 +336,6 @@ using Meta_5 = parameter::from0To1<filters::one_pole<NV>,
                                    0, 
                                    Meta_5Range>;
 
-template <int NV> using Meta_6 = ResLp_12<NV>;
-
 template <int NV>
 using Meta = parameter::chain<ranges::Identity, 
                               Meta_0<NV>, 
@@ -339,9 +344,9 @@ using Meta = parameter::chain<ranges::Identity,
                               Meta_3<NV>, 
                               Meta_4<NV>, 
                               Meta_5<NV>, 
-                              Meta_6<NV>, 
                               parameter::plain<sn_fin_impl::clone_cable2_t<NV>, 1>, 
-                              parameter::plain<fx::reverb, 1>>;
+                              parameter::plain<fx::reverb, 1>, 
+                              parameter::plain<routing::receive<NV, stereo_frame_cable<NV>>, 0>>;
 
 template <int NV>
 using ResoMix = parameter::plain<sn_fin_impl::xfader_t<NV>, 
@@ -398,52 +403,58 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 	{
 		// Node References -------------------------------------------------------------------------
 		
-		auto& xfader = this->getT(0);                                                       // sn_fin_impl::xfader_t<NV>
-		auto& chain16 = this->getT(1);                                                      // sn_fin_impl::chain16_t<NV>
-		auto& split1 = this->getT(1).getT(0);                                               // sn_fin_impl::split1_t<NV>
-		auto& chain22 = this->getT(1).getT(0).getT(0);                                      // sn_fin_impl::chain22_t<NV>
-		auto& gain = this->getT(1).getT(0).getT(0).getT(0);                                 // core::gain<NV>
-		auto& chain19 = this->getT(1).getT(0).getT(1);                                      // sn_fin_impl::chain19_t<NV>
-		auto& branch1 = this->getT(1).getT(0).getT(1).getT(0);                              // sn_fin_impl::branch1_t<NV>
-		auto& chain20 = this->getT(1).getT(0).getT(1).getT(0).getT(0);                      // sn_fin_impl::chain20_t
-		auto& chain38 = this->getT(1).getT(0).getT(1).getT(0).getT(1);                      // sn_fin_impl::chain38_t<NV>
-		auto& chain1 = this->getT(1).getT(0).getT(1).getT(0).getT(1).getT(0);               // sn_fin_impl::chain1_t<NV>
-		auto& svf = this->getT(1).getT(0).getT(1).getT(0).getT(1).getT(0).getT(0);          // filters::svf<NV>
-		auto& svf1 = this->getT(1).getT(0).getT(1).getT(0).getT(1).getT(0).getT(1);         // filters::svf<NV>
-		auto& chain43 = this->getT(1).getT(0).getT(1).getT(0).getT(2);                      // sn_fin_impl::chain43_t<NV>
-		auto& svf5 = this->getT(1).getT(0).getT(1).getT(0).getT(2).getT(0);                 // filters::svf<NV>
-		auto& svf7 = this->getT(1).getT(0).getT(1).getT(0).getT(2).getT(1);                 // filters::svf<NV>
-		auto& chain40 = this->getT(1).getT(0).getT(1).getT(0).getT(3);                      // sn_fin_impl::chain40_t<NV>
-		auto& svf4 = this->getT(1).getT(0).getT(1).getT(0).getT(3).getT(0);                 // filters::svf<NV>
-		auto& svf8 = this->getT(1).getT(0).getT(1).getT(0).getT(3).getT(1);                 // filters::svf<NV>
-		auto& chain39 = this->getT(1).getT(0).getT(1).getT(0).getT(4);                      // sn_fin_impl::chain39_t<NV>
-		auto& svf3 = this->getT(1).getT(0).getT(1).getT(0).getT(4).getT(0);                 // filters::svf<NV>
-		auto& svf9 = this->getT(1).getT(0).getT(1).getT(0).getT(4).getT(1);                 // filters::svf<NV>
-		auto& chain41 = this->getT(1).getT(0).getT(1).getT(0).getT(5);                      // sn_fin_impl::chain41_t<NV>
-		auto& svf_eq1 = this->getT(1).getT(0).getT(1).getT(0).getT(5).getT(0);              // filters::svf_eq<NV>
-		auto& chain42 = this->getT(1).getT(0).getT(1).getT(0).getT(6);                      // sn_fin_impl::chain42_t<NV>
-		auto& svf_eq2 = this->getT(1).getT(0).getT(1).getT(0).getT(6).getT(0);              // filters::svf_eq<NV>
-		auto& frame2_block2 = this->getT(1).getT(0).getT(1).getT(0).getT(7);                // sn_fin_impl::frame2_block2_t<NV>
-		auto& allpass = this->getT(1).getT(0).getT(1).getT(0).getT(7).getT(0);              // filters::allpass<NV>
-		auto& one_pole4 = this->getT(1).getT(0).getT(1).getT(0).getT(7).getT(1);            // filters::one_pole<NV>
-		auto& chain18 = this->getT(1).getT(0).getT(1).getT(0).getT(8);                      // sn_fin_impl::chain18_t<NV>
-		auto& frame2_block1 = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0);        // sn_fin_impl::frame2_block1_t<NV>
-		auto& receive = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0).getT(0);      // routing::receive<NV, stereo_frame_cable<NV>>
-		auto& jdelay_cubic = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0).getT(1); // jdsp::jdelay_cubic<NV>
-		auto& one_pole5 = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0).getT(2);    // filters::one_pole<NV>
-		auto& send = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0).getT(3);         // routing::send<NV, stereo_frame_cable<NV>>
-		auto& one_pole3 = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0).getT(4);    // filters::one_pole<NV>
-		auto& chain17 = this->getT(1).getT(0).getT(1).getT(0).getT(9);                      // sn_fin_impl::chain17_t<NV>
-		auto& clone_cable = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(0);          // sn_fin_impl::clone_cable_t<NV>
-		auto& clone_cable1 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(1);         // sn_fin_impl::clone_cable1_t<NV>
-		auto& clone_cable2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(2);         // sn_fin_impl::clone_cable2_t<NV>
-		auto& clone = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(3);                // sn_fin_impl::clone_t<NV>                // sn_fin_impl::clone_child_t<NV>
-		auto res2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(3).getT(0);          // project::res2<NV>
-		auto gain2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(3).getT(1);         // core::gain<NV>
-		auto& one_pole2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(4);            // filters::one_pole<NV>
-		auto& chain = this->getT(1).getT(0).getT(1).getT(0).getT(10);                       // sn_fin_impl::chain_t
-		auto& reverb = this->getT(1).getT(0).getT(1).getT(0).getT(10).getT(0);              // fx::reverb
-		auto& gain1 = this->getT(1).getT(0).getT(1).getT(1);                                // core::gain<NV>
+		auto& xfader = this->getT(0);                                                        // sn_fin_impl::xfader_t<NV>
+		auto& chain16 = this->getT(1);                                                       // sn_fin_impl::chain16_t<NV>
+		auto& split1 = this->getT(1).getT(0);                                                // sn_fin_impl::split1_t<NV>
+		auto& chain22 = this->getT(1).getT(0).getT(0);                                       // sn_fin_impl::chain22_t<NV>
+		auto& gain = this->getT(1).getT(0).getT(0).getT(0);                                  // core::gain<NV>
+		auto& chain19 = this->getT(1).getT(0).getT(1);                                       // sn_fin_impl::chain19_t<NV>
+		auto& branch1 = this->getT(1).getT(0).getT(1).getT(0);                               // sn_fin_impl::branch1_t<NV>
+		auto& chain20 = this->getT(1).getT(0).getT(1).getT(0).getT(0);                       // sn_fin_impl::chain20_t
+		auto& chain38 = this->getT(1).getT(0).getT(1).getT(0).getT(1);                       // sn_fin_impl::chain38_t<NV>
+		auto& chain1 = this->getT(1).getT(0).getT(1).getT(0).getT(1).getT(0);                // sn_fin_impl::chain1_t<NV>
+		auto& svf = this->getT(1).getT(0).getT(1).getT(0).getT(1).getT(0).getT(0);           // filters::svf<NV>
+		auto& svf1 = this->getT(1).getT(0).getT(1).getT(0).getT(1).getT(0).getT(1);          // filters::svf<NV>
+		auto& chain43 = this->getT(1).getT(0).getT(1).getT(0).getT(2);                       // sn_fin_impl::chain43_t<NV>
+		auto& svf5 = this->getT(1).getT(0).getT(1).getT(0).getT(2).getT(0);                  // filters::svf<NV>
+		auto& svf7 = this->getT(1).getT(0).getT(1).getT(0).getT(2).getT(1);                  // filters::svf<NV>
+		auto& chain40 = this->getT(1).getT(0).getT(1).getT(0).getT(3);                       // sn_fin_impl::chain40_t<NV>
+		auto& svf4 = this->getT(1).getT(0).getT(1).getT(0).getT(3).getT(0);                  // filters::svf<NV>
+		auto& svf8 = this->getT(1).getT(0).getT(1).getT(0).getT(3).getT(1);                  // filters::svf<NV>
+		auto& chain39 = this->getT(1).getT(0).getT(1).getT(0).getT(4);                       // sn_fin_impl::chain39_t<NV>
+		auto& svf3 = this->getT(1).getT(0).getT(1).getT(0).getT(4).getT(0);                  // filters::svf<NV>
+		auto& svf9 = this->getT(1).getT(0).getT(1).getT(0).getT(4).getT(1);                  // filters::svf<NV>
+		auto& chain41 = this->getT(1).getT(0).getT(1).getT(0).getT(5);                       // sn_fin_impl::chain41_t<NV>
+		auto& svf_eq1 = this->getT(1).getT(0).getT(1).getT(0).getT(5).getT(0);               // filters::svf_eq<NV>
+		auto& chain42 = this->getT(1).getT(0).getT(1).getT(0).getT(6);                       // sn_fin_impl::chain42_t<NV>
+		auto& svf_eq2 = this->getT(1).getT(0).getT(1).getT(0).getT(6).getT(0);               // filters::svf_eq<NV>
+		auto& frame2_block2 = this->getT(1).getT(0).getT(1).getT(0).getT(7);                 // sn_fin_impl::frame2_block2_t<NV>
+		auto& allpass = this->getT(1).getT(0).getT(1).getT(0).getT(7).getT(0);               // filters::allpass<NV>
+		auto& one_pole4 = this->getT(1).getT(0).getT(1).getT(0).getT(7).getT(1);             // filters::one_pole<NV>
+		auto& chain18 = this->getT(1).getT(0).getT(1).getT(0).getT(8);                       // sn_fin_impl::chain18_t<NV>
+		auto& fix8_block = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0);            // sn_fin_impl::fix8_block_t<NV>
+		auto& frame2_block1 = this->getT(1).getT(0).getT(1).getT(0).getT(8).getT(0).getT(0); // sn_fin_impl::frame2_block1_t<NV>
+		auto& receive = this->getT(1).getT(0).getT(1).getT(0).                               // routing::receive<NV, stereo_frame_cable<NV>>
+                        getT(8).getT(0).getT(0).getT(0);
+		auto& jdelay_cubic = this->getT(1).getT(0).getT(1).getT(0).                 // jdsp::jdelay_cubic<NV>
+                             getT(8).getT(0).getT(0).getT(1);
+		auto& one_pole5 = this->getT(1).getT(0).getT(1).getT(0).                    // filters::one_pole<NV>
+                          getT(8).getT(0).getT(0).getT(2);
+		auto& send = this->getT(1).getT(0).getT(1).getT(0).                         // routing::send<NV, stereo_frame_cable<NV>>
+                     getT(8).getT(0).getT(0).getT(3);
+		auto& one_pole3 = this->getT(1).getT(0).getT(1).getT(0).                    // filters::one_pole<NV>
+                          getT(8).getT(0).getT(0).getT(4);
+		auto& chain17 = this->getT(1).getT(0).getT(1).getT(0).getT(9);              // sn_fin_impl::chain17_t<NV>
+		auto& clone_cable = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(0);  // sn_fin_impl::clone_cable_t<NV>
+		auto& clone_cable1 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(1); // sn_fin_impl::clone_cable1_t<NV>
+		auto& clone_cable2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(2); // sn_fin_impl::clone_cable2_t<NV>
+		auto& clone = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(3);        // sn_fin_impl::clone_t<NV>        // sn_fin_impl::clone_child_t<NV>
+		auto res2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(3).getT(0);  // project::res2<NV>
+		auto gain2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(3).getT(1); // core::gain<NV>
+		auto& one_pole2 = this->getT(1).getT(0).getT(1).getT(0).getT(9).getT(4);    // filters::one_pole<NV>
+		auto& chain = this->getT(1).getT(0).getT(1).getT(0).getT(10);               // sn_fin_impl::chain_t
+		auto& reverb = this->getT(1).getT(0).getT(1).getT(0).getT(10).getT(0);      // fx::reverb
+		auto& gain1 = this->getT(1).getT(0).getT(1).getT(1);                        // core::gain<NV>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -487,9 +498,9 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		Meta_p.connectT(3, svf8);         // Meta -> svf8::Frequency
 		Meta_p.connectT(4, svf9);         // Meta -> svf9::Frequency
 		Meta_p.connectT(5, one_pole4);    // Meta -> one_pole4::Frequency
-		Meta_p.connectT(6, one_pole3);    // Meta -> one_pole3::Frequency
-		Meta_p.connectT(7, clone_cable2); // Meta -> clone_cable2::Value
-		Meta_p.connectT(8, reverb);       // Meta -> reverb::Width
+		Meta_p.connectT(6, clone_cable2); // Meta -> clone_cable2::Value
+		Meta_p.connectT(7, reverb);       // Meta -> reverb::Width
+		Meta_p.connectT(8, receive);      // Meta -> receive::Feedback
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -598,7 +609,7 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		one_pole4.setParameterT(4, 1.);   // filters::one_pole::Mode
 		one_pole4.setParameterT(5, 1.);   // filters::one_pole::Enabled
 		
-		receive.setParameterT(0, 0.); // routing::receive::Feedback
+		; // receive::Feedback is automated
 		
 		jdelay_cubic.setParameterT(0, 1000.); // jdsp::jdelay_cubic::Limit
 		;                                     // jdelay_cubic::DelayTime is automated
@@ -610,7 +621,7 @@ template <int NV> struct instance: public sn_fin_impl::sn_fin_t_<NV>
 		one_pole5.setParameterT(4, 0.);   // filters::one_pole::Mode
 		one_pole5.setParameterT(5, 1.);   // filters::one_pole::Enabled
 		
-		;                                 // one_pole3::Frequency is automated
+		one_pole3.setParameterT(0, 25.);  // filters::one_pole::Frequency
 		one_pole3.setParameterT(1, 1.);   // filters::one_pole::Q
 		one_pole3.setParameterT(2, 0.);   // filters::one_pole::Gain
 		one_pole3.setParameterT(3, 0.01); // filters::one_pole::Smoothing

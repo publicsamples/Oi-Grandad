@@ -132,7 +132,7 @@ for (i = 0; i < 3; i++)
 
 const var Glide =[];
 
-for (i = 0; i < 1; i++)
+for (i = 0; i < 4; i++)
 {
     Glide[i] = Content.getComponent("Glide"+(i+1)).setLocalLookAndFeel(KnobLaf);
 

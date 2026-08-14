@@ -388,7 +388,7 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
             0x5067, 0x6165, 0x006B, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0800, 0x0000, 
             0x4D00, 0x646F, 0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
-            0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000
+            0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(2)
 		{
@@ -563,7 +563,7 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		;                                      // flex_ahdsr::Release is automated
 		;                                      // flex_ahdsr::Mode is automated
 		flex_ahdsr.setParameterT(6, 1.);       // envelope::flex_ahdsr::AttackLevel
-		flex_ahdsr.setParameterT(7, 0.483333); // envelope::flex_ahdsr::AttackCurve
+		flex_ahdsr.setParameterT(7, 0.311111); // envelope::flex_ahdsr::AttackCurve
 		flex_ahdsr.setParameterT(8, 0.516667); // envelope::flex_ahdsr::DecayCurve
 		flex_ahdsr.setParameterT(9, 0.1);      // envelope::flex_ahdsr::ReleaseCurve
 		
@@ -603,7 +603,7 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		this->setParameterT(5, 330.);
 		this->setParameterT(6, 0.);
 		this->setParameterT(7, 0.);
-		this->setParameterT(8, 0.);
+		this->setParameterT(8, 1.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
