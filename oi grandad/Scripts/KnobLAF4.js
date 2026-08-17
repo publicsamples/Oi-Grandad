@@ -1,6 +1,26 @@
 const var KnobLaf4 = Content.createLocalLookAndFeel();
 
+inline function drawKnobModulationArc(g, obj, area, thickness)
+{
+	if(!obj.modulationActive)
+		return;
 
+	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
+	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
+	local modRange = Content.createPath();
+	modRange.setBounds(n);
+	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
+
+	g.setColour(0x55777575);
+	g.drawPath(modRange, area, thickness);
+
+	local valueArc = Content.createPath();
+	valueArc.setBounds(n);
+	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
+
+	g.setColour(0xFB777575);
+	g.drawPath(valueArc, area, Math.max(1.75, thickness - 0.5));
+}
 
 KnobLaf4.registerFunction("drawRotarySlider", function(g, obj)
 {
@@ -63,11 +83,10 @@ KnobLaf4.registerFunction("drawRotarySlider", function(g, obj)
 					   obj.bgColour, 0.0, obj.area[3], false]);
 //	g.fillEllipse(Rect.withSizeKeepingCentre(obj.area, radius, radius));
 	
-
-	
 	g.setGradientFill([obj.itemColour2, 0.0, 0.0,
 					   obj.itemColour2, 0.0, obj.area[3], true]);
-	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 1.5);
+	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 2.5);
+	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.0);
 	
 	if(underDrag)
 	{
@@ -132,7 +151,23 @@ const var EnkNkbs = [Content.getComponent("EnvAtk1"),
                      Content.getComponent("EnvAtk4"),
                      Content.getComponent("EnvDec4"),
                      Content.getComponent("EnvSus4"),
-                     Content.getComponent("EnvRel4")];
+                     Content.getComponent("EnvRel4"),
+                     Content.getComponent("EnvAtk5"),
+                                       Content.getComponent("EnvDec5"),
+                                       Content.getComponent("EnvSus5"),
+                                       Content.getComponent("EnvRel5"),
+                                       Content.getComponent("EnvRel6"),
+                                       Content.getComponent("EnvSus6"),
+                                       Content.getComponent("EnvDec6"),
+                                       Content.getComponent("EnvAtk6"),
+                                       Content.getComponent("EnvAtk7"),
+                                       Content.getComponent("EnvDec7"),
+                                       Content.getComponent("EnvSus7"),
+                                       Content.getComponent("EnvRel7"),
+                                       Content.getComponent("EnvRel8"),
+                                       Content.getComponent("EnvSus8"),
+                                       Content.getComponent("EnvDec8"),
+                                       Content.getComponent("EnvAtk8")];
                      
                     
 for(s in EnkNkbs)

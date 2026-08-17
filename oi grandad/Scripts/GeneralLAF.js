@@ -95,6 +95,8 @@ const var ResModeIds = ["ResMode1", "ResMode2", "ResMode3", "ResMode4"];
 const var PlaybackModeIds = ["StgSel1", "StgSel2", "StgSel3", "StgSel4"];
 const var TriggerSelectorIds = ["TrigSel1", "TrigSel2", "TrigSel3", "TrigSel4", "TrigSel5", "TrigSel6", "TrigSel7", "TrigSel8", "TrigSel9", "TrigSel10", "TrigSel11", "TrigSel12"];
 const var VoiceMenuIds = ["TransPort1", "TransPort2", "TransPort3", "TransPort4", "GrainDirMode1", "GrainDirMode2", "GrainDirMode3", "GrainDirMode4", "SpreadDirMode1", "SpreadDirMode2", "SpreadDirMode3", "SpreadDirMode4"];
+const var TrackMenus = ["EnvVoiceSel5", "EnvVoiceSel6", "EnvVoiceSel7", "EnvVoiceSel8"];
+
 
 setLookAndFeelForIds(ModeMenuIds1, cBLaf);
 setLookAndFeelForIds(ModeMenuIds2, cBLaf);
@@ -105,6 +107,6 @@ setLookAndFeelForIds(ResModeIds, cBLaf);
 setLookAndFeelForIds(PlaybackModeIds, cBLaf);
 setLookAndFeelForIds(TriggerSelectorIds, cBLaf);
 setLookAndFeelForIds(VoiceMenuIds, cBLaf);
-       
+setLookAndFeelForIds(TrackMenus, cBLaf);     
 
                             

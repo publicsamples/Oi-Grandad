@@ -2,6 +2,10 @@ const var PosIndicator1 = Content.getComponent("PosIndicator1");
 const var PosIndicator5 = Content.getComponent("PosIndicator5");
 const var PosIndicator9 = Content.getComponent("PosIndicator9");
 const var PosIndicator13 = Content.getComponent("PosIndicator13");
+const var PosIndicator17 = Content.getComponent("PosIndicator17");
+const var PosIndicator21 = Content.getComponent("PosIndicator21");
+const var PosIndicator25 = Content.getComponent("PosIndicator25");
+const var PosIndicator29 = Content.getComponent("PosIndicator29");
 
 const var MultPosA1 = Content.getComponent("MultPosA1");
 const var MultPosB1 = Content.getComponent("MultPosB1");
@@ -60,9 +64,9 @@ inline function drawScrubHeads(g, area, isMulti, a, b, c, d)
 	var centreY = area[1] + area[3] * 0.5;
 	var top = area[1] + 2;
 	var bottom = area[1] + area[3] - 2;
-	var radius = 4.0;
+	var radius = 7.0;
 	var values = [a, b, c, d];
-	var colours = [0xFF5BE7C4, 0xFFFFE082, 0xFFFFC266, 0xFF8FD3FF];
+	var colours = [0xFBFF9B9B, 0xFFFFD6A5, 0xFFFFFEC4, 0xFFCBFFA9];
 	var widths = [2.0, 1.25, 1.25, 1.25];
 	var headCount = isMulti ? 4 : 1;
 
@@ -72,6 +76,25 @@ inline function drawScrubHeads(g, area, isMulti, a, b, c, d)
 		g.setColour(colours[i]);
 		g.drawLine(x, x, top, bottom, widths[i]);
 		g.fillEllipse([x - radius, centreY - radius, radius * 2.0, radius * 2.0]);
+		g.setColour(0xFF1F252C);
+		g.setFont("Montserrat", 11.0);
+		g.drawAlignedText((i + 1) + "", [x - radius, centreY - radius - 1, radius * 2.0, radius * 2.0], "centred");
+	}
+}
+
+inline function drawOverviewScrubHeads(g, area, isMulti, a, b, c, d)
+{
+	var top = area[1] + 2;
+	var bottom = area[1] + area[3] - 2;
+	var values = [a, b, c, d];
+	var colours = [0xFBFF9B9B, 0xFFFFD6A5, 0xFFFFFEC4, 0xFFCBFFA9];
+	var headCount = isMulti ? 4 : 1;
+
+	for (i = 0; i < headCount; i++)
+	{
+		var x = area[0] + clampIndicatorValue(values[i]) * area[2];
+		g.setColour(colours[i]);
+		g.drawLine(x, x, top, bottom, 2.0);
 	}
 }
 
@@ -158,3 +181,87 @@ PosIndicator13.setTimerCallback(function()
 });
 
 PosIndicator13.startTimer(33);
+
+PosIndicator17.setPaintRoutine(function(g)
+{
+	var area = this.getLocalBounds(0);
+	var isMulti = StgSel1.getValue() == 2 || StgSel1.getValue() == 4;
+
+	drawOverviewScrubHeads(g,
+						   area,
+						   isMulti,
+						   getModulatorIndicatorValue(Voice_1_PositionA, MultPosA1),
+						   getModulatorIndicatorValue(Voice_1_PositionB, MultPosB1),
+						   getModulatorIndicatorValue(Voice_1_PositionC, MultPosC1),
+						   getModulatorIndicatorValue(Voice_1_PositionD, MultPosD1));
+});
+
+PosIndicator17.setTimerCallback(function()
+{
+	this.repaint();
+});
+
+PosIndicator17.startTimer(33);
+
+PosIndicator21.setPaintRoutine(function(g)
+{
+	var area = this.getLocalBounds(0);
+	var isMulti = StgSel2.getValue() == 2 || StgSel2.getValue() == 4;
+
+	drawOverviewScrubHeads(g,
+						   area,
+						   isMulti,
+						   getModulatorIndicatorValue(Voice_2_PositionA, MultPosA2),
+						   getModulatorIndicatorValue(Voice_2_PositionB, MultPosB2),
+						   getModulatorIndicatorValue(Voice_2_PositionC, MultPosC2),
+						   getModulatorIndicatorValue(Voice_2_PositionD, MultPosD2));
+});
+
+PosIndicator21.setTimerCallback(function()
+{
+	this.repaint();
+});
+
+PosIndicator21.startTimer(33);
+
+PosIndicator25.setPaintRoutine(function(g)
+{
+	var area = this.getLocalBounds(0);
+	var isMulti = StgSel3.getValue() == 2 || StgSel3.getValue() == 4;
+
+	drawOverviewScrubHeads(g,
+						   area,
+						   isMulti,
+						   getModulatorIndicatorValue(Voice_3_PositionA, MultPosA3),
+						   getModulatorIndicatorValue(Voice_3_PositionB, MultPosB3),
+						   getModulatorIndicatorValue(Voice_3_PositionC, MultPosC3),
+						   getModulatorIndicatorValue(Voice_3_PositionD, MultPosD3));
+});
+
+PosIndicator25.setTimerCallback(function()
+{
+	this.repaint();
+});
+
+PosIndicator25.startTimer(33);
+
+PosIndicator29.setPaintRoutine(function(g)
+{
+	var area = this.getLocalBounds(0);
+	var isMulti = StgSel4.getValue() == 2 || StgSel4.getValue() == 4;
+
+	drawOverviewScrubHeads(g,
+						   area,
+						   isMulti,
+						   getModulatorIndicatorValue(Voice_4_PositionA, MultPosA4),
+						   getModulatorIndicatorValue(Voice_4_PositionB, MultPosB4),
+						   getModulatorIndicatorValue(Voice_4_PositionC, MultPosC4),
+						   getModulatorIndicatorValue(Voice_4_PositionD, MultPosD4));
+});
+
+PosIndicator29.setTimerCallback(function()
+{
+	this.repaint();
+});
+
+PosIndicator29.startTimer(33);

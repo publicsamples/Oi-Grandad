@@ -419,12 +419,6 @@ template <int NV>
 using minmax_t = control::minmax<NV, minmax_mod<NV>>;
 
 template <int NV>
-using ramp_t = wrap::no_data<core::ramp<NV, false>>;
-template <int NV>
-using tempo_sync2_t = wrap::mod<parameter::plain<ramp_t<NV>, 0>, 
-                                control::tempo_sync<NV>>;
-
-template <int NV>
 using tempo_sync3_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
                                          16>;
 template <int NV>
@@ -443,10 +437,8 @@ using modchain_t_ = container::chain<parameter::empty,
                                      tempo_sync1_t<NV>, 
                                      control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>, 
                                      minmax_t<NV>, 
-                                     tempo_sync2_t<NV>, 
-                                     ramp_t<NV>, 
-                                     tempo_sync3_t<NV>, 
                                      control::tempo_sync<NV>, 
+                                     tempo_sync3_t<NV>, 
                                      pack_resizer_t, 
                                      pack8_writer_t>;
 
@@ -1081,13 +1073,13 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
             0x1300, 0x0000, 0x4600, 0x4D78, 0x7465, 0x3161, 0x0000, 0x0000, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x0014, 0x0000, 0x6552, 0x6F73, 0x616E, 0x636E, 
-            0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 0x173F, 0x3F55, 0xED3F, 
+            0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0xED3F, 
             0x5BE3, 0x003F, 0x0000, 0x5C00, 0x1500, 0x0000, 0x4D00, 0x646F, 
             0x754F, 0x3274, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0016, 0x0000, 
             0x6150, 0x006E, 0x0000, 0x8000, 0x00BF, 0x8000, 0x663F, 0xCE66, 
             0x003C, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1706, 0x0000, 0x5600, 
-            0x6C6F, 0x0000, 0x0000, 0xC2C8, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x6C6F, 0x0000, 0x0000, 0xC2C8, 0x0000, 0x0000, 0x9994, 0xC019, 
             0x833E, 0x40AD, 0xCCCD, 0x3DCC, 0x005C, 0x0018, 0x0000, 0x7247, 
             0x6961, 0x536E, 0x6E79, 0x0063, 0x0000, 0x0000, 0x0000, 0x8000, 
             0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1900, 
@@ -1148,12 +1140,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		auto& tempo_sync1 = this->getT(0).getT(0).getT(3);                                   // MatrixTest2_impl::tempo_sync1_t<NV>
 		auto& smoothed_parameter = this->getT(0).getT(0).getT(4);                            // control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>
 		auto& minmax = this->getT(0).getT(0).getT(5);                                        // MatrixTest2_impl::minmax_t<NV>
-		auto& tempo_sync2 = this->getT(0).getT(0).getT(6);                                   // MatrixTest2_impl::tempo_sync2_t<NV>
-		auto& ramp = this->getT(0).getT(0).getT(7);                                          // MatrixTest2_impl::ramp_t<NV>
-		auto& tempo_sync3 = this->getT(0).getT(0).getT(8);                                   // MatrixTest2_impl::tempo_sync3_t<NV>
-		auto& tempo_sync4 = this->getT(0).getT(0).getT(9);                                   // control::tempo_sync<NV>
-		auto& pack_resizer = this->getT(0).getT(0).getT(10);                                 // MatrixTest2_impl::pack_resizer_t
-		auto& pack8_writer = this->getT(0).getT(0).getT(11);                                 // MatrixTest2_impl::pack8_writer_t
+		auto& tempo_sync2 = this->getT(0).getT(0).getT(6);                                   // control::tempo_sync<NV>
+		auto& tempo_sync3 = this->getT(0).getT(0).getT(7);                                   // MatrixTest2_impl::tempo_sync3_t<NV>
+		auto& pack_resizer = this->getT(0).getT(0).getT(8);                                  // MatrixTest2_impl::pack_resizer_t
+		auto& pack8_writer = this->getT(0).getT(0).getT(9);                                  // MatrixTest2_impl::pack8_writer_t
 		auto& granular_player_stepquant_density_hybrid_native = this->getT(0).getT(1);       // project::granular_player_stepquant_density_hybrid_native<NV>
 		auto& chain33 = this->getT(1);                                                       // MatrixTest2_impl::chain33_t<NV>
 		auto& branch2 = this->getT(1).getT(0);                                               // MatrixTest2_impl::branch2_t
@@ -1395,7 +1385,6 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		extra_mod6.getParameter().connectT(9, pma_unscaled3);                                                     // extra_mod6 -> pma_unscaled3::Multiply
 		tempo_sync1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync1 -> granular_player_stepquant_density_hybrid_native::PitchSyncInput
 		minmax.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);    // minmax -> granular_player_stepquant_density_hybrid_native::WindowShape
-		tempo_sync2.getParameter().connectT(0, ramp);                                                             // tempo_sync2 -> ramp::PeriodTime
 		tempo_sync3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync3 -> granular_player_stepquant_density_hybrid_native::BloomDuration
 		peak1.getParameter().connectT(0, global_cable15);                                                         // peak1 -> global_cable15::Value
 		peak19.getParameter().connectT(0, global_cable18);                                                        // peak19 -> global_cable18::Value
@@ -1468,19 +1457,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		tempo_sync2.setParameterT(2, 1.);   // control::tempo_sync::Enabled
 		tempo_sync2.setParameterT(3, 200.); // control::tempo_sync::UnsyncedTime
 		
-		;                          // ramp::PeriodTime is automated
-		ramp.setParameterT(1, 0.); // core::ramp::LoopStart
-		ramp.setParameterT(2, 1.); // core::ramp::Gate
-		
 		tempo_sync3.setParameterT(0, 14.);   // control::tempo_sync::Tempo
 		;                                    // tempo_sync3::Multiplier is automated
 		tempo_sync3.setParameterT(2, 1.);    // control::tempo_sync::Enabled
 		tempo_sync3.setParameterT(3, 852.7); // control::tempo_sync::UnsyncedTime
-		
-		tempo_sync4.setParameterT(0, 13.);  // control::tempo_sync::Tempo
-		tempo_sync4.setParameterT(1, 4.);   // control::tempo_sync::Multiplier
-		tempo_sync4.setParameterT(2, 1.);   // control::tempo_sync::Enabled
-		tempo_sync4.setParameterT(3, 200.); // control::tempo_sync::UnsyncedTime
 		
 		pack_resizer.setParameterT(0, 8.); // control::pack_resizer::NumSliders
 		
@@ -1690,10 +1670,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->setParameterT(17, 0.774202);
 		this->setParameterT(18, 2.);
 		this->setParameterT(19, 0.);
-		this->setParameterT(20, 0.747392);
+		this->setParameterT(20, 1.);
 		this->setParameterT(21, 0.);
 		this->setParameterT(22, 0.0251953);
-		this->setParameterT(23, 0.);
+		this->setParameterT(23, -2.4);
 		this->setParameterT(24, 1.);
 		this->setParameterT(25, 29.);
 		this->setParameterT(26, 5.);
@@ -1756,9 +1736,8 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(4).setExternalData(b, index);                         // MatrixTest2_impl::pitch_mod_t<NV>
 		this->getT(0).getT(0).getT(0).getT(5).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod2_t<NV>
 		this->getT(0).getT(0).getT(0).getT(6).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod6_t<NV>
-		this->getT(0).getT(0).getT(7).setExternalData(b, index);                                 // MatrixTest2_impl::ramp_t<NV>
-		this->getT(0).getT(0).getT(10).setExternalData(b, index);                                // MatrixTest2_impl::pack_resizer_t
-		this->getT(0).getT(0).getT(11).setExternalData(b, index);                                // MatrixTest2_impl::pack8_writer_t
+		this->getT(0).getT(0).getT(8).setExternalData(b, index);                                 // MatrixTest2_impl::pack_resizer_t
+		this->getT(0).getT(0).getT(9).setExternalData(b, index);                                 // MatrixTest2_impl::pack8_writer_t
 		this->getT(0).getT(1).setExternalData(b, index);                                         // project::granular_player_stepquant_density_hybrid_native<NV>
 		this->getT(1).getT(0).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak1_t
 		this->getT(1).getT(0).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak19_t

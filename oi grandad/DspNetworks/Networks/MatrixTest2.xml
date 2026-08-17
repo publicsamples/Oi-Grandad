@@ -204,9 +204,6 @@
               </Node>
               <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0"
                     Name="tempo_sync2">
-                <ModulationTargets>
-                  <Connection NodeId="ramp" ParameterId="PeriodTime"/>
-                </ModulationTargets>
                 <Parameters>
                   <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="0.0"/>
                   <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
@@ -215,21 +212,6 @@
                              DefaultValue="0.0"/>
                   <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" TextToValueConverter="Time" Value="200.0"/>
-                </Parameters>
-              </Node>
-              <Node ID="ramp" FactoryPath="core.ramp" Bypassed="0" Name="ramp">
-                <ComplexData>
-                  <DisplayBuffers>
-                    <DisplayBuffer Index="-1"/>
-                  </DisplayBuffers>
-                </ComplexData>
-                <Parameters>
-                  <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                             ID="PeriodTime" TextToValueConverter="Time" DefaultValue="100.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="LoopStart" TextToValueConverter="NormalizedPercentage"
-                             Value="0.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
                 </Parameters>
               </Node>
               <Node ID="tempo_sync3" FactoryPath="control.tempo_sync" Bypassed="0"
@@ -249,21 +231,8 @@
                              DefaultValue="200.0"/>
                 </Parameters>
               </Node>
-              <Node ID="tempo_sync4" FactoryPath="control.tempo_sync" Bypassed="0"
-                    Name="tempo_sync3">
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="13.0"
-                             DefaultValue="0.0"/>
-                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
-                             Value="4.0" DefaultValue="1.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
-                             DefaultValue="0.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                             ID="UnsyncedTime" TextToValueConverter="Time" Value="200.0"/>
-                </Parameters>
-              </Node>
               <Node ID="pack_resizer" FactoryPath="control.pack_resizer" Bypassed="0"
-                    Name="pack_resizer" Folded="1">
+                    Name="pack_resizer">
                 <ComplexData>
                   <SliderPacks>
                     <SliderPack Index="0" EmbeddedData="4....f+."/>
@@ -1339,8 +1308,8 @@
         <Connections/>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.8589466150147589"
-                 ID="Resonance" Value="0.7473921249561396" DefaultValue="1.0"
-                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
+                 ID="Resonance" Value="1.0" TextToValueConverter="" ExternalModulation="Disabled"
+                 ModColour="0">
         <Connections>
           <Connection NodeId="svf" ParameterId="Q"/>
           <Connection NodeId="svf5" ParameterId="Q"/>
@@ -1355,20 +1324,22 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="3.0" StepSize="1.0" ID="ModOut2" Value="0.0"
-                 TextToValueConverter="">
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="branch18" ParameterId="Index"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="-1.0" MaxValue="1.0" ID="Pan" Value="0.0251953125000004"
-                 TextToValueConverter="" DefaultValue="0.0">
+                 TextToValueConverter="" DefaultValue="0.0" ExternalModulation="Disabled"
+                 ModColour="0">
         <Connections>
           <Connection NodeId="jpanner" ParameterId="Pan"/>
         </Connections>
       </Parameter>
       <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                 SkewFactor="5.422270774841309" ID="Vol" Value="0.0" TextToValueConverter="Decibel"
-                 ExternalModulation="Disabled" ModColour="0">
+                 SkewFactor="5.422270774841309" ID="Vol" Value="-2.399998545646682"
+                 TextToValueConverter="Decibel" ExternalModulation="Disabled"
+                 ModColour="0" DefaultValue="0.0">
         <Connections>
           <Connection NodeId="gain3" ParameterId="Gain"/>
         </Connections>
@@ -1443,8 +1414,8 @@
           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="CloudAmount"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="32.0" ID="BloomDiv" Value="1.0" DefaultValue="0.0"
-                 StepSize="1.0" TextToValueConverter="">
+      <Parameter MinValue="1.0" MaxValue="32.0" ID="BloomDiv" Value="1.0" StepSize="1.0"
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="tempo_sync3" ParameterId="Multiplier"/>
         </Connections>

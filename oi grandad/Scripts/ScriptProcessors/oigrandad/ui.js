@@ -70,6 +70,11 @@ const var ShowRandom2 = Content.getComponent("ShowRandom2");
 const var ShowRandom3 = Content.getComponent("ShowRandom3");
 const var ShowRandom4 = Content.getComponent("ShowRandom4");
 
+const var Mods = Content.getComponent("Mods");
+const var ModulationMatrix = Content.getComponent("ModulationMatrix");
+
+
+
 
 for (i = 0; i < NUM_BUTTONS; i++)
 {
@@ -93,6 +98,10 @@ inline function onButtonControl(component, value)
 		local shouldBeOn = (i == idx && value);
 		if (buttons[i].getValue() != shouldBeOn)
         	buttons[i].setValue(shouldBeOn);
+        	
+        	local showModPanels = idx != 5;
+        	Mods.showControl(showModPanels);
+        	ModulationMatrix.showControl(showModPanels);
     }
     
   //  Post1.showControl(idx < 4);

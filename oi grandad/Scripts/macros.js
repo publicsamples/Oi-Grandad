@@ -96,7 +96,7 @@ const var Vol3 = Content.getComponent("Vol3");
 
 inline function onVol0Control(component, value)
 {
-	gran.setAttribute(gran.Vol, value);
+//	gran.setAttribute(gran.Vol, value);
 		MacroGain.setValue(value);
 };
 
@@ -116,7 +116,7 @@ Content.getComponent("MacroGain").setControlCallback(onMacroGainControl);
 
 inline function onVol1Control(component, value)
 {
-	gran1.setAttribute(gran1.Vol, value);
+//	gran1.setAttribute(gran1.Vol, value);
 		MacroGain1.setValue(value);
 };
 
@@ -136,7 +136,7 @@ Content.getComponent("MacroGain1").setControlCallback(onMacroGain1Control);
 
 inline function onVol2Control(component, value)
 {
-	gran2.setAttribute(gran2.Vol, value);
+//	gran2.setAttribute(gran2.Vol, value);
 		MacroGain2.setValue(value);
 };
 
@@ -156,7 +156,7 @@ Content.getComponent("MacroGain2").setControlCallback(onMacroGain2Control);
 
 inline function onVol3Control(component, value)
 {
-		gran3.setAttribute(gran3.Vol, value);
+	//	gran3.setAttribute(gran3.Vol, value);
 		MacroGain3.setValue(value);
 };
 
@@ -654,6 +654,25 @@ installMatrixHoverSuppressor(KnobLaf2);
 installMatrixHoverSuppressor(KnobLaf3);
 installMatrixHoverSuppressor(KnobLaf4);
 installMatrixHoverSuppressor(KnobLaf5);
+
+const var MatrixHiddenSliderLaf = Content.createLocalLookAndFeel();
+const var MatrixHiddenSliderIds = [
+	"MultPosA1", "MultPosB1", "MultPosC1", "MultPosD1",
+	"MultPosA2", "MultPosB2", "MultPosC2", "MultPosD2",
+	"MultPosA3", "MultPosB3", "MultPosC3", "MultPosD3",
+	"MultPosA4", "MultPosB4", "MultPosC4", "MultPosD4",
+	"FinVol1", "FinVol2", "FinVol3", "FinVol4", "MasterVol"
+];
+
+installMatrixHoverSuppressor(MatrixHiddenSliderLaf);
+
+for(sliderId in MatrixHiddenSliderIds)
+{
+	local slider = Content.getComponent(sliderId);
+
+	if(isDefined(slider))
+		slider.setLocalLookAndFeel(MatrixHiddenSliderLaf);
+}
 
 inline function buildMatrixSourceModulatorMap()
 {

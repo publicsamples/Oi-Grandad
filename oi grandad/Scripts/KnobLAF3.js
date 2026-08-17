@@ -1,6 +1,26 @@
 const var KnobLaf3 = Content.createLocalLookAndFeel();
 
+inline function drawKnobModulationArc(g, obj, area, thickness)
+{
+	if(!obj.modulationActive)
+		return;
 
+	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
+	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
+	local modRange = Content.createPath();
+	modRange.setBounds(n);
+	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
+
+	g.setColour(0x55777575);
+	g.drawPath(modRange, area, thickness);
+
+	local valueArc = Content.createPath();
+	valueArc.setBounds(n);
+	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
+
+	g.setColour(0xFB777575);
+	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
+}
 
 KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 {
@@ -62,11 +82,10 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 					   obj.bgColour, 0.0, obj.area[3], false]);
 	g.fillEllipse(Rect.withSizeKeepingCentre(obj.area, radius, radius));
 	
-
-	
 	g.setGradientFill([obj.itemColour2, 0.0, 0.0,
 					   obj.itemColour2, 0.0, obj.area[3], true]);
 	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
+	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
 	
 	if(underDrag)
 	{
@@ -84,4 +103,3 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 	
 	//g.drawAlignedText(obj.text, obj.area, "centred");
 });
-
