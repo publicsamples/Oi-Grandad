@@ -285,166 +285,11 @@
                   <Parameter MinValue="0.0" MaxValue="1" StepSize="1.0" ID="Index" Automated="1"/>
                 </Parameters>
               </Node>
-              <Node ID="branch3" FactoryPath="container.branch" Bypassed="0" Name="branch3"
-                    ShowParameters="1">
-                <Nodes>
-                  <Node ID="chain11" FactoryPath="container.chain" Bypassed="0" Name="chain11">
-                    <Nodes>
-                      <Node ID="peak4" FactoryPath="core.peak" Bypassed="0" Name="peak4">
-                        <ModulationTargets>
-                          <Connection NodeId="event_data_writer1" ParameterId="Value"/>
-                          <Connection NodeId="global_cable1" ParameterId="Value"/>
-                          <Connection NodeId="add1" ParameterId="Value"/>
-                        </ModulationTargets>
-                        <ComplexData>
-                          <DisplayBuffers>
-                            <DisplayBuffer Index="-1"/>
-                          </DisplayBuffers>
-                        </ComplexData>
-                        <Parameters/>
-                      </Node>
-                      <Node ID="event_data_writer1" FactoryPath="routing.event_data_writer"
-                            Bypassed="0" Name="event_data_writer1">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="SlotIndex"
-                                     Value="0.0"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="global_cable1" FactoryPath="routing.global_cable" Bypassed="0"
-                            Name="global_cable1" NodeColour="4289049160">
-                        <Properties>
-                          <Property ID="Connection" Value="Modulator13"/>
-                        </Properties>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="chain14" FactoryPath="container.chain" Bypassed="0" Name="chain11">
-                    <Nodes>
-                      <Node ID="peak7" FactoryPath="core.peak" Bypassed="0" Name="peak4">
-                        <ModulationTargets>
-                          <Connection NodeId="event_data_writer4" ParameterId="Value"/>
-                          <Connection NodeId="global_cable2" ParameterId="Value"/>
-                        </ModulationTargets>
-                        <ComplexData>
-                          <DisplayBuffers>
-                            <DisplayBuffer Index="-1"/>
-                          </DisplayBuffers>
-                        </ComplexData>
-                        <Parameters/>
-                      </Node>
-                      <Node ID="event_data_writer4" FactoryPath="routing.event_data_writer"
-                            Bypassed="0" Name="event_data_writer1">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="SlotIndex"
-                                     Value="1.0" DefaultValue="0.0"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="global_cable2" FactoryPath="routing.global_cable" Bypassed="0"
-                            Name="global_cable1" NodeColour="4289049160">
-                        <Properties>
-                          <Property ID="Connection" Value="Modulator14"/>
-                        </Properties>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="chain13" FactoryPath="container.chain" Bypassed="0" Name="chain11">
-                    <Nodes>
-                      <Node ID="peak6" FactoryPath="core.peak" Bypassed="0" Name="peak4">
-                        <ModulationTargets>
-                          <Connection NodeId="event_data_writer3" ParameterId="Value"/>
-                          <Connection NodeId="global_cable3" ParameterId="Value"/>
-                        </ModulationTargets>
-                        <ComplexData>
-                          <DisplayBuffers>
-                            <DisplayBuffer Index="-1"/>
-                          </DisplayBuffers>
-                        </ComplexData>
-                        <Parameters/>
-                      </Node>
-                      <Node ID="event_data_writer3" FactoryPath="routing.event_data_writer"
-                            Bypassed="0" Name="event_data_writer1">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="SlotIndex"
-                                     Value="2.0" DefaultValue="0.0"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="global_cable3" FactoryPath="routing.global_cable" Bypassed="0"
-                            Name="global_cable1" NodeColour="4289049160">
-                        <Properties>
-                          <Property ID="Connection" Value="Modulator15"/>
-                        </Properties>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="chain12" FactoryPath="container.chain" Bypassed="0" Name="chain11">
-                    <Nodes>
-                      <Node ID="peak5" FactoryPath="core.peak" Bypassed="0" Name="peak4">
-                        <ModulationTargets>
-                          <Connection NodeId="event_data_writer2" ParameterId="Value"/>
-                          <Connection NodeId="global_cable4" ParameterId="Value"/>
-                        </ModulationTargets>
-                        <ComplexData>
-                          <DisplayBuffers>
-                            <DisplayBuffer Index="-1"/>
-                          </DisplayBuffers>
-                        </ComplexData>
-                        <Parameters/>
-                      </Node>
-                      <Node ID="event_data_writer2" FactoryPath="routing.event_data_writer"
-                            Bypassed="0" Name="event_data_writer1">
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="SlotIndex"
-                                     Value="3.0" DefaultValue="0.0"/>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="global_cable4" FactoryPath="routing.global_cable" Bypassed="0"
-                            Name="global_cable1" NodeColour="4289049160">
-                        <Properties>
-                          <Property ID="Connection" Value="Modulator14"/>
-                        </Properties>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                </Nodes>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" Automated="1"/>
-                </Parameters>
-              </Node>
             </Nodes>
             <Parameters/>
           </Node>
         </Nodes>
         <Parameters/>
-      </Node>
-      <Node ID="add1" FactoryPath="math.add" Bypassed="1" Name="add1">
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-        </Parameters>
-      </Node>
-      <Node ID="sig2mod1" FactoryPath="math.sig2mod" Bypassed="1" Name="sig2mod1">
-        <Parameters>
-          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
-        </Parameters>
       </Node>
     </Nodes>
     <Parameters>
@@ -456,9 +301,7 @@
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="3.0" StepSize="1.0" ID="Output" Value="0.0"
                  ExternalModulation="Disabled" ModColour="0">
-        <Connections>
-          <Connection NodeId="branch3" ParameterId="Index"/>
-        </Connections>
+        <Connections/>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="30000.0" SkewFactor="0.2559580206871033"
                  ID="A" Value="228.0" TextToValueConverter="Time" ExternalModulation="Disabled"

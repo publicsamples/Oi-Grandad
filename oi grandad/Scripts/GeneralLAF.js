@@ -3,9 +3,18 @@
 //Draw Combobox
 
 const var cBLaf = Content.createLocalLookAndFeel();
-
-
 const var laf = Engine.createGlobalScriptLookAndFeel();
+
+inline function setLookAndFeelForIds(ids, localLookAndFeel)
+{
+	for (id in ids)
+	{
+		var component = Content.getComponent(id);
+		
+		if (isDefined(component))
+			component.setLocalLookAndFeel(localLookAndFeel);
+	}
+}
 
 laf.registerFunction("drawToggleButton", function(g, obj)
 {
@@ -22,8 +31,6 @@ laf.registerFunction("drawToggleButton", function(g, obj)
     g.setFont("Montserrat", 18.0);
     g.drawAlignedText(obj.text, obj.area, "centred");
 });
-
-const var cBLaf = Content.createLocalLookAndFeel();
 
 cBLaf.registerFunction("drawComboBox", function(g, obj)
 {
@@ -79,114 +86,25 @@ laf.registerFunction("drawTableRuler", function(g, obj)
          
 
 
-const var ModeMenus1 = [Content.getComponent("OutputSelector"),
-                        Content.getComponent("maxGrains1"),
-                        Content.getComponent("PostMode1"),
-                        Content.getComponent("PitchMode1"),
-                        Content.getComponent("PitchMode2"),
-                        Content.getComponent("PitchMode3"),
-                        Content.getComponent("PitchMode4")];
+const var ModeMenuIds1 = ["OutputSelector", "maxGrains1", "PostMode1", "PostMode2", "PostMode3", "PostMode4", "PitchMode1", "PitchMode2", "PitchMode3", "PitchMode4"];
+const var ModeMenuIds2 = ["maxGrains2", "OutputSelector1"];
+const var ModeMenuIds3 = ["maxGrains3", "OutputSelector2"];
+const var ModeMenuIds4 = ["maxGrains4", "OutputSelector3"];
+const var GlobalMenuIds = ["MidiNote", "Playback", "VoiceNumber", "Poly", "ModPage", "cmbPresets"];
+const var ResModeIds = ["ResMode1", "ResMode2", "ResMode3", "ResMode4"];
+const var PlaybackModeIds = ["StgSel1", "StgSel2", "StgSel3", "StgSel4"];
+const var TriggerSelectorIds = ["TrigSel1", "TrigSel2", "TrigSel3", "TrigSel4", "TrigSel5", "TrigSel6", "TrigSel7", "TrigSel8", "TrigSel9", "TrigSel10", "TrigSel11", "TrigSel12"];
+const var VoiceMenuIds = ["TransPort1", "TransPort2", "TransPort3", "TransPort4", "GrainDirMode1", "GrainDirMode2", "GrainDirMode3", "GrainDirMode4", "SpreadDirMode1", "SpreadDirMode2", "SpreadDirMode3", "SpreadDirMode4"];
 
-
-for(s in ModeMenus1)
-       s.setLocalLookAndFeel(cBLaf); 
-  
-
-       
-       
-const var ModeMenus2 = [Content.getComponent("maxGrains2"),
-                       
-                        Content.getComponent("OutputSelector1")];
-
-
- for(s in ModeMenus2)
-        s.setLocalLookAndFeel(cBLaf);  
-        
-
-const var ModeMenus3 = [Content.getComponent("maxGrains3"),
-                        
-                        Content.getComponent("OutputSelector2")];
-
-for(s in ModeMenus3)
-       s.setLocalLookAndFeel(cBLaf);  
-       
-
-
-const var ModeMenus4 = [Content.getComponent("maxGrains4"),
-                        Content.getComponent("OutputSelector3")];
-  
-  for(s in ModeMenus4)
-         s.setLocalLookAndFeel(cBLaf);
-         
- 
-       
-const var GlbMenus = [Content.getComponent("MidiNote"),
-                      Content.getComponent("Playback"),
-                      Content.getComponent("VoiceNumber"),
-                      Content.getComponent("Poly"),
-                      Content.getComponent("ModPage"),
-                      Content.getComponent("cmbPresets")];
-
-  for(s in GlbMenus)
-         s.setLocalLookAndFeel(cBLaf);      
-         
-     
-       
-const var ResMode = [Content.getComponent("ResMode1"),
-                      Content.getComponent("ResMode2"),
-                      Content.getComponent("ResMode3"),
-                      Content.getComponent("ResMode4")];
-                      
-                      
-   
-   for(s in ResMode)
-           s.setLocalLookAndFeel(cBLaf);      
-           
-
- 
- const var Pb = [Content.getComponent("StgSel1"),
-            Content.getComponent("StgSel2"),
-            Content.getComponent("StgSel3"),
-            Content.getComponent("StgSel4")];    
-
-        
-            
-            
-for(s in Pb)
-       s.setLocalLookAndFeel(cBLaf);       
-       
-       
-const var TrigSel = [Content.getComponent("TrigSel1"),
-                     Content.getComponent("TrigSel2"),
-                     Content.getComponent("TrigSel3"),
-                     Content.getComponent("TrigSel4"),
-                     Content.getComponent("TrigSel5"),
-                     Content.getComponent("TrigSel6"),
-                     Content.getComponent("TrigSel7"),
-                     Content.getComponent("TrigSel8"),
-                     Content.getComponent("TrigSel9"),
-                     Content.getComponent("TrigSel10"),
-                     Content.getComponent("TrigSel11"),
-                     Content.getComponent("TrigSel12")];
-  
-  for(s in TrigSel)
-         s.setLocalLookAndFeel(cBLaf);    
-       
-const var ModeMenus = [Content.getComponent("TransPort1"),
-Content.getComponent("TransPort2"),
-Content.getComponent("TransPort3"),
-Content.getComponent("TransPort4"),
-                       Content.getComponent("GrainDirMode1"),
-                       
-       Content.getComponent("GrainDirMode2"),
-       Content.getComponent("GrainDirMode3"),
-       Content.getComponent("GrainDirMode4"),              Content.getComponent("SpreadDirMode1"),
-                        Content.getComponent("SpreadDirMode2"),
-                        Content.getComponent("SpreadDirMode3"),
-                        Content.getComponent("SpreadDirMode4")];
-    
-    for(s in ModeMenus)
-           s.setLocalLookAndFeel(cBLaf);            
+setLookAndFeelForIds(ModeMenuIds1, cBLaf);
+setLookAndFeelForIds(ModeMenuIds2, cBLaf);
+setLookAndFeelForIds(ModeMenuIds3, cBLaf);
+setLookAndFeelForIds(ModeMenuIds4, cBLaf);
+setLookAndFeelForIds(GlobalMenuIds, cBLaf);
+setLookAndFeelForIds(ResModeIds, cBLaf);
+setLookAndFeelForIds(PlaybackModeIds, cBLaf);
+setLookAndFeelForIds(TriggerSelectorIds, cBLaf);
+setLookAndFeelForIds(VoiceMenuIds, cBLaf);
        
 
                             

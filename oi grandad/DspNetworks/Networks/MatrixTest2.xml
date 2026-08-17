@@ -5,7 +5,7 @@
   <Node FactoryPath="container.chain" ID="MatrixTest2" Bypassed="0" Name="MatrixTest2"
         ShowParameters="1">
     <Nodes>
-      <Node ID="fix32_block" FactoryPath="container.fix32_block" Bypassed="0"
+      <Node ID="fix32_block" FactoryPath="container.fix32_block" Bypassed="1"
             Name="fix32_block" ShowParameters="0">
         <Nodes>
           <Node ID="dynamic_blocksize" FactoryPath="container.chain" Bypassed="0"
@@ -17,7 +17,6 @@
                     <Nodes>
                       <Node ID="extra_mod1" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_modposa">
                         <ModulationTargets>
-                          <Connection NodeId="cable_table" ParameterId="Value"/>
                           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Scrub"/>
                         </ModulationTargets>
                         <Parameters>
@@ -44,7 +43,6 @@
                           </DisplayBuffers>
                         </ComplexData>
                         <ModulationTargets>
-                          <Connection NodeId="cable_table1" ParameterId="Value"/>
                           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="ScrubB"/>
                         </ModulationTargets>
                       </Node>
@@ -61,7 +59,6 @@
                           </DisplayBuffers>
                         </ComplexData>
                         <ModulationTargets>
-                          <Connection NodeId="cable_table2" ParameterId="Value"/>
                           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="ScrubC"/>
                         </ModulationTargets>
                       </Node>
@@ -78,7 +75,6 @@
                           </DisplayBuffers>
                         </ComplexData>
                         <ModulationTargets>
-                          <Connection NodeId="cable_table3" ParameterId="Value"/>
                           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="ScrubD"/>
                         </ModulationTargets>
                       </Node>
@@ -136,56 +132,6 @@
                           <Connection NodeId="pma_unscaled4" ParameterId="Multiply"/>
                           <Connection NodeId="pma_unscaled3" ParameterId="Multiply"/>
                         </ModulationTargets>
-                      </Node>
-                    </Nodes>
-                    <Parameters/>
-                  </Node>
-                  <Node ID="split2" FactoryPath="container.split" Bypassed="0" Name="split2"
-                        ShowParameters="0">
-                    <Nodes>
-                      <Node ID="cable_table" FactoryPath="control.cable_table" Bypassed="0"
-                            Name="cable_table">
-                        <ComplexData>
-                          <Tables>
-                            <Table Index="0"/>
-                          </Tables>
-                        </ComplexData>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="cable_table1" FactoryPath="control.cable_table" Bypassed="0"
-                            Name="cable_table">
-                        <ComplexData>
-                          <Tables>
-                            <Table Index="1"/>
-                          </Tables>
-                        </ComplexData>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="cable_table2" FactoryPath="control.cable_table" Bypassed="0"
-                            Name="cable_table">
-                        <ComplexData>
-                          <Tables>
-                            <Table Index="2"/>
-                          </Tables>
-                        </ComplexData>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
-                      </Node>
-                      <Node ID="cable_table3" FactoryPath="control.cable_table" Bypassed="0"
-                            Name="cable_table">
-                        <ComplexData>
-                          <Tables>
-                            <Table Index="3"/>
-                          </Tables>
-                        </ComplexData>
-                        <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                        </Parameters>
                       </Node>
                     </Nodes>
                     <Parameters/>
@@ -1297,7 +1243,7 @@
         <Connections/>
       </Parameter>
       <Parameter ID="GrainSize" MinValue="1.0" MaxValue="500.0" ModColour="0"
-                 ExternalModulation="Combined" Value="98.12194293478261" DefaultValue="1.0">
+                 ExternalModulation="Combined" Value="433.0485733695652" DefaultValue="1.0">
         <Connections/>
       </Parameter>
       <Parameter ID="GrainMix" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"

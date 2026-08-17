@@ -1,5 +1,3 @@
-const var XfModControls1 = Content.getComponent("XfModControls1");
-
 const var StackItem1 = [Content.getComponent("PosIndicator2"),
                         Content.getComponent("PosIndicator3"),
                         Content.getComponent("PosIndicator4")];
@@ -71,12 +69,8 @@ Content.getComponent("StgSel1").setControlCallback(onStgSel1Control);
 ///Position Macros
 
 const var pos = Content.getComponent("pos");
-const var posmod = Content.getComponent("posmod");
-const var pos1modsel = Content.getComponent("pos1modsel");
 const var MultPosA1 = Content.getComponent("MultPosA1");
 const var MacroPos1 = Content.getComponent("MacroPos1");
-const var PosHeadModA1 = Content.getComponent("PosHeadModA1");
-const var PosHeadSrcA1 = Content.getComponent("PosHeadSrcA1");
 
 const var Voice_1_PositionA = Synth.getModulator("Voice_1_PositionA");
 const var Voice_1_PositionB = Synth.getModulator("Voice_1_PositionB");
@@ -197,7 +191,6 @@ if(value == 1)
 
 Content.getComponent("maxGrains1").setControlCallback(onmaxGrains1Control);
 
-const var DivLabel = Content.getComponent("DivLabel");
 const var PitchDiv1 = Content.getComponent("PitchDiv1");
 const var DetuneLabel = Content.getComponent("DetuneLabel");
 const var PitchTempo1 = Content.getComponent("PitchTempo1");
@@ -452,7 +445,6 @@ const var RandomControls1 = Content.getComponent("RandomControls1");
 inline function onShowRandom1Control(component, value)
 {
 	RandomControls1.showControl(value);
-	Post1.showControl(value-1);
 };
 
 Content.getComponent("ShowRandom1").setControlCallback(onShowRandom1Control);

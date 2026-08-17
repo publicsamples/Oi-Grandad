@@ -18,7 +18,7 @@ if(value == 1)
   	VoiceParam2.showControl(1);
   	VoiceParamB2.showControl(0);
              
-        gran1.setAttribute(gran1.scrubMode, 0);  
+        gran1.setAttribute(gran1.ScrubMode, 0);  
        // gran1.setAttribute(gran1.PositionModMode, 0);
 
       
@@ -34,7 +34,7 @@ if(value == 2)
 	VoiceParamB2.showControl(1);
 	  	
 	  	
-          gran1.setAttribute(gran1.scrubMode, 1);  
+          gran1.setAttribute(gran1.ScrubMode, 1);  
 
               for(s in StackItem2)
                   s.showControl(1);
@@ -47,7 +47,7 @@ if(value == 3)
   	VoiceParam2.showControl(1);
   	VoiceParamB2.showControl(0);
              
-        gran1.setAttribute(gran1.scrubMode, 3);  
+        gran1.setAttribute(gran1.ScrubMode, 3);  
        // gran1.setAttribute(gran1.PositionModMode, 0);
 
       
@@ -63,7 +63,7 @@ if(value == 4)
 	VoiceParamB2.showControl(1);
 	  	
 	  	
-          gran1.setAttribute(gran1.scrubMode, 4);  
+          gran1.setAttribute(gran1.ScrubMode, 4);  
 
               for(s in StackItem2)
                   s.showControl(1);
@@ -78,12 +78,8 @@ Content.getComponent("StgSel2").setControlCallback(onStgSel2Control);
 ///Position Macros
 
 const var pos1 = Content.getComponent("pos1");
-const var posmod1 = Content.getComponent("posmod1");
-const var pos1modsel1 = Content.getComponent("pos1modsel1");
 const var MultPosA2 = Content.getComponent("MultPosA2");
 const var MacroPos2 = Content.getComponent("MacroPos2");
-const var PosHeadModA2 = Content.getComponent("PosHeadModA2");
-const var PosHeadSrcA2 = Content.getComponent("PosHeadSrcA2");
 
 const var Voice_2_PositionA = Synth.getModulator("Voice_2_PositionA");
 const var Voice_2_PositionB = Synth.getModulator("Voice_2_PositionB");
@@ -135,7 +131,7 @@ inline function onGrainXf2Control(component, value)
 {
 	
 
-	gran1.setAttribute(gran1.scrubBlen, value); 
+	gran1.setAttribute(gran1.ScrubBlend, value); 
 	
 	if(value == 0)
 	  {
@@ -199,7 +195,6 @@ if(value == 1)
 
 Content.getComponent("maxGrains2").setControlCallback(onmaxGrains2Control);
 
-const var DivLabel1 = Content.getComponent("DivLabel1");
 const var PitchDiv2 = Content.getComponent("PitchDiv2");
 const var DetuneLabel1 = Content.getComponent("DetuneLabel1");
 const var PitchTempo2 = Content.getComponent("PitchTempo2");
@@ -440,11 +435,8 @@ const var RandomControls2 = Content.getComponent("RandomControls2");
 inline function onShowRandom2Control(component, value)
 {
 	RandomControls2.showControl(value);
-	Post1.showControl(value-1);
 };
 
 Content.getComponent("ShowRandom2").setControlCallback(onShowRandom2Control);
-
-
 
 

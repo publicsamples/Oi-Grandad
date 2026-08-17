@@ -672,7 +672,7 @@
                   </SliderPacks>
                 </ComplexData>
                 <Parameters>
-                  <Parameter MinValue="0.1" MaxValue="1.0" ID="Value"/>
+                  <Parameter MinValue="0.1" MaxValue="1.0" ID="Value" Automated="1"/>
                 </Parameters>
               </Node>
             </Nodes>
@@ -1599,7 +1599,8 @@
           <Connection NodeId="cable_table4" ParameterId="Value"/>
         </Connections>
       </Parameter>
-      <Parameter ID="onshot" MinValue="0.0" MaxValue="1.0" StepSize="1" Value="0.0">
+      <Parameter ID="onshot" MinValue="0.0" MaxValue="1.0" StepSize="1" Value="0.0"
+                 ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="ramp" ParameterId="LoopStart"/>
           <Connection NodeId="pma_fmod_onshot" ParameterId="Value"/>
@@ -1609,6 +1610,7 @@
         <Connections>
           <Connection NodeId="xfader" ParameterId="Value"/>
           <Connection NodeId="xfader1" ParameterId="Value"/>
+          <Connection NodeId="cable_pack1" ParameterId="Value"/>
         </Connections>
       </Parameter>
       <Parameter ID="morphmod" MinValue="5.551115123125783e-17" MaxValue="1.0"

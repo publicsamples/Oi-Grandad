@@ -129,85 +129,9 @@ using branch_t = container::branch<parameter::empty,
                                    wrap::fix<1, chain4_t<NV>>, 
                                    chain5_t<NV>>;
 
-using global_cable1_t_index = runtime_target::indexers::fix_hash<377786417>;
-
-template <int NV>
-using peak4_mod = parameter::chain<ranges::Identity, 
-                                   parameter::plain<routing::event_data_writer<NV>, 1>, 
-                                   parameter::plain<routing::global_cable<global_cable1_t_index, parameter::empty>, 0>, 
-                                   parameter::plain<wrap::no_process<math::add<NV>>, 0>>;
-
-template <int NV>
-using peak4_t = wrap::mod<peak4_mod<NV>, 
-                          wrap::no_data<core::peak>>;
-
-template <int NV>
-using chain11_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, peak4_t<NV>>, 
-                                   routing::event_data_writer<NV>, 
-                                   routing::global_cable<global_cable1_t_index, parameter::empty>>;
-
-using global_cable2_t_index = runtime_target::indexers::fix_hash<377786418>;
-
-template <int NV>
-using peak7_mod = parameter::chain<ranges::Identity, 
-                                   parameter::plain<routing::event_data_writer<NV>, 1>, 
-                                   parameter::plain<routing::global_cable<global_cable2_t_index, parameter::empty>, 0>>;
-
-template <int NV>
-using peak7_t = wrap::mod<peak7_mod<NV>, 
-                          wrap::no_data<core::peak>>;
-
-template <int NV>
-using chain14_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, peak7_t<NV>>, 
-                                   routing::event_data_writer<NV>, 
-                                   routing::global_cable<global_cable2_t_index, parameter::empty>>;
-
-using global_cable3_t_index = runtime_target::indexers::fix_hash<377786419>;
-
-template <int NV>
-using peak6_mod = parameter::chain<ranges::Identity, 
-                                   parameter::plain<routing::event_data_writer<NV>, 1>, 
-                                   parameter::plain<routing::global_cable<global_cable3_t_index, parameter::empty>, 0>>;
-
-template <int NV>
-using peak6_t = wrap::mod<peak6_mod<NV>, 
-                          wrap::no_data<core::peak>>;
-
-template <int NV>
-using chain13_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, peak6_t<NV>>, 
-                                   routing::event_data_writer<NV>, 
-                                   routing::global_cable<global_cable3_t_index, parameter::empty>>;
-
-using global_cable4_t_index = global_cable2_t_index;
-
-template <int NV>
-using peak5_mod = parameter::chain<ranges::Identity, 
-                                   parameter::plain<routing::event_data_writer<NV>, 1>, 
-                                   parameter::plain<routing::global_cable<global_cable4_t_index, parameter::empty>, 0>>;
-
-template <int NV>
-using peak5_t = wrap::mod<peak5_mod<NV>, 
-                          wrap::no_data<core::peak>>;
-
-template <int NV>
-using chain12_t = container::chain<parameter::empty, 
-                                   wrap::fix<1, peak5_t<NV>>, 
-                                   routing::event_data_writer<NV>, 
-                                   routing::global_cable<global_cable4_t_index, parameter::empty>>;
-template <int NV>
-using branch3_t = container::branch<parameter::empty, 
-                                    wrap::fix<1, chain11_t<NV>>, 
-                                    chain14_t<NV>, 
-                                    chain13_t<NV>, 
-                                    chain12_t<NV>>;
-
 template <int NV>
 using chain_t = container::chain<parameter::empty, 
-                                 wrap::fix<1, branch_t<NV>>, 
-                                 branch3_t<NV>>;
+                                 wrap::fix<1, branch_t<NV>>>;
 
 template <int NV>
 using split_t = container::split<parameter::empty, 
@@ -333,12 +257,10 @@ using Mode = parameter::from0To1<OutMods_impl::branch_t<NV>,
                                  0, 
                                  OutMods_impl::peak_modRange>;
 
-template <int NV>
-using Output = parameter::plain<OutMods_impl::branch3_t<NV>, 
-                                0>;
+using Output = parameter::empty;
 template <int NV>
 using OutMods_t_plist = parameter::list<Input<NV>, 
-                                        Output<NV>, 
+                                        Output, 
                                         A<NV>, 
                                         D<NV>, 
                                         S<NV>, 
@@ -350,9 +272,7 @@ using OutMods_t_plist = parameter::list<Input<NV>,
 
 template <int NV>
 using OutMods_t_ = container::chain<OutMods_t_parameters::OutMods_t_plist<NV>, 
-                                    wrap::fix<1, split_t<NV>>, 
-                                    wrap::no_process<math::add<NV>>, 
-                                    wrap::no_process<math::sig2mod<NV>>>;
+                                    wrap::fix<1, split_t<NV>>>;
 
 // =================================| Root node initialiser class |=================================
 
@@ -376,14 +296,14 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
             0x5C3F, 0x0100, 0x0000, 0x4F00, 0x7475, 0x7570, 0x0074, 0x0000, 
             0x0000, 0x0000, 0x4000, 0x0040, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x0202, 0x0000, 0x4100, 0x0000, 0x0000, 0x0000, 
-            0x6000, 0x46EA, 0x0000, 0x4347, 0x0CEE, 0x3E83, 0x0000, 0x0000, 
+            0x6000, 0x46EA, 0x0000, 0x4364, 0x0CEE, 0x3E83, 0x0000, 0x0000, 
             0x025C, 0x0003, 0x0000, 0x0044, 0x0000, 0x0000, 0x0000, 0xEA60, 
-            0x0046, 0xEA60, 0xEE46, 0x830C, 0x003E, 0x0000, 0x5C00, 0x0400, 
+            0x0046, 0x12C0, 0xEE45, 0x830C, 0x003E, 0x0000, 0x5C00, 0x0400, 
             0x0000, 0x5300, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x025C, 0x0005, 0x0000, 
-            0x0052, 0x0000, 0x0000, 0x0000, 0xEA60, 0x0046, 0xA500, 0xEE43, 
+            0x0052, 0x0000, 0x0000, 0x0000, 0xEA60, 0x0046, 0x0A00, 0xEE43, 
             0x830C, 0x003E, 0x0000, 0x5C00, 0x0600, 0x0000, 0x4C00, 0x6F6F, 
-            0x0070, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 
+            0x0070, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x5C3F, 0x0700, 0x0000, 0x5400, 0x6972, 
             0x5067, 0x6165, 0x006B, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0800, 0x0000, 
@@ -439,31 +359,10 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		auto& chain5 = this->getT(0).getT(0).getT(0).getT(1);                            // OutMods_impl::chain5_t<NV>
 		auto& flex_ahdsr = this->getT(0).getT(0).getT(0).getT(1).getT(0);                // OutMods_impl::flex_ahdsr_t<NV>
 		auto& add8 = this->getT(0).getT(0).getT(0).getT(1).getT(1);                      // math::add<NV>
-		auto& branch3 = this->getT(0).getT(0).getT(1);                                   // OutMods_impl::branch3_t<NV>
-		auto& chain11 = this->getT(0).getT(0).getT(1).getT(0);                           // OutMods_impl::chain11_t<NV>
-		auto& peak4 = this->getT(0).getT(0).getT(1).getT(0).getT(0);                     // OutMods_impl::peak4_t<NV>
-		auto& event_data_writer1 = this->getT(0).getT(0).getT(1).getT(0).getT(1);        // routing::event_data_writer<NV>
-		auto& global_cable1 = this->getT(0).getT(0).getT(1).getT(0).getT(2);             // routing::global_cable<global_cable1_t_index, parameter::empty>
-		auto& chain14 = this->getT(0).getT(0).getT(1).getT(1);                           // OutMods_impl::chain14_t<NV>
-		auto& peak7 = this->getT(0).getT(0).getT(1).getT(1).getT(0);                     // OutMods_impl::peak7_t<NV>
-		auto& event_data_writer4 = this->getT(0).getT(0).getT(1).getT(1).getT(1);        // routing::event_data_writer<NV>
-		auto& global_cable2 = this->getT(0).getT(0).getT(1).getT(1).getT(2);             // routing::global_cable<global_cable2_t_index, parameter::empty>
-		auto& chain13 = this->getT(0).getT(0).getT(1).getT(2);                           // OutMods_impl::chain13_t<NV>
-		auto& peak6 = this->getT(0).getT(0).getT(1).getT(2).getT(0);                     // OutMods_impl::peak6_t<NV>
-		auto& event_data_writer3 = this->getT(0).getT(0).getT(1).getT(2).getT(1);        // routing::event_data_writer<NV>
-		auto& global_cable3 = this->getT(0).getT(0).getT(1).getT(2).getT(2);             // routing::global_cable<global_cable3_t_index, parameter::empty>
-		auto& chain12 = this->getT(0).getT(0).getT(1).getT(3);                           // OutMods_impl::chain12_t<NV>
-		auto& peak5 = this->getT(0).getT(0).getT(1).getT(3).getT(0);                     // OutMods_impl::peak5_t<NV>
-		auto& event_data_writer2 = this->getT(0).getT(0).getT(1).getT(3).getT(1);        // routing::event_data_writer<NV>
-		auto& global_cable4 = this->getT(0).getT(0).getT(1).getT(3).getT(2);             // routing::global_cable<global_cable4_t_index, parameter::empty>
-		auto& add1 = this->getT(1);                                                      // wrap::no_process<math::add<NV>>
-		auto& sig2mod1 = this->getT(2);                                                  // wrap::no_process<math::sig2mod<NV>>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
 		this->getParameterT(0).connectT(0, branch2); // Input -> branch2::Index
-		
-		this->getParameterT(1).connectT(0, branch3); // Output -> branch3::Index
 		
 		auto& A_p = this->getParameterT(2);
 		A_p.connectT(0, flex_ahdsr); // A -> flex_ahdsr::Attack
@@ -497,16 +396,7 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		ahdsr_p.getParameterT(0).connectT(0, add4); // ahdsr -> add4::Value
 		peak.getParameter().connectT(0, ahdsr);     // peak -> ahdsr::Gate
 		auto& flex_ahdsr_p = flex_ahdsr.getWrappedObject().getParameter();
-		flex_ahdsr_p.getParameterT(0).connectT(0, add8);      // flex_ahdsr -> add8::Value
-		peak4.getParameter().connectT(0, event_data_writer1); // peak4 -> event_data_writer1::Value
-		peak4.getParameter().connectT(1, global_cable1);      // peak4 -> global_cable1::Value
-		peak4.getParameter().connectT(2, add1);               // peak4 -> add1::Value
-		peak7.getParameter().connectT(0, event_data_writer4); // peak7 -> event_data_writer4::Value
-		peak7.getParameter().connectT(1, global_cable2);      // peak7 -> global_cable2::Value
-		peak6.getParameter().connectT(0, event_data_writer3); // peak6 -> event_data_writer3::Value
-		peak6.getParameter().connectT(1, global_cable3);      // peak6 -> global_cable3::Value
-		peak5.getParameter().connectT(0, event_data_writer2); // peak5 -> event_data_writer2::Value
-		peak5.getParameter().connectT(1, global_cable4);      // peak5 -> global_cable4::Value
+		flex_ahdsr_p.getParameterT(0).connectT(0, add8); // flex_ahdsr -> add8::Value
 		
 		// Default Values --------------------------------------------------------------------------
 		
@@ -569,39 +459,13 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		
 		; // add8::Value is automated
 		
-		; // branch3::Index is automated
-		
-		event_data_writer1.setParameterT(0, 0.); // routing::event_data_writer::SlotIndex
-		;                                        // event_data_writer1::Value is automated
-		
-		; // global_cable1::Value is automated
-		
-		event_data_writer4.setParameterT(0, 1.); // routing::event_data_writer::SlotIndex
-		;                                        // event_data_writer4::Value is automated
-		
-		; // global_cable2::Value is automated
-		
-		event_data_writer3.setParameterT(0, 2.); // routing::event_data_writer::SlotIndex
-		;                                        // event_data_writer3::Value is automated
-		
-		; // global_cable3::Value is automated
-		
-		event_data_writer2.setParameterT(0, 3.); // routing::event_data_writer::SlotIndex
-		;                                        // event_data_writer2::Value is automated
-		
-		; // global_cable4::Value is automated
-		
-		; // add1::Value is automated
-		
-		sig2mod1.setParameterT(0, 0.); // math::sig2mod::Value
-		
 		this->setParameterT(0, 1.);
 		this->setParameterT(1, 0.);
-		this->setParameterT(2, 199.);
-		this->setParameterT(3, 30000.);
+		this->setParameterT(2, 228.);
+		this->setParameterT(3, 2348.);
 		this->setParameterT(4, 0.);
-		this->setParameterT(5, 330.);
-		this->setParameterT(6, 0.);
+		this->setParameterT(5, 138.);
+		this->setParameterT(6, 1.);
 		this->setParameterT(7, 0.);
 		this->setParameterT(8, 1.);
 		this->setExternalData({}, -1);
@@ -625,18 +489,14 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 	{
 		// Runtime target Connections --------------------------------------------------------------
 		
-		this->getT(0).getT(0).getT(0).getT(0).                                                  // OutMods_impl::global_cable_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).  // OutMods_impl::global_cable_t<NV>
         getT(0).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);
-		this->getT(0).getT(0).getT(0).getT(0).                                                  // OutMods_impl::global_cable10_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).  // OutMods_impl::global_cable10_t<NV>
         getT(0).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);
-		this->getT(0).getT(0).getT(0).getT(0).                                                  // OutMods_impl::global_cable9_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).  // OutMods_impl::global_cable9_t<NV>
         getT(0).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c);
-		this->getT(0).getT(0).getT(0).getT(0).                                                  // OutMods_impl::global_cable8_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).  // OutMods_impl::global_cable8_t<NV>
         getT(0).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c);
-		this->getT(0).getT(0).getT(1).getT(0).getT(2).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable1_t_index, parameter::empty>
-		this->getT(0).getT(0).getT(1).getT(1).getT(2).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable2_t_index, parameter::empty>
-		this->getT(0).getT(0).getT(1).getT(2).getT(2).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable3_t_index, parameter::empty>
-		this->getT(0).getT(0).getT(1).getT(3).getT(2).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable4_t_index, parameter::empty>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)
@@ -647,10 +507,6 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(6).setExternalData(b, index); // OutMods_impl::envelope_follower_t<NV>
 		this->getT(0).getT(0).getT(0).getT(0).getT(0).getT(7).setExternalData(b, index); // OutMods_impl::ahdsr_t<NV>
 		this->getT(0).getT(0).getT(0).getT(1).getT(0).setExternalData(b, index);         // OutMods_impl::flex_ahdsr_t<NV>
-		this->getT(0).getT(0).getT(1).getT(0).getT(0).setExternalData(b, index);         // OutMods_impl::peak4_t<NV>
-		this->getT(0).getT(0).getT(1).getT(1).getT(0).setExternalData(b, index);         // OutMods_impl::peak7_t<NV>
-		this->getT(0).getT(0).getT(1).getT(2).getT(0).setExternalData(b, index);         // OutMods_impl::peak6_t<NV>
-		this->getT(0).getT(0).getT(1).getT(3).getT(0).setExternalData(b, index);         // OutMods_impl::peak5_t<NV>
 	}
 };
 }

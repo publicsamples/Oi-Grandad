@@ -298,7 +298,10 @@ for (i = 1; i < 5; i++)
 
 
 
-const var psync = [Content.getComponent("PtichSync1")];
+const var psync = [Content.getComponent("PtichSync1"),
+                   Content.getComponent("PtichSync2"),
+                   Content.getComponent("PtichSync3"),
+                   Content.getComponent("PtichSync4")];
 
 for(s in psync)
       s.setLocalLookAndFeel(LAF_Button);

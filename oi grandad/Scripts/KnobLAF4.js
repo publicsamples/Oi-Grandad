@@ -109,8 +109,11 @@ for (i = 0; i < 4; i++)
 
 
 
-const var MasterXf = Content.getComponent("MasterXf").setLocalLookAndFeel(KnobLaf4);
-const var Smooth = Content.getComponent("Smooth").setLocalLookAndFeel(KnobLaf4);
+const var MasterControls = [Content.getComponent("MasterXf"),
+                            Content.getComponent("Smooth")];
+
+for (s in MasterControls)
+    s.setLocalLookAndFeel(KnobLaf4);
 
 
 
@@ -152,4 +155,3 @@ for (i = 0; i < 4; i++)
     Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf4);
 
 }
-

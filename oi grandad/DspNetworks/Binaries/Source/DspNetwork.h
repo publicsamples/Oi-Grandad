@@ -1146,11 +1146,19 @@ using onshot = parameter::chain<onshot_InputRange,
 DECLARE_PARAMETER_RANGE(morph_InputRange, 
                         1., 
                         4.);
+DECLARE_PARAMETER_RANGE(morph_2Range, 
+                        0.1, 
+                        1.);
+
+using morph_2 = parameter::from0To1<DspNetwork_impl::cable_pack1_t, 
+                                    0, 
+                                    morph_2Range>;
 
 template <int NV>
 using morph = parameter::chain<morph_InputRange, 
                                parameter::plain<DspNetwork_impl::xfader_t<NV>, 0>, 
-                               parameter::plain<DspNetwork_impl::xfader1_t<NV>, 0>>;
+                               parameter::plain<DspNetwork_impl::xfader1_t<NV>, 0>, 
+                               morph_2>;
 
 using tempomod = parameter::empty;
 using moddest = tempomod;
@@ -1460,8 +1468,9 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		onshot_p.connectT(1, pma_fmod_onshot); // onshot -> pma_fmod_onshot::Value
 		
 		auto& morph_p = this->getParameterT(8);
-		morph_p.connectT(0, xfader);  // morph -> xfader::Value
-		morph_p.connectT(1, xfader1); // morph -> xfader1::Value
+		morph_p.connectT(0, xfader);      // morph -> xfader::Value
+		morph_p.connectT(1, xfader1);     // morph -> xfader1::Value
+		morph_p.connectT(2, cable_pack1); // morph -> cable_pack1::Value
 		
 		this->getParameterT(11).connectT(0, branch1); // Out -> branch1::Index
 		
@@ -1687,7 +1696,7 @@ template <int NV> struct instance: public DspNetwork_impl::DspNetwork_t_<NV>
 		
 		clear.setParameterT(0, 0.); // math::clear::Value
 		
-		cable_pack1.setParameterT(0, 0.); // control::cable_pack::Value
+		; // cable_pack1::Value is automated
 		
 		; // softbypass_switch3::Switch is automated
 		

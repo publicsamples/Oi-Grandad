@@ -148,14 +148,31 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		resetVoiceContainer(voiceStates);
 	}
 
-	template <typename ProcessDataType> void process(ProcessDataType& data)
+	bool hasValidSourceData() const
 	{
 		if (audioFile.numSamples <= 1)
+			return false;
+
+		if (sourceSample[0].size() <= 1)
+			return false;
+
+		return true;
+	}
+
+	template <typename ProcessDataType> void process(ProcessDataType& data)
+	{
+		if (!hasValidSourceData())
+		{
+			reset();
 			return;
+		}
 
 		auto audioLock = DataTryReadLock(audioFile);
 		if (!audioLock)
+		{
+			reset();
 			return;
+		}
 
 		auto& fixData = data.template as<ProcessData<2>>();
 		auto fd = fixData.toFrameData();
@@ -169,12 +186,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	template <typename FrameDataType> void processFrame(FrameDataType& data)
 	{
-		if (audioFile.numSamples <= 1)
+		if (!hasValidSourceData())
+		{
+			reset();
 			return;
+		}
 
 		auto audioLock = DataTryReadLock(audioFile);
 		if (!audioLock)
+		{
+			reset();
 			return;
+		}
 
 		auto& voice = voiceStates.get();
 		auto& fixFrame = span<float, 2>::as(data.begin());
@@ -539,7 +562,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (scrubStepCount <= 1)
 			return raw;
 
-		if (audioFile.numSamples <= 1)
+		if (!hasValidSourceData())
 			return raw;
 
 		double step = 1.0 / (double) scrubStepCount;

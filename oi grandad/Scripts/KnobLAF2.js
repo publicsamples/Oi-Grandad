@@ -289,7 +289,7 @@ const var detune =[];
 
 for (i = 0; i < 3; i++)
 {
-    detune[i] = Content.getComponent("det"+(i+1)).setLocalLookAndFeel(KnobLaf3);
+    detune[i] = Content.getComponent("det"+(i+1)).setLocalLookAndFeel(KnobLaf);
  }
 
 
