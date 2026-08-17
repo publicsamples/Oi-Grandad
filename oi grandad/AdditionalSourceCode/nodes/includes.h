@@ -15,7 +15,7 @@
 // Include compiled network files --------------------------
 
 #include "DspNetwork.h"
-#include "Dyn_networkdata.h"
+#include "Dyn.h"
 #include "FoldTests_networkdata.h"
 #include "FreshNetwork_networkdata.h"
 #include "ggg_networkdata.h"
