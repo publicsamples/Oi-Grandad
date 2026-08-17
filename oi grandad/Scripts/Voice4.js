@@ -1,7 +1,3 @@
-const var StackItem4 = [Content.getComponent("PosIndicator14"),
-                        Content.getComponent("PosIndicator15"),
-                        Content.getComponent("PosIndicator16")];
-                        
 const var VoiceParam4 = Content.getComponent("PosParam4");
 const var VoiceParamB4 = Content.getComponent("PosParamB4");
 
@@ -24,8 +20,6 @@ if(value == 1)
 
       
 
-       for(s in StackItem4)
-            s.showControl(0);
                    
 	}
 	
@@ -37,8 +31,6 @@ if(value == 2)
 	  	
           gran3.setAttribute(gran3.ScrubMode, 1);  
 
-              for(s in StackItem4)
-                  s.showControl(1);
               
 	}
 if(value == 3)
@@ -52,8 +44,6 @@ if(value == 3)
 
       
 
-       for(s in StackItem4)
-            s.showControl(0);
                    
 	}
 	
@@ -65,8 +55,6 @@ if(value == 4)
 	  	
           gran3.setAttribute(gran3.ScrubMode, 4);  
 
-              for(s in StackItem4)
-                  s.showControl(1);
               
 	}	
 

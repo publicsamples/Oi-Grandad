@@ -1,7 +1,3 @@
-const var StackItem2 = [Content.getComponent("PosIndicator6"),
-                        Content.getComponent("PosIndicator7"),
-                        Content.getComponent("PosIndicator8")];
-                        
 const var VoiceParam2 = Content.getComponent("PosParam2");
 const var VoiceParamB2 = Content.getComponent("PosParamB2");
 
@@ -23,8 +19,6 @@ if(value == 1)
 
       
 
-       for(s in StackItem2)
-            s.showControl(0);
                    
 	}
 	
@@ -36,8 +30,6 @@ if(value == 2)
 	  	
           gran1.setAttribute(gran1.ScrubMode, 1);  
 
-              for(s in StackItem2)
-                  s.showControl(1);
               
 	}
 	
@@ -52,8 +44,6 @@ if(value == 3)
 
       
 
-       for(s in StackItem2)
-            s.showControl(0);
                    
 	}
 	
@@ -65,8 +55,6 @@ if(value == 4)
 	  	
           gran1.setAttribute(gran1.ScrubMode, 4);  
 
-              for(s in StackItem2)
-                  s.showControl(1);
               
 	}	
 	
@@ -438,5 +426,3 @@ inline function onShowRandom2Control(component, value)
 };
 
 Content.getComponent("ShowRandom2").setControlCallback(onShowRandom2Control);
-
-

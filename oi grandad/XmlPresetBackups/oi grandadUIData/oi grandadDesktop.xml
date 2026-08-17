@@ -181,25 +181,9 @@
                      parentComponent="ScriptPanel1" bgColour="11306949" itemColour3="4278255873"
                      tooltip="Load files 1mb and larger" textColour="4284254596" enableRange="0"
                      opaque="0"/>
-          <Component type="ScriptTable" id="PosIndicator1" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1" bgColour="4227832731"
-                     itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular1"
-                     customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator2" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1" bgColour="4294956709"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
-                     customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator3" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1" bgColour="4294966980"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
-                     customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator4" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1" bgColour="4291559337"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular1"
-                     customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
-                     visible="0"/>
+          <Component type="ScriptPanel" id="PosIndicator1" x="10" y="4" width="540"
+                     height="90" parentComponent="ScriptPanel1" itemColour="0" itemColour2="0"
+                     bgColour="0" saveInPreset="0" textColour="0" opaque="0"/>
           <Component type="ScriptComboBox" id="FileSelect1" x="-48" y="18" max="5"
                      width="590" height="60" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav"
                      parentComponent="ScriptPanel1" bgColour="4278190080" textColour="4294901760"
@@ -727,25 +711,9 @@
                      parentComponent="ScriptPanel1001" bgColour="11306949" itemColour3="4278255873"
                      tooltip="Load files 1mb and larger" textColour="4284254596" enableRange="0"
                      opaque="0"/>
-          <Component type="ScriptTable" id="PosIndicator5" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1001" bgColour="4227832731"
-                     itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular2"
-                     customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator6" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1001" bgColour="4294956709"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular2"
-                     customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator7" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1001" bgColour="4294966980"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular2"
-                     customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator8" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel1001" bgColour="4291559337"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular2"
-                     customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
-                     visible="0"/>
+          <Component type="ScriptPanel" id="PosIndicator5" x="10" y="4" width="540"
+                     height="90" parentComponent="ScriptPanel1001" itemColour="0" itemColour2="0"
+                     bgColour="0" saveInPreset="0" textColour="0" opaque="0"/>
           <Component type="ScriptComboBox" id="FileSelect2" x="-48" y="18" max="5"
                      width="590" height="60" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav"
                      parentComponent="ScriptPanel1001" bgColour="4278190080" textColour="4294901760"
@@ -1273,25 +1241,9 @@
                      parentComponent="ScriptPanel2001" bgColour="11306949" itemColour3="4278255873"
                      tooltip="Load files 1mb and larger" textColour="4284254596" enableRange="0"
                      opaque="0"/>
-          <Component type="ScriptTable" id="PosIndicator9" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel2001" bgColour="4227832731"
-                     itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular3"
-                     customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator10" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel2001" bgColour="4294956709"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular3"
-                     customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator11" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel2001" bgColour="4294966980"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular3"
-                     customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator12" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel2001" bgColour="4291559337"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular3"
-                     customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
-                     visible="0"/>
+          <Component type="ScriptPanel" id="PosIndicator9" x="10" y="4" width="540"
+                     height="90" parentComponent="ScriptPanel2001" itemColour="0" itemColour2="0"
+                     bgColour="0" saveInPreset="0" textColour="0" opaque="0"/>
           <Component type="ScriptComboBox" id="FileSelect3" x="-48" y="18" max="5"
                      width="590" height="60" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav"
                      parentComponent="ScriptPanel2001" bgColour="4278190080" textColour="4294901760"
@@ -1819,25 +1771,9 @@
                      parentComponent="ScriptPanel3001" bgColour="11306949" itemColour3="4278255873"
                      tooltip="Load files 1mb and larger" textColour="4284254596" enableRange="0"
                      opaque="0"/>
-          <Component type="ScriptTable" id="PosIndicator13" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel3001" bgColour="4227832731"
-                     itemColour="3355443" itemColour2="377861" locked="1" processorId="Granular4"
-                     customColours="1" saveInPreset="0" enabled="0"/>
-          <Component type="ScriptTable" id="PosIndicator14" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel3001" bgColour="4294956709"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular4"
-                     customColours="1" tableIndex="1" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator15" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel3001" bgColour="4294966980"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular4"
-                     customColours="1" tableIndex="2" enabled="0" saveInPreset="0"
-                     visible="0"/>
-          <Component type="ScriptTable" id="PosIndicator16" x="10" y="4" width="540"
-                     height="90" parentComponent="ScriptPanel3001" bgColour="4291559337"
-                     itemColour="3355443" itemColour2="3014445" locked="1" processorId="Granular4"
-                     customColours="1" tableIndex="3" enabled="0" saveInPreset="0"
-                     visible="0"/>
+          <Component type="ScriptPanel" id="PosIndicator13" x="10" y="4" width="540"
+                     height="90" parentComponent="ScriptPanel3001" itemColour="0" itemColour2="0"
+                     bgColour="0" saveInPreset="0" textColour="0" opaque="0"/>
           <Component type="ScriptComboBox" id="FileSelect4" x="-48" y="18" max="5"
                      width="590" height="60" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/basschain-_3.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hisuer.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/hp-perc.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/OGluv.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Factory/perc.wav"
                      parentComponent="ScriptPanel3001" bgColour="4278190080" textColour="4294901760"
