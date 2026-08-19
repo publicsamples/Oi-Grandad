@@ -17,13 +17,39 @@
             file="Source/CopyProtection.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="p9z9dP" name="nodes">
-        <FILE id="oZSL4o" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="b7rofB" name="granular_player_stepquant_density_hybrid_native.h"
+      <GROUP id="GwDWkc" name="nodes">
+        <FILE id="sGxHQj" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="sQVXQH" name="Dyn_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/Dyn_networkdata.h"/>
+        <FILE id="wgAyG5" name="ENV.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/ENV.h"/>
+        <FILE id="Ic5PbB" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="YoxFSa" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="gsSbbt" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="KyQOtW" name="MatrixTest2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MatrixTest2.h"/>
-        <FILE id="pCSLNd" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="bDWS2A" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="dFVPbf" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="YCtpw9" name="master_bus_compressor_native.h" compile="0"
+              resource="0" file="../AdditionalSourceCode/nodes/master_bus_compressor_native.h"/>
+        <FILE id="IWh75M" name="MatrixTest2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MatrixTest2.h"/>
+        <FILE id="hPTFao" name="modcont_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
+        <FILE id="imydro" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="gvUxV2" name="recorder_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/recorder_networkdata.h"/>
+        <FILE id="ygNPQB" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="t8gDeq" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="AObe7J" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="f1TaEC" name="track_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
+        <FILE id="s0cpFT" name="vec1b_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
+        <FILE id="HmEmr9" name="vec2b_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
+        <FILE id="wsX22I" name="vec3_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
+        <FILE id="XpiMz1" name="vec4_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
+        <FILE id="NwHzKF" name="vecfade_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

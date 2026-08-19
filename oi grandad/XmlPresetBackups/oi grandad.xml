@@ -1151,7 +1151,7 @@
               <ChildProcessors/>
               <Content/>
               <Networks>
-                <Network ID="vecfade" Version="0.0.0" AllowCompilation="1"/>
+                <Network ID="vecfade" Version="0.0.0"/>
               </Networks>
               <UIData>
                 <ContentProperties DeviceType="Desktop"/>

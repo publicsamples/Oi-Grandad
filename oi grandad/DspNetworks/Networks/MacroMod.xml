@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="MacroMod" AllowCompilation="1" Version="0.0.0" CompileChannelAmount="1"
+         AllowPolyphonic="1">
+  <Node FactoryPath="container.chain" ID="MacroMod" Bypassed="0" Name="MacroMod"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="add">
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="macro" Value="0.523312561035157"
+                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0"
+                 DefaultValue="6.661338147750939e-16">
+        <Connections>
+          <Connection NodeId="add" ParameterId="Value"/>
+        </Connections>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

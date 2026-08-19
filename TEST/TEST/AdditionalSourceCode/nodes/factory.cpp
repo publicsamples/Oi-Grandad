@@ -29,6 +29,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
+		registerDataNode<project::cable_networkdata>();
 	}
 };
 

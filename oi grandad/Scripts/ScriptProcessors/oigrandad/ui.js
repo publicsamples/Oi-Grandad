@@ -2,6 +2,10 @@ Content.makeFrontInterface(960, 720);
 
 const var rm = Engine.getGlobalRoutingManager();
 
+const var trk1 = rm.getCable("Trk1");
+const var trk2 = rm.getCable("Trk2");
+const var trk3 = rm.getCable("Trk3");
+const var trk4 = rm.getCable("Trk4");
 
 reg g_isPresetLoadInProgress = false;
 reg g_isUpdatingTabButtons = false;
@@ -28,7 +32,7 @@ include("RR.js");
 include("rec.js");
 
 include("MultiChannel.js");
-include("ModControls.js");
+//include("ModControls.js");
 include("Rect.js");
 include("Indicators.js");
 

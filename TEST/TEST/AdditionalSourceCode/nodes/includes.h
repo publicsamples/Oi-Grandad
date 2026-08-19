@@ -13,6 +13,7 @@
 
 // Include compiled network files --------------------------
 
+#include "cable_networkdata.h"
 #include "MatrixTest2.h"
 
 #if (defined (_WIN32) || defined (_WIN64))

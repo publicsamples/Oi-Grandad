@@ -453,51 +453,6 @@ using fix32_block_t_ = container::chain<parameter::empty,
 template <int NV>
 using fix32_block_t = wrap::fix_block<32, fix32_block_t_<NV>>;
 
-using global_cable15_t_index = runtime_target::indexers::fix_hash<162771259>;
-using peak1_mod = parameter::plain<routing::global_cable<global_cable15_t_index, parameter::empty>, 
-                                   0>;
-using peak1_t = wrap::mod<peak1_mod, 
-                          wrap::no_data<core::peak>>;
-
-using chain25_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak1_t>, 
-                                   routing::global_cable<global_cable15_t_index, parameter::empty>>;
-
-using global_cable18_t_index = runtime_target::indexers::fix_hash<162771260>;
-using peak19_mod = parameter::plain<routing::global_cable<global_cable18_t_index, parameter::empty>, 
-                                    0>;
-using peak19_t = wrap::mod<peak19_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain28_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak19_t>, 
-                                   routing::global_cable<global_cable18_t_index, parameter::empty>>;
-
-using global_cable17_t_index = runtime_target::indexers::fix_hash<162771261>;
-using peak18_mod = parameter::plain<routing::global_cable<global_cable17_t_index, parameter::empty>, 
-                                    0>;
-using peak18_t = wrap::mod<peak18_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain27_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak18_t>, 
-                                   routing::global_cable<global_cable17_t_index, parameter::empty>>;
-
-using global_cable16_t_index = runtime_target::indexers::fix_hash<162771262>;
-using peak2_mod = parameter::plain<routing::global_cable<global_cable16_t_index, parameter::empty>, 
-                                   0>;
-using peak2_t = wrap::mod<peak2_mod, 
-                          wrap::no_data<core::peak>>;
-
-using chain26_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak2_t>, 
-                                   routing::global_cable<global_cable16_t_index, parameter::empty>>;
-using branch2_t = container::branch<parameter::empty, 
-                                    wrap::fix<2, chain25_t>, 
-                                    chain28_t, 
-                                    chain27_t, 
-                                    chain26_t>;
-
 DECLARE_PARAMETER_RANGE_SKEW(xfader_c0Range, 
                              -100., 
                              0., 
@@ -751,8 +706,7 @@ using branch18_t = container::branch<parameter::empty,
 
 template <int NV>
 using chain33_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, branch2_t>, 
-                                   xfader_t<NV>, 
+                                   wrap::fix<2, xfader_t<NV>>, 
                                    chain16_t<NV>, 
                                    core::gain<NV>, 
                                    jdsp::jpanner<NV>, 
@@ -922,8 +876,7 @@ using Direction = parameter::plain<project::granular_player_stepquant_density_hy
 using ScrubB = Scrub;
 using ScrubC = Scrub;
 using ScrubD = Scrub;
-using ModOut1 = parameter::plain<MatrixTest2_impl::branch2_t, 
-                                 0>;
+using ModOut1 = Scrub;
 template <int NV>
 using FxMix = parameter::plain<MatrixTest2_impl::xfader_t<NV>, 
                                0>;
@@ -1146,138 +1099,125 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		auto& pack8_writer = this->getT(0).getT(0).getT(9);                                  // MatrixTest2_impl::pack8_writer_t
 		auto& granular_player_stepquant_density_hybrid_native = this->getT(0).getT(1);       // project::granular_player_stepquant_density_hybrid_native<NV>
 		auto& chain33 = this->getT(1);                                                       // MatrixTest2_impl::chain33_t<NV>
-		auto& branch2 = this->getT(1).getT(0);                                               // MatrixTest2_impl::branch2_t
-		auto& chain25 = this->getT(1).getT(0).getT(0);                                       // MatrixTest2_impl::chain25_t
-		auto& peak1 = this->getT(1).getT(0).getT(0).getT(0);                                 // MatrixTest2_impl::peak1_t
-		auto& global_cable15 = this->getT(1).getT(0).getT(0).getT(1);                        // routing::global_cable<global_cable15_t_index, parameter::empty>
-		auto& chain28 = this->getT(1).getT(0).getT(1);                                       // MatrixTest2_impl::chain28_t
-		auto& peak19 = this->getT(1).getT(0).getT(1).getT(0);                                // MatrixTest2_impl::peak19_t
-		auto& global_cable18 = this->getT(1).getT(0).getT(1).getT(1);                        // routing::global_cable<global_cable18_t_index, parameter::empty>
-		auto& chain27 = this->getT(1).getT(0).getT(2);                                       // MatrixTest2_impl::chain27_t
-		auto& peak18 = this->getT(1).getT(0).getT(2).getT(0);                                // MatrixTest2_impl::peak18_t
-		auto& global_cable17 = this->getT(1).getT(0).getT(2).getT(1);                        // routing::global_cable<global_cable17_t_index, parameter::empty>
-		auto& chain26 = this->getT(1).getT(0).getT(3);                                       // MatrixTest2_impl::chain26_t
-		auto& peak2 = this->getT(1).getT(0).getT(3).getT(0);                                 // MatrixTest2_impl::peak2_t
-		auto& global_cable16 = this->getT(1).getT(0).getT(3).getT(1);                        // routing::global_cable<global_cable16_t_index, parameter::empty>
-		auto& xfader = this->getT(1).getT(1);                                                // MatrixTest2_impl::xfader_t<NV>
-		auto& chain16 = this->getT(1).getT(2);                                               // MatrixTest2_impl::chain16_t<NV>
-		auto& split1 = this->getT(1).getT(2).getT(0);                                        // MatrixTest2_impl::split1_t<NV>
-		auto& chain22 = this->getT(1).getT(2).getT(0).getT(0);                               // MatrixTest2_impl::chain22_t<NV>
-		auto& gain = this->getT(1).getT(2).getT(0).getT(0).getT(0);                          // core::gain<NV>
-		auto& chain19 = this->getT(1).getT(2).getT(0).getT(1);                               // MatrixTest2_impl::chain19_t<NV>
-		auto& branch1 = this->getT(1).getT(2).getT(0).getT(1).getT(0);                       // MatrixTest2_impl::branch1_t<NV>
-		auto& chain20 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(0);               // MatrixTest2_impl::chain20_t
-		auto& chain38 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(1);               // MatrixTest2_impl::chain38_t<NV>
-		auto& svf = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(1).getT(0);           // filters::svf<NV>
-		auto& chain43 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(2);               // MatrixTest2_impl::chain43_t<NV>
-		auto& svf5 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(2).getT(0);          // filters::svf<NV>
-		auto& chain45 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(3);               // MatrixTest2_impl::chain45_t<NV>
-		auto& svf6 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(3).getT(0);          // filters::svf<NV>
-		auto& chain39 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(4);               // MatrixTest2_impl::chain39_t<NV>
-		auto& biquad = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(4).getT(0);        // filters::biquad<NV>
-		auto& chain44 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(5);               // MatrixTest2_impl::chain44_t<NV>
-		auto& ring_mod = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(5).getT(0);      // filters::ring_mod<NV>
-		auto& chain46 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(6);               // MatrixTest2_impl::chain46_t<NV>
-		auto& fix8_block = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(6).getT(0);    // MatrixTest2_impl::fix8_block_t<NV>
-		auto& split3 = this->getT(1).getT(2).getT(0).getT(1).                                // MatrixTest2_impl::split3_t<NV>
+		auto& xfader = this->getT(1).getT(0);                                                // MatrixTest2_impl::xfader_t<NV>
+		auto& chain16 = this->getT(1).getT(1);                                               // MatrixTest2_impl::chain16_t<NV>
+		auto& split1 = this->getT(1).getT(1).getT(0);                                        // MatrixTest2_impl::split1_t<NV>
+		auto& chain22 = this->getT(1).getT(1).getT(0).getT(0);                               // MatrixTest2_impl::chain22_t<NV>
+		auto& gain = this->getT(1).getT(1).getT(0).getT(0).getT(0);                          // core::gain<NV>
+		auto& chain19 = this->getT(1).getT(1).getT(0).getT(1);                               // MatrixTest2_impl::chain19_t<NV>
+		auto& branch1 = this->getT(1).getT(1).getT(0).getT(1).getT(0);                       // MatrixTest2_impl::branch1_t<NV>
+		auto& chain20 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(0);               // MatrixTest2_impl::chain20_t
+		auto& chain38 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(1);               // MatrixTest2_impl::chain38_t<NV>
+		auto& svf = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(1).getT(0);           // filters::svf<NV>
+		auto& chain43 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(2);               // MatrixTest2_impl::chain43_t<NV>
+		auto& svf5 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(2).getT(0);          // filters::svf<NV>
+		auto& chain45 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(3);               // MatrixTest2_impl::chain45_t<NV>
+		auto& svf6 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(3).getT(0);          // filters::svf<NV>
+		auto& chain39 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(4);               // MatrixTest2_impl::chain39_t<NV>
+		auto& biquad = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(4).getT(0);        // filters::biquad<NV>
+		auto& chain44 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(5);               // MatrixTest2_impl::chain44_t<NV>
+		auto& ring_mod = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(5).getT(0);      // filters::ring_mod<NV>
+		auto& chain46 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(6);               // MatrixTest2_impl::chain46_t<NV>
+		auto& fix8_block = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(6).getT(0);    // MatrixTest2_impl::fix8_block_t<NV>
+		auto& split3 = this->getT(1).getT(1).getT(0).getT(1).                                // MatrixTest2_impl::split3_t<NV>
                        getT(0).getT(6).getT(0).getT(0);
-		auto& chain17 = this->getT(1).getT(2).getT(0).getT(1).                               // MatrixTest2_impl::chain17_t
+		auto& chain17 = this->getT(1).getT(1).getT(0).getT(1).                               // MatrixTest2_impl::chain17_t
                         getT(0).getT(6).getT(0).getT(0).
                         getT(0);
-		auto& chain24 = this->getT(1).getT(2).getT(0).getT(1).                               // MatrixTest2_impl::chain24_t<NV>
+		auto& chain24 = this->getT(1).getT(1).getT(0).getT(1).                               // MatrixTest2_impl::chain24_t<NV>
                         getT(0).getT(6).getT(0).getT(0).
                         getT(1);
-		auto& sig2mod = this->getT(1).getT(2).getT(0).getT(1).getT(0).                       // math::sig2mod<NV>
+		auto& sig2mod = this->getT(1).getT(1).getT(0).getT(1).getT(0).                       // math::sig2mod<NV>
                         getT(6).getT(0).getT(0).getT(1).getT(0);
-		auto& fmod1 = this->getT(1).getT(2).getT(0).getT(1).getT(0).                         // wrap::no_process<math::fmod<NV>>
+		auto& fmod1 = this->getT(1).getT(1).getT(0).getT(1).getT(0).                         // wrap::no_process<math::fmod<NV>>
                       getT(6).getT(0).getT(0).getT(1).getT(1);
-		auto& peak12 = this->getT(1).getT(2).getT(0).getT(1).getT(0).                        // MatrixTest2_impl::peak12_t<NV>
+		auto& peak12 = this->getT(1).getT(1).getT(0).getT(1).getT(0).                        // MatrixTest2_impl::peak12_t<NV>
                        getT(6).getT(0).getT(0).getT(1).getT(2);
-		auto& clear1 = this->getT(1).getT(2).getT(0).getT(1).getT(0).                        // math::clear<NV>
+		auto& clear1 = this->getT(1).getT(1).getT(0).getT(1).getT(0).                        // math::clear<NV>
                        getT(6).getT(0).getT(0).getT(1).getT(3);
-		auto& cable_table6 = this->getT(1).getT(2).getT(0).getT(1).                          // MatrixTest2_impl::cable_table6_t<NV>
+		auto& cable_table6 = this->getT(1).getT(1).getT(0).getT(1).                          // MatrixTest2_impl::cable_table6_t<NV>
                              getT(0).getT(6).getT(0).getT(1);
-		auto& modchain1 = this->getT(1).getT(2).getT(0).getT(1).                             // MatrixTest2_impl::modchain1_t<NV>
+		auto& modchain1 = this->getT(1).getT(1).getT(0).getT(1).                             // MatrixTest2_impl::modchain1_t<NV>
                           getT(0).getT(6).getT(0).getT(2);
-		auto& pma1 = this->getT(1).getT(2).getT(0).getT(1).                                  // MatrixTest2_impl::pma1_t<NV>
+		auto& pma1 = this->getT(1).getT(1).getT(0).getT(1).                                  // MatrixTest2_impl::pma1_t<NV>
                      getT(0).getT(6).getT(0).getT(2).
                      getT(0);
-		auto& fmod = this->getT(1).getT(2).getT(0).getT(1).                                  // math::fmod<NV>
+		auto& fmod = this->getT(1).getT(1).getT(0).getT(1).                                  // math::fmod<NV>
                      getT(0).getT(6).getT(0).getT(3);
-		auto& div = this->getT(1).getT(2).getT(0).getT(1).                                   // math::div<NV>
+		auto& div = this->getT(1).getT(1).getT(0).getT(1).                                   // math::div<NV>
                     getT(0).getT(6).getT(0).getT(4);
-		auto& gain2 = this->getT(1).getT(2).getT(0).getT(1).                                 // core::gain<NV>
+		auto& gain2 = this->getT(1).getT(1).getT(0).getT(1).                                 // core::gain<NV>
                       getT(0).getT(6).getT(0).getT(5);
-		auto& one_pole = this->getT(1).getT(2).getT(0).getT(1).                              // filters::one_pole<NV>
+		auto& one_pole = this->getT(1).getT(1).getT(0).getT(1).                              // filters::one_pole<NV>
                          getT(0).getT(6).getT(0).getT(6);
-		auto& chain18 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(7);               // MatrixTest2_impl::chain18_t<NV>
-		auto& chain41 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(7).getT(0);       // MatrixTest2_impl::chain41_t<NV>
-		auto& wrapmidi31 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi31_t<NV>
+		auto& chain18 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(7);               // MatrixTest2_impl::chain18_t<NV>
+		auto& chain41 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(7).getT(0);       // MatrixTest2_impl::chain41_t<NV>
+		auto& wrapmidi31 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi31_t<NV>
                            getT(0).getT(7).getT(0).getT(0);
-		auto& midi3 = this->getT(1).getT(2).getT(0).getT(1).                                 // MatrixTest2_impl::midi3_t<NV>
+		auto& midi3 = this->getT(1).getT(1).getT(0).getT(1).                                 // MatrixTest2_impl::midi3_t<NV>
                       getT(0).getT(7).getT(0).getT(0).
                       getT(0);
-		auto& offline2 = this->getT(1).getT(2).getT(0).getT(1).                              // MatrixTest2_impl::offline2_t<NV>
+		auto& offline2 = this->getT(1).getT(1).getT(0).getT(1).                              // MatrixTest2_impl::offline2_t<NV>
                          getT(0).getT(7).getT(0).getT(1);
-		auto& converter6 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::converter6_t<NV>
+		auto& converter6 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::converter6_t<NV>
                            getT(0).getT(7).getT(0).getT(1).
                            getT(0);
-		auto& converter7 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::converter7_t<NV>
+		auto& converter7 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::converter7_t<NV>
                            getT(0).getT(7).getT(0).getT(1).
                            getT(1);
-		auto& frame2_block1 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(7).getT(1); // MatrixTest2_impl::frame2_block1_t<NV>
-		auto& pma_unscaled3 = this->getT(1).getT(2).getT(0).getT(1).                         // MatrixTest2_impl::pma_unscaled3_t<NV>
+		auto& frame2_block1 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(7).getT(1); // MatrixTest2_impl::frame2_block1_t<NV>
+		auto& pma_unscaled3 = this->getT(1).getT(1).getT(0).getT(1).                         // MatrixTest2_impl::pma_unscaled3_t<NV>
                               getT(0).getT(7).getT(1).getT(0);
-		auto& receive3 = this->getT(1).getT(2).getT(0).getT(1).                              // routing::receive<NV, stereo_frame_cable<NV>>
+		auto& receive3 = this->getT(1).getT(1).getT(0).getT(1).                              // routing::receive<NV, stereo_frame_cable<NV>>
                          getT(0).getT(7).getT(1).getT(1);
-		auto& one_pole5 = this->getT(1).getT(2).getT(0).getT(1).                             // filters::one_pole<NV>
+		auto& one_pole5 = this->getT(1).getT(1).getT(0).getT(1).                             // filters::one_pole<NV>
                           getT(0).getT(7).getT(1).getT(2);
-		auto& fix_delay = this->getT(1).getT(2).getT(0).getT(1).                             // wrap::no_process<core::fix_delay>
+		auto& fix_delay = this->getT(1).getT(1).getT(0).getT(1).                             // wrap::no_process<core::fix_delay>
                           getT(0).getT(7).getT(1).getT(3);
-		auto& jdelay_thiran3 = this->getT(1).getT(2).getT(0).getT(1).                        // jdsp::jdelay_thiran<NV>
+		auto& jdelay_thiran3 = this->getT(1).getT(1).getT(0).getT(1).                        // jdsp::jdelay_thiran<NV>
                                getT(0).getT(7).getT(1).getT(4);
-		auto& send3 = this->getT(1).getT(2).getT(0).getT(1).                                 // routing::send<NV, stereo_frame_cable<NV>>
+		auto& send3 = this->getT(1).getT(1).getT(0).getT(1).                                 // routing::send<NV, stereo_frame_cable<NV>>
                       getT(0).getT(7).getT(1).getT(5);
-		auto& one_pole3 = this->getT(1).getT(2).getT(0).getT(1).                             // filters::one_pole<NV>
+		auto& one_pole3 = this->getT(1).getT(1).getT(0).getT(1).                             // filters::one_pole<NV>
                           getT(0).getT(7).getT(1).getT(6);
-		auto& chain21 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8);               // MatrixTest2_impl::chain21_t<NV>
-		auto& chain42 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8).getT(0);       // MatrixTest2_impl::chain42_t<NV>
-		auto& wrapmidi41 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi41_t<NV>
+		auto& chain21 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8);               // MatrixTest2_impl::chain21_t<NV>
+		auto& chain42 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8).getT(0);       // MatrixTest2_impl::chain42_t<NV>
+		auto& wrapmidi41 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi41_t<NV>
                            getT(0).getT(8).getT(0).getT(0);
-		auto& midi4 = this->getT(1).getT(2).getT(0).getT(1).                                 // MatrixTest2_impl::midi4_t<NV>
+		auto& midi4 = this->getT(1).getT(1).getT(0).getT(1).                                 // MatrixTest2_impl::midi4_t<NV>
                       getT(0).getT(8).getT(0).getT(0).
                       getT(0);
-		auto& offline3 = this->getT(1).getT(2).getT(0).getT(1).                              // MatrixTest2_impl::offline3_t<NV>
+		auto& offline3 = this->getT(1).getT(1).getT(0).getT(1).                              // MatrixTest2_impl::offline3_t<NV>
                          getT(0).getT(8).getT(0).getT(1);
-		auto& converter8 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::converter8_t<NV>
+		auto& converter8 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::converter8_t<NV>
                            getT(0).getT(8).getT(0).getT(1).
                            getT(0);
-		auto& pma_unscaled4 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8).getT(1); // MatrixTest2_impl::pma_unscaled4_t<NV>
-		auto& frame2_block2 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8).getT(2); // MatrixTest2_impl::frame2_block2_t<NV>
-		auto& allpass = this->getT(1).getT(2).getT(0).getT(1).                               // filters::allpass<NV>
+		auto& pma_unscaled4 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8).getT(1); // MatrixTest2_impl::pma_unscaled4_t<NV>
+		auto& frame2_block2 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8).getT(2); // MatrixTest2_impl::frame2_block2_t<NV>
+		auto& allpass = this->getT(1).getT(1).getT(0).getT(1).                               // filters::allpass<NV>
                         getT(0).getT(8).getT(2).getT(0);
-		auto& one_pole4 = this->getT(1).getT(2).getT(0).getT(1).                             // filters::one_pole<NV>
+		auto& one_pole4 = this->getT(1).getT(1).getT(0).getT(1).                             // filters::one_pole<NV>
                           getT(0).getT(8).getT(2).getT(1);
-		auto& chain23 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9);               // MatrixTest2_impl::chain23_t<NV>
-		auto& cable_table5 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(0);  // MatrixTest2_impl::cable_table5_t<NV>
-		auto& bitcrush = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(1);      // fx::bitcrush<NV>
-		auto& sampleandhold = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(2); // fx::sampleandhold<NV>
-		auto& gain1 = this->getT(1).getT(2).getT(0).getT(1).getT(1);                         // core::gain<NV>
-		auto& gain3 = this->getT(1).getT(3);                                                 // core::gain<NV>
-		auto& jpanner = this->getT(1).getT(4);                                               // jdsp::jpanner<NV>
-		auto& branch18 = this->getT(1).getT(5);                                              // MatrixTest2_impl::branch18_t
-		auto& chain29 = this->getT(1).getT(5).getT(0);                                       // MatrixTest2_impl::chain29_t
-		auto& peak20 = this->getT(1).getT(5).getT(0).getT(0);                                // MatrixTest2_impl::peak20_t
-		auto& global_cable19 = this->getT(1).getT(5).getT(0).getT(1);                        // routing::global_cable<global_cable19_t_index, parameter::empty>
-		auto& chain30 = this->getT(1).getT(5).getT(1);                                       // MatrixTest2_impl::chain30_t
-		auto& peak21 = this->getT(1).getT(5).getT(1).getT(0);                                // MatrixTest2_impl::peak21_t
-		auto& global_cable20 = this->getT(1).getT(5).getT(1).getT(1);                        // routing::global_cable<global_cable20_t_index, parameter::empty>
-		auto& chain31 = this->getT(1).getT(5).getT(2);                                       // MatrixTest2_impl::chain31_t
-		auto& peak22 = this->getT(1).getT(5).getT(2).getT(0);                                // MatrixTest2_impl::peak22_t
-		auto& global_cable21 = this->getT(1).getT(5).getT(2).getT(1);                        // routing::global_cable<global_cable21_t_index, parameter::empty>
-		auto& chain32 = this->getT(1).getT(5).getT(3);                                       // MatrixTest2_impl::chain32_t
-		auto& peak23 = this->getT(1).getT(5).getT(3).getT(0);                                // MatrixTest2_impl::peak23_t
-		auto& global_cable22 = this->getT(1).getT(5).getT(3).getT(1);                        // routing::global_cable<global_cable22_t_index, parameter::empty>
+		auto& chain23 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9);               // MatrixTest2_impl::chain23_t<NV>
+		auto& cable_table5 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(0);  // MatrixTest2_impl::cable_table5_t<NV>
+		auto& bitcrush = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(1);      // fx::bitcrush<NV>
+		auto& sampleandhold = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(2); // fx::sampleandhold<NV>
+		auto& gain1 = this->getT(1).getT(1).getT(0).getT(1).getT(1);                         // core::gain<NV>
+		auto& gain3 = this->getT(1).getT(2);                                                 // core::gain<NV>
+		auto& jpanner = this->getT(1).getT(3);                                               // jdsp::jpanner<NV>
+		auto& branch18 = this->getT(1).getT(4);                                              // MatrixTest2_impl::branch18_t
+		auto& chain29 = this->getT(1).getT(4).getT(0);                                       // MatrixTest2_impl::chain29_t
+		auto& peak20 = this->getT(1).getT(4).getT(0).getT(0);                                // MatrixTest2_impl::peak20_t
+		auto& global_cable19 = this->getT(1).getT(4).getT(0).getT(1);                        // routing::global_cable<global_cable19_t_index, parameter::empty>
+		auto& chain30 = this->getT(1).getT(4).getT(1);                                       // MatrixTest2_impl::chain30_t
+		auto& peak21 = this->getT(1).getT(4).getT(1).getT(0);                                // MatrixTest2_impl::peak21_t
+		auto& global_cable20 = this->getT(1).getT(4).getT(1).getT(1);                        // routing::global_cable<global_cable20_t_index, parameter::empty>
+		auto& chain31 = this->getT(1).getT(4).getT(2);                                       // MatrixTest2_impl::chain31_t
+		auto& peak22 = this->getT(1).getT(4).getT(2).getT(0);                                // MatrixTest2_impl::peak22_t
+		auto& global_cable21 = this->getT(1).getT(4).getT(2).getT(1);                        // routing::global_cable<global_cable21_t_index, parameter::empty>
+		auto& chain32 = this->getT(1).getT(4).getT(3);                                       // MatrixTest2_impl::chain32_t
+		auto& peak23 = this->getT(1).getT(4).getT(3).getT(0);                                // MatrixTest2_impl::peak23_t
+		auto& global_cable22 = this->getT(1).getT(4).getT(3).getT(1);                        // routing::global_cable<global_cable22_t_index, parameter::empty>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -1304,8 +1244,6 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getParameterT(11).connectT(0, granular_player_stepquant_density_hybrid_native); // Direction -> granular_player_stepquant_density_hybrid_native::DirectionMode
 		
 		this->getParameterT(15).connectT(0, pack8_writer); // TransportMode -> pack8_writer::Value4
-		
-		this->getParameterT(16).connectT(0, branch2); // ModOut1 -> branch2::Index
 		
 		this->getParameterT(17).connectT(0, xfader); // FxMix -> xfader::Value
 		
@@ -1386,10 +1324,6 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		tempo_sync1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync1 -> granular_player_stepquant_density_hybrid_native::PitchSyncInput
 		minmax.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);    // minmax -> granular_player_stepquant_density_hybrid_native::WindowShape
 		tempo_sync3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync3 -> granular_player_stepquant_density_hybrid_native::BloomDuration
-		peak1.getParameter().connectT(0, global_cable15);                                                         // peak1 -> global_cable15::Value
-		peak19.getParameter().connectT(0, global_cable18);                                                        // peak19 -> global_cable18::Value
-		peak18.getParameter().connectT(0, global_cable17);                                                        // peak18 -> global_cable17::Value
-		peak2.getParameter().connectT(0, global_cable16);                                                         // peak2 -> global_cable16::Value
 		auto& xfader_p = xfader.getWrappedObject().getParameter();
 		xfader_p.getParameterT(0).connectT(0, gain);                             // xfader -> gain::Gain
 		xfader_p.getParameterT(1).connectT(0, gain1);                            // xfader -> gain1::Gain
@@ -1491,16 +1425,6 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		; // granular_player_stepquant_density_hybrid_native::ScrubD is automated
 		; // granular_player_stepquant_density_hybrid_native::BloomDuration is automated
 		; // granular_player_stepquant_density_hybrid_native::PitchSyncInput is automated
-		
-		; // branch2::Index is automated
-		
-		; // global_cable15::Value is automated
-		
-		; // global_cable18::Value is automated
-		
-		; // global_cable17::Value is automated
-		
-		; // global_cable16::Value is automated
 		
 		; // xfader::Value is automated
 		
@@ -1715,14 +1639,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(4).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::pitch_mod_t<NV>
 		this->getT(0).getT(0).getT(0).getT(5).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod2_t<NV>
 		this->getT(0).getT(0).getT(0).getT(6).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod6_t<NV>
-		this->getT(1).getT(0).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable15_t_index, parameter::empty>
-		this->getT(1).getT(0).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable18_t_index, parameter::empty>
-		this->getT(1).getT(0).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable17_t_index, parameter::empty>
-		this->getT(1).getT(0).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable16_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable19_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable20_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable21_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable22_t_index, parameter::empty>
+		this->getT(1).getT(4).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable19_t_index, parameter::empty>
+		this->getT(1).getT(4).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable20_t_index, parameter::empty>
+		this->getT(1).getT(4).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable21_t_index, parameter::empty>
+		this->getT(1).getT(4).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable22_t_index, parameter::empty>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)
@@ -1739,19 +1659,15 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getT(0).getT(0).getT(8).setExternalData(b, index);                                 // MatrixTest2_impl::pack_resizer_t
 		this->getT(0).getT(0).getT(9).setExternalData(b, index);                                 // MatrixTest2_impl::pack8_writer_t
 		this->getT(0).getT(1).setExternalData(b, index);                                         // project::granular_player_stepquant_density_hybrid_native<NV>
-		this->getT(1).getT(0).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak1_t
-		this->getT(1).getT(0).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak19_t
-		this->getT(1).getT(0).getT(2).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak18_t
-		this->getT(1).getT(0).getT(3).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak2_t
-		this->getT(1).getT(2).getT(0).getT(1).getT(0).                                           // MatrixTest2_impl::peak12_t<NV>
+		this->getT(1).getT(1).getT(0).getT(1).getT(0).                                           // MatrixTest2_impl::peak12_t<NV>
         getT(6).getT(0).getT(0).getT(1).getT(2).setExternalData(b, index);
-		this->getT(1).getT(2).getT(0).getT(1).                                                   // MatrixTest2_impl::cable_table6_t<NV>
+		this->getT(1).getT(1).getT(0).getT(1).                                                   // MatrixTest2_impl::cable_table6_t<NV>
         getT(0).getT(6).getT(0).getT(1).setExternalData(b, index);
-		this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(0).setExternalData(b, index); // MatrixTest2_impl::cable_table5_t<NV>
-		this->getT(1).getT(5).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak20_t
-		this->getT(1).getT(5).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak21_t
-		this->getT(1).getT(5).getT(2).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak22_t
-		this->getT(1).getT(5).getT(3).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak23_t
+		this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(0).setExternalData(b, index); // MatrixTest2_impl::cable_table5_t<NV>
+		this->getT(1).getT(4).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak20_t
+		this->getT(1).getT(4).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak21_t
+		this->getT(1).getT(4).getT(2).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak22_t
+		this->getT(1).getT(4).getT(3).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak23_t
 	}
 };
 }

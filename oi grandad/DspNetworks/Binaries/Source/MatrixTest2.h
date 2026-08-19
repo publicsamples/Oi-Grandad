@@ -424,6 +424,8 @@ using tempo_sync3_mod = parameter::plain<project::granular_player_stepquant_dens
 template <int NV>
 using tempo_sync3_t = wrap::mod<tempo_sync3_mod<NV>, 
                                 control::tempo_sync<NV>>;
+using pack_resizer_t = wrap::data<control::pack_resizer, 
+                                  data::external::sliderpack<0>>;
 using pack8_writer_t = wrap::data<control::pack8_writer, 
                                   data::external::sliderpack<0>>;
 
@@ -433,65 +435,69 @@ using modchain_t_ = container::chain<parameter::empty,
                                      converter_t<NV>, 
                                      tempo_sync_t<NV>, 
                                      tempo_sync1_t<NV>, 
+                                     control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>, 
                                      minmax_t<NV>, 
+                                     control::tempo_sync<NV>, 
                                      tempo_sync3_t<NV>, 
+                                     pack_resizer_t, 
                                      pack8_writer_t>;
 
 template <int NV>
 using modchain_t = wrap::control_rate<modchain_t_<NV>>;
 
-template <int NV>
-using fix32_block_t_ = container::chain<parameter::empty, 
-                                        wrap::fix<2, modchain_t<NV>>, 
-                                        project::granular_player_stepquant_density_hybrid_native<NV>>;
+using global_cable_t_index = runtime_target::indexers::fix_hash<2615364>;
+using peak_mod = parameter::plain<routing::global_cable<global_cable_t_index, parameter::empty>, 
+                                  0>;
+using peak_t = wrap::mod<peak_mod, 
+                         wrap::no_data<core::peak>>;
 
-template <int NV>
-using fix32_block_t = wrap::fix_block<32, fix32_block_t_<NV>>;
+using chain_t = container::chain<parameter::empty, 
+                                 wrap::fix<2, peak_t>, 
+                                 routing::global_cable<global_cable_t_index, parameter::empty>>;
 
-using global_cable15_t_index = runtime_target::indexers::fix_hash<162771259>;
-using peak1_mod = parameter::plain<routing::global_cable<global_cable15_t_index, parameter::empty>, 
+using global_cable1_t_index = runtime_target::indexers::fix_hash<2615365>;
+using peak1_mod = parameter::plain<routing::global_cable<global_cable1_t_index, parameter::empty>, 
                                    0>;
 using peak1_t = wrap::mod<peak1_mod, 
                           wrap::no_data<core::peak>>;
 
-using chain25_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak1_t>, 
-                                   routing::global_cable<global_cable15_t_index, parameter::empty>>;
+using chain1_t = container::chain<parameter::empty, 
+                                  wrap::fix<2, peak1_t>, 
+                                  routing::global_cable<global_cable1_t_index, parameter::empty>>;
 
-using global_cable18_t_index = runtime_target::indexers::fix_hash<162771260>;
-using peak19_mod = parameter::plain<routing::global_cable<global_cable18_t_index, parameter::empty>, 
-                                    0>;
-using peak19_t = wrap::mod<peak19_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain28_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak19_t>, 
-                                   routing::global_cable<global_cable18_t_index, parameter::empty>>;
-
-using global_cable17_t_index = runtime_target::indexers::fix_hash<162771261>;
-using peak18_mod = parameter::plain<routing::global_cable<global_cable17_t_index, parameter::empty>, 
-                                    0>;
-using peak18_t = wrap::mod<peak18_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain27_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak18_t>, 
-                                   routing::global_cable<global_cable17_t_index, parameter::empty>>;
-
-using global_cable16_t_index = runtime_target::indexers::fix_hash<162771262>;
-using peak2_mod = parameter::plain<routing::global_cable<global_cable16_t_index, parameter::empty>, 
+using global_cable2_t_index = runtime_target::indexers::fix_hash<2615366>;
+using peak2_mod = parameter::plain<routing::global_cable<global_cable2_t_index, parameter::empty>, 
                                    0>;
 using peak2_t = wrap::mod<peak2_mod, 
                           wrap::no_data<core::peak>>;
 
-using chain26_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak2_t>, 
-                                   routing::global_cable<global_cable16_t_index, parameter::empty>>;
-using branch2_t = container::branch<parameter::empty, 
-                                    wrap::fix<2, chain25_t>, 
-                                    chain28_t, 
-                                    chain27_t, 
-                                    chain26_t>;
+using chain2_t = container::chain<parameter::empty, 
+                                  wrap::fix<2, peak2_t>, 
+                                  routing::global_cable<global_cable2_t_index, parameter::empty>>;
+
+using global_cable3_t_index = runtime_target::indexers::fix_hash<2615367>;
+using peak3_mod = parameter::plain<routing::global_cable<global_cable3_t_index, parameter::empty>, 
+                                   0>;
+using peak3_t = wrap::mod<peak3_mod, 
+                          wrap::no_data<core::peak>>;
+
+using chain3_t = container::chain<parameter::empty, 
+                                  wrap::fix<2, peak3_t>, 
+                                  routing::global_cable<global_cable3_t_index, parameter::empty>>;
+using branch_t = container::branch<parameter::empty, 
+                                   wrap::fix<2, chain_t>, 
+                                   chain1_t, 
+                                   chain2_t, 
+                                   chain3_t>;
+
+template <int NV>
+using fix32_block_t_ = container::chain<parameter::empty, 
+                                        wrap::fix<2, modchain_t<NV>>, 
+                                        project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                        branch_t>;
+
+template <int NV>
+using fix32_block_t = wrap::fix_block<32, fix32_block_t_<NV>>;
 
 DECLARE_PARAMETER_RANGE_SKEW(xfader_c0Range, 
                              -100., 
@@ -699,76 +705,260 @@ template <int NV>
 using chain16_t = container::chain<parameter::empty, 
                                    wrap::fix<2, split1_t<NV>>>;
 
-using global_cable19_t_index = runtime_target::indexers::fix_hash<-1533890749>;
-using peak20_mod = parameter::plain<routing::global_cable<global_cable19_t_index, parameter::empty>, 
-                                    0>;
-using peak20_t = wrap::mod<peak20_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain29_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak20_t>, 
-                                   routing::global_cable<global_cable19_t_index, parameter::empty>>;
-
-using global_cable20_t_index = runtime_target::indexers::fix_hash<-1533890748>;
-using peak21_mod = parameter::plain<routing::global_cable<global_cable20_t_index, parameter::empty>, 
-                                    0>;
-using peak21_t = wrap::mod<peak21_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain30_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak21_t>, 
-                                   routing::global_cable<global_cable20_t_index, parameter::empty>>;
-
-using global_cable21_t_index = runtime_target::indexers::fix_hash<-1533890747>;
-using peak22_mod = parameter::plain<routing::global_cable<global_cable21_t_index, parameter::empty>, 
-                                    0>;
-using peak22_t = wrap::mod<peak22_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain31_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak22_t>, 
-                                   routing::global_cable<global_cable21_t_index, parameter::empty>>;
-
-using global_cable22_t_index = runtime_target::indexers::fix_hash<-1533890746>;
-using peak23_mod = parameter::plain<routing::global_cable<global_cable22_t_index, parameter::empty>, 
-                                    0>;
-using peak23_t = wrap::mod<peak23_mod, 
-                           wrap::no_data<core::peak>>;
-
-using chain32_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, peak23_t>, 
-                                   routing::global_cable<global_cable22_t_index, parameter::empty>>;
-using branch18_t = container::branch<parameter::empty, 
-                                     wrap::fix<2, chain29_t>, 
-                                     chain30_t, 
-                                     chain31_t, 
-                                     chain32_t>;
-
 template <int NV>
 using chain33_t = container::chain<parameter::empty, 
-                                   wrap::fix<2, branch2_t>, 
-                                   xfader_t<NV>, 
+                                   wrap::fix<2, xfader_t<NV>>, 
                                    chain16_t<NV>, 
                                    core::gain<NV>, 
-                                   jdsp::jpanner<NV>, 
-                                   branch18_t>;
+                                   jdsp::jpanner<NV>>;
 
+namespace MatrixTest2_t_parameters
+{
 // Parameter list for MatrixTest2_impl::MatrixTest2_t ----------------------------------------------
+
+template <int NV>
+using GrainMix = parameter::chain<ranges::Identity, 
+                                  parameter::plain<control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>, 0>, 
+                                  parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 3>>;
+
+DECLARE_PARAMETER_RANGE_SKEW(ScatterRange, 
+                             0., 
+                             1., 
+                             0.432768);
+
+template <int NV>
+using Scatter = parameter::from0To1<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                    12, 
+                                    ScatterRange>;
+
+DECLARE_PARAMETER_RANGE_STEP(PitchMode_InputRange, 
+                             1., 
+                             10., 
+                             1.);
+
+using PitchMode = parameter::chain<PitchMode_InputRange, 
+                                   parameter::plain<MatrixTest2_impl::pack8_writer_t, 0>>;
+
+DECLARE_PARAMETER_RANGE_STEP(TransportMode_InputRange, 
+                             1., 
+                             3., 
+                             1.);
+
+using TransportMode = parameter::chain<TransportMode_InputRange, 
+                                       parameter::plain<MatrixTest2_impl::pack8_writer_t, 3>>;
+
+DECLARE_PARAMETER_RANGE_STEP(FxMode_InputRange, 
+                             1., 
+                             10., 
+                             1.);
+DECLARE_PARAMETER_RANGE_STEP(FxMode_0Range, 
+                             0., 
+                             9., 
+                             1.);
+
+template <int NV>
+using FxMode_0 = parameter::from0To1<MatrixTest2_impl::branch1_t<NV>, 
+                                     0, 
+                                     FxMode_0Range>;
+
+template <int NV>
+using FxMode = parameter::chain<FxMode_InputRange, FxMode_0<NV>>;
+
+DECLARE_PARAMETER_RANGE_SKEW(Resonance_InputRange, 
+                             0., 
+                             1., 
+                             0.858947);
+DECLARE_PARAMETER_RANGE_SKEW(Resonance_0Range, 
+                             0.3, 
+                             9.9, 
+                             0.264718);
+
+template <int NV>
+using Resonance_0 = parameter::from0To1<filters::svf<NV>, 
+                                        1, 
+                                        Resonance_0Range>;
+
+template <int NV> using Resonance_1 = Resonance_0<NV>;
+
+template <int NV> using Resonance_2 = Resonance_0<NV>;
+
+template <int NV>
+using Resonance_3 = parameter::from0To1<filters::biquad<NV>, 
+                                        1, 
+                                        Resonance_0Range>;
+
+template <int NV>
+using Resonance_4 = parameter::from0To1<filters::ring_mod<NV>, 
+                                        1, 
+                                        Resonance_0Range>;
+
+template <int NV>
+using Resonance_5 = parameter::from0To1<filters::one_pole<NV>, 
+                                        0, 
+                                        MatrixTest2_impl::extra_mod6_mod_0Range>;
+
+template <int NV> using Resonance_6 = Resonance_5<NV>;
+
+template <int NV>
+using Resonance_7 = parameter::from0To1<filters::allpass<NV>, 
+                                        1, 
+                                        Resonance_0Range>;
+
+DECLARE_PARAMETER_RANGE_STEP(Resonance_8Range, 
+                             1., 
+                             64., 
+                             1.);
+
+template <int NV>
+using Resonance_8 = parameter::from0To1<fx::sampleandhold<NV>, 
+                                        0, 
+                                        Resonance_8Range>;
+
+DECLARE_PARAMETER_RANGE(Resonance_9Range, 
+                        0.9, 
+                        1.);
+
+template <int NV>
+using Resonance_9 = parameter::from0To1<routing::receive<NV, stereo_frame_cable<NV>>, 
+                                        0, 
+                                        Resonance_9Range>;
+
+template <int NV>
+using Resonance = parameter::chain<Resonance_InputRange, 
+                                   Resonance_0<NV>, 
+                                   Resonance_1<NV>, 
+                                   Resonance_2<NV>, 
+                                   Resonance_3<NV>, 
+                                   Resonance_4<NV>, 
+                                   Resonance_5<NV>, 
+                                   Resonance_6<NV>, 
+                                   Resonance_7<NV>, 
+                                   Resonance_8<NV>, 
+                                   Resonance_9<NV>>;
+
+DECLARE_PARAMETER_RANGE_STEP(PhaseScatterShape_InputRange, 
+                             1., 
+                             5., 
+                             1.);
+
+using PhaseScatterShape = parameter::chain<PhaseScatterShape_InputRange, 
+                                           parameter::plain<MatrixTest2_impl::pack8_writer_t, 6>>;
+
+DECLARE_PARAMETER_RANGE_STEP(GrainTravelShape_InputRange, 
+                             1., 
+                             4., 
+                             1.);
+
+using GrainTravelShape = parameter::chain<GrainTravelShape_InputRange, 
+                                          parameter::plain<MatrixTest2_impl::pack8_writer_t, 7>>;
 
 using Scrub = parameter::empty;
 using GrainSize = Scrub;
+template <int NV>
+using WindowShape = parameter::plain<MatrixTest2_impl::minmax_t<NV>, 
+                                     0>;
+template <int NV>
+using PanSpread = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                   5>;
+template <int NV>
+using PitchSpread = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                     7>;
+template <int NV>
+using MaxGrains = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                   8>;
+using ScrubMode = parameter::plain<MatrixTest2_impl::pack8_writer_t, 
+                                   1>;
+using ScrubBlend = parameter::plain<MatrixTest2_impl::pack8_writer_t, 
+                                    2>;
+template <int NV>
+using Direction = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                   11>;
 using ScrubB = Scrub;
 using ScrubC = Scrub;
 using ScrubD = Scrub;
+using ModOut1 = Scrub;
+template <int NV>
+using FxMix = parameter::plain<MatrixTest2_impl::xfader_t<NV>, 
+                               0>;
 using FxMeta1 = Scrub;
+using ModOut2 = Scrub;
+template <int NV>
+using Pan = parameter::plain<jdsp::jpanner<NV>, 0>;
+template <int NV>
+using Vol = parameter::plain<core::gain<NV>, 0>;
+template <int NV>
+using GrainSync = parameter::plain<MatrixTest2_impl::tempo_sync_t<NV>, 
+                                   2>;
+template <int NV>
+using GrainDiv = parameter::plain<MatrixTest2_impl::tempo_sync_t<NV>, 
+                                  1>;
+template <int NV>
+using GrainTempo = parameter::plain<MatrixTest2_impl::tempo_sync_t<NV>, 
+                                    0>;
+template <int NV>
+using PitchDivide = parameter::plain<MatrixTest2_impl::tempo_sync1_t<NV>, 
+                                     1>;
+template <int NV>
+using PitchTempo = parameter::plain<MatrixTest2_impl::tempo_sync1_t<NV>, 
+                                    0>;
+template <int NV>
+using Respawn = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                 6>;
+template <int NV>
+using Diffusion = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                   9>;
+using PitchSync = parameter::plain<MatrixTest2_impl::pack8_writer_t, 
+                                   4>;
+using Glide = parameter::plain<MatrixTest2_impl::pack8_writer_t, 
+                               5>;
+template <int NV>
+using BloomOn = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                 10>;
+template <int NV>
+using BloomDiv = parameter::plain<MatrixTest2_impl::tempo_sync3_t<NV>, 
+                                  1>;
+template <int NV>
 using MatrixTest2_t_plist = parameter::list<Scrub, 
                                             GrainSize, 
+                                            GrainMix<NV>, 
+                                            Scatter<NV>, 
+                                            WindowShape<NV>, 
+                                            PanSpread<NV>, 
+                                            PitchMode, 
+                                            PitchSpread<NV>, 
+                                            MaxGrains<NV>, 
+                                            ScrubMode, 
+                                            ScrubBlend, 
+                                            Direction<NV>, 
                                             ScrubB, 
                                             ScrubC, 
                                             ScrubD, 
-                                            FxMeta1>;
+                                            TransportMode, 
+                                            ModOut1, 
+                                            FxMix<NV>, 
+                                            FxMode<NV>, 
+                                            FxMeta1, 
+                                            Resonance<NV>, 
+                                            ModOut2, 
+                                            Pan<NV>, 
+                                            Vol<NV>, 
+                                            GrainSync<NV>, 
+                                            GrainDiv<NV>, 
+                                            GrainTempo<NV>, 
+                                            PitchDivide<NV>, 
+                                            PitchTempo<NV>, 
+                                            Respawn<NV>, 
+                                            Diffusion<NV>, 
+                                            PitchSync, 
+                                            Glide, 
+                                            PhaseScatterShape, 
+                                            GrainTravelShape, 
+                                            BloomOn<NV>, 
+                                            BloomDiv<NV>>;
+}
+
 template <int NV>
-using MatrixTest2_t_ = container::chain<MatrixTest2_t_plist, 
+using MatrixTest2_t_ = container::chain<MatrixTest2_t_parameters::MatrixTest2_t_plist<NV>, 
                                         wrap::fix<2, fix32_block_t<NV>>, 
                                         chain33_t<NV>>;
 
@@ -787,27 +977,99 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		SNEX_METADATA_ID(MatrixTest2);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(104)
+		SNEX_METADATA_ENCODED_PARAMETERS(674)
 		{
 			0x005C, 0x0000, 0x0000, 0x6353, 0x7572, 0x0062, 0x0000, 0x0000, 
             0x0000, 0x8000, 0x6F3F, 0x537A, 0x003D, 0x8000, 0x003F, 0x0000, 
             0x5C00, 0x0100, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6953, 0x657A, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x43FA, 0x8638, 0x43D8, 0x0000, 
-            0x3F80, 0x0000, 0x0000, 0x005C, 0x0002, 0x0000, 0x6353, 0x7572, 
-            0x4262, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x1EB8, 0x3F05, 
-            0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0003, 0x0000, 0x6353, 
-            0x7572, 0x4362, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
-            0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0004, 0x0000, 
-            0x6353, 0x7572, 0x4462, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
-            0x0000, 0x3AC0, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0005, 
-            0x0000, 0x7846, 0x654D, 0x6174, 0x0031, 0x0000, 0x0000, 0x0000, 
-            0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000
+            0x3F80, 0x0000, 0x0000, 0x005C, 0x0002, 0x0000, 0x7247, 0x6961, 
+            0x4D6E, 0x7869, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0003, 0x0000, 
+            0x6353, 0x7461, 0x6574, 0x0072, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x003F, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0400, 
+            0x0000, 0x5700, 0x6E69, 0x6F64, 0x5377, 0x6168, 0x6570, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0x2C86, 0x3DF8, 0x0000, 0x3F80, 
+            0x0000, 0x0000, 0x005C, 0x0005, 0x0000, 0x6150, 0x536E, 0x7270, 
+            0x6165, 0x0064, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x0000, 0x5C00, 0x0600, 0x0000, 0x5000, 
+            0x7469, 0x6863, 0x6F4D, 0x6564, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x4120, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
+            0x0007, 0x0000, 0x6950, 0x6374, 0x5368, 0x7270, 0x6165, 0x0064, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x0000, 0x0000, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x0800, 0x0000, 0x4D00, 0x7861, 0x7247, 
+            0x6961, 0x736E, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4200, 0x0000, 
+            0x4200, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x0009, 0x0000, 
+            0x6353, 0x7572, 0x4D62, 0x646F, 0x0065, 0x0000, 0x0000, 0x0000, 
+            0x8000, 0xCD3F, 0xDCCC, 0x003B, 0x8000, 0x003F, 0x0000, 0x5C00, 
+            0x0A00, 0x0000, 0x5300, 0x7263, 0x6275, 0x6C42, 0x6E65, 0x0064, 
+            0x0000, 0x0000, 0x0000, 0x8000, 0xCD3F, 0xACCC, 0x003B, 0x8000, 
+            0x003F, 0x0000, 0x5C00, 0x0B00, 0x0000, 0x4400, 0x7269, 0x6365, 
+            0x6974, 0x6E6F, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4080, 0x0000, 
+            0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000C, 0x0000, 
+            0x6353, 0x7572, 0x4262, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
+            0x1EB8, 0x3F05, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000D, 
+            0x0000, 0x6353, 0x7572, 0x4362, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x000E, 0x0000, 0x6353, 0x7572, 0x4462, 0x0000, 0x0000, 0x0000, 
+            0x0000, 0x3F80, 0x0000, 0x3AC0, 0x0000, 0x3F80, 0x0000, 0x0000, 
+            0x005C, 0x000F, 0x0000, 0x7254, 0x6E61, 0x7073, 0x726F, 0x4D74, 
+            0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 0x4000, 0x0040, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1000, 0x0000, 0x4D00, 
+            0x646F, 0x754F, 0x3174, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 
+            0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0011, 
+            0x0000, 0x7846, 0x694D, 0x0078, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x163F, 0x4632, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1200, 
+            0x0000, 0x4600, 0x4D78, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 
+            0x2000, 0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x1300, 0x0000, 0x4600, 0x4D78, 0x7465, 0x3161, 0x0000, 0x0000, 
+            0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x0000, 0x005C, 0x0014, 0x0000, 0x6552, 0x6F73, 0x616E, 0x636E, 
+            0x0065, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0xED3F, 
+            0x5BE3, 0x003F, 0x0000, 0x5C00, 0x1500, 0x0000, 0x4D00, 0x646F, 
+            0x754F, 0x3274, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 
+            0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0016, 0x0000, 
+            0x6150, 0x006E, 0x0000, 0x8000, 0x00BF, 0x8000, 0x663F, 0xCE66, 
+            0x003C, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1706, 0x0000, 0x5600, 
+            0x6C6F, 0x0000, 0x0000, 0xC2C8, 0x0000, 0x0000, 0x9994, 0xC019, 
+            0x833E, 0x40AD, 0xCCCD, 0x3DCC, 0x005C, 0x0018, 0x0000, 0x7247, 
+            0x6961, 0x536E, 0x6E79, 0x0063, 0x0000, 0x0000, 0x0000, 0x8000, 
+            0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x1900, 
+            0x0000, 0x4700, 0x6172, 0x6E69, 0x6944, 0x0076, 0x0000, 0x8000, 
+            0x003F, 0x0000, 0x0042, 0xE800, 0x0041, 0x8000, 0x003F, 0x8000, 
+            0x5C3F, 0x1A00, 0x0000, 0x4700, 0x6172, 0x6E69, 0x6554, 0x706D, 
+            0x006F, 0x0000, 0x0000, 0x0000, 0x9000, 0x0041, 0xA000, 0x0040, 
+            0x8000, 0x003F, 0x8000, 0x5C3F, 0x1B00, 0x0000, 0x5000, 0x7469, 
+            0x6863, 0x6944, 0x6976, 0x6564, 0x0000, 0x0000, 0x3F80, 0x0000, 
+            0x4200, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 
+            0x001C, 0x0000, 0x6950, 0x6374, 0x5468, 0x6D65, 0x6F70, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x4190, 0x0000, 0x4040, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x005C, 0x001D, 0x0000, 0x6552, 0x7073, 0x7761, 
+            0x006E, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 
+            0x8000, 0x003F, 0x0000, 0x5C00, 0x1E00, 0x0000, 0x4400, 0x6669, 
+            0x7566, 0x6973, 0x6E6F, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
+            0x990B, 0x3E96, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x001F, 
+            0x0000, 0x6950, 0x6374, 0x5368, 0x6E79, 0x0063, 0x0000, 0x0000, 
+            0x0000, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F, 0x0000, 
+            0x5C00, 0x2000, 0x0000, 0x4700, 0x696C, 0x6564, 0x0000, 0x0000, 
+            0x0000, 0x0000, 0x3F80, 0xB333, 0x3E4B, 0x0000, 0x3F80, 0x0000, 
+            0x0000, 0x005C, 0x0021, 0x0000, 0x6850, 0x7361, 0x5365, 0x6163, 
+            0x7474, 0x7265, 0x6853, 0x7061, 0x0065, 0x0000, 0x8000, 0x003F, 
+            0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x2200, 0x0000, 0x4700, 0x6172, 0x6E69, 0x7254, 0x7661, 0x6C65, 
+            0x6853, 0x7061, 0x0065, 0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 
+            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2300, 0x0000, 
+            0x4200, 0x6F6C, 0x6D6F, 0x6E4F, 0x0000, 0x0000, 0x0000, 0x0000, 
+            0x3F80, 0xAC85, 0x3F7E, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
+            0x0024, 0x0000, 0x6C42, 0x6F6F, 0x446D, 0x7669, 0x0000, 0x0000, 
+            0x3F80, 0x0000, 0x4200, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
+            0x3F80, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(20)
 		{
-			0x3C3B, 0x0100, 0x0200, 0x013C, 0x0101, 0x0200, 0x013C, 0x0102, 
-            0x0200, 0x013C, 0x0103, 0x0200, 0x013C, 0x0104, 0x0200, 0x013C, 
-            0x0105, 0x0200, 0x3E3D, 0x0000
+			0x3C3B, 0x0100, 0x0202, 0x013C, 0x0101, 0x0200, 0x013C, 0x010C, 
+            0x0200, 0x013C, 0x010D, 0x0200, 0x013C, 0x010E, 0x0200, 0x013C, 
+            0x0113, 0x0200, 0x3E3D, 0x0000
 		};
 	};
 	
@@ -828,143 +1090,205 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		auto& converter = this->getT(0).getT(0).getT(1);                                     // MatrixTest2_impl::converter_t<NV>
 		auto& tempo_sync = this->getT(0).getT(0).getT(2);                                    // MatrixTest2_impl::tempo_sync_t<NV>
 		auto& tempo_sync1 = this->getT(0).getT(0).getT(3);                                   // MatrixTest2_impl::tempo_sync1_t<NV>
-		auto& minmax = this->getT(0).getT(0).getT(4);                                        // MatrixTest2_impl::minmax_t<NV>
-		auto& tempo_sync3 = this->getT(0).getT(0).getT(5);                                   // MatrixTest2_impl::tempo_sync3_t<NV>
-		auto& pack8_writer = this->getT(0).getT(0).getT(6);                                  // MatrixTest2_impl::pack8_writer_t
+		auto& smoothed_parameter = this->getT(0).getT(0).getT(4);                            // control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>
+		auto& minmax = this->getT(0).getT(0).getT(5);                                        // MatrixTest2_impl::minmax_t<NV>
+		auto& tempo_sync2 = this->getT(0).getT(0).getT(6);                                   // control::tempo_sync<NV>
+		auto& tempo_sync3 = this->getT(0).getT(0).getT(7);                                   // MatrixTest2_impl::tempo_sync3_t<NV>
+		auto& pack_resizer = this->getT(0).getT(0).getT(8);                                  // MatrixTest2_impl::pack_resizer_t
+		auto& pack8_writer = this->getT(0).getT(0).getT(9);                                  // MatrixTest2_impl::pack8_writer_t
 		auto& granular_player_stepquant_density_hybrid_native = this->getT(0).getT(1);       // project::granular_player_stepquant_density_hybrid_native<NV>
+		auto& branch = this->getT(0).getT(2);                                                // MatrixTest2_impl::branch_t
+		auto& chain = this->getT(0).getT(2).getT(0);                                         // MatrixTest2_impl::chain_t
+		auto& peak = this->getT(0).getT(2).getT(0).getT(0);                                  // MatrixTest2_impl::peak_t
+		auto& global_cable = this->getT(0).getT(2).getT(0).getT(1);                          // routing::global_cable<global_cable_t_index, parameter::empty>
+		auto& chain1 = this->getT(0).getT(2).getT(1);                                        // MatrixTest2_impl::chain1_t
+		auto& peak1 = this->getT(0).getT(2).getT(1).getT(0);                                 // MatrixTest2_impl::peak1_t
+		auto& global_cable1 = this->getT(0).getT(2).getT(1).getT(1);                         // routing::global_cable<global_cable1_t_index, parameter::empty>
+		auto& chain2 = this->getT(0).getT(2).getT(2);                                        // MatrixTest2_impl::chain2_t
+		auto& peak2 = this->getT(0).getT(2).getT(2).getT(0);                                 // MatrixTest2_impl::peak2_t
+		auto& global_cable2 = this->getT(0).getT(2).getT(2).getT(1);                         // routing::global_cable<global_cable2_t_index, parameter::empty>
+		auto& chain3 = this->getT(0).getT(2).getT(3);                                        // MatrixTest2_impl::chain3_t
+		auto& peak3 = this->getT(0).getT(2).getT(3).getT(0);                                 // MatrixTest2_impl::peak3_t
+		auto& global_cable3 = this->getT(0).getT(2).getT(3).getT(1);                         // routing::global_cable<global_cable3_t_index, parameter::empty>
 		auto& chain33 = this->getT(1);                                                       // MatrixTest2_impl::chain33_t<NV>
-		auto& branch2 = this->getT(1).getT(0);                                               // MatrixTest2_impl::branch2_t
-		auto& chain25 = this->getT(1).getT(0).getT(0);                                       // MatrixTest2_impl::chain25_t
-		auto& peak1 = this->getT(1).getT(0).getT(0).getT(0);                                 // MatrixTest2_impl::peak1_t
-		auto& global_cable15 = this->getT(1).getT(0).getT(0).getT(1);                        // routing::global_cable<global_cable15_t_index, parameter::empty>
-		auto& chain28 = this->getT(1).getT(0).getT(1);                                       // MatrixTest2_impl::chain28_t
-		auto& peak19 = this->getT(1).getT(0).getT(1).getT(0);                                // MatrixTest2_impl::peak19_t
-		auto& global_cable18 = this->getT(1).getT(0).getT(1).getT(1);                        // routing::global_cable<global_cable18_t_index, parameter::empty>
-		auto& chain27 = this->getT(1).getT(0).getT(2);                                       // MatrixTest2_impl::chain27_t
-		auto& peak18 = this->getT(1).getT(0).getT(2).getT(0);                                // MatrixTest2_impl::peak18_t
-		auto& global_cable17 = this->getT(1).getT(0).getT(2).getT(1);                        // routing::global_cable<global_cable17_t_index, parameter::empty>
-		auto& chain26 = this->getT(1).getT(0).getT(3);                                       // MatrixTest2_impl::chain26_t
-		auto& peak2 = this->getT(1).getT(0).getT(3).getT(0);                                 // MatrixTest2_impl::peak2_t
-		auto& global_cable16 = this->getT(1).getT(0).getT(3).getT(1);                        // routing::global_cable<global_cable16_t_index, parameter::empty>
-		auto& xfader = this->getT(1).getT(1);                                                // MatrixTest2_impl::xfader_t<NV>
-		auto& chain16 = this->getT(1).getT(2);                                               // MatrixTest2_impl::chain16_t<NV>
-		auto& split1 = this->getT(1).getT(2).getT(0);                                        // MatrixTest2_impl::split1_t<NV>
-		auto& chain22 = this->getT(1).getT(2).getT(0).getT(0);                               // MatrixTest2_impl::chain22_t<NV>
-		auto& gain = this->getT(1).getT(2).getT(0).getT(0).getT(0);                          // core::gain<NV>
-		auto& chain19 = this->getT(1).getT(2).getT(0).getT(1);                               // MatrixTest2_impl::chain19_t<NV>
-		auto& branch1 = this->getT(1).getT(2).getT(0).getT(1).getT(0);                       // MatrixTest2_impl::branch1_t<NV>
-		auto& chain20 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(0);               // MatrixTest2_impl::chain20_t
-		auto& chain38 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(1);               // MatrixTest2_impl::chain38_t<NV>
-		auto& svf = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(1).getT(0);           // filters::svf<NV>
-		auto& chain43 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(2);               // MatrixTest2_impl::chain43_t<NV>
-		auto& svf5 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(2).getT(0);          // filters::svf<NV>
-		auto& chain45 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(3);               // MatrixTest2_impl::chain45_t<NV>
-		auto& svf6 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(3).getT(0);          // filters::svf<NV>
-		auto& chain39 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(4);               // MatrixTest2_impl::chain39_t<NV>
-		auto& biquad = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(4).getT(0);        // filters::biquad<NV>
-		auto& chain44 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(5);               // MatrixTest2_impl::chain44_t<NV>
-		auto& ring_mod = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(5).getT(0);      // filters::ring_mod<NV>
-		auto& chain46 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(6);               // MatrixTest2_impl::chain46_t<NV>
-		auto& fix8_block = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(6).getT(0);    // MatrixTest2_impl::fix8_block_t<NV>
-		auto& split3 = this->getT(1).getT(2).getT(0).getT(1).                                // MatrixTest2_impl::split3_t<NV>
+		auto& xfader = this->getT(1).getT(0);                                                // MatrixTest2_impl::xfader_t<NV>
+		auto& chain16 = this->getT(1).getT(1);                                               // MatrixTest2_impl::chain16_t<NV>
+		auto& split1 = this->getT(1).getT(1).getT(0);                                        // MatrixTest2_impl::split1_t<NV>
+		auto& chain22 = this->getT(1).getT(1).getT(0).getT(0);                               // MatrixTest2_impl::chain22_t<NV>
+		auto& gain = this->getT(1).getT(1).getT(0).getT(0).getT(0);                          // core::gain<NV>
+		auto& chain19 = this->getT(1).getT(1).getT(0).getT(1);                               // MatrixTest2_impl::chain19_t<NV>
+		auto& branch1 = this->getT(1).getT(1).getT(0).getT(1).getT(0);                       // MatrixTest2_impl::branch1_t<NV>
+		auto& chain20 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(0);               // MatrixTest2_impl::chain20_t
+		auto& chain38 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(1);               // MatrixTest2_impl::chain38_t<NV>
+		auto& svf = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(1).getT(0);           // filters::svf<NV>
+		auto& chain43 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(2);               // MatrixTest2_impl::chain43_t<NV>
+		auto& svf5 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(2).getT(0);          // filters::svf<NV>
+		auto& chain45 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(3);               // MatrixTest2_impl::chain45_t<NV>
+		auto& svf6 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(3).getT(0);          // filters::svf<NV>
+		auto& chain39 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(4);               // MatrixTest2_impl::chain39_t<NV>
+		auto& biquad = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(4).getT(0);        // filters::biquad<NV>
+		auto& chain44 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(5);               // MatrixTest2_impl::chain44_t<NV>
+		auto& ring_mod = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(5).getT(0);      // filters::ring_mod<NV>
+		auto& chain46 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(6);               // MatrixTest2_impl::chain46_t<NV>
+		auto& fix8_block = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(6).getT(0);    // MatrixTest2_impl::fix8_block_t<NV>
+		auto& split3 = this->getT(1).getT(1).getT(0).getT(1).                                // MatrixTest2_impl::split3_t<NV>
                        getT(0).getT(6).getT(0).getT(0);
-		auto& chain17 = this->getT(1).getT(2).getT(0).getT(1).                               // MatrixTest2_impl::chain17_t
+		auto& chain17 = this->getT(1).getT(1).getT(0).getT(1).                               // MatrixTest2_impl::chain17_t
                         getT(0).getT(6).getT(0).getT(0).
                         getT(0);
-		auto& chain24 = this->getT(1).getT(2).getT(0).getT(1).                               // MatrixTest2_impl::chain24_t<NV>
+		auto& chain24 = this->getT(1).getT(1).getT(0).getT(1).                               // MatrixTest2_impl::chain24_t<NV>
                         getT(0).getT(6).getT(0).getT(0).
                         getT(1);
-		auto& sig2mod = this->getT(1).getT(2).getT(0).getT(1).getT(0).                       // math::sig2mod<NV>
+		auto& sig2mod = this->getT(1).getT(1).getT(0).getT(1).getT(0).                       // math::sig2mod<NV>
                         getT(6).getT(0).getT(0).getT(1).getT(0);
-		auto& fmod1 = this->getT(1).getT(2).getT(0).getT(1).getT(0).                         // wrap::no_process<math::fmod<NV>>
+		auto& fmod1 = this->getT(1).getT(1).getT(0).getT(1).getT(0).                         // wrap::no_process<math::fmod<NV>>
                       getT(6).getT(0).getT(0).getT(1).getT(1);
-		auto& peak12 = this->getT(1).getT(2).getT(0).getT(1).getT(0).                        // MatrixTest2_impl::peak12_t<NV>
+		auto& peak12 = this->getT(1).getT(1).getT(0).getT(1).getT(0).                        // MatrixTest2_impl::peak12_t<NV>
                        getT(6).getT(0).getT(0).getT(1).getT(2);
-		auto& clear1 = this->getT(1).getT(2).getT(0).getT(1).getT(0).                        // math::clear<NV>
+		auto& clear1 = this->getT(1).getT(1).getT(0).getT(1).getT(0).                        // math::clear<NV>
                        getT(6).getT(0).getT(0).getT(1).getT(3);
-		auto& cable_table6 = this->getT(1).getT(2).getT(0).getT(1).                          // MatrixTest2_impl::cable_table6_t<NV>
+		auto& cable_table6 = this->getT(1).getT(1).getT(0).getT(1).                          // MatrixTest2_impl::cable_table6_t<NV>
                              getT(0).getT(6).getT(0).getT(1);
-		auto& modchain1 = this->getT(1).getT(2).getT(0).getT(1).                             // MatrixTest2_impl::modchain1_t<NV>
+		auto& modchain1 = this->getT(1).getT(1).getT(0).getT(1).                             // MatrixTest2_impl::modchain1_t<NV>
                           getT(0).getT(6).getT(0).getT(2);
-		auto& pma1 = this->getT(1).getT(2).getT(0).getT(1).                                  // MatrixTest2_impl::pma1_t<NV>
+		auto& pma1 = this->getT(1).getT(1).getT(0).getT(1).                                  // MatrixTest2_impl::pma1_t<NV>
                      getT(0).getT(6).getT(0).getT(2).
                      getT(0);
-		auto& fmod = this->getT(1).getT(2).getT(0).getT(1).                                  // math::fmod<NV>
+		auto& fmod = this->getT(1).getT(1).getT(0).getT(1).                                  // math::fmod<NV>
                      getT(0).getT(6).getT(0).getT(3);
-		auto& div = this->getT(1).getT(2).getT(0).getT(1).                                   // math::div<NV>
+		auto& div = this->getT(1).getT(1).getT(0).getT(1).                                   // math::div<NV>
                     getT(0).getT(6).getT(0).getT(4);
-		auto& gain2 = this->getT(1).getT(2).getT(0).getT(1).                                 // core::gain<NV>
+		auto& gain2 = this->getT(1).getT(1).getT(0).getT(1).                                 // core::gain<NV>
                       getT(0).getT(6).getT(0).getT(5);
-		auto& one_pole = this->getT(1).getT(2).getT(0).getT(1).                              // filters::one_pole<NV>
+		auto& one_pole = this->getT(1).getT(1).getT(0).getT(1).                              // filters::one_pole<NV>
                          getT(0).getT(6).getT(0).getT(6);
-		auto& chain18 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(7);               // MatrixTest2_impl::chain18_t<NV>
-		auto& chain41 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(7).getT(0);       // MatrixTest2_impl::chain41_t<NV>
-		auto& wrapmidi31 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi31_t<NV>
+		auto& chain18 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(7);               // MatrixTest2_impl::chain18_t<NV>
+		auto& chain41 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(7).getT(0);       // MatrixTest2_impl::chain41_t<NV>
+		auto& wrapmidi31 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi31_t<NV>
                            getT(0).getT(7).getT(0).getT(0);
-		auto& midi3 = this->getT(1).getT(2).getT(0).getT(1).                                 // MatrixTest2_impl::midi3_t<NV>
+		auto& midi3 = this->getT(1).getT(1).getT(0).getT(1).                                 // MatrixTest2_impl::midi3_t<NV>
                       getT(0).getT(7).getT(0).getT(0).
                       getT(0);
-		auto& offline2 = this->getT(1).getT(2).getT(0).getT(1).                              // MatrixTest2_impl::offline2_t<NV>
+		auto& offline2 = this->getT(1).getT(1).getT(0).getT(1).                              // MatrixTest2_impl::offline2_t<NV>
                          getT(0).getT(7).getT(0).getT(1);
-		auto& converter6 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::converter6_t<NV>
+		auto& converter6 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::converter6_t<NV>
                            getT(0).getT(7).getT(0).getT(1).
                            getT(0);
-		auto& converter7 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::converter7_t<NV>
+		auto& converter7 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::converter7_t<NV>
                            getT(0).getT(7).getT(0).getT(1).
                            getT(1);
-		auto& frame2_block1 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(7).getT(1); // MatrixTest2_impl::frame2_block1_t<NV>
-		auto& pma_unscaled3 = this->getT(1).getT(2).getT(0).getT(1).                         // MatrixTest2_impl::pma_unscaled3_t<NV>
+		auto& frame2_block1 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(7).getT(1); // MatrixTest2_impl::frame2_block1_t<NV>
+		auto& pma_unscaled3 = this->getT(1).getT(1).getT(0).getT(1).                         // MatrixTest2_impl::pma_unscaled3_t<NV>
                               getT(0).getT(7).getT(1).getT(0);
-		auto& receive3 = this->getT(1).getT(2).getT(0).getT(1).                              // routing::receive<NV, stereo_frame_cable<NV>>
+		auto& receive3 = this->getT(1).getT(1).getT(0).getT(1).                              // routing::receive<NV, stereo_frame_cable<NV>>
                          getT(0).getT(7).getT(1).getT(1);
-		auto& one_pole5 = this->getT(1).getT(2).getT(0).getT(1).                             // filters::one_pole<NV>
+		auto& one_pole5 = this->getT(1).getT(1).getT(0).getT(1).                             // filters::one_pole<NV>
                           getT(0).getT(7).getT(1).getT(2);
-		auto& fix_delay = this->getT(1).getT(2).getT(0).getT(1).                             // wrap::no_process<core::fix_delay>
+		auto& fix_delay = this->getT(1).getT(1).getT(0).getT(1).                             // wrap::no_process<core::fix_delay>
                           getT(0).getT(7).getT(1).getT(3);
-		auto& jdelay_thiran3 = this->getT(1).getT(2).getT(0).getT(1).                        // jdsp::jdelay_thiran<NV>
+		auto& jdelay_thiran3 = this->getT(1).getT(1).getT(0).getT(1).                        // jdsp::jdelay_thiran<NV>
                                getT(0).getT(7).getT(1).getT(4);
-		auto& send3 = this->getT(1).getT(2).getT(0).getT(1).                                 // routing::send<NV, stereo_frame_cable<NV>>
+		auto& send3 = this->getT(1).getT(1).getT(0).getT(1).                                 // routing::send<NV, stereo_frame_cable<NV>>
                       getT(0).getT(7).getT(1).getT(5);
-		auto& one_pole3 = this->getT(1).getT(2).getT(0).getT(1).                             // filters::one_pole<NV>
+		auto& one_pole3 = this->getT(1).getT(1).getT(0).getT(1).                             // filters::one_pole<NV>
                           getT(0).getT(7).getT(1).getT(6);
-		auto& chain21 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8);               // MatrixTest2_impl::chain21_t<NV>
-		auto& chain42 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8).getT(0);       // MatrixTest2_impl::chain42_t<NV>
-		auto& wrapmidi41 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi41_t<NV>
+		auto& chain21 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8);               // MatrixTest2_impl::chain21_t<NV>
+		auto& chain42 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8).getT(0);       // MatrixTest2_impl::chain42_t<NV>
+		auto& wrapmidi41 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::wrapmidi41_t<NV>
                            getT(0).getT(8).getT(0).getT(0);
-		auto& midi4 = this->getT(1).getT(2).getT(0).getT(1).                                 // MatrixTest2_impl::midi4_t<NV>
+		auto& midi4 = this->getT(1).getT(1).getT(0).getT(1).                                 // MatrixTest2_impl::midi4_t<NV>
                       getT(0).getT(8).getT(0).getT(0).
                       getT(0);
-		auto& offline3 = this->getT(1).getT(2).getT(0).getT(1).                              // MatrixTest2_impl::offline3_t<NV>
+		auto& offline3 = this->getT(1).getT(1).getT(0).getT(1).                              // MatrixTest2_impl::offline3_t<NV>
                          getT(0).getT(8).getT(0).getT(1);
-		auto& converter8 = this->getT(1).getT(2).getT(0).getT(1).                            // MatrixTest2_impl::converter8_t<NV>
+		auto& converter8 = this->getT(1).getT(1).getT(0).getT(1).                            // MatrixTest2_impl::converter8_t<NV>
                            getT(0).getT(8).getT(0).getT(1).
                            getT(0);
-		auto& pma_unscaled4 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8).getT(1); // MatrixTest2_impl::pma_unscaled4_t<NV>
-		auto& frame2_block2 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(8).getT(2); // MatrixTest2_impl::frame2_block2_t<NV>
-		auto& allpass = this->getT(1).getT(2).getT(0).getT(1).                               // filters::allpass<NV>
+		auto& pma_unscaled4 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8).getT(1); // MatrixTest2_impl::pma_unscaled4_t<NV>
+		auto& frame2_block2 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(8).getT(2); // MatrixTest2_impl::frame2_block2_t<NV>
+		auto& allpass = this->getT(1).getT(1).getT(0).getT(1).                               // filters::allpass<NV>
                         getT(0).getT(8).getT(2).getT(0);
-		auto& one_pole4 = this->getT(1).getT(2).getT(0).getT(1).                             // filters::one_pole<NV>
+		auto& one_pole4 = this->getT(1).getT(1).getT(0).getT(1).                             // filters::one_pole<NV>
                           getT(0).getT(8).getT(2).getT(1);
-		auto& chain23 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9);               // MatrixTest2_impl::chain23_t<NV>
-		auto& cable_table5 = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(0);  // MatrixTest2_impl::cable_table5_t<NV>
-		auto& bitcrush = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(1);      // fx::bitcrush<NV>
-		auto& sampleandhold = this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(2); // fx::sampleandhold<NV>
-		auto& gain1 = this->getT(1).getT(2).getT(0).getT(1).getT(1);                         // core::gain<NV>
-		auto& gain3 = this->getT(1).getT(3);                                                 // core::gain<NV>
-		auto& jpanner = this->getT(1).getT(4);                                               // jdsp::jpanner<NV>
-		auto& branch18 = this->getT(1).getT(5);                                              // MatrixTest2_impl::branch18_t
-		auto& chain29 = this->getT(1).getT(5).getT(0);                                       // MatrixTest2_impl::chain29_t
-		auto& peak20 = this->getT(1).getT(5).getT(0).getT(0);                                // MatrixTest2_impl::peak20_t
-		auto& global_cable19 = this->getT(1).getT(5).getT(0).getT(1);                        // routing::global_cable<global_cable19_t_index, parameter::empty>
-		auto& chain30 = this->getT(1).getT(5).getT(1);                                       // MatrixTest2_impl::chain30_t
-		auto& peak21 = this->getT(1).getT(5).getT(1).getT(0);                                // MatrixTest2_impl::peak21_t
-		auto& global_cable20 = this->getT(1).getT(5).getT(1).getT(1);                        // routing::global_cable<global_cable20_t_index, parameter::empty>
-		auto& chain31 = this->getT(1).getT(5).getT(2);                                       // MatrixTest2_impl::chain31_t
-		auto& peak22 = this->getT(1).getT(5).getT(2).getT(0);                                // MatrixTest2_impl::peak22_t
-		auto& global_cable21 = this->getT(1).getT(5).getT(2).getT(1);                        // routing::global_cable<global_cable21_t_index, parameter::empty>
-		auto& chain32 = this->getT(1).getT(5).getT(3);                                       // MatrixTest2_impl::chain32_t
-		auto& peak23 = this->getT(1).getT(5).getT(3).getT(0);                                // MatrixTest2_impl::peak23_t
-		auto& global_cable22 = this->getT(1).getT(5).getT(3).getT(1);                        // routing::global_cable<global_cable22_t_index, parameter::empty>
+		auto& chain23 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9);               // MatrixTest2_impl::chain23_t<NV>
+		auto& cable_table5 = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(0);  // MatrixTest2_impl::cable_table5_t<NV>
+		auto& bitcrush = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(1);      // fx::bitcrush<NV>
+		auto& sampleandhold = this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(2); // fx::sampleandhold<NV>
+		auto& gain1 = this->getT(1).getT(1).getT(0).getT(1).getT(1);                         // core::gain<NV>
+		auto& gain3 = this->getT(1).getT(2);                                                 // core::gain<NV>
+		auto& jpanner = this->getT(1).getT(3);                                               // jdsp::jpanner<NV>
+		
+		// Parameter Connections -------------------------------------------------------------------
+		
+		auto& GrainMix_p = this->getParameterT(2);
+		GrainMix_p.connectT(0, smoothed_parameter);                              // GrainMix -> smoothed_parameter::Value
+		GrainMix_p.connectT(1, granular_player_stepquant_density_hybrid_native); // GrainMix -> granular_player_stepquant_density_hybrid_native::Density
+		
+		this->getParameterT(3).connectT(0, granular_player_stepquant_density_hybrid_native); // Scatter -> granular_player_stepquant_density_hybrid_native::PhaseScatter
+		
+		this->getParameterT(4).connectT(0, minmax); // WindowShape -> minmax::Value
+		
+		this->getParameterT(5).connectT(0, granular_player_stepquant_density_hybrid_native); // PanSpread -> granular_player_stepquant_density_hybrid_native::PanSpread
+		
+		this->getParameterT(6).connectT(0, pack8_writer); // PitchMode -> pack8_writer::Value1
+		
+		this->getParameterT(7).connectT(0, granular_player_stepquant_density_hybrid_native); // PitchSpread -> granular_player_stepquant_density_hybrid_native::PitchSpread
+		
+		this->getParameterT(8).connectT(0, granular_player_stepquant_density_hybrid_native); // MaxGrains -> granular_player_stepquant_density_hybrid_native::MaxGrains
+		
+		this->getParameterT(9).connectT(0, pack8_writer); // ScrubMode -> pack8_writer::Value2
+		
+		this->getParameterT(10).connectT(0, pack8_writer); // ScrubBlend -> pack8_writer::Value3
+		
+		this->getParameterT(11).connectT(0, granular_player_stepquant_density_hybrid_native); // Direction -> granular_player_stepquant_density_hybrid_native::DirectionMode
+		
+		this->getParameterT(15).connectT(0, pack8_writer); // TransportMode -> pack8_writer::Value4
+		
+		this->getParameterT(17).connectT(0, xfader); // FxMix -> xfader::Value
+		
+		this->getParameterT(18).connectT(0, branch1); // FxMode -> branch1::Index
+		
+		auto& Resonance_p = this->getParameterT(20);
+		Resonance_p.connectT(0, svf);           // Resonance -> svf::Q
+		Resonance_p.connectT(1, svf5);          // Resonance -> svf5::Q
+		Resonance_p.connectT(2, svf6);          // Resonance -> svf6::Q
+		Resonance_p.connectT(3, biquad);        // Resonance -> biquad::Q
+		Resonance_p.connectT(4, ring_mod);      // Resonance -> ring_mod::Q
+		Resonance_p.connectT(5, one_pole);      // Resonance -> one_pole::Frequency
+		Resonance_p.connectT(6, one_pole5);     // Resonance -> one_pole5::Frequency
+		Resonance_p.connectT(7, allpass);       // Resonance -> allpass::Q
+		Resonance_p.connectT(8, sampleandhold); // Resonance -> sampleandhold::Counter
+		Resonance_p.connectT(9, receive3);      // Resonance -> receive3::Feedback
+		
+		this->getParameterT(22).connectT(0, jpanner); // Pan -> jpanner::Pan
+		
+		this->getParameterT(23).connectT(0, gain3); // Vol -> gain3::Gain
+		
+		this->getParameterT(24).connectT(0, tempo_sync); // GrainSync -> tempo_sync::Enabled
+		
+		this->getParameterT(25).connectT(0, tempo_sync); // GrainDiv -> tempo_sync::Multiplier
+		
+		this->getParameterT(26).connectT(0, tempo_sync); // GrainTempo -> tempo_sync::Tempo
+		
+		this->getParameterT(27).connectT(0, tempo_sync1); // PitchDivide -> tempo_sync1::Multiplier
+		
+		this->getParameterT(28).connectT(0, tempo_sync1); // PitchTempo -> tempo_sync1::Tempo
+		
+		this->getParameterT(29).connectT(0, granular_player_stepquant_density_hybrid_native); // Respawn -> granular_player_stepquant_density_hybrid_native::Respawn
+		
+		this->getParameterT(30).connectT(0, granular_player_stepquant_density_hybrid_native); // Diffusion -> granular_player_stepquant_density_hybrid_native::Diffusion
+		
+		this->getParameterT(31).connectT(0, pack8_writer); // PitchSync -> pack8_writer::Value5
+		
+		this->getParameterT(32).connectT(0, pack8_writer); // Glide -> pack8_writer::Value6
+		
+		this->getParameterT(33).connectT(0, pack8_writer); // PhaseScatterShape -> pack8_writer::Value7
+		
+		this->getParameterT(34).connectT(0, pack8_writer); // GrainTravelShape -> pack8_writer::Value8
+		
+		this->getParameterT(35).connectT(0, granular_player_stepquant_density_hybrid_native); // BloomOn -> granular_player_stepquant_density_hybrid_native::CloudAmount
+		
+		this->getParameterT(36).connectT(0, tempo_sync3); // BloomDiv -> tempo_sync3::Multiplier
 		
 		// Modulation Connections ------------------------------------------------------------------
 		
@@ -997,10 +1321,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		tempo_sync1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync1 -> granular_player_stepquant_density_hybrid_native::PitchSyncInput
 		minmax.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);    // minmax -> granular_player_stepquant_density_hybrid_native::WindowShape
 		tempo_sync3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync3 -> granular_player_stepquant_density_hybrid_native::BloomDuration
-		peak1.getParameter().connectT(0, global_cable15);                                                         // peak1 -> global_cable15::Value
-		peak19.getParameter().connectT(0, global_cable18);                                                        // peak19 -> global_cable18::Value
-		peak18.getParameter().connectT(0, global_cable17);                                                        // peak18 -> global_cable17::Value
-		peak2.getParameter().connectT(0, global_cable16);                                                         // peak2 -> global_cable16::Value
+		peak.getParameter().connectT(0, global_cable);                                                            // peak -> global_cable::Value
+		peak1.getParameter().connectT(0, global_cable1);                                                          // peak1 -> global_cable1::Value
+		peak2.getParameter().connectT(0, global_cable2);                                                          // peak2 -> global_cable2::Value
+		peak3.getParameter().connectT(0, global_cable3);                                                          // peak3 -> global_cable3::Value
 		auto& xfader_p = xfader.getWrappedObject().getParameter();
 		xfader_p.getParameterT(0).connectT(0, gain);                             // xfader -> gain::Gain
 		xfader_p.getParameterT(1).connectT(0, gain1);                            // xfader -> gain1::Gain
@@ -1009,10 +1333,6 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		midi3.getParameter().connectT(0, converter6);                            // midi3 -> converter6::Value
 		converter8.getWrappedObject().getParameter().connectT(0, pma_unscaled4); // converter8 -> pma_unscaled4::Value
 		midi4.getParameter().connectT(0, converter8);                            // midi4 -> converter8::Value
-		peak20.getParameter().connectT(0, global_cable19);                       // peak20 -> global_cable19::Value
-		peak21.getParameter().connectT(0, global_cable20);                       // peak21 -> global_cable20::Value
-		peak22.getParameter().connectT(0, global_cable21);                       // peak22 -> global_cable21::Value
-		peak23.getParameter().connectT(0, global_cable22);                       // peak23 -> global_cable22::Value
 		
 		// Send Connections ------------------------------------------------------------------------
 		
@@ -1042,104 +1362,115 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		; // converter::Value is automated
 		
-		tempo_sync.setParameterT(0, 0.); // control::tempo_sync::Tempo
-		tempo_sync.setParameterT(1, 0.); // control::tempo_sync::Multiplier
-		tempo_sync.setParameterT(2, 0.); // control::tempo_sync::Enabled
-		;                                // tempo_sync::UnsyncedTime is automated
+		; // tempo_sync::Tempo is automated
+		; // tempo_sync::Multiplier is automated
+		; // tempo_sync::Enabled is automated
+		; // tempo_sync::UnsyncedTime is automated
 		
-		tempo_sync1.setParameterT(0, 0.);   // control::tempo_sync::Tempo
-		tempo_sync1.setParameterT(1, 0.);   // control::tempo_sync::Multiplier
+		;                                   // tempo_sync1::Tempo is automated
+		;                                   // tempo_sync1::Multiplier is automated
 		tempo_sync1.setParameterT(2, 1.);   // control::tempo_sync::Enabled
 		tempo_sync1.setParameterT(3, 200.); // control::tempo_sync::UnsyncedTime
 		
-		minmax.setParameterT(0, 0.);       // control::minmax::Value
+		;                                           // smoothed_parameter::Value is automated
+		smoothed_parameter.setParameterT(1, 154.2); // control::smoothed_parameter::SmoothingTime
+		smoothed_parameter.setParameterT(2, 1.);    // control::smoothed_parameter::Enabled
+		
+		;                                  // minmax::Value is automated
 		minmax.setParameterT(1, 0.);       // control::minmax::Minimum
 		minmax.setParameterT(2, 0.991969); // control::minmax::Maximum
 		minmax.setParameterT(3, 1.);       // control::minmax::Skew
 		minmax.setParameterT(4, 0.);       // control::minmax::Step
 		minmax.setParameterT(5, 0.);       // control::minmax::Polarity
 		
+		tempo_sync2.setParameterT(0, 0.);   // control::tempo_sync::Tempo
+		tempo_sync2.setParameterT(1, 2.);   // control::tempo_sync::Multiplier
+		tempo_sync2.setParameterT(2, 1.);   // control::tempo_sync::Enabled
+		tempo_sync2.setParameterT(3, 200.); // control::tempo_sync::UnsyncedTime
+		
 		tempo_sync3.setParameterT(0, 14.);   // control::tempo_sync::Tempo
-		tempo_sync3.setParameterT(1, 0.);    // control::tempo_sync::Multiplier
+		;                                    // tempo_sync3::Multiplier is automated
 		tempo_sync3.setParameterT(2, 1.);    // control::tempo_sync::Enabled
 		tempo_sync3.setParameterT(3, 852.7); // control::tempo_sync::UnsyncedTime
 		
-		pack8_writer.setParameterT(0, 0.); // control::pack8_writer::Value1
-		pack8_writer.setParameterT(1, 0.); // control::pack8_writer::Value2
-		pack8_writer.setParameterT(2, 0.); // control::pack8_writer::Value3
-		pack8_writer.setParameterT(3, 0.); // control::pack8_writer::Value4
-		pack8_writer.setParameterT(4, 0.); // control::pack8_writer::Value5
-		pack8_writer.setParameterT(5, 0.); // control::pack8_writer::Value6
-		pack8_writer.setParameterT(6, 0.); // control::pack8_writer::Value7
-		pack8_writer.setParameterT(7, 0.); // control::pack8_writer::Value8
+		pack_resizer.setParameterT(0, 8.); // control::pack_resizer::NumSliders
 		
-		;                                                                      // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
-		;                                                                      // granular_player_stepquant_density_hybrid_native::Scrub is automated
-		;                                                                      // granular_player_stepquant_density_hybrid_native::GrainMs is automated
-		granular_player_stepquant_density_hybrid_native.setParameterT(3, 0.);  // project::granular_player_stepquant_density_hybrid_native::Density
-		;                                                                      // granular_player_stepquant_density_hybrid_native::WindowShape is automated
-		granular_player_stepquant_density_hybrid_native.setParameterT(5, 0.);  // project::granular_player_stepquant_density_hybrid_native::PanSpread
-		granular_player_stepquant_density_hybrid_native.setParameterT(6, 0.);  // project::granular_player_stepquant_density_hybrid_native::Respawn
-		granular_player_stepquant_density_hybrid_native.setParameterT(7, 0.);  // project::granular_player_stepquant_density_hybrid_native::PitchSpread
-		granular_player_stepquant_density_hybrid_native.setParameterT(8, 0.);  // project::granular_player_stepquant_density_hybrid_native::MaxGrains
-		granular_player_stepquant_density_hybrid_native.setParameterT(9, 0.);  // project::granular_player_stepquant_density_hybrid_native::Diffusion
-		granular_player_stepquant_density_hybrid_native.setParameterT(10, 0.); // project::granular_player_stepquant_density_hybrid_native::CloudAmount
-		granular_player_stepquant_density_hybrid_native.setParameterT(11, 0.); // project::granular_player_stepquant_density_hybrid_native::DirectionMode
-		granular_player_stepquant_density_hybrid_native.setParameterT(12, 0.); // project::granular_player_stepquant_density_hybrid_native::PhaseScatter
-		;                                                                      // granular_player_stepquant_density_hybrid_native::ScrubB is automated
-		;                                                                      // granular_player_stepquant_density_hybrid_native::ScrubC is automated
-		;                                                                      // granular_player_stepquant_density_hybrid_native::ScrubD is automated
-		;                                                                      // granular_player_stepquant_density_hybrid_native::BloomDuration is automated
-		;                                                                      // granular_player_stepquant_density_hybrid_native::PitchSyncInput is automated
+		; // pack8_writer::Value1 is automated
+		; // pack8_writer::Value2 is automated
+		; // pack8_writer::Value3 is automated
+		; // pack8_writer::Value4 is automated
+		; // pack8_writer::Value5 is automated
+		; // pack8_writer::Value6 is automated
+		; // pack8_writer::Value7 is automated
+		; // pack8_writer::Value8 is automated
 		
-		branch2.setParameterT(0, 0.); // container::branch::Index
+		; // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
+		; // granular_player_stepquant_density_hybrid_native::Scrub is automated
+		; // granular_player_stepquant_density_hybrid_native::GrainMs is automated
+		; // granular_player_stepquant_density_hybrid_native::Density is automated
+		; // granular_player_stepquant_density_hybrid_native::WindowShape is automated
+		; // granular_player_stepquant_density_hybrid_native::PanSpread is automated
+		; // granular_player_stepquant_density_hybrid_native::Respawn is automated
+		; // granular_player_stepquant_density_hybrid_native::PitchSpread is automated
+		; // granular_player_stepquant_density_hybrid_native::MaxGrains is automated
+		; // granular_player_stepquant_density_hybrid_native::Diffusion is automated
+		; // granular_player_stepquant_density_hybrid_native::CloudAmount is automated
+		; // granular_player_stepquant_density_hybrid_native::DirectionMode is automated
+		; // granular_player_stepquant_density_hybrid_native::PhaseScatter is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubB is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubC is automated
+		; // granular_player_stepquant_density_hybrid_native::ScrubD is automated
+		; // granular_player_stepquant_density_hybrid_native::BloomDuration is automated
+		; // granular_player_stepquant_density_hybrid_native::PitchSyncInput is automated
 		
-		; // global_cable15::Value is automated
+		branch.setParameterT(0, 0.); // container::branch::Index
 		
-		; // global_cable18::Value is automated
+		; // global_cable::Value is automated
 		
-		; // global_cable17::Value is automated
+		; // global_cable1::Value is automated
 		
-		; // global_cable16::Value is automated
+		; // global_cable2::Value is automated
 		
-		xfader.setParameterT(0, 0.); // control::xfader::Value
+		; // global_cable3::Value is automated
+		
+		; // xfader::Value is automated
 		
 		;                             // gain::Gain is automated
 		gain.setParameterT(1, 10.3);  // core::gain::Smoothing
 		gain.setParameterT(2, -100.); // core::gain::ResetValue
 		
-		branch1.setParameterT(0, 0.); // container::branch::Index
+		; // branch1::Index is automated
 		
 		;                                 // svf::Frequency is automated
-		svf.setParameterT(1, 0.);         // filters::svf::Q
+		;                                 // svf::Q is automated
 		svf.setParameterT(2, 0.);         // filters::svf::Gain
 		svf.setParameterT(3, 0.00118434); // filters::svf::Smoothing
 		svf.setParameterT(4, 0.);         // filters::svf::Mode
 		svf.setParameterT(5, 1.);         // filters::svf::Enabled
 		
 		;                                  // svf5::Frequency is automated
-		svf5.setParameterT(1, 0.);         // filters::svf::Q
+		;                                  // svf5::Q is automated
 		svf5.setParameterT(2, 0.);         // filters::svf::Gain
 		svf5.setParameterT(3, 0.00154763); // filters::svf::Smoothing
 		svf5.setParameterT(4, 1.);         // filters::svf::Mode
 		svf5.setParameterT(5, 1.);         // filters::svf::Enabled
 		
 		;                            // svf6::Frequency is automated
-		svf6.setParameterT(1, 0.);   // filters::svf::Q
+		;                            // svf6::Q is automated
 		svf6.setParameterT(2, 0.);   // filters::svf::Gain
 		svf6.setParameterT(3, 0.01); // filters::svf::Smoothing
 		svf6.setParameterT(4, 2.);   // filters::svf::Mode
 		svf6.setParameterT(5, 1.);   // filters::svf::Enabled
 		
 		;                              // biquad::Frequency is automated
-		biquad.setParameterT(1, 0.);   // filters::biquad::Q
+		;                              // biquad::Q is automated
 		biquad.setParameterT(2, 0.);   // filters::biquad::Gain
 		biquad.setParameterT(3, 0.01); // filters::biquad::Smoothing
 		biquad.setParameterT(4, 5.);   // filters::biquad::Mode
 		biquad.setParameterT(5, 1.);   // filters::biquad::Enabled
 		
 		;                                // ring_mod::Frequency is automated
-		ring_mod.setParameterT(1, 0.);   // filters::ring_mod::Q
+		;                                // ring_mod::Q is automated
 		ring_mod.setParameterT(2, 0.);   // filters::ring_mod::Gain
 		ring_mod.setParameterT(3, 0.01); // filters::ring_mod::Smoothing
 		ring_mod.setParameterT(4, 0.);   // filters::ring_mod::Mode
@@ -1165,7 +1496,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		gain2.setParameterT(1, 20.);  // core::gain::Smoothing
 		gain2.setParameterT(2, 0.);   // core::gain::ResetValue
 		
-		one_pole.setParameterT(0, 0.);   // filters::one_pole::Frequency
+		;                                // one_pole::Frequency is automated
 		one_pole.setParameterT(1, 1.);   // filters::one_pole::Q
 		one_pole.setParameterT(2, 0.);   // filters::one_pole::Gain
 		one_pole.setParameterT(3, 0.01); // filters::one_pole::Smoothing
@@ -1180,9 +1511,9 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		;                                   // pma_unscaled3::Multiply is automated
 		pma_unscaled3.setParameterT(2, 0.); // control::pma_unscaled::Add
 		
-		receive3.setParameterT(0, 0.); // routing::receive::Feedback
+		; // receive3::Feedback is automated
 		
-		one_pole5.setParameterT(0, 0.);   // filters::one_pole::Frequency
+		;                                 // one_pole5::Frequency is automated
 		one_pole5.setParameterT(1, 9.9);  // filters::one_pole::Q
 		one_pole5.setParameterT(2, 0.);   // filters::one_pole::Gain
 		one_pole5.setParameterT(3, 0.01); // filters::one_pole::Smoothing
@@ -1209,7 +1540,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		pma_unscaled4.setParameterT(2, 0.); // control::pma_unscaled::Add
 		
 		;                               // allpass::Frequency is automated
-		allpass.setParameterT(1, 0.);   // filters::allpass::Q
+		;                               // allpass::Q is automated
 		allpass.setParameterT(2, 0.);   // filters::allpass::Gain
 		allpass.setParameterT(3, 0.01); // filters::allpass::Smoothing
 		allpass.setParameterT(4, 0.);   // filters::allpass::Mode
@@ -1227,35 +1558,56 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		;                              // bitcrush::BitDepth is automated
 		bitcrush.setParameterT(1, 0.); // fx::bitcrush::Mode
 		
-		sampleandhold.setParameterT(0, 0.); // fx::sampleandhold::Counter
+		; // sampleandhold::Counter is automated
 		
 		;                              // gain1::Gain is automated
 		gain1.setParameterT(1, 11.6);  // core::gain::Smoothing
 		gain1.setParameterT(2, -100.); // core::gain::ResetValue
 		
-		gain3.setParameterT(0, 0.);   // core::gain::Gain
+		;                             // gain3::Gain is automated
 		gain3.setParameterT(1, 2.3);  // core::gain::Smoothing
 		gain3.setParameterT(2, -9.4); // core::gain::ResetValue
 		
-		jpanner.setParameterT(0, 0.); // jdsp::jpanner::Pan
+		;                             // jpanner::Pan is automated
 		jpanner.setParameterT(1, 1.); // jdsp::jpanner::Rule
-		
-		branch18.setParameterT(0, 0.); // container::branch::Index
-		
-		; // global_cable19::Value is automated
-		
-		; // global_cable20::Value is automated
-		
-		; // global_cable21::Value is automated
-		
-		; // global_cable22::Value is automated
 		
 		this->setParameterT(0, 0.0516304);
 		this->setParameterT(1, 433.049);
-		this->setParameterT(2, 0.52);
+		this->setParameterT(2, 1.);
 		this->setParameterT(3, 0.);
-		this->setParameterT(4, 0.00146484);
+		this->setParameterT(4, 0.121179);
 		this->setParameterT(5, 0.);
+		this->setParameterT(6, 1.);
+		this->setParameterT(7, 0.);
+		this->setParameterT(8, 32.);
+		this->setParameterT(9, 0.00673828);
+		this->setParameterT(10, 0.00527344);
+		this->setParameterT(11, 1.);
+		this->setParameterT(12, 0.52);
+		this->setParameterT(13, 0.);
+		this->setParameterT(14, 0.00146484);
+		this->setParameterT(15, 1.);
+		this->setParameterT(16, 0.);
+		this->setParameterT(17, 0.774202);
+		this->setParameterT(18, 2.);
+		this->setParameterT(19, 0.);
+		this->setParameterT(20, 1.);
+		this->setParameterT(21, 0.);
+		this->setParameterT(22, 0.0251953);
+		this->setParameterT(23, -2.4);
+		this->setParameterT(24, 1.);
+		this->setParameterT(25, 29.);
+		this->setParameterT(26, 5.);
+		this->setParameterT(27, 1.);
+		this->setParameterT(28, 3.);
+		this->setParameterT(29, 1.);
+		this->setParameterT(30, 0.294136);
+		this->setParameterT(31, 1.);
+		this->setParameterT(32, 0.198926);
+		this->setParameterT(33, 1.);
+		this->setParameterT(34, 1.);
+		this->setParameterT(35, 0.99482);
+		this->setParameterT(36, 1.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
@@ -1284,14 +1636,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(4).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::pitch_mod_t<NV>
 		this->getT(0).getT(0).getT(0).getT(5).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod2_t<NV>
 		this->getT(0).getT(0).getT(0).getT(6).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod6_t<NV>
-		this->getT(1).getT(0).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable15_t_index, parameter::empty>
-		this->getT(1).getT(0).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable18_t_index, parameter::empty>
-		this->getT(1).getT(0).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable17_t_index, parameter::empty>
-		this->getT(1).getT(0).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable16_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable19_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable20_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable21_t_index, parameter::empty>
-		this->getT(1).getT(5).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable22_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable1_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable2_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable3_t_index, parameter::empty>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)
@@ -1305,21 +1653,18 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getT(0).getT(0).getT(0).getT(4).setExternalData(b, index);                         // MatrixTest2_impl::pitch_mod_t<NV>
 		this->getT(0).getT(0).getT(0).getT(5).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod2_t<NV>
 		this->getT(0).getT(0).getT(0).getT(6).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod6_t<NV>
-		this->getT(0).getT(0).getT(6).setExternalData(b, index);                                 // MatrixTest2_impl::pack8_writer_t
+		this->getT(0).getT(0).getT(8).setExternalData(b, index);                                 // MatrixTest2_impl::pack_resizer_t
+		this->getT(0).getT(0).getT(9).setExternalData(b, index);                                 // MatrixTest2_impl::pack8_writer_t
 		this->getT(0).getT(1).setExternalData(b, index);                                         // project::granular_player_stepquant_density_hybrid_native<NV>
-		this->getT(1).getT(0).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak1_t
-		this->getT(1).getT(0).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak19_t
-		this->getT(1).getT(0).getT(2).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak18_t
-		this->getT(1).getT(0).getT(3).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak2_t
-		this->getT(1).getT(2).getT(0).getT(1).getT(0).                                           // MatrixTest2_impl::peak12_t<NV>
+		this->getT(0).getT(2).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak_t
+		this->getT(0).getT(2).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak1_t
+		this->getT(0).getT(2).getT(2).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak2_t
+		this->getT(0).getT(2).getT(3).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak3_t
+		this->getT(1).getT(1).getT(0).getT(1).getT(0).                                           // MatrixTest2_impl::peak12_t<NV>
         getT(6).getT(0).getT(0).getT(1).getT(2).setExternalData(b, index);
-		this->getT(1).getT(2).getT(0).getT(1).                                                   // MatrixTest2_impl::cable_table6_t<NV>
+		this->getT(1).getT(1).getT(0).getT(1).                                                   // MatrixTest2_impl::cable_table6_t<NV>
         getT(0).getT(6).getT(0).getT(1).setExternalData(b, index);
-		this->getT(1).getT(2).getT(0).getT(1).getT(0).getT(9).getT(0).setExternalData(b, index); // MatrixTest2_impl::cable_table5_t<NV>
-		this->getT(1).getT(5).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak20_t
-		this->getT(1).getT(5).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak21_t
-		this->getT(1).getT(5).getT(2).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak22_t
-		this->getT(1).getT(5).getT(3).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak23_t
+		this->getT(1).getT(1).getT(0).getT(1).getT(0).getT(9).getT(0).setExternalData(b, index); // MatrixTest2_impl::cable_table5_t<NV>
 	}
 };
 }
