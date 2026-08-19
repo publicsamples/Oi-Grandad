@@ -147,10 +147,10 @@
               <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
                     Name="tempo_sync">
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo"/>
                   <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="Multiplier"
-                             DefaultValue="1.0" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
+                             DefaultValue="1.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled"/>
                   <Parameter MinValue="1.000000014901161" MaxValue="500.0000074505805" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" TextToValueConverter="Time" DefaultValue="200.0000029802322"
                              Automated="1"/>
@@ -165,31 +165,18 @@
                   <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PitchSyncInput"/>
                 </ModulationTargets>
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo"/>
                   <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="Multiplier"
-                             DefaultValue="1.0" Automated="1"/>
+                             DefaultValue="1.0"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
                              DefaultValue="0.0"/>
                   <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" TextToValueConverter="Time" Value="200.0"/>
                 </Parameters>
               </Node>
-              <Node ID="smoothed_parameter" FactoryPath="control.smoothed_parameter"
-                    Bypassed="0" Name="smoothed_parameter">
-                <Properties>
-                  <Property ID="Mode" Value="Linear Ramp"/>
-                </Properties>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-                  <Parameter MinValue="0.1000000014901161" MaxValue="1000.0" StepSize="0.1000000014901161"
-                             ID="SmoothingTime" TextToValueConverter="Time" Value="154.2000022977591"
-                             DefaultValue="100.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
-                </Parameters>
-              </Node>
               <Node ID="minmax" FactoryPath="control.minmax" Bypassed="0" Name="minmax">
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Minimum" Value="0.0"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" ID="Maximum" Value="0.99196875"
                              DefaultValue="1.0"/>
@@ -202,18 +189,6 @@
                   <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="WindowShape"/>
                 </ModulationTargets>
               </Node>
-              <Node ID="tempo_sync2" FactoryPath="control.tempo_sync" Bypassed="0"
-                    Name="tempo_sync2">
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="0.0"/>
-                  <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
-                             Value="2.0" DefaultValue="1.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
-                             DefaultValue="0.0"/>
-                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
-                             ID="UnsyncedTime" TextToValueConverter="Time" Value="200.0"/>
-                </Parameters>
-              </Node>
               <Node ID="tempo_sync3" FactoryPath="control.tempo_sync" Bypassed="0"
                     Name="tempo_sync3">
                 <ModulationTargets>
@@ -223,24 +198,12 @@
                   <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Value="14.0"
                              DefaultValue="0.0"/>
                   <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="Multiplier"
-                             DefaultValue="1.0" Automated="1"/>
+                             DefaultValue="1.0"/>
                   <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"
                              DefaultValue="0.0"/>
                   <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                              ID="UnsyncedTime" TextToValueConverter="Time" Value="852.70001270622"
                              DefaultValue="200.0"/>
-                </Parameters>
-              </Node>
-              <Node ID="pack_resizer" FactoryPath="control.pack_resizer" Bypassed="0"
-                    Name="pack_resizer">
-                <ComplexData>
-                  <SliderPacks>
-                    <SliderPack Index="0" EmbeddedData="4....f+."/>
-                  </SliderPacks>
-                </ComplexData>
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="128.0" StepSize="1.0" ID="NumSliders"
-                             Value="8.0" DefaultValue="0.0"/>
                 </Parameters>
               </Node>
               <Node ID="pack8_writer" FactoryPath="control.pack8_writer" Bypassed="0"
@@ -251,22 +214,14 @@
                   </SliderPacks>
                 </ComplexData>
                 <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value3" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value4" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value5" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value6" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value7" DefaultValue="0.0"
-                             Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value8" DefaultValue="0.0"
-                             Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value1" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value2" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value3" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value4" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value5" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value6" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value7" DefaultValue="0.0"/>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value8" DefaultValue="0.0"/>
                 </Parameters>
               </Node>
             </Nodes>
@@ -289,26 +244,18 @@
               <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" DefaultValue="0.0" Automated="1"/>
               <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" DefaultValue="50.0"
                          Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" DefaultValue="1.0"
-                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" DefaultValue="1.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" DefaultValue="0.0"
                          Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Respawn" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpread" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" DefaultValue="4.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="CloudAmount" DefaultValue="0.0"
-                         Automated="1"/>
-              <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" DefaultValue="1.0"
-                         Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Respawn" DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpread" DefaultValue="0.0"/>
+              <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" DefaultValue="4.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="CloudAmount" DefaultValue="0.0"/>
+              <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" DefaultValue="1.0"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" DefaultValue="0.0"
-                         Automated="1" SkewFactor="0.4327682554721832"/>
+                         SkewFactor="0.4327682554721832"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" DefaultValue="0.0"
                          Automated="1"/>
               <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" DefaultValue="0.0"
@@ -431,7 +378,7 @@
               </Node>
             </Nodes>
             <Parameters>
-              <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index"/>
             </Parameters>
           </Node>
           <Node ID="xfader" FactoryPath="control.xfader" Bypassed="0" Name="xfader">
@@ -452,7 +399,7 @@
               </SwitchTarget>
             </SwitchTargets>
             <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value"/>
             </Parameters>
           </Node>
           <Node ID="chain16" FactoryPath="container.chain" Bypassed="0" Name="chain4">
@@ -499,7 +446,7 @@
                                              ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
                                              Automated="1"/>
                                   <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                             ID="Q" DefaultValue="1.0" Automated="1"/>
+                                             ID="Q" DefaultValue="1.0"/>
                                   <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
                                              Value="0.0"/>
                                   <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
@@ -524,7 +471,7 @@
                                              ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
                                              Automated="1"/>
                                   <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                             ID="Q" DefaultValue="1.0" Automated="1"/>
+                                             ID="Q" DefaultValue="1.0"/>
                                   <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
                                              Value="0.0"/>
                                   <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
@@ -550,7 +497,7 @@
                                              ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
                                              Automated="1"/>
                                   <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                             ID="Q" DefaultValue="1.0" Automated="1"/>
+                                             ID="Q" DefaultValue="1.0"/>
                                   <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
                                              Value="0.0"/>
                                   <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
@@ -576,7 +523,7 @@
                                              ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
                                              Automated="1"/>
                                   <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                             ID="Q" DefaultValue="1.0" Automated="1"/>
+                                             ID="Q" DefaultValue="1.0"/>
                                   <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
                                              Value="0.0"/>
                                   <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
@@ -602,7 +549,7 @@
                                              ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
                                              Automated="1"/>
                                   <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                             ID="Q" DefaultValue="1.0" Automated="1"/>
+                                             ID="Q" DefaultValue="1.0"/>
                                   <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
                                              Value="0.0"/>
                                   <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
@@ -723,8 +670,7 @@
                                     </ComplexData>
                                     <Parameters>
                                       <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
-                                                 ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
-                                                 Automated="1"/>
+                                                 ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"/>
                                       <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
                                                  ID="Q" Value="1.0"/>
                                       <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
@@ -821,8 +767,7 @@
                                   <Node ID="receive3" FactoryPath="routing.receive" Bypassed="0" Name="receive"
                                         NodeColour="4285684146">
                                     <Parameters>
-                                      <Parameter MinValue="0.9" MaxValue="1.0" ID="Feedback" DefaultValue="0.9"
-                                                 Automated="1"/>
+                                      <Parameter MinValue="0.9" MaxValue="1.0" ID="Feedback" DefaultValue="0.9"/>
                                     </Parameters>
                                   </Node>
                                   <Node ID="one_pole5" FactoryPath="filters.one_pole" Bypassed="0" Name="one_pole5">
@@ -833,8 +778,7 @@
                                     </ComplexData>
                                     <Parameters>
                                       <Parameter MinValue="20.0" MaxValue="20000.0" SkewFactor="0.2299045622348785"
-                                                 ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
-                                                 Automated="1"/>
+                                                 ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"/>
                                       <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
                                                  ID="Q" Value="9.899999618530273" DefaultValue="1.0"/>
                                       <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
@@ -969,7 +913,7 @@
                                                  ID="Frequency" TextToValueConverter="Frequency" DefaultValue="1000.0"
                                                  Automated="1"/>
                                       <Parameter MinValue="0.300000011920929" MaxValue="9.899999618530273" SkewFactor="0.2647178173065186"
-                                                 ID="Q" DefaultValue="1.0" Automated="1"/>
+                                                 ID="Q" DefaultValue="1.0"/>
                                       <Parameter MinValue="-18.0" MaxValue="18.0" ID="Gain" TextToValueConverter="Decibel"
                                                  Value="0.0"/>
                                       <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.3010300099849701"
@@ -1031,8 +975,7 @@
                               <Node ID="sampleandhold" FactoryPath="fx.sampleandhold" Bypassed="0"
                                     Name="sampleandhold">
                                 <Parameters>
-                                  <Parameter MinValue="1.0" MaxValue="64.0" StepSize="1.0" ID="Counter" DefaultValue="1.0"
-                                             Automated="1"/>
+                                  <Parameter MinValue="1.0" MaxValue="64.0" StepSize="1.0" ID="Counter" DefaultValue="1.0"/>
                                 </Parameters>
                               </Node>
                             </Nodes>
@@ -1040,7 +983,7 @@
                           </Node>
                         </Nodes>
                         <Parameters>
-                          <Parameter MinValue="0.0" MaxValue="9" StepSize="1.0" ID="Index" Automated="1"/>
+                          <Parameter MinValue="0.0" MaxValue="9" StepSize="1.0" ID="Index"/>
                         </Parameters>
                       </Node>
                       <Node ID="gain1" FactoryPath="core.gain" Bypassed="0" Name="gain1">
@@ -1068,8 +1011,7 @@
           <Node ID="gain3" FactoryPath="core.gain" Bypassed="0" Name="gain3">
             <Parameters>
               <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                         SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"
-                         Automated="1"/>
+                         SkewFactor="5.422270774841309" ID="Gain" TextToValueConverter="Decibel"/>
               <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
                          SkewFactor="0.3010300099849701" ID="Smoothing" TextToValueConverter="Time"
                          Value="2.30000003427267" DefaultValue="20.0"/>
@@ -1080,7 +1022,7 @@
           </Node>
           <Node ID="jpanner" FactoryPath="jdsp.jpanner" Bypassed="0" Name="jpanner">
             <Parameters>
-              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Pan" Automated="1"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Pan"/>
               <Parameter MinValue="0.0" MaxValue="6.0" StepSize="1.0" ID="Rule" Value="1.0"/>
             </Parameters>
           </Node>
@@ -1189,7 +1131,7 @@
               </Node>
             </Nodes>
             <Parameters>
-              <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" Automated="1"/>
+              <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index"/>
             </Parameters>
           </Node>
         </Nodes>
@@ -1197,74 +1139,13 @@
       </Node>
     </Nodes>
     <Parameters>
-      <Parameter ID="Scrub" MinValue="0.0" MaxValue="1.0" ModColour="2" ExternalModulation="Combined"
+      <Parameter ID="Scrub" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Combined"
                  DefaultValue="" Value="0.0516304347826087">
         <Connections/>
       </Parameter>
       <Parameter ID="GrainSize" MinValue="1.0" MaxValue="500.0" ModColour="0"
                  ExternalModulation="Combined" Value="433.0485733695652" DefaultValue="1.0">
         <Connections/>
-      </Parameter>
-      <Parameter ID="GrainMix" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="1.0">
-        <Connections>
-          <Connection NodeId="smoothed_parameter" ParameterId="Value"/>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Density"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="Scatter" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PhaseScatter"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="WindowShape" MinValue="0.0" MaxValue="1.0" ModColour="0"
-                 ExternalModulation="Disabled" DefaultValue="" Value="0.1211786684782609">
-        <Connections>
-          <Connection NodeId="minmax" ParameterId="Value"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="PanSpread" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PanSpread"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="PitchMode" MinValue="1.0" MaxValue="10.0" ModColour="0" ExternalModulation="Disabled"
-                 Value="1.0" TextToValueConverter="" StepSize="1">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value1"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="PitchSpread" MinValue="0.0" MaxValue="1.0" ModColour="0"
-                 ExternalModulation="Disabled" DefaultValue="" Value="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PitchSpread"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="MaxGrains" MinValue="1.0" MaxValue="32.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="1.0" TextToValueConverter="" Value="32.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="MaxGrains"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="ScrubMode" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.006738281249999999">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value2"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="ScrubBlend" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.005273437499999999">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value3"/>
-        </Connections>
-      </Parameter>
-      <Parameter ID="Direction" MinValue="1.0" MaxValue="4.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="1.0" TextToValueConverter="">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="DirectionMode"/>
-        </Connections>
       </Parameter>
       <Parameter ID="ScrubB" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Combined"
                  DefaultValue="" Value="0.5199999809265137">
@@ -1278,147 +1159,9 @@
                  DefaultValue="" Value="0.00146484375">
         <Connections/>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="3.0" ID="TransportMode" Value="1.0"
-                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0"
-                 StepSize="1">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value4"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="3.0" ID="ModOut1" Value="0.0" StepSize="1.0"
-                 TextToValueConverter="">
-        <Connections>
-          <Connection NodeId="branch2" ParameterId="Index"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="FxMix" Value="0.7742017663043478"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="xfader" ParameterId="Value"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="10.0" ID="FxMode" Value="2.0" ExternalModulation="Disabled"
-                 ModColour="0" StepSize="1.0" TextToValueConverter="" DefaultValue="1.0">
-        <Connections>
-          <Connection NodeId="branch1" ParameterId="Index"/>
-        </Connections>
-      </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="FxMeta1" Value="0.0" ExternalModulation="Combined"
                  ModColour="0">
         <Connections/>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" SkewFactor="0.8589466150147589"
-                 ID="Resonance" Value="1.0" TextToValueConverter="" ExternalModulation="Disabled"
-                 ModColour="0">
-        <Connections>
-          <Connection NodeId="svf" ParameterId="Q"/>
-          <Connection NodeId="svf5" ParameterId="Q"/>
-          <Connection NodeId="svf6" ParameterId="Q"/>
-          <Connection NodeId="biquad" ParameterId="Q"/>
-          <Connection NodeId="ring_mod" ParameterId="Q"/>
-          <Connection NodeId="one_pole" ParameterId="Frequency"/>
-          <Connection NodeId="one_pole5" ParameterId="Frequency"/>
-          <Connection NodeId="allpass" ParameterId="Q"/>
-          <Connection NodeId="sampleandhold" ParameterId="Counter"/>
-          <Connection NodeId="receive3" ParameterId="Feedback"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="3.0" StepSize="1.0" ID="ModOut2" Value="0.0"
-                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
-        <Connections>
-          <Connection NodeId="branch18" ParameterId="Index"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="-1.0" MaxValue="1.0" ID="Pan" Value="0.0251953125000004"
-                 TextToValueConverter="" DefaultValue="0.0" ExternalModulation="Disabled"
-                 ModColour="0">
-        <Connections>
-          <Connection NodeId="jpanner" ParameterId="Pan"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                 SkewFactor="5.422270774841309" ID="Vol" Value="-2.399998545646682"
-                 TextToValueConverter="Decibel" ExternalModulation="Disabled"
-                 ModColour="0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="gain3" ParameterId="Gain"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="GrainSync" Value="1.0"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="tempo_sync" ParameterId="Enabled"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="GrainDiv" Value="29.0"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="tempo_sync" ParameterId="Multiplier"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="GrainTempo"
-                 Value="5.0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="PitchDivide"
-                 Value="1.0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="tempo_sync1" ParameterId="Multiplier"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="18.0" ID="PitchTempo" Value="3.0" StepSize="1.0"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="tempo_sync1" ParameterId="Tempo"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Respawn" Value="1.0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Respawn"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" Value="0.294136379076087"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Diffusion"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSync" Value="1.0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value5"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="Glide" Value="0.19892578125"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value6"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="5.0" StepSize="1" ID="PhaseScatterShape"
-                 Value="1.0" ExternalModulation="Disabled" ModColour="0">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value7"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1" ID="GrainTravelShape"
-                 Value="1.0" ExternalModulation="Disabled" ModColour="0">
-        <Connections>
-          <Connection NodeId="pack8_writer" ParameterId="Value8"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="BloomOn" Value="0.9948199356742529"
-                 DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="CloudAmount"/>
-        </Connections>
-      </Parameter>
-      <Parameter MinValue="1.0" MaxValue="32.0" ID="BloomDiv" Value="1.0" StepSize="1.0"
-                 TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
-        <Connections>
-          <Connection NodeId="tempo_sync3" ParameterId="Multiplier"/>
-        </Connections>
       </Parameter>
     </Parameters>
   </Node>

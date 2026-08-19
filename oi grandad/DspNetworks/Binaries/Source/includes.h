@@ -10,18 +10,10 @@
 // Include third party header files ------------------------
 
 #include "granular_player_stepquant_density_hybrid_native.h"
-#include "master_bus_compressor_native.h"
 
 // Include compiled network files --------------------------
 
-#include "DspNetwork.h"
-#include "ENV.h"
-#include "MacroMod.h"
 #include "MatrixTest2.h"
-#include "OutMods.h"
-#include "res2.h"
-#include "sn_fin.h"
-#include "vecfade.h"
 
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )
