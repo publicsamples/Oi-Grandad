@@ -8,7 +8,7 @@
              textColour="15919073" processorId="Granular2" bgColour="16777215">
     <Component type="ScriptPanel" id="V0" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Grain" x="10" y="10" width="670" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V0"
@@ -1593,7 +1593,7 @@
     </Component>
     <Component type="ScriptPanel" id="V3" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Random4" x="513" y="533" width="170" height="100"
                  itemColour="4293781205" itemColour2="4293781205" parentComponent="V3"
                  textColour="4278190080">
@@ -4717,743 +4717,815 @@
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Control" bgColour="4278190080"/>
     </Component>
-    <Component type="ScriptPanel" id="RandomControls2" x="620" y="59" width="202"
-               height="468" itemColour="4293781205" itemColour2="4293781205"
+    <Component type="ScriptPanel" id="RandomControls2" x="23" y="396" width="660"
+               height="170" itemColour="4293781205" itemColour2="4293781205"
                parentComponent="Og" textColour="16777215" visible="0">
-      <Component type="ScriptLabel" id="ScriptLabel269" x="9" y="35" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel269" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="SampleMin2" x="71" y="35" width="40"
+      <Component type="ScriptSlider" id="SampleMin2" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
                  max="2"/>
-      <Component type="ScriptSlider" id="SampleMax2" x="115" y="35" width="40"
+      <Component type="ScriptSlider" id="SampleMax2" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
                  max="2"/>
-      <Component type="ScriptButton" id="RandomiseSamples1" x="169" y="35" width="20"
+      <Component type="ScriptButton" id="RandomiseSamples1" x="192" y="43" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptLabel" id="ScriptLabel200" x="71" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel200" x="94" y="16" width="40"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Min" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel203" x="114" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel203" x="137" y="16" width="40"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Max" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel206" x="8" y="8" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel206" x="31" y="16" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Control" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel207" x="9" y="59" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel207" x="32" y="67" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Position 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin18" x="71" y="59" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin18" x="94" y="67" width="40" height="20"
                  parentComponent="RandomControls2" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax18" x="115" y="59" width="40"
+      <Component type="ScriptSlider" id="RandMax18" x="138" y="67" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptLabel" id="ScriptLabel208" x="158" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel208" x="181" y="16" width="40"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Lock" bgColour="4278190080"/>
-      <Component type="ScriptButton" id="RandLock18" x="169" y="59" width="20"
+      <Component type="ScriptButton" id="RandLock18" x="192" y="67" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock19" x="169" y="83" width="20"
+      <Component type="ScriptButton" id="RandLock19" x="192" y="90" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax19" x="115" y="82" width="40"
+      <Component type="ScriptSlider" id="RandMax19" x="138" y="90" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin19" x="71" y="82" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin19" x="94" y="90" width="40" height="20"
                  parentComponent="RandomControls2" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel209" x="10" y="82" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel209" x="32" y="90" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Position 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock20" x="169" y="106" width="20"
+      <Component type="ScriptButton" id="RandLock20" x="192" y="114" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax21" x="115" y="130" width="40"
+      <Component type="ScriptSlider" id="RandMax21" x="138" y="138" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock21" x="169" y="130" width="20"
+      <Component type="ScriptButton" id="RandLock21" x="192" y="138" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax20" x="115" y="106" width="40"
+      <Component type="ScriptSlider" id="RandMax20" x="138" y="114" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin20" x="71" y="106" width="40"
+      <Component type="ScriptSlider" id="RandMin20" x="94" y="114" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin21" x="71" y="130" width="40"
+      <Component type="ScriptSlider" id="RandMin21" x="94" y="138" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel210" x="9" y="130" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel210" x="32" y="138" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Position 4" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel211" x="9" y="106" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel211" x="32" y="114" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Position 3" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel212" x="9" y="201" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel212" x="236" y="88" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Spread" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel213" x="9" y="154" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel213" x="236" y="41" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Pitch" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin22" x="71" y="154" width="40"
+      <Component type="ScriptSlider" id="RandMin22" x="298" y="41" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax22" x="115" y="154" width="40"
+      <Component type="ScriptSlider" id="RandMax22" x="342" y="41" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
                  itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock22" x="169" y="154" width="20"
+      <Component type="ScriptButton" id="RandLock22" x="396" y="41" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock23" x="169" y="178" width="20"
+      <Component type="ScriptButton" id="RandLock23" x="396" y="64" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax23" x="115" y="177" width="40"
+      <Component type="ScriptSlider" id="RandMax23" x="342" y="64" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin23" x="71" y="177" width="40"
+      <Component type="ScriptSlider" id="RandMin23" x="298" y="64" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel214" x="9" y="177" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel214" x="236" y="64" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Detune" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock24" x="169" y="202" width="20"
+      <Component type="ScriptButton" id="RandLock24" x="396" y="88" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax25" x="115" y="225" width="40"
+      <Component type="ScriptSlider" id="RandMax25" x="342" y="112" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock25" x="169" y="225" width="20"
+      <Component type="ScriptButton" id="RandLock25" x="396" y="112" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax24" x="115" y="201" width="40"
+      <Component type="ScriptSlider" id="RandMax24" x="342" y="88" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin24" x="71" y="201" width="40"
+      <Component type="ScriptSlider" id="RandMin24" x="298" y="88" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin25" x="71" y="225" width="40"
+      <Component type="ScriptSlider" id="RandMin25" x="298" y="112" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" min="1.0" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel215" x="9" y="225" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel215" x="236" y="112" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Grain MS" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel216" x="9" y="345" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel216" x="440" y="112" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Poly FX 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel217" x="9" y="249" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel217" x="236" y="136" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Grain Clk" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin26" x="71" y="249" width="40"
+      <Component type="ScriptSlider" id="RandMin26" x="298" y="136" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax26" x="115" y="249" width="40"
+      <Component type="ScriptSlider" id="RandMax26" x="342" y="136" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock26" x="169" y="249" width="20"
+      <Component type="ScriptButton" id="RandLock26" x="396" y="136" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock27" x="169" y="273" width="20"
+      <Component type="ScriptButton" id="RandLock27" x="600" y="40" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax27" x="115" y="272" width="40"
+      <Component type="ScriptSlider" id="RandMax27" x="546" y="40" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin27" x="71" y="272" width="40"
+      <Component type="ScriptSlider" id="RandMin27" x="502" y="40" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel218" x="9" y="272" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel218" x="440" y="40" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Window" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock28" x="169" y="297" width="20"
+      <Component type="ScriptButton" id="RandLock28" x="600" y="64" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax29" x="115" y="320" width="40"
+      <Component type="ScriptSlider" id="RandMax29" x="546" y="88" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock29" x="169" y="320" width="20"
+      <Component type="ScriptButton" id="RandLock29" x="600" y="88" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax28" x="115" y="296" width="40"
+      <Component type="ScriptSlider" id="RandMax28" x="546" y="64" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin28" x="71" y="296" width="40"
+      <Component type="ScriptSlider" id="RandMin28" x="502" y="64" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin29" x="71" y="320" width="40"
+      <Component type="ScriptSlider" id="RandMin29" x="502" y="88" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel219" x="9" y="369" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel219" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Poly FX 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel220" x="9" y="415" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel220" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Post FX 2" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMin30" x="71" y="344" width="40"
+      <Component type="ScriptSlider" id="RandMin30" x="502" y="112" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax30" x="115" y="344" width="40"
+      <Component type="ScriptSlider" id="RandMax30" x="546" y="112" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock30" x="169" y="344" width="20"
+      <Component type="ScriptButton" id="RandLock30" x="600" y="112" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock31" x="169" y="368" width="20"
+      <Component type="ScriptButton" id="RandLock31" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax31" x="115" y="367" width="40"
+      <Component type="ScriptSlider" id="RandMax31" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin31" x="71" y="367" width="40"
+      <Component type="ScriptSlider" id="RandMin31" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel221" x="9" y="391" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel221" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Post FX 1" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptButton" id="RandLock32" x="169" y="392" width="20"
+      <Component type="ScriptButton" id="RandLock32" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMax33" x="115" y="415" width="40"
+      <Component type="ScriptSlider" id="RandMax33" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptButton" id="RandLock33" x="169" y="415" width="20"
+      <Component type="ScriptButton" id="RandLock33" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMax32" x="115" y="391" width="40"
+      <Component type="ScriptSlider" id="RandMax32" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptSlider" id="RandMin32" x="71" y="391" width="40"
+      <Component type="ScriptSlider" id="RandMin32" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptSlider" id="RandMin33" x="71" y="415" width="40"
+      <Component type="ScriptSlider" id="RandMin33" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel222" x="9" y="439" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel222" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Post FX 3" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMin34" x="71" y="439" width="40"
+      <Component type="ScriptSlider" id="RandMin34" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptSlider" id="RandMax34" x="115" y="439" width="40"
+      <Component type="ScriptSlider" id="RandMax34" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptButton" id="RandLock34" x="169" y="439" width="20"
+      <Component type="ScriptButton" id="RandLock34" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel223" x="10" y="296" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel223" x="440" y="64" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Scatter" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel224" x="10" y="320" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel224" x="440" y="88" width="60"
                  height="20" parentComponent="RandomControls2" fontName="Montserrat"
                  editable="0" text="Density" textColour="4278190080" fontSize="12.0"/>
+      <Component type="ScriptLabel" id="ScriptLabel900" x="383" y="15" width="40"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel901" x="339" y="15" width="40"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel902" x="296" y="15" width="40"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel903" x="233" y="15" width="60"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel904" x="588" y="15" width="40"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel905" x="544" y="15" width="40"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel906" x="501" y="15" width="40"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel907" x="438" y="15" width="60"
+                 height="20" parentComponent="RandomControls2" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
     </Component>
-    <Component type="ScriptPanel" id="RandomControls3" x="620" y="59" width="202"
-               height="468" itemColour="4293781205" itemColour2="4293781205"
+    <Component type="ScriptPanel" id="RandomControls3" x="23" y="396" width="660"
+               height="170" itemColour="4293781205" itemColour2="4293781205"
                parentComponent="Og" textColour="16777215" visible="0">
-      <Component type="ScriptButton" id="RandomiseSamples2" x="169" y="35" width="20"
+      <Component type="ScriptButton" id="RandomiseSamples2" x="192" y="43" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="SampleMax3" x="115" y="35" width="40"
+      <Component type="ScriptSlider" id="SampleMax3" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
                  max="2"/>
-      <Component type="ScriptSlider" id="SampleMin3" x="71" y="35" width="40"
+      <Component type="ScriptSlider" id="SampleMin3" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
                  max="2"/>
-      <Component type="ScriptLabel" id="ScriptLabel270" x="9" y="35" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel270" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel225" x="71" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel225" x="94" y="16" width="40"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Min" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel226" x="114" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel226" x="137" y="16" width="40"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Max" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel227" x="8" y="8" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel227" x="31" y="16" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Control" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel228" x="9" y="59" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel228" x="32" y="67" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Position 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin35" x="71" y="59" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin35" x="94" y="67" width="40" height="20"
                  parentComponent="RandomControls3" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax35" x="115" y="59" width="40"
+      <Component type="ScriptSlider" id="RandMax35" x="138" y="67" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptLabel" id="ScriptLabel229" x="158" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel229" x="181" y="16" width="40"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Lock" bgColour="4278190080"/>
-      <Component type="ScriptButton" id="RandLock35" x="169" y="59" width="20"
+      <Component type="ScriptButton" id="RandLock35" x="192" y="67" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock36" x="169" y="83" width="20"
+      <Component type="ScriptButton" id="RandLock36" x="192" y="90" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax36" x="115" y="82" width="40"
+      <Component type="ScriptSlider" id="RandMax36" x="138" y="90" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin36" x="71" y="82" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin36" x="94" y="90" width="40" height="20"
                  parentComponent="RandomControls3" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel230" x="10" y="82" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel230" x="32" y="90" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Position 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock37" x="169" y="107" width="20"
+      <Component type="ScriptButton" id="RandLock37" x="192" y="114" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax38" x="115" y="130" width="40"
+      <Component type="ScriptSlider" id="RandMax38" x="138" y="138" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock38" x="169" y="130" width="20"
+      <Component type="ScriptButton" id="RandLock38" x="192" y="138" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax37" x="115" y="106" width="40"
+      <Component type="ScriptSlider" id="RandMax37" x="138" y="114" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin37" x="71" y="106" width="40"
+      <Component type="ScriptSlider" id="RandMin37" x="94" y="114" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin38" x="71" y="130" width="40"
+      <Component type="ScriptSlider" id="RandMin38" x="94" y="138" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel231" x="9" y="130" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel231" x="32" y="138" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Position 4" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel232" x="9" y="106" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel232" x="32" y="114" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Position 3" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel233" x="9" y="201" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel233" x="236" y="88" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Spread" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel234" x="9" y="154" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel234" x="236" y="41" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Pitch" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin39" x="71" y="154" width="40"
+      <Component type="ScriptSlider" id="RandMin39" x="298" y="41" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax39" x="115" y="154" width="40"
+      <Component type="ScriptSlider" id="RandMax39" x="342" y="41" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
                  itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock39" x="169" y="154" width="20"
+      <Component type="ScriptButton" id="RandLock39" x="396" y="41" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock40" x="169" y="178" width="20"
+      <Component type="ScriptButton" id="RandLock40" x="396" y="64" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax40" x="115" y="177" width="40"
+      <Component type="ScriptSlider" id="RandMax40" x="342" y="64" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin40" x="71" y="177" width="40"
+      <Component type="ScriptSlider" id="RandMin40" x="298" y="64" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel235" x="9" y="177" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel235" x="236" y="64" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Detune" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock41" x="169" y="202" width="20"
+      <Component type="ScriptButton" id="RandLock41" x="396" y="88" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax42" x="115" y="225" width="40"
+      <Component type="ScriptSlider" id="RandMax42" x="342" y="112" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock42" x="169" y="225" width="20"
+      <Component type="ScriptButton" id="RandLock42" x="396" y="112" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax41" x="115" y="201" width="40"
+      <Component type="ScriptSlider" id="RandMax41" x="342" y="88" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin41" x="71" y="201" width="40"
+      <Component type="ScriptSlider" id="RandMin41" x="298" y="88" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin42" x="71" y="225" width="40"
+      <Component type="ScriptSlider" id="RandMin42" x="298" y="112" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" min="1.0" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel236" x="9" y="225" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel236" x="236" y="112" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Grain MS" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel237" x="9" y="345" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel237" x="440" y="112" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Poly FX 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel238" x="9" y="249" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel238" x="236" y="136" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Grain Clk" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin43" x="71" y="249" width="40"
+      <Component type="ScriptSlider" id="RandMin43" x="298" y="136" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax43" x="115" y="249" width="40"
+      <Component type="ScriptSlider" id="RandMax43" x="342" y="136" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock43" x="169" y="249" width="20"
+      <Component type="ScriptButton" id="RandLock43" x="396" y="136" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock44" x="169" y="273" width="20"
+      <Component type="ScriptButton" id="RandLock44" x="600" y="40" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax44" x="115" y="272" width="40"
+      <Component type="ScriptSlider" id="RandMax44" x="546" y="40" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin44" x="71" y="272" width="40"
+      <Component type="ScriptSlider" id="RandMin44" x="502" y="40" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel239" x="9" y="272" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel239" x="440" y="40" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Window" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock45" x="169" y="297" width="20"
+      <Component type="ScriptButton" id="RandLock45" x="600" y="64" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax46" x="115" y="320" width="40"
+      <Component type="ScriptSlider" id="RandMax46" x="546" y="88" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock46" x="169" y="320" width="20"
+      <Component type="ScriptButton" id="RandLock46" x="600" y="88" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax45" x="115" y="296" width="40"
+      <Component type="ScriptSlider" id="RandMax45" x="546" y="64" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin45" x="71" y="296" width="40"
+      <Component type="ScriptSlider" id="RandMin45" x="502" y="64" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin46" x="71" y="320" width="40"
+      <Component type="ScriptSlider" id="RandMin46" x="502" y="88" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel240" x="9" y="369" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel240" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Poly FX 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel241" x="9" y="415" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel241" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Post FX 2" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMin47" x="71" y="344" width="40"
+      <Component type="ScriptSlider" id="RandMin47" x="502" y="112" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax47" x="115" y="344" width="40"
+      <Component type="ScriptSlider" id="RandMax47" x="546" y="112" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock47" x="169" y="344" width="20"
+      <Component type="ScriptButton" id="RandLock47" x="600" y="112" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock48" x="169" y="368" width="20"
+      <Component type="ScriptButton" id="RandLock48" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax48" x="115" y="367" width="40"
+      <Component type="ScriptSlider" id="RandMax48" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin48" x="71" y="367" width="40"
+      <Component type="ScriptSlider" id="RandMin48" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel242" x="9" y="391" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel242" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Post FX 1" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptButton" id="RandLock49" x="169" y="392" width="20"
+      <Component type="ScriptButton" id="RandLock49" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMax50" x="115" y="415" width="40"
+      <Component type="ScriptSlider" id="RandMax50" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptButton" id="RandLock50" x="169" y="415" width="20"
+      <Component type="ScriptButton" id="RandLock50" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMax49" x="115" y="391" width="40"
+      <Component type="ScriptSlider" id="RandMax49" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptSlider" id="RandMin49" x="71" y="391" width="40"
+      <Component type="ScriptSlider" id="RandMin49" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptSlider" id="RandMin50" x="71" y="415" width="40"
+      <Component type="ScriptSlider" id="RandMin50" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel243" x="9" y="439" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel243" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Post FX 3" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMin51" x="71" y="439" width="40"
+      <Component type="ScriptSlider" id="RandMin51" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptSlider" id="RandMax51" x="115" y="439" width="40"
+      <Component type="ScriptSlider" id="RandMax51" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptButton" id="RandLock51" x="169" y="439" width="20"
+      <Component type="ScriptButton" id="RandLock51" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls3" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel244" x="10" y="296" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel244" x="440" y="64" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Scatter" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel245" x="10" y="320" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel245" x="440" y="88" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Density" textColour="4278190080" fontSize="12.0"/>
+      <Component type="ScriptLabel" id="ScriptLabel908" x="383" y="15" width="40"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel909" x="339" y="15" width="40"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel910" x="296" y="15" width="40"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel911" x="233" y="15" width="60"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel912" x="588" y="15" width="40"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel913" x="544" y="15" width="40"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel914" x="501" y="15" width="40"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel915" x="438" y="15" width="60"
+                 height="20" parentComponent="RandomControls3" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
     </Component>
-    <Component type="ScriptPanel" id="RandomControls4" x="620" y="59" width="202"
-               height="468" itemColour="4293781205" itemColour2="4293781205"
-               parentComponent="Og" textColour="16777215" visible="0">
-      <Component type="ScriptButton" id="RandomiseSamples3" x="169" y="35" width="20"
+    <Component type="ScriptPanel" id="RandomControls4" x="23" y="396" width="660"
+               height="170" itemColour="4293781205" itemColour2="4293781205"
+               parentComponent="Og" textColour="16777215">
+      <Component type="ScriptButton" id="RandomiseSamples3" x="192" y="43" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="SampleMax4" x="115" y="35" width="40"
+      <Component type="ScriptSlider" id="SampleMax4" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
                  max="2"/>
-      <Component type="ScriptSlider" id="SampleMin4" x="71" y="35" width="40"
+      <Component type="ScriptSlider" id="SampleMin4" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
                  max="2"/>
-      <Component type="ScriptLabel" id="ScriptLabel271" x="9" y="35" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel271" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel246" x="71" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel246" x="94" y="16" width="40"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Min" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel247" x="114" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel247" x="137" y="16" width="40"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Max" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel248" x="8" y="8" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel248" x="31" y="16" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Control" bgColour="4278190080"/>
-      <Component type="ScriptLabel" id="ScriptLabel249" x="9" y="59" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel249" x="32" y="67" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Position 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin52" x="71" y="59" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin52" x="94" y="67" width="40" height="20"
                  parentComponent="RandomControls4" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax52" x="115" y="59" width="40"
+      <Component type="ScriptSlider" id="RandMax52" x="138" y="67" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptLabel" id="ScriptLabel250" x="158" y="8" width="40"
+      <Component type="ScriptLabel" id="ScriptLabel250" x="181" y="16" width="40"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Lock" bgColour="4278190080"/>
-      <Component type="ScriptButton" id="RandLock52" x="169" y="59" width="20"
+      <Component type="ScriptButton" id="RandLock52" x="192" y="67" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock53" x="169" y="83" width="20"
+      <Component type="ScriptButton" id="RandLock53" x="192" y="90" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax53" x="115" y="82" width="40"
+      <Component type="ScriptSlider" id="RandMax53" x="138" y="90" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin53" x="71" y="82" width="40" height="20"
+      <Component type="ScriptSlider" id="RandMin53" x="94" y="90" width="40" height="20"
                  parentComponent="RandomControls4" style="Horizontal" showValuePopup="Below"
                  itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel251" x="10" y="82" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel251" x="32" y="90" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Position 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock54" x="169" y="107" width="20"
+      <Component type="ScriptButton" id="RandLock54" x="192" y="114" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax55" x="115" y="130" width="40"
+      <Component type="ScriptSlider" id="RandMax55" x="138" y="138" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock55" x="169" y="130" width="20"
+      <Component type="ScriptButton" id="RandLock55" x="192" y="138" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax54" x="115" y="106" width="40"
+      <Component type="ScriptSlider" id="RandMax54" x="138" y="114" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin54" x="71" y="106" width="40"
+      <Component type="ScriptSlider" id="RandMin54" x="94" y="114" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin55" x="71" y="130" width="40"
+      <Component type="ScriptSlider" id="RandMin55" x="94" y="138" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel252" x="9" y="130" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel252" x="32" y="138" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Position 4" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel253" x="9" y="106" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel253" x="32" y="114" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Position 3" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel254" x="9" y="201" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel254" x="236" y="88" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Spread" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel255" x="9" y="154" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel255" x="236" y="41" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Pitch" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin56" x="71" y="154" width="40"
+      <Component type="ScriptSlider" id="RandMin56" x="298" y="41" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
                  itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax56" x="115" y="154" width="40"
+      <Component type="ScriptSlider" id="RandMax56" x="342" y="41" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" min="-12.0" max="12.0" stepSize="0.1000000014901161"
                  itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock56" x="169" y="154" width="20"
+      <Component type="ScriptButton" id="RandLock56" x="396" y="41" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock57" x="169" y="178" width="20"
+      <Component type="ScriptButton" id="RandLock57" x="396" y="64" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax57" x="115" y="177" width="40"
+      <Component type="ScriptSlider" id="RandMax57" x="342" y="64" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin57" x="71" y="177" width="40"
+      <Component type="ScriptSlider" id="RandMin57" x="298" y="64" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel256" x="9" y="177" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel256" x="236" y="64" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Detune" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock58" x="169" y="202" width="20"
+      <Component type="ScriptButton" id="RandLock58" x="396" y="88" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax59" x="115" y="225" width="40"
+      <Component type="ScriptSlider" id="RandMax59" x="342" y="112" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock59" x="169" y="225" width="20"
+      <Component type="ScriptButton" id="RandLock59" x="396" y="112" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax58" x="115" y="201" width="40"
+      <Component type="ScriptSlider" id="RandMax58" x="342" y="88" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin58" x="71" y="201" width="40"
+      <Component type="ScriptSlider" id="RandMin58" x="298" y="88" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin59" x="71" y="225" width="40"
+      <Component type="ScriptSlider" id="RandMin59" x="298" y="112" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" max="1000.0" middlePosition="500.0" mode="Time"
                  stepSize="1.0" min="1.0" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel257" x="9" y="225" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel257" x="236" y="112" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Grain MS" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel258" x="9" y="345" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel258" x="440" y="112" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Poly FX 1" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel259" x="9" y="249" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel259" x="236" y="136" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Grain Clk" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptSlider" id="RandMin60" x="71" y="249" width="40"
+      <Component type="ScriptSlider" id="RandMin60" x="298" y="136" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax60" x="115" y="249" width="40"
+      <Component type="ScriptSlider" id="RandMax60" x="342" y="136" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" mode="TempoSync" max="18.0" stepSize="1.0"
                  middlePosition="9.0" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock60" x="169" y="249" width="20"
+      <Component type="ScriptButton" id="RandLock60" x="396" y="136" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock61" x="169" y="273" width="20"
+      <Component type="ScriptButton" id="RandLock61" x="600" y="40" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax61" x="115" y="272" width="40"
+      <Component type="ScriptSlider" id="RandMax61" x="546" y="40" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin61" x="71" y="272" width="40"
+      <Component type="ScriptSlider" id="RandMin61" x="502" y="40" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel260" x="9" y="272" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel260" x="440" y="40" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Window" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptButton" id="RandLock62" x="169" y="297" width="20"
+      <Component type="ScriptButton" id="RandLock62" x="600" y="64" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax63" x="115" y="320" width="40"
+      <Component type="ScriptSlider" id="RandMax63" x="546" y="88" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock63" x="169" y="320" width="20"
+      <Component type="ScriptButton" id="RandLock63" x="600" y="88" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax62" x="115" y="296" width="40"
+      <Component type="ScriptSlider" id="RandMax62" x="546" y="64" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin62" x="71" y="296" width="40"
+      <Component type="ScriptSlider" id="RandMin62" x="502" y="64" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMin63" x="71" y="320" width="40"
+      <Component type="ScriptSlider" id="RandMin63" x="502" y="88" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel261" x="9" y="369" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel261" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Poly FX 2" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel262" x="9" y="415" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel262" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Post FX 2" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMin64" x="71" y="344" width="40"
+      <Component type="ScriptSlider" id="RandMin64" x="502" y="112" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptSlider" id="RandMax64" x="115" y="344" width="40"
+      <Component type="ScriptSlider" id="RandMax64" x="546" y="112" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptButton" id="RandLock64" x="169" y="344" width="20"
+      <Component type="ScriptButton" id="RandLock64" x="600" y="112" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptButton" id="RandLock65" x="169" y="368" width="20"
+      <Component type="ScriptButton" id="RandLock65" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
-      <Component type="ScriptSlider" id="RandMax65" x="115" y="367" width="40"
+      <Component type="ScriptSlider" id="RandMax65" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544"/>
-      <Component type="ScriptSlider" id="RandMin65" x="71" y="367" width="40"
+      <Component type="ScriptSlider" id="RandMin65" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829"/>
-      <Component type="ScriptLabel" id="ScriptLabel263" x="9" y="391" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel263" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Post FX 1" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptButton" id="RandLock66" x="169" y="392" width="20"
+      <Component type="ScriptButton" id="RandLock66" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMax67" x="115" y="415" width="40"
+      <Component type="ScriptSlider" id="RandMax67" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptButton" id="RandLock67" x="169" y="415" width="20"
+      <Component type="ScriptButton" id="RandLock67" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMax66" x="115" y="391" width="40"
+      <Component type="ScriptSlider" id="RandMax66" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptSlider" id="RandMin66" x="71" y="391" width="40"
+      <Component type="ScriptSlider" id="RandMin66" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptSlider" id="RandMin67" x="71" y="415" width="40"
+      <Component type="ScriptSlider" id="RandMin67" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel264" x="9" y="439" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel264" x="440" y="135" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Post FX 3" textColour="4278190080" fontSize="12.0"
                  visible="0"/>
-      <Component type="ScriptSlider" id="RandMin68" x="71" y="439" width="40"
+      <Component type="ScriptSlider" id="RandMin68" x="502" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" visible="0"/>
-      <Component type="ScriptSlider" id="RandMax68" x="115" y="439" width="40"
+      <Component type="ScriptSlider" id="RandMax68" x="546" y="135" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" visible="0"/>
-      <Component type="ScriptButton" id="RandLock68" x="169" y="439" width="20"
+      <Component type="ScriptButton" id="RandLock68" x="600" y="135" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"
                  visible="0"/>
-      <Component type="ScriptLabel" id="ScriptLabel265" x="10" y="296" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel265" x="440" y="64" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Scatter" textColour="4278190080" fontSize="12.0"/>
-      <Component type="ScriptLabel" id="ScriptLabel266" x="10" y="320" width="60"
+      <Component type="ScriptLabel" id="ScriptLabel266" x="440" y="88" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Density" textColour="4278190080" fontSize="12.0"/>
+      <Component type="ScriptLabel" id="ScriptLabel916" x="383" y="15" width="40"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel917" x="339" y="15" width="40"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel918" x="296" y="15" width="40"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel919" x="233" y="15" width="60"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel920" x="588" y="15" width="40"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Lock" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel921" x="544" y="15" width="40"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Max" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel922" x="501" y="15" width="40"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Min" bgColour="4278190080"/>
+      <Component type="ScriptLabel" id="ScriptLabel923" x="438" y="15" width="60"
+                 height="20" parentComponent="RandomControls4" fontName="Montserrat"
+                 editable="0" text="Control" bgColour="4278190080"/>
     </Component>
     <Component type="ScriptPanel" id="V5" x="10" y="43" width="920" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"

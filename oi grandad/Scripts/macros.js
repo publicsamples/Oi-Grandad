@@ -716,11 +716,35 @@ inline function getMatrixSourceRouteCount(sourceId)
 {
 	local count = 0;
 	local targets = matrixHandler.getTargetList();
+	local sources = matrixHandler.getSourceList();
+	local sourceIndex = sources.indexOf(sourceId);
 
 	for(targetId in targets)
 	{
 		if(!matrixHandler.canConnect(sourceId, targetId))
 			count += 1;
+			
+		for(primarySourceId in sources)
+		{
+			local auxSourceId = matrixHandler.getConnectionProperty(primarySourceId, targetId, "Aux");
+			
+			if(!isDefined(auxSourceId) || auxSourceId == "")
+				auxSourceId = matrixHandler.getConnectionProperty(primarySourceId, targetId, "AuxSource");
+				
+			if(auxSourceId == sourceId)
+			{
+				count += 1;
+				continue;
+			}
+			
+			if(sourceIndex != -1)
+			{
+				local auxIndex = matrixHandler.getConnectionProperty(primarySourceId, targetId, "AuxIndex");
+				
+				if(isDefined(auxIndex) && auxIndex == sourceIndex)
+					count += 1;
+			}
+		}
 	}
 
 	return count;
@@ -770,6 +794,12 @@ inline function refreshAllMatrixTargetEnabledStates()
 		refreshMatrixTargetEnabledState(targetId);
 }
 
+inline function syncAllMatrixEnabledStates()
+{
+	refreshAllMatrixSourceEnabledStates();
+	refreshAllMatrixTargetEnabledStates();
+}
+
 matrixHandler.setMatrixModulationProperties({
 	DefaultInitValues: matrixDefaultTargetValues,
 	RangeProperties: matrixRangeProperties
@@ -792,6 +822,18 @@ matrixHandler.setConnectionCallback(function(source, target, wasAdded)
 
 refreshAllMatrixSourceEnabledStates();
 refreshAllMatrixTargetEnabledStates();
+
+const var MatrixPanel = Content.getComponent("ModulationMatrix");
+
+if(isDefined(MatrixPanel))
+{
+	MatrixPanel.setTimerCallback(function()
+	{
+		syncAllMatrixEnabledStates();
+	});
+
+	MatrixPanel.startTimer(400);
+}
 
 inline function connectMatrixSourceToComponent(sourceId, component)
 {
