@@ -8,7 +8,7 @@
              textColour="15919073" processorId="Granular2" bgColour="16777215">
     <Component type="ScriptPanel" id="V0" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Grain" x="10" y="10" width="670" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V0"
@@ -1593,7 +1593,7 @@
     </Component>
     <Component type="ScriptPanel" id="V3" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Random4" x="513" y="533" width="170" height="100"
                  itemColour="4293781205" itemColour2="4293781205" parentComponent="V3"
                  textColour="4278190080">
@@ -2458,15 +2458,15 @@
     <Component type="ScriptButton" id="VOICE1" x="129" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 2" saveInPreset="0"
                bgColour="4294951129" textColour="4278650374" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE2" x="246" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 3" saveInPreset="0"
                bgColour="4290759931" textColour="4278255873" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE3" x="364" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 4" saveInPreset="0"
                bgColour="4293838681" textColour="4278190080" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE4" x="481" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="MASTER" saveInPreset="0"
                bgColour="4294351196" itemColour="3355443" textColour="4278255873"
@@ -5259,7 +5259,7 @@
     </Component>
     <Component type="ScriptPanel" id="RandomControls4" x="23" y="396" width="660"
                height="170" itemColour="4293781205" itemColour2="4293781205"
-               parentComponent="Og" textColour="16777215">
+               parentComponent="Og" textColour="16777215" visible="0">
       <Component type="ScriptButton" id="RandomiseSamples3" x="192" y="43" width="20"
                  height="20" parentComponent="RandomControls4" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
@@ -5652,6 +5652,54 @@
                middlePosition="-12.0" itemColour="1721839150" showValuePopup="Below"
                mode="Decibel" max="12.0" min="-100.0" textColour="16776960"
                matrixTargetId="Master_Volume" parentComponent="Master"/>
+    <Component type="ScriptSlider" id="ScrubDisplayA1" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionA_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayB1" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionB_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayC1" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionC_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayD1" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionD_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayA2" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionA_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayB2" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionB_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayC2" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionC_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayD2" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionD_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayA3" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionA_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayB3" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionB_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayC3" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionC_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayD3" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionD_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayA4" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionA_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayB4" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionB_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayC4" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionC_Display"/>
+    <Component type="ScriptSlider" id="ScrubDisplayD4" x="0" y="0" width="1"
+               height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
+               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionD_Display"/>
     <Component type="ScriptLabel" id="Label22" x="114" y="80" width="20" height="20"
                fontName="Montserrat" fontSize="15.0" textColour="4294109134"
                text="1" editable="0" itemColour2="4092454613" itemColour="15848371"

@@ -5,12 +5,72 @@
   <Node FactoryPath="container.chain" ID="MatrixTest2" Bypassed="0" Name="MatrixTest2"
         ShowParameters="1">
     <Nodes>
-      <Node ID="fix32_block" FactoryPath="container.fix32_block" Bypassed="0"
+      <Node ID="fix32_block" FactoryPath="container.fix32_block" Bypassed="1"
             Name="fix32_block" ShowParameters="0">
         <Nodes>
           <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
             <Nodes>
               <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="pitch_mod" FactoryPath="core.pitch_mod" Bypassed="0" Name="pitch_mod">
+                    <ModulationTargets>
+                      <Connection NodeId="converter" ParameterId="Value"/>
+                    </ModulationTargets>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                 Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="extra_mod2" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_grain">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="1.0"
+                                 DefaultValue="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                 Value="0.0"/>
+                    </Parameters>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <ModulationTargets>
+                      <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
+                    </ModulationTargets>
+                  </Node>
+                  <Node ID="extra_mod6" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_Fxmeta">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="5.0"
+                                 DefaultValue="0.0"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                 Value="0.0"/>
+                    </Parameters>
+                    <ComplexData>
+                      <DisplayBuffers>
+                        <DisplayBuffer Index="-1"/>
+                      </DisplayBuffers>
+                    </ComplexData>
+                    <ModulationTargets>
+                      <Connection NodeId="svf" ParameterId="Frequency"/>
+                      <Connection NodeId="biquad" ParameterId="Frequency"/>
+                      <Connection NodeId="svf6" ParameterId="Frequency"/>
+                      <Connection NodeId="svf5" ParameterId="Frequency"/>
+                      <Connection NodeId="ring_mod" ParameterId="Frequency"/>
+                      <Connection NodeId="cable_table5" ParameterId="Value"/>
+                      <Connection NodeId="pma1" ParameterId="Multiply"/>
+                      <Connection NodeId="cable_table6" ParameterId="Value"/>
+                      <Connection NodeId="pma_unscaled4" ParameterId="Multiply"/>
+                      <Connection NodeId="pma_unscaled3" ParameterId="Multiply"/>
+                    </ModulationTargets>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+              <Node ID="split8" FactoryPath="container.split" Bypassed="0" Name="split8">
                 <Nodes>
                   <Node ID="extra_mod1" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_modposa">
                     <ModulationTargets>
@@ -75,63 +135,512 @@
                       <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="ScrubD"/>
                     </ModulationTargets>
                   </Node>
-                  <Node ID="pitch_mod" FactoryPath="core.pitch_mod" Bypassed="0" Name="pitch_mod">
-                    <ModulationTargets>
-                      <Connection NodeId="converter" ParameterId="Value"/>
-                    </ModulationTargets>
-                    <ComplexData>
-                      <DisplayBuffers>
-                        <DisplayBuffer Index="-1"/>
-                      </DisplayBuffers>
-                    </ComplexData>
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
-                                 Value="0.0"/>
-                    </Parameters>
-                  </Node>
-                  <Node ID="extra_mod2" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_grain">
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="1.0"
-                                 DefaultValue="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
-                                 Value="0.0"/>
-                    </Parameters>
-                    <ComplexData>
-                      <DisplayBuffers>
-                        <DisplayBuffer Index="-1"/>
-                      </DisplayBuffers>
-                    </ComplexData>
-                    <ModulationTargets>
-                      <Connection NodeId="tempo_sync" ParameterId="UnsyncedTime"/>
-                    </ModulationTargets>
-                  </Node>
-                  <Node ID="extra_mod6" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_Fxmeta">
-                    <Parameters>
-                      <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="5.0"
-                                 DefaultValue="0.0"/>
-                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
-                                 Value="0.0"/>
-                    </Parameters>
-                    <ComplexData>
-                      <DisplayBuffers>
-                        <DisplayBuffer Index="-1"/>
-                      </DisplayBuffers>
-                    </ComplexData>
-                    <ModulationTargets>
-                      <Connection NodeId="svf" ParameterId="Frequency"/>
-                      <Connection NodeId="biquad" ParameterId="Frequency"/>
-                      <Connection NodeId="svf6" ParameterId="Frequency"/>
-                      <Connection NodeId="svf5" ParameterId="Frequency"/>
-                      <Connection NodeId="ring_mod" ParameterId="Frequency"/>
-                      <Connection NodeId="cable_table5" ParameterId="Value"/>
-                      <Connection NodeId="pma1" ParameterId="Multiply"/>
-                      <Connection NodeId="cable_table6" ParameterId="Value"/>
-                      <Connection NodeId="pma_unscaled4" ParameterId="Multiply"/>
-                      <Connection NodeId="pma_unscaled3" ParameterId="Multiply"/>
-                    </ModulationTargets>
-                  </Node>
                 </Nodes>
                 <Parameters/>
+              </Node>
+              <Node ID="branch2" FactoryPath="container.branch" Bypassed="0" Name="branch2"
+                    ShowParameters="1">
+                <Nodes>
+                  <Node ID="split9" FactoryPath="container.split" Bypassed="0" Name="split8">
+                    <Nodes>
+                      <Node ID="chain4" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod7" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_modposa">
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable4" ParameterId="Value"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                          </Node>
+                          <Node ID="global_cable4" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873804">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosA1"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain10" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod8" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonB">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="2.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable5" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable5" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873805">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosA2"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain9" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod9" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonC">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="3.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable6" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable6" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873806">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosA3"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain8" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod10" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_D">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="4.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable7" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable7" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873807">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosA4"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="split10" FactoryPath="container.split" Bypassed="0" Name="split8">
+                    <Nodes>
+                      <Node ID="chain5" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod11" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_modposa">
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable8" ParameterId="Value"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                          </Node>
+                          <Node ID="global_cable8" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873831">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosB1"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain11" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod12" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonB">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="2.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable9" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable9" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873832">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosB2"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain12" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod13" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonC">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="3.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable10" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable10" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873833">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosB3"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain13" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod14" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_D">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="4.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable11" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable11" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289873834">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosB4"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="split11" FactoryPath="container.split" Bypassed="0" Name="split8">
+                    <Nodes>
+                      <Node ID="chain6" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod15" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_modposa">
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable12" ParameterId="Value"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                          </Node>
+                          <Node ID="global_cable12" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289022130">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosC1"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain14" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod16" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonB">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="2.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable13" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable13" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4288956338">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosC2"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain15" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod17" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonC">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="3.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable14" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable14" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4288890802">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosC3"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain25" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod18" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_D">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="4.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable15" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable15" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4288891058">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosC4"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                  <Node ID="split12" FactoryPath="container.split" Bypassed="0" Name="split8">
+                    <Nodes>
+                      <Node ID="chain7" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod19" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_modposa">
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable16" ParameterId="Value"/>
+                            </ModulationTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                          </Node>
+                          <Node ID="global_cable16" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4287907762">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosD1"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain26" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod20" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonB">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="2.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable17" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable17" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289884999">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosD2"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain27" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod21" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_positonC">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="3.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable18" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable18" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289884743">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosD3"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="chain28" FactoryPath="container.chain" Bypassed="0" Name="chain4">
+                        <Nodes>
+                          <Node ID="extra_mod22" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod_D">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="4.0"
+                                         DefaultValue="0.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                                         Value="0.0"/>
+                            </Parameters>
+                            <ComplexData>
+                              <DisplayBuffers>
+                                <DisplayBuffer Index="-1"/>
+                              </DisplayBuffers>
+                            </ComplexData>
+                            <ModulationTargets>
+                              <Connection NodeId="global_cable19" ParameterId="Value"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="global_cable19" FactoryPath="routing.global_cable" Bypassed="0"
+                                Name="global_cable4" NodeColour="4289884743">
+                            <Properties>
+                              <Property ID="Connection" Value="ModPosD4"/>
+                            </Properties>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" DefaultValue="1.0" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters/>
+                  </Node>
+                </Nodes>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" Automated="1"/>
+                </Parameters>
               </Node>
               <Node ID="converter" FactoryPath="control.converter" Bypassed="0" Name="converter">
                 <Properties>
@@ -269,6 +778,20 @@
                              Automated="1"/>
                 </Parameters>
               </Node>
+              <Node ID="cable_table" FactoryPath="control.cable_table" Bypassed="0"
+                    Name="cable_table">
+                <ModulationTargets>
+                  <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Respawn"/>
+                </ModulationTargets>
+                <ComplexData>
+                  <Tables>
+                    <Table Index="-1" EmbeddedData="36...............vOzTH.+......KZRvO...f+....9C1TahO"/>
+                  </Tables>
+                </ComplexData>
+                <Parameters>
+                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                </Parameters>
+              </Node>
             </Nodes>
             <Parameters/>
           </Node>
@@ -321,7 +844,8 @@
                          Automated="1"/>
             </Parameters>
           </Node>
-          <Node ID="branch" FactoryPath="container.branch" Bypassed="0" Name="branch">
+          <Node ID="branch" FactoryPath="container.branch" Bypassed="0" Name="branch"
+                ShowParameters="1">
             <Nodes>
               <Node ID="chain" FactoryPath="container.chain" Bypassed="0" Name="chain">
                 <Nodes>
@@ -425,7 +949,8 @@
               </Node>
             </Nodes>
             <Parameters>
-              <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="3" StepSize="1.0" ID="Index" DefaultValue="0.0"
+                         Automated="1"/>
             </Parameters>
           </Node>
         </Nodes>
@@ -1107,6 +1632,7 @@
                  DefaultValue="" Value="0.0">
         <Connections>
           <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PhaseScatter"/>
+          <Connection NodeId="cable_table" ParameterId="Value"/>
         </Connections>
       </Parameter>
       <Parameter ID="WindowShape" MinValue="0.0" MaxValue="1.0" ModColour="0"
@@ -1158,7 +1684,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="ScrubB" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Combined"
-                 DefaultValue="" Value="0.5199999809265137">
+                 DefaultValue="" Value="0.4760546684265137">
         <Connections/>
       </Parameter>
       <Parameter ID="ScrubC" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Combined"
@@ -1178,16 +1704,18 @@
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="3.0" ID="ModOut1" Value="0.0" StepSize="1.0"
                  TextToValueConverter="">
-        <Connections/>
+        <Connections>
+          <Connection NodeId="branch" ParameterId="Index"/>
+        </Connections>
       </Parameter>
-      <Parameter MinValue="0.0" MaxValue="1.0" ID="FxMix" Value="0.7742017663043478"
+      <Parameter MinValue="0.0" MaxValue="1.0" ID="FxMix" Value="0.7683423913043478"
                  DefaultValue="0.0">
         <Connections>
           <Connection NodeId="xfader" ParameterId="Value"/>
         </Connections>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="10.0" ID="FxMode" Value="2.0" ExternalModulation="Disabled"
-                 ModColour="0" StepSize="1.0" TextToValueConverter="" DefaultValue="1.0">
+      <Parameter MinValue="1.0" MaxValue="10.0" ID="FxMode" Value="1.0" ExternalModulation="Disabled"
+                 ModColour="0" StepSize="1.0" TextToValueConverter="">
         <Connections>
           <Connection NodeId="branch1" ParameterId="Index"/>
         </Connections>
@@ -1262,9 +1790,7 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="Respawn" Value="1.0" DefaultValue="0.0">
-        <Connections>
-          <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="Respawn"/>
-        </Connections>
+        <Connections/>
       </Parameter>
       <Parameter MinValue="0.0" MaxValue="1.0" ID="Diffusion" Value="0.294136379076087"
                  DefaultValue="0.0">
@@ -1290,7 +1816,7 @@
         </Connections>
       </Parameter>
       <Parameter MinValue="1.0" MaxValue="4.0" StepSize="1" ID="GrainTravelShape"
-                 Value="1.0" ExternalModulation="Disabled" ModColour="0">
+                 Value="3.0" ExternalModulation="Disabled" ModColour="0" DefaultValue="1.0">
         <Connections>
           <Connection NodeId="pack8_writer" ParameterId="Value8"/>
         </Connections>
@@ -1305,6 +1831,12 @@
                  TextToValueConverter="" ExternalModulation="Disabled" ModColour="0">
         <Connections>
           <Connection NodeId="tempo_sync3" ParameterId="Multiplier"/>
+        </Connections>
+      </Parameter>
+      <Parameter MinValue="0.0" MaxValue="3.0" StepSize="1.0" ID="IndOut" Value="0.0"
+                 ExternalModulation="Disabled" ModColour="0">
+        <Connections>
+          <Connection NodeId="branch2" ParameterId="Index"/>
         </Connections>
       </Parameter>
     </Parameters>

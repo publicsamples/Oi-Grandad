@@ -84,6 +84,27 @@ inline function onMultPosA4Control(component, value)
 
 Content.getComponent("MultPosA4").setControlCallback(onMultPosA4Control);
 
+inline function onMultPosB4Control(component, value)
+{
+	Voice_4_PositionB.setAttribute(Voice_4_PositionB.Value, value);
+};
+
+Content.getComponent("MultPosB4").setControlCallback(onMultPosB4Control);
+
+inline function onMultPosC4Control(component, value)
+{
+	Voice_4_PositionC.setAttribute(Voice_4_PositionC.Value, value);
+};
+
+Content.getComponent("MultPosC4").setControlCallback(onMultPosC4Control);
+
+inline function onMultPosD4Control(component, value)
+{
+	Voice_4_PositionD.setAttribute(Voice_4_PositionD.Value, value);
+};
+
+Content.getComponent("MultPosD4").setControlCallback(onMultPosD4Control);
+
 
 inline function onpos3Control(component, value)
 {

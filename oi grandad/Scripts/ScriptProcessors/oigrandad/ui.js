@@ -7,6 +7,29 @@ const var trk2 = rm.getCable("Trk2");
 const var trk3 = rm.getCable("Trk3");
 const var trk4 = rm.getCable("Trk4");
 
+const var ModPosA1 = rm.getCable("ModPosA1");
+const var ModPosA2 = rm.getCable("ModPosA2");
+const var ModPosA3 = rm.getCable("ModPosA3");
+const var ModPosA4 = rm.getCable("ModPosA4");
+
+const var ModPosB1 = rm.getCable("ModPosB1");
+const var ModPosB2 = rm.getCable("ModPosB2");
+const var ModPosB3 = rm.getCable("ModPosB3");
+const var ModPosB4 = rm.getCable("ModPosB4");
+
+const var ModPosC1 = rm.getCable("ModPosC1");
+const var ModPosC2 = rm.getCable("ModPosC2");
+const var ModPosC3 = rm.getCable("ModPosC3");
+const var ModPosC4 = rm.getCable("ModPosC4");
+
+const var ModPosD1 = rm.getCable("ModPosD1");
+const var ModPosD2 = rm.getCable("ModPosD2");
+const var ModPosD3 = rm.getCable("ModPosD3");
+const var ModPosD4 = rm.getCable("ModPosD4");
+
+
+
+
 reg g_isPresetLoadInProgress = false;
 reg g_isUpdatingTabButtons = false;
 

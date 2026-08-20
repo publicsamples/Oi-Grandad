@@ -117,7 +117,7 @@ PosIndicator1.setTimerCallback(function()
 	this.repaint();
 });
 
-PosIndicator1.startTimer(33);
+PosIndicator1.startTimer(66);
 
 PosIndicator5.setPaintRoutine(function(g)
 {

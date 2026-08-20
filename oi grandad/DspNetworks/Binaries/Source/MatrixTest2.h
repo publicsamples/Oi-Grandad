@@ -16,43 +16,6 @@ namespace MatrixTest2_impl
 {
 // ==============================| Node & Parameter type declarations |==============================
 
-using extra_mod1_t_index = runtime_target::indexers::fix_hash<5000>;
-using extra_mod1_t_config = modulation::config::constant<false, 
-                                                         modulation::TargetMode::Raw>;
-
-template <int NV>
-using extra_mod1_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                        1>;
-template <int NV>
-using extra_mod1_t = wrap::mod<extra_mod1_mod<NV>, 
-                               wrap::no_data<core::extra_mod<NV, extra_mod1_t_index, extra_mod1_t_config>>>;
-using extra_mod4_t_index = extra_mod1_t_index;
-using extra_mod4_t_config = extra_mod1_t_config;
-
-template <int NV>
-using extra_mod4_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                        13>;
-template <int NV>
-using extra_mod4_t = wrap::mod<extra_mod4_mod<NV>, 
-                               wrap::no_data<core::extra_mod<NV, extra_mod4_t_index, extra_mod4_t_config>>>;
-using extra_mod3_t_index = extra_mod1_t_index;
-using extra_mod3_t_config = extra_mod1_t_config;
-
-template <int NV>
-using extra_mod3_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                        14>;
-template <int NV>
-using extra_mod3_t = wrap::mod<extra_mod3_mod<NV>, 
-                               wrap::no_data<core::extra_mod<NV, extra_mod3_t_index, extra_mod3_t_config>>>;
-using extra_mod5_t_index = extra_mod1_t_index;
-using extra_mod5_t_config = extra_mod1_t_config;
-
-template <int NV>
-using extra_mod5_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                        15>;
-template <int NV>
-using extra_mod5_t = wrap::mod<extra_mod5_mod<NV>, 
-                               wrap::no_data<core::extra_mod<NV, extra_mod5_t_index, extra_mod5_t_config>>>;
 using pitch_mod_t_index = runtime_target::indexers::fix_hash<90001>;
 
 template <int NV>
@@ -64,8 +27,9 @@ using converter_t = control::converter<converter_mod<NV>,
 template <int NV>
 using pitch_mod_t = wrap::mod<parameter::plain<converter_t<NV>, 0>, 
                               wrap::no_data<core::pitch_mod<NV, pitch_mod_t_index>>>;
-using extra_mod2_t_index = extra_mod1_t_index;
-using extra_mod2_t_config = extra_mod1_t_config;
+using extra_mod2_t_index = runtime_target::indexers::fix_hash<5000>;
+using extra_mod2_t_config = modulation::config::constant<false, 
+                                                         modulation::TargetMode::Raw>;
 
 template <int NV>
 using tempo_sync_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
@@ -86,8 +50,8 @@ using extra_mod2_mod = parameter::from0To1<tempo_sync_t<NV>,
 template <int NV>
 using extra_mod2_t = wrap::mod<extra_mod2_mod<NV>, 
                                wrap::no_data<core::extra_mod<NV, extra_mod2_t_index, extra_mod2_t_config>>>;
-using extra_mod6_t_index = extra_mod1_t_index;
-using extra_mod6_t_config = extra_mod1_t_config;
+using extra_mod6_t_index = extra_mod2_t_index;
+using extra_mod6_t_config = extra_mod2_t_config;
 
 DECLARE_PARAMETER_RANGE_STEP(cable_table5_modRange, 
                              4., 
@@ -397,13 +361,310 @@ using extra_mod6_t = wrap::mod<extra_mod6_mod<NV>,
 
 template <int NV>
 using split_t = container::split<parameter::empty, 
-                                 wrap::fix<1, extra_mod1_t<NV>>, 
-                                 extra_mod4_t<NV>, 
-                                 extra_mod3_t<NV>, 
-                                 extra_mod5_t<NV>, 
-                                 pitch_mod_t<NV>, 
+                                 wrap::fix<1, pitch_mod_t<NV>>, 
                                  extra_mod2_t<NV>, 
                                  extra_mod6_t<NV>>;
+using extra_mod1_t_index = extra_mod2_t_index;
+using extra_mod1_t_config = extra_mod2_t_config;
+
+template <int NV>
+using extra_mod1_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                        1>;
+template <int NV>
+using extra_mod1_t = wrap::mod<extra_mod1_mod<NV>, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod1_t_index, extra_mod1_t_config>>>;
+using extra_mod4_t_index = extra_mod2_t_index;
+using extra_mod4_t_config = extra_mod2_t_config;
+
+template <int NV>
+using extra_mod4_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                        13>;
+template <int NV>
+using extra_mod4_t = wrap::mod<extra_mod4_mod<NV>, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod4_t_index, extra_mod4_t_config>>>;
+using extra_mod3_t_index = extra_mod2_t_index;
+using extra_mod3_t_config = extra_mod2_t_config;
+
+template <int NV>
+using extra_mod3_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                        14>;
+template <int NV>
+using extra_mod3_t = wrap::mod<extra_mod3_mod<NV>, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod3_t_index, extra_mod3_t_config>>>;
+using extra_mod5_t_index = extra_mod2_t_index;
+using extra_mod5_t_config = extra_mod2_t_config;
+
+template <int NV>
+using extra_mod5_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                        15>;
+template <int NV>
+using extra_mod5_t = wrap::mod<extra_mod5_mod<NV>, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod5_t_index, extra_mod5_t_config>>>;
+
+template <int NV>
+using split8_t = container::split<parameter::empty, 
+                                  wrap::fix<1, extra_mod1_t<NV>>, 
+                                  extra_mod4_t<NV>, 
+                                  extra_mod3_t<NV>, 
+                                  extra_mod5_t<NV>>;
+using extra_mod7_t_index = extra_mod2_t_index;
+using extra_mod7_t_config = extra_mod2_t_config;
+
+using global_cable4_t_index = runtime_target::indexers::fix_hash<-573680734>;
+using extra_mod7_mod = parameter::plain<routing::global_cable<global_cable4_t_index, parameter::empty>, 
+                                        0>;
+template <int NV>
+using extra_mod7_t = wrap::mod<extra_mod7_mod, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod7_t_index, extra_mod7_t_config>>>;
+
+template <int NV>
+using chain4_t = container::chain<parameter::empty, 
+                                  wrap::fix<1, extra_mod7_t<NV>>, 
+                                  routing::global_cable<global_cable4_t_index, parameter::empty>>;
+using extra_mod8_t_index = extra_mod2_t_index;
+using extra_mod8_t_config = extra_mod2_t_config;
+
+using global_cable5_t_index = runtime_target::indexers::fix_hash<-573680733>;
+using extra_mod8_mod = parameter::plain<routing::global_cable<global_cable5_t_index, parameter::empty>, 
+                                        0>;
+template <int NV>
+using extra_mod8_t = wrap::mod<extra_mod8_mod, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod8_t_index, extra_mod8_t_config>>>;
+
+template <int NV>
+using chain10_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod8_t<NV>>, 
+                                   routing::global_cable<global_cable5_t_index, parameter::empty>>;
+using extra_mod9_t_index = extra_mod2_t_index;
+using extra_mod9_t_config = extra_mod2_t_config;
+
+using global_cable6_t_index = runtime_target::indexers::fix_hash<-573680732>;
+using extra_mod9_mod = parameter::plain<routing::global_cable<global_cable6_t_index, parameter::empty>, 
+                                        0>;
+template <int NV>
+using extra_mod9_t = wrap::mod<extra_mod9_mod, 
+                               wrap::no_data<core::extra_mod<NV, extra_mod9_t_index, extra_mod9_t_config>>>;
+
+template <int NV>
+using chain9_t = container::chain<parameter::empty, 
+                                  wrap::fix<1, extra_mod9_t<NV>>, 
+                                  routing::global_cable<global_cable6_t_index, parameter::empty>>;
+using extra_mod10_t_index = extra_mod2_t_index;
+using extra_mod10_t_config = extra_mod2_t_config;
+
+using global_cable7_t_index = runtime_target::indexers::fix_hash<-573680731>;
+using extra_mod10_mod = parameter::plain<routing::global_cable<global_cable7_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod10_t = wrap::mod<extra_mod10_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod10_t_index, extra_mod10_t_config>>>;
+
+template <int NV>
+using chain8_t = container::chain<parameter::empty, 
+                                  wrap::fix<1, extra_mod10_t<NV>>, 
+                                  routing::global_cable<global_cable7_t_index, parameter::empty>>;
+
+template <int NV>
+using split9_t = container::split<parameter::empty, 
+                                  wrap::fix<1, chain4_t<NV>>, 
+                                  chain10_t<NV>, 
+                                  chain9_t<NV>, 
+                                  chain8_t<NV>>;
+using extra_mod11_t_index = extra_mod2_t_index;
+using extra_mod11_t_config = extra_mod2_t_config;
+
+using global_cable8_t_index = runtime_target::indexers::fix_hash<-573680703>;
+using extra_mod11_mod = parameter::plain<routing::global_cable<global_cable8_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod11_t = wrap::mod<extra_mod11_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod11_t_index, extra_mod11_t_config>>>;
+
+template <int NV>
+using chain5_t = container::chain<parameter::empty, 
+                                  wrap::fix<1, extra_mod11_t<NV>>, 
+                                  routing::global_cable<global_cable8_t_index, parameter::empty>>;
+using extra_mod12_t_index = extra_mod2_t_index;
+using extra_mod12_t_config = extra_mod2_t_config;
+
+using global_cable9_t_index = runtime_target::indexers::fix_hash<-573680702>;
+using extra_mod12_mod = parameter::plain<routing::global_cable<global_cable9_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod12_t = wrap::mod<extra_mod12_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod12_t_index, extra_mod12_t_config>>>;
+
+template <int NV>
+using chain11_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod12_t<NV>>, 
+                                   routing::global_cable<global_cable9_t_index, parameter::empty>>;
+using extra_mod13_t_index = extra_mod2_t_index;
+using extra_mod13_t_config = extra_mod2_t_config;
+
+using global_cable10_t_index = runtime_target::indexers::fix_hash<-573680701>;
+using extra_mod13_mod = parameter::plain<routing::global_cable<global_cable10_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod13_t = wrap::mod<extra_mod13_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod13_t_index, extra_mod13_t_config>>>;
+
+template <int NV>
+using chain12_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod13_t<NV>>, 
+                                   routing::global_cable<global_cable10_t_index, parameter::empty>>;
+using extra_mod14_t_index = extra_mod2_t_index;
+using extra_mod14_t_config = extra_mod2_t_config;
+
+using global_cable11_t_index = runtime_target::indexers::fix_hash<-573680700>;
+using extra_mod14_mod = parameter::plain<routing::global_cable<global_cable11_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod14_t = wrap::mod<extra_mod14_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod14_t_index, extra_mod14_t_config>>>;
+
+template <int NV>
+using chain13_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod14_t<NV>>, 
+                                   routing::global_cable<global_cable11_t_index, parameter::empty>>;
+
+template <int NV>
+using split10_t = container::split<parameter::empty, 
+                                   wrap::fix<1, chain5_t<NV>>, 
+                                   chain11_t<NV>, 
+                                   chain12_t<NV>, 
+                                   chain13_t<NV>>;
+using extra_mod15_t_index = extra_mod2_t_index;
+using extra_mod15_t_config = extra_mod2_t_config;
+
+using global_cable12_t_index = runtime_target::indexers::fix_hash<-573680672>;
+using extra_mod15_mod = parameter::plain<routing::global_cable<global_cable12_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod15_t = wrap::mod<extra_mod15_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod15_t_index, extra_mod15_t_config>>>;
+
+template <int NV>
+using chain6_t = container::chain<parameter::empty, 
+                                  wrap::fix<1, extra_mod15_t<NV>>, 
+                                  routing::global_cable<global_cable12_t_index, parameter::empty>>;
+using extra_mod16_t_index = extra_mod2_t_index;
+using extra_mod16_t_config = extra_mod2_t_config;
+
+using global_cable13_t_index = runtime_target::indexers::fix_hash<-573680671>;
+using extra_mod16_mod = parameter::plain<routing::global_cable<global_cable13_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod16_t = wrap::mod<extra_mod16_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod16_t_index, extra_mod16_t_config>>>;
+
+template <int NV>
+using chain14_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod16_t<NV>>, 
+                                   routing::global_cable<global_cable13_t_index, parameter::empty>>;
+using extra_mod17_t_index = extra_mod2_t_index;
+using extra_mod17_t_config = extra_mod2_t_config;
+
+using global_cable14_t_index = runtime_target::indexers::fix_hash<-573680670>;
+using extra_mod17_mod = parameter::plain<routing::global_cable<global_cable14_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod17_t = wrap::mod<extra_mod17_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod17_t_index, extra_mod17_t_config>>>;
+
+template <int NV>
+using chain15_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod17_t<NV>>, 
+                                   routing::global_cable<global_cable14_t_index, parameter::empty>>;
+using extra_mod18_t_index = extra_mod2_t_index;
+using extra_mod18_t_config = extra_mod2_t_config;
+
+using global_cable15_t_index = runtime_target::indexers::fix_hash<-573680669>;
+using extra_mod18_mod = parameter::plain<routing::global_cable<global_cable15_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod18_t = wrap::mod<extra_mod18_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod18_t_index, extra_mod18_t_config>>>;
+
+template <int NV>
+using chain25_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod18_t<NV>>, 
+                                   routing::global_cable<global_cable15_t_index, parameter::empty>>;
+
+template <int NV>
+using split11_t = container::split<parameter::empty, 
+                                   wrap::fix<1, chain6_t<NV>>, 
+                                   chain14_t<NV>, 
+                                   chain15_t<NV>, 
+                                   chain25_t<NV>>;
+using extra_mod19_t_index = extra_mod2_t_index;
+using extra_mod19_t_config = extra_mod2_t_config;
+
+using global_cable16_t_index = runtime_target::indexers::fix_hash<-573680641>;
+using extra_mod19_mod = parameter::plain<routing::global_cable<global_cable16_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod19_t = wrap::mod<extra_mod19_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod19_t_index, extra_mod19_t_config>>>;
+
+template <int NV>
+using chain7_t = container::chain<parameter::empty, 
+                                  wrap::fix<1, extra_mod19_t<NV>>, 
+                                  routing::global_cable<global_cable16_t_index, parameter::empty>>;
+using extra_mod20_t_index = extra_mod2_t_index;
+using extra_mod20_t_config = extra_mod2_t_config;
+
+using global_cable17_t_index = runtime_target::indexers::fix_hash<-573680640>;
+using extra_mod20_mod = parameter::plain<routing::global_cable<global_cable17_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod20_t = wrap::mod<extra_mod20_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod20_t_index, extra_mod20_t_config>>>;
+
+template <int NV>
+using chain26_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod20_t<NV>>, 
+                                   routing::global_cable<global_cable17_t_index, parameter::empty>>;
+using extra_mod21_t_index = extra_mod2_t_index;
+using extra_mod21_t_config = extra_mod2_t_config;
+
+using global_cable18_t_index = runtime_target::indexers::fix_hash<-573680639>;
+using extra_mod21_mod = parameter::plain<routing::global_cable<global_cable18_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod21_t = wrap::mod<extra_mod21_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod21_t_index, extra_mod21_t_config>>>;
+
+template <int NV>
+using chain27_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod21_t<NV>>, 
+                                   routing::global_cable<global_cable18_t_index, parameter::empty>>;
+using extra_mod22_t_index = extra_mod2_t_index;
+using extra_mod22_t_config = extra_mod2_t_config;
+
+using global_cable19_t_index = runtime_target::indexers::fix_hash<-573680638>;
+using extra_mod22_mod = parameter::plain<routing::global_cable<global_cable19_t_index, parameter::empty>, 
+                                         0>;
+template <int NV>
+using extra_mod22_t = wrap::mod<extra_mod22_mod, 
+                                wrap::no_data<core::extra_mod<NV, extra_mod22_t_index, extra_mod22_t_config>>>;
+
+template <int NV>
+using chain28_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, extra_mod22_t<NV>>, 
+                                   routing::global_cable<global_cable19_t_index, parameter::empty>>;
+
+template <int NV>
+using split12_t = container::split<parameter::empty, 
+                                   wrap::fix<1, chain7_t<NV>>, 
+                                   chain26_t<NV>, 
+                                   chain27_t<NV>, 
+                                   chain28_t<NV>>;
+template <int NV>
+using branch2_t = container::branch<parameter::empty, 
+                                    wrap::fix<1, split9_t<NV>>, 
+                                    split10_t<NV>, 
+                                    split11_t<NV>, 
+                                    split12_t<NV>>;
 
 template <int NV>
 using tempo_sync1_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
@@ -430,8 +691,111 @@ using pack8_writer_t = wrap::data<control::pack8_writer,
                                   data::external::sliderpack<0>>;
 
 template <int NV>
+using cable_table_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                         6>;
+
+struct cable_table_t_data
+{
+	span<float, 512> data =
+	{
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 0.f, 0.f, 0.f, 0.000380516f,
+		0.00120521f, 0.0020299f, 0.00285465f, 0.00367934f, 0.00450402f, 0.00532871f,
+		0.00615346f, 0.00697815f, 0.00780284f, 0.00862753f, 0.00945228f, 0.010277f,
+		0.011141f, 0.0120901f, 0.0130391f, 0.0139882f, 0.0149372f, 0.0158863f,
+		0.0168354f, 0.0177845f, 0.0187335f, 0.0196826f, 0.0206317f, 0.0215807f,
+		0.0225298f, 0.0235451f, 0.0246252f, 0.0257053f, 0.0267854f, 0.0278655f,
+		0.0289456f, 0.0300257f, 0.0311058f, 0.0321859f, 0.0332661f, 0.0343462f,
+		0.0354263f, 0.0365106f, 0.037729f, 0.0389473f, 0.0401657f, 0.041384f,
+		0.0426024f, 0.0438208f, 0.0450392f, 0.0462575f, 0.0474759f, 0.0486943f,
+		0.0499126f, 0.051131f, 0.0524795f, 0.053844f, 0.0552084f, 0.0565729f,
+		0.0579374f, 0.0593019f, 0.0606664f, 0.0620309f, 0.0633954f, 0.0647599f,
+		0.0661243f, 0.067502f, 0.0690212f, 0.0705403f, 0.0720595f, 0.0735786f,
+		0.0750977f, 0.0766169f, 0.078136f, 0.0796552f, 0.0811743f, 0.0826935f,
+		0.0842125f, 0.0858327f, 0.0875158f, 0.0891989f, 0.090882f, 0.0925651f,
+		0.0942482f, 0.0959313f, 0.0976144f, 0.0992975f, 0.100981f, 0.102664f,
+		0.104431f, 0.106288f, 0.108145f, 0.110002f, 0.11186f, 0.113717f,
+		0.115574f, 0.117431f, 0.119289f, 0.121146f, 0.123003f, 0.124986f,
+		0.127029f, 0.129071f, 0.131114f, 0.133157f, 0.135199f, 0.137242f,
+		0.139284f, 0.141327f, 0.143369f, 0.145454f, 0.147695f, 0.149935f,
+		0.152175f, 0.154415f, 0.156655f, 0.158895f, 0.161135f, 0.163375f,
+		0.165615f, 0.167873f, 0.170324f, 0.172776f, 0.175227f, 0.177678f,
+		0.180129f, 0.18258f, 0.185031f, 0.187482f, 0.189933f, 0.19245f,
+		0.195128f, 0.197805f, 0.200482f, 0.203159f, 0.205836f, 0.208513f,
+		0.21119f, 0.213868f, 0.216545f, 0.219424f, 0.222343f, 0.225263f,
+		0.228183f, 0.231103f, 0.234022f, 0.236942f, 0.239862f, 0.242782f,
+		0.245886f, 0.249067f, 0.252248f, 0.255429f, 0.25861f, 0.26179f,
+		0.264971f, 0.268152f, 0.271333f, 0.274772f, 0.278235f, 0.281698f,
+		0.28516f, 0.288623f, 0.292086f, 0.295548f, 0.299011f, 0.302615f,
+		0.306383f, 0.31015f, 0.313918f, 0.317686f, 0.321453f, 0.325221f,
+		0.328989f, 0.33287f, 0.33697f, 0.341069f, 0.345168f, 0.349267f,
+		0.353366f, 0.357465f, 0.361564f, 0.365865f, 0.370325f, 0.374785f,
+		0.379245f, 0.383705f, 0.388165f, 0.392625f, 0.397129f, 0.401984f,
+		0.40684f, 0.411695f, 0.41655f, 0.421406f, 0.426261f, 0.431116f,
+		0.436404f, 0.441693f, 0.446983f, 0.452272f, 0.457562f, 0.462851f,
+		0.468244f, 0.474013f, 0.479782f, 0.485551f, 0.49132f, 0.497089f,
+		0.502857f, 0.509037f, 0.515338f, 0.521638f, 0.527939f, 0.53424f,
+		0.540541f, 0.547235f, 0.55413f, 0.561024f, 0.567918f, 0.574813f,
+		0.581707f, 0.589194f, 0.596756f, 0.604317f, 0.611878f, 0.619439f,
+		0.62734f, 0.635655f, 0.643971f, 0.652286f, 0.660602f, 0.669216f,
+		0.678391f, 0.687567f, 0.696743f, 0.705919f, 0.715666f, 0.725832f,
+		0.735999f, 0.746165f, 0.756496f, 0.767815f, 0.779133f, 0.790452f,
+		0.801831f, 0.814507f, 0.827183f, 0.839859f, 0.852991f, 0.867289f,
+		0.881588f, 0.895886f, 0.911867f, 0.928139f, 0.944413f, 0.962547f,
+		0.981273f, 1.f
+	};
+};
+
+template <int NV>
+using cable_table_t = wrap::data<control::cable_table<cable_table_mod<NV>>, 
+                                 data::embedded::table<cable_table_t_data>>;
+
+template <int NV>
 using modchain_t_ = container::chain<parameter::empty, 
                                      wrap::fix<1, split_t<NV>>, 
+                                     split8_t<NV>, 
+                                     branch2_t<NV>, 
                                      converter_t<NV>, 
                                      tempo_sync_t<NV>, 
                                      tempo_sync1_t<NV>, 
@@ -440,7 +804,8 @@ using modchain_t_ = container::chain<parameter::empty,
                                      control::tempo_sync<NV>, 
                                      tempo_sync3_t<NV>, 
                                      pack_resizer_t, 
-                                     pack8_writer_t>;
+                                     pack8_writer_t, 
+                                     cable_table_t<NV>>;
 
 template <int NV>
 using modchain_t = wrap::control_rate<modchain_t_<NV>>;
@@ -491,13 +856,10 @@ using branch_t = container::branch<parameter::empty,
                                    chain3_t>;
 
 template <int NV>
-using fix32_block_t_ = container::chain<parameter::empty, 
-                                        wrap::fix<2, modchain_t<NV>>, 
-                                        project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                        branch_t>;
-
-template <int NV>
-using fix32_block_t = wrap::fix_block<32, fix32_block_t_<NV>>;
+using fix32_block_t = container::chain<parameter::empty, 
+                                       wrap::fix<2, modchain_t<NV>>, 
+                                       project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                       branch_t>;
 
 DECLARE_PARAMETER_RANGE_SKEW(xfader_c0Range, 
                              -100., 
@@ -721,15 +1083,20 @@ using GrainMix = parameter::chain<ranges::Identity,
                                   parameter::plain<control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>, 0>, 
                                   parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 3>>;
 
-DECLARE_PARAMETER_RANGE_SKEW(ScatterRange, 
+DECLARE_PARAMETER_RANGE_SKEW(Scatter_0Range, 
                              0., 
                              1., 
                              0.432768);
 
 template <int NV>
-using Scatter = parameter::from0To1<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                    12, 
-                                    ScatterRange>;
+using Scatter_0 = parameter::from0To1<project::granular_player_stepquant_density_hybrid_native<NV>, 
+                                      12, 
+                                      Scatter_0Range>;
+
+template <int NV>
+using Scatter = parameter::chain<ranges::Identity, 
+                                 Scatter_0<NV>, 
+                                 parameter::plain<MatrixTest2_impl::cable_table_t<NV>, 0>>;
 
 DECLARE_PARAMETER_RANGE_STEP(PitchMode_InputRange, 
                              1., 
@@ -876,7 +1243,8 @@ using Direction = parameter::plain<project::granular_player_stepquant_density_hy
 using ScrubB = Scrub;
 using ScrubC = Scrub;
 using ScrubD = Scrub;
-using ModOut1 = Scrub;
+using ModOut1 = parameter::plain<MatrixTest2_impl::branch_t, 
+                                 0>;
 template <int NV>
 using FxMix = parameter::plain<MatrixTest2_impl::xfader_t<NV>, 
                                0>;
@@ -901,9 +1269,7 @@ using PitchDivide = parameter::plain<MatrixTest2_impl::tempo_sync1_t<NV>,
 template <int NV>
 using PitchTempo = parameter::plain<MatrixTest2_impl::tempo_sync1_t<NV>, 
                                     0>;
-template <int NV>
-using Respawn = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
-                                 6>;
+using Respawn = Scrub;
 template <int NV>
 using Diffusion = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
                                    9>;
@@ -917,6 +1283,9 @@ using BloomOn = parameter::plain<project::granular_player_stepquant_density_hybr
 template <int NV>
 using BloomDiv = parameter::plain<MatrixTest2_impl::tempo_sync3_t<NV>, 
                                   1>;
+template <int NV>
+using IndOut = parameter::plain<MatrixTest2_impl::branch2_t<NV>, 
+                                0>;
 template <int NV>
 using MatrixTest2_t_plist = parameter::list<Scrub, 
                                             GrainSize, 
@@ -947,14 +1316,15 @@ using MatrixTest2_t_plist = parameter::list<Scrub,
                                             GrainTempo<NV>, 
                                             PitchDivide<NV>, 
                                             PitchTempo<NV>, 
-                                            Respawn<NV>, 
+                                            Respawn, 
                                             Diffusion<NV>, 
                                             PitchSync, 
                                             Glide, 
                                             PhaseScatterShape, 
                                             GrainTravelShape, 
                                             BloomOn<NV>, 
-                                            BloomDiv<NV>>;
+                                            BloomDiv<NV>, 
+                                            IndOut<NV>>;
 }
 
 template <int NV>
@@ -977,7 +1347,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		SNEX_METADATA_ID(MatrixTest2);
 		SNEX_METADATA_NUM_CHANNELS(2);
-		SNEX_METADATA_ENCODED_PARAMETERS(674)
+		SNEX_METADATA_ENCODED_PARAMETERS(692)
 		{
 			0x005C, 0x0000, 0x0000, 0x6353, 0x7572, 0x0062, 0x0000, 0x0000, 
             0x0000, 0x8000, 0x6F3F, 0x537A, 0x003D, 0x8000, 0x003F, 0x0000, 
@@ -1008,7 +1378,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
             0x6974, 0x6E6F, 0x0000, 0x0000, 0x3F80, 0x0000, 0x4080, 0x0000, 
             0x3F80, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000C, 0x0000, 
             0x6353, 0x7572, 0x4262, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 
-            0x1EB8, 0x3F05, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000D, 
+            0xBD70, 0x3EF3, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 0x000D, 
             0x0000, 0x6353, 0x7572, 0x4362, 0x0000, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
             0x000E, 0x0000, 0x6353, 0x7572, 0x4462, 0x0000, 0x0000, 0x0000, 
@@ -1019,9 +1389,9 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
             0x646F, 0x754F, 0x3174, 0x0000, 0x0000, 0x0000, 0x0000, 0x4040, 
             0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x005C, 0x0011, 
             0x0000, 0x7846, 0x694D, 0x0078, 0x0000, 0x0000, 0x0000, 0x8000, 
-            0x163F, 0x4632, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1200, 
+            0x163F, 0x44B2, 0x003F, 0x8000, 0x003F, 0x0000, 0x5C00, 0x1200, 
             0x0000, 0x4600, 0x4D78, 0x646F, 0x0065, 0x0000, 0x8000, 0x003F, 
-            0x2000, 0x0041, 0x0000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 
+            0x2000, 0x0041, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x1300, 0x0000, 0x4600, 0x4D78, 0x7465, 0x3161, 0x0000, 0x0000, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x005C, 0x0014, 0x0000, 0x6552, 0x6F73, 0x616E, 0x636E, 
@@ -1058,12 +1428,14 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
             0xA000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 
             0x2200, 0x0000, 0x4700, 0x6172, 0x6E69, 0x7254, 0x7661, 0x6C65, 
             0x6853, 0x7061, 0x0065, 0x0000, 0x8000, 0x003F, 0x8000, 0x0040, 
-            0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2300, 0x0000, 
+            0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 0x5C3F, 0x2300, 0x0000, 
             0x4200, 0x6F6C, 0x6D6F, 0x6E4F, 0x0000, 0x0000, 0x0000, 0x0000, 
             0x3F80, 0xAC85, 0x3F7E, 0x0000, 0x3F80, 0x0000, 0x0000, 0x005C, 
             0x0024, 0x0000, 0x6C42, 0x6F6F, 0x446D, 0x7669, 0x0000, 0x0000, 
             0x3F80, 0x0000, 0x4200, 0x0000, 0x3F80, 0x0000, 0x3F80, 0x0000, 
-            0x3F80, 0x0000
+            0x3F80, 0x005C, 0x0025, 0x0000, 0x6E49, 0x4F64, 0x7475, 0x0000, 
+            0x0000, 0x0000, 0x0000, 0x4040, 0x0000, 0x0000, 0x0000, 0x3F80, 
+            0x0000, 0x3F80, 0x0000, 0x0000
 		};
 		SNEX_METADATA_ENCODED_MOD_INFO(20)
 		{
@@ -1080,22 +1452,77 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		auto& fix32_block = this->getT(0);                                                   // MatrixTest2_impl::fix32_block_t<NV>
 		auto& modchain = this->getT(0).getT(0);                                              // MatrixTest2_impl::modchain_t<NV>
 		auto& split = this->getT(0).getT(0).getT(0);                                         // MatrixTest2_impl::split_t<NV>
-		auto& extra_mod1 = this->getT(0).getT(0).getT(0).getT(0);                            // MatrixTest2_impl::extra_mod1_t<NV>
-		auto& extra_mod4 = this->getT(0).getT(0).getT(0).getT(1);                            // MatrixTest2_impl::extra_mod4_t<NV>
-		auto& extra_mod3 = this->getT(0).getT(0).getT(0).getT(2);                            // MatrixTest2_impl::extra_mod3_t<NV>
-		auto& extra_mod5 = this->getT(0).getT(0).getT(0).getT(3);                            // MatrixTest2_impl::extra_mod5_t<NV>
-		auto& pitch_mod = this->getT(0).getT(0).getT(0).getT(4);                             // MatrixTest2_impl::pitch_mod_t<NV>
-		auto& extra_mod2 = this->getT(0).getT(0).getT(0).getT(5);                            // MatrixTest2_impl::extra_mod2_t<NV>
-		auto& extra_mod6 = this->getT(0).getT(0).getT(0).getT(6);                            // MatrixTest2_impl::extra_mod6_t<NV>
-		auto& converter = this->getT(0).getT(0).getT(1);                                     // MatrixTest2_impl::converter_t<NV>
-		auto& tempo_sync = this->getT(0).getT(0).getT(2);                                    // MatrixTest2_impl::tempo_sync_t<NV>
-		auto& tempo_sync1 = this->getT(0).getT(0).getT(3);                                   // MatrixTest2_impl::tempo_sync1_t<NV>
-		auto& smoothed_parameter = this->getT(0).getT(0).getT(4);                            // control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>
-		auto& minmax = this->getT(0).getT(0).getT(5);                                        // MatrixTest2_impl::minmax_t<NV>
-		auto& tempo_sync2 = this->getT(0).getT(0).getT(6);                                   // control::tempo_sync<NV>
-		auto& tempo_sync3 = this->getT(0).getT(0).getT(7);                                   // MatrixTest2_impl::tempo_sync3_t<NV>
-		auto& pack_resizer = this->getT(0).getT(0).getT(8);                                  // MatrixTest2_impl::pack_resizer_t
-		auto& pack8_writer = this->getT(0).getT(0).getT(9);                                  // MatrixTest2_impl::pack8_writer_t
+		auto& pitch_mod = this->getT(0).getT(0).getT(0).getT(0);                             // MatrixTest2_impl::pitch_mod_t<NV>
+		auto& extra_mod2 = this->getT(0).getT(0).getT(0).getT(1);                            // MatrixTest2_impl::extra_mod2_t<NV>
+		auto& extra_mod6 = this->getT(0).getT(0).getT(0).getT(2);                            // MatrixTest2_impl::extra_mod6_t<NV>
+		auto& split8 = this->getT(0).getT(0).getT(1);                                        // MatrixTest2_impl::split8_t<NV>
+		auto& extra_mod1 = this->getT(0).getT(0).getT(1).getT(0);                            // MatrixTest2_impl::extra_mod1_t<NV>
+		auto& extra_mod4 = this->getT(0).getT(0).getT(1).getT(1);                            // MatrixTest2_impl::extra_mod4_t<NV>
+		auto& extra_mod3 = this->getT(0).getT(0).getT(1).getT(2);                            // MatrixTest2_impl::extra_mod3_t<NV>
+		auto& extra_mod5 = this->getT(0).getT(0).getT(1).getT(3);                            // MatrixTest2_impl::extra_mod5_t<NV>
+		auto& branch2 = this->getT(0).getT(0).getT(2);                                       // MatrixTest2_impl::branch2_t<NV>
+		auto& split9 = this->getT(0).getT(0).getT(2).getT(0);                                // MatrixTest2_impl::split9_t<NV>
+		auto& chain4 = this->getT(0).getT(0).getT(2).getT(0).getT(0);                        // MatrixTest2_impl::chain4_t<NV>
+		auto& extra_mod7 = this->getT(0).getT(0).getT(2).getT(0).getT(0).getT(0);            // MatrixTest2_impl::extra_mod7_t<NV>
+		auto& global_cable4 = this->getT(0).getT(0).getT(2).getT(0).getT(0).getT(1);         // routing::global_cable<global_cable4_t_index, parameter::empty>
+		auto& chain10 = this->getT(0).getT(0).getT(2).getT(0).getT(1);                       // MatrixTest2_impl::chain10_t<NV>
+		auto& extra_mod8 = this->getT(0).getT(0).getT(2).getT(0).getT(1).getT(0);            // MatrixTest2_impl::extra_mod8_t<NV>
+		auto& global_cable5 = this->getT(0).getT(0).getT(2).getT(0).getT(1).getT(1);         // routing::global_cable<global_cable5_t_index, parameter::empty>
+		auto& chain9 = this->getT(0).getT(0).getT(2).getT(0).getT(2);                        // MatrixTest2_impl::chain9_t<NV>
+		auto& extra_mod9 = this->getT(0).getT(0).getT(2).getT(0).getT(2).getT(0);            // MatrixTest2_impl::extra_mod9_t<NV>
+		auto& global_cable6 = this->getT(0).getT(0).getT(2).getT(0).getT(2).getT(1);         // routing::global_cable<global_cable6_t_index, parameter::empty>
+		auto& chain8 = this->getT(0).getT(0).getT(2).getT(0).getT(3);                        // MatrixTest2_impl::chain8_t<NV>
+		auto& extra_mod10 = this->getT(0).getT(0).getT(2).getT(0).getT(3).getT(0);           // MatrixTest2_impl::extra_mod10_t<NV>
+		auto& global_cable7 = this->getT(0).getT(0).getT(2).getT(0).getT(3).getT(1);         // routing::global_cable<global_cable7_t_index, parameter::empty>
+		auto& split10 = this->getT(0).getT(0).getT(2).getT(1);                               // MatrixTest2_impl::split10_t<NV>
+		auto& chain5 = this->getT(0).getT(0).getT(2).getT(1).getT(0);                        // MatrixTest2_impl::chain5_t<NV>
+		auto& extra_mod11 = this->getT(0).getT(0).getT(2).getT(1).getT(0).getT(0);           // MatrixTest2_impl::extra_mod11_t<NV>
+		auto& global_cable8 = this->getT(0).getT(0).getT(2).getT(1).getT(0).getT(1);         // routing::global_cable<global_cable8_t_index, parameter::empty>
+		auto& chain11 = this->getT(0).getT(0).getT(2).getT(1).getT(1);                       // MatrixTest2_impl::chain11_t<NV>
+		auto& extra_mod12 = this->getT(0).getT(0).getT(2).getT(1).getT(1).getT(0);           // MatrixTest2_impl::extra_mod12_t<NV>
+		auto& global_cable9 = this->getT(0).getT(0).getT(2).getT(1).getT(1).getT(1);         // routing::global_cable<global_cable9_t_index, parameter::empty>
+		auto& chain12 = this->getT(0).getT(0).getT(2).getT(1).getT(2);                       // MatrixTest2_impl::chain12_t<NV>
+		auto& extra_mod13 = this->getT(0).getT(0).getT(2).getT(1).getT(2).getT(0);           // MatrixTest2_impl::extra_mod13_t<NV>
+		auto& global_cable10 = this->getT(0).getT(0).getT(2).getT(1).getT(2).getT(1);        // routing::global_cable<global_cable10_t_index, parameter::empty>
+		auto& chain13 = this->getT(0).getT(0).getT(2).getT(1).getT(3);                       // MatrixTest2_impl::chain13_t<NV>
+		auto& extra_mod14 = this->getT(0).getT(0).getT(2).getT(1).getT(3).getT(0);           // MatrixTest2_impl::extra_mod14_t<NV>
+		auto& global_cable11 = this->getT(0).getT(0).getT(2).getT(1).getT(3).getT(1);        // routing::global_cable<global_cable11_t_index, parameter::empty>
+		auto& split11 = this->getT(0).getT(0).getT(2).getT(2);                               // MatrixTest2_impl::split11_t<NV>
+		auto& chain6 = this->getT(0).getT(0).getT(2).getT(2).getT(0);                        // MatrixTest2_impl::chain6_t<NV>
+		auto& extra_mod15 = this->getT(0).getT(0).getT(2).getT(2).getT(0).getT(0);           // MatrixTest2_impl::extra_mod15_t<NV>
+		auto& global_cable12 = this->getT(0).getT(0).getT(2).getT(2).getT(0).getT(1);        // routing::global_cable<global_cable12_t_index, parameter::empty>
+		auto& chain14 = this->getT(0).getT(0).getT(2).getT(2).getT(1);                       // MatrixTest2_impl::chain14_t<NV>
+		auto& extra_mod16 = this->getT(0).getT(0).getT(2).getT(2).getT(1).getT(0);           // MatrixTest2_impl::extra_mod16_t<NV>
+		auto& global_cable13 = this->getT(0).getT(0).getT(2).getT(2).getT(1).getT(1);        // routing::global_cable<global_cable13_t_index, parameter::empty>
+		auto& chain15 = this->getT(0).getT(0).getT(2).getT(2).getT(2);                       // MatrixTest2_impl::chain15_t<NV>
+		auto& extra_mod17 = this->getT(0).getT(0).getT(2).getT(2).getT(2).getT(0);           // MatrixTest2_impl::extra_mod17_t<NV>
+		auto& global_cable14 = this->getT(0).getT(0).getT(2).getT(2).getT(2).getT(1);        // routing::global_cable<global_cable14_t_index, parameter::empty>
+		auto& chain25 = this->getT(0).getT(0).getT(2).getT(2).getT(3);                       // MatrixTest2_impl::chain25_t<NV>
+		auto& extra_mod18 = this->getT(0).getT(0).getT(2).getT(2).getT(3).getT(0);           // MatrixTest2_impl::extra_mod18_t<NV>
+		auto& global_cable15 = this->getT(0).getT(0).getT(2).getT(2).getT(3).getT(1);        // routing::global_cable<global_cable15_t_index, parameter::empty>
+		auto& split12 = this->getT(0).getT(0).getT(2).getT(3);                               // MatrixTest2_impl::split12_t<NV>
+		auto& chain7 = this->getT(0).getT(0).getT(2).getT(3).getT(0);                        // MatrixTest2_impl::chain7_t<NV>
+		auto& extra_mod19 = this->getT(0).getT(0).getT(2).getT(3).getT(0).getT(0);           // MatrixTest2_impl::extra_mod19_t<NV>
+		auto& global_cable16 = this->getT(0).getT(0).getT(2).getT(3).getT(0).getT(1);        // routing::global_cable<global_cable16_t_index, parameter::empty>
+		auto& chain26 = this->getT(0).getT(0).getT(2).getT(3).getT(1);                       // MatrixTest2_impl::chain26_t<NV>
+		auto& extra_mod20 = this->getT(0).getT(0).getT(2).getT(3).getT(1).getT(0);           // MatrixTest2_impl::extra_mod20_t<NV>
+		auto& global_cable17 = this->getT(0).getT(0).getT(2).getT(3).getT(1).getT(1);        // routing::global_cable<global_cable17_t_index, parameter::empty>
+		auto& chain27 = this->getT(0).getT(0).getT(2).getT(3).getT(2);                       // MatrixTest2_impl::chain27_t<NV>
+		auto& extra_mod21 = this->getT(0).getT(0).getT(2).getT(3).getT(2).getT(0);           // MatrixTest2_impl::extra_mod21_t<NV>
+		auto& global_cable18 = this->getT(0).getT(0).getT(2).getT(3).getT(2).getT(1);        // routing::global_cable<global_cable18_t_index, parameter::empty>
+		auto& chain28 = this->getT(0).getT(0).getT(2).getT(3).getT(3);                       // MatrixTest2_impl::chain28_t<NV>
+		auto& extra_mod22 = this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(0);           // MatrixTest2_impl::extra_mod22_t<NV>
+		auto& global_cable19 = this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(1);        // routing::global_cable<global_cable19_t_index, parameter::empty>
+		auto& converter = this->getT(0).getT(0).getT(3);                                     // MatrixTest2_impl::converter_t<NV>
+		auto& tempo_sync = this->getT(0).getT(0).getT(4);                                    // MatrixTest2_impl::tempo_sync_t<NV>
+		auto& tempo_sync1 = this->getT(0).getT(0).getT(5);                                   // MatrixTest2_impl::tempo_sync1_t<NV>
+		auto& smoothed_parameter = this->getT(0).getT(0).getT(6);                            // control::smoothed_parameter<NV, smoothers::linear_ramp<NV>>
+		auto& minmax = this->getT(0).getT(0).getT(7);                                        // MatrixTest2_impl::minmax_t<NV>
+		auto& tempo_sync2 = this->getT(0).getT(0).getT(8);                                   // control::tempo_sync<NV>
+		auto& tempo_sync3 = this->getT(0).getT(0).getT(9);                                   // MatrixTest2_impl::tempo_sync3_t<NV>
+		auto& pack_resizer = this->getT(0).getT(0).getT(10);                                 // MatrixTest2_impl::pack_resizer_t
+		auto& pack8_writer = this->getT(0).getT(0).getT(11);                                 // MatrixTest2_impl::pack8_writer_t
+		auto& cable_table = this->getT(0).getT(0).getT(12);                                  // MatrixTest2_impl::cable_table_t<NV>
 		auto& granular_player_stepquant_density_hybrid_native = this->getT(0).getT(1);       // project::granular_player_stepquant_density_hybrid_native<NV>
 		auto& branch = this->getT(0).getT(2);                                                // MatrixTest2_impl::branch_t
 		auto& chain = this->getT(0).getT(2).getT(0);                                         // MatrixTest2_impl::chain_t
@@ -1224,7 +1651,9 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		GrainMix_p.connectT(0, smoothed_parameter);                              // GrainMix -> smoothed_parameter::Value
 		GrainMix_p.connectT(1, granular_player_stepquant_density_hybrid_native); // GrainMix -> granular_player_stepquant_density_hybrid_native::Density
 		
-		this->getParameterT(3).connectT(0, granular_player_stepquant_density_hybrid_native); // Scatter -> granular_player_stepquant_density_hybrid_native::PhaseScatter
+		auto& Scatter_p = this->getParameterT(3);
+		Scatter_p.connectT(0, granular_player_stepquant_density_hybrid_native); // Scatter -> granular_player_stepquant_density_hybrid_native::PhaseScatter
+		Scatter_p.connectT(1, cable_table);                                     // Scatter -> cable_table::Value
 		
 		this->getParameterT(4).connectT(0, minmax); // WindowShape -> minmax::Value
 		
@@ -1243,6 +1672,8 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->getParameterT(11).connectT(0, granular_player_stepquant_density_hybrid_native); // Direction -> granular_player_stepquant_density_hybrid_native::DirectionMode
 		
 		this->getParameterT(15).connectT(0, pack8_writer); // TransportMode -> pack8_writer::Value4
+		
+		this->getParameterT(16).connectT(0, branch); // ModOut1 -> branch::Index
 		
 		this->getParameterT(17).connectT(0, xfader); // FxMix -> xfader::Value
 		
@@ -1274,8 +1705,6 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		this->getParameterT(28).connectT(0, tempo_sync1); // PitchTempo -> tempo_sync1::Tempo
 		
-		this->getParameterT(29).connectT(0, granular_player_stepquant_density_hybrid_native); // Respawn -> granular_player_stepquant_density_hybrid_native::Respawn
-		
 		this->getParameterT(30).connectT(0, granular_player_stepquant_density_hybrid_native); // Diffusion -> granular_player_stepquant_density_hybrid_native::Diffusion
 		
 		this->getParameterT(31).connectT(0, pack8_writer); // PitchSync -> pack8_writer::Value5
@@ -1290,41 +1719,60 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		this->getParameterT(36).connectT(0, tempo_sync3); // BloomDiv -> tempo_sync3::Multiplier
 		
+		this->getParameterT(37).connectT(0, branch2); // IndOut -> branch2::Index
+		
 		// Modulation Connections ------------------------------------------------------------------
 		
-		extra_mod1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                   // extra_mod1 -> granular_player_stepquant_density_hybrid_native::Scrub
-		extra_mod4.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                   // extra_mod4 -> granular_player_stepquant_density_hybrid_native::ScrubB
-		extra_mod3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                   // extra_mod3 -> granular_player_stepquant_density_hybrid_native::ScrubC
-		extra_mod5.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                   // extra_mod5 -> granular_player_stepquant_density_hybrid_native::ScrubD
-		converter.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native); // converter -> granular_player_stepquant_density_hybrid_native::PitchSemitones
-		pitch_mod.getParameter().connectT(0, converter);                                                          // pitch_mod -> converter::Value
-		tempo_sync.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                   // tempo_sync -> granular_player_stepquant_density_hybrid_native::GrainMs
-		extra_mod2.getParameter().connectT(0, tempo_sync);                                                        // extra_mod2 -> tempo_sync::UnsyncedTime
-		cable_table5.getWrappedObject().getParameter().connectT(0, bitcrush);                                     // cable_table5 -> bitcrush::BitDepth
-		pma1.getWrappedObject().getParameter().connectT(0, fmod);                                                 // pma1 -> fmod::Value
-		pma1.getWrappedObject().getParameter().connectT(1, div);                                                  // pma1 -> div::Value
-		cable_table6.getWrappedObject().getParameter().connectT(0, pma1);                                         // cable_table6 -> pma1::Add
-		pma_unscaled4.getWrappedObject().getParameter().connectT(0, allpass);                                     // pma_unscaled4 -> allpass::Frequency
-		converter7.getWrappedObject().getParameter().connectT(0, fix_delay);                                      // converter7 -> fix_delay::DelayTime
-		converter7.getWrappedObject().getParameter().connectT(1, jdelay_thiran3);                                 // converter7 -> jdelay_thiran3::DelayTime
-		pma_unscaled3.getWrappedObject().getParameter().connectT(0, converter7);                                  // pma_unscaled3 -> converter7::Value
-		extra_mod6.getParameter().connectT(0, svf);                                                               // extra_mod6 -> svf::Frequency
-		extra_mod6.getParameter().connectT(1, biquad);                                                            // extra_mod6 -> biquad::Frequency
-		extra_mod6.getParameter().connectT(2, svf6);                                                              // extra_mod6 -> svf6::Frequency
-		extra_mod6.getParameter().connectT(3, svf5);                                                              // extra_mod6 -> svf5::Frequency
-		extra_mod6.getParameter().connectT(4, ring_mod);                                                          // extra_mod6 -> ring_mod::Frequency
-		extra_mod6.getParameter().connectT(5, cable_table5);                                                      // extra_mod6 -> cable_table5::Value
-		extra_mod6.getParameter().connectT(6, pma1);                                                              // extra_mod6 -> pma1::Multiply
-		extra_mod6.getParameter().connectT(7, cable_table6);                                                      // extra_mod6 -> cable_table6::Value
-		extra_mod6.getParameter().connectT(8, pma_unscaled4);                                                     // extra_mod6 -> pma_unscaled4::Multiply
-		extra_mod6.getParameter().connectT(9, pma_unscaled3);                                                     // extra_mod6 -> pma_unscaled3::Multiply
-		tempo_sync1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync1 -> granular_player_stepquant_density_hybrid_native::PitchSyncInput
-		minmax.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);    // minmax -> granular_player_stepquant_density_hybrid_native::WindowShape
-		tempo_sync3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                  // tempo_sync3 -> granular_player_stepquant_density_hybrid_native::BloomDuration
-		peak.getParameter().connectT(0, global_cable);                                                            // peak -> global_cable::Value
-		peak1.getParameter().connectT(0, global_cable1);                                                          // peak1 -> global_cable1::Value
-		peak2.getParameter().connectT(0, global_cable2);                                                          // peak2 -> global_cable2::Value
-		peak3.getParameter().connectT(0, global_cable3);                                                          // peak3 -> global_cable3::Value
+		converter.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);   // converter -> granular_player_stepquant_density_hybrid_native::PitchSemitones
+		pitch_mod.getParameter().connectT(0, converter);                                                            // pitch_mod -> converter::Value
+		tempo_sync.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                     // tempo_sync -> granular_player_stepquant_density_hybrid_native::GrainMs
+		extra_mod2.getParameter().connectT(0, tempo_sync);                                                          // extra_mod2 -> tempo_sync::UnsyncedTime
+		cable_table5.getWrappedObject().getParameter().connectT(0, bitcrush);                                       // cable_table5 -> bitcrush::BitDepth
+		pma1.getWrappedObject().getParameter().connectT(0, fmod);                                                   // pma1 -> fmod::Value
+		pma1.getWrappedObject().getParameter().connectT(1, div);                                                    // pma1 -> div::Value
+		cable_table6.getWrappedObject().getParameter().connectT(0, pma1);                                           // cable_table6 -> pma1::Add
+		pma_unscaled4.getWrappedObject().getParameter().connectT(0, allpass);                                       // pma_unscaled4 -> allpass::Frequency
+		converter7.getWrappedObject().getParameter().connectT(0, fix_delay);                                        // converter7 -> fix_delay::DelayTime
+		converter7.getWrappedObject().getParameter().connectT(1, jdelay_thiran3);                                   // converter7 -> jdelay_thiran3::DelayTime
+		pma_unscaled3.getWrappedObject().getParameter().connectT(0, converter7);                                    // pma_unscaled3 -> converter7::Value
+		extra_mod6.getParameter().connectT(0, svf);                                                                 // extra_mod6 -> svf::Frequency
+		extra_mod6.getParameter().connectT(1, biquad);                                                              // extra_mod6 -> biquad::Frequency
+		extra_mod6.getParameter().connectT(2, svf6);                                                                // extra_mod6 -> svf6::Frequency
+		extra_mod6.getParameter().connectT(3, svf5);                                                                // extra_mod6 -> svf5::Frequency
+		extra_mod6.getParameter().connectT(4, ring_mod);                                                            // extra_mod6 -> ring_mod::Frequency
+		extra_mod6.getParameter().connectT(5, cable_table5);                                                        // extra_mod6 -> cable_table5::Value
+		extra_mod6.getParameter().connectT(6, pma1);                                                                // extra_mod6 -> pma1::Multiply
+		extra_mod6.getParameter().connectT(7, cable_table6);                                                        // extra_mod6 -> cable_table6::Value
+		extra_mod6.getParameter().connectT(8, pma_unscaled4);                                                       // extra_mod6 -> pma_unscaled4::Multiply
+		extra_mod6.getParameter().connectT(9, pma_unscaled3);                                                       // extra_mod6 -> pma_unscaled3::Multiply
+		extra_mod1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                     // extra_mod1 -> granular_player_stepquant_density_hybrid_native::Scrub
+		extra_mod4.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                     // extra_mod4 -> granular_player_stepquant_density_hybrid_native::ScrubB
+		extra_mod3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                     // extra_mod3 -> granular_player_stepquant_density_hybrid_native::ScrubC
+		extra_mod5.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                     // extra_mod5 -> granular_player_stepquant_density_hybrid_native::ScrubD
+		extra_mod7.getParameter().connectT(0, global_cable4);                                                       // extra_mod7 -> global_cable4::Value
+		extra_mod8.getParameter().connectT(0, global_cable5);                                                       // extra_mod8 -> global_cable5::Value
+		extra_mod9.getParameter().connectT(0, global_cable6);                                                       // extra_mod9 -> global_cable6::Value
+		extra_mod10.getParameter().connectT(0, global_cable7);                                                      // extra_mod10 -> global_cable7::Value
+		extra_mod11.getParameter().connectT(0, global_cable8);                                                      // extra_mod11 -> global_cable8::Value
+		extra_mod12.getParameter().connectT(0, global_cable9);                                                      // extra_mod12 -> global_cable9::Value
+		extra_mod13.getParameter().connectT(0, global_cable10);                                                     // extra_mod13 -> global_cable10::Value
+		extra_mod14.getParameter().connectT(0, global_cable11);                                                     // extra_mod14 -> global_cable11::Value
+		extra_mod15.getParameter().connectT(0, global_cable12);                                                     // extra_mod15 -> global_cable12::Value
+		extra_mod16.getParameter().connectT(0, global_cable13);                                                     // extra_mod16 -> global_cable13::Value
+		extra_mod17.getParameter().connectT(0, global_cable14);                                                     // extra_mod17 -> global_cable14::Value
+		extra_mod18.getParameter().connectT(0, global_cable15);                                                     // extra_mod18 -> global_cable15::Value
+		extra_mod19.getParameter().connectT(0, global_cable16);                                                     // extra_mod19 -> global_cable16::Value
+		extra_mod20.getParameter().connectT(0, global_cable17);                                                     // extra_mod20 -> global_cable17::Value
+		extra_mod21.getParameter().connectT(0, global_cable18);                                                     // extra_mod21 -> global_cable18::Value
+		extra_mod22.getParameter().connectT(0, global_cable19);                                                     // extra_mod22 -> global_cable19::Value
+		tempo_sync1.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                    // tempo_sync1 -> granular_player_stepquant_density_hybrid_native::PitchSyncInput
+		minmax.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);      // minmax -> granular_player_stepquant_density_hybrid_native::WindowShape
+		tempo_sync3.getParameter().connectT(0, granular_player_stepquant_density_hybrid_native);                    // tempo_sync3 -> granular_player_stepquant_density_hybrid_native::BloomDuration
+		cable_table.getWrappedObject().getParameter().connectT(0, granular_player_stepquant_density_hybrid_native); // cable_table -> granular_player_stepquant_density_hybrid_native::Respawn
+		peak.getParameter().connectT(0, global_cable);                                                              // peak -> global_cable::Value
+		peak1.getParameter().connectT(0, global_cable1);                                                            // peak1 -> global_cable1::Value
+		peak2.getParameter().connectT(0, global_cable2);                                                            // peak2 -> global_cable2::Value
+		peak3.getParameter().connectT(0, global_cable3);                                                            // peak3 -> global_cable3::Value
 		auto& xfader_p = xfader.getWrappedObject().getParameter();
 		xfader_p.getParameterT(0).connectT(0, gain);                             // xfader -> gain::Gain
 		xfader_p.getParameterT(1).connectT(0, gain1);                            // xfader -> gain1::Gain
@@ -1340,6 +1788,14 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		
 		// Default Values --------------------------------------------------------------------------
 		
+		pitch_mod.setParameterT(0, 0.); // core::pitch_mod::ProcessSignal
+		
+		extra_mod2.setParameterT(0, 1.); // core::extra_mod::Index
+		extra_mod2.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		extra_mod6.setParameterT(0, 5.); // core::extra_mod::Index
+		extra_mod6.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
 		extra_mod1.setParameterT(0, 0.); // core::extra_mod::Index
 		extra_mod1.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
 		
@@ -1352,13 +1808,87 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		extra_mod5.setParameterT(0, 4.); // core::extra_mod::Index
 		extra_mod5.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
 		
-		pitch_mod.setParameterT(0, 0.); // core::pitch_mod::ProcessSignal
+		; // branch2::Index is automated
 		
-		extra_mod2.setParameterT(0, 1.); // core::extra_mod::Index
-		extra_mod2.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		extra_mod7.setParameterT(0, 0.); // core::extra_mod::Index
+		extra_mod7.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
 		
-		extra_mod6.setParameterT(0, 5.); // core::extra_mod::Index
-		extra_mod6.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		; // global_cable4::Value is automated
+		
+		extra_mod8.setParameterT(0, 2.); // core::extra_mod::Index
+		extra_mod8.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable5::Value is automated
+		
+		extra_mod9.setParameterT(0, 3.); // core::extra_mod::Index
+		extra_mod9.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable6::Value is automated
+		
+		extra_mod10.setParameterT(0, 4.); // core::extra_mod::Index
+		extra_mod10.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable7::Value is automated
+		
+		extra_mod11.setParameterT(0, 0.); // core::extra_mod::Index
+		extra_mod11.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable8::Value is automated
+		
+		extra_mod12.setParameterT(0, 2.); // core::extra_mod::Index
+		extra_mod12.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable9::Value is automated
+		
+		extra_mod13.setParameterT(0, 3.); // core::extra_mod::Index
+		extra_mod13.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable10::Value is automated
+		
+		extra_mod14.setParameterT(0, 4.); // core::extra_mod::Index
+		extra_mod14.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable11::Value is automated
+		
+		extra_mod15.setParameterT(0, 0.); // core::extra_mod::Index
+		extra_mod15.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable12::Value is automated
+		
+		extra_mod16.setParameterT(0, 2.); // core::extra_mod::Index
+		extra_mod16.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable13::Value is automated
+		
+		extra_mod17.setParameterT(0, 3.); // core::extra_mod::Index
+		extra_mod17.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable14::Value is automated
+		
+		extra_mod18.setParameterT(0, 4.); // core::extra_mod::Index
+		extra_mod18.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable15::Value is automated
+		
+		extra_mod19.setParameterT(0, 0.); // core::extra_mod::Index
+		extra_mod19.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable16::Value is automated
+		
+		extra_mod20.setParameterT(0, 2.); // core::extra_mod::Index
+		extra_mod20.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable17::Value is automated
+		
+		extra_mod21.setParameterT(0, 3.); // core::extra_mod::Index
+		extra_mod21.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable18::Value is automated
+		
+		extra_mod22.setParameterT(0, 4.); // core::extra_mod::Index
+		extra_mod22.setParameterT(1, 0.); // core::extra_mod::ProcessSignal
+		
+		; // global_cable19::Value is automated
 		
 		; // converter::Value is automated
 		
@@ -1404,6 +1934,8 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		; // pack8_writer::Value7 is automated
 		; // pack8_writer::Value8 is automated
 		
+		; // cable_table::Value is automated
+		
 		; // granular_player_stepquant_density_hybrid_native::PitchSemitones is automated
 		; // granular_player_stepquant_density_hybrid_native::Scrub is automated
 		; // granular_player_stepquant_density_hybrid_native::GrainMs is automated
@@ -1423,7 +1955,7 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		; // granular_player_stepquant_density_hybrid_native::BloomDuration is automated
 		; // granular_player_stepquant_density_hybrid_native::PitchSyncInput is automated
 		
-		branch.setParameterT(0, 0.); // container::branch::Index
+		; // branch::Index is automated
 		
 		; // global_cable::Value is automated
 		
@@ -1583,13 +2115,13 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->setParameterT(9, 0.00673828);
 		this->setParameterT(10, 0.00527344);
 		this->setParameterT(11, 1.);
-		this->setParameterT(12, 0.52);
+		this->setParameterT(12, 0.476055);
 		this->setParameterT(13, 0.);
 		this->setParameterT(14, 0.00146484);
 		this->setParameterT(15, 1.);
 		this->setParameterT(16, 0.);
-		this->setParameterT(17, 0.774202);
-		this->setParameterT(18, 2.);
+		this->setParameterT(17, 0.768342);
+		this->setParameterT(18, 1.);
 		this->setParameterT(19, 0.);
 		this->setParameterT(20, 1.);
 		this->setParameterT(21, 0.);
@@ -1605,9 +2137,10 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		this->setParameterT(31, 1.);
 		this->setParameterT(32, 0.198926);
 		this->setParameterT(33, 1.);
-		this->setParameterT(34, 1.);
+		this->setParameterT(34, 3.);
 		this->setParameterT(35, 0.99482);
 		this->setParameterT(36, 1.);
+		this->setParameterT(37, 0.);
 		this->setExternalData({}, -1);
 	}
 	~instance() override
@@ -1629,32 +2162,81 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 	{
 		// Runtime target Connections --------------------------------------------------------------
 		
-		this->getT(0).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod1_t<NV>
-		this->getT(0).getT(0).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod4_t<NV>
-		this->getT(0).getT(0).getT(0).getT(2).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod3_t<NV>
-		this->getT(0).getT(0).getT(0).getT(3).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod5_t<NV>
-		this->getT(0).getT(0).getT(0).getT(4).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::pitch_mod_t<NV>
-		this->getT(0).getT(0).getT(0).getT(5).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod2_t<NV>
-		this->getT(0).getT(0).getT(0).getT(6).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod6_t<NV>
-		this->getT(0).getT(2).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable_t_index, parameter::empty>
-		this->getT(0).getT(2).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable1_t_index, parameter::empty>
-		this->getT(0).getT(2).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable2_t_index, parameter::empty>
-		this->getT(0).getT(2).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable3_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::pitch_mod_t<NV>
+		this->getT(0).getT(0).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::extra_mod2_t<NV>
+		this->getT(0).getT(0).getT(0).getT(2).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::extra_mod6_t<NV>
+		this->getT(0).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::extra_mod1_t<NV>
+		this->getT(0).getT(0).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::extra_mod4_t<NV>
+		this->getT(0).getT(0).getT(1).getT(2).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::extra_mod3_t<NV>
+		this->getT(0).getT(0).getT(1).getT(3).connectToRuntimeTarget(addConnection, c);                 // MatrixTest2_impl::extra_mod5_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod7_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable4_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod8_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable5_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod9_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable6_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod10_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable7_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(1).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod11_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable8_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(1).getT(1).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod12_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable9_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(1).getT(2).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod13_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable10_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(1).getT(3).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod14_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable11_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(2).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod15_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable12_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(2).getT(1).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod16_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable13_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(2).getT(2).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod17_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable14_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(2).getT(3).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod18_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable15_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(3).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod19_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(0).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable16_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(3).getT(1).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod20_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(1).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable17_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(3).getT(2).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod21_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(2).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable18_t_index, parameter::empty>
+		this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(0).connectToRuntimeTarget(addConnection, c); // MatrixTest2_impl::extra_mod22_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(1).connectToRuntimeTarget(addConnection, c); // routing::global_cable<global_cable19_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(0).getT(1).connectToRuntimeTarget(addConnection, c);                 // routing::global_cable<global_cable_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(1).getT(1).connectToRuntimeTarget(addConnection, c);                 // routing::global_cable<global_cable1_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(2).getT(1).connectToRuntimeTarget(addConnection, c);                 // routing::global_cable<global_cable2_t_index, parameter::empty>
+		this->getT(0).getT(2).getT(3).getT(1).connectToRuntimeTarget(addConnection, c);                 // routing::global_cable<global_cable3_t_index, parameter::empty>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)
 	{
 		// External Data Connections ---------------------------------------------------------------
 		
-		this->getT(0).getT(0).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod1_t<NV>
-		this->getT(0).getT(0).getT(0).getT(1).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod4_t<NV>
-		this->getT(0).getT(0).getT(0).getT(2).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod3_t<NV>
-		this->getT(0).getT(0).getT(0).getT(3).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod5_t<NV>
-		this->getT(0).getT(0).getT(0).getT(4).setExternalData(b, index);                         // MatrixTest2_impl::pitch_mod_t<NV>
-		this->getT(0).getT(0).getT(0).getT(5).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod2_t<NV>
-		this->getT(0).getT(0).getT(0).getT(6).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod6_t<NV>
-		this->getT(0).getT(0).getT(8).setExternalData(b, index);                                 // MatrixTest2_impl::pack_resizer_t
-		this->getT(0).getT(0).getT(9).setExternalData(b, index);                                 // MatrixTest2_impl::pack8_writer_t
+		this->getT(0).getT(0).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::pitch_mod_t<NV>
+		this->getT(0).getT(0).getT(0).getT(1).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod2_t<NV>
+		this->getT(0).getT(0).getT(0).getT(2).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod6_t<NV>
+		this->getT(0).getT(0).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod1_t<NV>
+		this->getT(0).getT(0).getT(1).getT(1).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod4_t<NV>
+		this->getT(0).getT(0).getT(1).getT(2).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod3_t<NV>
+		this->getT(0).getT(0).getT(1).getT(3).setExternalData(b, index);                         // MatrixTest2_impl::extra_mod5_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(0).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod7_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(1).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod8_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(2).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod9_t<NV>
+		this->getT(0).getT(0).getT(2).getT(0).getT(3).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod10_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(0).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod11_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(1).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod12_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(2).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod13_t<NV>
+		this->getT(0).getT(0).getT(2).getT(1).getT(3).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod14_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(0).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod15_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(1).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod16_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(2).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod17_t<NV>
+		this->getT(0).getT(0).getT(2).getT(2).getT(3).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod18_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(0).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod19_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(1).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod20_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(2).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod21_t<NV>
+		this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(0).setExternalData(b, index);         // MatrixTest2_impl::extra_mod22_t<NV>
+		this->getT(0).getT(0).getT(10).setExternalData(b, index);                                // MatrixTest2_impl::pack_resizer_t
+		this->getT(0).getT(0).getT(11).setExternalData(b, index);                                // MatrixTest2_impl::pack8_writer_t
+		this->getT(0).getT(0).getT(12).setExternalData(b, index);                                // MatrixTest2_impl::cable_table_t<NV>
 		this->getT(0).getT(1).setExternalData(b, index);                                         // project::granular_player_stepquant_density_hybrid_native<NV>
 		this->getT(0).getT(2).getT(0).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak_t
 		this->getT(0).getT(2).getT(1).getT(0).setExternalData(b, index);                         // MatrixTest2_impl::peak1_t
