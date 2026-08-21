@@ -1,10 +1,18 @@
 const var VoiceParam3 = Content.getComponent("PosParam3");
 const var VoiceParamB3 = Content.getComponent("PosParamB3");
+const var PosIndicatorLaneB3 = Content.getComponent("PosIndicatorLaneB3");
+const var PosIndicatorLaneC3 = Content.getComponent("PosIndicatorLaneC3");
+const var PosIndicatorLaneD3 = Content.getComponent("PosIndicatorLaneD3");
 
   
 
 inline function onStgSel3Control(component, value)
 {
+	var showExtraIndicators = value == 2 || value == 4;
+
+	PosIndicatorLaneB3.showControl(showExtraIndicators);
+	PosIndicatorLaneC3.showControl(showExtraIndicators);
+	PosIndicatorLaneD3.showControl(showExtraIndicators);
 	
 
 
@@ -58,7 +66,10 @@ if(value == 2)
 	              
 		}
 
-};
+	if (isDefined(refreshPositionIndicators))
+		refreshPositionIndicators();
+
+	};
 
 Content.getComponent("StgSel3").setControlCallback(onStgSel3Control);
 

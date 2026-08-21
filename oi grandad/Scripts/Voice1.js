@@ -1,8 +1,16 @@
 const var VoiceParam1 = Content.getComponent("PosParam1");
 const var VoiceParamB1 = Content.getComponent("PosParamB1");
+const var PosIndicatorLaneB1 = Content.getComponent("PosIndicatorLaneB1");
+const var PosIndicatorLaneC1 = Content.getComponent("PosIndicatorLaneC1");
+const var PosIndicatorLaneD1 = Content.getComponent("PosIndicatorLaneD1");
 
 inline function onStgSel1Control(component, value)
 {
+	var showExtraIndicators = value == 2 || value == 4;
+
+	PosIndicatorLaneB1.showControl(showExtraIndicators);
+	PosIndicatorLaneC1.showControl(showExtraIndicators);
+	PosIndicatorLaneD1.showControl(showExtraIndicators);
 
 
 if(value == 1)
@@ -38,7 +46,7 @@ if(value == 2)
 	                   
 		}
 		
-		if(value == 4)
+	if(value == 4)
 		  {
 			VoiceParam1.showControl(0);
 			VoiceParamB1.showControl(1);
@@ -48,6 +56,9 @@ if(value == 2)
 		
 		              
 			}
+
+	if (isDefined(refreshPositionIndicators))
+		refreshPositionIndicators();
 	
 
 };

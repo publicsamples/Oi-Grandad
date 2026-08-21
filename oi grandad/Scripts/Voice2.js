@@ -1,10 +1,18 @@
 const var VoiceParam2 = Content.getComponent("PosParam2");
 const var VoiceParamB2 = Content.getComponent("PosParamB2");
+const var PosIndicatorLaneB2 = Content.getComponent("PosIndicatorLaneB2");
+const var PosIndicatorLaneC2 = Content.getComponent("PosIndicatorLaneC2");
+const var PosIndicatorLaneD2 = Content.getComponent("PosIndicatorLaneD2");
 
   
 
 inline function onStgSel2Control(component, value)
 {
+	var showExtraIndicators = value == 2 || value == 4;
+
+	PosIndicatorLaneB2.showControl(showExtraIndicators);
+	PosIndicatorLaneC2.showControl(showExtraIndicators);
+	PosIndicatorLaneD2.showControl(showExtraIndicators);
 	
 
 
@@ -56,8 +64,10 @@ if(value == 4)
           gran1.setAttribute(gran1.ScrubMode, 4);  
 
               
-	}	
-	
+	}
+
+	if (isDefined(refreshPositionIndicators))
+		refreshPositionIndicators();
 
 };
 

@@ -11,14 +11,14 @@ inline function drawKnobModulationArc(g, obj, area, thickness)
 	modRange.setBounds(n);
 	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
 
-	g.setColour(0x55777575);
+	g.setColour(obj.itemColour1);
 	g.drawPath(modRange, area, thickness);
 
 	local valueArc = Content.createPath();
 	valueArc.setBounds(n);
 	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
 
-	g.setColour(0xFB777575);
+	g.setColour(obj.itemColour1);
 	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
 }
 

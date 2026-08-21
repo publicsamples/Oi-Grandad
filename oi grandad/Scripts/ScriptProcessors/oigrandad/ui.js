@@ -55,9 +55,9 @@ include("RR.js");
 include("rec.js");
 
 include("MultiChannel.js");
-//include("ModControls.js");
+include("ModControls.js");
 include("Rect.js");
-include("Indicators.js");
+//include("Indicators.js");
 
 
 include("GeneralLAF.js");

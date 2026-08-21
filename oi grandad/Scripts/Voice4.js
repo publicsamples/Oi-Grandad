@@ -1,10 +1,18 @@
 const var VoiceParam4 = Content.getComponent("PosParam4");
 const var VoiceParamB4 = Content.getComponent("PosParamB4");
+const var PosIndicatorLaneB4 = Content.getComponent("PosIndicatorLaneB4");
+const var PosIndicatorLaneC4 = Content.getComponent("PosIndicatorLaneC4");
+const var PosIndicatorLaneD4 = Content.getComponent("PosIndicatorLaneD4");
 
   
 
 inline function onStgSel4Control(component, value)
 {
+	var showExtraIndicators = value == 2 || value == 4;
+
+	PosIndicatorLaneB4.showControl(showExtraIndicators);
+	PosIndicatorLaneC4.showControl(showExtraIndicators);
+	PosIndicatorLaneD4.showControl(showExtraIndicators);
 	
 
 
@@ -56,7 +64,10 @@ if(value == 4)
           gran3.setAttribute(gran3.ScrubMode, 4);  
 
               
-	}	
+	}
+
+	if (isDefined(refreshPositionIndicators))
+		refreshPositionIndicators();
 
 };
 

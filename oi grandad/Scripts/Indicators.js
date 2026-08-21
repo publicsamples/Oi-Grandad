@@ -1,11 +1,24 @@
-const var PosIndicator1 = Content.getComponent("PosIndicator1");
-const var PosIndicator5 = Content.getComponent("PosIndicator5");
-const var PosIndicator9 = Content.getComponent("PosIndicator9");
-const var PosIndicator13 = Content.getComponent("PosIndicator13");
 const var PosIndicator17 = Content.getComponent("PosIndicator17");
 const var PosIndicator21 = Content.getComponent("PosIndicator21");
 const var PosIndicator25 = Content.getComponent("PosIndicator25");
 const var PosIndicator29 = Content.getComponent("PosIndicator29");
+
+const var PosIndicatorLaneA1 = Content.getComponent("PosIndicatorLaneA1");
+const var PosIndicatorLaneB1 = Content.getComponent("PosIndicatorLaneB1");
+const var PosIndicatorLaneC1 = Content.getComponent("PosIndicatorLaneC1");
+const var PosIndicatorLaneD1 = Content.getComponent("PosIndicatorLaneD1");
+const var PosIndicatorLaneA2 = Content.getComponent("PosIndicatorLaneA2");
+const var PosIndicatorLaneB2 = Content.getComponent("PosIndicatorLaneB2");
+const var PosIndicatorLaneC2 = Content.getComponent("PosIndicatorLaneC2");
+const var PosIndicatorLaneD2 = Content.getComponent("PosIndicatorLaneD2");
+const var PosIndicatorLaneA3 = Content.getComponent("PosIndicatorLaneA3");
+const var PosIndicatorLaneB3 = Content.getComponent("PosIndicatorLaneB3");
+const var PosIndicatorLaneC3 = Content.getComponent("PosIndicatorLaneC3");
+const var PosIndicatorLaneD3 = Content.getComponent("PosIndicatorLaneD3");
+const var PosIndicatorLaneA4 = Content.getComponent("PosIndicatorLaneA4");
+const var PosIndicatorLaneB4 = Content.getComponent("PosIndicatorLaneB4");
+const var PosIndicatorLaneC4 = Content.getComponent("PosIndicatorLaneC4");
+const var PosIndicatorLaneD4 = Content.getComponent("PosIndicatorLaneD4");
 
 const var MultPosA1 = Content.getComponent("MultPosA1");
 const var MultPosB1 = Content.getComponent("MultPosB1");
@@ -51,35 +64,18 @@ inline function clampIndicatorValue(value)
 	return Math.range(value, 0.0, 1.0);
 }
 
+inline function isMultiMode(selector)
+{
+	var value = selector.getValue();
+	return value == 2 || value == 4;
+}
+
 inline function getModulatorIndicatorValue(modulator, fallbackComponent)
 {
 	if (isDefined(modulator))
 		return clampIndicatorValue(modulator.getCurrentLevel());
 
 	return clampIndicatorValue(fallbackComponent.getValue());
-}
-
-inline function drawScrubHeads(g, area, isMulti, a, b, c, d)
-{
-	var centreY = area[1] + area[3] * 0.5;
-	var top = area[1] + 2;
-	var bottom = area[1] + area[3] - 2;
-	var radius = 7.0;
-	var values = [a, b, c, d];
-	var colours = [0xFBFF9B9B, 0xFFFFD6A5, 0xFFFFFEC4, 0xFFCBFFA9];
-	var widths = [2.0, 1.25, 1.25, 1.25];
-	var headCount = isMulti ? 4 : 1;
-
-	for (i = 0; i < headCount; i++)
-	{
-		var x = area[0] + clampIndicatorValue(values[i]) * area[2];
-		g.setColour(colours[i]);
-		g.drawLine(x, x, top, bottom, widths[i]);
-		g.fillEllipse([x - radius, centreY - radius, radius * 2.0, radius * 2.0]);
-		g.setColour(0xFF1F252C);
-		g.setFont("Montserrat", 11.0);
-		g.drawAlignedText((i + 1) + "", [x - radius, centreY - radius - 1, radius * 2.0, radius * 2.0], "centred");
-	}
 }
 
 inline function drawOverviewScrubHeads(g, area, isMulti, a, b, c, d)
@@ -98,170 +94,78 @@ inline function drawOverviewScrubHeads(g, area, isMulti, a, b, c, d)
 	}
 }
 
-PosIndicator1.setPaintRoutine(function(g)
+inline function setVoiceIndicatorLaneVisibility(isMulti, laneB, laneC, laneD)
 {
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel1.getValue() == 2 || StgSel1.getValue() == 4;
+	laneB.showControl(isMulti);
+	laneC.showControl(isMulti);
+	laneD.showControl(isMulti);
+}
 
-	drawScrubHeads(g,
-				   area,
-				   isMulti,
-				   getModulatorIndicatorValue(Voice_1_PositionA, MultPosA1),
-				   getModulatorIndicatorValue(Voice_1_PositionB, MultPosB1),
-				   getModulatorIndicatorValue(Voice_1_PositionC, MultPosC1),
-				   getModulatorIndicatorValue(Voice_1_PositionD, MultPosD1));
-});
-
-PosIndicator1.setTimerCallback(function()
+inline function updateVoiceIndicatorTables()
 {
-	this.repaint();
-});
+	setVoiceIndicatorLaneVisibility(isMultiMode(StgSel1), PosIndicatorLaneB1, PosIndicatorLaneC1, PosIndicatorLaneD1);
+	setVoiceIndicatorLaneVisibility(isMultiMode(StgSel2), PosIndicatorLaneB2, PosIndicatorLaneC2, PosIndicatorLaneD2);
+	setVoiceIndicatorLaneVisibility(isMultiMode(StgSel3), PosIndicatorLaneB3, PosIndicatorLaneC3, PosIndicatorLaneD3);
+	setVoiceIndicatorLaneVisibility(isMultiMode(StgSel4), PosIndicatorLaneB4, PosIndicatorLaneC4, PosIndicatorLaneD4);
+}
 
-PosIndicator1.startTimer(66);
-
-PosIndicator5.setPaintRoutine(function(g)
+inline function refreshPositionIndicators()
 {
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel2.getValue() == 2 || StgSel2.getValue() == 4;
-
-	drawScrubHeads(g,
-				   area,
-				   isMulti,
-				   getModulatorIndicatorValue(Voice_2_PositionA, MultPosA2),
-				   getModulatorIndicatorValue(Voice_2_PositionB, MultPosB2),
-				   getModulatorIndicatorValue(Voice_2_PositionC, MultPosC2),
-				   getModulatorIndicatorValue(Voice_2_PositionD, MultPosD2));
-});
-
-PosIndicator5.setTimerCallback(function()
-{
-	this.repaint();
-});
-
-PosIndicator5.startTimer(33);
-
-PosIndicator9.setPaintRoutine(function(g)
-{
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel3.getValue() == 2 || StgSel3.getValue() == 4;
-
-	drawScrubHeads(g,
-				   area,
-				   isMulti,
-				   getModulatorIndicatorValue(Voice_3_PositionA, MultPosA3),
-				   getModulatorIndicatorValue(Voice_3_PositionB, MultPosB3),
-				   getModulatorIndicatorValue(Voice_3_PositionC, MultPosC3),
-				   getModulatorIndicatorValue(Voice_3_PositionD, MultPosD3));
-});
-
-PosIndicator9.setTimerCallback(function()
-{
-	this.repaint();
-});
-
-PosIndicator9.startTimer(33);
-
-PosIndicator13.setPaintRoutine(function(g)
-{
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel4.getValue() == 2 || StgSel4.getValue() == 4;
-
-	drawScrubHeads(g,
-				   area,
-				   isMulti,
-				   getModulatorIndicatorValue(Voice_4_PositionA, MultPosA4),
-				   getModulatorIndicatorValue(Voice_4_PositionB, MultPosB4),
-				   getModulatorIndicatorValue(Voice_4_PositionC, MultPosC4),
-				   getModulatorIndicatorValue(Voice_4_PositionD, MultPosD4));
-});
-
-PosIndicator13.setTimerCallback(function()
-{
-	this.repaint();
-});
-
-PosIndicator13.startTimer(33);
+	updateVoiceIndicatorTables();
+	PosIndicator17.repaint();
+	PosIndicator21.repaint();
+	PosIndicator25.repaint();
+	PosIndicator29.repaint();
+}
 
 PosIndicator17.setPaintRoutine(function(g)
 {
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel1.getValue() == 2 || StgSel1.getValue() == 4;
-
 	drawOverviewScrubHeads(g,
-						   area,
-						   isMulti,
+						   this.getLocalBounds(0),
+						   isMultiMode(StgSel1),
 						   getModulatorIndicatorValue(Voice_1_PositionA, MultPosA1),
 						   getModulatorIndicatorValue(Voice_1_PositionB, MultPosB1),
 						   getModulatorIndicatorValue(Voice_1_PositionC, MultPosC1),
 						   getModulatorIndicatorValue(Voice_1_PositionD, MultPosD1));
 });
 
-PosIndicator17.setTimerCallback(function()
-{
-	this.repaint();
-});
-
-PosIndicator17.startTimer(33);
-
 PosIndicator21.setPaintRoutine(function(g)
 {
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel2.getValue() == 2 || StgSel2.getValue() == 4;
-
 	drawOverviewScrubHeads(g,
-						   area,
-						   isMulti,
+						   this.getLocalBounds(0),
+						   isMultiMode(StgSel2),
 						   getModulatorIndicatorValue(Voice_2_PositionA, MultPosA2),
 						   getModulatorIndicatorValue(Voice_2_PositionB, MultPosB2),
 						   getModulatorIndicatorValue(Voice_2_PositionC, MultPosC2),
 						   getModulatorIndicatorValue(Voice_2_PositionD, MultPosD2));
 });
 
-PosIndicator21.setTimerCallback(function()
-{
-	this.repaint();
-});
-
-PosIndicator21.startTimer(33);
-
 PosIndicator25.setPaintRoutine(function(g)
 {
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel3.getValue() == 2 || StgSel3.getValue() == 4;
-
 	drawOverviewScrubHeads(g,
-						   area,
-						   isMulti,
+						   this.getLocalBounds(0),
+						   isMultiMode(StgSel3),
 						   getModulatorIndicatorValue(Voice_3_PositionA, MultPosA3),
 						   getModulatorIndicatorValue(Voice_3_PositionB, MultPosB3),
 						   getModulatorIndicatorValue(Voice_3_PositionC, MultPosC3),
 						   getModulatorIndicatorValue(Voice_3_PositionD, MultPosD3));
 });
 
-PosIndicator25.setTimerCallback(function()
-{
-	this.repaint();
-});
-
-PosIndicator25.startTimer(33);
-
 PosIndicator29.setPaintRoutine(function(g)
 {
-	var area = this.getLocalBounds(0);
-	var isMulti = StgSel4.getValue() == 2 || StgSel4.getValue() == 4;
-
 	drawOverviewScrubHeads(g,
-						   area,
-						   isMulti,
+						   this.getLocalBounds(0),
+						   isMultiMode(StgSel4),
 						   getModulatorIndicatorValue(Voice_4_PositionA, MultPosA4),
 						   getModulatorIndicatorValue(Voice_4_PositionB, MultPosB4),
 						   getModulatorIndicatorValue(Voice_4_PositionC, MultPosC4),
 						   getModulatorIndicatorValue(Voice_4_PositionD, MultPosD4));
 });
 
-PosIndicator29.setTimerCallback(function()
+PosIndicator17.setTimerCallback(function()
 {
-	this.repaint();
+	refreshPositionIndicators();
 });
 
-PosIndicator29.startTimer(33);
+refreshPositionIndicators();
+PosIndicator17.startTimer(33);

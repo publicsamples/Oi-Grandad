@@ -10,7 +10,7 @@
                    NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="PostMix1" value="0.9700000286102295"/>
+            <Control type="ScriptSlider" id="PostMix1" value="0.0"/>
             <Control type="ScriptSlider" id="PostMeta2" value="1.0"/>
             <Control type="ScriptSlider" id="PostMeta1" value="0.6100000143051147"/>
             <Control type="ScriptSlider" id="PostMeta3" value="0.644906222820282"/>
@@ -27,34 +27,38 @@
             <Control type="ScriptSlider" id="PolyMeta1" value="0.0"/>
             <Control type="ScriptComboBox" id="ResMode1" value="4.0"/>
             <Control type="ScriptComboBox" id="OutputSelector" value="1.0"/>
-            <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data="{PROJECT_FOLDER}STBELL-130-02.wav"
-                     rangeStart="0" rangeEnd="325661"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform" value="0.0" data="/Users/rick/Music/ALL CD QUALITY FAMOUS BREAKS/Classic Break Pack/Helicopter/Blowfly_-_Sesame_Street_(1).wav"
+                     rangeStart="0" rangeEnd="171601"/>
+            <Control type="ScriptTable" id="PosIndicatorLaneA1" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneB1" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneC1" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneD1" value="0.0" data=""/>
             <Control type="ScriptComboBox" id="TransPort1" value="1.0"/>
-            <Control type="ScriptComboBox" id="maxGrains1" value="4.0"/>
+            <Control type="ScriptComboBox" id="maxGrains1" value="1.0"/>
             <Control type="ScriptSlider" id="pos" value="0.0"/>
-            <Control type="ScriptSlider" id="MultPosB1" value="0.449999988079071"/>
-            <Control type="ScriptSlider" id="MultPosC1" value="0.3899999856948853"/>
-            <Control type="ScriptSlider" id="MultPosD1" value="0.4399999976158142"/>
+            <Control type="ScriptSlider" id="MultPosB1" value="0.0"/>
+            <Control type="ScriptSlider" id="MultPosC1" value="0.8799999952316284"/>
+            <Control type="ScriptSlider" id="MultPosD1" value="0.2899999916553497"/>
             <Control type="ScriptComboBox" id="StgSel1" value="1.0"/>
-            <Control type="ScriptSlider" id="det" value="0.4900000095367432"/>
+            <Control type="ScriptSlider" id="det" value="0.0"/>
             <Control type="ScriptSlider" id="Glide1" value="0.009999999776482582"/>
-            <Control type="ScriptSlider" id="pitch" value="9.800000190734863"/>
-            <Control type="ScriptButton" id="PtichSync1" value="0.0"/>
+            <Control type="ScriptSlider" id="pitch" value="1.788139343261719e-7"/>
+            <Control type="ScriptButton" id="PtichSync1" value="1.0"/>
             <Control type="ScriptComboBox" id="PitchMode1" value="1.0"/>
             <Control type="ScriptSlider" id="PitchDiv1" value="1.0"/>
             <Control type="ScriptSlider" id="PitchTempo1" value="5.0"/>
             <Control type="ScriptComboBox" id="SpreadDirMode1" value="1.0"/>
-            <Control type="ScriptComboBox" id="GrainDirMode1" value="3.0"/>
-            <Control type="ScriptSlider" id="Jitter1" value="0.5199999809265137"/>
-            <Control type="ScriptSlider" id="Dense1" value="0.0"/>
-            <Control type="ScriptSlider" id="WindowTempo1" value="0.6418281197547913"/>
-            <Control type="ScriptSlider" id="Diff1" value="0.25"/>
-            <Control type="ScriptSlider" id="Respawn1" value="0.9700000286102295"/>
-            <Control type="ScriptSlider" id="grainsize1" value="500.0"/>
-            <Control type="ScriptSlider" id="graindiv1" value="32.0"/>
-            <Control type="ScriptSlider" id="graintempo1" value="2.0"/>
+            <Control type="ScriptComboBox" id="GrainDirMode1" value="1.0"/>
+            <Control type="ScriptSlider" id="Jitter1" value="0.0"/>
+            <Control type="ScriptSlider" id="Dense1" value="1.0"/>
+            <Control type="ScriptSlider" id="WindowTempo1" value="0.03993750736117363"/>
+            <Control type="ScriptSlider" id="Diff1" value="0.0"/>
+            <Control type="ScriptSlider" id="Respawn1" value="0.0"/>
+            <Control type="ScriptSlider" id="grainsize1" value="29.0"/>
+            <Control type="ScriptSlider" id="graindiv1" value="1.0"/>
+            <Control type="ScriptSlider" id="graintempo1" value="17.0"/>
             <Control type="ScriptSlider" id="GrainDir1" value="1.0"/>
-            <Control type="ScriptButton" id="GrainSync1" value="0.0"/>
+            <Control type="ScriptButton" id="GrainSync1" value="1.0"/>
             <Control type="ScriptButton" id="GrainXf1" value="0.0"/>
             <Control type="ScriptButton" id="PowerBtn1" value="0.0"/>
             <Control type="ScriptSlider" id="PostMix2" value="0.0"/>
@@ -76,9 +80,13 @@
             <Control type="ScriptComboBox" id="OutputSelector1" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
+            <Control type="ScriptTable" id="PosIndicatorLaneA2" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneB2" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneC2" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneD2" value="0.0" data=""/>
             <Control type="ScriptComboBox" id="TransPort2" value="1.0"/>
             <Control type="ScriptComboBox" id="maxGrains2" value="2.0"/>
-            <Control type="ScriptSlider" id="pos1" value="0.1500000059604645"/>
+            <Control type="ScriptSlider" id="pos1" value="0.239999994635582"/>
             <Control type="ScriptSlider" id="MultPosB2" value="0.0"/>
             <Control type="ScriptSlider" id="MultPosC2" value="0.0"/>
             <Control type="ScriptSlider" id="MultPosD2" value="0.0"/>
@@ -96,7 +104,7 @@
             <Control type="ScriptSlider" id="Dense2" value="0.5099999904632568"/>
             <Control type="ScriptSlider" id="WindowTempo2" value="1.0"/>
             <Control type="ScriptSlider" id="Diff2" value="0.0"/>
-            <Control type="ScriptSlider" id="Respawn2" value="0.0"/>
+            <Control type="ScriptSlider" id="Respawn2" value="0.2941363751888275"/>
             <Control type="ScriptSlider" id="grainsize2" value="94.0"/>
             <Control type="ScriptSlider" id="graindiv2" value="1.0"/>
             <Control type="ScriptSlider" id="graintempo2" value="0.0"/>
@@ -123,6 +131,10 @@
             <Control type="ScriptComboBox" id="OutputSelector2" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform2" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
+            <Control type="ScriptTable" id="PosIndicatorLaneA3" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneB3" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneC3" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneD3" value="0.0" data=""/>
             <Control type="ScriptComboBox" id="TransPort3" value="1.0"/>
             <Control type="ScriptComboBox" id="maxGrains3" value="2.0"/>
             <Control type="ScriptSlider" id="pos2" value="0.0"/>
@@ -130,7 +142,7 @@
             <Control type="ScriptSlider" id="MultPosC3" value="0.0"/>
             <Control type="ScriptSlider" id="MultPosD3" value="0.0"/>
             <Control type="ScriptComboBox" id="StgSel3" value="1.0"/>
-            <Control type="ScriptSlider" id="det2" value="0.01999999955296516"/>
+            <Control type="ScriptSlider" id="det2" value="0.0"/>
             <Control type="ScriptSlider" id="Glide3" value="0.0"/>
             <Control type="ScriptSlider" id="pitch2" value="12.0"/>
             <Control type="ScriptButton" id="PtichSync3" value="0.0"/>
@@ -143,7 +155,7 @@
             <Control type="ScriptSlider" id="Dense3" value="0.9399999976158142"/>
             <Control type="ScriptSlider" id="WindowTempo3" value="0.8545312285423279"/>
             <Control type="ScriptSlider" id="Diff3" value="0.0"/>
-            <Control type="ScriptSlider" id="Respawn3" value="0.0"/>
+            <Control type="ScriptSlider" id="Respawn3" value="0.2941363751888275"/>
             <Control type="ScriptSlider" id="grainsize3" value="7.0"/>
             <Control type="ScriptSlider" id="graindiv3" value="1.0"/>
             <Control type="ScriptSlider" id="graintempo3" value="0.0"/>
@@ -170,6 +182,10 @@
             <Control type="ScriptComboBox" id="OutputSelector3" value="1.0"/>
             <Control type="ScriptAudioWaveform" id="AudioWaveform3" value="0.0" data=""
                      rangeStart="0" rangeEnd="0"/>
+            <Control type="ScriptTable" id="PosIndicatorLaneA4" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneB4" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneC4" value="0.0" data=""/>
+            <Control type="ScriptTable" id="PosIndicatorLaneD4" value="0.0" data=""/>
             <Control type="ScriptComboBox" id="TransPort4" value="1.0"/>
             <Control type="ScriptComboBox" id="maxGrains4" value="2.0"/>
             <Control type="ScriptSlider" id="pos3" value="0.1800000071525574"/>
@@ -190,11 +206,11 @@
             <Control type="ScriptSlider" id="Dense4" value="1.0"/>
             <Control type="ScriptSlider" id="WindowTempo4" value="0.0"/>
             <Control type="ScriptSlider" id="Diff4" value="1.0"/>
-            <Control type="ScriptSlider" id="Respawn4" value="0.0"/>
+            <Control type="ScriptSlider" id="Respawn4" value="0.2941363751888275"/>
             <Control type="ScriptSlider" id="grainsize4" value="45.0"/>
             <Control type="ScriptSlider" id="graindiv4" value="1.0"/>
             <Control type="ScriptSlider" id="graintempo4" value="0.0"/>
-            <Control type="ScriptSlider" id="GrainDir4" value="0.0"/>
+            <Control type="ScriptSlider" id="GrainDir4" value="1.0"/>
             <Control type="ScriptButton" id="GrainSync4" value="1.0"/>
             <Control type="ScriptButton" id="GrainXf4" value="0.0"/>
             <Control type="ScriptButton" id="PowerBtn4" value="0.0"/>
@@ -227,7 +243,7 @@
             <Control type="ScriptTable" id="ScriptTableA3" value="0.0" data=""/>
             <Control type="ScriptTable" id="ScriptTableA4" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot1" value="0.0"/>
-            <Control type="ScriptSlider" id="Div1" value="9.0"/>
+            <Control type="ScriptSlider" id="Div1" value="2.0"/>
             <Control type="ScriptSlider" id="tempo1" value="0.0"/>
             <Control type="ScriptButton" id="ModType1" value="0.0"/>
             <Control type="ScriptComboBox" id="TrigSel1" value="2.0"/>
@@ -243,7 +259,7 @@
             <Control type="ScriptTable" id="ScriptTableA7" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot2" value="0.0"/>
             <Control type="ScriptSlider" id="Div2" value="1.0"/>
-            <Control type="ScriptSlider" id="tempo2" value="8.0"/>
+            <Control type="ScriptSlider" id="tempo2" value="1.0"/>
             <Control type="ScriptButton" id="ModType2" value="0.0"/>
             <Control type="ScriptComboBox" id="TrigSel2" value="1.0"/>
             <Control type="ScriptSlider" id="Stage2" value="1.0"/>
@@ -675,7 +691,7 @@
             <Control type="ScriptButton" id="RandLock68" value="0.0"/>
             <Control type="ScriptComboBox" id="MidiNote" value="37.0"/>
             <Control type="ScriptSlider" id="FinVol1" value="0.0"/>
-            <Control type="ScriptSlider" id="FinVol2" value="0.0"/>
+            <Control type="ScriptSlider" id="FinVol2" value="-21.79999923706055"/>
             <Control type="ScriptSlider" id="FinVol3" value="-100.0"/>
             <Control type="ScriptSlider" id="FinVol4" value="0.0"/>
             <Control type="ScriptSlider" id="MasterVol" value="7.20000171661377"/>
@@ -683,7 +699,7 @@
             <Control type="ScriptSlider" id="MasterXf" value="0.0"/>
             <Control type="ScriptSlider" id="Smooth" value="0.0"/>
             <Control type="ScriptButton" id="ClosePreset" value="0.0"/>
-            <Control type="ScriptComboBox" id="VoiceNumber" value="1.0"/>
+            <Control type="ScriptComboBox" id="VoiceNumber" value="4.0"/>
             <Control type="ScriptComboBox" id="Poly" value="1.0"/>
           </Content>
           <UIData Source="oi grandadUIData"/>
@@ -816,8 +832,8 @@
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="LFO1" Bypassed="1" Intensity="1.0"
-                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="9.0" tempomod="0.4899999797344208"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO1" Bypassed="0" Intensity="1.0"
+                       Bipolar="0" Network="DspNetwork" tempo="0.0" multi="2.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="2.0" onshot="0.0"
                        morph="1.0" morphmod="5.551115123125783e-17" morphmodest="0.0"
                        Out="0.0">
@@ -837,8 +853,8 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="LFO2" Bypassed="1" Intensity="1.0"
-                       Bipolar="0" Network="DspNetwork" tempo="8.0" multi="1.0" tempomod="0.4899999797344208"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO2" Bypassed="0" Intensity="1.0"
+                       Bipolar="0" Network="DspNetwork" tempo="1.0" multi="1.0" tempomod="0.4899999797344208"
                        moddest="0.0" type="1.0" dir="0.0" keysync="1.0" onshot="0.0"
                        morph="1.0" morphmod="5.551115123125783e-17" morphmodest="0.0"
                        Out="1.0">
@@ -878,7 +894,7 @@
                 <SliderPack EmbeddedData="16....f+....9C...3O...f+."/>
               </SliderPacks>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="LFO4" Bypassed="1" Intensity="1.0"
+            <Processor Type="HardcodedTimevariantModulator" ID="LFO4" Bypassed="0" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="4.0" tempomod="0.5"
                        moddest="0.0" type="1.0" dir="0.0" keysync="0.0" onshot="0.0"
                        morph="1.0" morphmod="0.5" morphmodest="0.0" Out="3.0">
@@ -1129,7 +1145,13 @@
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
       <MatrixData>
-        <Connection TargetId="Voice_1_PositionA" Mode="1" SourceIndex="10" Intensity="1.0"
+        <Connection TargetId="Voice_2_PositionA" Mode="1" SourceIndex="9" Intensity="1.0"
+                    AuxIndex="-1.0" AuxIntensity="0.0" Inverted="0"/>
+        <Connection TargetId="Voice_3_PositionA" Mode="1" SourceIndex="10" Intensity="0.6337890624999998"
+                    AuxIndex="-1.0" AuxIntensity="0.0" Inverted="0"/>
+        <Connection TargetId="Voice_4_PositionA" Mode="1" SourceIndex="11" Intensity="1.0"
+                    AuxIndex="-1.0" AuxIntensity="0.0" Inverted="0"/>
+        <Connection TargetId="Voice_1_PositionA" Mode="1" SourceIndex="8" Intensity="1.0"
                     AuxIndex="-1.0" AuxIntensity="0.0" Inverted="0"/>
       </MatrixData>
     </Processor>
@@ -1208,16 +1230,15 @@
     <Processor Type="HardcodedSynth" ID="Granular1" Bypassed="0" Gain="1.0"
                Balance="0.0" VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0"
                Network="MatrixTest2" Scrub="0.0" GrainSize="433.048583984375"
-               GrainMix="0.0" Scatter="0.5199999809265137" WindowShape="0.6418281197547913"
-               PanSpread="0.0" PitchMode="1.0" PitchSpread="0.4900000095367432"
-               MaxGrains="32.0" ScrubMode="0.0" ScrubBlend="0.0" Direction="1.0"
-               ScrubB="0.5199999809265137" ScrubC="0.0" ScrubD="0.0" TransportMode="1.0"
-               ModOut1="0.0" FxMix="0.0" FxMode="4.0" FxMeta1="0.0" Resonance="1.0"
-               ModOut2="0.0" Pan="0.3600000143051147" Vol="1.0" GrainSync="0.0"
-               GrainDiv="32.0" GrainTempo="2.0" PitchDivide="1.0" PitchTempo="5.0"
-               Respawn="0.9700000286102295" Diffusion="0.2941363751888275" PitchSync="0.0"
-               Glide="0.009999999776482582" PhaseScatterShape="1.0" GrainTravelShape="3.0"
-               BloomOn="0.25" BloomDiv="1.0" IndOut="0.0">
+               GrainMix="1.0" Scatter="0.0" WindowShape="0.03993750736117363"
+               PanSpread="0.0" PitchMode="1.0" PitchSpread="0.0" MaxGrains="4.0"
+               ScrubMode="0.0" ScrubBlend="0.0" Direction="1.0" ScrubB="0.5199999809265137"
+               ScrubC="0.0" ScrubD="0.0" TransportMode="1.0" ModOut1="0.0" FxMix="0.0"
+               FxMode="4.0" FxMeta1="0.0" Resonance="1.0" ModOut2="0.0" Pan="0.3600000143051147"
+               Vol="1.0" GrainSync="1.0" GrainDiv="1.0" GrainTempo="17.0" PitchDivide="1.0"
+               PitchTempo="5.0" Respawn="0.9700000286102295" Diffusion="0.0"
+               PitchSync="1.0" Glide="0.009999999776482582" PhaseScatterShape="1.0"
+               GrainTravelShape="1.0" BloomOn="0.0" BloomDiv="1.0" IndOut="0.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -1265,7 +1286,7 @@
         <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_1_Pitch" Bypassed="0" Monophonic="0.0"
-                       Retrigger="1.0" Bipolar="1" Intensity="1.0" CustomId="" Value="9.800000190734863"
+                       Retrigger="1.0" Bipolar="1" Intensity="1.0" CustomId="" Value="1.788139343261719e-7"
                        SmoothingTime="1.600000023841858">
               <ChildProcessors/>
               <ValueRange>
@@ -1278,8 +1299,8 @@
         <Processor Type="EffectChain" ID="FX" Bypassed="0">
           <ChildProcessors>
             <Processor Type="HardcodedMasterFX" ID="Final1" Bypassed="0" Network="sn_fin"
-                       ResoMix="0.9700000286102295" ResPitch="0.6100000143051147" ResLp="1.0"
-                       delMode="9.0" Meta="0.644906222820282">
+                       ResoMix="0.0" ResPitch="0.6100000143051147" ResLp="1.0" delMode="9.0"
+                       Meta="0.644906222820282">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="P1 Modulation" Bypassed="1" Intensity="1.0">
                   <ChildProcessors/>
@@ -1409,7 +1430,7 @@
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_1_GrainMs" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
-                       Value="500.0" SmoothingTime="50.0">
+                       Value="29.0" SmoothingTime="50.0">
               <ChildProcessors/>
               <ValueRange>
                 <InputRange min="1.0" max="500.0" Inverted="0" stepSize="0.0" TextConverter="Time"/>
@@ -1422,7 +1443,7 @@
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_1_PositionB" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
-                       Value="0.449999988079071" SmoothingTime="50.0">
+                       Value="0.0" SmoothingTime="50.0">
               <ChildProcessors/>
               <ValueRange>
                 <InputRange min="0.0" max="1.0" Inverted="0" stepSize="0.0" TextConverter="NormalizedPercentage"/>
@@ -1435,7 +1456,7 @@
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_1_PositionC" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
-                       Value="0.3899999856948853" SmoothingTime="50.0">
+                       Value="0.8799999952316284" SmoothingTime="50.0">
               <ChildProcessors/>
               <ValueRange>
                 <InputRange min="0.0" max="1.0" Inverted="0" stepSize="0.0" TextConverter="NormalizedPercentage"/>
@@ -1448,7 +1469,7 @@
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_1_PositionD" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
-                       Value="0.4399999976158142" SmoothingTime="50.0">
+                       Value="0.2899999916553497" SmoothingTime="50.0">
               <ChildProcessors/>
               <ValueRange>
                 <InputRange min="0.0" max="1.0" Inverted="0" stepSize="0.0" TextConverter="NormalizedPercentage"/>
@@ -1503,14 +1524,14 @@
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
       <SliderPacks>
-        <SliderPack EmbeddedData="32...........................fBWOBO.....rppp7C"/>
+        <SliderPack EmbeddedData="32..........................9iBWOBO..........."/>
       </SliderPacks>
       <AudioFiles>
-        <AudioFile EmbeddedData="{PROJECT_FOLDER}STBELL-130-02.wav" MinValue="0"
-                   MaxValue="325661"/>
+        <AudioFile EmbeddedData="/Users/rick/Music/ALL CD QUALITY FAMOUS BREAKS/Classic Break Pack/Helicopter/Blowfly_-_Sesame_Street_(1).wav"
+                   MinValue="0" MaxValue="171601"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="1" Gain="1.0"
+    <Processor Type="HardcodedSynth" ID="Granular2" Bypassed="0" Gain="1.0"
                Balance="0.0" VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0"
                Network="MatrixTest2" Scrub="0.05163043364882469" GrainSize="433.048583984375"
                GrainMix="0.5099999904632568" Scatter="0.0" WindowShape="1.0"
@@ -1611,8 +1632,8 @@
               </ChildProcessors>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
-            <Processor Type="SimpleGain" ID="Simple Gain2" Bypassed="0" Gain="0.0" Delay="0.0"
-                       Width="100.0" Balance="0.0" InvertPolarity="0.0">
+            <Processor Type="SimpleGain" ID="Simple Gain2" Bypassed="0" Gain="-21.80000114440918"
+                       Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
               <ChildProcessors>
                 <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                   <ChildProcessors>
@@ -1700,7 +1721,7 @@
           <ChildProcessors>
             <Processor Type="MatrixModulator" ID="Voice_2_PositionA" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
-                       Value="0.1500000059604645" SmoothingTime="0.0">
+                       Value="0.239999994635582" SmoothingTime="0.0">
               <ChildProcessors/>
               <ValueRange>
                 <InputRange min="0.0" max="1.0" Inverted="0" stepSize="0.0" TextConverter="NormalizedPercentage"/>
@@ -1813,18 +1834,18 @@
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="1" Gain="1.0"
+    <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="0" Gain="1.0"
                Balance="0.0" VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0"
                Network="MatrixTest2" Scrub="0.05163043364882469" GrainSize="433.048583984375"
                GrainMix="0.9399999976158142" Scatter="1.0" WindowShape="0.8545312285423279"
-               PanSpread="0.0" PitchMode="1.0" PitchSpread="0.01999999955296516"
-               MaxGrains="8.0" ScrubMode="0.0" ScrubBlend="0.0" Direction="1.0"
-               ScrubB="0.5199999809265137" ScrubC="0.0" ScrubD="0.0" TransportMode="1.0"
-               ModOut1="0.0" FxMix="0.0" FxMode="9.0" FxMeta1="0.0" Resonance="0.0"
-               ModOut2="2.0" Pan="0.0" Vol="1.0" GrainSync="0.0" GrainDiv="1.0"
-               GrainTempo="0.0" PitchDivide="0.0" PitchTempo="0.0" Respawn="0.0"
-               Diffusion="0.2941363751888275" PitchSync="0.0" Glide="0.0" PhaseScatterShape="1.0"
-               GrainTravelShape="1.0" BloomOn="0.0" BloomDiv="1.0" IndOut="2.0">
+               PanSpread="0.0" PitchMode="1.0" PitchSpread="0.0" MaxGrains="8.0"
+               ScrubMode="0.0" ScrubBlend="0.0" Direction="1.0" ScrubB="0.5199999809265137"
+               ScrubC="0.0" ScrubD="0.0" TransportMode="1.0" ModOut1="0.0" FxMix="0.0"
+               FxMode="9.0" FxMeta1="0.0" Resonance="0.0" ModOut2="2.0" Pan="0.0"
+               Vol="1.0" GrainSync="0.0" GrainDiv="1.0" GrainTempo="0.0" PitchDivide="0.0"
+               PitchTempo="0.0" Respawn="0.0" Diffusion="0.2941363751888275"
+               PitchSync="0.0" Glide="0.0" PhaseScatterShape="1.0" GrainTravelShape="1.0"
+               BloomOn="0.0" BloomDiv="1.0" IndOut="2.0">
       <ChildProcessors>
         <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
           <ChildProcessors>
@@ -2000,7 +2021,7 @@
         </Processor>
         <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
-            <Processor Type="MatrixModulator" ID="Voice_3_PositionA" Bypassed="1" Monophonic="0.0"
+            <Processor Type="MatrixModulator" ID="Voice_3_PositionA" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
                        Value="0.0" SmoothingTime="0.0">
               <ChildProcessors/>
@@ -2115,12 +2136,12 @@
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
-    <Processor Type="HardcodedSynth" ID="Granular4" Bypassed="1" Gain="1.0"
+    <Processor Type="HardcodedSynth" ID="Granular4" Bypassed="0" Gain="1.0"
                Balance="0.0" VoiceLimit="2.0" KillFadeTime="20.0" IconColour="0"
                Network="MatrixTest2" Scrub="0.05163043364882469" GrainSize="433.048583984375"
                GrainMix="1.0" Scatter="0.0" WindowShape="0.0" PanSpread="0.0"
                PitchMode="1.0" PitchSpread="0.0" MaxGrains="8.0" ScrubMode="0.0"
-               ScrubBlend="0.0" Direction="0.0" ScrubB="0.5199999809265137"
+               ScrubBlend="0.0" Direction="1.0" ScrubB="0.5199999809265137"
                ScrubC="0.0" ScrubD="0.0" TransportMode="1.0" ModOut1="0.0" FxMix="0.0"
                FxMode="1.0" FxMeta1="0.0" Resonance="0.0" ModOut2="3.0" Pan="0.0"
                Vol="0.0" GrainSync="1.0" GrainDiv="1.0" GrainTempo="0.0" PitchDivide="0.0"
@@ -2301,7 +2322,7 @@
         </Processor>
         <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
-            <Processor Type="MatrixModulator" ID="Voice_4_PositionA" Bypassed="1" Monophonic="0.0"
+            <Processor Type="MatrixModulator" ID="Voice_4_PositionA" Bypassed="0" Monophonic="0.0"
                        Retrigger="1.0" ModulationMode="0" Intensity="1.0" CustomId=""
                        Value="0.1800000071525574" SmoothingTime="0.0">
               <ChildProcessors/>
@@ -2415,91 +2436,6 @@
       <AudioFiles>
         <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
-    </Processor>
-    <Processor Type="ScriptSynth" ID="Scriptnode Synthesiser" Bypassed="1" Gain="0.25"
-               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
-               NumTables="4" NumSliderPacks="1" NumAudioFiles="1">
-      <ChildProcessors>
-        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
-          <ChildProcessors>
-            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope" Bypassed="0" Monophonic="0.0"
-                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
-              <ChildProcessors>
-                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
-                           Intensity="1.0">
-                  <ChildProcessors/>
-                </Processor>
-              </ChildProcessors>
-            </Processor>
-          </ChildProcessors>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="EffectChain" ID="FX" Bypassed="0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra1" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra2" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra3" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra4" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra5" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra6" Bypassed="0" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra7" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra8" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra9" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra10" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra11" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra12" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra13" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra14" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra15" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-        <Processor Type="ModulatorChain" ID="Extra16" Bypassed="1" Intensity="1.0">
-          <ChildProcessors/>
-        </Processor>
-      </ChildProcessors>
-      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-      <Content/>
-      <Networks>
-        <Network ID="MatrixTest2" AllowPolyphonic="1" Version="0.0.0" ModulationBlockSize=""
-                 AllowCompilation="1"/>
-      </Networks>
-      <UIData>
-        <ContentProperties DeviceType="Desktop"/>
-      </UIData>
     </Processor>
   </ChildProcessors>
   <RoutingMatrix NumSourceChannels="8" Channel0="0" Send0="-1" Channel1="1" Send1="-1"
