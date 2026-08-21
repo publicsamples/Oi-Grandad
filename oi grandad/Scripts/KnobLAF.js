@@ -11,14 +11,14 @@ inline function drawKnobModulationArc(g, obj, area, thickness)
 	modRange.setBounds(n);
 	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
 
-	g.setColour(obj.itemColour1);
+	g.setColour(0x55777575);
 	g.drawPath(modRange, area, thickness);
 
 	local valueArc = Content.createPath();
 	valueArc.setBounds(n);
 	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
 
-	g.setColour(obj.itemColour1);
+	g.setColour(0xFFBD4444);
 	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
 }
 
@@ -226,7 +226,7 @@ LAF_Button.registerFunction("drawToggleButton", function(g, obj)
 
 	 if (ButtonActive) {
 		var opacity = obj.over ? 1.0 - (obj.down * 0.2) : 0.8 - (obj.down * 0.2);
-		g.setGradientFill([Colours.withAlpha(obj.itemColour1, opacity), WidgetArea[STARTX], WidgetArea[STARTY], Colours.withAlpha(obj.itemColour2, opacity), WidgetArea[STARTX], WidgetArea[HEIGHT]]);
+		g.setGradientFill([Colours.withAlpha(obj.itemColour1, opacity), WidgetArea[STARTX], WidgetArea[STARTY], Colours.withAlpha(0xFFBD4444, opacity), WidgetArea[STARTX], WidgetArea[HEIGHT]]);
 	} else {
 	//	g.setColour(CONST_InactiveSurfaceColour);
 	}
@@ -238,7 +238,7 @@ LAF_Button.registerFunction("drawToggleButton", function(g, obj)
 	
 	// Choose the colour(s).
 	if (ButtonActive) {
-		if (obj.value) { var fillColour = obj.bgColour; } else { var fillColour = CONST_DisabledIndicatorColour; }
+		if (obj.value) { var fillColour = 0xFFBD4444; } else { var fillColour = CONST_DisabledIndicatorColour; }
 		g.setColour(Colours.withAlpha(fillColour, obj.over ? 1.0 : 0.7));
 	} else {
 		g.setColour(CONST_InactiveIndicatorColour);

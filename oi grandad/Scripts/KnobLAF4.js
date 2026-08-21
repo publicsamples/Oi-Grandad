@@ -18,7 +18,7 @@ inline function drawKnobModulationArc(g, obj, area, thickness)
 	valueArc.setBounds(n);
 	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
 
-	g.setColour(0xFB777575);
+	g.setColour(0xFFBD4444);
 	g.drawPath(valueArc, area, Math.max(1.75, thickness - 0.5));
 }
 
@@ -188,5 +188,14 @@ const var Respawn =[];
 for (i = 0; i < 4; i++)
 {
     Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+}
+
+
+const var ExtTrig =[];
+
+for (i = 0; i < 12; i++)
+{
+    ExtTrig[i] = Content.getComponent("ExtTrig"+(i+1)).setLocalLookAndFeel(KnobLaf4);
 
 }

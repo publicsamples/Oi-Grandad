@@ -18,7 +18,7 @@ inline function drawKnobModulationArc(g, obj, area, thickness)
 	valueArc.setBounds(n);
 	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
 
-	g.setColour(0xFB777575);
+	g.setColour(0xFFBD4444);
 	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
 }
 

@@ -99,8 +99,6 @@ using peak_t = wrap::mod<peak_mod<NV>,
 template <int NV>
 using no_midi_t_ = container::chain<parameter::empty, 
                                     wrap::fix<1, branch2_t<NV>>, 
-                                    math::mod2sig<NV>, 
-                                    math::sig2mod<NV>, 
                                     branch1_t<NV>, 
                                     peak_t<NV>, 
                                     wrap::no_process<math::clear<NV>>, 
@@ -108,6 +106,14 @@ using no_midi_t_ = container::chain<parameter::empty,
 
 template <int NV>
 using no_midi_t = wrap::no_midi<no_midi_t_<NV>>;
+
+template <int NV>
+using fix8_block_t_ = container::chain<parameter::empty, 
+                                       wrap::fix<1, no_midi_t<NV>>, 
+                                       math::add<NV>>;
+
+template <int NV>
+using fix8_block_t = wrap::fix_block<8, fix8_block_t_<NV>>;
 
 namespace OutMods_t_parameters
 {
@@ -158,8 +164,7 @@ using OutMods_t_plist = parameter::list<Input<NV>,
 
 template <int NV>
 using OutMods_t_ = container::chain<OutMods_t_parameters::OutMods_t_plist<NV>, 
-                                    wrap::fix<1, no_midi_t<NV>>, 
-                                    math::add<NV>>;
+                                    wrap::fix<1, fix8_block_t<NV>>>;
 
 // =================================| Root node initialiser class |=================================
 
@@ -179,16 +184,16 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		SNEX_METADATA_ENCODED_PARAMETERS(110)
 		{
 			0x005C, 0x0000, 0x0000, 0x6E49, 0x7570, 0x0074, 0x0000, 0x8000, 
-            0x003F, 0x8000, 0x0040, 0x4000, 0x0040, 0x8000, 0x003F, 0x8000, 
+            0x003F, 0x8000, 0x0040, 0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 
             0x5C3F, 0x0100, 0x0000, 0x4F00, 0x7475, 0x7570, 0x0074, 0x0000, 
             0x0000, 0x0000, 0x4000, 0x0040, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x5C3F, 0x0202, 0x0000, 0x4100, 0x0000, 0x0000, 0x0000, 
-            0xC19A, 0x459B, 0x0000, 0x0000, 0x6A72, 0x3E4A, 0xCCCD, 0x3DCC, 
+            0xC19A, 0x459B, 0x0000, 0x4040, 0x6A72, 0x3E4A, 0xCCCD, 0x3DCC, 
             0x025C, 0x0003, 0x0000, 0x0044, 0x0000, 0x0000, 0x0000, 0x9C40, 
-            0x3345, 0x8B33, 0x7242, 0x4A6A, 0xCD3E, 0xCCCC, 0x5C3D, 0x0400, 
+            0x0045, 0xAB80, 0x7243, 0x4A6A, 0xCD3E, 0xCCCC, 0x5C3D, 0x0400, 
             0x0000, 0x5300, 0x0000, 0x0000, 0x0000, 0x0000, 0x3F80, 0x0000, 
             0x0000, 0x0000, 0x3F80, 0x0000, 0x0000, 0x025C, 0x0005, 0x0000, 
-            0x0052, 0x0000, 0x0000, 0x0000, 0x9C40, 0x0045, 0x2000, 0x7241, 
+            0x0052, 0x0000, 0x0000, 0x0000, 0x9C40, 0x0045, 0x0000, 0x7200, 
             0x4A6A, 0xCD3E, 0xCCCC, 0x5C3D, 0x0600, 0x0000, 0x5400, 0x6972, 
             0x5067, 0x6165, 0x006B, 0x0000, 0x0000, 0x0000, 0x8000, 0x003F, 
             0x8000, 0x003F, 0x8000, 0x003F, 0x8000, 0x003F
@@ -203,32 +208,31 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 	{
 		// Node References -------------------------------------------------------------------------
 		
-		auto& no_midi = this->getT(0);                                // OutMods_impl::no_midi_t<NV>
-		auto& branch2 = this->getT(0).getT(0);                        // OutMods_impl::branch2_t<NV>
-		auto& chain7 = this->getT(0).getT(0).getT(0);                 // OutMods_impl::chain7_t<NV>
-		auto& global_cable = this->getT(0).getT(0).getT(0).getT(0);   // OutMods_impl::global_cable_t<NV>
-		auto& add = this->getT(0).getT(0).getT(0).getT(1);            // math::add<NV>
-		auto& chain10 = this->getT(0).getT(0).getT(1);                // OutMods_impl::chain10_t<NV>
-		auto& global_cable10 = this->getT(0).getT(0).getT(1).getT(0); // OutMods_impl::global_cable10_t<NV>
-		auto& add7 = this->getT(0).getT(0).getT(1).getT(1);           // math::add<NV>
-		auto& chain9 = this->getT(0).getT(0).getT(2);                 // OutMods_impl::chain9_t<NV>
-		auto& global_cable9 = this->getT(0).getT(0).getT(2).getT(0);  // OutMods_impl::global_cable9_t<NV>
-		auto& add6 = this->getT(0).getT(0).getT(2).getT(1);           // math::add<NV>
-		auto& chain8 = this->getT(0).getT(0).getT(3);                 // OutMods_impl::chain8_t<NV>
-		auto& global_cable8 = this->getT(0).getT(0).getT(3).getT(0);  // OutMods_impl::global_cable8_t<NV>
-		auto& add5 = this->getT(0).getT(0).getT(3).getT(1);           // math::add<NV>
-		auto& mod2sig = this->getT(0).getT(1);                        // math::mod2sig<NV>
-		auto& sig2mod = this->getT(0).getT(2);                        // math::sig2mod<NV>
-		auto& branch1 = this->getT(0).getT(3);                        // OutMods_impl::branch1_t<NV>
-		auto& chain6 = this->getT(0).getT(3).getT(0);                 // OutMods_impl::chain6_t<NV>
-		auto& pi = this->getT(0).getT(3).getT(0).getT(0);             // math::pi<NV>
-		auto& chain11 = this->getT(0).getT(3).getT(1);                // OutMods_impl::chain11_t<NV>
-		auto& pi1 = this->getT(0).getT(3).getT(1).getT(0);            // math::pi<NV>
-		auto& rect = this->getT(0).getT(3).getT(1).getT(1);           // math::rect<NV>
-		auto& peak = this->getT(0).getT(4);                           // OutMods_impl::peak_t<NV>
-		auto& clear = this->getT(0).getT(5);                          // wrap::no_process<math::clear<NV>>
-		auto& ahdsr = this->getT(0).getT(6);                          // OutMods_impl::ahdsr_t<NV>
-		auto& add4 = this->getT(1);                                   // math::add<NV>
+		auto& fix8_block = this->getT(0);                                     // OutMods_impl::fix8_block_t<NV>
+		auto& no_midi = this->getT(0).getT(0);                                // OutMods_impl::no_midi_t<NV>
+		auto& branch2 = this->getT(0).getT(0).getT(0);                        // OutMods_impl::branch2_t<NV>
+		auto& chain7 = this->getT(0).getT(0).getT(0).getT(0);                 // OutMods_impl::chain7_t<NV>
+		auto& global_cable = this->getT(0).getT(0).getT(0).getT(0).getT(0);   // OutMods_impl::global_cable_t<NV>
+		auto& add = this->getT(0).getT(0).getT(0).getT(0).getT(1);            // math::add<NV>
+		auto& chain10 = this->getT(0).getT(0).getT(0).getT(1);                // OutMods_impl::chain10_t<NV>
+		auto& global_cable10 = this->getT(0).getT(0).getT(0).getT(1).getT(0); // OutMods_impl::global_cable10_t<NV>
+		auto& add7 = this->getT(0).getT(0).getT(0).getT(1).getT(1);           // math::add<NV>
+		auto& chain9 = this->getT(0).getT(0).getT(0).getT(2);                 // OutMods_impl::chain9_t<NV>
+		auto& global_cable9 = this->getT(0).getT(0).getT(0).getT(2).getT(0);  // OutMods_impl::global_cable9_t<NV>
+		auto& add6 = this->getT(0).getT(0).getT(0).getT(2).getT(1);           // math::add<NV>
+		auto& chain8 = this->getT(0).getT(0).getT(0).getT(3);                 // OutMods_impl::chain8_t<NV>
+		auto& global_cable8 = this->getT(0).getT(0).getT(0).getT(3).getT(0);  // OutMods_impl::global_cable8_t<NV>
+		auto& add5 = this->getT(0).getT(0).getT(0).getT(3).getT(1);           // math::add<NV>
+		auto& branch1 = this->getT(0).getT(0).getT(1);                        // OutMods_impl::branch1_t<NV>
+		auto& chain6 = this->getT(0).getT(0).getT(1).getT(0);                 // OutMods_impl::chain6_t<NV>
+		auto& pi = this->getT(0).getT(0).getT(1).getT(0).getT(0);             // math::pi<NV>
+		auto& chain11 = this->getT(0).getT(0).getT(1).getT(1);                // OutMods_impl::chain11_t<NV>
+		auto& pi1 = this->getT(0).getT(0).getT(1).getT(1).getT(0);            // math::pi<NV>
+		auto& rect = this->getT(0).getT(0).getT(1).getT(1).getT(1);           // math::rect<NV>
+		auto& peak = this->getT(0).getT(0).getT(2);                           // OutMods_impl::peak_t<NV>
+		auto& clear = this->getT(0).getT(0).getT(3);                          // wrap::no_process<math::clear<NV>>
+		auto& ahdsr = this->getT(0).getT(0).getT(4);                          // OutMods_impl::ahdsr_t<NV>
+		auto& add4 = this->getT(0).getT(1);                                   // math::add<NV>
 		
 		// Parameter Connections -------------------------------------------------------------------
 		
@@ -274,10 +278,6 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		
 		; // add5::Value is automated
 		
-		mod2sig.setParameterT(0, 0.); // math::mod2sig::Value
-		
-		sig2mod.setParameterT(0, 0.); // math::sig2mod::Value
-		
 		; // branch1::Index is automated
 		
 		pi.setParameterT(0, 2.); // math::pi::Value
@@ -300,12 +300,12 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 		
 		; // add4::Value is automated
 		
-		this->setParameterT(0, 3.);
+		this->setParameterT(0, 1.);
 		this->setParameterT(1, 0.);
-		this->setParameterT(2, 0.);
-		this->setParameterT(3, 69.6);
+		this->setParameterT(2, 3);
+		this->setParameterT(3, 343.);
 		this->setParameterT(4, 0.);
-		this->setParameterT(5, 10.);
+		this->setParameterT(5, 0.);
 		this->setParameterT(6, 1.);
 		this->setExternalData({}, -1);
 	}
@@ -328,18 +328,18 @@ template <int NV> struct instance: public OutMods_impl::OutMods_t_<NV>
 	{
 		// Runtime target Connections --------------------------------------------------------------
 		
-		this->getT(0).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable_t<NV>
-		this->getT(0).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable10_t<NV>
-		this->getT(0).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable9_t<NV>
-		this->getT(0).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable8_t<NV>
+		this->getT(0).getT(0).getT(0).getT(0).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable_t<NV>
+		this->getT(0).getT(0).getT(0).getT(1).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable10_t<NV>
+		this->getT(0).getT(0).getT(0).getT(2).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable9_t<NV>
+		this->getT(0).getT(0).getT(0).getT(3).getT(0).connectToRuntimeTarget(addConnection, c); // OutMods_impl::global_cable8_t<NV>
 	}
 	
 	void setExternalData(const ExternalData& b, int index)
 	{
 		// External Data Connections ---------------------------------------------------------------
 		
-		this->getT(0).getT(4).setExternalData(b, index); // OutMods_impl::peak_t<NV>
-		this->getT(0).getT(6).setExternalData(b, index); // OutMods_impl::ahdsr_t<NV>
+		this->getT(0).getT(0).getT(2).setExternalData(b, index); // OutMods_impl::peak_t<NV>
+		this->getT(0).getT(0).getT(4).setExternalData(b, index); // OutMods_impl::ahdsr_t<NV>
 	}
 };
 }

@@ -428,13 +428,14 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular1"
                      parameterId="BloomOn" showValuePopup="Below" bgColour="11306949"
-                     isPluginParameter="1" pluginParameterName="Voice 1: Density"
-                     defaultValue="1.0" matrixTargetId="Voice_1_Diffusion" textColour="4278190080"
-                     itemColour2="4279308561" itemColour="4278190080"/>
+                     isPluginParameter="1" pluginParameterName="Voice 1: Bloom" defaultValue="1.0"
+                     matrixTargetId="Voice_1_Bloom" textColour="4278190080" itemColour2="4279308561"
+                     itemColour="4278190080"/>
           <Component type="ScriptSlider" id="Respawn1" x="339" y="-2" width="40" height="40"
-                     parentComponent="VoiceGrain1" matrixTargetId="Voice_1_Respawn"
+                     parentComponent="VoiceGrain1" matrixTargetId="Voice_1_Diffusion"
                      processorId="Granular1" parameterId="Diffusion" itemColour2="4279308561"
-                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
+                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"
+                     pluginParameterName="Voice 1: Diffusion" isPluginParameter="1"/>
           <Component type="ScriptSlider" id="grainsize1" x="12" y="15" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Voice_1_GrainMs"
@@ -442,7 +443,7 @@
                      showValuePopup="Below" parameterId="Value" middlePosition="100.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
                      max="500.0" mode="Time" stepSize="1.0" defaultValue="400.0" matrixTargetId="Voice_1_GrainMs"
-                     min="1.0" visible="0"/>
+                     min="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel9" x="-4" y="72" textColour="4280884766"
                      width="90" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN SIZE"/>
@@ -457,7 +458,8 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_1_GrainDivide">
+                     bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_1_GrainDivide"
+                     visible="0">
             <Component type="ScriptLabel" id="ParamLabel13" x="-27" y="73" textColour="4280884766"
                        width="20" height="10" fontName="Montserrat" editable="0" parentComponent="graindiv1"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -473,7 +475,8 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_1_GrainTempo"/>
+                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_1_GrainTempo"
+                     visible="0"/>
           <Component type="ScriptSlider" id="GrainDir1" x="82" y="6" width="80" height="70"
                      processorId="Granular1" parameterId="Direction" parentComponent="VoiceGrain1"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
@@ -990,13 +993,14 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular2"
                      parameterId="BloomOn" showValuePopup="Below" bgColour="11306949"
-                     isPluginParameter="1" pluginParameterName="Voice 2: Density"
-                     defaultValue="1.0" matrixTargetId="Voice_2_Diffusion" textColour="4293781205"
-                     itemColour2="4279308561" itemColour="4293781205"/>
+                     isPluginParameter="1" pluginParameterName="Voice 2: Bloom" defaultValue="1.0"
+                     matrixTargetId="Voice_2_Bloom" textColour="4293781205" itemColour2="4279308561"
+                     itemColour="4293781205"/>
           <Component type="ScriptSlider" id="Respawn2" x="339" y="-2" width="40" height="40"
-                     parentComponent="VoiceGrain2" matrixTargetId="Voice_2_Respawn"
+                     parentComponent="VoiceGrain2" matrixTargetId="Voice_2_Diffusion"
                      processorId="Granular2" parameterId="Diffusion" itemColour2="4279308561"
-                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
+                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"
+                     pluginParameterName="Voice 2: Diffusion" isPluginParameter="1"/>
           <Component type="ScriptSlider" id="grainsize2" x="12" y="15" parentComponent="VoiceGrain2"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Voice_2_GrainMs"
@@ -1122,12 +1126,6 @@
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V2"
                  borderRadius="7.0">
-        <Component type="ScriptLabel" id="DenseLabel3007" x="302" y="262" textColour="4280884766"
-                   width="50" height="10" fontName="Montserrat" editable="0" parentComponent="Grain3"
-                   fontStyle="Regular" fontSize="15.0" text="BLOOM" alignment="left"/>
-        <Component type="ScriptLabel" id="DenseLabel3008" x="350" y="262" textColour="4280884766"
-                   width="50" height="10" fontName="Montserrat" editable="0" parentComponent="Grain3"
-                   fontStyle="Regular" fontSize="15.0" text="DIFF" alignment="left"/>
         <Component type="ScriptPanel" id="PostFx3" x="574" y="7" width="90" height="215"
                    itemColour="3001935573" itemColour2="3001935573" parentComponent="Grain3"
                    textColour="587202560">
@@ -1479,6 +1477,12 @@
         <Component type="ScriptPanel" id="VoiceGrain3" x="9" y="226" width="390"
                    height="95" parentComponent="Grain3" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
+          <Component type="ScriptLabel" id="DenseLabel3007" x="293" y="36" textColour="4280884766"
+                     width="50" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain3"
+                     fontStyle="Regular" fontSize="15.0" text="BLOOM" alignment="left"/>
+          <Component type="ScriptLabel" id="DenseLabel3008" x="341" y="36" textColour="4280884766"
+                     width="50" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain3"
+                     fontStyle="Regular" fontSize="15.0" text="DIFF" alignment="left"/>
           <Component type="ScriptComboBox" id="SpreadDirMode3" x="171" y="2" max="4"
                      width="50" height="15" processorId="Granular3" parameterId="PhaseScatterShape"
                      items="Random&#10;Spread&#10;Mirror&#10;Cluster" bgColour="4278190080"
@@ -1536,13 +1540,14 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular3"
                      parameterId="BloomOn" showValuePopup="Below" bgColour="11306949"
-                     isPluginParameter="1" pluginParameterName="Voice 3: Density"
-                     defaultValue="1.0" matrixTargetId="Voice_3_Diffusion" textColour="4293781205"
-                     itemColour2="4279308561" itemColour="4293781205"/>
+                     isPluginParameter="1" pluginParameterName="Voice 3: Bloom" defaultValue="1.0"
+                     matrixTargetId="Voice_3_Bloom" textColour="4293781205" itemColour2="4279308561"
+                     itemColour="4293781205"/>
           <Component type="ScriptSlider" id="Respawn3" x="339" y="-2" width="40" height="40"
-                     parentComponent="VoiceGrain3" matrixTargetId="Voice_3_Respawn"
+                     parentComponent="VoiceGrain3" matrixTargetId="Voice_3_Diffusion"
                      processorId="Granular3" parameterId="Diffusion" itemColour2="4279308561"
-                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
+                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"
+                     pluginParameterName="Voice 3: Diffusion" isPluginParameter="1"/>
           <Component type="ScriptSlider" id="grainsize3" x="12" y="15" parentComponent="VoiceGrain3"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Voice_3_GrainMs"
@@ -2077,13 +2082,14 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="40" height="40" processorId="Granular4"
                      parameterId="BloomOn" showValuePopup="Below" bgColour="11306949"
-                     isPluginParameter="1" pluginParameterName="Voice 4: Density"
-                     defaultValue="1.0" matrixTargetId="Voice_4_Diffusion" textColour="4293781205"
-                     itemColour2="4279308561" itemColour="4293781205"/>
+                     isPluginParameter="1" pluginParameterName="Voice 4: Bloom" defaultValue="1.0"
+                     matrixTargetId="Voice_4_Bloom" textColour="4293781205" itemColour2="4279308561"
+                     itemColour="4293781205"/>
           <Component type="ScriptSlider" id="Respawn4" x="339" y="-2" width="40" height="40"
-                     parentComponent="VoiceGrain4" matrixTargetId="Voice_4_Respawn"
+                     parentComponent="VoiceGrain4" matrixTargetId="Voice_4_Diffusion"
                      processorId="Granular4" parameterId="Diffusion" itemColour2="4279308561"
-                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"/>
+                     bgColour="11306949" itemColour="4293781205" textColour="4293781205"
+                     pluginParameterName="Voice 4: Diffusion" isPluginParameter="1"/>
           <Component type="ScriptLabel" id="DenseLabel3005" x="293" y="34" textColour="4280884766"
                      width="50" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
                      fontStyle="Regular" fontSize="15.0" text="BLOOM" alignment="left"/>
@@ -2529,15 +2535,15 @@
     <Component type="ScriptButton" id="VOICE1" x="129" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 2" saveInPreset="0"
                bgColour="4294951129" textColour="4278650374" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE2" x="246" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 3" saveInPreset="0"
                bgColour="4290759931" textColour="4278255873" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE3" x="364" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="VOICE 4" saveInPreset="0"
                bgColour="4293838681" textColour="4278190080" itemColour="3355443"
-               itemColour2="1118481" enableMidiLearn="0"/>
+               itemColour2="1118481" enableMidiLearn="0" visible="0"/>
     <Component type="ScriptButton" id="VOICE4" x="481" y="8" width="110" height="30"
                parentComponent="Og" radioGroup="307.0" text="MASTER" saveInPreset="0"
                bgColour="4294351196" itemColour="3355443" textColour="4278255873"
@@ -2607,9 +2613,6 @@
           <Component type="ScriptLabel" id="ScriptLabel17" x="54" y="122" width="50"
                      height="15" text="div" textColour="4278190080" parentComponent="seq1"
                      fontName="Montserrat" editable="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel19" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq1"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel21" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq1"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -2633,11 +2636,15 @@
           <Component type="ScriptButton" id="ModType1" x="60" y="4" width="20" height="20"
                      parentComponent="seq1" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel1" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO1" parameterId="keysync" parentComponent="seq1"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel1" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq1" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig1" x="195" y="5" width="20" height="20"
+                     filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
+                     parentComponent="seq1" processorId="LFO1" parameterId="ExtTrig"
+                     stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO1_ExtTrig"
+                     itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage1" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq1" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -2661,7 +2668,7 @@
             <Component type="ScriptLabel" id="ScriptLabel130" x="34" y="-3" width="20"
                        height="20" parentComponent="TableVis1" text="3" textColour="4294963183"
                        editable="0" itemColour2="4294963183"/>
-            <Component type="ScriptLabel" id="ScriptLabel131" x="-8" y="-10" width="15"
+            <Component type="ScriptLabel" id="ScriptLabel131" x="53" y="0" width="15"
                        height="15" parentComponent="TableVis1" text="4" textColour="4294963183"
                        editable="0" itemColour2="4294963183"/>
           </Component>
@@ -2722,7 +2729,7 @@
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel28" x="155" y="4" width="70"
                      height="20" text="trigger mode" textColour="4278190080" parentComponent="seq2"
-                     fontName="Montserrat" editable="0"/>
+                     fontName="Montserrat" editable="0" visible="0"/>
           <Component type="ScriptLabel" id="ScriptLabel30" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq2"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -2746,11 +2753,10 @@
           <Component type="ScriptButton" id="ModType2" x="60" y="4" width="20" height="20"
                      parentComponent="seq2" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel2" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO2" parameterId="keysync" parentComponent="seq2"
-                     itemColour="1589016349" bgColour="4278190080" itemColour2="3816794416"
-                     textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel2" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq2" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
           <Component type="ScriptSlider" id="Stage2" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq2" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -2775,21 +2781,25 @@
                        height="15" parentComponent="TableVis2" text="4" textColour="4294963183"
                        editable="0" itemColour2="4294963183"/>
           </Component>
+          <Component type="ScriptSlider" id="ExtTrig2" x="195" y="5" width="20" height="20"
+                     filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
+                     parentComponent="seq2" processorId="LFO2" parameterId="ExtTrig"
+                     stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO2_ExtTrig"
+                     itemColour2="4211081216"/>
         </Component>
         <Component type="ScriptPanel" id="seq3" x="7" y="302" width="230" height="140"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"
                    textColour="4278190080" text="*" parentComponent="MOD1">
           <Component type="ScriptPanel" id="Step3" x="13" y="30" width="215" height="60"
                      parentComponent="seq3" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215" visible="0">
+                     bgColour="16777215">
             <Component type="ScriptSliderPack" id="SliderPackA8" x="0" y="0" processorId="LFO3"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
-                       textColour="16048058" parentComponent="Step3" bgColour="4281811545"
-                       visible="0"/>
+                       textColour="16048058" parentComponent="Step3" bgColour="4281811545"/>
             <Component type="ScriptSliderPack" id="SliderPackA9" x="0" y="0" processorId="LFO3"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step3" SliderPackIndex="1"
-                       bgColour="4281811545"/>
+                       bgColour="4281811545" visible="0"/>
             <Component type="ScriptSliderPack" id="SliderPackA10" x="0" y="0" processorId="LFO3"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step3" SliderPackIndex="2"
@@ -2801,15 +2811,15 @@
           </Component>
           <Component type="ScriptPanel" id="Table3" x="13" y="30" width="215" height="60"
                      parentComponent="seq3" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215">
+                     bgColour="16777215" visible="0">
             <Component type="ScriptTable" id="ScriptTable3" x="0" y="0" width="210"
                        height="50" parentComponent="Table3" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
-                       customColours="1" visible="0"/>
+                       customColours="1"/>
             <Component type="ScriptTable" id="ScriptTableA8" x="0" y="0" width="210"
                        height="50" parentComponent="Table3" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
-                       tableIndex="1" customColours="1"/>
+                       tableIndex="1" customColours="1" visible="0"/>
             <Component type="ScriptTable" id="ScriptTableA9" x="0" y="0" width="210"
                        height="50" parentComponent="Table3" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
@@ -2831,9 +2841,6 @@
           <Component type="ScriptLabel" id="ScriptLabel36" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq3"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel37" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq3"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel39" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq3"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -2857,11 +2864,15 @@
           <Component type="ScriptButton" id="ModType3" x="60" y="4" width="20" height="20"
                      parentComponent="seq3" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel3" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO3" parameterId="keysync" parentComponent="seq3"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel3" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq3" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig3" x="195" y="5" width="20" height="20"
+                     filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
+                     parentComponent="seq3" processorId="LFO3" parameterId="ExtTrig"
+                     stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO3_ExtTrig"
+                     itemColour2="4211081216" visible="0"/>
           <Component type="ScriptSlider" id="Stage3" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq3" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -2950,9 +2961,6 @@
           <Component type="ScriptLabel" id="ScriptLabel45" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq4"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel46" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq4"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel48" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq4"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -2976,11 +2984,15 @@
           <Component type="ScriptButton" id="ModType4" x="60" y="4" width="20" height="20"
                      parentComponent="seq4" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel4" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO4" parameterId="keysync" parentComponent="seq4"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel4" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq4" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig4" x="195" y="5" width="20" height="20"
+                     filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
+                     parentComponent="seq4" processorId="LFO4" parameterId="ExtTrig"
+                     stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO4_ExtTrig"
+                     itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage4" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq4" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3076,9 +3088,6 @@
           <Component type="ScriptLabel" id="ScriptLabel54" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq5"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel55" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq5"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel57" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq5"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3102,11 +3111,15 @@
           <Component type="ScriptButton" id="ModType5" x="60" y="4" width="20" height="20"
                      parentComponent="seq5" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel5" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO5" parameterId="keysync" parentComponent="seq5"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel5" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq5" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig5" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq5" processorId="LFO5"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO5_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage5" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq5" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3195,9 +3208,6 @@
           <Component type="ScriptLabel" id="ScriptLabel63" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq6"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel64" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq6"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel66" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq6"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3221,11 +3231,15 @@
           <Component type="ScriptButton" id="ModType6" x="60" y="4" width="20" height="20"
                      parentComponent="seq6" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel6" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO6" parameterId="keysync" parentComponent="seq6"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel6" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq6" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig6" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq6" processorId="LFO6"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO6_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage6" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq6" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3314,9 +3328,6 @@
           <Component type="ScriptLabel" id="ScriptLabel72" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq7"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel73" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq7"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel75" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq7"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3340,11 +3351,15 @@
           <Component type="ScriptButton" id="ModType7" x="60" y="4" width="20" height="20"
                      parentComponent="seq7" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel7" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO7" parameterId="keysync" parentComponent="seq7"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel7" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq7" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig7" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq7" processorId="LFO7"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO7_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage7" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq7" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3433,9 +3448,6 @@
           <Component type="ScriptLabel" id="ScriptLabel81" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq8"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel82" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq8"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel84" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq8"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3459,11 +3471,15 @@
           <Component type="ScriptButton" id="ModType8" x="60" y="4" width="20" height="20"
                      parentComponent="seq8" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel8" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO8" parameterId="keysync" parentComponent="seq8"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel8" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq8" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig8" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq8" processorId="LFO8"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO8_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage8" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq8" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3557,9 +3573,6 @@
           <Component type="ScriptLabel" id="ScriptLabel91" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq9"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel92" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq9"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel94" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq9"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3583,11 +3596,15 @@
           <Component type="ScriptButton" id="ModType9" x="60" y="4" width="20" height="20"
                      parentComponent="seq9" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel9" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO9" parameterId="keysync" parentComponent="seq9"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel9" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq9" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig9" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq9" processorId="LFO9"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO9_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage9" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq9" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3676,9 +3693,6 @@
           <Component type="ScriptLabel" id="ScriptLabel106" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq10"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel107" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq10"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel109" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq10"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3702,11 +3716,15 @@
           <Component type="ScriptButton" id="ModType10" x="60" y="4" width="20" height="20"
                      parentComponent="seq10" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel10" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO10" parameterId="keysync" parentComponent="seq10"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel10" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq10" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig10" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq10" processorId="LFO10"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO10_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage10" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq10" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3796,9 +3814,6 @@
           <Component type="ScriptLabel" id="ScriptLabel116" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq11"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel117" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq11"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel119" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq11"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3822,11 +3837,15 @@
           <Component type="ScriptButton" id="ModType11" x="60" y="4" width="20" height="20"
                      parentComponent="seq11" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel11" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO11" parameterId="keysync" parentComponent="seq11"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel11" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq11" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig11" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq11" processorId="LFO11"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO11_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage11" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq11" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3915,9 +3934,6 @@
           <Component type="ScriptLabel" id="ScriptLabel127" x="91" y="139" width="60"
                      height="15" text="tempo mod" textColour="4278190080" parentComponent="seq12"
                      fontName="Montserrat" editable="0" visible="0"/>
-          <Component type="ScriptLabel" id="ScriptLabel172" x="155" y="4" width="70"
-                     height="20" text="trigger mode" textColour="4278190080" parentComponent="seq12"
-                     fontName="Montserrat" editable="0"/>
           <Component type="ScriptLabel" id="ScriptLabel174" x="35" y="4" width="30"
                      height="20" text="one" textColour="4278190080" parentComponent="seq12"
                      fontName="Montserrat" editable="0" alignment="left"/>
@@ -3941,11 +3957,15 @@
           <Component type="ScriptButton" id="ModType12" x="60" y="4" width="20" height="20"
                      parentComponent="seq12" itemColour="4294175719" itemColour2="4294175719"
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"/>
-          <Component type="ScriptComboBox" id="TrigSel12" x="115" y="4" width="40"
-                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;DAW&#10;"
-                     processorId="LFO12" parameterId="keysync" parentComponent="seq12"
-                     defaultValue="0.0" itemColour="1589016349" bgColour="4278190080"
-                     itemColour2="3816794416" textColour="4278190080" max="19"/>
+          <Component type="ScriptComboBox" id="TrigSel12" x="115" y="4" width="70"
+                     height="20" fontStyle="Regular" fontSize="6.0" items="Free&#10;Note&#10;DAW&#10;Trig&#10;"
+                     parentComponent="seq12" itemColour="1589016349" bgColour="4278190080"
+                     itemColour2="3816794416" textColour="4278190080" max="4"/>
+          <Component type="ScriptSlider" id="ExtTrig12" x="195" y="5" width="20" height="20"
+                     visible="0" filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0"
+                     scaleFactor="0.699999988079071" parentComponent="seq12" processorId="LFO12"
+                     parameterId="ExtTrig" stepSize="0.0" showValuePopup="Below" defaultValue="1.0"
+                     matrixTargetId="LFO12_ExtTrig" itemColour2="4211081216"/>
           <Component type="ScriptSlider" id="Stage12" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq12" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -4007,16 +4027,16 @@
                      processorId="Track1" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk1" x="16" y="81" width="40" height="40"
                      processorId="Track1" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq13" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq13" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV1_A"/>
+                     max="5000.0" matrixTargetId="ENV1_A"/>
           <Component type="ScriptSlider" id="EnvDec1" x="69" y="81" width="40" height="40"
                      processorId="Track1" parameterId="D" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq13" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq13" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV1_D"/>
+                     max="5000.0" matrixTargetId="ENV1_D"/>
           <Component type="ScriptSlider" id="EnvSus1" x="122" y="81" width="40" height="40"
                      processorId="Track1" parameterId="S" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq13" middlePosition="0.5" defaultValue="0.5"
@@ -4025,10 +4045,10 @@
                      matrixTargetId="ENV1_S"/>
           <Component type="ScriptSlider" id="EnvRel1" x="175" y="81" width="40" height="40"
                      processorId="Track1" parameterId="R" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq13" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq13" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV1_R"/>
+                     max="5000.0" matrixTargetId="ENV1_R"/>
           <Component type="ScriptLabel" id="ScriptLabel38" x="67" y="122" width="51"
                      height="15" text="decay" textColour="4278190080" parentComponent="seq13"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
@@ -4067,16 +4087,16 @@
                      processorId="Track2" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk2" x="16" y="81" width="40" height="40"
                      processorId="Track2" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq14" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq14" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV2_A"/>
+                     max="5000.0" matrixTargetId="ENV2_A"/>
           <Component type="ScriptSlider" id="EnvDec2" x="69" y="81" width="40" height="40"
                      processorId="Track2" parameterId="D" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq14" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq14" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV2_D"/>
+                     max="5000.0" matrixTargetId="ENV2_D"/>
           <Component type="ScriptSlider" id="EnvSus2" x="122" y="81" width="40" height="40"
                      processorId="Track2" parameterId="S" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq14" middlePosition="0.5" defaultValue="0.5"
@@ -4085,10 +4105,10 @@
                      matrixTargetId="ENV2_S"/>
           <Component type="ScriptSlider" id="EnvRel2" x="175" y="81" width="40" height="40"
                      processorId="Track2" parameterId="R" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq14" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq14" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV2_R"/>
+                     max="5000.0" matrixTargetId="ENV2_R"/>
           <Component type="ScriptLabel" id="ScriptLabel108" x="67" y="122" width="51"
                      height="15" text="decay" textColour="4278190080" parentComponent="seq14"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
@@ -4130,16 +4150,16 @@
                      processorId="Track3" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk3" x="16" y="81" width="40" height="40"
                      processorId="Track3" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq15" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq15" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV3_A"/>
+                     max="5000.0" matrixTargetId="ENV3_A"/>
           <Component type="ScriptSlider" id="EnvDec3" x="69" y="81" width="40" height="40"
                      processorId="Track3" parameterId="D" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq15" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq15" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV3_D"/>
+                     max="5000.0" matrixTargetId="ENV3_D"/>
           <Component type="ScriptSlider" id="EnvSus3" x="122" y="81" width="40" height="40"
                      processorId="Track3" parameterId="S" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq15" middlePosition="0.5" defaultValue="0.5"
@@ -4148,10 +4168,10 @@
                      matrixTargetId="ENV3_S"/>
           <Component type="ScriptSlider" id="EnvRel3" x="175" y="81" width="40" height="40"
                      processorId="Track3" parameterId="R" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq15" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq15" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV3_R"/>
+                     max="5000.0" matrixTargetId="ENV3_R"/>
           <Component type="ScriptLabel" id="ScriptLabel275" x="67" y="122" width="51"
                      height="15" text="decay" textColour="4278190080" parentComponent="seq15"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
@@ -4193,16 +4213,16 @@
                      processorId="Track4" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk4" x="16" y="81" width="40" height="40"
                      processorId="Track4" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq16" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq16" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV4_A"/>
+                     max="5000.0" matrixTargetId="ENV4_A"/>
           <Component type="ScriptSlider" id="EnvDec4" x="69" y="81" width="40" height="40"
                      processorId="Track4" parameterId="D" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq16" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq16" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV4_D"/>
+                     max="5000.0" matrixTargetId="ENV4_D"/>
           <Component type="ScriptSlider" id="EnvSus4" x="122" y="81" width="40" height="40"
                      processorId="Track4" parameterId="S" numStrips="200.0" scaleFactor="0.550000011920929"
                      parentComponent="seq16" middlePosition="0.5" defaultValue="0.5"
@@ -4211,10 +4231,10 @@
                      matrixTargetId="ENV4_S"/>
           <Component type="ScriptSlider" id="EnvRel4" x="175" y="81" width="40" height="40"
                      processorId="Track4" parameterId="R" numStrips="200.0" scaleFactor="0.550000011920929"
-                     parentComponent="seq16" middlePosition="300.0" defaultValue="0.5"
+                     parentComponent="seq16" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
-                     max="10000.0" matrixTargetId="ENV4_R"/>
+                     max="5000.0" matrixTargetId="ENV4_R"/>
           <Component type="ScriptLabel" id="ScriptLabel281" x="67" y="122" width="51"
                      height="15" text="decay" textColour="4278190080" parentComponent="seq16"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
@@ -4514,6 +4534,9 @@
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
                  text="REMOVE" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix" visible="0"/>
+      <Component type="ScriptPanel" id="MatrixTargetLock" x="104" y="30" width="105"
+                 height="120" parentComponent="ModulationMatrix" bgColour="0"
+                 itemColour="0" itemColour2="0" textColour="0"/>
     </Component>
     <Component type="ScriptPanel" id="RandomControls1" x="23" y="396" width="660"
                height="170" itemColour="4293781205" itemColour2="4293781205"
@@ -5725,52 +5748,52 @@
                matrixTargetId="Master_Volume" parentComponent="Master"/>
     <Component type="ScriptSlider" id="ScrubDisplayA1" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionA_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayB1" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionB_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayC1" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionC_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayD1" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_1_PositionD_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayA2" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionA_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayB2" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionB_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayC2" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionC_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayD2" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_2_PositionD_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayA3" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionA_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayB3" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionB_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayC3" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionC_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayD3" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_3_PositionD_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayA4" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionA_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayB4" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionB_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayC4" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionC_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptSlider" id="ScrubDisplayD4" x="0" y="0" width="1"
                height="1" parentComponent="Master" style="Horizontal" middlePosition="0.5"
-               saveInPreset="0" visible="0" matrixTargetId="Voice_4_PositionD_Display"/>
+               saveInPreset="0" visible="0"/>
     <Component type="ScriptLabel" id="Label22" x="114" y="80" width="20" height="20"
                fontName="Montserrat" fontSize="15.0" textColour="4294109134"
                text="1" editable="0" itemColour2="4092454613" itemColour="15848371"

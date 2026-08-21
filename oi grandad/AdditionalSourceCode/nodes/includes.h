@@ -17,6 +17,7 @@
 #include "DspNetwork.h"
 #include "Dyn_networkdata.h"
 #include "ENV.h"
+#include "indicators_networkdata.h"
 #include "MacroMod.h"
 #include "MatrixTest2.h"
 #include "modcont_networkdata.h"

@@ -241,6 +241,9 @@ const var VOICE3 = Content.getComponent("VOICE3");
 
 inline function onVoiceNumberControl(component, value)
 {
+	VOICE0.setValue(1);
+	VOICE0.changed();
+
 	if(value == 1)
 	{
 
@@ -812,6 +815,19 @@ select::before:hover
 	background-color: black;
 }
 
+/** Targets are displayed by the native matrix, but changed by removing / adding routes. */
+#targetid
+{
+	background: transparent;
+	background-color: transparent;
+	cursor: default;
+}
+
+#targetid::before
+{
+	display: none;
+}
+
 .search
 {
 	background: #555;
@@ -901,6 +917,18 @@ ModulationMatrix.setPaintRoutine(function(g)
 });
 
 ModulationMatrixTile.setLocalLookAndFeel(ModulationMatrixLaf);
+
+const var MatrixTargetLock = Content.getComponent("MatrixTargetLock");
+
+// This transparent panel keeps the native target text visible while preventing
+// the matrix target combobox from adding an unintended second route.
+if(isDefined(MatrixTargetLock))
+{
+	MatrixTargetLock.setMouseCallback(function(event)
+	{
+	});
+}
+
 function onNoteOn()
 {
 // the index is zero based like everything else in good

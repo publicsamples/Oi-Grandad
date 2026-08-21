@@ -186,6 +186,9 @@ inline function shouldExcludeMatrixTarget(component)
 	if(componentId.indexOf("SampleMin") == 0 || componentId.indexOf("SampleMax") == 0)
 		return true;
 
+	if(componentId.indexOf("ScrubDisplay") == 0)
+		return true;
+
 	if(componentId.indexOf("Matrix") != -1)
 		return true;
 
@@ -813,7 +816,7 @@ matrixHandler.setConnectionCallback(function(source, target, wasAdded)
 	refreshMatrixSourceEnabledState(source);
 	refreshMatrixTargetEnabledState(target);
 
-	if(wasAdded && isDefined(matrixHoldButton))
+	if(isDefined(matrixHoldButton))
 	{
 		matrixHoldButton.setValue(0);
 		matrixHoldButton.changed();

@@ -715,6 +715,110 @@ inline function onStage12Control(component, value)
 
 Content.getComponent("Stage12").setControlCallback(onStage12Control);
 
+// External triggers are relevant only when the LFO uses its trigger branch.
+const var TrigSel1 = Content.getComponent("TrigSel1");
+const var ExtTrig1 = Content.getComponent("ExtTrig1");
+const var TrigSel2 = Content.getComponent("TrigSel2");
+const var ExtTrig2 = Content.getComponent("ExtTrig2");
+const var TrigSel3 = Content.getComponent("TrigSel3");
+const var ExtTrig3 = Content.getComponent("ExtTrig3");
+const var TrigSel4 = Content.getComponent("TrigSel4");
+const var ExtTrig4 = Content.getComponent("ExtTrig4");
+const var TrigSel5 = Content.getComponent("TrigSel5");
+const var ExtTrig5 = Content.getComponent("ExtTrig5");
+const var TrigSel6 = Content.getComponent("TrigSel6");
+const var ExtTrig6 = Content.getComponent("ExtTrig6");
+const var TrigSel7 = Content.getComponent("TrigSel7");
+const var ExtTrig7 = Content.getComponent("ExtTrig7");
+const var TrigSel8 = Content.getComponent("TrigSel8");
+const var ExtTrig8 = Content.getComponent("ExtTrig8");
+const var TrigSel9 = Content.getComponent("TrigSel9");
+const var ExtTrig9 = Content.getComponent("ExtTrig9");
+const var TrigSel10 = Content.getComponent("TrigSel10");
+const var ExtTrig10 = Content.getComponent("ExtTrig10");
+const var TrigSel11 = Content.getComponent("TrigSel11");
+const var ExtTrig11 = Content.getComponent("ExtTrig11");
+const var TrigSel12 = Content.getComponent("TrigSel12");
+const var ExtTrig12 = Content.getComponent("ExtTrig12");
+
+inline function onTrigSel1Control(component, value) { LFO1.setAttribute(LFO1.keysync, value); ExtTrig1.showControl(value == 4); }
+inline function onTrigSel2Control(component, value) { LFO2.setAttribute(LFO2.keysync, value); ExtTrig2.showControl(value == 4); }
+inline function onTrigSel3Control(component, value) { LFO3.setAttribute(LFO3.keysync, value); ExtTrig3.showControl(value == 4); }
+inline function onTrigSel4Control(component, value) { LFO4.setAttribute(LFO4.keysync, value); ExtTrig4.showControl(value == 4); }
+inline function onTrigSel5Control(component, value) { LFO5.setAttribute(LFO5.keysync, value); ExtTrig5.showControl(value == 4); }
+inline function onTrigSel6Control(component, value) { LFO6.setAttribute(LFO6.keysync, value); ExtTrig6.showControl(value == 4); }
+inline function onTrigSel7Control(component, value) { LFO7.setAttribute(LFO7.keysync, value); ExtTrig7.showControl(value == 4); }
+inline function onTrigSel8Control(component, value) { LFO8.setAttribute(LFO8.keysync, value); ExtTrig8.showControl(value == 4); }
+inline function onTrigSel9Control(component, value) { LFO9.setAttribute(LFO9.keysync, value); ExtTrig9.showControl(value == 4); }
+inline function onTrigSel10Control(component, value) { LFO10.setAttribute(LFO10.keysync, value); ExtTrig10.showControl(value == 4); }
+inline function onTrigSel11Control(component, value) { LFO11.setAttribute(LFO11.keysync, value); ExtTrig11.showControl(value == 4); }
+inline function onTrigSel12Control(component, value) { LFO12.setAttribute(LFO12.keysync, value); ExtTrig12.showControl(value == 4); }
+
+inline function onExtTrig1Control(component, value) { LFO1.setAttribute(LFO1.ExtTrig, value); }
+inline function onExtTrig2Control(component, value) { LFO2.setAttribute(LFO2.ExtTrig, value); }
+inline function onExtTrig3Control(component, value) { LFO3.setAttribute(LFO3.ExtTrig, value); }
+inline function onExtTrig4Control(component, value) { LFO4.setAttribute(LFO4.ExtTrig, value); }
+inline function onExtTrig5Control(component, value) { LFO5.setAttribute(LFO5.ExtTrig, value); }
+inline function onExtTrig6Control(component, value) { LFO6.setAttribute(LFO6.ExtTrig, value); }
+inline function onExtTrig7Control(component, value) { LFO7.setAttribute(LFO7.ExtTrig, value); }
+inline function onExtTrig8Control(component, value) { LFO8.setAttribute(LFO8.ExtTrig, value); }
+inline function onExtTrig9Control(component, value) { LFO9.setAttribute(LFO9.ExtTrig, value); }
+inline function onExtTrig10Control(component, value) { LFO10.setAttribute(LFO10.ExtTrig, value); }
+inline function onExtTrig11Control(component, value) { LFO11.setAttribute(LFO11.ExtTrig, value); }
+inline function onExtTrig12Control(component, value) { LFO12.setAttribute(LFO12.ExtTrig, value); }
+
+TrigSel1.setControlCallback(onTrigSel1Control);
+TrigSel2.setControlCallback(onTrigSel2Control);
+TrigSel3.setControlCallback(onTrigSel3Control);
+TrigSel4.setControlCallback(onTrigSel4Control);
+TrigSel5.setControlCallback(onTrigSel5Control);
+TrigSel6.setControlCallback(onTrigSel6Control);
+TrigSel7.setControlCallback(onTrigSel7Control);
+TrigSel8.setControlCallback(onTrigSel8Control);
+TrigSel9.setControlCallback(onTrigSel9Control);
+TrigSel10.setControlCallback(onTrigSel10Control);
+TrigSel11.setControlCallback(onTrigSel11Control);
+TrigSel12.setControlCallback(onTrigSel12Control);
+
+ExtTrig1.setControlCallback(onExtTrig1Control);
+ExtTrig2.setControlCallback(onExtTrig2Control);
+ExtTrig3.setControlCallback(onExtTrig3Control);
+ExtTrig4.setControlCallback(onExtTrig4Control);
+ExtTrig5.setControlCallback(onExtTrig5Control);
+ExtTrig6.setControlCallback(onExtTrig6Control);
+ExtTrig7.setControlCallback(onExtTrig7Control);
+ExtTrig8.setControlCallback(onExtTrig8Control);
+ExtTrig9.setControlCallback(onExtTrig9Control);
+ExtTrig10.setControlCallback(onExtTrig10Control);
+ExtTrig11.setControlCallback(onExtTrig11Control);
+ExtTrig12.setControlCallback(onExtTrig12Control);
+
+TrigSel1.changed();
+TrigSel2.changed();
+TrigSel3.changed();
+TrigSel4.changed();
+TrigSel5.changed();
+TrigSel6.changed();
+TrigSel7.changed();
+TrigSel8.changed();
+TrigSel9.changed();
+TrigSel10.changed();
+TrigSel11.changed();
+TrigSel12.changed();
+
+ExtTrig1.changed();
+ExtTrig2.changed();
+ExtTrig3.changed();
+ExtTrig4.changed();
+ExtTrig5.changed();
+ExtTrig6.changed();
+ExtTrig7.changed();
+ExtTrig8.changed();
+ExtTrig9.changed();
+ExtTrig10.changed();
+ExtTrig11.changed();
+ExtTrig12.changed();
+
 const var EnvDisplayA1 = Content.getComponent("EnvDisplayA1");
 const var EnvPeak1 = Content.getComponent("EnvPeak1");
 const var TrigPeak1 = Content.getComponent("TrigPeak1");
