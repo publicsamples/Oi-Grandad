@@ -1,6 +1,26 @@
 const var KnobLaf3 = Content.createLocalLookAndFeel();
 
+inline function drawKnobModulationArc(g, obj, area, thickness)
+{
+	if(!obj.modulationActive)
+		return;
 
+	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
+	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
+	local modRange = Content.createPath();
+	modRange.setBounds(n);
+	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
+
+	g.setColour(0x55777575);
+	g.drawPath(modRange, area, thickness);
+
+	local valueArc = Content.createPath();
+	valueArc.setBounds(n);
+	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
+
+	g.setColour(0xFFBD4444);
+	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
+}
 
 KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 {
@@ -16,7 +36,7 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 
 	g.setColour(obj.textColour);
 
-	var radius = 25 - obj.clicked;
+	var radius = 20 - obj.clicked;
 
 	g.fillEllipse(Rect.translated(Rect.withSizeKeepingCentre(obj.area, radius + 2, radius +2), 0, 2));
 	g.fillEllipse(Rect.translated(Rect.withSizeKeepingCentre(obj.area, radius + 2, radius +2), 0, 3));
@@ -62,11 +82,10 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 					   obj.bgColour, 0.0, obj.area[3], false]);
 	g.fillEllipse(Rect.withSizeKeepingCentre(obj.area, radius, radius));
 	
-
-	
 	g.setGradientFill([obj.itemColour2, 0.0, 0.0,
 					   obj.itemColour2, 0.0, obj.area[3], true]);
 	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
+	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
 	
 	if(underDrag)
 	{
@@ -84,96 +103,3 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 	
 	//g.drawAlignedText(obj.text, obj.area, "centred");
 });
-
-const var MacroMods = [Content.getComponent("MacroMod1"),
-                       Content.getComponent("MacroMod2"),
-                       Content.getComponent("MacroMod3"),
-                       Content.getComponent("MacroMod4"),
-                       Content.getComponent("MacroMod6"),
-                       Content.getComponent("MacroMod5"),
-                       Content.getComponent("MacroMod7"),
-                       Content.getComponent("MacroMod8")];
-
-for(s in MacroMods)
-      s.setLocalLookAndFeel(KnobLaf3);
-
-
-
-const var VoiceMods1 = [Content.getComponent("posmod"),
-                        Content.getComponent("pmod1"),
-                        Content.getComponent("detmod"),
-                        Content.getComponent("spreadmod4"),
-                        Content.getComponent("densemod"),
-                        Content.getComponent("spreadmod"),
-                        Content.getComponent("winmod1"),
-                        Content.getComponent("GrainMod1"),
-                        Content.getComponent("volmod"),
-                        Content.getComponent("PanMod1")];
-
-
-for(s in VoiceMods1)
-      s.setLocalLookAndFeel(KnobLaf3);
-
-const var VoiceMods2 = [Content.getComponent("pmod2"),
-                        Content.getComponent("detmod1"),
-                        Content.getComponent("posmod1"),
-                        Content.getComponent("spreadmod5"),
-                        Content.getComponent("densemod1"),
-                        Content.getComponent("GrainMod2"),
-                        Content.getComponent("spreadmod1"),
-                        Content.getComponent("winmod2"),
-                        Content.getComponent("PanMod2"),
-                        Content.getComponent("volmod1")];
-
-
-for(s in VoiceMods2)
-      s.setLocalLookAndFeel(KnobLaf3);
-
-const var VoiceMods3 = [Content.getComponent("pmod3"),
-                        Content.getComponent("detmod2"),
-                        Content.getComponent("posmod2"),
-                        Content.getComponent("spreadmod6"),
-                        Content.getComponent("densemod2"),
-                        Content.getComponent("spreadmod2"),
-                        Content.getComponent("GrainMod3"),
-                        Content.getComponent("winmod3"),
-                      
-                        Content.getComponent("volmod2"),
-                        Content.getComponent("PanMod3")];
-
-for(s in VoiceMods3)
-      s.setLocalLookAndFeel(KnobLaf3);
-      
-const var VoiceMods4 = [
-                        Content.getComponent("posmod3"),
-                        Content.getComponent("PanMod4"),
-                        Content.getComponent("volmod3"),
-                        Content.getComponent("winmod4"),
-                        Content.getComponent("GrainMod4"),
-                        Content.getComponent("spreadmod3"),
-                        Content.getComponent("spreadmod7"),
-                        Content.getComponent("densemod3"),
-                        Content.getComponent("pmod4"),
-                        Content.getComponent("detmod3")];
-
-for(s in VoiceMods4)
-      s.setLocalLookAndFeel(KnobLaf3);
-      
-      
-const var TempoMod =[];
-
-for (i = 0; i < 12; i++)
-{
-    TempoMod[i] = Content.getComponent("TempoMod"+(i+1)).setLocalLookAndFeel(KnobLaf3);
-
-} 
-
-const var MorphMod =[];
-
-for (i = 0; i < 12; i++)
-{
-    MorphMod[i] = Content.getComponent("MorphMod"+(i+1)).setLocalLookAndFeel(KnobLaf3);
-
-} 
-
-

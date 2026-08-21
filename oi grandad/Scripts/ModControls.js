@@ -3,7 +3,7 @@ const var ModType1 = Content.getComponent("ModType1");
 const var button1 = Content.getComponent("ModType1");
 const var table1 = Content.getComponent("Table1");
 const var step1 = Content.getComponent("Step1");
-const var s1 = Synth.getModulator("s1");
+const var LFO1 = Synth.getModulator("LFO1");
 
 
 inline function onModType1Control(component, value)
@@ -15,12 +15,12 @@ inline function onModType1Control(component, value)
           
             if(value == 0)
         	{
-              s1.setAttribute(s1.type, 1);
+              LFO1.setAttribute(LFO1.type, 1);
        }
        
        if(value == 1)
              	{
-                   s1.setAttribute(s1.type, 0);
+                   LFO1.setAttribute(LFO1.type, 0);
             }
 };
 
@@ -55,7 +55,7 @@ inline function onStage1Control(component, value)
   for (i = 0; i < Mod1SPs.length; i++)
                Mod1SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s1.setAttribute(s1. morph, value);
+        LFO1.setAttribute(LFO1. morph, value);
 };
 
 
@@ -65,7 +65,7 @@ const var ModType2 = Content.getComponent("ModType2");
 const var button2 = Content.getComponent("ModType2");
 const var table2 = Content.getComponent("Table2");
 const var step2 = Content.getComponent("Step2");
-const var s2 = Synth.getModulator("s2");
+const var LFO2 = Synth.getModulator("LFO2");
 
 inline function onModType2Control(number, value)
 {
@@ -78,12 +78,12 @@ inline function onModType2Control(number, value)
         
         if(value == 0)
         	{
-              s2.setAttribute(s2.type, 1);
+              LFO2.setAttribute(LFO2.type, 1);
        }
        
        if(value == 1)
              	{
-                   s2.setAttribute(s2.type, 0);
+                   LFO2.setAttribute(LFO2.type, 0);
             }
 }
 
@@ -119,7 +119,7 @@ inline function onStage2Control(component, value)
   for (i = 0; i < Mod2SPs.length; i++)
                Mod2SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s2.setAttribute(s2. morph, value);
+        LFO2.setAttribute(LFO2. morph, value);
 };
 
 
@@ -129,7 +129,7 @@ const var ModType3 = Content.getComponent("ModType3");
 const var button3 = Content.getComponent("ModType3");
 const var table3 = Content.getComponent("Table3");
 const var step3 = Content.getComponent("Step3");
-const var s3 = Synth.getModulator("s3");
+const var LFO3 = Synth.getModulator("LFO3");
 
 inline function onModType3Control(number, value)
 {
@@ -139,12 +139,12 @@ inline function onModType3Control(number, value)
         table3.showControl(1-value); 
             if(value == 0)
         	{
-              s3.setAttribute(s3.type, 1);
+              LFO3.setAttribute(LFO3.type, 1);
        }
        
        if(value == 1)
              	{
-                   s3.setAttribute(s3.type, 0);
+                   LFO3.setAttribute(LFO3.type, 0);
             }
 
 }
@@ -180,7 +180,7 @@ inline function onStage3Control(component, value)
   for (i = 0; i < Mod32SPs.length; i++)
                Mod32SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s3.setAttribute(s3. morph, value);
+        LFO3.setAttribute(LFO3. morph, value);
 };
 
 
@@ -189,7 +189,7 @@ Content.getComponent("Stage3").setControlCallback(onStage3Control);
 const var ModType4 = Content.getComponent("ModType4");
 const var Table4 = Content.getComponent("Table4");
 const var Step4 = Content.getComponent("Step4");
-const var s4 = Synth.getModulator("s4");
+const var LFO4 = Synth.getModulator("LFO4");
 
 inline function onModType4Control(number, value)
 {
@@ -200,12 +200,12 @@ inline function onModType4Control(number, value)
            
            if(value == 0)
         	{
-              s4.setAttribute(s4.type, 1);
+              LFO4.setAttribute(LFO4.type, 1);
        }
        
        if(value == 1)
              	{
-                   s4.setAttribute(s4.type, 0);
+                   LFO4.setAttribute(LFO4.type, 0);
             }
 }
 
@@ -240,7 +240,7 @@ inline function onStage4Control(component, value)
   for (i = 0; i < Mod4SPs.length; i++)
                Mod4SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s4.setAttribute(s4. morph, value);
+        LFO4.setAttribute(LFO4. morph, value);
 };
 
 
@@ -249,7 +249,7 @@ Content.getComponent("Stage4").setControlCallback(onStage4Control);
 const var ModType5 = Content.getComponent("ModType5");
 const var Table5 = Content.getComponent("Table5");
 const var Step5 = Content.getComponent("Step5");
-const var s5 = Synth.getModulator("s5");
+const var LFO5 = Synth.getModulator("LFO5");
 
 inline function onModType5Control(number, value)
 {
@@ -259,12 +259,12 @@ inline function onModType5Control(number, value)
         Table5.showControl(1-value); 
           if(value == 0)
         	{
-              s5.setAttribute(s5.type, 1);
+              LFO5.setAttribute(LFO5.type, 1);
        }
        
        if(value == 1)
              	{
-                   s5.setAttribute(s5.type, 0);
+                   LFO5.setAttribute(LFO5.type, 0);
             }
 }
 
@@ -299,7 +299,7 @@ inline function onStage5Control(component, value)
   for (i = 0; i < Mod5SPs.length; i++)
                Mod5SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s5.setAttribute(s5. morph, value);
+        LFO5.setAttribute(LFO5. morph, value);
 };
 
 
@@ -308,7 +308,7 @@ Content.getComponent("Stage5").setControlCallback(onStage5Control);
 const var ModType6 = Content.getComponent("ModType6");
 const var Table6 = Content.getComponent("Table6");
 const var Step6 = Content.getComponent("Step6");
-const var s6 = Synth.getModulator("s6");
+const var LFO6 = Synth.getModulator("LFO6");
 
 inline function onModType6Control(number, value)
 {
@@ -318,12 +318,12 @@ inline function onModType6Control(number, value)
         Table6.showControl(1-value); 
            if(value == 0)
         	{
-              s6.setAttribute(s6.type, 1);
+              LFO6.setAttribute(LFO6.type, 1);
        }
        
        if(value == 1)
              	{
-                   s6.setAttribute(s6.type, 0);
+                   LFO6.setAttribute(LFO6.type, 0);
             }
 }
 
@@ -358,7 +358,7 @@ inline function onStage6Control(component, value)
   for (i = 0; i < Mod6SPs.length; i++)
                Mod6SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s6.setAttribute(s6. morph, value);
+        LFO6.setAttribute(LFO6. morph, value);
 };
 
 
@@ -367,7 +367,7 @@ Content.getComponent("Stage6").setControlCallback(onStage6Control);
 const var ModType7 = Content.getComponent("ModType7");
 const var Table7 = Content.getComponent("Table7");
 const var Step7 = Content.getComponent("Step7");
-const var s7 = Synth.getModulator("s7");
+const var LFO7 = Synth.getModulator("LFO7");
 
 inline function onModType7Control(number, value)
 {
@@ -377,12 +377,12 @@ inline function onModType7Control(number, value)
         Table7.showControl(1-value); 
            if(value == 0)
         	{
-              s7.setAttribute(s7.type, 1);
+              LFO7.setAttribute(LFO7.type, 1);
        }
        
        if(value == 1)
              	{
-                   s7.setAttribute(s7.type, 0);
+                   LFO7.setAttribute(LFO7.type, 0);
             }
 }
 
@@ -417,7 +417,7 @@ inline function onStage7Control(component, value)
   for (i = 0; i < Mod7SPs.length; i++)
                Mod7SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s7.setAttribute(s7. morph, value);
+        LFO7.setAttribute(LFO7. morph, value);
 };
 
 
@@ -426,7 +426,7 @@ Content.getComponent("Stage7").setControlCallback(onStage7Control);
 const var ModType8 = Content.getComponent("ModType8");
 const var Table8 = Content.getComponent("Table8");
 const var Step8 = Content.getComponent("Step8");
-const var s8 = Synth.getModulator("s8");
+const var LFO8 = Synth.getModulator("LFO8");
 
 inline function onModType8Control(number, value)
 {
@@ -436,12 +436,12 @@ inline function onModType8Control(number, value)
         Table8.showControl(1-value); 
        if(value == 0)
            	{
-                 s8.setAttribute(s8.type, 1);
+                 LFO8.setAttribute(LFO8.type, 1);
           }
           
           if(value == 1)
                 	{
-                      s8.setAttribute(s8.type, 0);
+                      LFO8.setAttribute(LFO8.type, 0);
                }
 }
 
@@ -476,7 +476,7 @@ inline function onStage8Control(component, value)
   for (i = 0; i < Mod8SPs.length; i++)
                Mod8SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s8.setAttribute(s8. morph, value);
+        LFO8.setAttribute(LFO8. morph, value);
 };
 
 
@@ -484,7 +484,7 @@ Content.getComponent("Stage8").setControlCallback(onStage8Control);
 const var ModType9 = Content.getComponent("ModType9");
 const var Table9 = Content.getComponent("Table9");
 const var Step9 = Content.getComponent("Step9");
-const var s9 = Synth.getModulator("s9");
+const var LFO9 = Synth.getModulator("LFO9");
 
 inline function onModType9Control(number, value)
 {
@@ -494,12 +494,12 @@ inline function onModType9Control(number, value)
         Table9.showControl(1-value); 
           if(value == 0)
         	{
-              s9.setAttribute(s9.type, 1);
+              LFO9.setAttribute(LFO9.type, 1);
        }
        
        if(value == 1)
              	{
-                   s9.setAttribute(s9.type, 0);
+                   LFO9.setAttribute(LFO9.type, 0);
             }
 }
 
@@ -534,7 +534,7 @@ inline function onStage9Control(component, value)
   for (i = 0; i < Mod9SPs.length; i++)
                Mod9SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s9.setAttribute(s9. morph, value);
+        LFO9.setAttribute(LFO9. morph, value);
 };
 
 
@@ -543,7 +543,7 @@ Content.getComponent("Stage9").setControlCallback(onStage9Control);
 const var ModType10 = Content.getComponent("ModType10");
 const var Table10 = Content.getComponent("Table10");
 const var Step10 = Content.getComponent("Step10");
-const var s10 = Synth.getModulator("s10");
+const var LFO10 = Synth.getModulator("LFO10");
 
 inline function onModType10Control(number, value)
 {
@@ -553,12 +553,12 @@ inline function onModType10Control(number, value)
         Table10.showControl(1-value); 
             if(value == 0)
         	{
-              s10.setAttribute(s10.type, 1);
+              LFO10.setAttribute(LFO10.type, 1);
        }
        
        if(value == 1)
              	{
-                   s10.setAttribute(s10.type, 0);
+                   LFO10.setAttribute(LFO10.type, 0);
             }
 }
 
@@ -593,7 +593,7 @@ inline function onStage10Control(component, value)
   for (i = 0; i < Mod10SPs.length; i++)
                Mod10SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s10.setAttribute(s10. morph, value);
+        LFO10.setAttribute(LFO10. morph, value);
 };
 
 
@@ -602,7 +602,7 @@ Content.getComponent("Stage10").setControlCallback(onStage10Control);
 const var ModType11 = Content.getComponent("ModType11");
 const var Table11 = Content.getComponent("Table11");
 const var Step11 = Content.getComponent("Step11");
-const var s11 = Synth.getModulator("s11");
+const var LFO11 = Synth.getModulator("LFO11");
 
 inline function onModType11Control(number, value)
 {
@@ -612,12 +612,12 @@ inline function onModType11Control(number, value)
         Table11.showControl(1-value); 
        if(value == 0)
         	{
-              s11.setAttribute(s11.type, 1);
+              LFO11.setAttribute(LFO11.type, 1);
        }
        
        if(value == 1)
              	{
-                   s11.setAttribute(s11.type, 0);
+                   LFO11.setAttribute(LFO11.type, 0);
             }
 }
 
@@ -652,7 +652,7 @@ inline function onStage11Control(component, value)
   for (i = 0; i < Mod11SPs.length; i++)
                Mod11SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s11.setAttribute(s11. morph, value);
+        LFO11.setAttribute(LFO11. morph, value);
 };
 
 
@@ -660,7 +660,7 @@ Content.getComponent("Stage11").setControlCallback(onStage11Control);
 const var ModType12 = Content.getComponent("ModType12");
 const var Table12 = Content.getComponent("Table12");
 const var Step12 = Content.getComponent("Step12");
-const var s12 = Synth.getModulator("s12");
+const var LFO12 = Synth.getModulator("LFO12");
 
 inline function onModType12Control(number, value)
 {
@@ -670,12 +670,12 @@ inline function onModType12Control(number, value)
         Table12.showControl(1-value); 
           if(value == 0)
         	{
-              s12.setAttribute(s12.type, 1);
+              LFO12.setAttribute(LFO12.type, 1);
        }
        
        if(value == 1)
              	{
-                   s12.setAttribute(s12.type, 0);
+                   LFO12.setAttribute(LFO12.type, 0);
             }
 }
 
@@ -709,13 +709,116 @@ inline function onStage12Control(component, value)
   for (i = 0; i < Mod12SPs.length; i++)
                Mod12SPs[i].fadeComponent(value - 1 == i, 1500);
         
-        s12.setAttribute(s12. morph, value);
+        LFO12.setAttribute(LFO12. morph, value);
 };
 
 
 Content.getComponent("Stage12").setControlCallback(onStage12Control);
 
-const var EnvDisplayB1 = Content.getComponent("EnvDisplayB1");
+// External triggers are relevant only when the LFO uses its trigger branch.
+const var TrigSel1 = Content.getComponent("TrigSel1");
+const var ExtTrig1 = Content.getComponent("ExtTrig1");
+const var TrigSel2 = Content.getComponent("TrigSel2");
+const var ExtTrig2 = Content.getComponent("ExtTrig2");
+const var TrigSel3 = Content.getComponent("TrigSel3");
+const var ExtTrig3 = Content.getComponent("ExtTrig3");
+const var TrigSel4 = Content.getComponent("TrigSel4");
+const var ExtTrig4 = Content.getComponent("ExtTrig4");
+const var TrigSel5 = Content.getComponent("TrigSel5");
+const var ExtTrig5 = Content.getComponent("ExtTrig5");
+const var TrigSel6 = Content.getComponent("TrigSel6");
+const var ExtTrig6 = Content.getComponent("ExtTrig6");
+const var TrigSel7 = Content.getComponent("TrigSel7");
+const var ExtTrig7 = Content.getComponent("ExtTrig7");
+const var TrigSel8 = Content.getComponent("TrigSel8");
+const var ExtTrig8 = Content.getComponent("ExtTrig8");
+const var TrigSel9 = Content.getComponent("TrigSel9");
+const var ExtTrig9 = Content.getComponent("ExtTrig9");
+const var TrigSel10 = Content.getComponent("TrigSel10");
+const var ExtTrig10 = Content.getComponent("ExtTrig10");
+const var TrigSel11 = Content.getComponent("TrigSel11");
+const var ExtTrig11 = Content.getComponent("ExtTrig11");
+const var TrigSel12 = Content.getComponent("TrigSel12");
+const var ExtTrig12 = Content.getComponent("ExtTrig12");
+
+inline function onTrigSel1Control(component, value) { LFO1.setAttribute(LFO1.keysync, value); ExtTrig1.showControl(value == 4); }
+inline function onTrigSel2Control(component, value) { LFO2.setAttribute(LFO2.keysync, value); ExtTrig2.showControl(value == 4); }
+inline function onTrigSel3Control(component, value) { LFO3.setAttribute(LFO3.keysync, value); ExtTrig3.showControl(value == 4); }
+inline function onTrigSel4Control(component, value) { LFO4.setAttribute(LFO4.keysync, value); ExtTrig4.showControl(value == 4); }
+inline function onTrigSel5Control(component, value) { LFO5.setAttribute(LFO5.keysync, value); ExtTrig5.showControl(value == 4); }
+inline function onTrigSel6Control(component, value) { LFO6.setAttribute(LFO6.keysync, value); ExtTrig6.showControl(value == 4); }
+inline function onTrigSel7Control(component, value) { LFO7.setAttribute(LFO7.keysync, value); ExtTrig7.showControl(value == 4); }
+inline function onTrigSel8Control(component, value) { LFO8.setAttribute(LFO8.keysync, value); ExtTrig8.showControl(value == 4); }
+inline function onTrigSel9Control(component, value) { LFO9.setAttribute(LFO9.keysync, value); ExtTrig9.showControl(value == 4); }
+inline function onTrigSel10Control(component, value) { LFO10.setAttribute(LFO10.keysync, value); ExtTrig10.showControl(value == 4); }
+inline function onTrigSel11Control(component, value) { LFO11.setAttribute(LFO11.keysync, value); ExtTrig11.showControl(value == 4); }
+inline function onTrigSel12Control(component, value) { LFO12.setAttribute(LFO12.keysync, value); ExtTrig12.showControl(value == 4); }
+
+inline function onExtTrig1Control(component, value) { LFO1.setAttribute(LFO1.ExtTrig, value); }
+inline function onExtTrig2Control(component, value) { LFO2.setAttribute(LFO2.ExtTrig, value); }
+inline function onExtTrig3Control(component, value) { LFO3.setAttribute(LFO3.ExtTrig, value); }
+inline function onExtTrig4Control(component, value) { LFO4.setAttribute(LFO4.ExtTrig, value); }
+inline function onExtTrig5Control(component, value) { LFO5.setAttribute(LFO5.ExtTrig, value); }
+inline function onExtTrig6Control(component, value) { LFO6.setAttribute(LFO6.ExtTrig, value); }
+inline function onExtTrig7Control(component, value) { LFO7.setAttribute(LFO7.ExtTrig, value); }
+inline function onExtTrig8Control(component, value) { LFO8.setAttribute(LFO8.ExtTrig, value); }
+inline function onExtTrig9Control(component, value) { LFO9.setAttribute(LFO9.ExtTrig, value); }
+inline function onExtTrig10Control(component, value) { LFO10.setAttribute(LFO10.ExtTrig, value); }
+inline function onExtTrig11Control(component, value) { LFO11.setAttribute(LFO11.ExtTrig, value); }
+inline function onExtTrig12Control(component, value) { LFO12.setAttribute(LFO12.ExtTrig, value); }
+
+TrigSel1.setControlCallback(onTrigSel1Control);
+TrigSel2.setControlCallback(onTrigSel2Control);
+TrigSel3.setControlCallback(onTrigSel3Control);
+TrigSel4.setControlCallback(onTrigSel4Control);
+TrigSel5.setControlCallback(onTrigSel5Control);
+TrigSel6.setControlCallback(onTrigSel6Control);
+TrigSel7.setControlCallback(onTrigSel7Control);
+TrigSel8.setControlCallback(onTrigSel8Control);
+TrigSel9.setControlCallback(onTrigSel9Control);
+TrigSel10.setControlCallback(onTrigSel10Control);
+TrigSel11.setControlCallback(onTrigSel11Control);
+TrigSel12.setControlCallback(onTrigSel12Control);
+
+ExtTrig1.setControlCallback(onExtTrig1Control);
+ExtTrig2.setControlCallback(onExtTrig2Control);
+ExtTrig3.setControlCallback(onExtTrig3Control);
+ExtTrig4.setControlCallback(onExtTrig4Control);
+ExtTrig5.setControlCallback(onExtTrig5Control);
+ExtTrig6.setControlCallback(onExtTrig6Control);
+ExtTrig7.setControlCallback(onExtTrig7Control);
+ExtTrig8.setControlCallback(onExtTrig8Control);
+ExtTrig9.setControlCallback(onExtTrig9Control);
+ExtTrig10.setControlCallback(onExtTrig10Control);
+ExtTrig11.setControlCallback(onExtTrig11Control);
+ExtTrig12.setControlCallback(onExtTrig12Control);
+
+TrigSel1.changed();
+TrigSel2.changed();
+TrigSel3.changed();
+TrigSel4.changed();
+TrigSel5.changed();
+TrigSel6.changed();
+TrigSel7.changed();
+TrigSel8.changed();
+TrigSel9.changed();
+TrigSel10.changed();
+TrigSel11.changed();
+TrigSel12.changed();
+
+ExtTrig1.changed();
+ExtTrig2.changed();
+ExtTrig3.changed();
+ExtTrig4.changed();
+ExtTrig5.changed();
+ExtTrig6.changed();
+ExtTrig7.changed();
+ExtTrig8.changed();
+ExtTrig9.changed();
+ExtTrig10.changed();
+ExtTrig11.changed();
+ExtTrig12.changed();
+
 const var EnvDisplayA1 = Content.getComponent("EnvDisplayA1");
 const var EnvPeak1 = Content.getComponent("EnvPeak1");
 const var TrigPeak1 = Content.getComponent("TrigPeak1");
@@ -725,199 +828,7 @@ const var EnvLoop1 = Content.getComponent("EnvLoop1");
 const var EnvVoiceSel1 = Content.getComponent("EnvVoiceSel1");
 
 
-
-
-
 const var ENV1 = Synth.getModulator("ENV1");
-
-inline function onModType13Control(component, value)
-{
- if(value == 0)
-        	{
-              ENV1.setAttribute(ENV1.Mode, 0);
-              EnvDisplayA1.showControl(1);
-              EnvPeak1.showControl(1);
-              TrigPeak1.showControl(1);
-              TrigPeakLabel1.showControl(1);
-              EnvVoiceSel1.showControl(1);
-              EnvDisplayB1.showControl(0);
-              EnvLoopLabel1.showControl(0);
-              EnvLoop1.showControl(0);
-              
-              
-              
-       }
-       
-       if(value == 1)
-              	{
-                    ENV1.setAttribute(ENV1.Mode, 1);
-                    EnvDisplayA1.showControl(0);
-                    EnvPeak1.showControl(0);
-                    TrigPeak1.showControl(0);
-                    TrigPeakLabel1.showControl(0);
-                    EnvVoiceSel1.showControl(0);
-                    EnvDisplayB1.showControl(1);
-                    EnvLoopLabel1.showControl(1);
-                    EnvLoop1.showControl(1);
-                    
-                    
-             }
-};
-
-Content.getComponent("ModType13").setControlCallback(onModType13Control);
-
-const var EnvDisplayB2 = Content.getComponent("EnvDisplayB2");
-const var EnvDisplayA2 = Content.getComponent("EnvDisplayA2");
-const var EnvPeak2 = Content.getComponent("EnvPeak2");
-const var TrigPeak2 = Content.getComponent("TrigPeak2");
-const var TrigPeakLabel2 = Content.getComponent("TrigPeakLabel2");
-const var EnvLoopLabel2 = Content.getComponent("EnvLoopLabel2");
-const var EnvLoop2 = Content.getComponent("EnvLoop2");
-const var EnvVoiceSel2 = Content.getComponent("EnvVoiceSel2");
-
-
-
-
-
-
-const var ENV2 = Synth.getModulator("ENV2");
-
-inline function onModType14Control(component, value)
-{
- if(value == 0)
-        	{
-              ENV2.setAttribute(ENV2.Mode, 0);
-              EnvDisplayA2.showControl(1);
-              EnvPeak2.showControl(1);
-              TrigPeak2.showControl(1);
-              TrigPeakLabel2.showControl(1);
-              EnvVoiceSel2.showControl(1);
-              EnvDisplayB2.showControl(0);
-              EnvLoopLabel2.showControl(0);
-              EnvLoop2.showControl(0);
-              
-              
-       }
-       
-       if(value == 1)
-              	{
-                    ENV2.setAttribute(ENV2.Mode, 1);
-                    EnvDisplayA2.showControl(0);
-                    EnvPeak2.showControl(0);
-                    TrigPeak2.showControl(0);
-                    TrigPeakLabel2.showControl(0);
-                    EnvVoiceSel2.showControl(0);
-                    EnvDisplayB2.showControl(1);
-                    EnvLoopLabel2.showControl(1);
-                    EnvLoop2.showControl(1);
-                    
-                    
-             }
-};
-
-Content.getComponent("ModType14").setControlCallback(onModType14Control);
-
-
-const var EnvDisplayB3 = Content.getComponent("EnvDisplayB3");
-const var EnvDisplayA3 = Content.getComponent("EnvDisplayA3");
-const var EnvPeak3 = Content.getComponent("EnvPeak3");
-const var TrigPeak3 = Content.getComponent("TrigPeak3");
-const var TrigPeakLabel3 = Content.getComponent("TrigPeakLabel3");
-const var EnvLoopLabel3 = Content.getComponent("EnvLoopLabel3");
-const var EnvLoop3 = Content.getComponent("EnvLoop3");
-const var EnvVoiceSel3 = Content.getComponent("EnvVoiceSel3");
-
-
-
-
-
-const var ENV3 = Synth.getModulator("ENV3");
-
-inline function onModType15Control(component, value)
-{
- if(value == 0)
-        	{
-              ENV3.setAttribute(ENV3.Mode, 0);
-              EnvDisplayA3.showControl(1);
-              EnvPeak3.showControl(1);
-              TrigPeak3.showControl(1);
-              TrigPeakLabel3.showControl(1);
-              EnvVoiceSel3.showControl(1);
-              EnvDisplayB3.showControl(0);
-              EnvLoopLabel3.showControl(0);
-              EnvLoop3.showControl(0);
-              
-              
-       }
-       
-       if(value == 1)
-              	{
-                    ENV3.setAttribute(ENV3.Mode, 1);
-                    EnvDisplayA3.showControl(0);
-                    EnvPeak3.showControl(0);
-                    TrigPeak3.showControl(0);
-                    TrigPeakLabel3.showControl(0);
-                    EnvVoiceSel3.showControl(0);
-                    EnvDisplayB3.showControl(1);
-                    EnvLoopLabel3.showControl(1);
-                    EnvLoop3.showControl(1);
-                    
-                    
-             }
-};
-
-Content.getComponent("ModType15").setControlCallback(onModType15Control);
-
-const var EnvDisplayB4 = Content.getComponent("EnvDisplayB4");
-const var EnvDisplayA4 = Content.getComponent("EnvDisplayA4");
-const var EnvPeak4 = Content.getComponent("EnvPeak4");
-const var TrigPeak4 = Content.getComponent("TrigPeak4");
-const var TrigPeakLabel4 = Content.getComponent("TrigPeakLabel4");
-const var EnvLoopLabel4 = Content.getComponent("EnvLoopLabel4");
-const var EnvLoop4 = Content.getComponent("EnvLoop4");
-const var EnvVoiceSel4 = Content.getComponent("EnvVoiceSel4");
-
-
-
-
-
-const var ENV4 = Synth.getModulator("ENV4");
-
-inline function onModType16Control(component, value)
-{
- if(value == 0)
-        	{
-              ENV4.setAttribute(ENV4.Mode, 0);
-              EnvDisplayA4.showControl(1);
-              EnvPeak4.showControl(1);
-              TrigPeak4.showControl(1);
-              TrigPeakLabel4.showControl(1);
-              EnvVoiceSel4.showControl(1);
-              EnvDisplayB4.showControl(0);
-              EnvLoopLabel4.showControl(0);
-              EnvLoop4.showControl(0);
-              
-              
-       }
-       
-       if(value == 1)
-              	{
-                    ENV4.setAttribute(ENV4.Mode, 1);
-                    EnvDisplayA4.showControl(0);
-                    EnvPeak4.showControl(0);
-                    TrigPeak4.showControl(0);
-                    TrigPeakLabel4.showControl(0);
-                    EnvVoiceSel4.showControl(0);
-                    EnvDisplayB4.showControl(1);
-                    EnvLoopLabel4.showControl(1);
-                    EnvLoop4.showControl(1);
-                    
-                    
-             }
-};
-
-Content.getComponent("ModType16").setControlCallback(onModType16Control);
-
 
 
 
@@ -929,9 +840,6 @@ ModPages[1] = Content.getComponent("MOD2");
 ModPages[2] = Content.getComponent("MOD3");
 ModPages[3] = Content.getComponent("MOD4");
 ModPages[4] = Content.getComponent("MOD5");
-ModPages[5] = Content.getComponent("MOD6");
-ModPages[6] = Content.getComponent("MOD7");
-ModPages[7] = Content.getComponent("MOD8");
 
 
 inline function onModPageControl(component, value)
@@ -946,9 +854,11 @@ Content.getComponent("ModPage").setControlCallback(onModPageControl);
 
 
 const var dp = Synth.getDisplayBufferSource("ENV1");
+const var dpTr = Synth.getDisplayBufferSource("Track1");
 
-const var rb = dp.getDisplayBuffer(1);
-const var rb1 = dp.getDisplayBuffer(2);
+
+const var rb = dpTr.getDisplayBuffer(1);
+const var rb1 = dpTr.getDisplayBuffer(2);
 
 
 const var BUFFER_LENGTH = 16384;
@@ -1007,12 +917,16 @@ EnvDisplayA1.setPaintRoutine(function(g)
 });
 
 var dpB = Synth.getDisplayBufferSource("ENV2");
+var dpTrB = Synth.getDisplayBufferSource("Track2");
 
-const var rbB = dpB.getDisplayBuffer(1);
-const var rbB1 = dpB.getDisplayBuffer(2);
+const var rbB = dpTrB.getDisplayBuffer(1);
+const var rbB1 = dpTrB.getDisplayBuffer(2);
 
 
 //env peak
+
+const var EnvPeak2 = Content.getComponent("EnvPeak2");
+
 
 rbB.setRingBufferProperties(properties);
 
@@ -1039,6 +953,9 @@ EnvPeak2.setPaintRoutine(function(g)
 
 rbB1.setRingBufferProperties(properties);
 
+const var EnvDisplayA2 = Content.getComponent("EnvDisplayA2");
+
+
 
 EnvDisplayA2.setTimerCallback(function()
 {
@@ -1061,14 +978,20 @@ EnvDisplayA2.setPaintRoutine(function(g)
 
 
 var dpC = Synth.getDisplayBufferSource("ENV3");
+var dpTrC = Synth.getDisplayBufferSource("Track3");
 
-const var rbC = dpC.getDisplayBuffer(1);
-const var rbC1 = dpC.getDisplayBuffer(2);
+const var rbC = dpTrC.getDisplayBuffer(1);
+const var rbC1 = dpTrC.getDisplayBuffer(2);
 
 
 //env peak
 
 rbC.setRingBufferProperties(properties);
+
+const var EnvPeak3 = Content.getComponent("EnvPeak3");
+const var EnvDisplayA3 = Content.getComponent("EnvDisplayA3");
+
+
 
 EnvPeak3.setTimerCallback(function()
 {
@@ -1114,14 +1037,17 @@ EnvDisplayA3.setPaintRoutine(function(g)
 });
 
 var dpD = Synth.getDisplayBufferSource("ENV4");
+var dpDTr = Synth.getDisplayBufferSource("Track4");
 
-const var rbD = dpD.getDisplayBuffer(1);
-const var rbD1 = dpD.getDisplayBuffer(2);
+const var rbD = dpDTr.getDisplayBuffer(1);
+const var rbD1 = dpDTr.getDisplayBuffer(2);
 
 
 //env peak
 
 rbD.setRingBufferProperties(properties);
+const var EnvPeak4 = Content.getComponent("EnvPeak4");
+const var EnvDisplayA4 = Content.getComponent("EnvDisplayA4");
 
 EnvPeak4.setTimerCallback(function()
 {
@@ -1198,7 +1124,7 @@ laf.registerFunction("drawFlexAhdsrPosition", function(g, obj)
 	g.fillEllipse([obj.pointOnPath[0] -3, obj.pointOnPath[1] - 3, 6, 6]);
 });
 
-Content.getComponent("EnvDisplayB1").setLocalLookAndFeel(laf);
-Content.getComponent("EnvDisplayB2").setLocalLookAndFeel(laf);
-Content.getComponent("EnvDisplayB3").setLocalLookAndFeel(laf);
-Content.getComponent("EnvDisplayB4").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB5").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB6").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB7").setLocalLookAndFeel(laf);
+Content.getComponent("EnvDisplayB8").setLocalLookAndFeel(laf);

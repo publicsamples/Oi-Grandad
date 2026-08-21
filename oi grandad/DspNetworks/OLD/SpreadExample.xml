@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="SpreadExample" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="SpreadExample" Bypassed="0"
+        Name="SpreadExample" ShowParameters="1">
+    <Nodes>
+      <Node ID="split1" FactoryPath="container.split" Bypassed="0" Name="split1">
+        <Nodes>
+          <Node ID="clone_cable" FactoryPath="control.clone_cable" Bypassed="0"
+                Name="clone_cable">
+            <Properties>
+              <Property ID="Mode" Value="Spread"/>
+            </Properties>
+            <ModulationTargets>
+              <Connection NodeId="add32" ParameterId="Value"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="NumClones"
+                         Value="25.0" DefaultValue="1.0"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Value" Value="-0.04334375000000001"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Gamma" Value="0.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="clone_cable1" FactoryPath="control.clone_cable" Bypassed="0"
+                Name="clone_cable">
+            <Properties>
+              <Property ID="Mode" Value="Random"/>
+            </Properties>
+            <ModulationTargets>
+              <Connection NodeId="add" ParameterId="Value"/>
+            </ModulationTargets>
+            <Parameters>
+              <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="NumClones"
+                         Value="32.0" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.477453125"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Gamma" Value="0.0"/>
+            </Parameters>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="clone" FactoryPath="container.clone" Bypassed="0" Name="clone"
+            ShowClones="0" ShowParameters="1">
+        <Properties>
+          <Property ID="IsVertical" Value="0"/>
+        </Properties>
+        <Nodes>
+          <Node ID="clone_child" FactoryPath="container.chain" Bypassed="0" Name="clone_child"
+                NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add32" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child1" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split2" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add33" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add34" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child2" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split3" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add35" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add36" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child3" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split4" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add37" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add38" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child4" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split5" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add39" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add40" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child5" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split6" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add41" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add42" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child6" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split7" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add43" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add44" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child7" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split8" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add45" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add46" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child8" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split9" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add47" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add48" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child9" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split10" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add49" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add50" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child10" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split11" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add51" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add52" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child11" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split12" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add53" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add54" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child12" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split13" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add55" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add56" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child13" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split14" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add57" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add58" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child14" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split15" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add59" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add60" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child15" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split16" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add61" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add62" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child16" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split17" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add63" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add64" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child17" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split18" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add65" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add66" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child18" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split19" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add67" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add68" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child19" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split20" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add69" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add70" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child20" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split21" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add71" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add72" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child21" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split22" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add73" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add74" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child22" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split23" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add75" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add76" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child23" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split24" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add77" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add78" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child24" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split25" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add79" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add80" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child25" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split26" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add81" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add82" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child26" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split27" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add83" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add84" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child27" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split28" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add85" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add86" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child28" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split29" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add87" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add88" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child29" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split30" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add89" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add90" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child30" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split31" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add91" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add92" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+          <Node ID="clone_child31" FactoryPath="container.chain" Bypassed="0"
+                Name="clone_child" NodeColour="4287927444">
+            <Nodes>
+              <Node ID="split32" FactoryPath="container.split" Bypassed="0" Name="split">
+                <Nodes>
+                  <Node ID="add93" FactoryPath="math.add" Bypassed="0" Name="Spread">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                  <Node ID="add94" FactoryPath="math.add" Bypassed="0" Name="Random">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0"/>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters/>
+              </Node>
+            </Nodes>
+            <Parameters/>
+          </Node>
+        </Nodes>
+        <Parameters>
+          <Parameter MinValue="1.0" MaxValue="32" StepSize="1.0" ID="NumClones" Value="32.0"
+                     DefaultValue="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="SplitSignal"
+                     Value="2.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="GrainSize" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

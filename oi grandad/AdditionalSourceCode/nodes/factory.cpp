@@ -30,21 +30,17 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::master_bus_compressor_native<1>, scriptnode::wrap::illegal_poly<project::master_bus_compressor_native<1>>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
-		registerPolyNode<project::MacroMod<1>, wrap::illegal_poly<project::MacroMod<1>>>();
+		registerPolyNode<project::ENV<1>, project::ENV<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::MacroMod<1>, project::MacroMod<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
-		registerPolyNode<project::sn<1>, project::sn<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, wrap::illegal_poly<project::sn_fin<1>>>();
 		registerDataNode<project::Dyn_networkdata>();
-		registerDataNode<project::FoldTests_networkdata>();
-		registerDataNode<project::ggg_networkdata>();
+		registerDataNode<project::indicators_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
-		registerDataNode<project::NuTest_networkdata>();
 		registerDataNode<project::recorder_networkdata>();
-		registerDataNode<project::sndummy_networkdata>();
-		registerDataNode<project::test_networkdata>();
 		registerDataNode<project::track_networkdata>();
-		registerDataNode<project::trash2_networkdata>();
 		registerDataNode<project::vec1b_networkdata>();
 		registerDataNode<project::vec2b_networkdata>();
 		registerDataNode<project::vec3_networkdata>();
@@ -96,7 +92,7 @@ scriptnode::dll::FactoryBase* scriptnode::DspNetwork::createStaticFactory()
 }
 
 #if HISE_INCLUDE_RT_NEURAL
-void scriptnode::DspNetwork::registerStaticNeuralNetworks(hise::NeuralNetwork::Factory*)
+void scriptnode::DspNetwork::registerStaticNeuralNetworks(hise::NeuralNetwork::Factory* f)
 {
 }
 #endif
@@ -104,3 +100,5 @@ void scriptnode::DspNetwork::registerStaticNeuralNetworks(hise::NeuralNetwork::F
 #if !JUCE_WINDOWS
 #pragma clang diagnostic pop
 #endif
+
+

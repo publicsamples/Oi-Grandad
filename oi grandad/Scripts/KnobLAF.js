@@ -1,6 +1,26 @@
 const var KnobLaf = Content.createLocalLookAndFeel();
 
+inline function drawKnobModulationArc(g, obj, area, thickness)
+{
+	if(!obj.modulationActive)
+		return;
 
+	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
+	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
+	local modRange = Content.createPath();
+	modRange.setBounds(n);
+	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
+
+	g.setColour(0x55777575);
+	g.drawPath(modRange, area, thickness);
+
+	local valueArc = Content.createPath();
+	valueArc.setBounds(n);
+	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
+
+	g.setColour(0xFFBD4444);
+	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
+}
 
 KnobLaf.registerFunction("drawRotarySlider", function(g, obj)
 {
@@ -62,11 +82,10 @@ KnobLaf.registerFunction("drawRotarySlider", function(g, obj)
 					   obj.bgColour, 0.0, obj.area[3], false]);
 	g.fillEllipse(Rect.withSizeKeepingCentre(obj.area, radius, radius));
 	
-
-	
 	g.setGradientFill([obj.itemColour2, 0.0, 0.0,
 					   obj.itemColour2, 0.0, obj.area[3], true]);
 	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
+	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 4.0);
 	
 	if(underDrag)
 	{
@@ -130,15 +149,14 @@ for (i = 0; i < 3; i++)
 
 }  
 
-
-
-const var Xf =[];
+const var Glide =[];
 
 for (i = 0; i < 4; i++)
 {
-    Xf[i] = Content.getComponent("Xf"+(i+1)).setLocalLookAndFeel(KnobLaf);
+    Glide[i] = Content.getComponent("Glide"+(i+1)).setLocalLookAndFeel(KnobLaf);
 
-}  
+} 
+
 
 const var Dense =[];
 
@@ -178,15 +196,7 @@ for (i = 0; i < 3; i++)
 
 Content.getComponent("spread").setLocalLookAndFeel(KnobLaf);
 
-const var spreads =[];
 
-for (i = 0; i < 3; i++)
-{
-    spreads[i] = Content.getComponent("spread"+(i+1)).setLocalLookAndFeel(KnobLaf);
-
-} 
-
-Content.getComponent("spread").setLocalLookAndFeel(KnobLaf);
 
 
 ////////////////// CONSTANTS //////////////////
@@ -216,7 +226,7 @@ LAF_Button.registerFunction("drawToggleButton", function(g, obj)
 
 	 if (ButtonActive) {
 		var opacity = obj.over ? 1.0 - (obj.down * 0.2) : 0.8 - (obj.down * 0.2);
-		g.setGradientFill([Colours.withAlpha(obj.itemColour1, opacity), WidgetArea[STARTX], WidgetArea[STARTY], Colours.withAlpha(obj.itemColour2, opacity), WidgetArea[STARTX], WidgetArea[HEIGHT]]);
+		g.setGradientFill([Colours.withAlpha(obj.itemColour1, opacity), WidgetArea[STARTX], WidgetArea[STARTY], Colours.withAlpha(0xFFBD4444, opacity), WidgetArea[STARTX], WidgetArea[HEIGHT]]);
 	} else {
 	//	g.setColour(CONST_InactiveSurfaceColour);
 	}
@@ -228,7 +238,7 @@ LAF_Button.registerFunction("drawToggleButton", function(g, obj)
 	
 	// Choose the colour(s).
 	if (ButtonActive) {
-		if (obj.value) { var fillColour = obj.bgColour; } else { var fillColour = CONST_DisabledIndicatorColour; }
+		if (obj.value) { var fillColour = 0xFFBD4444; } else { var fillColour = CONST_DisabledIndicatorColour; }
 		g.setColour(Colours.withAlpha(fillColour, obj.over ? 1.0 : 0.7));
 	} else {
 		g.setColour(CONST_InactiveIndicatorColour);
@@ -262,7 +272,7 @@ for (i = 0; i < 12; i++)
 
 const var ModType =[];
 
-for (i = 0; i < 16; i++)
+for (i = 0; i < 12; i++)
 {
     ModType[i] = Content.getComponent("ModType"+(i+1)).setLocalLookAndFeel(LAF_Button);
 
@@ -278,6 +288,16 @@ for (i = 0; i < 4; i++)
 
 const var RecEnableLaf = Content.getComponent("RecEnable1").setLocalLookAndFeel(LAF_Button);
 
+const var EnvLoop =[];
+
+for (i = 1; i < 5; i++)
+{
+    EnvLoop[i] = Content.getComponent("EnvLoop"+(i)).setLocalLookAndFeel(LAF_Button);
+
+}
+
+const var RecEnableLaf = Content.getComponent("RecEnable1").setLocalLookAndFeel(LAF_Button);
+
 
 
 const var GrainXf =[];
@@ -285,14 +305,6 @@ const var GrainXf =[];
 for (i = 1; i < 5; i++)
 {
     GrainXf[i] = Content.getComponent("GrainXf"+(i)).setLocalLookAndFeel(LAF_Button);
-
-}
-
-const var EnvLoop =[];
-
-for (i = 1; i < 5; i++)
-{
-    EnvLoop[i] = Content.getComponent("EnvLoop"+(i)).setLocalLookAndFeel(LAF_Button);
 
 }
 
@@ -304,6 +316,17 @@ for (i = 1; i < 5; i++)
     TrigPeak[i] = Content.getComponent("TrigPeak"+(i)).setLocalLookAndFeel(LAF_Button);
 
 }
+
+
+
+const var psync = [Content.getComponent("PtichSync1"),
+                   Content.getComponent("PtichSync2"),
+                   Content.getComponent("PtichSync3"),
+                   Content.getComponent("PtichSync4")];
+
+for(s in psync)
+      s.setLocalLookAndFeel(LAF_Button);
+
 
 const var Comp = [Content.getComponent("Attack"),
                   Content.getComponent("MakeUp"),

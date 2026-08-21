@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="MatrixTest" AllowPolyphonic="1" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="MatrixTest" Bypassed="0" Name="MatrixTest"
+        ShowParameters="1">
+    <Nodes>
+      <Node ID="modchain" FactoryPath="container.modchain" Bypassed="0" Name="modchain">
+        <Nodes>
+          <Node ID="global_mod" FactoryPath="core.global_mod" Bypassed="0" Name="global_mod">
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.29325" DefaultValue="1.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                         Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="2.0" StepSize="1.0" ID="Mode" Value="1.0"
+                         DefaultValue="0.0"/>
+              <Parameter MinValue="-1.0" MaxValue="1.0" ID="Intensity" Value="0.1830625000000001"
+                         DefaultValue="1.0"/>
+            </Parameters>
+          </Node>
+          <Node ID="extra_mod" FactoryPath="core.extra_mod" Bypassed="0" Name="extra_mod">
+            <Parameters>
+              <Parameter MinValue="0.0" MaxValue="16.0" StepSize="1.0" ID="Index" Value="0.0"/>
+              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="ProcessSignal"
+                         Value="0.0"/>
+            </Parameters>
+            <ComplexData>
+              <DisplayBuffers>
+                <DisplayBuffer Index="-1"/>
+              </DisplayBuffers>
+            </ComplexData>
+          </Node>
+        </Nodes>
+        <Parameters/>
+      </Node>
+      <Node ID="granular_player_stepquant_density_hybrid_native" FactoryPath="project.granular_player_stepquant_density_hybrid_native"
+            Bypassed="0" Name="granular_player_stepquant_density_hybrid_native">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="0" MinValue="0" MaxValue="2667485"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="-12.0" MaxValue="12.0" ID="PitchSemitones" DefaultValue="0.0"
+                     Value="-1.64592569732666"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Scrub" DefaultValue="" Value="0.4923125"/>
+          <Parameter MinValue="1.0" MaxValue="500.0" ID="GrainMs" Value="75.31539891862866"
+                     DefaultValue="50.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Density" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="WindowShape" Value="0.520328125"
+                     DefaultValue="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PanSpread" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="10.0" ID="PitchMode" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PitchSpreadOrSync" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="32.0" ID="MaxGrains" Value="4.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubMode" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubBlend" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="4.0" ID="DirectionMode" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="PhaseScatter" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubB" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubC" Value="0.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="ScrubD" Value="0.0"/>
+          <Parameter MinValue="1.0" MaxValue="3.0" ID="TransportMode" Value="1.0"/>
+          <Parameter MinValue="1.0" MaxValue="4.0" ID="ReadMode" Value="1.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters>
+      <Parameter ID="Position" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
+                 Value="0.4812048077583313" DefaultValue="0.1358561813831329">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="PositionSrc" MinValue="0.0" MaxValue="16.0" StepSize="1.0"
+                 ModColour="0" ExternalModulation="Disabled" DefaultValue="" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="PositionMod" MinValue="-1.0" MaxValue="1.0" ModColour="0"
+                 ExternalModulation="Disabled" DefaultValue="" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="PositionDirMode" MinValue="1.0" MaxValue="2.0" StepSize="1.0"
+                 ModColour="0" ExternalModulation="Disabled" DefaultValue="" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="Pitch" MinValue="-12.0" MaxValue="12.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="-12.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="PitchSrc" MinValue="0.0" MaxValue="16.0" StepSize="1.0" ModColour="0"
+                 ExternalModulation="Disabled" DefaultValue="" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="PitchMod" MinValue="-1.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
+                 DefaultValue="" Value="1.0">
+        <Connections/>
+      </Parameter>
+      <Parameter ID="PitchDirMode" MinValue="1.0" MaxValue="2.0" StepSize="1.0"
+                 ModColour="0" ExternalModulation="Disabled" DefaultValue="" Value="1.0">
+        <Connections/>
+      </Parameter>
+    </Parameters>
+  </Node>
+</Network>

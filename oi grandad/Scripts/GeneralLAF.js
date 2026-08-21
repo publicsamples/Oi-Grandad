@@ -3,9 +3,22 @@
 //Draw Combobox
 
 const var cBLaf = Content.createLocalLookAndFeel();
-
-
 const var laf = Engine.createGlobalScriptLookAndFeel();
+const var posIndicatorLaf1 = Content.createLocalLookAndFeel();
+const var posIndicatorLaf2 = Content.createLocalLookAndFeel();
+const var posIndicatorLaf3 = Content.createLocalLookAndFeel();
+const var posIndicatorLaf4 = Content.createLocalLookAndFeel();
+
+inline function setLookAndFeelForIds(ids, localLookAndFeel)
+{
+	for (id in ids)
+	{
+		var component = Content.getComponent(id);
+		
+		if (isDefined(component))
+			component.setLocalLookAndFeel(localLookAndFeel);
+	}
+}
 
 laf.registerFunction("drawToggleButton", function(g, obj)
 {
@@ -23,14 +36,12 @@ laf.registerFunction("drawToggleButton", function(g, obj)
     g.drawAlignedText(obj.text, obj.area, "centred");
 });
 
-const var cBLaf = Content.createLocalLookAndFeel();
-
 cBLaf.registerFunction("drawComboBox", function(g, obj)
 {
     g.setColour(obj.bgColour);
-    g.drawRoundedRectangle(obj.area, 3.0, 3.0);
-    g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 0.2));
-    g.setFont("Montserrat", 16.0);
+    g.drawRoundedRectangle(obj.area, 3.0, 1.5);
+    g.setColour(Colours.withAlpha(obj.textColour, (obj.enabled && obj.active) ? 1.0 : 1.0));
+    g.setFont("Montserrat", 14.0);
    
   
     var a = obj.area;
@@ -63,302 +74,109 @@ laf.registerFunction("drawPresetBrowserListItem", function(g, obj)
     g.drawAlignedText(obj.text, obj.area, "centred");
 });
 
-laf.registerFunction("drawTableRuler", function(g, obj)
+
+posIndicatorLaf1.registerFunction("drawTableRuler", function(g, obj)
 {
-    g.setColour(Colours.withAlpha(obj.bgColour, 2.1));
-    
-    var x = obj.position * obj.area[2];
-    
-    g.drawLine(x, x, 0, obj.area[3], 10.0);
-    g.setColour(obj.bgColour);
-    g.drawLine(x, x, 0, obj.area[3], 1);
+    var x = obj.area[0] + (obj.position * obj.area[2]);
+    var top = obj.area[1];
+    var bottom = obj.area[1] + obj.area[3];
+    var centreY = obj.area[1] + (obj.area[3] * 0.5);
+    var circleSize = 16.0;
+    var circleArea = [x - (circleSize * 0.5), centreY - (circleSize * 0.5), circleSize, circleSize];
+
+    g.setColour(0xFBFF9B9B);
+    g.drawLine(x, x, top + 2.0, bottom - 2.0, 2.0);
+    g.fillEllipse(circleArea);
+    g.setColour(0xFF1F252C);
+    g.setFont("Montserrat", 11.0);
+    g.drawAlignedText("1", circleArea, "centred");
 });
 
-const var ModulationMenus = [Content.getComponent("TempoModSel1"),
-					  Content.getComponent("TempoModSel2"),
-					  Content.getComponent("TempoModSel3"),
-					  Content.getComponent("TempoModSel4"),
-					  Content.getComponent("TempoModSel5"),
-					  Content.getComponent("TempoModSel6"),
-					  Content.getComponent("TempoModSel7"),
-					  Content.getComponent("TempoModSel8"),
-					  Content.getComponent("TempoModSel9"),
-					  Content.getComponent("TempoModSel10"),
-					  Content.getComponent("TempoModSel11"),
-					  Content.getComponent("TempoModSel12"),
-                      Content.getComponent("MorphModSel1"),
-                      Content.getComponent("MorphModSel2"),
-                      Content.getComponent("MorphModSel3"),
-                      Content.getComponent("MorphModSel4"),
-                      Content.getComponent("MorphModSel5"),
-                      Content.getComponent("MorphModSel6"),
-                      Content.getComponent("MorphModSel7"),
-                      Content.getComponent("MorphModSel8"),
-                      Content.getComponent("MorphModSel9"),
-                      Content.getComponent("MorphModSel10"),
-                      Content.getComponent("MorphModSel11"),
-                      Content.getComponent("MorphModSel12"),
-                      Content.getComponent("TrigSel1"),
-                      Content.getComponent("TrigSel2"),
-                      Content.getComponent("TrigSel3"),
-                      Content.getComponent("TrigSel4"),
-                      Content.getComponent("TrigSel5"),
-                      Content.getComponent("TrigSel6"),
-                      Content.getComponent("TrigSel7"),
-                      Content.getComponent("TrigSel8"),
-                      Content.getComponent("TrigSel9"),
-                      Content.getComponent("TrigSel10"),
-                      Content.getComponent("TrigSel11"),
-                      Content.getComponent("TrigSel12"),
-                      Content.getComponent("EnvVoiceSel1"),
-                      Content.getComponent("EnvVoiceSel2"),
-                      Content.getComponent("EnvVoiceSel3"),
-                      Content.getComponent("EnvVoiceSel4")];
-                   
+posIndicatorLaf2.registerFunction("drawTableRuler", function(g, obj)
+{
+    var x = obj.area[0] + (obj.position * obj.area[2]);
+    var top = obj.area[1];
+    var bottom = obj.area[1] + obj.area[3];
+    var centreY = obj.area[1] + (obj.area[3] * 0.5);
+    var circleSize = 16.0;
+    var circleArea = [x - (circleSize * 0.5), centreY - (circleSize * 0.5), circleSize, circleSize];
 
-const var vMenu1 = [Content.getComponent("pos1modsel"),
-                    Content.getComponent("PmodSel1"),
-                    Content.getComponent("detmodsel"),
-                    Content.getComponent("spreadmodsel"),
-                    Content.getComponent("densemodsel"),
-                    Content.getComponent("spreadmodsel4"),
-                    Content.getComponent("winmodsrc1"),
-                    Content.getComponent("GrainModSel1"),
-                    Content.getComponent("delmodsel9"),
-                    Content.getComponent("redmodsel6"),
-                    Content.getComponent("redmodsel5"),
-                    Content.getComponent("delmodsel10"),
-                    Content.getComponent("PostMode1"),
-                    Content.getComponent("PostMode2"),
-                    Content.getComponent("PostMode3"),
-                    Content.getComponent("PostMode4"),
-                    Content.getComponent("ampmodsel"),
-                    Content.getComponent("PanModSel1"),
-                    Content.getComponent("delmodsel1"),
-                    Content.getComponent("redmodsel1"),
-                    Content.getComponent("delmodsel5")];
+    g.setColour(0xFFFFD6A5);
+    g.drawLine(x, x, top + 2.0, bottom - 2.0, 2.0);
+    g.fillEllipse(circleArea);
+    g.setColour(0xFF1F252C);
+    g.setFont("Montserrat", 11.0);
+    g.drawAlignedText("2", circleArea, "centred");
+});
 
+posIndicatorLaf3.registerFunction("drawTableRuler", function(g, obj)
+{
+    var x = obj.area[0] + (obj.position * obj.area[2]);
+    var top = obj.area[1];
+    var bottom = obj.area[1] + obj.area[3];
+    var centreY = obj.area[1] + (obj.area[3] * 0.5);
+    var circleSize = 16.0;
+    var circleArea = [x - (circleSize * 0.5), centreY - (circleSize * 0.5), circleSize, circleSize];
 
-for(s in ModulationMenus)
-       s.setLocalLookAndFeel(cBLaf); 
-       
-for(s in vMenu1)
-       s.setLocalLookAndFeel(cBLaf);  
+    g.setColour(0xFFFFFEC4);
+    g.drawLine(x, x, top + 2.0, bottom - 2.0, 2.0);
+    g.fillEllipse(circleArea);
+    g.setColour(0xFF1F252C);
+    g.setFont("Montserrat", 11.0);
+    g.drawAlignedText("3", circleArea, "centred");
+});
+
+posIndicatorLaf4.registerFunction("drawTableRuler", function(g, obj)
+{
+    var x = obj.area[0] + (obj.position * obj.area[2]);
+    var top = obj.area[1];
+    var bottom = obj.area[1] + obj.area[3];
+    var centreY = obj.area[1] + (obj.area[3] * 0.5);
+    var circleSize = 16.0;
+    var circleArea = [x - (circleSize * 0.5), centreY - (circleSize * 0.5), circleSize, circleSize];
+
+    g.setColour(0xFFCBFFA9);
+    g.drawLine(x, x, top + 2.0, bottom - 2.0, 2.0);
+    g.fillEllipse(circleArea);
+    g.setColour(0xFF1F252C);
+    g.setFont("Montserrat", 11.0);
+    g.drawAlignedText("4", circleArea, "centred");
+});
+
 
 
          
-const var vMenu4 = [Content.getComponent("delmodsel19"),
-                    Content.getComponent("ResMode4"),
-                    Content.getComponent("redmodsel14"),
-                    Content.getComponent("delmodsel20")];
-
-for(s in vMenu4)
-       s.setLocalLookAndFeel(cBLaf); 
-      
-
-const var ModMenus1 = [Content.getComponent("PosHeadSrcA1"),
-                       Content.getComponent("PosHeadSrcA2"),
-                       Content.getComponent("PosHeadSrcA4"),
-                       Content.getComponent("PosHeadSrcA3"),
-                       Content.getComponent("pos1modsel"),
-                       Content.getComponent("PmodSel1"),
-                       Content.getComponent("detmodsel"),
-                       Content.getComponent("spreadmodsel4"),
-                       Content.getComponent("densemodsel"),
-                       Content.getComponent("spreadmodsel"),
-                       Content.getComponent("winmodsrc1"),
-                       Content.getComponent("GrainModSel1"),
-                       Content.getComponent("delmodsel1"),
-                       Content.getComponent("redmodsel1"),
-                       Content.getComponent("delmodsel5"),
-                       Content.getComponent("ampmodsel"),
-                       Content.getComponent("PanModSel1")];
-
-//for(s in ModMenus1)
- //      s.setLocalLookAndFeel(cBLaf); 
-       
-const var ModeMenus1 = [Content.getComponent("OutputSelector"),
-                        Content.getComponent("maxGrains1"),
-                        Content.getComponent("PitchMode1")];
 
 
-for(s in ModeMenus1)
-       s.setLocalLookAndFeel(cBLaf); 
-  
-const var ModMenus2 = [Content.getComponent("PmodSel2"),
-                       Content.getComponent("detmodsel1"),
-                       Content.getComponent("spreadmodsel5"),
-                       Content.getComponent("spread1"),
-                       Content.getComponent("pos1modsel1"),
-                       Content.getComponent("densemodsel1"),
-                       Content.getComponent("GrainModSel2"),
-                       Content.getComponent("winmodsrc2"),
-                       Content.getComponent("spreadmodsel1"),
-                       Content.getComponent("ampmodsel1"),
-                       Content.getComponent("PanModSel2"),
-                       
-                       Content.getComponent("delmodsel2"),
-                       Content.getComponent("redmodsel2"),
-                       Content.getComponent("delmodsel6"),];
-                       
-for(s in ModMenus2)
-       s.setLocalLookAndFeel(cBLaf);  
-       
-       
-const var ModeMenus2 = [Content.getComponent("maxGrains2"),
-                       
-                        Content.getComponent("OutputSelector1"),
-                        
-                        Content.getComponent("PitchMode2")];
+const var ModeMenuIds1 = ["OutputSelector", "maxGrains1", "PostMode1", "PostMode2", "PostMode3", "PostMode4", "PitchMode1", "PitchMode2", "PitchMode3", "PitchMode4"];
+const var ModeMenuIds2 = ["maxGrains2", "OutputSelector1"];
+const var ModeMenuIds3 = ["maxGrains3", "OutputSelector2"];
+const var ModeMenuIds4 = ["maxGrains4", "OutputSelector3"];
+const var GlobalMenuIds = ["MidiNote", "Playback", "VoiceNumber", "Poly", "ModPage", "cmbPresets"];
+const var ResModeIds = ["ResMode1", "ResMode2", "ResMode3", "ResMode4"];
+const var PlaybackModeIds = ["StgSel1", "StgSel2", "StgSel3", "StgSel4"];
+const var TriggerSelectorIds = ["TrigSel1", "TrigSel2", "TrigSel3", "TrigSel4", "TrigSel5", "TrigSel6", "TrigSel7", "TrigSel8", "TrigSel9", "TrigSel10", "TrigSel11", "TrigSel12"];
+const var VoiceMenuIds = ["TransPort1", "TransPort2", "TransPort3", "TransPort4", "GrainDirMode1", "GrainDirMode2", "GrainDirMode3", "GrainDirMode4", "SpreadDirMode1", "SpreadDirMode2", "SpreadDirMode3", "SpreadDirMode4"];
+const var TrackMenus = ["EnvVoiceSel5", "EnvVoiceSel6", "EnvVoiceSel7", "EnvVoiceSel8"];
+const var PosIndicatorLane1Ids = ["PosIndicatorLaneA1", "PosIndicatorLaneA2", "PosIndicatorLaneA3", "PosIndicatorLaneA4"];
+const var PosIndicatorLane2Ids = ["PosIndicatorLaneB1", "PosIndicatorLaneB2", "PosIndicatorLaneB3", "PosIndicatorLaneB4"];
+const var PosIndicatorLane3Ids = ["PosIndicatorLaneC1", "PosIndicatorLaneC2", "PosIndicatorLaneC3", "PosIndicatorLaneC4"];
+const var PosIndicatorLane4Ids = ["PosIndicatorLaneD1", "PosIndicatorLaneD2", "PosIndicatorLaneD3", "PosIndicatorLaneD4"];
 
 
- for(s in ModeMenus2)
-        s.setLocalLookAndFeel(cBLaf);  
-        
-const var ModMenus3 = [Content.getComponent("PosHeadSrcA9"),
-                       Content.getComponent("PosHeadSrcA10"),
-                       Content.getComponent("PosHeadSrcA12"),
-                       Content.getComponent("PosHeadSrcA11"),
-                       Content.getComponent("densemodsel2"),
-                       Content.getComponent("spreadmodsel6"),
-                       Content.getComponent("detmodsel2"),
-                       Content.getComponent("PmodSel3"),
-                       Content.getComponent("spreadmodsel2"),
-                       Content.getComponent("pos1modsel2"),
-                       Content.getComponent("GrainModSel3"),
-                       Content.getComponent("winmodsrc3"),
-                       Content.getComponent("ampmodsel2"),
-                       Content.getComponent("PanModSel3")];
+setLookAndFeelForIds(ModeMenuIds1, cBLaf);
+setLookAndFeelForIds(ModeMenuIds2, cBLaf);
+setLookAndFeelForIds(ModeMenuIds3, cBLaf);
+setLookAndFeelForIds(ModeMenuIds4, cBLaf);
+setLookAndFeelForIds(GlobalMenuIds, cBLaf);
+setLookAndFeelForIds(ResModeIds, cBLaf);
+setLookAndFeelForIds(PlaybackModeIds, cBLaf);
+setLookAndFeelForIds(TriggerSelectorIds, cBLaf);
+setLookAndFeelForIds(VoiceMenuIds, cBLaf);
+setLookAndFeelForIds(TrackMenus, cBLaf);
+setLookAndFeelForIds(PosIndicatorLane1Ids, posIndicatorLaf1);
+setLookAndFeelForIds(PosIndicatorLane2Ids, posIndicatorLaf2);
+setLookAndFeelForIds(PosIndicatorLane3Ids, posIndicatorLaf3);
+setLookAndFeelForIds(PosIndicatorLane4Ids, posIndicatorLaf4);     
 
-       for(s in ModMenus3)
-              s.setLocalLookAndFeel(cBLaf);      
-
-const var ModeMenus3 = [Content.getComponent("maxGrains3"),
-                        
-                        Content.getComponent("OutputSelector2"),
-                        Content.getComponent("PitchMode3")];
-
-for(s in ModeMenus3)
-       s.setLocalLookAndFeel(cBLaf);  
-       
-const var ModMenus4 = [Content.getComponent("PosHeadSrcA13"),
-                       Content.getComponent("PosHeadSrcA14"),
-                       Content.getComponent("PosHeadSrcA16"),
-                       Content.getComponent("PosHeadSrcA15"),
-                       Content.getComponent("densemodsel3"),
-                       Content.getComponent("GrainModSel4"),
-                       Content.getComponent("winmodsrc4"),
-                       Content.getComponent("pos1modsel3"),
-                       Content.getComponent("spreadmodsel3"),
-                       Content.getComponent("spreadmodsel7"),
-                       Content.getComponent("PmodSel4"),
-                       Content.getComponent("detmodsel3"),
-                       Content.getComponent("ampmodsel3"),
-                       Content.getComponent("PanModSel4"),
-                       Content.getComponent("delmodsel4"),
-                       Content.getComponent("redmodsel4"),
-                       Content.getComponent("delmodsel8")];
-
-for(s in ModMenus4)
-       s.setLocalLookAndFeel(cBLaf);
-
-const var ModeMenus4 = [Content.getComponent("maxGrains4"),
-                       
-                        Content.getComponent("PitchMode4"),
-                        Content.getComponent("OutputSelector3")];
-  
-  for(s in ModeMenus4)
-         s.setLocalLookAndFeel(cBLaf);
-         
-  const var PostMods = [Content.getComponent("delmodsel11"),
-                        Content.getComponent("redmodsel8"),
-                        Content.getComponent("redmodsel7"),
-                        Content.getComponent("delmodsel12"),
-  						Content.getComponent("redmodsel10"),
-                         Content.getComponent("delmodsel13"),
-                         Content.getComponent("redmodsel9"),
-                         Content.getComponent("delmodsel14"),
-                         Content.getComponent("delmodsel15"),
-                  Content.getComponent("redmodsel11"),
-                  Content.getComponent("delmodsel16"),
-                  Content.getComponent("redmodsel12")];
-  
-
-for(s in PostMods)
-       s.setLocalLookAndFeel(cBLaf);
-       
-const var GlbMenus = [Content.getComponent("MidiNote"),
-                      Content.getComponent("Playback"),
-                      Content.getComponent("VoiceNumber"),
-                      Content.getComponent("Poly"),
-                      Content.getComponent("ModPage"),
-                      Content.getComponent("cmbPresets")];
-
-  for(s in GlbMenus)
-         s.setLocalLookAndFeel(cBLaf);      
-         
-const var macroMods = [Content.getComponent("MacroScr1"),
-                       Content.getComponent("MacroScr2"),
-                       Content.getComponent("MacroScr3"),
-                       Content.getComponent("MacroScr4"),
-                       Content.getComponent("MacroScr5"),
-                       Content.getComponent("MacroScr6"),
-                       Content.getComponent("MacroScr7"),
-                       Content.getComponent("MacroScr8")];
- 
- for(s in macroMods)
-         s.setLocalLookAndFeel(cBLaf);       
-       
-       
-const var ResMode = [Content.getComponent("ResMode1"),
-                      Content.getComponent("ResMode2"),
-                      Content.getComponent("ResMode3"),
-                      Content.getComponent("ResMode4")];
-                      
-                      
-   
-   for(s in ResMode)
-           s.setLocalLookAndFeel(cBLaf);      
-           
-
- 
- const var Pb = [Content.getComponent("StgSel1"),
-            Content.getComponent("StgSel2"),
-            Content.getComponent("StgSel3"),
-            Content.getComponent("StgSel4")];    
-
-const var V2StageMods = [Content.getComponent("PosHeadSrcA1"),
-						Content.getComponent("PosHeadSrcA2"),
-						Content.getComponent("PosHeadSrcA3"),
-						Content.getComponent("PosHeadSrcA4"),
-						Content.getComponent("PosHeadSrcA5"),
-                         Content.getComponent("PosHeadSrcA6"),
-                         Content.getComponent("PosHeadSrcA8"),
-                         Content.getComponent("PosHeadSrcA7")];
-  
-  
-  for(s in V2StageMods)
-         s.setLocalLookAndFeel(cBLaf);              
-            
-            
-for(s in Pb)
-       s.setLocalLookAndFeel(cBLaf);        
-       
-const var ModeMenus = [Content.getComponent("TransPort1"),
-Content.getComponent("TransPort2"),
-Content.getComponent("TransPort3"),
-Content.getComponent("TransPort4"),
-                       Content.getComponent("Read1"),
-                       Content.getComponent("Read2"),
-                       Content.getComponent("Read3"),
-                       Content.getComponent("Read4") ];
-    
-    for(s in ModeMenus)
-           s.setLocalLookAndFeel(cBLaf);            
-       
-const var xfSel = [Content.getComponent("ComboBox26"),
-                   Content.getComponent("ComboBox1")];
-     
-    for(s in xfSel)
-           s.setLocalLookAndFeel(cBLaf);   
                             

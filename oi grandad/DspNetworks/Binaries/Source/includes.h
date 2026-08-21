@@ -15,10 +15,11 @@
 // Include compiled network files --------------------------
 
 #include "DspNetwork.h"
+#include "ENV.h"
 #include "MacroMod.h"
+#include "MatrixTest2.h"
 #include "OutMods.h"
 #include "res2.h"
-#include "sn.h"
 #include "sn_fin.h"
 
 #if (defined (_WIN32) || defined (_WIN64))

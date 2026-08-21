@@ -19,14 +19,14 @@ REGISTER_STATIC_DSP_LIBRARIES()
 #if USE_COPY_PROTECTION
 RSAKey hise::Unlocker::getPublicKey() { return RSAKey(""); };
 #endif
-AudioProcessor* hise::StandaloneProcessor::createProcessor() { CREATE_PLUGIN(deviceManager, callback); }
+AudioProcessor* JUCE_CALLTYPE createPluginFilter() { CREATE_PLUGIN(nullptr, nullptr); }
 
-START_JUCE_APPLICATION(hise::FrontendStandaloneApplication)
+AudioProcessor* hise::StandaloneProcessor::createProcessor() { return nullptr; }
 String hise::FrontendHandler::getProjectName() { return "oi grandad"; };
 String hise::FrontendHandler::getCompanyName() { return "modularsamples"; };
 String hise::FrontendHandler::getCompanyWebsiteName() { return "http://modularsamples.com"; };
 String hise::FrontendHandler::getCompanyCopyright() { return "2024 MS"; };
-String hise::FrontendHandler::getVersionString() { return "2.4.6"; };
+String hise::FrontendHandler::getVersionString() { return "2.5.0"; };
 String hise::FrontendHandler::getAppGroupId() { return ""; };
 String hise::FrontendHandler::getExpansionKey() { return ""; };
 String hise::FrontendHandler::getExpansionType() { return "Disabled"; };

@@ -1,5 +1,27 @@
 const var KnobLaf2 = Content.createLocalLookAndFeel();
 
+inline function drawKnobModulationArc(g, obj, area, thickness)
+{
+	if(!obj.modulationActive)
+		return;
+
+	local n = Rectangle(0.0, 0.0, 1.0, 1.0);
+	local actualValue = Math.range(obj.scaledValue + obj.addValue, 0.0, 1.0);
+	local modRange = Content.createPath();
+	modRange.setBounds(n);
+	modRange.addArc(n, -2.66 + obj.modMinValue * 5.32, -2.66 + obj.modMaxValue * 5.32);
+
+	g.setColour(0x55777575);
+	g.drawPath(modRange, area, thickness);
+
+	local valueArc = Content.createPath();
+	valueArc.setBounds(n);
+	valueArc.addArc(n, -2.66 + obj.valueNormalized * 5.32, -2.66 + actualValue * 5.32);
+
+	g.setColour(0xFFBD4444);
+	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
+}
+
 
 
 KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
@@ -62,11 +84,10 @@ KnobLaf2.registerFunction("drawRotarySlider", function(g, obj)
 					   obj.bgColour, 0.0, obj.area[3], false]);
 	g.fillEllipse(Rect.withSizeKeepingCentre(obj.area, radius, radius));
 	
-
-	
 	g.setGradientFill([obj.itemColour2, 0.0, 0.0,
 					   obj.itemColour2, 0.0, obj.area[3], true]);
 	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
+	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 4.5);
 	
 	if(underDrag)
 	{
@@ -245,5 +266,45 @@ for(s in MacroSliders)
       s.setLocalLookAndFeel(KnobLaf2);
       
       
+const var WindowTempo =[];
+
+for (i = 0; i < 4; i++)
+{
+    WindowTempo[i] = Content.getComponent("WindowTempo"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+}  
+
+const var Dense =[];
+
+for (i = 0; i < 4; i++)
+{
+    Dense[i] = Content.getComponent("Dense"+(i+1)).setLocalLookAndFeel(KnobLaf);
+
+} 
+
+const var detune =[];
+
+for (i = 0; i < 3; i++)
+{
+    detune[i] = Content.getComponent("det"+(i+1)).setLocalLookAndFeel(KnobLaf);
+ }
 
 
+
+const var Respawn =[];
+
+for (i = 0; i < 4; i++)
+{
+    Respawn[i] = Content.getComponent("Respawn"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+const var spreads =[];
+
+for (i = 0; i < 3; i++)
+{
+    spreads[i] = Content.getComponent("spread"+(i+1)).setLocalLookAndFeel(KnobLaf2);
+
+} 
+
+Content.getComponent("spread").setLocalLookAndFeel(KnobLaf2);

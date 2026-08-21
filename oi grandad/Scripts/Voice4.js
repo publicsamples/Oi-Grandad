@@ -1,14 +1,18 @@
-const var StackItem4 = [Content.getComponent("PosIndicator14"),
-                        Content.getComponent("PosIndicator15"),
-                        Content.getComponent("PosIndicator16")];
-                        
 const var VoiceParam4 = Content.getComponent("PosParam4");
 const var VoiceParamB4 = Content.getComponent("PosParamB4");
+const var PosIndicatorLaneB4 = Content.getComponent("PosIndicatorLaneB4");
+const var PosIndicatorLaneC4 = Content.getComponent("PosIndicatorLaneC4");
+const var PosIndicatorLaneD4 = Content.getComponent("PosIndicatorLaneD4");
 
   
 
 inline function onStgSel4Control(component, value)
 {
+	var showExtraIndicators = value == 2 || value == 4;
+
+	PosIndicatorLaneB4.showControl(showExtraIndicators);
+	PosIndicatorLaneC4.showControl(showExtraIndicators);
+	PosIndicatorLaneD4.showControl(showExtraIndicators);
 	
 
 
@@ -19,13 +23,11 @@ if(value == 1)
   	VoiceParam4.showControl(1);
   	VoiceParamB4.showControl(0);
              
-        gran3.setAttribute(gran3.scrubMode, 0);  
+        gran3.setAttribute(gran3.ScrubMode, 0);  
        // gran3.setAttribute(gran3.PositionModMode, 0);
 
       
 
-       for(s in StackItem4)
-            s.showControl(0);
                    
 	}
 	
@@ -35,10 +37,8 @@ if(value == 2)
 	VoiceParamB4.showControl(1);
 	  	
 	  	
-          gran3.setAttribute(gran3.scrubMode, 1);  
+          gran3.setAttribute(gran3.ScrubMode, 1);  
 
-              for(s in StackItem4)
-                  s.showControl(1);
               
 	}
 if(value == 3)
@@ -47,13 +47,11 @@ if(value == 3)
   	VoiceParam4.showControl(1);
   	VoiceParamB4.showControl(0);
              
-        gran3.setAttribute(gran3.scrubMode, 3);  
+        gran3.setAttribute(gran3.ScrubMode, 3);  
        // gran3.setAttribute(gran3.PositionModMode, 0);
 
       
 
-       for(s in StackItem4)
-            s.showControl(0);
                    
 	}
 	
@@ -63,12 +61,13 @@ if(value == 4)
 	VoiceParamB4.showControl(1);
 	  	
 	  	
-          gran3.setAttribute(gran3.scrubMode, 4);  
+          gran3.setAttribute(gran3.ScrubMode, 4);  
 
-              for(s in StackItem4)
-                  s.showControl(1);
               
-	}	
+	}
+
+	if (isDefined(refreshPositionIndicators))
+		refreshPositionIndicators();
 
 };
 
@@ -77,12 +76,13 @@ Content.getComponent("StgSel4").setControlCallback(onStgSel4Control);
 ///Position Macros
 
 const var pos3 = Content.getComponent("pos3");
-const var posmod3 = Content.getComponent("posmod3");
-const var pos1modsel3 = Content.getComponent("pos1modsel3");
 const var MultPosA4 = Content.getComponent("MultPosA4");
 const var MacroPos4 = Content.getComponent("MacroPos4");
-const var PosHeadModA4 = Content.getComponent("PosHeadModA4");
-const var PosHeadSrcA4 = Content.getComponent("PosHeadSrcA4");
+
+const var Voice_4_PositionA = Synth.getModulator("Voice_4_PositionA");
+const var Voice_4_PositionB = Synth.getModulator("Voice_4_PositionB");
+const var Voice_4_PositionC = Synth.getModulator("Voice_4_PositionC");
+const var Voice_4_PositionD = Synth.getModulator("Voice_4_PositionD");
 
 inline function onMultPosA4Control(component, value)
 {
@@ -95,12 +95,33 @@ inline function onMultPosA4Control(component, value)
 
 Content.getComponent("MultPosA4").setControlCallback(onMultPosA4Control);
 
+inline function onMultPosB4Control(component, value)
+{
+	Voice_4_PositionB.setAttribute(Voice_4_PositionB.Value, value);
+};
+
+Content.getComponent("MultPosB4").setControlCallback(onMultPosB4Control);
+
+inline function onMultPosC4Control(component, value)
+{
+	Voice_4_PositionC.setAttribute(Voice_4_PositionC.Value, value);
+};
+
+Content.getComponent("MultPosC4").setControlCallback(onMultPosC4Control);
+
+inline function onMultPosD4Control(component, value)
+{
+	Voice_4_PositionD.setAttribute(Voice_4_PositionD.Value, value);
+};
+
+Content.getComponent("MultPosD4").setControlCallback(onMultPosD4Control);
+
 
 inline function onpos3Control(component, value)
 {
 	
 
-	 gran3.setAttribute(gran3.Position, value); 
+	 Voice_4_PositionA.setAttribute(Voice_4_PositionA.Value, value); 
 	 MultPosA4.setValue(value);
 	 MacroPos4.setValue(value);
 };
@@ -120,49 +141,6 @@ inline function onMacroPos4Control(component, value)
 Content.getComponent("MacroPos4").setControlCallback(onMacroPos4Control);
 
 
-
-inline function onposmod3Control(component, value)
-{
-	
-
-	gran3.setAttribute(gran3.PositionMod, value); 
-	PosHeadModA4.setValue(value);
-};
-
-Content.getComponent("posmod3").setControlCallback(onposmod3Control);
-
-inline function onPosHeadModA4Control(component, value)
-{
-	
-
-	posmod3.setValue(value);
-	posmod3.changed();
-};
-
-Content.getComponent("PosHeadModA4").setControlCallback(onPosHeadModA4Control);
-
-
-inline function onpos1modsel3Control(component, value)
-{
-	
-
-	gran3.setAttribute(gran3.PositionSrc, value); 
-	PosHeadSrcA4.setValue(value);
-};
-
-Content.getComponent("pos1modsel3").setControlCallback(onpos1modsel3Control);
-
-
-inline function onPosHeadSrcA4Control(component, value)
-{
-	
-
-	pos1modsel3.setValue(value);
-	pos1modsel3.changed();
-};
-
-Content.getComponent("PosHeadSrcA4").setControlCallback(onPosHeadSrcA4Control);
-
 const var DenseLabel4 = Content.getComponent("DenseLabel4");
 const var DenseLabelB4 = Content.getComponent("DenseLabelB4");
 
@@ -172,7 +150,7 @@ inline function onGrainXf4Control(component, value)
 {
 	
 
-	gran3.setAttribute(gran3.scrubBlen, value); 
+	gran3.setAttribute(gran3.ScrubBlend, value); 
 	
 	if(value == 0)
 	  {
@@ -238,119 +216,37 @@ if(value == 1)
 
 Content.getComponent("maxGrains4").setControlCallback(onmaxGrains4Control);
 
-const var DivLabel3 = Content.getComponent("DivLabel3");
 const var PitchDiv4 = Content.getComponent("PitchDiv4");
 const var DetuneLabel3 = Content.getComponent("DetuneLabel3");
 const var PitchTempo4 = Content.getComponent("PitchTempo4");
 const var det3 = Content.getComponent("det3");
+const var pitch3 = Content.getComponent("pitch3");
 
-inline function onPitchMode4Control(component, value)
+inline function onPtichSync4Control(component, value)
 {
 	
 
-	if(value == 1)
-	  {
-	 gran3.setAttribute(gran3.PitchMode, 1);
-	 DivLabel3.showControl(0);
+if(value == 0)
+  {
+
+	gran3.setAttribute(gran3.PitchSync, value);
+	 PitchTempo4.showControl(0);
+	 pitch3.showControl(1);
 	 PitchDiv4.showControl(0);
-	 PitchTempo4.showControl(0);;
-	 det3.showControl(1);
-	 DetuneLabel3.setValue("SPREAD");
+	 
 	 }
 	 
-	 if(value == 2)
-	 	  {
-	 	 gran3.setAttribute(gran3.PitchMode, 2);
-	 	 DivLabel3.showControl(0);
-	 	 	 PitchDiv4.showControl(0);
-	 	 	 PitchTempo4.showControl(0);;
-	 	 	 det3.showControl(1);
-	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 }
-	 	 
-	 if(value == 3)
-	 	  {
-	 	 gran3.setAttribute(gran3.PitchMode, 3);
-	 	 DivLabel3.showControl(1);
+	 if(value == 1)
+	   {
+		gran3.setAttribute(gran3.PitchSync, value);
+	 	 PitchTempo4.showControl(1);
+	 	 pitch3.showControl(0);
 	 	 PitchDiv4.showControl(1);
-	 	 PitchTempo4.showControl(1);;
-	 	 det3.showControl(0);
-	 	 DetuneLabel3.setValue("TEMPO");
-	 	 }	 
 	 	 
-	 	 if(value == 4)
-	 	 	 	 	  {
-	 	 	 	 	 gran3.setAttribute(gran3.PitchMode, 4);
-	 	 	 	 	 DivLabel3.showControl(0);
-	 	 	 	 	 	 PitchDiv4.showControl(0);
-	 	 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 	 	 	 	 det3.showControl(1);
-	 	 	 	 	 	 DetuneLabel3.setValue("TIME");
-	 	 	 	 	 }
-	 	 	 	 	 
-	 	 	if(value == 5)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 5);
-	 	 		 	 	 	 DivLabel3.showControl(0);
-	 	 		 	 	 	 	 PitchDiv4.showControl(0);
-	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 		 	 	 	 	 det3.showControl(1);
-	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 		 	 	 	 } 	 
-	 	 		 	 	 	 
-	 	 	if(value == 6)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 6);
-	 	 		 	 	 	 DivLabel3.showControl(0);
-	 	 		 	 	 	 	 PitchDiv4.showControl(0);
-	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 		 	 	 	 	 det3.showControl(1);
-	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 		 	 	 	 }	 
-	 	 		 	 	 	 
-	 	 		 	 	 	 	 	 	 	 
-	 	 	if(value == 7)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 7);
-	 	 		 	 	 	 DivLabel3.showControl(0);
-	 	 		 	 	 	 	 PitchDiv4.showControl(0);
-	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 		 	 	 	 	 det3.showControl(1);
-	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 		 	 	 	 } 
-	 	 		 	 	 	 
-	 	 	if(value == 8)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 8);
-	 	 		 	 	 	 DivLabel3.showControl(0);
-	 	 		 	 	 	 	 PitchDiv4.showControl(0);
-	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 		 	 	 	 	 det3.showControl(1);
-	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 		 	 	 	 }	 	 
-	 	 		 	 	 	 
-	 	 	if(value == 9)
-	 	 		 	 	 	  {
-	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 9);
-	 	 		 	 	 	 DivLabel3.showControl(0);
-	 	 		 	 	 	 	 PitchDiv4.showControl(0);
-	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 		 	 	 	 	 det3.showControl(1);
-	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 		 	 	 	 }	 	 
-	 	 		 	 	 	 
-	 	 	if(value ==10)
-	 	 	 		 	 	 	  {
-	 	 	 		 	 	 	 gran3.setAttribute(gran3.PitchMode, 10);
-	 	 	 		 	 	 	 DivLabel3.showControl(0);
-	 	 	 		 	 	 	 	 PitchDiv4.showControl(0);
-	 	 	 		 	 	 	 	 PitchTempo4.showControl(0);;
-	 	 	 		 	 	 	 	 det3.showControl(1);
-	 	 	 		 	 	 	 	 DetuneLabel3.setValue("SPREAD");
-	 	 	 		 	 	 	 }	 
+	 	 }
 };
 
-Content.getComponent("PitchMode4").setControlCallback(onPitchMode4Control);
+Content.getComponent("PtichSync4").setControlCallback(onPtichSync4Control);
 
 // RANDOM
 const var pos3 = Content.getComponent("pos3");
@@ -559,9 +455,6 @@ const var RandomControls4 = Content.getComponent("RandomControls4");
 inline function onShowRandom4Control(component, value)
 {
 	RandomControls4.showControl(value);
-	Post1.showControl(value-1);
 };
 
 Content.getComponent("ShowRandom4").setControlCallback(onShowRandom4Control);
-
-
