@@ -66,7 +66,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;\Users\rick\Documents\GitHub\HISE;\Users\rick\Documents\GitHub\HISE\JUCE\modules;%FFT_HEADER_PATH%;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.4.6;JUCE_APP_VERSION_HEX=0x20406;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;NUM_HARDCODED_FX_MODS=16;NUM_HARDCODED_POLY_FX_MODS=16;NUM_HARDCODED_SYNTH_MODS=16;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.5.0;JUCE_APP_VERSION_HEX=0x20500;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -115,7 +115,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;\Users\rick\Documents\GitHub\HISE;\Users\rick\Documents\GitHub\HISE\JUCE\modules;%FFT_HEADER_PATH%;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.4.6;JUCE_APP_VERSION_HEX=0x20406;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1;HISE_NUM_MACROS=8;HISE_NUM_PLUGIN_CHANNELS=10;NUM_HARDCODED_FX_MODS=16;NUM_HARDCODED_POLY_FX_MODS=16;NUM_HARDCODED_SYNTH_MODS=16;JUCER_VS2026_E9BFB82D=1;JUCE_APP_VERSION=2.5.0;JUCE_APP_VERSION_HEX=0x20500;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -5298,23 +5298,19 @@
     <ClInclude Include="..\..\Source\PresetData.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn_networkdata.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\FoldTests_networkdata.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ggg_networkdata.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ENV.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\granular_player_stepquant_density_hybrid_native.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\includes.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\indicators_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\MacroMod.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\master_bus_compressor_native.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\MatrixTest2.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\modcont_networkdata.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\NuTest_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\OutMods.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\recorder_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\res2.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sndummy_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\sn_fin.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\test_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\track_networkdata.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\trash2_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\vec1b_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\vec2b_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\vec3_networkdata.h"/>

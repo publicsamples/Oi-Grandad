@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.4.6"
+<JUCERPROJECT id="Tw64Zd" name="oi grandad" projectType="audioplug" version="2.5.0"
               bundleIdentifier="com.modularsamples.product" includeBinaryInAppConfig="1"
               buildVST="0" buildVST3="1" buildAU="0" buildAUv3="0" buildStandalone="0"
               buildRTAS="0" buildAAX="0" pluginName="oi grandad" pluginDesc="oi grandad"
@@ -26,49 +26,40 @@
       <FILE id="AOT2K8" name="Plugin.cpp" compile="1" resource="0" file="Source/Plugin.cpp"/>
       <FILE id="esGQuC" name="PresetData.cpp" compile="1" resource="0" file="Source/PresetData.cpp"/>
       <FILE id="q8WZ82" name="PresetData.h" compile="0" resource="0" file="Source/PresetData.h"/>
-      <GROUP id="XbR43w" name="nodes">
-        <FILE id="GtL8wV" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
-        <FILE id="OZbw5u" name="Dyn_networkdata.h" compile="0" resource="0"
+      <GROUP id="RCCkA3" name="nodes">
+        <FILE id="CIqCm3" name="DspNetwork.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/DspNetwork.h"/>
+        <FILE id="HA6hh3" name="Dyn_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/Dyn_networkdata.h"/>
-        <FILE id="EJrdqr" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
-        <FILE id="Y10FMD" name="FoldTests_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/FoldTests_networkdata.h"/>
-        <FILE id="jZNgd7" name="ggg_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/ggg_networkdata.h"/>
-        <FILE id="CHFrgd" name="granular_player_stepquant_density_hybrid_native.h"
+        <FILE id="vIVW1c" name="ENV.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/ENV.h"/>
+        <FILE id="If3wmL" name="factory.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/factory.cpp"/>
+        <FILE id="m0878t" name="granular_player_stepquant_density_hybrid_native.h"
               compile="0" resource="0" file="../AdditionalSourceCode/nodes/granular_player_stepquant_density_hybrid_native.h"/>
-        <FILE id="JNNtQn" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
-        <FILE id="rqoWOA" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
-        <FILE id="sxyOo7" name="master_bus_compressor_native.h" compile="0"
+        <FILE id="C8LTyT" name="includes.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/includes.h"/>
+        <FILE id="ZYQ26Y" name="indicators_networkdata.h" compile="0" resource="0"
+              file="../AdditionalSourceCode/nodes/indicators_networkdata.h"/>
+        <FILE id="hOyVlK" name="MacroMod.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MacroMod.h"/>
+        <FILE id="Bxm6Sg" name="master_bus_compressor_native.h" compile="0"
               resource="0" file="../AdditionalSourceCode/nodes/master_bus_compressor_native.h"/>
-        <FILE id="lzSltu" name="modcont_networkdata.h" compile="0" resource="0"
+        <FILE id="fQ8s5s" name="MatrixTest2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/MatrixTest2.h"/>
+        <FILE id="Fcccxb" name="modcont_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/modcont_networkdata.h"/>
-        <FILE id="wd9R2F" name="NuTest_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/NuTest_networkdata.h"/>
-        <FILE id="a7gwJP" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
-        <FILE id="WA2UVA" name="recorder_networkdata.h" compile="0" resource="0"
+        <FILE id="h27kwP" name="OutMods.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/OutMods.h"/>
+        <FILE id="ytgF5s" name="recorder_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/recorder_networkdata.h"/>
-        <FILE id="s82yZg" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
-        <FILE id="r0QyeB" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
-        <FILE id="E9wAUn" name="sn.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn.h"/>
-        <FILE id="QjZSGs" name="sndummy_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/sndummy_networkdata.h"/>
-        <FILE id="FUrDl4" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
-        <FILE id="PlyDvQ" name="test_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/test_networkdata.h"/>
-        <FILE id="EoLHpT" name="track_networkdata.h" compile="0" resource="0"
+        <FILE id="bgf5dZ" name="res2.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/res2.h"/>
+        <FILE id="FbIKl5" name="RNBO.cpp" compile="1" resource="0" file="../AdditionalSourceCode/nodes/RNBO.cpp"/>
+        <FILE id="PbI1hH" name="sn_fin.h" compile="0" resource="0" file="../AdditionalSourceCode/nodes/sn_fin.h"/>
+        <FILE id="Tt4mzl" name="track_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/track_networkdata.h"/>
-        <FILE id="kv5SPW" name="trash2_networkdata.h" compile="0" resource="0"
-              file="../AdditionalSourceCode/nodes/trash2_networkdata.h"/>
-        <FILE id="JCjDT1" name="vec1b_networkdata.h" compile="0" resource="0"
+        <FILE id="y7d8o2" name="vec1b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec1b_networkdata.h"/>
-        <FILE id="veXnkR" name="vec2b_networkdata.h" compile="0" resource="0"
+        <FILE id="cf9NFz" name="vec2b_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec2b_networkdata.h"/>
-        <FILE id="bt5qTu" name="vec3_networkdata.h" compile="0" resource="0"
+        <FILE id="ieo7Fn" name="vec3_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec3_networkdata.h"/>
-        <FILE id="inl3Vg" name="vec4_networkdata.h" compile="0" resource="0"
+        <FILE id="uAhJ6e" name="vec4_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vec4_networkdata.h"/>
-        <FILE id="Ps3AMy" name="vecfade_networkdata.h" compile="0" resource="0"
+        <FILE id="OHJf4i" name="vecfade_networkdata.h" compile="0" resource="0"
               file="../AdditionalSourceCode/nodes/vecfade_networkdata.h"/>
       </GROUP>
     </GROUP>
@@ -76,7 +67,7 @@
   <EXPORTFORMATS>
     <VS2026 targetFolder="Builds/VisualStudio2026" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
             vst3Folder="/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
-            IPP1ALibrary="" extraDefs="&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10"
+            IPP1ALibrary="" extraDefs="&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;NUM_HARDCODED_FX_MODS=16&#10;NUM_HARDCODED_POLY_FX_MODS=16&#10;NUM_HARDCODED_SYNTH_MODS=16&#10;NUM_HARDCODED_FX_MODS=16"
             extraCompilerFlags="/bigobj /cgthreads8  /wd&quot;4100&quot; /wd&quot;4127&quot; /wd&quot;4244&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4459&quot;&#10;"
             extraLinkerFlags="%FFT_LINKER_FLAGS%%WIN_STATIC_LIBS%">
       <CONFIGURATIONS>
@@ -127,7 +118,7 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
                vst3Folder="/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
                extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
-               extraLinkerFlags="" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8"
+               extraLinkerFlags="" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;NUM_HARDCODED_FX_MODS=8&#10;NUM_HARDCODED_POLY_FX_MODS=8&#10;NUM_HARDCODED_SYNTH_MODS=16&#10;NUM_HARDCODED_FX_MODS=8"
                hardenedRuntime="0" hardenedRuntimeOptions="com.apple.security.cs.allow-jit,com.apple.security.cs.allow-unsigned-executable-memory,com.apple.security.device.audio-input"
                xcodeValidArchs="arm64,arm64e,x86_64" extraFrameworks="Security"
                externalLibraries=";">
@@ -177,7 +168,7 @@
     </XCODE_MAC>
     <MACOSX_MAKE targetFolder="Builds/MacOSXMakefile" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
                  extraCompilerFlags="-Wno-reorder -Wno-inconsistent-missing-override  -faligned-allocation -ffp-contract=off"
-                 extraLinkerFlags=" -Wl,-ld_new" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_INCLUDE_LORIS=0"
+                 extraLinkerFlags=" -Wl,-ld_new" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;NUM_HARDCODED_FX_MODS=8&#10;NUM_HARDCODED_POLY_FX_MODS=8&#10;NUM_HARDCODED_SYNTH_MODS=16&#10;NUM_HARDCODED_FX_MODS=8&#10;HISE_INCLUDE_LORIS=0"
                  externalLibraries=";" extraFrameworks="Security" compileFirstPatterns="*hi_scripting_01*, *hi_tools_01*, *hi_scripting_03*"
                  featureGatedModules="hi_rlottie:HISE_INCLUDE_RLOTTIE, hi_loris:HISE_INCLUDE_LORIS">
       <CONFIGURATIONS>
@@ -276,7 +267,7 @@
     </XCODE_IPHONE>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3 SDK"
                 extraLinkerFlags="-flto=auto&#10;-fuse-ld=gold&#10;%FFT_LINKER_FLAGS%"
-                extraCompilerFlags="-fpermissive" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_USE_SYSTEM_APP_DATA_FOLDER=0&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;&#10;&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1"
+                extraCompilerFlags="-fpermissive" extraDefs="&#10;HISE_NUM_PLUGIN_CHANNELS=10&#10;HISE_MACROS_ARE_PLUGIN_PARAMETERS=1&#10;HISE_NUM_MACROS=8&#10;HISE_USE_SYSTEM_APP_DATA_FOLDER=0&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;NUM_HARDCODED_FX_MODS=16&#10;NUM_HARDCODED_POLY_FX_MODS=16&#10;NUM_HARDCODED_SYNTH_MODS=166&#10;NUM_HARDCODED_FX_MODS=16&#10;&#10;JUCE_DISABLE_NATIVE_FILECHOOSERS=1"
                 linuxExtraPkgConfig="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" linkTimeOptimisation="0"

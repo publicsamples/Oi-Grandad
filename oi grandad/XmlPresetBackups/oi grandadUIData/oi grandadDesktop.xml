@@ -2644,7 +2644,7 @@
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq1" processorId="LFO1" parameterId="ExtTrig"
                      stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO1_ExtTrig"
-                     itemColour2="4211081216"/>
+                     itemColour2="4211081216" visible="0"/>
           <Component type="ScriptSlider" id="Stage1" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq1" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -2785,7 +2785,7 @@
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq2" processorId="LFO2" parameterId="ExtTrig"
                      stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO2_ExtTrig"
-                     itemColour2="4211081216"/>
+                     itemColour2="4211081216" visible="0"/>
         </Component>
         <Component type="ScriptPanel" id="seq3" x="7" y="302" width="230" height="140"
                    itemColour="4293781205" itemColour2="4293781205" bgColour="4291280033"

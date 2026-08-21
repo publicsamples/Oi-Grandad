@@ -47,7 +47,7 @@ ifeq ($(CONFIG),Debug)
   JUCE_PCH     :=
   JUCE_PCH_INC :=
 
-  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.6" "-DJUCE_APP_VERSION_HEX=0x20406" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DDEBUG=1" "-D_DEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DNUM_HARDCODED_FX_MODS=8" "-DNUM_HARDCODED_POLY_FX_MODS=8" "-DNUM_HARDCODED_SYNTH_MODS=16" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.5.0" "-DJUCE_APP_VERSION_HEX=0x20500" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST3 :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=1" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_VST3 := -fvisibility=hidden
@@ -214,7 +214,7 @@ ifeq ($(CONFIG),Release)
   JUCE_PCH     :=
   JUCE_PCH_INC :=
 
-  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.4.6" "-DJUCE_APP_VERSION_HEX=0x20406" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS)  "-DNDEBUG=1" "-DHISE_NUM_PLUGIN_CHANNELS=10" "-DHISE_MACROS_ARE_PLUGIN_PARAMETERS=1" "-DHISE_NUM_MACROS=8" "-DNUM_HARDCODED_FX_MODS=8" "-DNUM_HARDCODED_POLY_FX_MODS=8" "-DNUM_HARDCODED_SYNTH_MODS=16" "-DHISE_INCLUDE_LORIS=0" "-DJUCER_MACOSX_MAKE_28416E59=1" "-DJUCE_APP_VERSION=2.5.0" "-DJUCE_APP_VERSION_HEX=0x20500" -I/Users/rick/Documents/GitHub/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\ SDK -I../../JuceLibraryCode -I/Users/rick/Documents/GitHub/HISE -I/Users/rick/Documents/GitHub/HISE/JUCE/modules $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST3 :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=1" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_VST3 := -fvisibility=hidden

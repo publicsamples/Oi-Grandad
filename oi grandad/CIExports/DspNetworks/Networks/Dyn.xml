@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Network ID="Dyn" Version="0.0.0">
+<Network ID="Dyn" Version="0.0.0" HasTail="0" CompileChannelAmount="8">
   <Node FactoryPath="container.chain" ID="Dyn" Bypassed="0" Name="Dyn"
         ShowParameters="1">
     <Nodes>
@@ -24,75 +24,69 @@
         </Nodes>
         <Parameters/>
       </Node>
-      <Node ID="softbypass_switch3" FactoryPath="container.chain" ShowParameters="1"
-            Bypassed="0" Name="softbypass_switch2">
+      <Node ID="switcher1" FactoryPath="control.xfader" Bypassed="0" Name="switcher1"
+            NodeColour="4288047001">
+        <Properties>
+          <Property ID="NumParameters" Value="2"/>
+          <Property ID="Mode" Value="Switch"/>
+        </Properties>
+        <SwitchTargets>
+          <SwitchTarget>
+            <Connections>
+              <Connection NodeId="sb4" ParameterId="Bypassed"/>
+            </Connections>
+          </SwitchTarget>
+          <SwitchTarget>
+            <Connections>
+              <Connection NodeId="sb5" ParameterId="Bypassed"/>
+            </Connections>
+          </SwitchTarget>
+        </SwitchTargets>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+        </Parameters>
+      </Node>
+      <Node ID="sb_container1" FactoryPath="container.chain" NodeColour="4288047001"
+            Bypassed="0" Name="sb_container1" ShowParameters="0">
+        <Properties>
+          <Property ID="IsVertical" Value="0"/>
+        </Properties>
         <Nodes>
-          <Node ID="switcher1" FactoryPath="control.xfader" Bypassed="0" Name="switcher1"
-                NodeColour="4288047001">
+          <Node ID="sb4" FactoryPath="container.soft_bypass" NodeColour="4288047001"
+                Bypassed="0" Name="sb4">
+            <Nodes/>
             <Properties>
-              <Property ID="NumParameters" Value="2"/>
-              <Property ID="Mode" Value="Switch"/>
+              <Property ID="SmoothingTime" Value="20"/>
             </Properties>
-            <SwitchTargets>
-              <SwitchTarget>
-                <Connections>
-                  <Connection NodeId="sb4" ParameterId="Bypassed"/>
-                </Connections>
-              </SwitchTarget>
-              <SwitchTarget>
-                <Connections>
-                  <Connection NodeId="sb5" ParameterId="Bypassed"/>
-                </Connections>
-              </SwitchTarget>
-            </SwitchTargets>
-            <Parameters>
-              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
-            </Parameters>
+            <Parameters/>
           </Node>
-          <Node ID="sb_container1" FactoryPath="container.chain" NodeColour="4288047001"
-                Bypassed="0" Name="sb_container1">
-            <Properties>
-              <Property ID="IsVertical" Value="0"/>
-            </Properties>
+          <Node ID="sb5" FactoryPath="container.soft_bypass" NodeColour="4288047001"
+                Bypassed="0" Name="sb5">
             <Nodes>
-              <Node ID="sb4" FactoryPath="container.soft_bypass" NodeColour="4288047001"
-                    Bypassed="0" Name="sb4">
-                <Nodes/>
-                <Properties>
-                  <Property ID="SmoothingTime" Value="20"/>
-                </Properties>
-                <Parameters/>
-              </Node>
-              <Node ID="sb5" FactoryPath="container.soft_bypass" NodeColour="4288047001"
-                    Bypassed="0" Name="sb5">
-                <Nodes>
-                  <Node ID="master_bus_compressor_native" FactoryPath="project.master_bus_compressor_native"
-                        Bypassed="0" Name="master_bus_compressor_native">
-                    <Parameters>
-                      <Parameter MinValue="-30.0" MaxValue="0.0" StepSize="0.1000000014901161"
-                                 SkewFactor="1.709511280059814" ID="Threshold" TextToValueConverter="Decibel"
-                                 DefaultValue="-10.0" Automated="1"/>
-                      <Parameter MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.5" ID="MakeupGain" TextToValueConverter="Decibel"
-                                 DefaultValue="0.0" Automated="1"/>
-                      <Parameter MinValue="0.1000000014901161" MaxValue="30.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.6270987987518311" ID="Attack" TextToValueConverter="Time"
-                                 DefaultValue="10.0" Automated="1"/>
-                      <Parameter MinValue="50.0" MaxValue="1200.0" StepSize="1.0" SkewFactor="0.2210647314786911"
-                                 ID="Release" TextToValueConverter="Time" DefaultValue="100.0"
-                                 Automated="1"/>
-                      <Parameter MinValue="1.0" MaxValue="10.0" StepSize="0.1000000014901161"
-                                 SkewFactor="0.6309297680854797" ID="Ratio" DefaultValue="4.0"
-                                 Automated="1"/>
-                    </Parameters>
-                  </Node>
-                </Nodes>
-                <Properties>
-                  <Property ID="SmoothingTime" Value="20"/>
-                </Properties>
-                <Parameters/>
+              <Node ID="master_bus_compressor_native" FactoryPath="project.master_bus_compressor_native"
+                    Bypassed="0" Name="master_bus_compressor_native">
+                <Parameters>
+                  <Parameter MinValue="-30.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                             SkewFactor="1.709511280059814" ID="Threshold" TextToValueConverter="Decibel"
+                             DefaultValue="-10.0" Automated="1"/>
+                  <Parameter MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.5" ID="MakeupGain" TextToValueConverter="Decibel"
+                             DefaultValue="0.0" Automated="1"/>
+                  <Parameter MinValue="0.1000000014901161" MaxValue="30.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.6270987987518311" ID="Attack" TextToValueConverter="Time"
+                             DefaultValue="10.0" Automated="1"/>
+                  <Parameter MinValue="50.0" MaxValue="1200.0" StepSize="1.0" SkewFactor="0.2210647314786911"
+                             ID="Release" TextToValueConverter="Time" DefaultValue="100.0"
+                             Automated="1"/>
+                  <Parameter MinValue="1.0" MaxValue="10.0" StepSize="0.1000000014901161"
+                             SkewFactor="0.6309297680854797" ID="Ratio" DefaultValue="4.0"
+                             Automated="1"/>
+                </Parameters>
               </Node>
             </Nodes>
+            <Properties>
+              <Property ID="SmoothingTime" Value="20"/>
+            </Properties>
             <Parameters/>
           </Node>
         </Nodes>
@@ -109,7 +103,7 @@
       </Parameter>
       <Parameter ID="Makeup" MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
                  SkewFactor="0.5" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="0.0">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="24.0">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="MakeupGain"/>
         </Connections>

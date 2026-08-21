@@ -246,25 +246,25 @@
             <Control type="ScriptSlider" id="Div1" value="1.0"/>
             <Control type="ScriptSlider" id="tempo1" value="0.0"/>
             <Control type="ScriptButton" id="ModType1" value="0.0"/>
-            <Control type="ScriptComboBox" id="TrigSel1" value="4.0"/>
+            <Control type="ScriptComboBox" id="TrigSel1" value="1.0"/>
             <Control type="ScriptSlider" id="ExtTrig1" value="0.0"/>
             <Control type="ScriptSlider" id="Stage1" value="1.0"/>
             <Control type="ScriptSliderPack" id="TableVis1" value="-1.0" data="16....f+....9C...3O...f+."/>
-            <Control type="ScriptSliderPack" id="SliderPackA4" value="12.0"/>
-            <Control type="ScriptSliderPack" id="SliderPackA5" value="-1.0"/>
-            <Control type="ScriptSliderPack" id="SliderPackA6" value="15.0"/>
-            <Control type="ScriptSliderPack" id="SliderPackA7" value="-1.0"/>
-            <Control type="ScriptTable" id="ScriptTable2" value="0.0"/>
-            <Control type="ScriptTable" id="ScriptTableA5" value="0.0"/>
-            <Control type="ScriptTable" id="ScriptTableA6" value="0.0"/>
-            <Control type="ScriptTable" id="ScriptTableA7" value="0.0"/>
+            <Control type="ScriptSliderPack" id="SliderPackA4" value="12.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+            <Control type="ScriptSliderPack" id="SliderPackA5" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+            <Control type="ScriptSliderPack" id="SliderPackA6" value="15.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+            <Control type="ScriptSliderPack" id="SliderPackA7" value="-1.0" data="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+."/>
+            <Control type="ScriptTable" id="ScriptTable2" value="0.0" data=""/>
+            <Control type="ScriptTable" id="ScriptTableA5" value="0.0" data=""/>
+            <Control type="ScriptTable" id="ScriptTableA6" value="0.0" data=""/>
+            <Control type="ScriptTable" id="ScriptTableA7" value="0.0" data=""/>
             <Control type="ScriptButton" id="OneShot2" value="0.0"/>
             <Control type="ScriptSlider" id="Div2" value="1.0"/>
             <Control type="ScriptSlider" id="tempo2" value="0.0"/>
             <Control type="ScriptButton" id="ModType2" value="0.0"/>
-            <Control type="ScriptComboBox" id="TrigSel2" value="4.0"/>
+            <Control type="ScriptComboBox" id="TrigSel2" value="1.0"/>
             <Control type="ScriptSlider" id="Stage2" value="1.0"/>
-            <Control type="ScriptSliderPack" id="TableVis2" value="-1.0"/>
+            <Control type="ScriptSliderPack" id="TableVis2" value="-1.0" data="16....f+....9C...3O...f+."/>
             <Control type="ScriptSlider" id="ExtTrig2" value="0.0"/>
             <Control type="ScriptSliderPack" id="SliderPackA8" value="11.0" data="64....f+.........................3O......................................................"/>
             <Control type="ScriptSliderPack" id="SliderPackA9" value="11.0" data="64....f+7nv00yiBWOO..............3O..............................3O......................"/>
@@ -846,7 +846,7 @@
             </Processor>
             <Processor Type="HardcodedTimevariantModulator" ID="LFO1" Bypassed="0" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" type="1.0"
-                       keysync="4.0" onshot="0.0" morph="1.0" ExtTrig="0.0">
+                       keysync="1.0" onshot="0.0" morph="1.0" ExtTrig="0.0">
               <ChildProcessors/>
               <Tables>
                 <Table EmbeddedData=""/>
@@ -865,7 +865,7 @@
             </Processor>
             <Processor Type="HardcodedTimevariantModulator" ID="LFO2" Bypassed="1" Intensity="1.0"
                        Bipolar="0" Network="DspNetwork" tempo="0.0" multi="1.0" type="1.0"
-                       keysync="4.0" onshot="0.0" morph="1.0" ExtTrig="0.0">
+                       keysync="1.0" onshot="0.0" morph="1.0" ExtTrig="0.0">
               <ChildProcessors/>
               <Tables>
                 <Table EmbeddedData=""/>
