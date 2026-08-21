@@ -1,0 +1,12 @@
+mode=standalone
+hise_bin=/Users/rick/HISE Standalone - App 2026-07-13 16-23-07/HISE.app/Contents/MacOS/HISE
+project_dir=/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad
+project_file=XmlPresetBackups/oi grandad.xml
+arch=x64
+plugin_target=instrument
+vst3_format=VST3
+au_format=AU
+hise_source_dir=/Users/rick/Documents/GitHub/HISE
+hise_source_commit=015ea07c73ca540d0db2edd978998e92baa783e2
+repo_hise_submodule_commit=5c6729d3d89fcbd5d736e455754f86478433f4a4
+timestamp=2026-08-21T19:44:48Z
