@@ -8,5 +8,5 @@ vst3_format=VST3
 au_format=AU
 hise_source_dir=/Users/rick/Documents/GitHub/HISE
 hise_source_commit=015ea07c73ca540d0db2edd978998e92baa783e2
-repo_hise_submodule_commit=5c6729d3d89fcbd5d736e455754f86478433f4a4
-timestamp=2026-08-21T19:44:31Z
+repo_hise_submodule_commit=b2ee6ec6d8e326bf0f290a27037a44ad1d61af93
+timestamp=2026-08-21T21:02:37Z
