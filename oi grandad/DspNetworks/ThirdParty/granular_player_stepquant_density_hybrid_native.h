@@ -57,7 +57,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double fadeReadPhase = 0.0;
 		double fadeStart = 0.0;
 		double fadeGrainSize = 0.0;
+		double fadeWindowSize = 0.0;
+		double fadeDurationSeconds = 0.01;
 		double wrapFade = 0.0;
+		bool fadeIsOneShot = false;
 		int respawnCount = 0;
 		bool active = false;
 
@@ -72,7 +75,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			fadeReadPhase = 0.0;
 			fadeStart = 0.0;
 			fadeGrainSize = 0.0;
+			fadeWindowSize = 0.0;
+			fadeDurationSeconds = 0.01;
 			wrapFade = 0.0;
+			fadeIsOneShot = false;
 			respawnCount = 0;
 			active = false;
 		}
@@ -271,7 +277,12 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		if (P == 2)
 		{
-			grainMs = v;
+			// Grain duration can be driven beyond the UI range by tempo sync, but a
+			// malformed upstream value must not poison the live grain state.
+			if (!std::isfinite(v))
+				return;
+
+			grainMs = jmax(1.0, v);
 			updateGrainSize();
 		}
 
@@ -523,13 +534,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		if (sampleRate <= 0.0)
 			return;
 
+		const double minSamples = jmax(16.0, sampleRate * 0.001);
 		grainSize = grainMs * sampleRate * 0.001;
 
-		if (grainSize < 16.0)
-			grainSize = 16.0;
+		if (!std::isfinite(grainSize) || grainSize < minSamples)
+			grainSize = minSamples;
 
 		double maxAllowed = (double) audioFile.numSamples - 2.0;
-		if (maxAllowed > 16.0 && grainSize > maxAllowed)
+		if (maxAllowed > minSamples && grainSize > maxAllowed)
 			grainSize = maxAllowed;
 	}
 
@@ -716,14 +728,15 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	}
 
 	void getPlaybackPresetState(int& transportState, bool& stretchEnabled, bool& legacyExact, bool& legacyWrapFade,
-		bool& freezeMode, bool& microSliceMode) const
+		bool& cloudMode, bool& microSliceMode, bool& safeStartMode) const
 	{
-		int mode = jlimit(1, 3, (int)std::round(decodeModePackMenuValue(3, 3, 0.0)));
+		int mode = jlimit(1, 4, (int)std::round(decodeModePackMenuValue(3, 4, 0.0)));
 		stretchEnabled = true;
 		legacyWrapFade = false;
 		legacyExact = false;
-		freezeMode = false;
+		cloudMode = false;
 		microSliceMode = false;
+		safeStartMode = false;
 
 		switch (mode)
 		{
@@ -733,16 +746,23 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				legacyExact = true;
 				legacyWrapFade = true;
 				break;
-			case 2: // Freeze
+			case 2: // Cloud
 				transportState = 2;
 				stretchEnabled = true;
-				freezeMode = true;
+				cloudMode = true;
 				break;
 			case 3: // Microslice
-			default:
 				transportState = 2;
 				stretchEnabled = false;
 				microSliceMode = true;
+				break;
+			case 4: // Safe Start
+			default:
+				transportState = 2;
+				stretchEnabled = true;
+				legacyExact = true;
+				legacyWrapFade = true;
+				safeStartMode = true;
 				break;
 		}
 	}
@@ -889,6 +909,56 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double signedRand = grainRandomFromSeed((double) (grainIndex + 1) * 67.91 + (double) voice.noteNumber * 5.13) * 2.0 - 1.0;
 		double maxOffset = jmax(2.0, maxStart * 0.015) * cloudMix;
 		return signedRand * maxOffset;
+	}
+
+	double getCloudRespawnOffset(const VoiceState& voice, int grainIndex, double maxStart, int respawnCount,
+		double cloudMix) const
+	{
+		if (maxStart <= 0.0)
+			return 0.0;
+
+		// Cloud mode always has a small local field; Cloud Amount expands it.
+		double width = maxStart * (0.012 + 0.108 * clamp01(cloudMix));
+		double seed = ((double) grainIndex + 1.0) * 83.17
+			+ ((double) voice.noteNumber + 1.0) * 19.91
+			+ ((double) respawnCount + 1.0) * 137.23;
+		return (grainRandomFromSeed(seed) * 2.0 - 1.0) * width;
+	}
+
+	double getSafeStartPosition(int grainIndex, int grainCount, double requestedStart, double maxStart) const
+	{
+		if (maxStart <= 0.0 || sampleRate <= 0.0)
+			return 0.0;
+
+		const double target = jlimit(0.0, maxStart, requestedStart);
+		const int radius = jlimit(4, 96, (int) std::round(sampleRate * 0.00075));
+		double bestPos = target;
+		double bestL = 0.0;
+		double bestR = 0.0;
+		readGrainStereo(grainIndex, grainCount, target, bestL, bestR);
+		double bestEnergy = bestL * bestL + bestR * bestR;
+
+		for (int offset = 1; offset <= radius; ++offset)
+		{
+			const double candidates[2] = { target - (double) offset, target + (double) offset };
+			for (double candidate : candidates)
+			{
+				if (candidate < 0.0 || candidate > maxStart)
+					continue;
+
+				double l = 0.0;
+				double r = 0.0;
+				readGrainStereo(grainIndex, grainCount, candidate, l, r);
+				double energy = l * l + r * r;
+				if (energy < bestEnergy)
+				{
+					bestEnergy = energy;
+					bestPos = candidate;
+				}
+			}
+		}
+
+		return bestPos;
 	}
 
 	double getScatterStartOffset(int grainIndex, int grainCount, double maxStart, int respawnCount) const
@@ -1221,9 +1291,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		bool stretchEnabled = true;
 		bool legacyExact = true;
 		bool legacyWrapFade = false;
-		bool freezeMode = false;
+		bool cloudMode = false;
 		bool microSliceMode = false;
-		getPlaybackPresetState(transportState, stretchEnabled, legacyExact, legacyWrapFade, freezeMode, microSliceMode);
+		bool safeStartMode = false;
+		getPlaybackPresetState(transportState, stretchEnabled, legacyExact, legacyWrapFade, cloudMode, microSliceMode, safeStartMode);
 		const bool timeInvariant = false;
 		const bool smoothTimeInvariant = false;
 		const int readState = 0;
@@ -1312,6 +1383,30 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		int directionState = getDirectionState();
 		const bool oneShotMode = directionState >= 4;
 		const double oneShotStepSize = getOneShotStepSize(maxStart);
+		std::array<bool, 4> oneShotTriggeredByPlayhead {};
+		if (oneShotMode)
+		{
+			// Detect each scrub event once, then let every grain in that playhead
+			// group launch together. Detecting inside the grain loop only launched
+			// the first grain because it consumed the shared event state.
+			const double scrubSources[4] = { scrub, scrubB, scrubC, scrubD };
+			const int playheadCount = getPlayheadModeState() == 1 ? 4 : 1;
+			const double denom = oneShotStepSize > 0.0 ? oneShotStepSize : 1.0;
+
+			for (int playhead = 0; playhead < playheadCount; ++playhead)
+			{
+				const double scrubSource = clamp01(scrubSources[playhead]);
+				int currentStep = (int) std::floor(scrubSource / denom);
+				if (scrubSource >= 1.0)
+					currentStep = (int) std::floor(1.0 / denom);
+
+				if (voice.previousOneShotStep[(size_t) playhead] != currentStep)
+				{
+					voice.previousOneShotStep[(size_t) playhead] = currentStep;
+					oneShotTriggeredByPlayhead[(size_t) playhead] = true;
+				}
+			}
+		}
 		double spreadNorm = isStackMode ? 1.0 : morphDensity;
 		bool scrubMoved = std::abs(previousScrub - scrub) > 0.0005;
 		double cloudMix = getCloudMix(voice);
@@ -1322,9 +1417,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		voice.lastPhaseScatter = phaseScatter;
 		voice.lastScatterMaxStart = maxStart;
 
-		if (freezeMode)
+		if (cloudMode)
 		{
-			if (voice.modeAnchorScrub < 0.0 || scrubMoved)
+			if (voice.modeAnchorScrub < 0.0 || std::abs(voice.modeAnchorScrub - scrubSmoothed) > 0.000001)
 				voice.modeAnchorScrub = scrubSmoothed;
 		}
 		else if (voice.modeAnchorScrub >= 0.0)
@@ -1332,7 +1427,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			voice.modeAnchorScrub = -1.0;
 		}
 
-		if (stretchMode && !freezeMode && (voice.stretchBasePos < 0.0 || scrubMoved))
+		if (stretchMode && !cloudMode && (voice.stretchBasePos < 0.0 || scrubMoved))
 			voice.stretchBasePos = scrubSmoothed * maxStart;
 
 		for (int i = 0; i < g; ++i)
@@ -1354,7 +1449,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				localMaxStart = 0.0;
 
 			double base = scrubSmoothed * localMaxStart;
-			if (freezeMode)
+			if (cloudMode)
 			{
 				double anchorScrub = voice.modeAnchorScrub >= 0.0 ? voice.modeAnchorScrub : scrubSmoothed;
 				base = anchorScrub * localMaxStart;
@@ -1376,23 +1471,22 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (microSliceMode)
 				base = quantiseSliceBase(base, localGrainSize, localMaxStart);
 
-			bool oneShotTriggered = false;
-			if (oneShotMode)
-			{
-				double denom = oneShotStepSize > 0.0 ? oneShotStepSize : 1.0;
-				int currentStep = (int)std::floor(scrubValue / denom);
-				if (scrubValue >= 1.0)
-					currentStep = (int)std::floor(1.0 / denom);
-				if (voice.previousOneShotStep[(size_t)playheadIndex] != currentStep)
-				{
-					voice.previousOneShotStep[(size_t)playheadIndex] = currentStep;
-					oneShotTriggered = true;
-				}
-			}
+			const bool oneShotTriggered = oneShotMode
+				&& oneShotTriggeredByPlayhead[(size_t) playheadIndex];
 
 			const bool bloomActivationAllowed = i < bloomActiveGrainCount;
 			double cloudPhaseOffset = enableBloom ? getCloudPhaseOffset(voice, i, localGrainSize, cloudMix) : 0.0;
 			double cloudStartOffset = enableBloom ? getCloudStartOffset(voice, i, localMaxStart, cloudMix) : 0.0;
+			auto finaliseSpawnStart = [&](double requestedStart, int respawnCount) -> double
+			{
+				if (cloudMode)
+					requestedStart += getCloudRespawnOffset(voice, i, localMaxStart, respawnCount, cloudMix);
+
+				requestedStart = jlimit(0.0, localMaxStart, requestedStart);
+				return safeStartMode
+					? getSafeStartPosition(i, g, requestedStart, localMaxStart)
+					: requestedStart;
+			};
 
 			if (!grain.active && !oneShotMode && bloomActivationAllowed)
 			{
@@ -1406,17 +1500,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead, localGrainSize);
 				grain.respawnCount = 0;
 				grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-				double scatterBase = base + grain.scatterOffset + cloudStartOffset;
-				if (scatterBase < 0.0)
-					scatterBase = 0.0;
-				if (scatterBase > localMaxStart)
-					scatterBase = localMaxStart;
+				double scatterBase = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 				grain.latchedStart = scatterBase;
-				grain.start = legacyExact && stretchMode ? (voice.stretchBasePos + grain.scatterOffset + cloudStartOffset) : scatterBase;
-				if (grain.start < 0.0)
-					grain.start = 0.0;
-				if (grain.start > localMaxStart)
-					grain.start = localMaxStart;
+				grain.start = legacyExact && stretchMode
+					? finaliseSpawnStart(voice.stretchBasePos + grain.scatterOffset + cloudStartOffset, grain.respawnCount)
+					: scatterBase;
 				grain.wrapFade = 0.0;
 			}
 			else if (scatterParamsChanged)
@@ -1426,24 +1514,36 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (oneShotMode && oneShotTriggered)
 			{
+				const bool replacingActiveGrain = grain.active;
+				if (replacingActiveGrain)
+				{
+					// Preserve the old one-shot briefly so its source discontinuity is
+					// crossfaded against the newly triggered cluster.
+					grain.fadePhase = grain.phase;
+					grain.fadeReadPhase = grain.readPhase;
+					grain.fadeStart = grain.start;
+					grain.fadeGrainSize = localGrainSize;
+					grain.fadeWindowSize = oneShotWindowSize;
+					grain.fadeDurationSeconds = 0.008;
+					grain.fadeIsOneShot = true;
+					grain.wrapFade = 1.0;
+				}
+
 				grain.active = true;
 				grain.phase = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize) + cloudPhaseOffset;
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead, localGrainSize);
 				grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-				grain.start = base + grain.scatterOffset + cloudStartOffset;
-				if (grain.start < 0.0)
-					grain.start = 0.0;
-				if (grain.start > localMaxStart)
-					grain.start = localMaxStart;
+				grain.start = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 				grain.latchedStart = grain.start;
-				grain.wrapFade = 0.0;
+				if (!replacingActiveGrain)
+					grain.wrapFade = 0.0;
 			}
 
 			if (!grain.active)
 				continue;
 
-			if (legacyExact && transportWrapped)
+			if (!oneShotMode && legacyExact && transportWrapped)
 			{
 				if (legacyWrapFade)
 				{
@@ -1451,18 +1551,17 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					grain.fadeReadPhase = grain.readPhase;
 					grain.fadeStart = grain.start;
 					grain.fadeGrainSize = localGrainSize;
+					grain.fadeWindowSize = localGrainSize;
+					grain.fadeDurationSeconds = 0.01;
+					grain.fadeIsOneShot = false;
 				}
 
 				grain.phase = getInitialSchedulerPhase(i, g, stretchMode, localGrainSize) + cloudPhaseOffset;
 				++grain.respawnCount;
 				grain.readPhase = getQStyleReadPhase(i, grain.respawnCount, qStyleRead, localGrainSize);
 				grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-				grain.start = base + grain.scatterOffset + cloudStartOffset;
+				grain.start = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 				grain.latchedStart = grain.start;
-				if (grain.start < 0.0)
-					grain.start = 0.0;
-				if (grain.start > localMaxStart)
-					grain.start = localMaxStart;
 				grain.latchedStart = grain.start;
 				if (legacyWrapFade)
 					grain.wrapFade = 1.0;
@@ -1474,13 +1573,13 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			{
 				if (transportState == 0)
 				{
-					grain.start = base + cloudStartOffset;
-					grain.latchedStart = base + cloudStartOffset;
+					grain.start = finaliseSpawnStart(base + cloudStartOffset, grain.respawnCount);
+					grain.latchedStart = grain.start;
 				}
 				else if (transportState == 1)
 				{
 					double coeff = getTransportFollowCoeff();
-					grain.latchedStart += ((base + cloudStartOffset) - grain.latchedStart) * coeff;
+					grain.latchedStart += (finaliseSpawnStart(base + cloudStartOffset, grain.respawnCount) - grain.latchedStart) * coeff;
 					grain.start = grain.latchedStart;
 				}
 				else
@@ -1521,11 +1620,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					{
 						grain.active = false;
 						grain.phase = oneShotWindowSize;
-						grain.readPhase = localGrainSize;
 						continue;
 					}
-
-					grain.readPhase = localGrainSize;
 				}
 				else
 				{
@@ -1552,18 +1648,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					{
 						++grain.respawnCount;
 						grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-						grain.start = base + grain.scatterOffset + cloudStartOffset;
+						grain.start = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 						grain.latchedStart = grain.start;
 					}
 					else if (transportState == 2)
 					{
 						++grain.respawnCount;
 						grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-						grain.latchedStart = base + grain.scatterOffset + cloudStartOffset;
-						if (grain.latchedStart < 0.0)
-							grain.latchedStart = 0.0;
-						if (grain.latchedStart > localMaxStart)
-							grain.latchedStart = localMaxStart;
+						grain.latchedStart = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 					}
 				}
 			}
@@ -1599,18 +1691,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				{
 					++grain.respawnCount;
 					grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-					grain.start = base + grain.scatterOffset + cloudStartOffset;
+					grain.start = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 					grain.latchedStart = grain.start;
 				}
 				else if (transportState == 2)
 				{
 					++grain.respawnCount;
 					grain.scatterOffset = getScatterStartOffset(i, g, localMaxStart, grain.respawnCount);
-					grain.latchedStart = base + grain.scatterOffset + cloudStartOffset;
-					if (grain.latchedStart < 0.0)
-						grain.latchedStart = 0.0;
-					if (grain.latchedStart > localMaxStart)
-						grain.latchedStart = localMaxStart;
+					grain.latchedStart = finaliseSpawnStart(base + grain.scatterOffset + cloudStartOffset, grain.respawnCount);
 				}
 			}
 
@@ -1627,7 +1715,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (grain.start > localMaxStart)
 				grain.start = localMaxStart;
 
-			double readCarrier = (stretchMode || timeInvariant) ? grain.readPhase : jmin(grain.phase, localGrainSize);
+			const bool oneShotTailActive = oneShotMode && oneShotWindowSize > localGrainSize;
+			double readCarrier = (stretchMode || timeInvariant || oneShotTailActive)
+				? grain.readPhase : jmin(grain.phase, localGrainSize);
 			double readRate = stretchMode ? grainPitchMul : (voice.delta * grainPitchMul);
 			double pos = grain.start + getReadPhaseForMode(getTimelinePhaseForRead(readCarrier, timeInvariant, readRate, localGrainSize), readState, grainPitchMul);
 			if (pos < 0.0) pos = 0.0;
@@ -1654,19 +1744,30 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 			if (grain.wrapFade > 0.0 && grain.fadeGrainSize > 1.0)
 			{
-				double fadeCarrier = (stretchMode || timeInvariant) ? grain.fadeReadPhase : grain.fadePhase;
+				const bool fadeOneShotTailActive = grain.fadeIsOneShot && grain.fadeWindowSize > grain.fadeGrainSize;
+				double fadeCarrier = (stretchMode || timeInvariant || fadeOneShotTailActive)
+					? grain.fadeReadPhase : grain.fadePhase;
 				double fadePos = grain.fadeStart + getReadPhaseForMode(getTimelinePhaseForRead(fadeCarrier, timeInvariant, readRate, grain.fadeGrainSize), readState, grainPitchMul);
 				if (fadePos < 0.0) fadePos = 0.0;
 				if (fadePos >= audioFile.numSamples - 1.0)
 					fadePos = audioFile.numSamples - 2.0;
 
 				double fadeEnvelopePhase = grain.fadePhase;
-				while (fadeEnvelopePhase >= grain.fadeGrainSize)
-					fadeEnvelopePhase -= grain.fadeGrainSize;
-				while (fadeEnvelopePhase < 0.0)
-					fadeEnvelopePhase += grain.fadeGrainSize;
+				double fadeW = 0.0;
+				if (grain.fadeIsOneShot)
+				{
+					fadeEnvelopePhase = jlimit(0.0, grain.fadeWindowSize, fadeEnvelopePhase);
+					fadeW = morphedWindow(fadeEnvelopePhase / jmax(1.0, grain.fadeWindowSize));
+				}
+				else
+				{
+					while (fadeEnvelopePhase >= grain.fadeGrainSize)
+						fadeEnvelopePhase -= grain.fadeGrainSize;
+					while (fadeEnvelopePhase < 0.0)
+						fadeEnvelopePhase += grain.fadeGrainSize;
 
-				double fadeW = morphedWindow(wrap01(fadeEnvelopePhase / grain.fadeGrainSize));
+					fadeW = morphedWindow(wrap01(fadeEnvelopePhase / grain.fadeGrainSize));
+				}
 				double fadeL = 0.0;
 				double fadeR = 0.0;
 				readGrainStereo(i, g, fadePos, fadeL, fadeR);
@@ -1680,15 +1781,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				grain.fadePhase += schedulerInc;
 				grain.fadeReadPhase += readInc;
 
-				while (grain.fadePhase >= grain.fadeGrainSize)
-					grain.fadePhase -= grain.fadeGrainSize;
-				while (grain.fadePhase < 0.0)
-					grain.fadePhase += grain.fadeGrainSize;
+				if (!grain.fadeIsOneShot)
+				{
+					while (grain.fadePhase >= grain.fadeGrainSize)
+						grain.fadePhase -= grain.fadeGrainSize;
+					while (grain.fadePhase < 0.0)
+						grain.fadePhase += grain.fadeGrainSize;
 
-				while (grain.fadeReadPhase >= grain.fadeGrainSize)
-					grain.fadeReadPhase -= grain.fadeGrainSize;
-				while (grain.fadeReadPhase < 0.0)
-					grain.fadeReadPhase += grain.fadeGrainSize;
+					while (grain.fadeReadPhase >= grain.fadeGrainSize)
+						grain.fadeReadPhase -= grain.fadeGrainSize;
+					while (grain.fadeReadPhase < 0.0)
+						grain.fadeReadPhase += grain.fadeGrainSize;
+				}
 			}
 
 			if (smoothTimeInvariant && localGrainSize > 1.0)
@@ -1731,12 +1835,15 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double pan = panSpread * normPan * 2.0;
 			if (grain.wrapFade > 0.0)
 			{
-				double fadeDec = (sampleRate > 0.0) ? (1.0 / (0.01 * sampleRate)) : 1.0;
+				double fadeDec = (sampleRate > 0.0)
+					? (1.0 / (jmax(0.001, grain.fadeDurationSeconds) * sampleRate)) : 1.0;
 				grain.wrapFade -= fadeDec;
 				if (grain.wrapFade < 0.0)
 				{
 					grain.wrapFade = 0.0;
 					grain.fadeGrainSize = 0.0;
+					grain.fadeWindowSize = 0.0;
+					grain.fadeIsOneShot = false;
 				}
 			}
 

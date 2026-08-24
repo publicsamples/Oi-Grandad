@@ -823,9 +823,9 @@ const var EnvDisplayA1 = Content.getComponent("EnvDisplayA1");
 const var EnvPeak1 = Content.getComponent("EnvPeak1");
 const var TrigPeak1 = Content.getComponent("TrigPeak1");
 const var TrigPeakLabel1 = Content.getComponent("TrigPeakLabel1");
-const var EnvLoopLabel1 = Content.getComponent("EnvLoopLabel1");
+const var EnvLoopLabel1 = Content.getComponent("EnvLoopLabel5");
 const var EnvLoop1 = Content.getComponent("EnvLoop1");
-const var EnvVoiceSel1 = Content.getComponent("EnvVoiceSel1");
+const var EnvVoiceSel1 = Content.getComponent("EnvVoiceSel5");
 
 
 const var ENV1 = Synth.getModulator("ENV1");
@@ -883,7 +883,7 @@ EnvPeak1.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvPeak1.startTimer(30);
+EnvPeak1.startTimer(300);
 
 EnvPeak1.setPaintRoutine(function(g)
 {
@@ -907,7 +907,7 @@ EnvDisplayA1.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvDisplayA1.startTimer(30);
+EnvDisplayA1.startTimer(300);
 
 EnvDisplayA1.setPaintRoutine(function(g)
 {
@@ -940,7 +940,7 @@ EnvPeak2.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvPeak2.startTimer(30);
+EnvPeak2.startTimer(300);
 
 EnvPeak2.setPaintRoutine(function(g)
 {
@@ -967,7 +967,7 @@ EnvDisplayA2.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvDisplayA2.startTimer(30);
+EnvDisplayA2.startTimer(300);
 
 EnvDisplayA2.setPaintRoutine(function(g)
 {
@@ -1003,7 +1003,7 @@ EnvPeak3.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvPeak3.startTimer(30);
+EnvPeak3.startTimer(300);
 
 EnvPeak3.setPaintRoutine(function(g)
 {
@@ -1027,7 +1027,7 @@ EnvDisplayA3.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvDisplayA3.startTimer(30);
+EnvDisplayA3.startTimer(300);
 
 EnvDisplayA3.setPaintRoutine(function(g)
 {
@@ -1059,7 +1059,7 @@ EnvPeak4.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvPeak4.startTimer(30);
+EnvPeak4.startTimer(300);
 
 EnvPeak4.setPaintRoutine(function(g)
 {
@@ -1083,7 +1083,7 @@ EnvDisplayA4.setTimerCallback(function()
 	this.repaint();
 });
 
-EnvDisplayA4.startTimer(30);
+EnvDisplayA4.startTimer(300);
 
 EnvDisplayA4.setPaintRoutine(function(g)
 {

@@ -1,6 +1,7 @@
 Content.makeFrontInterface(960, 720);
 
 const var rm = Engine.getGlobalRoutingManager();
+Engine.setMaximumBlockSize(128);
 
 const var trk1 = rm.getCable("Trk1");
 const var trk2 = rm.getCable("Trk2");
@@ -52,8 +53,6 @@ const var gran3 = Synth.getChildSynth("Granular4");
 Engine.loadFontAs("{PROJECT_FOLDER}Montserrat-Medium.ttf", "Montserrat");
 
 include("RR.js");
-include("rec.js");
-
 include("MultiChannel.js");
 include("ModControls.js");
 include("Rect.js");
@@ -68,7 +67,7 @@ include("KnobLAF.js");
 include("KnobLAF2.js");
 
 //regular mods
-//include("KnobLAF3.js");
+include("KnobLAF3.js");
 
 //mini
 include("KnobLAF4.js");
@@ -241,6 +240,9 @@ const var VOICE3 = Content.getComponent("VOICE3");
 
 inline function onVoiceNumberControl(component, value)
 {
+	
+	Hold.setValue(0);
+
 	VOICE0.setValue(1);
 	VOICE0.changed();
 
@@ -545,6 +547,8 @@ cmbPresets.setControlCallback(oncmbPresetsControl);
 
 inline function oncmbPresetsControl(component, value)
 {
+	Hold.setValue(0);
+
 	if (!value)
 		return;
 
@@ -692,216 +696,12 @@ inline function onMasterVolControl(component, value)
 Content.getComponent("MasterVol").setControlCallback(onMasterVolControl);
 
 
-const var ModulationMatrix = Content.getComponent("ModulationMatrix");
-const var ModulationMatrixTile = Content.getComponent("ScriptFloatingTile1");
-const var ModulationMatrixLaf = Content.createLocalLookAndFeel();
-
-ModulationMatrixLaf.setInlineStyleSheet("
-/** The background panel for the matrix. */
-.matrix
-{
-	content: '';
-	background: #354259;
-	border-radius: 3px;
-	padding-left:10px;
-	padding-top:10px;
-	color: #FFFF8A8A; 
-	
-}
-
-/** If there are no connections we show a empty message. */
-.matrix:empty { 
-  color: #ccc; 
-  content: 'No connections..'; 
-}
-
-
-/** The matrix table header. */
-th { background: transparent; 
-	padding:0px;
-	margin-top: -40px;}
-
-td { background: transparent; 
-	padding:10px;
-	height:30px;
-	}
-	
-
-
-td, .targetLabel
-{
-	color: #999;
-	font-size: 15px;
-}
-
-.targetLabel
-{
-	width: 130px;
-}
-
-.slider
-{
-	background: #5e6270;
-	border-radius: 3px;
-	margin: 2px;
-	color: #B2F3EBE7;
-	height:25px;
-	width:80px;
-
-}
-
-.slider:empty
-{
-	color: #FFFF8A8A;
-}
-
-.slider::before
-{
-	content: '';
-	width: calc(var(--value) * 100%);
-	height: 100%;
-	background-color: #FFFF8A8A;
-	position: absolute;
-	margin: 5px;
-}
-
-.unipolar::before, .bipolar::before
-{
-	
-	
-	/* this calculates the bipolar width with some advanced
-	   CSS math expression skills. */
-	width: max(calc(calc(0.5 - var(--value)) * 100%),  
-	           calc(calc(var(--value) - 0.5) * 100%)); 
-	           
-	/* this calculates the leftmost position of the value rectangle. */
-	left: min(calc(var(--value) * 100%), 50%);
-}
-
-select
-{
-	background: #5e6270;
-	border-radius: 3px;
-	color: ##EDE6D5;
-	text-align: center;
-	padding-left: 0px;
-	width:90px;
-	font-size:12px;
-	height:25px;
-}
-
-/** Draw the drop down arrow. */
-select::before
-{
-	/** CSS requires that you specify a content property for
-	    any pseudo element that is supposed to be shown. */
-	content: '';
-	
-	/** Pass in a Base64 string for any path using the standard HISE Path converter. */
-	background-image: \"84.t0lavsBQ76.tCwF..VDQX+9fCw1WJBDQnj.cCwFp5YBQ3NhqCwly0w.QzMCcCwF..d.QTV.gCwFD6YBQpsevCwVtvsBQn.AtCwlavsBQ76.tCMVY\";
-	
-	background-color: rgba(255,255,255, 0.4);
-	
-	/** Set the position to absolute so that it won't cut into the text area. */
-	position: absolute;
-	width: 100vh;
-	margin: 8px;
-	right: 0px;
-}
-
-/** Make the arrow light up at hover. */
-select::before:hover
-{
-	background-color: black;
-}
-
-/** Targets are displayed by the native matrix, but changed by removing / adding routes. */
-#targetid
-{
-	background: transparent;
-	background-color: transparent;
-	cursor: default;
-}
-
-#targetid::before
-{
-	display: none;
-}
-
-.search
-{
-	background: #555;
-	margin-bottom: 00px;
-	padding: 0px;
-	height: 0px;
-	border-radius: 0px;
-	padding-left: 0vh;
-	color: #999;
-}
-
-.search::before
-{
-	content: '';
-	background-image: var(--icon);
-	background-color: #888;
-	width: 0vh;
-	margin: 0px;
-}
-
-#clearsearch
-{
-	background-color: #888;
-	height: 0px;
-	margin: 0px;
-	margin-top: 10px;
-}
-
-button
-{
-	
-	border-radius: 3px;
-	background: #5e6270;
-	color: #C96868;
-	width:40px;
-	height:25px;
-	content: 'Off';
-}
-
-.modplotter
-{
-		background: #5e6270;
-	color: #C96868;
-	width:0px;
-		height:0px;
-}
-
-/** The add/remove/clear buttons. */
-.control-button
-{
-	width: 70px;
-	/** Reset the content property so that the original text is displayed. */
-	content: ''; 
-}
-
-
-button:checked
-{
-	background: #999;
-	color: #333;
-	content: 'On';
-}
-
-
-");
 
 
 ModulationMatrix.setPaintRoutine(function(g)
 {
 	var area = this.getLocalBounds(0);
-//	local padding = 2;
-	var inner = [area[0] + padding, area[1] + padding, area[2] - padding * 2, area[3] - padding * q];
-	var header = [inner[0], inner[1], inner[2], 40];
-	var body = [inner[0], inner[1] + 30, inner[2], inner[3] - 30];
+	var inner = area;
 
 	g.setGradientFill([0xFF354259, inner[0], inner[1], 0xFF354259, inner[0], inner[1] + inner[3]]);
 	g.fillRoundedRectangle(inner, 1.0);
@@ -910,24 +710,7 @@ ModulationMatrix.setPaintRoutine(function(g)
 	g.setColour(0xFFB7C0CC);
 	g.setFont("Montserrat", 18.0);
 
-
-//	g.setColour(0x16FFFFFF);
-//	g.fillRoundedRectangle(body, 10.0);
-
 });
-
-ModulationMatrixTile.setLocalLookAndFeel(ModulationMatrixLaf);
-
-const var MatrixTargetLock = Content.getComponent("MatrixTargetLock");
-
-// This transparent panel keeps the native target text visible while preventing
-// the matrix target combobox from adding an unintended second route.
-if(isDefined(MatrixTargetLock))
-{
-	MatrixTargetLock.setMouseCallback(function(event)
-	{
-	});
-}
 
 function onNoteOn()
 {

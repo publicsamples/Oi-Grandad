@@ -107,7 +107,13 @@ KnobLaf5.registerFunction("drawRotarySlider", function(g, obj)
 
 
 
+const var Spawn =[];
 
+for (i = 0; i < 4; i++)
+{
+    Spawn[i] = Content.getComponent("Spawn"+(i+1)).setLocalLookAndFeel(KnobLaf4);
+
+} 
 
 
 

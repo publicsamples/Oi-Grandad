@@ -18,7 +18,7 @@
                    textColour="587202560">
           <Component type="ScriptLabel" id="FxLabelB1" x="6" y="110" textColour="4280884766"
                      width="44" height="20" fontName="Montserrat" editable="0" parentComponent="PostFx1"
-                     fontStyle="Regular" fontSize="15.0" text="Time"/>
+                     fontStyle="Regular" fontSize="15.0" text="DELAY"/>
           <Component type="ScriptSlider" id="PostMix1" x="41" y="134" parentComponent="PostFx1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1400000005960464" width="50" height="50" processorId="Final1"
@@ -206,9 +206,9 @@
                      visible="0" saveInPreset="0"/>
           <Component type="ScriptLabel" id="ParamLabel20" x="5" y="100" textColour="4293255135"
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel1"
-                     fontStyle="Regular" fontSize="15.0" text="PLAYBACK MODE:" alignment="left"
+                     fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"
                      itemColour2="4216739414"/>
-          <Component type="ScriptComboBox" id="TransPort1" x="115" y="100" width="80"
+          <Component type="ScriptComboBox" id="TransPort1" x="103" y="100" width="80"
                      height="15" max="3" parentComponent="ScriptPanel1" processorId="Granular1"
                      parameterId="TransportMode" items="Normal&#10;Freeze&#10;Microslice"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
@@ -236,7 +236,8 @@
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.239999994635582" width="60" height="60" showValuePopup="Below"
                      bgColour="4286491829" middlePosition="0.5" isPluginParameter="1"
-                     pluginParameterName="Voice 1: Position A" matrixTargetId="Voice_1_PositionA"/>
+                     pluginParameterName="Voice 1: Position A" matrixTargetId="Voice_1_PositionA"
+                     itemColour2="4278190080" textColour="4278190080"/>
           <Component type="ScriptLabel" id="ParamLabel2" x="107" y="68" textColour="4280884766"
                      width="40" height="15" fontName="Montserrat" editable="0" parentComponent="PosParam1"
                      fontStyle="Regular" fontSize="15.0" text="mod" alignment="left"
@@ -317,7 +318,7 @@
                      middlePosition="0.0" showValuePopup="Below" bgColour="4291389544"
                      stepSize="0.1000000014901161" isPluginParameter="1" pluginParameterName="Voice 1: Pitch"
                      matrixTargetId="Voice_1_Pitch" processorId="Voice_1_Pitch" parameterId="Value"
-                     max="12.0" visible="0"/>
+                     max="12.0" itemColour2="4278190080"/>
           <Component type="ScriptPanel" id="ScriptPanel9" x="11" y="3" width="50"
                      height="15" parentComponent="VoicePitch1" borderRadius="0.0"
                      bgColour="16777215" textColour="4278190080" borderSize="1.0"
@@ -350,14 +351,14 @@
                      scaleFactor="0.1000000014901161" width="20" height="20" processorId="Granular1"
                      parameterId="PitchDivide" min="1.0" max="16.0" middlePosition="8.5"
                      showValuePopup="Below" bgColour="16777215" stepSize="1.0" itemColour="1630745395"
-                     matrixTargetId="Voice_1_PitchDivide"/>
+                     matrixTargetId="Voice_1_PitchDivide" visible="0"/>
           <Component type="ScriptSlider" id="PitchTempo1" x="5" y="17" parentComponent="VoicePitch1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1800000071525574" width="60" height="60" processorId="Granular1"
                      parameterId="PitchTempo" showValuePopup="Below" bgColour="4293838681"
                      mode="TempoSync" max="18.0" stepSize="1.0" middlePosition="9.0"
                      isPluginParameter="1" pluginParameterName="Voice 1: Pitch Tempo"
-                     matrixTargetId="Voice_1_PitchTempo"/>
+                     matrixTargetId="Voice_1_PitchTempo" visible="0"/>
           <Component type="ScriptLabel" id="DetuneLabel4" x="142" y="68" textColour="4280884766"
                      width="60" height="20" fontName="Montserrat" editable="0" parentComponent="VoicePitch1"
                      fontStyle="Regular" fontSize="15.0" text="GLIDE"/>
@@ -526,6 +527,13 @@
           <Component type="ScriptLabel" id="ParamLabel16" x="75" y="72" textColour="4280884766"
                      width="90" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="DIRECTION"/>
+          <Component type="ScriptSlider" id="Spawn1" x="215" y="54" parentComponent="VoiceGrain1"
+                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                     scaleFactor="0.1099999994039536" width="20" height="20" processorId="Granular1"
+                     parameterId="Respawn" showValuePopup="Below" bgColour="11306949"
+                     isPluginParameter="1" pluginParameterName="Voice_1_Scatter_Respawn"
+                     defaultValue="1.0" matrixTargetId="Voice_1_Scatter_Respawn" textColour="4278190080"
+                     itemColour2="4279308561" itemColour="4278190080"/>
         </Component>
         <Component type="ScriptLabel" id="ParamLabel53" x="512" y="260" textColour="4280884766"
                    width="80" height="30" fontName="Montserrat" editable="0" parentComponent="Grain"
@@ -772,8 +780,8 @@
                      visible="0" saveInPreset="0"/>
           <Component type="ScriptLabel" id="ParamLabel1020" x="5" y="100" textColour="4293255135"
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel1001"
-                     fontStyle="Regular" fontSize="15.0" text="PLAYBACK MODE:" alignment="left"/>
-          <Component type="ScriptComboBox" id="TransPort2" x="115" y="100" width="80"
+                     fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"/>
+          <Component type="ScriptComboBox" id="TransPort2" x="103" y="100" width="80"
                      height="15" max="3" parentComponent="ScriptPanel1001" processorId="Granular2"
                      parameterId="TransportMode" items="Normal&#10;Freeze&#10;Microslice"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
@@ -930,6 +938,13 @@
         <Component type="ScriptPanel" id="VoiceGrain2" x="9" y="226" width="390"
                    height="95" parentComponent="Grain2" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
+          <Component type="ScriptSlider" id="Spawn2" x="215" y="54" parentComponent="VoiceGrain2"
+                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                     scaleFactor="0.1099999994039536" width="20" height="20" processorId="Granular2"
+                     parameterId="Respawn" showValuePopup="Below" bgColour="11306949"
+                     isPluginParameter="1" pluginParameterName="Voice_2_Scatter_Respawn"
+                     defaultValue="1.0" matrixTargetId="Voice_2_Scatter_Respawn" textColour="4278190080"
+                     itemColour2="4279308561" itemColour="4278190080"/>
           <Component type="ScriptLabel" id="DenseLabel3009" x="341" y="34" textColour="4280884766"
                      width="50" height="10" fontName="Montserrat" editable="0" parentComponent="VoiceGrain2"
                      fontStyle="Regular" fontSize="15.0" text="DIFF" alignment="left"/>
@@ -1219,7 +1234,7 @@
                      matrixTargetId="Voice_3_Volume" processorId="Granular3" parameterId="Vol"/>
           <Component type="ScriptSlider" id="spread2" x="204" y="41" parentComponent="VoiceParam34"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1800000071525574" width="40" height="40" showValuePopup="Below"
+                     scaleFactor="0.1800000071525574" width="20" height="20" showValuePopup="Below"
                      bgColour="4294951129" pluginParameterName="Voice 3: Pan Spread"
                      isPluginParameter="1" matrixTargetId="Voice_3_PanSpread" processorId="Granular3"
                      parameterId="PanSpread"/>
@@ -1248,7 +1263,7 @@
                      itemColour2="3001935573" textColour="587202560">
             <Component type="ScriptLabel" id="FxLabelA2001" x="1" y="40" textColour="4280884766"
                        width="44" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam13"
-                       fontStyle="Regular" fontSize="15.0" text="Pitch"/>
+                       fontStyle="Regular" fontSize="15.0" text="OFF"/>
             <Component type="ScriptSlider" id="PolyMix3" x="98" y="0" parentComponent="VoiceParam13"
                        filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                        scaleFactor="0.1400000005960464" width="50" height="50" processorId="Granular3"
@@ -1266,7 +1281,7 @@
                        isPluginParameter="1" matrixTargetId="Voice_3_FX_Meta_2"/>
             <Component type="ScriptLabel" id="FxLabelA2002" x="53" y="40" textColour="4280884766"
                        width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam13"
-                       fontStyle="Regular" fontSize="15.0" text="LP"/>
+                       fontStyle="Regular" fontSize="15.0" text="OFF"/>
             <Component type="ScriptSlider" id="PolyMeta3" x="-1" y="0" parentComponent="VoiceParam13"
                        filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                        scaleFactor="0.1299999952316284" width="50" height="50" processorId="Voice_3_Meta"
@@ -1319,8 +1334,8 @@
                      visible="0" saveInPreset="0"/>
           <Component type="ScriptLabel" id="ParamLabel2020" x="5" y="100" textColour="4293255135"
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel2001"
-                     fontStyle="Regular" fontSize="15.0" text="PLAYBACK MODE:" alignment="left"/>
-          <Component type="ScriptComboBox" id="TransPort3" x="115" y="100" width="80"
+                     fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"/>
+          <Component type="ScriptComboBox" id="TransPort3" x="103" y="100" width="80"
                      height="15" max="3" parentComponent="ScriptPanel2001" processorId="Granular3"
                      parameterId="TransportMode" items="Normal&#10;Freeze&#10;Microslice"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
@@ -1867,8 +1882,8 @@
                      visible="0" saveInPreset="0"/>
           <Component type="ScriptLabel" id="ParamLabel3020" x="5" y="100" textColour="4293255135"
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel3001"
-                     fontStyle="Regular" fontSize="15.0" text="PLAYBACK MODE:" alignment="left"/>
-          <Component type="ScriptComboBox" id="TransPort4" x="115" y="100" width="80"
+                     fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"/>
+          <Component type="ScriptComboBox" id="TransPort4" x="103" y="100" width="80"
                      height="15" max="3" parentComponent="ScriptPanel3001" processorId="Granular4"
                      parameterId="TransportMode" items="Normal&#10;Freeze&#10;Microslice"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
@@ -2025,6 +2040,20 @@
         <Component type="ScriptPanel" id="VoiceGrain4" x="9" y="226" width="390"
                    height="95" parentComponent="Grain4" borderRadius="0.0" itemColour="4293781205"
                    itemColour2="4293781205" textColour="268435456">
+          <Component type="ScriptSlider" id="Spawn4" x="215" y="54" parentComponent="VoiceGrain4"
+                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                     scaleFactor="0.1099999994039536" width="20" height="20" processorId="Granular3"
+                     parameterId="Respawn" showValuePopup="Below" bgColour="11306949"
+                     isPluginParameter="1" pluginParameterName="Voice_3_Scatter_Respawn"
+                     defaultValue="1.0" matrixTargetId="Voice_3_Scatter_Respawn" textColour="4278190080"
+                     itemColour2="4279308561" itemColour="4278190080"/>
+          <Component type="ScriptSlider" id="Spawn3" x="215" y="54" parentComponent="VoiceGrain4"
+                     filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
+                     scaleFactor="0.1099999994039536" width="20" height="20" processorId="Granular4"
+                     parameterId="Respawn" showValuePopup="Below" bgColour="11306949"
+                     isPluginParameter="1" pluginParameterName="Voice_4_Scatter_Respawn"
+                     defaultValue="1.0" matrixTargetId="Voice_4_Scatter_Respawn" textColour="4278190080"
+                     itemColour2="4279308561" itemColour="4278190080"/>
           <Component type="ScriptComboBox" id="SpreadDirMode4" x="171" y="2" max="4"
                      width="50" height="15" processorId="Granular4" parameterId="PhaseScatterShape"
                      items="Random&#10;Spread&#10;Mirror&#10;Cluster" bgColour="4278190080"
@@ -2103,7 +2132,7 @@
                      showValuePopup="Below" parameterId="Value" middlePosition="100.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
                      max="500.0" mode="Time" stepSize="1.0" defaultValue="400.0" matrixTargetId="Voice_4_GrainMs"
-                     min="1.0" visible="0"/>
+                     min="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel3009" x="-4" y="72" textColour="4280884766"
                      width="90" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain4"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN SIZE"/>
@@ -2118,7 +2147,8 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice4GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_4_GrainDivide">
+                     bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_4_GrainDivide"
+                     visible="0">
             <Component type="ScriptLabel" id="ParamLabel3013" x="-27" y="73" textColour="4280884766"
                        width="20" height="10" fontName="Montserrat" editable="0" parentComponent="graindiv4"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -2134,7 +2164,8 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 4: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_4_GrainTempo"/>
+                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_4_GrainTempo"
+                     visible="0"/>
           <Component type="ScriptSlider" id="GrainDir4" x="82" y="6" width="80" height="70"
                      processorId="Granular4" parameterId="Direction" parentComponent="VoiceGrain4"
                      numStrips="200.0" dragDirection="Vertical" middlePosition="2.5"
@@ -2792,7 +2823,7 @@
                    textColour="4278190080" text="*" parentComponent="MOD1">
           <Component type="ScriptPanel" id="Step3" x="13" y="30" width="215" height="60"
                      parentComponent="seq3" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215">
+                     bgColour="16777215" visible="0">
             <Component type="ScriptSliderPack" id="SliderPackA8" x="0" y="0" processorId="LFO3"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step3" bgColour="4281811545"/>
@@ -2811,7 +2842,7 @@
           </Component>
           <Component type="ScriptPanel" id="Table3" x="13" y="30" width="215" height="60"
                      parentComponent="seq3" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215" visible="0">
+                     bgColour="16777215">
             <Component type="ScriptTable" id="ScriptTable3" x="0" y="0" width="210"
                        height="50" parentComponent="Table3" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO3"
@@ -2992,7 +3023,7 @@
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq4" processorId="LFO4" parameterId="ExtTrig"
                      stepSize="0.0" showValuePopup="Below" defaultValue="1.0" matrixTargetId="LFO4_ExtTrig"
-                     itemColour2="4211081216"/>
+                     itemColour2="4211081216" visible="0"/>
           <Component type="ScriptSlider" id="Stage4" x="99" y="79" width="50" height="50"
                      filmstripImage="{PROJECT_FOLDER}k2.png" numStrips="200.0" scaleFactor="0.699999988079071"
                      parentComponent="seq4" max="4.0" stepSize="1.0" showValuePopup="Below"
@@ -3041,8 +3072,7 @@
                      bgColour="16777215" visible="0">
             <Component type="ScriptSliderPack" id="SliderPackA16" x="0" y="0" processorId="LFO5"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
-                       textColour="16048058" parentComponent="Step5" bgColour="4281811545"
-                       visible="0"/>
+                       textColour="16048058" parentComponent="Step5" bgColour="4281811545"/>
             <Component type="ScriptSliderPack" id="SliderPackA17" x="0" y="0" processorId="LFO5"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step5" SliderPackIndex="2"
@@ -3054,7 +3084,7 @@
             <Component type="ScriptSliderPack" id="SliderPackA19" x="0" y="0" processorId="LFO5"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step5" SliderPackIndex="3"
-                       bgColour="4281811545"/>
+                       bgColour="4281811545" visible="0"/>
           </Component>
           <Component type="ScriptPanel" id="Table5" x="13" y="30" width="215" height="60"
                      parentComponent="seq5" itemColour="0" itemColour2="0" textColour="16777215"
@@ -3062,7 +3092,7 @@
             <Component type="ScriptTable" id="ScriptTable5" x="0" y="0" width="210"
                        height="50" parentComponent="Table5" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
-                       customColours="1" visible="0"/>
+                       customColours="1"/>
             <Component type="ScriptTable" id="ScriptTableA14" x="0" y="0" width="210"
                        height="50" parentComponent="Table5" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
@@ -3074,7 +3104,7 @@
             <Component type="ScriptTable" id="ScriptTableA16" x="0" y="0" width="210"
                        height="50" parentComponent="Table5" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO5"
-                       tableIndex="3" customColours="1"/>
+                       tableIndex="3" customColours="1" visible="0"/>
           </Component>
           <Component type="ScriptLabel" id="ScriptLabel10" x="5" y="4" width="20"
                      height="20" text="5" textColour="4278190080" parentComponent="seq5"
@@ -3159,7 +3189,7 @@
                    textColour="4278190080" text="*" parentComponent="MOD2">
           <Component type="ScriptPanel" id="Step6" x="13" y="30" width="215" height="60"
                      parentComponent="seq6" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215">
+                     bgColour="16777215" visible="0">
             <Component type="ScriptSliderPack" id="SliderPackA20" x="0" y="0" processorId="LFO6"
                        width="210" height="50" itemColour="4289230454" itemColour2="4289230454"
                        textColour="16048058" parentComponent="Step6" bgColour="4281811545"/>
@@ -3178,7 +3208,7 @@
           </Component>
           <Component type="ScriptPanel" id="Table6" x="13" y="30" width="215" height="60"
                      parentComponent="seq6" itemColour="0" itemColour2="0" textColour="16777215"
-                     bgColour="16777215" visible="0">
+                     bgColour="16777215">
             <Component type="ScriptTable" id="ScriptTable6" x="0" y="0" width="210"
                        height="50" parentComponent="Table6" itemColour="2046820352"
                        bgColour="4289230454" itemColour2="4281811545" processorId="LFO6"
@@ -4493,50 +4523,170 @@
                  fontName="Montserrat" fontSize="20.0" textColour="3001935573"
                  text="MODULATORS" alignment="left" editable="0" itemColour2="3001935573"
                  itemColour="15591125" parentComponent="ModulationMatrix" visible="0"/>
-      <Component type="ScriptLabel" id="Label41" x="13" y="155" width="80" height="20"
+      <Component type="ScriptLabel" id="Label41" x="13" y="155" width="79" height="20"
                  fontName="Montserrat" fontSize="20.0" textColour="3001935573"
                  text="MATRIX" alignment="left" editable="0" itemColour2="3001935573"
                  itemColour="15591125" parentComponent="ModulationMatrix"/>
-      <Component type="ScriptFloatingTile" id="ScriptFloatingTile1" x="1" y="30"
-                 width="670" height="120" parentComponent="ModulationMatrix" ContentType="ModulationMatrix"
-                 bgColour="0" itemColour="5267572" itemColour2="2963010" textColour="14213354"
-                 Data="{&#10;  &quot;ProcessorId&quot;: &quot;Global Modulator Container1&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false,&#10;  &quot;SliderStyle&quot;: &quot;Horizontal&quot;&#10;}"
-                 itemColour3="8046246"/>
-      <Component type="ScriptLabel" id="Label42" x="27" y="6" width="60" height="20"
+      <Component type="ScriptPanel" id="MatrixEditorRows" x="10" y="30" width="650"
+                 height="120" parentComponent="ModulationMatrix" bgColour="0"
+                 itemColour="0" itemColour2="0" textColour="0" visible="0">
+        <Component type="ScriptComboBox" id="MatrixRouteSource1" x="0" y="3" width="105"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="32" items="MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"/>
+        <Component type="ScriptComboBox" id="MatrixRouteMode1" x="270" y="3" width="78"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   items="Scale&#10;Unipolar&#10;Bipolar" max="3"/>
+        <Component type="ScriptSlider" id="MatrixRouteAmount1" x="392" y="4" width="20"
+                   height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   min="-1.0" middlePosition="0.0" textColour="4278213887" itemColour2="16777215"
+                   bgColour="4293781205" itemColour="16777215" showValuePopup="Below"/>
+        <Component type="ScriptSlider" id="MatrixRouteAuxAmount1" x="582" y="2"
+                   width="20" height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   textColour="23807" itemColour2="16777215" bgColour="4293781205"
+                   itemColour="16777215" showValuePopup="Below"/>
+        <Component type="ScriptComboBox" id="MatrixRouteSource2" x="0" y="31" width="105"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="32" items="MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteMode2" x="270" y="31" width="78"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   items="Scale&#10;Unipolar&#10;Bipolar" visible="0" max="3"/>
+        <Component type="ScriptSlider" id="MatrixRouteAmount2" x="392" y="31" width="20"
+                   height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   min="-1.0" middlePosition="0.0" visible="0" bgColour="4293781205"
+                   itemColour2="16777215" showValuePopup="Below"/>
+        <Component type="ScriptSlider" id="MatrixRouteAuxAmount2" x="582" y="31"
+                   width="20" height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   visible="0" bgColour="4293781205" itemColour2="16777215" showValuePopup="Below"/>
+        <Component type="ScriptComboBox" id="MatrixRouteSource3" x="0" y="59" width="105"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="32" items="MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteMode3" x="270" y="59" width="78"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   items="Scale&#10;Unipolar&#10;Bipolar" visible="0" max="3"/>
+        <Component type="ScriptSlider" id="MatrixRouteAmount3" x="392" y="59" width="20"
+                   height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   min="-1.0" middlePosition="0.0" visible="0" bgColour="4293781205"
+                   itemColour2="16777215" showValuePopup="Below"/>
+        <Component type="ScriptSlider" id="MatrixRouteAuxAmount3" x="582" y="59"
+                   width="20" height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   visible="0" bgColour="4293781205" itemColour2="16777215" showValuePopup="Below"/>
+        <Component type="ScriptComboBox" id="MatrixRouteSource4" x="0" y="87" width="105"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="32" items="MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteMode4" x="270" y="87" width="78"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   items="Scale&#10;Unipolar&#10;Bipolar" visible="0" max="3"/>
+        <Component type="ScriptSlider" id="MatrixRouteAmount4" x="392" y="87" width="20"
+                   height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   min="-1.0" middlePosition="0.0" visible="0" bgColour="4293781205"
+                   itemColour2="16777215" showValuePopup="Below"/>
+        <Component type="ScriptSlider" id="MatrixRouteAuxAmount4" x="582" y="87"
+                   width="20" height="20" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   visible="0" bgColour="4293781205" itemColour2="16777215" showValuePopup="Below"/>
+        <Component type="ScriptComboBox" id="MatrixRouteTarget1" x="112" y="3" width="150"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="215" items="ENV1_A&#10;ENV1_D&#10;ENV1_R&#10;ENV1_S&#10;ENV2_A&#10;ENV2_D&#10;ENV2_R&#10;ENV2_S&#10;ENV3_A&#10;ENV3_D&#10;ENV3_R&#10;ENV3_S&#10;ENV4_A&#10;ENV4_D&#10;ENV4_R&#10;ENV4_S&#10;LFO1_Divide&#10;LFO1_ExtTrig&#10;LFO1_Stage&#10;LFO1_Tempo&#10;LFO2_Divide&#10;LFO2_ExtTrig&#10;LFO2_Stage&#10;LFO2_Tempo&#10;LFO3_Divide&#10;LFO3_ExtTrig&#10;LFO3_Morph&#10;LFO3_Stage&#10;LFO3_Tempo&#10;LFO4_Divide&#10;LFO4_ExtTrig&#10;LFO4_Morph&#10;LFO4_Stage&#10;LFO4_Tempo&#10;LFO5_Divide&#10;LFO5_ExtTrig&#10;LFO5_Morph&#10;LFO5_Stage&#10;LFO5_Tempo&#10;LFO6_Divide&#10;LFO6_ExtTrig&#10;LFO6_Morph&#10;LFO6_Stage&#10;LFO6_Tempo&#10;LFO7_Divide&#10;LFO7_ExtTrig&#10;LFO7_Morph&#10;LFO7_Stage&#10;LFO7_Tempo&#10;LFO8_Divide&#10;LFO8_ExtTrig&#10;LFO8_Morph&#10;LFO8_Stage&#10;LFO8_Tempo&#10;LFO9_Divide&#10;LFO9_ExtTrig&#10;LFO9_Morph&#10;LFO9_Stage&#10;LFO9_Tempo&#10;LFO10_Divide&#10;LFO10_ExtTrig&#10;LFO10_Morph&#10;LFO10_Stage&#10;LFO10_Tempo&#10;LFO11_Divide&#10;LFO11_ExtTrig&#10;LFO11_Morph&#10;LFO11_Stage&#10;LFO11_Tempo&#10;LFO12_Divide&#10;LFO12_ExtTrig&#10;LFO12_Stage&#10;LFO12_Tempo&#10;MACRO1_macro&#10;MACRO2_macro&#10;Master_Atk&#10;Master_Makeup&#10;Master_Ratio&#10;Master_Rel&#10;Master_Threshold&#10;Master_Volume&#10;Master_Xfade&#10;Master_XFadeSmooth&#10;Voice_1__ENV_Attack&#10;Voice_1__ENV_Decay&#10;Voice_1__ENV_Release&#10;Voice_1__ENV_Sustain&#10;Voice_1_Bloom&#10;Voice_1_Diffusion&#10;Voice_1_Final_Vol&#10;Voice_1_FX_Meta_2&#10;Voice_1_FX_Mix&#10;Voice_1_Glide&#10;Voice_1_GrainDensity&#10;Voice_1_GrainDirection&#10;Voice_1_GrainDivide&#10;Voice_1_GrainMix&#10;Voice_1_GrainMs&#10;Voice_1_GrainTempo&#10;Voice_1_Meta1&#10;Voice_1_Pan&#10;Voice_1_PanSpread&#10;Voice_1_Pitch&#10;Voice_1_PitchDivide&#10;Voice_1_PitchSpread&#10;Voice_1_PitchTempo&#10;Voice_1_PositionA&#10;Voice_1_PositionB&#10;Voice_1_PositionC&#10;Voice_1_PositionD&#10;Voice_1_PostFX_Meta1&#10;Voice_1_PostFX_Meta2&#10;Voice_1_PostFX_Meta3&#10;Voice_1_PostFX_Mix&#10;Voice_1_Volume&#10;Voice_1_WindowShape&#10;Voice_2__ENV_Attack&#10;Voice_2__ENV_Decay&#10;Voice_2__ENV_Release&#10;Voice_2__ENV_Sustain&#10;Voice_2_Bloom&#10;Voice_2_Diffusion&#10;Voice_2_Final_Vol&#10;Voice_2_FX_Meta_2&#10;Voice_2_FX_Mix&#10;Voice_2_Glide&#10;Voice_2_GrainDensity&#10;Voice_2_GrainDirection&#10;Voice_2_GrainDivide&#10;Voice_2_GrainMix&#10;Voice_2_GrainMs&#10;Voice_2_GrainTempo&#10;Voice_2_Meta&#10;Voice_2_Pan&#10;Voice_2_PanSpread&#10;Voice_2_Pitch&#10;Voice_2_PitchDivide&#10;Voice_2_PitchSpread&#10;Voice_2_PitchTempo&#10;Voice_2_PositionA&#10;Voice_2_PositionB&#10;Voice_2_PositionC&#10;Voice_2_PositionD&#10;Voice_2_PostFX_Meta1&#10;Voice_2_PostFX_Meta2&#10;Voice_2_PostFX_Meta3&#10;Voice_2_PostFX_Mix&#10;Voice_2_Volume&#10;Voice_2_WindowShape&#10;Voice_3__ENV_Attack&#10;Voice_3__ENV_Decay&#10;Voice_3__ENV_Release&#10;Voice_3__ENV_Sustain&#10;Voice_3_Bloom&#10;Voice_3_Diffusion&#10;Voice_3_Final_Vol&#10;Voice_3_FX_Meta_2&#10;Voice_3_FX_Mix&#10;Voice_3_Glide&#10;Voice_3_GrainDensity&#10;Voice_3_GrainDirection&#10;Voice_3_GrainDivide&#10;Voice_3_GrainMix&#10;Voice_3_GrainMs&#10;Voice_3_GrainTempo&#10;Voice_3_Meta&#10;Voice_3_Pan&#10;Voice_3_PanSpread&#10;Voice_3_Pitch&#10;Voice_3_PitchDivide&#10;Voice_3_PitchSpread&#10;Voice_3_PitchTempo&#10;Voice_3_PositionA&#10;Voice_3_PositionB&#10;Voice_3_PositionC&#10;Voice_3_PositionD&#10;Voice_3_PostFX_Meta1&#10;Voice_3_PostFX_Meta2&#10;Voice_3_PostFX_Meta3&#10;Voice_3_PostFX_Mix&#10;Voice_3_Volume&#10;Voice_3_WindowShape&#10;Voice_4__ENV_Attack&#10;Voice_4__ENV_Decay&#10;Voice_4__ENV_Release&#10;Voice_4__ENV_Sustain&#10;Voice_4_Bloom&#10;Voice_4_Diffusion&#10;Voice_4_Final_Vol&#10;Voice_4_FX_Meta_2&#10;Voice_4_FX_Mix&#10;Voice_4_Glide&#10;Voice_4_GrainDensity&#10;Voice_4_GrainDirection&#10;Voice_4_GrainDivide&#10;Voice_4_GrainMix&#10;Voice_4_GrainMs&#10;Voice_4_GrainTempo&#10;Voice_4_Meta&#10;Voice_4_Pan&#10;Voice_4_PanSpread&#10;Voice_4_Pitch&#10;Voice_4_PitchDivide&#10;Voice_4_PitchSpread&#10;Voice_4_PitchTempo&#10;Voice_4_PositionA&#10;Voice_4_PositionB&#10;Voice_4_PositionC&#10;Voice_4_PositionD&#10;Voice_4_PostFX_Meta1&#10;Voice_4_PostFX_Meta2&#10;Voice_4_PostFX_Meta3&#10;Voice_4_PostFX_Mix&#10;Voice_4_Volume&#10;Voice_4_WindowShape"/>
+        <Component type="ScriptComboBox" id="MatrixRouteAux1" x="422" y="3" width="150"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="33" items="None&#10;MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"/>
+        <Component type="ScriptComboBox" id="MatrixRouteTarget2" x="112" y="31"
+                   width="150" height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="215" items="ENV1_A&#10;ENV1_D&#10;ENV1_R&#10;ENV1_S&#10;ENV2_A&#10;ENV2_D&#10;ENV2_R&#10;ENV2_S&#10;ENV3_A&#10;ENV3_D&#10;ENV3_R&#10;ENV3_S&#10;ENV4_A&#10;ENV4_D&#10;ENV4_R&#10;ENV4_S&#10;LFO1_Divide&#10;LFO1_ExtTrig&#10;LFO1_Stage&#10;LFO1_Tempo&#10;LFO2_Divide&#10;LFO2_ExtTrig&#10;LFO2_Stage&#10;LFO2_Tempo&#10;LFO3_Divide&#10;LFO3_ExtTrig&#10;LFO3_Morph&#10;LFO3_Stage&#10;LFO3_Tempo&#10;LFO4_Divide&#10;LFO4_ExtTrig&#10;LFO4_Morph&#10;LFO4_Stage&#10;LFO4_Tempo&#10;LFO5_Divide&#10;LFO5_ExtTrig&#10;LFO5_Morph&#10;LFO5_Stage&#10;LFO5_Tempo&#10;LFO6_Divide&#10;LFO6_ExtTrig&#10;LFO6_Morph&#10;LFO6_Stage&#10;LFO6_Tempo&#10;LFO7_Divide&#10;LFO7_ExtTrig&#10;LFO7_Morph&#10;LFO7_Stage&#10;LFO7_Tempo&#10;LFO8_Divide&#10;LFO8_ExtTrig&#10;LFO8_Morph&#10;LFO8_Stage&#10;LFO8_Tempo&#10;LFO9_Divide&#10;LFO9_ExtTrig&#10;LFO9_Morph&#10;LFO9_Stage&#10;LFO9_Tempo&#10;LFO10_Divide&#10;LFO10_ExtTrig&#10;LFO10_Morph&#10;LFO10_Stage&#10;LFO10_Tempo&#10;LFO11_Divide&#10;LFO11_ExtTrig&#10;LFO11_Morph&#10;LFO11_Stage&#10;LFO11_Tempo&#10;LFO12_Divide&#10;LFO12_ExtTrig&#10;LFO12_Stage&#10;LFO12_Tempo&#10;MACRO1_macro&#10;MACRO2_macro&#10;Master_Atk&#10;Master_Makeup&#10;Master_Ratio&#10;Master_Rel&#10;Master_Threshold&#10;Master_Volume&#10;Master_Xfade&#10;Master_XFadeSmooth&#10;Voice_1__ENV_Attack&#10;Voice_1__ENV_Decay&#10;Voice_1__ENV_Release&#10;Voice_1__ENV_Sustain&#10;Voice_1_Bloom&#10;Voice_1_Diffusion&#10;Voice_1_Final_Vol&#10;Voice_1_FX_Meta_2&#10;Voice_1_FX_Mix&#10;Voice_1_Glide&#10;Voice_1_GrainDensity&#10;Voice_1_GrainDirection&#10;Voice_1_GrainDivide&#10;Voice_1_GrainMix&#10;Voice_1_GrainMs&#10;Voice_1_GrainTempo&#10;Voice_1_Meta1&#10;Voice_1_Pan&#10;Voice_1_PanSpread&#10;Voice_1_Pitch&#10;Voice_1_PitchDivide&#10;Voice_1_PitchSpread&#10;Voice_1_PitchTempo&#10;Voice_1_PositionA&#10;Voice_1_PositionB&#10;Voice_1_PositionC&#10;Voice_1_PositionD&#10;Voice_1_PostFX_Meta1&#10;Voice_1_PostFX_Meta2&#10;Voice_1_PostFX_Meta3&#10;Voice_1_PostFX_Mix&#10;Voice_1_Volume&#10;Voice_1_WindowShape&#10;Voice_2__ENV_Attack&#10;Voice_2__ENV_Decay&#10;Voice_2__ENV_Release&#10;Voice_2__ENV_Sustain&#10;Voice_2_Bloom&#10;Voice_2_Diffusion&#10;Voice_2_Final_Vol&#10;Voice_2_FX_Meta_2&#10;Voice_2_FX_Mix&#10;Voice_2_Glide&#10;Voice_2_GrainDensity&#10;Voice_2_GrainDirection&#10;Voice_2_GrainDivide&#10;Voice_2_GrainMix&#10;Voice_2_GrainMs&#10;Voice_2_GrainTempo&#10;Voice_2_Meta&#10;Voice_2_Pan&#10;Voice_2_PanSpread&#10;Voice_2_Pitch&#10;Voice_2_PitchDivide&#10;Voice_2_PitchSpread&#10;Voice_2_PitchTempo&#10;Voice_2_PositionA&#10;Voice_2_PositionB&#10;Voice_2_PositionC&#10;Voice_2_PositionD&#10;Voice_2_PostFX_Meta1&#10;Voice_2_PostFX_Meta2&#10;Voice_2_PostFX_Meta3&#10;Voice_2_PostFX_Mix&#10;Voice_2_Volume&#10;Voice_2_WindowShape&#10;Voice_3__ENV_Attack&#10;Voice_3__ENV_Decay&#10;Voice_3__ENV_Release&#10;Voice_3__ENV_Sustain&#10;Voice_3_Bloom&#10;Voice_3_Diffusion&#10;Voice_3_Final_Vol&#10;Voice_3_FX_Meta_2&#10;Voice_3_FX_Mix&#10;Voice_3_Glide&#10;Voice_3_GrainDensity&#10;Voice_3_GrainDirection&#10;Voice_3_GrainDivide&#10;Voice_3_GrainMix&#10;Voice_3_GrainMs&#10;Voice_3_GrainTempo&#10;Voice_3_Meta&#10;Voice_3_Pan&#10;Voice_3_PanSpread&#10;Voice_3_Pitch&#10;Voice_3_PitchDivide&#10;Voice_3_PitchSpread&#10;Voice_3_PitchTempo&#10;Voice_3_PositionA&#10;Voice_3_PositionB&#10;Voice_3_PositionC&#10;Voice_3_PositionD&#10;Voice_3_PostFX_Meta1&#10;Voice_3_PostFX_Meta2&#10;Voice_3_PostFX_Meta3&#10;Voice_3_PostFX_Mix&#10;Voice_3_Volume&#10;Voice_3_WindowShape&#10;Voice_4__ENV_Attack&#10;Voice_4__ENV_Decay&#10;Voice_4__ENV_Release&#10;Voice_4__ENV_Sustain&#10;Voice_4_Bloom&#10;Voice_4_Diffusion&#10;Voice_4_Final_Vol&#10;Voice_4_FX_Meta_2&#10;Voice_4_FX_Mix&#10;Voice_4_Glide&#10;Voice_4_GrainDensity&#10;Voice_4_GrainDirection&#10;Voice_4_GrainDivide&#10;Voice_4_GrainMix&#10;Voice_4_GrainMs&#10;Voice_4_GrainTempo&#10;Voice_4_Meta&#10;Voice_4_Pan&#10;Voice_4_PanSpread&#10;Voice_4_Pitch&#10;Voice_4_PitchDivide&#10;Voice_4_PitchSpread&#10;Voice_4_PitchTempo&#10;Voice_4_PositionA&#10;Voice_4_PositionB&#10;Voice_4_PositionC&#10;Voice_4_PositionD&#10;Voice_4_PostFX_Meta1&#10;Voice_4_PostFX_Meta2&#10;Voice_4_PostFX_Meta3&#10;Voice_4_PostFX_Mix&#10;Voice_4_Volume&#10;Voice_4_WindowShape"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteAux2" x="422" y="31" width="150"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="33" items="None&#10;MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteTarget3" x="112" y="59"
+                   width="150" height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="215" items="ENV1_A&#10;ENV1_D&#10;ENV1_R&#10;ENV1_S&#10;ENV2_A&#10;ENV2_D&#10;ENV2_R&#10;ENV2_S&#10;ENV3_A&#10;ENV3_D&#10;ENV3_R&#10;ENV3_S&#10;ENV4_A&#10;ENV4_D&#10;ENV4_R&#10;ENV4_S&#10;LFO1_Divide&#10;LFO1_ExtTrig&#10;LFO1_Stage&#10;LFO1_Tempo&#10;LFO2_Divide&#10;LFO2_ExtTrig&#10;LFO2_Stage&#10;LFO2_Tempo&#10;LFO3_Divide&#10;LFO3_ExtTrig&#10;LFO3_Morph&#10;LFO3_Stage&#10;LFO3_Tempo&#10;LFO4_Divide&#10;LFO4_ExtTrig&#10;LFO4_Morph&#10;LFO4_Stage&#10;LFO4_Tempo&#10;LFO5_Divide&#10;LFO5_ExtTrig&#10;LFO5_Morph&#10;LFO5_Stage&#10;LFO5_Tempo&#10;LFO6_Divide&#10;LFO6_ExtTrig&#10;LFO6_Morph&#10;LFO6_Stage&#10;LFO6_Tempo&#10;LFO7_Divide&#10;LFO7_ExtTrig&#10;LFO7_Morph&#10;LFO7_Stage&#10;LFO7_Tempo&#10;LFO8_Divide&#10;LFO8_ExtTrig&#10;LFO8_Morph&#10;LFO8_Stage&#10;LFO8_Tempo&#10;LFO9_Divide&#10;LFO9_ExtTrig&#10;LFO9_Morph&#10;LFO9_Stage&#10;LFO9_Tempo&#10;LFO10_Divide&#10;LFO10_ExtTrig&#10;LFO10_Morph&#10;LFO10_Stage&#10;LFO10_Tempo&#10;LFO11_Divide&#10;LFO11_ExtTrig&#10;LFO11_Morph&#10;LFO11_Stage&#10;LFO11_Tempo&#10;LFO12_Divide&#10;LFO12_ExtTrig&#10;LFO12_Stage&#10;LFO12_Tempo&#10;MACRO1_macro&#10;MACRO2_macro&#10;Master_Atk&#10;Master_Makeup&#10;Master_Ratio&#10;Master_Rel&#10;Master_Threshold&#10;Master_Volume&#10;Master_Xfade&#10;Master_XFadeSmooth&#10;Voice_1__ENV_Attack&#10;Voice_1__ENV_Decay&#10;Voice_1__ENV_Release&#10;Voice_1__ENV_Sustain&#10;Voice_1_Bloom&#10;Voice_1_Diffusion&#10;Voice_1_Final_Vol&#10;Voice_1_FX_Meta_2&#10;Voice_1_FX_Mix&#10;Voice_1_Glide&#10;Voice_1_GrainDensity&#10;Voice_1_GrainDirection&#10;Voice_1_GrainDivide&#10;Voice_1_GrainMix&#10;Voice_1_GrainMs&#10;Voice_1_GrainTempo&#10;Voice_1_Meta1&#10;Voice_1_Pan&#10;Voice_1_PanSpread&#10;Voice_1_Pitch&#10;Voice_1_PitchDivide&#10;Voice_1_PitchSpread&#10;Voice_1_PitchTempo&#10;Voice_1_PositionA&#10;Voice_1_PositionB&#10;Voice_1_PositionC&#10;Voice_1_PositionD&#10;Voice_1_PostFX_Meta1&#10;Voice_1_PostFX_Meta2&#10;Voice_1_PostFX_Meta3&#10;Voice_1_PostFX_Mix&#10;Voice_1_Volume&#10;Voice_1_WindowShape&#10;Voice_2__ENV_Attack&#10;Voice_2__ENV_Decay&#10;Voice_2__ENV_Release&#10;Voice_2__ENV_Sustain&#10;Voice_2_Bloom&#10;Voice_2_Diffusion&#10;Voice_2_Final_Vol&#10;Voice_2_FX_Meta_2&#10;Voice_2_FX_Mix&#10;Voice_2_Glide&#10;Voice_2_GrainDensity&#10;Voice_2_GrainDirection&#10;Voice_2_GrainDivide&#10;Voice_2_GrainMix&#10;Voice_2_GrainMs&#10;Voice_2_GrainTempo&#10;Voice_2_Meta&#10;Voice_2_Pan&#10;Voice_2_PanSpread&#10;Voice_2_Pitch&#10;Voice_2_PitchDivide&#10;Voice_2_PitchSpread&#10;Voice_2_PitchTempo&#10;Voice_2_PositionA&#10;Voice_2_PositionB&#10;Voice_2_PositionC&#10;Voice_2_PositionD&#10;Voice_2_PostFX_Meta1&#10;Voice_2_PostFX_Meta2&#10;Voice_2_PostFX_Meta3&#10;Voice_2_PostFX_Mix&#10;Voice_2_Volume&#10;Voice_2_WindowShape&#10;Voice_3__ENV_Attack&#10;Voice_3__ENV_Decay&#10;Voice_3__ENV_Release&#10;Voice_3__ENV_Sustain&#10;Voice_3_Bloom&#10;Voice_3_Diffusion&#10;Voice_3_Final_Vol&#10;Voice_3_FX_Meta_2&#10;Voice_3_FX_Mix&#10;Voice_3_Glide&#10;Voice_3_GrainDensity&#10;Voice_3_GrainDirection&#10;Voice_3_GrainDivide&#10;Voice_3_GrainMix&#10;Voice_3_GrainMs&#10;Voice_3_GrainTempo&#10;Voice_3_Meta&#10;Voice_3_Pan&#10;Voice_3_PanSpread&#10;Voice_3_Pitch&#10;Voice_3_PitchDivide&#10;Voice_3_PitchSpread&#10;Voice_3_PitchTempo&#10;Voice_3_PositionA&#10;Voice_3_PositionB&#10;Voice_3_PositionC&#10;Voice_3_PositionD&#10;Voice_3_PostFX_Meta1&#10;Voice_3_PostFX_Meta2&#10;Voice_3_PostFX_Meta3&#10;Voice_3_PostFX_Mix&#10;Voice_3_Volume&#10;Voice_3_WindowShape&#10;Voice_4__ENV_Attack&#10;Voice_4__ENV_Decay&#10;Voice_4__ENV_Release&#10;Voice_4__ENV_Sustain&#10;Voice_4_Bloom&#10;Voice_4_Diffusion&#10;Voice_4_Final_Vol&#10;Voice_4_FX_Meta_2&#10;Voice_4_FX_Mix&#10;Voice_4_Glide&#10;Voice_4_GrainDensity&#10;Voice_4_GrainDirection&#10;Voice_4_GrainDivide&#10;Voice_4_GrainMix&#10;Voice_4_GrainMs&#10;Voice_4_GrainTempo&#10;Voice_4_Meta&#10;Voice_4_Pan&#10;Voice_4_PanSpread&#10;Voice_4_Pitch&#10;Voice_4_PitchDivide&#10;Voice_4_PitchSpread&#10;Voice_4_PitchTempo&#10;Voice_4_PositionA&#10;Voice_4_PositionB&#10;Voice_4_PositionC&#10;Voice_4_PositionD&#10;Voice_4_PostFX_Meta1&#10;Voice_4_PostFX_Meta2&#10;Voice_4_PostFX_Meta3&#10;Voice_4_PostFX_Mix&#10;Voice_4_Volume&#10;Voice_4_WindowShape"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteAux3" x="422" y="59" width="150"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="33" items="None&#10;MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteTarget4" x="112" y="87"
+                   width="150" height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="215" items="ENV1_A&#10;ENV1_D&#10;ENV1_R&#10;ENV1_S&#10;ENV2_A&#10;ENV2_D&#10;ENV2_R&#10;ENV2_S&#10;ENV3_A&#10;ENV3_D&#10;ENV3_R&#10;ENV3_S&#10;ENV4_A&#10;ENV4_D&#10;ENV4_R&#10;ENV4_S&#10;LFO1_Divide&#10;LFO1_ExtTrig&#10;LFO1_Stage&#10;LFO1_Tempo&#10;LFO2_Divide&#10;LFO2_ExtTrig&#10;LFO2_Stage&#10;LFO2_Tempo&#10;LFO3_Divide&#10;LFO3_ExtTrig&#10;LFO3_Morph&#10;LFO3_Stage&#10;LFO3_Tempo&#10;LFO4_Divide&#10;LFO4_ExtTrig&#10;LFO4_Morph&#10;LFO4_Stage&#10;LFO4_Tempo&#10;LFO5_Divide&#10;LFO5_ExtTrig&#10;LFO5_Morph&#10;LFO5_Stage&#10;LFO5_Tempo&#10;LFO6_Divide&#10;LFO6_ExtTrig&#10;LFO6_Morph&#10;LFO6_Stage&#10;LFO6_Tempo&#10;LFO7_Divide&#10;LFO7_ExtTrig&#10;LFO7_Morph&#10;LFO7_Stage&#10;LFO7_Tempo&#10;LFO8_Divide&#10;LFO8_ExtTrig&#10;LFO8_Morph&#10;LFO8_Stage&#10;LFO8_Tempo&#10;LFO9_Divide&#10;LFO9_ExtTrig&#10;LFO9_Morph&#10;LFO9_Stage&#10;LFO9_Tempo&#10;LFO10_Divide&#10;LFO10_ExtTrig&#10;LFO10_Morph&#10;LFO10_Stage&#10;LFO10_Tempo&#10;LFO11_Divide&#10;LFO11_ExtTrig&#10;LFO11_Morph&#10;LFO11_Stage&#10;LFO11_Tempo&#10;LFO12_Divide&#10;LFO12_ExtTrig&#10;LFO12_Stage&#10;LFO12_Tempo&#10;MACRO1_macro&#10;MACRO2_macro&#10;Master_Atk&#10;Master_Makeup&#10;Master_Ratio&#10;Master_Rel&#10;Master_Threshold&#10;Master_Volume&#10;Master_Xfade&#10;Master_XFadeSmooth&#10;Voice_1__ENV_Attack&#10;Voice_1__ENV_Decay&#10;Voice_1__ENV_Release&#10;Voice_1__ENV_Sustain&#10;Voice_1_Bloom&#10;Voice_1_Diffusion&#10;Voice_1_Final_Vol&#10;Voice_1_FX_Meta_2&#10;Voice_1_FX_Mix&#10;Voice_1_Glide&#10;Voice_1_GrainDensity&#10;Voice_1_GrainDirection&#10;Voice_1_GrainDivide&#10;Voice_1_GrainMix&#10;Voice_1_GrainMs&#10;Voice_1_GrainTempo&#10;Voice_1_Meta1&#10;Voice_1_Pan&#10;Voice_1_PanSpread&#10;Voice_1_Pitch&#10;Voice_1_PitchDivide&#10;Voice_1_PitchSpread&#10;Voice_1_PitchTempo&#10;Voice_1_PositionA&#10;Voice_1_PositionB&#10;Voice_1_PositionC&#10;Voice_1_PositionD&#10;Voice_1_PostFX_Meta1&#10;Voice_1_PostFX_Meta2&#10;Voice_1_PostFX_Meta3&#10;Voice_1_PostFX_Mix&#10;Voice_1_Volume&#10;Voice_1_WindowShape&#10;Voice_2__ENV_Attack&#10;Voice_2__ENV_Decay&#10;Voice_2__ENV_Release&#10;Voice_2__ENV_Sustain&#10;Voice_2_Bloom&#10;Voice_2_Diffusion&#10;Voice_2_Final_Vol&#10;Voice_2_FX_Meta_2&#10;Voice_2_FX_Mix&#10;Voice_2_Glide&#10;Voice_2_GrainDensity&#10;Voice_2_GrainDirection&#10;Voice_2_GrainDivide&#10;Voice_2_GrainMix&#10;Voice_2_GrainMs&#10;Voice_2_GrainTempo&#10;Voice_2_Meta&#10;Voice_2_Pan&#10;Voice_2_PanSpread&#10;Voice_2_Pitch&#10;Voice_2_PitchDivide&#10;Voice_2_PitchSpread&#10;Voice_2_PitchTempo&#10;Voice_2_PositionA&#10;Voice_2_PositionB&#10;Voice_2_PositionC&#10;Voice_2_PositionD&#10;Voice_2_PostFX_Meta1&#10;Voice_2_PostFX_Meta2&#10;Voice_2_PostFX_Meta3&#10;Voice_2_PostFX_Mix&#10;Voice_2_Volume&#10;Voice_2_WindowShape&#10;Voice_3__ENV_Attack&#10;Voice_3__ENV_Decay&#10;Voice_3__ENV_Release&#10;Voice_3__ENV_Sustain&#10;Voice_3_Bloom&#10;Voice_3_Diffusion&#10;Voice_3_Final_Vol&#10;Voice_3_FX_Meta_2&#10;Voice_3_FX_Mix&#10;Voice_3_Glide&#10;Voice_3_GrainDensity&#10;Voice_3_GrainDirection&#10;Voice_3_GrainDivide&#10;Voice_3_GrainMix&#10;Voice_3_GrainMs&#10;Voice_3_GrainTempo&#10;Voice_3_Meta&#10;Voice_3_Pan&#10;Voice_3_PanSpread&#10;Voice_3_Pitch&#10;Voice_3_PitchDivide&#10;Voice_3_PitchSpread&#10;Voice_3_PitchTempo&#10;Voice_3_PositionA&#10;Voice_3_PositionB&#10;Voice_3_PositionC&#10;Voice_3_PositionD&#10;Voice_3_PostFX_Meta1&#10;Voice_3_PostFX_Meta2&#10;Voice_3_PostFX_Meta3&#10;Voice_3_PostFX_Mix&#10;Voice_3_Volume&#10;Voice_3_WindowShape&#10;Voice_4__ENV_Attack&#10;Voice_4__ENV_Decay&#10;Voice_4__ENV_Release&#10;Voice_4__ENV_Sustain&#10;Voice_4_Bloom&#10;Voice_4_Diffusion&#10;Voice_4_Final_Vol&#10;Voice_4_FX_Meta_2&#10;Voice_4_FX_Mix&#10;Voice_4_Glide&#10;Voice_4_GrainDensity&#10;Voice_4_GrainDirection&#10;Voice_4_GrainDivide&#10;Voice_4_GrainMix&#10;Voice_4_GrainMs&#10;Voice_4_GrainTempo&#10;Voice_4_Meta&#10;Voice_4_Pan&#10;Voice_4_PanSpread&#10;Voice_4_Pitch&#10;Voice_4_PitchDivide&#10;Voice_4_PitchSpread&#10;Voice_4_PitchTempo&#10;Voice_4_PositionA&#10;Voice_4_PositionB&#10;Voice_4_PositionC&#10;Voice_4_PositionD&#10;Voice_4_PostFX_Meta1&#10;Voice_4_PostFX_Meta2&#10;Voice_4_PostFX_Meta3&#10;Voice_4_PostFX_Mix&#10;Voice_4_Volume&#10;Voice_4_WindowShape"
+                   visible="0"/>
+        <Component type="ScriptComboBox" id="MatrixRouteAux4" x="422" y="87" width="150"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   max="33" items="None&#10;MACRO1&#10;MACRO2&#10;MACRO3&#10;MACRO4&#10;MACRO5&#10;MACRO6&#10;MACRO7&#10;MACRO8&#10;LFO1&#10;LFO2&#10;LFO3&#10;LFO4&#10;LFO5&#10;LFO6&#10;LFO7&#10;LFO8&#10;LFO9&#10;LFO10&#10;LFO11&#10;LFO12&#10;Track1&#10;Track2&#10;Track3&#10;Track4&#10;ENV1&#10;ENV2&#10;ENV3&#10;ENV4&#10;Velocity&#10;KeyTrack&#10;ModWheel&#10;PitchBend"
+                   visible="0"/>
+        <Component type="ScriptButton" id="MatrixRouteInvert1" x="356" y="3" width="24"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   text="I"/>
+        <Component type="ScriptButton" id="MatrixRouteInvert2" x="356" y="31" width="24"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   text="I" visible="0"/>
+        <Component type="ScriptButton" id="MatrixRouteInvert3" x="356" y="59" width="24"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   text="I" visible="0"/>
+        <Component type="ScriptButton" id="MatrixRouteInvert4" x="356" y="87" width="24"
+                   height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
+                   text="I" visible="0"/>
+      </Component>
+      <Component type="ScriptedViewport" id="MatrixRouteTable" x="7" y="30" width="660"
+                 height="120" parentComponent="ModulationMatrix" saveInPreset="0"
+                 bgColour="0" itemColour="4293781205" itemColour2="0" textColour="3001935573"
+                 viewPositionX="1.0" scrollBarThickness="12.0"/>
+      <Component type="ScriptLabel" id="Label42" x="6" y="6" width="105" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
                  text="SOURCE" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label43" x="117" y="6" width="70" height="20"
+      <Component type="ScriptLabel" id="Label43" x="92" y="6" width="118" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
                  text="TARGET" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label44" x="219" y="6" width="60" height="20"
+      <Component type="ScriptLabel" id="Label44" x="202" y="6" width="60" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
                  text="MODE" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label45" x="298" y="6" width="40" height="20"
+      <Component type="ScriptLabel" id="Label45" x="256" y="6" width="50" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
                  text="INV" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label46" x="343" y="6" width="80" height="20"
+      <Component type="ScriptLabel" id="Label46" x="299" y="6" width="118" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
-                 text="AMOUNT" editable="0" itemColour2="3001935573" itemColour="15591125"
+                 text="MOD AMOUNT" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label47" x="442" y="6" width="60" height="20"
+      <Component type="ScriptLabel" id="Label47" x="418" y="6" width="98" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
-                 text="AUX" editable="0" itemColour2="3001935573" itemColour="15591125"
+                 text="AUX SRC" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label48" x="524" y="6" width="80" height="20"
+      <Component type="ScriptLabel" id="Label48" x="516" y="6" width="95" height="20"
                  fontName="Montserrat" fontSize="15.0" textColour="3001935573"
-                 text="AUX AMNT" editable="0" itemColour2="3001935573" itemColour="15591125"
+                 text="AUX AMOUNT" editable="0" itemColour2="3001935573" itemColour="15591125"
                  parentComponent="ModulationMatrix"/>
-      <Component type="ScriptLabel" id="Label49" x="515" y="6" width="70" height="20"
-                 fontName="Montserrat" fontSize="15.0" textColour="3001935573"
-                 text="REMOVE" editable="0" itemColour2="3001935573" itemColour="15591125"
-                 parentComponent="ModulationMatrix" visible="0"/>
-      <Component type="ScriptPanel" id="MatrixTargetLock" x="104" y="30" width="105"
-                 height="120" parentComponent="ModulationMatrix" bgColour="0"
-                 itemColour="0" itemColour2="0" textColour="0"/>
+      <Component type="ScriptButton" id="MatrixRouteDelete1" x="634" y="33" width="16"
+                 height="22" parentComponent="ModulationMatrix" saveInPreset="0"
+                 text="X" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteDelete2" x="634" y="61" width="16"
+                 height="22" parentComponent="ModulationMatrix" saveInPreset="0"
+                 text="X" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteDelete3" x="634" y="89" width="16"
+                 height="22" parentComponent="ModulationMatrix" saveInPreset="0"
+                 text="X" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteDelete4" x="634" y="117" width="16"
+                 height="22" parentComponent="ModulationMatrix" saveInPreset="0"
+                 text="X" visible="0"/>
+      <Component type="ScriptSlider" id="MatrixRouteScroll" x="653" y="31" width="14"
+                 height="118" parentComponent="ModulationMatrix" saveInPreset="0"
+                 stepSize="1.0" style="Vertical" max="0.0" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteAction1" x="632" y="33" parentComponent="ModulationMatrix"
+                 width="16" height="22" text="X" saveInPreset="0" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteAction2" x="632" y="61" parentComponent="ModulationMatrix"
+                 width="16" height="22" text="X" saveInPreset="0" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteAction3" x="632" y="89" parentComponent="ModulationMatrix"
+                 width="16" height="22" text="X" saveInPreset="0" visible="0"/>
+      <Component type="ScriptButton" id="MatrixRouteAction4" x="632" y="117" parentComponent="ModulationMatrix"
+                 width="16" height="22" text="X" saveInPreset="0" visible="0"/>
+      <Component type="ScriptPanel" id="MatrixRouteViewport" x="650" y="31" parentComponent="ModulationMatrix"
+                 width="8" height="118" allowCallbacks="Clicks, Hover &amp; Dragging"
+                 visible="0"/>
     </Component>
     <Component type="ScriptPanel" id="RandomControls1" x="23" y="396" width="660"
                height="170" itemColour="4293781205" itemColour2="4293781205"

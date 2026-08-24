@@ -22,6 +22,8 @@ inline function drawKnobModulationArc(g, obj, area, thickness)
 	g.drawPath(valueArc, area, Math.max(2.0, thickness - 0.5));
 }
 
+
+
 KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 {
 	var underDrag = Content.getComponentUnderDrag() == obj.id;
@@ -34,7 +36,7 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 	var start = isBipolar ? 0 : -2.7;
 	var modStart = isBipolar ? (-2.7 + obj.valueNormalized * 2 * 2.7) : -2.7;
 
-	g.setColour(obj.textColour);
+	g.setColour(0x00000000);
 
 	var radius = 20 - obj.clicked;
 
@@ -52,13 +54,13 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 	
 	g.setColour( obj.itemColour1);
 	g.drawPath(p, Rect.reduced(obj.area, 5), 4);
-	g.setColour(underDrag ? obj.itemColour2 : obj.textColour);
+	g.setColour(underDrag ? 0xFF303030 : 0xFF303030);
 	g.drawPath(p, Rect.reduced(obj.area, 1), 2);
 
 	p = Content.createPath();
 		
-//	p.startNewSubPath(0, 0);
-//	p.startNewSubPath(1,1);
+	p.startNewSubPath(0, 0);
+	p.startNewSubPath(1,1);
 //	p.addArc([0.0, 0.0, 1.0, 1.0], start, -2.66 + Math.max(0.01, obj.valueNormalized) * 2 * 2.66);
 	
 	g.setColour(Colours.withAlpha(obj.itemColour1, obj.clicked ? 1.0 : 0.8));
@@ -85,19 +87,19 @@ KnobLaf3.registerFunction("drawRotarySlider", function(g, obj)
 	g.setGradientFill([obj.itemColour2, 0.0, 0.0,
 					   obj.itemColour2, 0.0, obj.area[3], true]);
 	g.drawEllipse(Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
-	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 3.5);
+	drawKnobModulationArc(g, obj, Rect.withSizeKeepingCentre(obj.area, radius-3, radius-3), 4.5);
 	
 	if(underDrag)
 	{
-		g.setColour(obj.itemColour2);
+		g.setColour(0xFF515151);
 
 		
 		g.fillEllipse(Rect.reduced(obj.area, 6));
 	}
 	
-	g.setColour(obj.textColour);
+	g.setColour(Colours.black);
 	g.rotate(-2.66 + obj.valueNormalized * 2.66 * 2, Rect.getCentre(obj.area));
-	g.fillRect(Rect.translated(Rect.withSizeKeepingCentre(obj.area, 5, 11), 0, -8));
+	g.fillRect(Rect.translated(Rect.withSizeKeepingCentre(obj.area, 2, 11), 0, -8));
 	
 	
 	
