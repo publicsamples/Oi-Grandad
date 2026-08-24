@@ -103,21 +103,21 @@
       </Parameter>
       <Parameter ID="Makeup" MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
                  SkewFactor="0.5" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="24.0">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="4.800000071525573">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="MakeupGain"/>
         </Connections>
       </Parameter>
       <Parameter ID="Atk" MinValue="0.1000000014901161" MaxValue="30.0" StepSize="0.1000000014901161"
                  SkewFactor="0.6270987987518311" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Time" Value="0.1000000014901161">
+                 DefaultValue="" TextToValueConverter="Time" Value="12.30000018328428">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Attack"/>
         </Connections>
       </Parameter>
       <Parameter ID="Rel" MinValue="50.0" MaxValue="1200.0" StepSize="1.0" SkewFactor="0.2210647314786911"
                  ModColour="0" ExternalModulation="Disabled" TextToValueConverter="Time"
-                 Value="50.0">
+                 Value="81.0" DefaultValue="50.0">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Release"/>
         </Connections>

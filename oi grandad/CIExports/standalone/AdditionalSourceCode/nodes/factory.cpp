@@ -30,13 +30,13 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::master_bus_compressor_native<1>, scriptnode::wrap::illegal_poly<project::master_bus_compressor_native<1>>>();
 		registerPolyNode<project::granular_player_stepquant_density_hybrid_native<1>, project::granular_player_stepquant_density_hybrid_native<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::DspNetwork<1>, wrap::illegal_poly<project::DspNetwork<1>>>();
+		registerPolyNode<project::Dyn<1>, wrap::illegal_poly<project::Dyn<1>>>();
 		registerPolyNode<project::ENV<1>, project::ENV<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::MacroMod<1>, project::MacroMod<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::MatrixTest2<1>, project::MatrixTest2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::OutMods<1>, project::OutMods<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::res2<1>, project::res2<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::sn_fin<1>, wrap::illegal_poly<project::sn_fin<1>>>();
-		registerDataNode<project::Dyn_networkdata>();
 		registerDataNode<project::indicators_networkdata>();
 		registerDataNode<project::modcont_networkdata>();
 		registerDataNode<project::recorder_networkdata>();

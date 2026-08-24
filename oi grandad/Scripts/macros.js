@@ -719,7 +719,7 @@ MatrixRouteTableLaf.registerFunction("drawComboBox", function(g, obj)
 	g.setColour(0xFF5E6270);
 	g.fillRoundedRectangle(area, 3.0);
 	g.setColour(0xFFEDE6D5);
-	g.setFont("Montserrat", 12.0);
+	g.setFont("Montserrat", 14.0);
 	g.drawAlignedText(obj.text, area, "centred");
 });
 
@@ -745,7 +745,7 @@ MatrixRouteTableLaf.registerFunction("drawLinearSlider", function(g, obj)
 
 	// The native table slider has no value popup, so keep the amount readable in-cell.
 	g.setColour(0xFFEDE6D5);
-	g.setFont("Montserrat", 10.0);
+	g.setFont("Montserrat", 14.0);
 	g.drawAlignedText(obj.valueSuffixString, area, "centred");
 });
 

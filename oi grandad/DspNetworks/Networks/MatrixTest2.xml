@@ -63,6 +63,7 @@
                       <Connection NodeId="cable_table5" ParameterId="Value"/>
                       <Connection NodeId="pma_unscaled4" ParameterId="Multiply"/>
                       <Connection NodeId="pma_unscaled3" ParameterId="Multiply"/>
+                      <Connection NodeId="cable_table6" ParameterId="Value"/>
                       <Connection NodeId="pma1" ParameterId="Multiply"/>
                     </ModulationTargets>
                   </Node>
@@ -132,7 +133,6 @@
                     </ComplexData>
                     <ModulationTargets>
                       <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="ScrubD"/>
-                      <Connection NodeId="cable_table6" ParameterId="Value"/>
                     </ModulationTargets>
                   </Node>
                 </Nodes>
@@ -653,20 +653,25 @@
                   <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="PitchSemitones"/>
                 </ModulationTargets>
               </Node>
-              <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
-                    Name="tempo_sync">
-                <Parameters>
-                  <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
-                  <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="Multiplier"
-                             DefaultValue="1.0" Automated="1"/>
-                  <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
-                  <Parameter MinValue="1.000000014901161" MaxValue="500.0000074505805" StepSize="0.1000000014901161"
-                             ID="UnsyncedTime" TextToValueConverter="Time" DefaultValue="200.0000029802322"
-                             Automated="1"/>
-                </Parameters>
-                <ModulationTargets>
-                  <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="GrainMs"/>
-                </ModulationTargets>
+              <Node ID="chain29" FactoryPath="container.chain" Bypassed="0" Name="chain29">
+                <Nodes>
+                  <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+                        Name="tempo_sync">
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                      <Parameter MinValue="1.0" MaxValue="32.0" StepSize="1.0" ID="Multiplier"
+                                 DefaultValue="1.0" Automated="1"/>
+                      <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Automated="1"/>
+                      <Parameter MinValue="1.000000014901161" MaxValue="500.0000074505805" StepSize="0.1000000014901161"
+                                 ID="UnsyncedTime" TextToValueConverter="Time" DefaultValue="200.0000029802322"
+                                 Automated="1"/>
+                    </Parameters>
+                    <ModulationTargets>
+                      <Connection NodeId="granular_player_stepquant_density_hybrid_native" ParameterId="GrainMs"/>
+                    </ModulationTargets>
+                  </Node>
+                </Nodes>
+                <Parameters/>
               </Node>
               <Node ID="tempo_sync1" FactoryPath="control.tempo_sync" Bypassed="0"
                     Name="tempo_sync1">
@@ -1121,7 +1126,8 @@
                                           </Node>
                                           <Node ID="fmod1" FactoryPath="math.fmod" Bypassed="0" Name="fmod1">
                                             <Parameters>
-                                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.0" DefaultValue="1.0"/>
+                                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Value="0.5202763671874999"
+                                                         DefaultValue="1.0"/>
                                             </Parameters>
                                           </Node>
                                           <Node ID="peak12" FactoryPath="core.peak" Bypassed="0" Name="peak12">

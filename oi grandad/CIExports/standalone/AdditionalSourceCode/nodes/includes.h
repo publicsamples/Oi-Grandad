@@ -15,7 +15,7 @@
 // Include compiled network files --------------------------
 
 #include "DspNetwork.h"
-#include "Dyn_networkdata.h"
+#include "Dyn.h"
 #include "ENV.h"
 #include "indicators_networkdata.h"
 #include "MacroMod.h"

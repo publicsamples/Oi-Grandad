@@ -1,7 +1,7 @@
 Content.makeFrontInterface(960, 720);
 
 const var rm = Engine.getGlobalRoutingManager();
-Engine.setMaximumBlockSize(128);
+Engine.setMaximumBlockSize(32);
 
 const var trk1 = rm.getCable("Trk1");
 const var trk2 = rm.getCable("Trk2");
