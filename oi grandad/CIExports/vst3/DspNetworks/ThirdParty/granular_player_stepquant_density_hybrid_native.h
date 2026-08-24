@@ -140,6 +140,21 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			voice.reset();
 	}
 
+	void reseedVoiceAfterGrainSizeLimit(VoiceState& voice)
+	{
+		// Keep the held note and pitch state, but discard grain phases that were
+		// expressed against the previous source-length-limited grain duration.
+		voice.stretchBasePos = -1.0;
+		voice.modeAnchorScrub = -1.0;
+		voice.lastPhaseScatter = -1.0;
+		voice.lastScatterMaxStart = -1.0;
+		voice.previousScrubSource = { 0.0, 0.0, 0.0, 0.0 };
+		voice.previousOneShotStep = { -1, -1, -1, -1 };
+
+		for (auto& grain : voice.grains)
+			grain.reset();
+	}
+
 	void prepare(PrepareSpecs ps)
 	{
 		sampleRate = ps.sampleRate;
@@ -282,8 +297,15 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			if (!std::isfinite(v))
 				return;
 
+			const bool wasSourceLimited = grainSizeIsSourceLimited;
 			grainMs = jmax(1.0, v);
 			updateGrainSize();
+
+			if (wasSourceLimited && !grainSizeIsSourceLimited)
+			{
+				for (auto& voice : voiceStates)
+					reseedVoiceAfterGrainSizeLimit(voice);
+			}
 		}
 
 		if (P == 3) density = clamp01(v);
@@ -531,6 +553,8 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 	void updateGrainSize()
 	{
+		grainSizeIsSourceLimited = false;
+
 		if (sampleRate <= 0.0)
 			return;
 
@@ -542,7 +566,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 
 		double maxAllowed = (double) audioFile.numSamples - 2.0;
 		if (maxAllowed > minSamples && grainSize > maxAllowed)
+		{
 			grainSize = maxAllowed;
+			grainSizeIsSourceLimited = true;
+		}
 	}
 
 	void updateDelta(VoiceState& voice)
@@ -1892,6 +1919,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	double scrub = 0.0;
 	double grainMs = 50.0;
 	double grainSize = 2048.0;
+	bool grainSizeIsSourceLimited = false;
 	double scrubB = 0.0;
 	double scrubC = 0.0;
 	double scrubD = 0.0;

@@ -15,7 +15,6 @@
 // Include compiled network files --------------------------
 
 #include "DspNetwork.h"
-#include "Dyn.h"
 #include "ENV.h"
 #include "MacroMod.h"
 #include "MatrixTest2.h"

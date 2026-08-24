@@ -666,6 +666,10 @@ using branch2_t = container::branch<parameter::empty,
                                     split12_t<NV>>;
 
 template <int NV>
+using chain29_t = container::chain<parameter::empty, 
+                                   wrap::fix<1, tempo_sync_t<NV>>>;
+
+template <int NV>
 using tempo_sync1_mod = parameter::plain<project::granular_player_stepquant_density_hybrid_native<NV>, 
                                          17>;
 template <int NV>
@@ -695,7 +699,7 @@ using modchain_t_ = container::chain<parameter::empty,
                                      split8_t<NV>, 
                                      branch2_t<NV>, 
                                      converter_t<NV>, 
-                                     tempo_sync_t<NV>, 
+                                     chain29_t<NV>, 
                                      tempo_sync1_t<NV>, 
                                      minmax_t<NV>, 
                                      tempo_sync3_t<NV>, 
@@ -1404,7 +1408,8 @@ template <int NV> struct instance: public MatrixTest2_impl::MatrixTest2_t_<NV>
 		auto& extra_mod22 = this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(0);           // MatrixTest2_impl::extra_mod22_t<NV>
 		auto& global_cable19 = this->getT(0).getT(0).getT(2).getT(3).getT(3).getT(1);        // routing::global_cable<global_cable19_t_index, parameter::empty>
 		auto& converter = this->getT(0).getT(0).getT(3);                                     // MatrixTest2_impl::converter_t<NV>
-		auto& tempo_sync = this->getT(0).getT(0).getT(4);                                    // MatrixTest2_impl::tempo_sync_t<NV>
+		auto& chain29 = this->getT(0).getT(0).getT(4);                                       // MatrixTest2_impl::chain29_t<NV>
+		auto& tempo_sync = this->getT(0).getT(0).getT(4).getT(0);                            // MatrixTest2_impl::tempo_sync_t<NV>
 		auto& tempo_sync1 = this->getT(0).getT(0).getT(5);                                   // MatrixTest2_impl::tempo_sync1_t<NV>
 		auto& minmax = this->getT(0).getT(0).getT(6);                                        // MatrixTest2_impl::minmax_t<NV>
 		auto& tempo_sync3 = this->getT(0).getT(0).getT(7);                                   // MatrixTest2_impl::tempo_sync3_t<NV>

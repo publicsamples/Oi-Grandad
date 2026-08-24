@@ -5297,7 +5297,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\PresetData.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h"/>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn.h"/>
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn_networkdata.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ENV.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\granular_player_stepquant_density_hybrid_native.h"/>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\includes.h"/>
