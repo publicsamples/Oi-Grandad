@@ -9,4 +9,4 @@ au_format=AU
 hise_source_dir=/Users/rick/Documents/GitHub/HISE
 hise_source_commit=429866d0629d92cc1ef846de5412c95f86a9c987
 repo_hise_submodule_commit=429866d0629d92cc1ef846de5412c95f86a9c987
-timestamp=2026-08-24T18:23:03Z
+timestamp=2026-08-24T20:26:34Z

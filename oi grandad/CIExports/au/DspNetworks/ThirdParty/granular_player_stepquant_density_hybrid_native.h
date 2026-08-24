@@ -2022,6 +2022,16 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			Rsum = Rsum * dry + yR2 * wet;
 		}
 
+		if (microSliceMorphMode && sampleRate > 0.0)
+		{
+			// Morph can begin with several already-offset grain windows and two source
+			// cells per grain. Ramp the complete voice in without changing its release.
+			const double attackSamples = jmax(1.0, sampleRate * 0.002);
+			const double attackGain = smooth01(voice.noteAgeSamples / attackSamples);
+			Lsum *= attackGain;
+			Rsum *= attackGain;
+		}
+
 		fd[0] += (float) Lsum;
 		fd[1] += (float) Rsum;
 	}

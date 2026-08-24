@@ -209,8 +209,8 @@
                      fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"
                      itemColour2="4216739414"/>
           <Component type="ScriptComboBox" id="TransPort1" x="103" y="100" width="80"
-                     height="15" max="4" parentComponent="ScriptPanel1" processorId="Granular1"
-                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Smooth"
+                     height="15" max="5" parentComponent="ScriptPanel1" processorId="Granular1"
+                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Morph&#10;Smooth"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
                      textColour="2968381141"/>
           <Component type="ScriptComboBox" id="maxGrains1" x="292" y="100" width="50"
@@ -444,7 +444,7 @@
                      showValuePopup="Below" parameterId="Value" middlePosition="100.0"
                      itemColour="4291863459" bgColour="4290759931" textColour="4278190080"
                      max="500.0" mode="Time" stepSize="1.0" defaultValue="400.0" matrixTargetId="Voice_1_GrainMs"
-                     min="1.0" visible="0"/>
+                     min="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel9" x="-4" y="72" textColour="4280884766"
                      width="90" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceGrain1"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN SIZE"/>
@@ -463,7 +463,8 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice 1: Grain tempo"
                      showValuePopup="Below" parameterId="GrainTempo" mode="TempoSync"
                      max="18.0" middlePosition="9.0" stepSize="1.0" textColour="4294631329"
-                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_1_GrainTempo"/>
+                     bgColour="4290759931" showTextBox="1" matrixTargetId="Voice_1_GrainTempo"
+                     visible="0"/>
           <Component type="ScriptSlider" id="graindiv1" x="60" y="44" parentComponent="VoiceGrain1"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.09000000357627869" width="30" height="30" processorId="Granular1"
@@ -471,7 +472,8 @@
                      useUndoManager="1" isPluginParameter="1" pluginParameterName="Voice1GrainSize"
                      showValuePopup="Below" parameterId="GrainDiv" max="32.0" middlePosition="16.5"
                      min="1.0" stepSize="1.0" defaultValue="1.0" textColour="16777215"
-                     bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_1_GrainDivide">
+                     bgColour="16777215" itemColour="1630745395" matrixTargetId="Voice_1_GrainDivide"
+                     visible="0">
             <Component type="ScriptLabel" id="ParamLabel13" x="-27" y="73" textColour="4280884766"
                        width="20" height="10" fontName="Montserrat" editable="0" parentComponent="graindiv1"
                        fontStyle="Regular" fontSize="12.0" text="div" alignment="left"/>
@@ -780,8 +782,8 @@
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel1001"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"/>
           <Component type="ScriptComboBox" id="TransPort2" x="103" y="100" width="80"
-                     height="15" max="4" parentComponent="ScriptPanel1001" processorId="Granular2"
-                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Smooth"
+                     height="15" max="5" parentComponent="ScriptPanel1001" processorId="Granular2"
+                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Morph&#10;Smooth"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
                      textColour="2968381141"/>
           <Component type="ScriptComboBox" id="maxGrains2" x="292" y="100" width="50"
@@ -1334,8 +1336,8 @@
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel2001"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"/>
           <Component type="ScriptComboBox" id="TransPort3" x="103" y="100" width="80"
-                     height="15" max="4" parentComponent="ScriptPanel2001" processorId="Granular3"
-                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Smooth"
+                     height="15" max="5" parentComponent="ScriptPanel2001" processorId="Granular3"
+                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Morph&#10;Smooth"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
                      textColour="2968381141"/>
           <Component type="ScriptComboBox" id="maxGrains3" x="292" y="100" width="50"
@@ -1882,8 +1884,8 @@
                      width="110" height="15" fontName="Montserrat" editable="0" parentComponent="ScriptPanel3001"
                      fontStyle="Regular" fontSize="15.0" text="GRAIN MODE:" alignment="left"/>
           <Component type="ScriptComboBox" id="TransPort4" x="103" y="100" width="80"
-                     height="15" max="4" parentComponent="ScriptPanel3001" processorId="Granular4"
-                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Smooth"
+                     height="15" max="5" parentComponent="ScriptPanel3001" processorId="Granular4"
+                     parameterId="TransportMode" items="Normal&#10;Cloud&#10;Slice&#10;Morph&#10;Smooth"
                      bgColour="2867717845" itemColour="2985158357" itemColour2="3505252053"
                      textColour="2968381141"/>
           <Component type="ScriptComboBox" id="maxGrains4" x="292" y="100" width="50"
@@ -4627,7 +4629,7 @@
                    height="22" parentComponent="MatrixEditorRows" saveInPreset="0"
                    text="I" visible="0"/>
       </Component>
-      <Component type="ScriptedViewport" id="MatrixRouteTable" x="7" y="30" width="660"
+      <Component type="ScriptedViewport" id="MatrixRouteTable" x="9" y="30" width="660"
                  height="120" parentComponent="ModulationMatrix" saveInPreset="0"
                  bgColour="0" itemColour="4293781205" itemColour2="0" textColour="3001935573"
                  viewPositionX="1.0" scrollBarThickness="12.0"/>
@@ -4912,16 +4914,15 @@
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
       <Component type="ScriptComboBox" id="HiddenFiles1" x="43" y="451" width="210"
                  height="110" parentComponent="RandomControls1" saveInPreset="0"
-                 visible="0" items="/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/Recordings/OurGranular.wav&#10;/Users/rick/Documents/GitHub/Oi-Grandad/oi grandad/AudioFiles/STBELL-130-02.wav"
-                 max="2"/>
+                 visible="0" max="0"/>
       <Component type="ScriptSlider" id="SampleMax1" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptSlider" id="SampleMin1" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls1" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptLabel" id="ScriptLabel268" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls1" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
@@ -4968,11 +4969,11 @@
       <Component type="ScriptSlider" id="SampleMin2" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptSlider" id="SampleMax2" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls2" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptButton" id="RandomiseSamples1" x="192" y="43" width="20"
                  height="20" parentComponent="RandomControls2" bgColour="1426072575"
                  filmstripImage="{PROJECT_FOLDER}lock.png" scaleFactor="0.03999999910593033"/>
@@ -5238,11 +5239,11 @@
       <Component type="ScriptSlider" id="SampleMax3" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptSlider" id="SampleMin3" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls3" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptLabel" id="ScriptLabel270" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls3" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
@@ -5508,11 +5509,11 @@
       <Component type="ScriptSlider" id="SampleMax4" x="138" y="43" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4291389544" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptSlider" id="SampleMin4" x="94" y="43" width="40"
                  height="20" parentComponent="RandomControls4" style="Horizontal"
                  showValuePopup="Below" itemColour="4286491829" min="1" stepSize="1"
-                 max="2"/>
+                 max="0"/>
       <Component type="ScriptLabel" id="ScriptLabel271" x="32" y="43" width="60"
                  height="20" parentComponent="RandomControls4" fontName="Montserrat"
                  editable="0" text="Sample" textColour="4278190080" fontSize="12.0"/>
