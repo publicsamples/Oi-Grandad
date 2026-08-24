@@ -110,8 +110,8 @@ jobs:
           # HISE now exports the complete targets under VisualStudio2026; keep 2022
           # as a fallback for projects created with older HISE versions.
           $projectFolder = @("VisualStudio2026", "VisualStudio2022") | Where-Object {
-            Test-Path (Join-Path $env:VST3_ROOT "Builds\$_\oi grandad_VST3.vcxproj") -and
-            Test-Path (Join-Path $env:STANDALONE_ROOT "Builds\$_\oi grandad_App.vcxproj")
+            (Test-Path (Join-Path $env:VST3_ROOT "Builds\$_\oi grandad_VST3.vcxproj")) -and
+            (Test-Path (Join-Path $env:STANDALONE_ROOT "Builds\$_\oi grandad_App.vcxproj"))
           } | Select-Object -First 1
           if (-not $projectFolder) {
             throw "No complete Visual Studio export was found for the VST3 and standalone targets."
