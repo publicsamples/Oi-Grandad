@@ -107,10 +107,21 @@ jobs:
 
           if (-not $juceVst3Sdk) { throw "Missing VST3 SDK in expected paths." }
 
-          $vstProj = Join-Path $env:VST3_ROOT "Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
-          $appProj = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_App.vcxproj"
-          $sharedProj = Join-Path $env:VST3_ROOT "Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
-          $standaloneSharedProj = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
+          # HISE now exports the complete targets under VisualStudio2026; keep 2022
+          # as a fallback for projects created with older HISE versions.
+          $projectFolder = @("VisualStudio2026", "VisualStudio2022") | Where-Object {
+            Test-Path (Join-Path $env:VST3_ROOT "Builds\$_\oi grandad_VST3.vcxproj") -and
+            Test-Path (Join-Path $env:STANDALONE_ROOT "Builds\$_\oi grandad_App.vcxproj")
+          } | Select-Object -First 1
+          if (-not $projectFolder) {
+            throw "No complete Visual Studio export was found for the VST3 and standalone targets."
+          }
+          "WINDOWS_PROJECT_FOLDER=$projectFolder" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+          $vstProj = Join-Path $env:VST3_ROOT "Builds\$projectFolder\oi grandad_VST3.vcxproj"
+          $appProj = Join-Path $env:STANDALONE_ROOT "Builds\$projectFolder\oi grandad_App.vcxproj"
+          $sharedProj = Join-Path $env:VST3_ROOT "Builds\$projectFolder\oi grandad_SharedCode.vcxproj"
+          $standaloneSharedProj = Join-Path $env:STANDALONE_ROOT "Builds\$projectFolder\oi grandad_SharedCode.vcxproj"
 
           foreach ($p in @($vstProj, $appProj, $sharedProj, $standaloneSharedProj)) {
             if (!(Test-Path $p)) { continue }
@@ -231,10 +242,13 @@ jobs:
             }
           }
 
-          $shared = Join-Path $env:VST3_ROOT "Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
-          $vst3 = Join-Path $env:VST3_ROOT "Builds\VisualStudio2022\oi grandad_VST3.vcxproj"
-          $standaloneShared = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_SharedCode.vcxproj"
-          $app = Join-Path $env:STANDALONE_ROOT "Builds\VisualStudio2022\oi grandad_App.vcxproj"
+          if (-not $env:WINDOWS_PROJECT_FOLDER) {
+            throw "Windows project folder was not resolved."
+          }
+          $shared = Join-Path $env:VST3_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_SharedCode.vcxproj"
+          $vst3 = Join-Path $env:VST3_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_VST3.vcxproj"
+          $standaloneShared = Join-Path $env:STANDALONE_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_SharedCode.vcxproj"
+          $app = Join-Path $env:STANDALONE_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_App.vcxproj"
 
           Invoke-MSBuild $shared "Windows plugin shared code"
           Invoke-MSBuild $vst3 "Windows VST3"
@@ -248,7 +262,8 @@ jobs:
           New-Item -ItemType Directory -Force -Path dist | Out-Null
           $vst3Files = @()
           if (Test-Path $env:VST3_ROOT) {
-            $vst3Files = Get-ChildItem -Path $env:VST3_ROOT -Recurse -Filter *.vst3 -File
+            # Different HISE/JUCE exporters use either a file or a directory bundle.
+            $vst3Files = Get-ChildItem -Path $env:VST3_ROOT -Recurse -Filter *.vst3
           }
           foreach ($f in $vst3Files) {
             $zipPath = Join-Path "dist" ($f.Name + ".zip")
