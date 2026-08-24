@@ -25,7 +25,8 @@ Two versions of Oi, Grandad! are currently maintained. **V1**, my first real att
 - Up to 4 "Playheads" per voice
 - Multistage modulators 
 - New look
-- Decorative UI elements troll you
+- New granular engine
+- mod matrix
 
 [![AUltra pack pro](https://raw.githubusercontent.com/publicsamples/Oi-Grandad/main/oi%20grandad/ognew.png 'Ultra pack pro')](https://modularsamples.gumroad.com/l/gyckl?_gl=1*6it8cj*_ga*ODA1MDM5NDE0LjE3MTczNzQ4OTk.*_ga_6LJN6D94N6*MTcxODYxNzgxMi4yMy4xLjE3MTg2MTg5MTEuMC4wLjA.)
 

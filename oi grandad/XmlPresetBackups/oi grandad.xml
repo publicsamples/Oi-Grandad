@@ -79,8 +79,8 @@
             <Control type="ScriptSlider" id="PolyMeta2" value="0.5"/>
             <Control type="ScriptComboBox" id="ResMode2" value="1.0"/>
             <Control type="ScriptComboBox" id="OutputSelector1" value="1.0"/>
-            <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data="/Users/rick/Music/ALL CD QUALITY FAMOUS BREAKS/!!JUNGLE AND DRUM N BASS ORIGIN BREAKS/When The Levee Breaks HQ Lossless.wav"
-                     rangeStart="0" rangeEnd="149862"/>
+            <Control type="ScriptAudioWaveform" id="AudioWaveform1" value="0.0" data=""
+                     rangeStart="0" rangeEnd="0"/>
             <Control type="ScriptTable" id="PosIndicatorLaneA2" value="0.0" data=""/>
             <Control type="ScriptTable" id="PosIndicatorLaneB2" value="0.0" data=""/>
             <Control type="ScriptTable" id="PosIndicatorLaneC2" value="0.0" data=""/>
@@ -223,7 +223,7 @@
             <Control type="ScriptSlider" id="Thresh" value="-2.399999618530273"/>
             <Control type="ScriptSlider" id="Release" value="0.0"/>
             <Control type="ScriptSlider" id="Ratio" value="0.0"/>
-            <Control type="ScriptButton" id="CompPower" value="0.0"/>
+            <Control type="ScriptButton" id="CompPower" value="1.0"/>
             <Control type="ScriptComboBox" id="XfMode5" value="1.0"/>
             <Control type="ScriptSlider" id="Macro1" value="0.0"/>
             <Control type="ScriptSlider" id="Macro2" value="0.0"/>
@@ -855,35 +855,35 @@
         </Processor>
         <Processor Type="ModulatorChain" ID="Global Modulators" Bypassed="0" Intensity="1.0">
           <ChildProcessors>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO1" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO1" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO2" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO2" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO3" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO3" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO4" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO4" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO5" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO5" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO6" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO6" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO7" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO7" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
-            <Processor Type="HardcodedTimevariantModulator" ID="MACRO8" Bypassed="1"
+            <Processor Type="HardcodedTimevariantModulator" ID="MACRO8" Bypassed="0"
                        Intensity="1.0" Bipolar="0" Network="MacroMod" macro="0.0">
               <ChildProcessors/>
             </Processor>
@@ -1867,8 +1867,7 @@
         <SliderPack EmbeddedData="32............................................"/>
       </SliderPacks>
       <AudioFiles>
-        <AudioFile EmbeddedData="/Users/rick/Music/ALL CD QUALITY FAMOUS BREAKS/!!JUNGLE AND DRUM N BASS ORIGIN BREAKS/When The Levee Breaks HQ Lossless.wav"
-                   MinValue="0" MaxValue="149862"/>
+        <AudioFile EmbeddedData="" MinValue="0" MaxValue="0"/>
       </AudioFiles>
     </Processor>
     <Processor Type="HardcodedSynth" ID="Granular3" Bypassed="1" Gain="1.0"

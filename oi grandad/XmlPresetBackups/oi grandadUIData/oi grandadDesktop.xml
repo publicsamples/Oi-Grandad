@@ -8,7 +8,7 @@
              textColour="15919073" processorId="Granular2" bgColour="16777215">
     <Component type="ScriptPanel" id="V0" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Grain" x="10" y="10" width="670" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V0"
@@ -2227,7 +2227,7 @@
     </Component>
     <Component type="ScriptPanel" id="V4" x="6" y="47" width="930" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Post5" x="220" y="206" width="460" height="130"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V4"
                  textColour="587202560">
@@ -2349,7 +2349,7 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO1" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+                   stepSize="0.0" processorId="MACRO1" parameterId="macro" matrixTargetId="MACRO1"/>
         <Component type="ScriptLabel" id="ParamLabel210" x="24" y="58" textColour="4278190080"
                    width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
                    fontStyle="Regular" fontSize="15.0" text="1"/>
@@ -2360,12 +2360,12 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO2" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+                   stepSize="0.0" processorId="MACRO2" parameterId="macro" matrixTargetId="MACRO2"/>
         <Component type="ScriptSlider" id="Macro3" x="96" y="19" parentComponent="MacroCont1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO3" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+                   stepSize="0.0" processorId="MACRO3" parameterId="macro" matrixTargetId="MACRO3"/>
         <Component type="ScriptLabel" id="ParamLabel211" x="111" y="58" textColour="4278190080"
                    width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
                    fontStyle="Regular" fontSize="15.0" text="3"/>
@@ -2376,12 +2376,12 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO4" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+                   stepSize="0.0" processorId="MACRO4" parameterId="macro" matrixTargetId="MACRO4"/>
         <Component type="ScriptSlider" id="Macro5" x="96" y="68" parentComponent="MacroCont1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO7" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+                   stepSize="0.0" processorId="MACRO7" parameterId="macro" matrixTargetId="MACRO7"/>
         <Component type="ScriptLabel" id="ParamLabel220" x="111" y="108" textColour="4278190080"
                    width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
                    fontStyle="Regular" fontSize="15.0" text="7"/>
@@ -2392,12 +2392,12 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO8" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+                   stepSize="0.0" processorId="MACRO8" parameterId="macro" matrixTargetId="MACRO8"/>
         <Component type="ScriptSlider" id="Macro7" x="9" y="68" parentComponent="MacroCont1"
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO5" parameterId="macro" matrixTargetId="MACRO1_macro"/>
+                   stepSize="0.0" processorId="MACRO5" parameterId="macro" matrixTargetId="MACRO5"/>
         <Component type="ScriptLabel" id="ParamLabel222" x="24" y="108" textColour="4278190080"
                    width="20" height="20" fontName="Montserrat" editable="0" parentComponent="MacroCont1"
                    fontStyle="Regular" fontSize="15.0" text="5"/>
@@ -2408,7 +2408,7 @@
                    filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                    scaleFactor="0.1599999964237213" width="50" height="50" showValuePopup="Below"
                    bgColour="4286491829" macroControl="No MacroControl" middlePosition="0.5"
-                   stepSize="0.0" processorId="MACRO6" parameterId="macro" matrixTargetId="MACRO2_macro"/>
+                   stepSize="0.0" processorId="MACRO6" parameterId="macro" matrixTargetId="MACRO6"/>
       </Component>
       <Component type="ScriptPanel" id="EzVoice2" x="181" y="7" width="160" height="190"
                  text="wave1" bgColour="3052524467" itemColour="4293781205" itemColour2="4293781205"

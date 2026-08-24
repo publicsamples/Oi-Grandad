@@ -96,28 +96,28 @@
     <Parameters>
       <Parameter ID="Thresh" MinValue="-30.0" MaxValue="0.0" StepSize="0.1000000014901161"
                  SkewFactor="1.709511280059814" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="0.0">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="-2.399999588727955">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Threshold"/>
         </Connections>
       </Parameter>
       <Parameter ID="Makeup" MinValue="0.0" MaxValue="24.0" StepSize="0.1000000014901161"
                  SkewFactor="0.5" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Decibel" Value="4.800000071525573">
+                 DefaultValue="" TextToValueConverter="Decibel" Value="10.00000014901161">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="MakeupGain"/>
         </Connections>
       </Parameter>
       <Parameter ID="Atk" MinValue="0.1000000014901161" MaxValue="30.0" StepSize="0.1000000014901161"
                  SkewFactor="0.6270987987518311" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" TextToValueConverter="Time" Value="12.30000018328428">
+                 DefaultValue="" TextToValueConverter="Time" Value="0.1000000014901161">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Attack"/>
         </Connections>
       </Parameter>
       <Parameter ID="Rel" MinValue="50.0" MaxValue="1200.0" StepSize="1.0" SkewFactor="0.2210647314786911"
                  ModColour="0" ExternalModulation="Disabled" TextToValueConverter="Time"
-                 Value="81.0" DefaultValue="50.0">
+                 Value="50.0">
         <Connections>
           <Connection NodeId="master_bus_compressor_native" ParameterId="Release"/>
         </Connections>
@@ -130,7 +130,7 @@
         </Connections>
       </Parameter>
       <Parameter ID="POWER" MinValue="0.0" MaxValue="1.0" ModColour="0" ExternalModulation="Disabled"
-                 DefaultValue="" Value="0.0">
+                 DefaultValue="" Value="1.0">
         <Connections>
           <Connection NodeId="minmax" ParameterId="Value"/>
         </Connections>
