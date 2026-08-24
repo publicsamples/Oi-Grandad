@@ -247,12 +247,12 @@ jobs:
           }
           $shared = Join-Path $env:VST3_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_SharedCode.vcxproj"
           $vst3 = Join-Path $env:VST3_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_VST3.vcxproj"
-          $standaloneShared = Join-Path $env:STANDALONE_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_SharedCode.vcxproj"
           $app = Join-Path $env:STANDALONE_ROOT "Builds\$env:WINDOWS_PROJECT_FOLDER\oi grandad_App.vcxproj"
 
           Invoke-MSBuild $shared "Windows plugin shared code"
           Invoke-MSBuild $vst3 "Windows VST3"
-          Invoke-MSBuild $standaloneShared "Windows standalone shared code"
+          # The generated standalone solution contains only the App target; its
+          # adjacent SharedCode project is an unused exporter byproduct.
           Invoke-MSBuild $app "Windows standalone app"
 
       - name: Package (Windows)
