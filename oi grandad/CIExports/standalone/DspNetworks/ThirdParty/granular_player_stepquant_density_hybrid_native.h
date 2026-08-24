@@ -60,7 +60,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		double fadeWindowSize = 0.0;
 		double fadeDurationSeconds = 0.01;
 		double wrapFade = 0.0;
+		double morphCellBase = 0.0;
+		double morphCellSize = 0.0;
+		double morphCellAStart = 0.0;
+		double morphCellBStart = 0.0;
+		double morphScatterOffset = 0.0;
+		double morphMaxStart = 0.0;
 		bool fadeIsOneShot = false;
+		bool morphCellsValid = false;
 		int respawnCount = 0;
 		bool active = false;
 
@@ -78,7 +85,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			fadeWindowSize = 0.0;
 			fadeDurationSeconds = 0.01;
 			wrapFade = 0.0;
+			morphCellBase = 0.0;
+			morphCellSize = 0.0;
+			morphCellAStart = 0.0;
+			morphCellBStart = 0.0;
+			morphScatterOffset = 0.0;
+			morphMaxStart = 0.0;
 			fadeIsOneShot = false;
+			morphCellsValid = false;
 			respawnCount = 0;
 			active = false;
 		}
@@ -755,14 +769,15 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	}
 
 	void getPlaybackPresetState(int& transportState, bool& stretchEnabled, bool& legacyExact, bool& legacyWrapFade,
-		bool& cloudMode, bool& microSliceMode, bool& safeStartMode) const
+		bool& cloudMode, bool& microSliceMode, bool& microSliceMorphMode, bool& safeStartMode) const
 	{
-		int mode = jlimit(1, 4, (int)std::round(decodeModePackMenuValue(3, 4, 0.0)));
+		int mode = jlimit(1, 5, (int)std::round(decodeModePackMenuValue(3, 5, 0.0)));
 		stretchEnabled = true;
 		legacyWrapFade = false;
 		legacyExact = false;
 		cloudMode = false;
 		microSliceMode = false;
+		microSliceMorphMode = false;
 		safeStartMode = false;
 
 		switch (mode)
@@ -783,7 +798,13 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				stretchEnabled = false;
 				microSliceMode = true;
 				break;
-			case 4: // Safe Start
+			case 4: // Microslice Morph
+				transportState = 2;
+				stretchEnabled = false;
+				microSliceMode = true;
+				microSliceMorphMode = true;
+				break;
+			case 5: // Safe Start
 			default:
 				transportState = 2;
 				stretchEnabled = true;
@@ -1320,8 +1341,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		bool legacyWrapFade = false;
 		bool cloudMode = false;
 		bool microSliceMode = false;
+		bool microSliceMorphMode = false;
 		bool safeStartMode = false;
-		getPlaybackPresetState(transportState, stretchEnabled, legacyExact, legacyWrapFade, cloudMode, microSliceMode, safeStartMode);
+		getPlaybackPresetState(transportState, stretchEnabled, legacyExact, legacyWrapFade, cloudMode, microSliceMode, microSliceMorphMode, safeStartMode);
 		const bool timeInvariant = false;
 		const bool smoothTimeInvariant = false;
 		const int readState = 0;
@@ -1495,8 +1517,9 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				base = scrubValue * localMaxStart;
 			}
 
+			const double unslicedBase = base;
 			if (microSliceMode)
-				base = quantiseSliceBase(base, localGrainSize, localMaxStart);
+				base = quantiseSliceBase(unslicedBase, localGrainSize, localMaxStart);
 
 			const bool oneShotTriggered = oneShotMode
 				&& oneShotTriggeredByPlayhead[(size_t) playheadIndex];
@@ -1514,7 +1537,17 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					? getSafeStartPosition(i, g, requestedStart, localMaxStart)
 					: requestedStart;
 			};
-
+			auto setMorphCells = [&](double cellBase, double cellSize, double sourceMaxStart, double scatterOffset)
+			{
+				grain.morphCellSize = jmax(1.0, cellSize);
+				grain.morphMaxStart = jmax(0.0, sourceMaxStart);
+				grain.morphCellBase = quantiseSliceBase(cellBase, grain.morphCellSize, grain.morphMaxStart);
+				grain.morphScatterOffset = scatterOffset;
+				grain.morphCellAStart = jlimit(0.0, grain.morphMaxStart, grain.morphCellBase + scatterOffset);
+				grain.morphCellBStart = jlimit(0.0, grain.morphMaxStart,
+					grain.morphCellBase + grain.morphCellSize + scatterOffset);
+				grain.morphCellsValid = true;
+			};
 			if (!grain.active && !oneShotMode && bloomActivationAllowed)
 			{
 				grain.active = true;
@@ -1567,8 +1600,56 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					grain.wrapFade = 0.0;
 			}
 
+			if (microSliceMorphMode && grain.active && !grain.morphCellsValid)
+			{
+				setMorphCells(unslicedBase, localGrainSize, localMaxStart, grain.scatterOffset);
+			}
+			else if (!microSliceMorphMode)
+			{
+				grain.morphCellsValid = false;
+			}
+
 			if (!grain.active)
 				continue;
+
+			double microSliceMorph = 0.0;
+			if (microSliceMorphMode && grain.morphCellsValid)
+			{
+				const double morphUnslicedBase = clamp01(scrubValue) * grain.morphMaxStart;
+				const double desiredCellBase = quantiseSliceBase(morphUnslicedBase, grain.morphCellSize, grain.morphMaxStart);
+				const double cellSize = grain.morphCellSize;
+
+				if (desiredCellBase > grain.morphCellBase + 0.5)
+				{
+					if (desiredCellBase <= grain.morphCellBase + cellSize + 0.5)
+					{
+						grain.morphCellBase = desiredCellBase;
+						grain.morphCellAStart = grain.morphCellBStart;
+						grain.morphCellBStart = jlimit(0.0, grain.morphMaxStart,
+							desiredCellBase + cellSize + grain.morphScatterOffset);
+					}
+					else
+					{
+						setMorphCells(desiredCellBase, cellSize, grain.morphMaxStart, grain.morphScatterOffset);
+					}
+				}
+				else if (desiredCellBase < grain.morphCellBase - 0.5)
+				{
+					if (desiredCellBase >= grain.morphCellBase - cellSize - 0.5)
+					{
+						grain.morphCellBase = desiredCellBase;
+						grain.morphCellBStart = grain.morphCellAStart;
+						grain.morphCellAStart = jlimit(0.0, grain.morphMaxStart,
+							desiredCellBase + grain.morphScatterOffset);
+					}
+					else
+					{
+						setMorphCells(desiredCellBase, cellSize, grain.morphMaxStart, grain.morphScatterOffset);
+					}
+				}
+
+				microSliceMorph = clamp01((morphUnslicedBase - grain.morphCellBase) / cellSize);
+			}
 
 			if (!oneShotMode && legacyExact && transportWrapped)
 			{
@@ -1622,6 +1703,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double dir = getDirectionSign(signState - 1, i);
 			double schedulerInc = timeInvariant ? dir : (voice.delta * grainPitchMul * dir);
 			double readInc = schedulerInc;
+			bool grainCycleWrapped = false;
 
 			if (timeInvariant)
 			{
@@ -1652,6 +1734,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				}
 				else
 				{
+					grainCycleWrapped = true;
 					grain.phase -= localGrainSize;
 					if (stretchMode || timeInvariant)
 					{
@@ -1696,6 +1779,7 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 					continue;
 				}
 
+				grainCycleWrapped = true;
 				grain.phase += localGrainSize;
 				if (stretchMode || timeInvariant)
 				{
@@ -1729,6 +1813,18 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 				}
 			}
 
+			if (microSliceMorphMode && grainCycleWrapped
+				&& (std::abs(grain.morphCellSize - localGrainSize) > 0.5
+					|| std::abs(grain.morphScatterOffset - grain.scatterOffset) > 0.5
+					|| std::abs(grain.morphMaxStart - localMaxStart) > 0.5))
+			{
+				// GrainMs and Scatter change the cell layout only at the grain boundary,
+				// avoiding a source-position discontinuity within an audible window.
+				setMorphCells(unslicedBase, localGrainSize, localMaxStart, grain.scatterOffset);
+				microSliceMorph = clamp01((clamp01(scrubValue) * grain.morphMaxStart - grain.morphCellBase)
+					/ grain.morphCellSize);
+			}
+
 			if (stretchMode)
 			{
 				if (grain.latchedStart < 0.0)
@@ -1746,7 +1842,14 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double readCarrier = (stretchMode || timeInvariant || oneShotTailActive)
 				? grain.readPhase : jmin(grain.phase, localGrainSize);
 			double readRate = stretchMode ? grainPitchMul : (voice.delta * grainPitchMul);
-			double pos = grain.start + getReadPhaseForMode(getTimelinePhaseForRead(readCarrier, timeInvariant, readRate, localGrainSize), readState, grainPitchMul);
+			double currentReadStart = grain.start;
+			if (microSliceMorphMode)
+			{
+				currentReadStart = grain.morphCellAStart;
+			}
+
+			double readOffset = getReadPhaseForMode(getTimelinePhaseForRead(readCarrier, timeInvariant, readRate, localGrainSize), readState, grainPitchMul);
+			double pos = currentReadStart + readOffset;
 			if (pos < 0.0) pos = 0.0;
 			if (pos >= audioFile.numSamples - 1.0)
 				pos = audioFile.numSamples - 2.0;
@@ -1768,6 +1871,23 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			double monoL = 0.0;
 			double monoR = 0.0;
 			readGrainStereo(i, g, pos, monoL, monoR);
+
+			if (microSliceMorph > 0.0 && grain.morphCellsValid)
+			{
+				// Read the adjacent quantised cell with the same grain timeline. This
+				// preserves the Microslice cycle rate while Scrub morphs its timbre.
+				double nextPos = grain.morphCellBStart + readOffset;
+				if (nextPos >= audioFile.numSamples - 1.0)
+					nextPos = audioFile.numSamples - 2.0;
+
+				double nextL = 0.0;
+				double nextR = 0.0;
+				readGrainStereo(i, g, nextPos, nextL, nextR);
+
+				const double currentMix = 1.0 - microSliceMorph;
+				monoL = monoL * currentMix + nextL * microSliceMorph;
+				monoR = monoR * currentMix + nextR * microSliceMorph;
+			}
 
 			if (grain.wrapFade > 0.0 && grain.fadeGrainSize > 1.0)
 			{

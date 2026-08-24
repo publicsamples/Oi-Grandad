@@ -6630,7 +6630,7 @@
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\DspNetwork.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn.h">
+    <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\Dyn_networkdata.h">
       <Filter>oi grandad\Source\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\AdditionalSourceCode\nodes\ENV.h">

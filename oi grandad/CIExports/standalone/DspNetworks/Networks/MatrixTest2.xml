@@ -1662,7 +1662,7 @@
                  DefaultValue="" Value="0.00146484375">
         <Connections/>
       </Parameter>
-      <Parameter MinValue="1.0" MaxValue="4.0" ID="TransportMode" Value="1.0"
+      <Parameter MinValue="1.0" MaxValue="5.0" ID="TransportMode" Value="1.0"
                  TextToValueConverter="" ExternalModulation="Disabled" ModColour="0"
                  StepSize="1">
         <Connections>
