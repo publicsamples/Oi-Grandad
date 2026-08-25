@@ -8,7 +8,7 @@
              textColour="15919073" processorId="Granular2" bgColour="16777215">
     <Component type="ScriptPanel" id="V0" x="7" y="45" width="930" height="640"
                parentComponent="Og" itemColour="1307435489" itemColour2="1139663329"
-               bgColour="16777215" textColour="16777215" visible="0">
+               bgColour="16777215" textColour="16777215">
       <Component type="ScriptPanel" id="Grain" x="10" y="10" width="670" height="330"
                  text="wave1" bgColour="4294038451" itemColour="3001935573" itemColour2="3001935573"
                  borderSize="1.0" textColour="4278190080" parentComponent="V0"
@@ -67,10 +67,10 @@
                      fontStyle="Regular" fontSize="14.0" text="A" alignment="left"/>
           <Component type="ScriptSlider" id="attack0" x="1" y="34" parentComponent="VoiceParam14"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
+                     scaleFactor="0.0" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Attack" mode="Time" max="40000.0" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" showValuePopup="Below"
-                     matrixTargetId="Voice_1__ENV_Attack"/>
+                     matrixTargetId="Voice_1__ENV_Attack" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel46" x="52" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="D" alignment="left"/>
@@ -79,7 +79,7 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Decay" mode="Time" suffix=" ms" middlePosition="2000.0"
                      max="40000.0" bgColour="4294937226" itemColour2="4211081216"
-                     showValuePopup="Below" matrixTargetId="Voice_1__ENV_Decay"/>
+                     showValuePopup="Below" matrixTargetId="Voice_1__ENV_Decay" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel47" x="89" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="S" alignment="left"/>
@@ -94,7 +94,8 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope1"
                      parameterId="Release" mode="Time" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" max="40000.0"
-                     showValuePopup="Below" matrixTargetId="Voice_1__ENV_Release"/>
+                     showValuePopup="Below" matrixTargetId="Voice_1__ENV_Release"
+                     stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel41" x="209" y="13" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam14"
                      fontStyle="Regular" fontSize="14.0" text="VOL" alignment="left"/>
@@ -641,10 +642,10 @@
                      fontStyle="Regular" fontSize="14.0" text="A" alignment="left"/>
           <Component type="ScriptSlider" id="attack1" x="1" y="34" parentComponent="VoiceParam24"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope2"
+                     scaleFactor="0.0" width="50" height="50" processorId="AHDSR Envelope2"
                      parameterId="Attack" mode="Time" max="40000.0" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" showValuePopup="Below"
-                     matrixTargetId="Voice_2__ENV_Attack"/>
+                     matrixTargetId="Voice_2__ENV_Attack" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel1046" x="52" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam24"
                      fontStyle="Regular" fontSize="14.0" text="D" alignment="left"/>
@@ -653,7 +654,7 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope2"
                      parameterId="Decay" mode="Time" suffix=" ms" middlePosition="2000.0"
                      max="40000.0" bgColour="4294937226" itemColour2="4211081216"
-                     showValuePopup="Below" matrixTargetId="Voice_2__ENV_Decay"/>
+                     showValuePopup="Below" matrixTargetId="Voice_2__ENV_Decay" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel1047" x="89" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam24"
                      fontStyle="Regular" fontSize="14.0" text="S" alignment="left"/>
@@ -668,7 +669,8 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope2"
                      parameterId="Release" mode="Time" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" max="40000.0"
-                     showValuePopup="Below" matrixTargetId="Voice_2__ENV_Release"/>
+                     showValuePopup="Below" matrixTargetId="Voice_2__ENV_Release"
+                     stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel1041" x="209" y="13" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam24"
                      fontStyle="Regular" fontSize="14.0" text="VOL" alignment="left"/>
@@ -1195,10 +1197,10 @@
                      fontStyle="Regular" fontSize="14.0" text="A" alignment="left"/>
           <Component type="ScriptSlider" id="attack2" x="1" y="34" parentComponent="VoiceParam34"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope3"
+                     scaleFactor="0.0" width="50" height="50" processorId="AHDSR Envelope3"
                      parameterId="Attack" mode="Time" max="40000.0" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" showValuePopup="Below"
-                     matrixTargetId="Voice_3__ENV_Attack"/>
+                     matrixTargetId="Voice_3__ENV_Attack" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel2046" x="52" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam34"
                      fontStyle="Regular" fontSize="14.0" text="D" alignment="left"/>
@@ -1207,7 +1209,7 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope3"
                      parameterId="Decay" mode="Time" suffix=" ms" middlePosition="2000.0"
                      max="40000.0" bgColour="4294937226" itemColour2="4211081216"
-                     showValuePopup="Below" matrixTargetId="Voice_3__ENV_Decay"/>
+                     showValuePopup="Below" matrixTargetId="Voice_3__ENV_Decay" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel2047" x="89" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam34"
                      fontStyle="Regular" fontSize="14.0" text="S" alignment="left"/>
@@ -1222,7 +1224,8 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope3"
                      parameterId="Release" mode="Time" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" max="40000.0"
-                     showValuePopup="Below" matrixTargetId="Voice_3__ENV_Release"/>
+                     showValuePopup="Below" matrixTargetId="Voice_3__ENV_Release"
+                     stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel2041" x="209" y="13" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam34"
                      fontStyle="Regular" fontSize="14.0" text="VOL" alignment="left"/>
@@ -1234,7 +1237,7 @@
                      matrixTargetId="Voice_3_Volume" processorId="Granular3" parameterId="Vol"/>
           <Component type="ScriptSlider" id="spread2" x="204" y="41" parentComponent="VoiceParam34"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1800000071525574" width="20" height="20" showValuePopup="Below"
+                     scaleFactor="0.1800000071525574" width="40" height="40" showValuePopup="Below"
                      bgColour="4294951129" pluginParameterName="Voice 3: Pan Spread"
                      isPluginParameter="1" matrixTargetId="Voice_3_PanSpread" processorId="Granular3"
                      parameterId="PanSpread"/>
@@ -1742,10 +1745,10 @@
                      fontStyle="Regular" fontSize="14.0" text="A" alignment="left"/>
           <Component type="ScriptSlider" id="attack3" x="1" y="34" parentComponent="VoiceParam54"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope4"
+                     scaleFactor="0.0" width="50" height="50" processorId="AHDSR Envelope4"
                      parameterId="Attack" mode="Time" max="40000.0" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" showValuePopup="Below"
-                     matrixTargetId="Voice_4__ENV_Attack"/>
+                     matrixTargetId="Voice_4__ENV_Attack" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel3046" x="52" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam54"
                      fontStyle="Regular" fontSize="14.0" text="D" alignment="left"/>
@@ -1754,7 +1757,7 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope4"
                      parameterId="Decay" mode="Time" suffix=" ms" middlePosition="2000.0"
                      max="40000.0" bgColour="4294937226" itemColour2="4211081216"
-                     showValuePopup="Below" matrixTargetId="Voice_4__ENV_Decay"/>
+                     showValuePopup="Below" matrixTargetId="Voice_4__ENV_Decay" stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel3047" x="89" y="77" textColour="4280884766"
                      width="20" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam54"
                      fontStyle="Regular" fontSize="14.0" text="S" alignment="left"/>
@@ -1769,7 +1772,8 @@
                      scaleFactor="0.1599999964237213" width="50" height="50" processorId="AHDSR Envelope4"
                      parameterId="Release" mode="Time" suffix=" ms" middlePosition="2000.0"
                      bgColour="4294937226" itemColour2="4211081216" max="40000.0"
-                     showValuePopup="Below" matrixTargetId="Voice_4__ENV_Release"/>
+                     showValuePopup="Below" matrixTargetId="Voice_4__ENV_Release"
+                     stepSize="1.0"/>
           <Component type="ScriptLabel" id="ParamLabel3041" x="209" y="13" textColour="4280884766"
                      width="40" height="20" fontName="Montserrat" editable="0" parentComponent="VoiceParam54"
                      fontStyle="Regular" fontSize="14.0" text="VOL" alignment="left"/>
@@ -2227,7 +2231,7 @@
     </Component>
     <Component type="ScriptPanel" id="V4" x="6" y="47" width="930" height="640"
                parentComponent="Og" itemColour="770564577" itemColour2="1039000033"
-               bgColour="16777215" textColour="16777215">
+               bgColour="16777215" textColour="16777215" visible="0">
       <Component type="ScriptPanel" id="Post5" x="220" y="206" width="460" height="130"
                  itemColour="3001935573" itemColour2="3001935573" parentComponent="V4"
                  textColour="587202560">
@@ -2236,10 +2240,9 @@
                    itemColour2="4293781205" textColour="0" bgColour="16777215">
           <Component type="ScriptSlider" id="Attack" x="184" y="7" parentComponent="VoiceParam44"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
-                     scaleFactor="0.1400000005960464" width="60" height="60" processorId="END"
-                     parameterId="Ratio" bgColour="4292665834" showValuePopup="Below"
-                     pluginParameterName="Post FX: Mix" matrixTargetId="Master_Ratio"
-                     stepSize="0.1000000014901161" max="10.0" middlePosition="4.0"
+                     scaleFactor="0.0" width="60" height="60" processorId="END" parameterId="Ratio"
+                     bgColour="4292665834" showValuePopup="Below" pluginParameterName="Post FX: Mix"
+                     matrixTargetId="Master_Ratio" stepSize="1.0" max="10.0" middlePosition="4.0"
                      min="1.0" defaultValue="2.099999904632568"/>
           <Component type="ScriptSlider" id="MakeUp" x="102" y="7" parentComponent="VoiceParam44"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
@@ -2258,7 +2261,7 @@
           <Component type="ScriptSlider" id="Release" x="266" y="7" parentComponent="VoiceParam44"
                      filmstripImage="{PROJECT_FOLDER}bigyellowwithfire6.png" numStrips="206.0"
                      scaleFactor="0.1299999952316284" width="60" height="60" processorId="END"
-                     parameterId="Atk" bgColour="4292665834" stepSize="0.0" middlePosition="10.0"
+                     parameterId="Atk" bgColour="4292665834" stepSize="1.0" middlePosition="10.0"
                      showValuePopup="Below" isPluginParameter="1" pluginParameterName="Post FX: Param 3"
                      matrixTargetId="Master_Atk" mode="Time" max="30.0"/>
           <Component type="ScriptLabel" id="FxLabelB15" x="1" y="65" textColour="4280884766"
@@ -2305,7 +2308,7 @@
                      saveInPreset="0"/>
           <Component type="ScriptPanel" id="PosIndicator17" x="10" y="10" width="120"
                      height="70" parentComponent="ScriptPanel11" itemColour="0" itemColour2="0"
-                     bgColour="0" textColour="0"/>
+                     bgColour="0" textColour="0" enabled="0"/>
           <Component type="ScriptComboBox" id="XfMode5" x="503" y="96" max="4" width="30"
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel11"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
@@ -2425,7 +2428,7 @@
                      saveInPreset="0"/>
           <Component type="ScriptPanel" id="PosIndicator21" x="10" y="10" width="120"
                      height="70" parentComponent="ScriptPanel12" itemColour="0" itemColour2="0"
-                     bgColour="0" textColour="0"/>
+                     bgColour="0" textColour="0" enabled="0"/>
           <Component type="ScriptComboBox" id="XfMode6" x="503" y="96" max="4" width="30"
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel12"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
@@ -2473,7 +2476,7 @@
                      saveInPreset="0"/>
           <Component type="ScriptPanel" id="PosIndicator25" x="10" y="10" width="120"
                      height="70" parentComponent="ScriptPanel13" itemColour="0" itemColour2="0"
-                     bgColour="0" textColour="0"/>
+                     bgColour="0" textColour="0" enabled="0"/>
           <Component type="ScriptComboBox" id="XfMode7" x="503" y="96" max="4" width="30"
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel13"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
@@ -2514,14 +2517,14 @@
                    height="90" parentComponent="EzVoice4" itemColour="4281680473"
                    itemColour2="4281680473" textColour="4280686081">
           <Component type="ScriptAudioWaveform" id="AudioWaveform11" x="10" y="10"
-                     processorId="Granular1x" width="120" height="70" itemColour2="4293838681"
+                     processorId="Granular4" width="120" height="70" itemColour2="4293838681"
                      itemColour="4293838681" parentComponent="ScriptPanel14" bgColour="15648601"
                      itemColour3="4278255873" tooltip="Load files 1mb and larger"
                      textColour="4284254596" enableRange="0" opaque="0" showFileName="0"
                      saveInPreset="0"/>
           <Component type="ScriptPanel" id="PosIndicator29" x="10" y="10" width="120"
                      height="70" parentComponent="ScriptPanel14" itemColour="0" itemColour2="0"
-                     bgColour="0" textColour="0"/>
+                     bgColour="0" textColour="0" enabled="0"/>
           <Component type="ScriptComboBox" id="XfMode8" x="503" y="96" max="4" width="30"
                      height="20" items="Off&#10;SQR&#10;RMS&#10;Switch" parentComponent="ScriptPanel14"
                      textColour="4278190080" bgColour="1426063360" visible="0"/>
@@ -4036,12 +4039,9 @@
                      height="20" max="4" parentComponent="seq13" items="Voice 1&#10;Voice 2&#10;Voice 3&#10;Voice 4"
                      processorId="Track1" parameterId="Input" bgColour="4278190080"
                      textColour="4278190080"/>
-          <Component type="ScriptPanel" id="EnvDisplayA1" x="126" y="31" width="90"
+          <Component type="ScriptPanel" id="EnvDisplayA1" x="17" y="31" width="196"
                      height="45" parentComponent="seq13" itemColour="1786255384" itemColour2="2007904325"
                      textColour="4291821568" bgColour="3014929966"/>
-          <Component type="ScriptPanel" id="EnvPeak1" x="17" y="31" width="90" height="45"
-                     parentComponent="seq13" itemColour="1786255384" itemColour2="2007904325"
-                     textColour="16777215" bgColour="3014929966"/>
           <Component type="ScriptLabel" id="ScriptLabel20" x="5" y="4" width="80"
                      height="20" text="TRACK 1" textColour="4278190080" parentComponent="seq13"
                      fontName="Montserrat" editable="0" fontSize="20.0" alignment="left"/>
@@ -4056,7 +4056,7 @@
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="Track1" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk1" x="16" y="81" width="40" height="40"
-                     processorId="Track1" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="Track1" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq13" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4096,9 +4096,6 @@
                      height="20" max="4" parentComponent="seq14" items="Voice 1&#10;Voice 2&#10;Voice 3&#10;Voice 4"
                      processorId="Track2" parameterId="Input" bgColour="4278190080"
                      textColour="4278190080"/>
-          <Component type="ScriptPanel" id="EnvPeak2" x="17" y="31" width="90" height="45"
-                     parentComponent="seq14" itemColour="1786255384" itemColour2="2007904325"
-                     textColour="16777215" bgColour="3014929966"/>
           <Component type="ScriptLabel" id="ScriptLabel65" x="5" y="4" width="80"
                      height="20" text="TRACK 2" textColour="4278190080" parentComponent="seq14"
                      fontName="Montserrat" editable="0" fontSize="20.0" alignment="left"/>
@@ -4116,7 +4113,7 @@
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="Track2" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk2" x="16" y="81" width="40" height="40"
-                     processorId="Track2" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="Track2" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq14" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4148,7 +4145,7 @@
           <Component type="ScriptLabel" id="ScriptLabel173" x="172" y="122" width="51"
                      height="15" text="release" textColour="4278190080" parentComponent="seq14"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
-          <Component type="ScriptPanel" id="EnvDisplayA2" x="126" y="31" width="90"
+          <Component type="ScriptPanel" id="EnvDisplayA2" x="17" y="31" width="196"
                      height="45" parentComponent="seq14" itemColour="1786255384" itemColour2="2007904325"
                      textColour="4291821568" bgColour="3014929966"/>
         </Component>
@@ -4159,9 +4156,6 @@
                      height="20" max="4" parentComponent="seq15" items="Voice 1&#10;Voice 2&#10;Voice 3&#10;Voice 4"
                      processorId="Track3" parameterId="Input" bgColour="4278190080"
                      textColour="4278190080"/>
-          <Component type="ScriptPanel" id="EnvPeak3" x="17" y="31" width="90" height="45"
-                     parentComponent="seq15" itemColour="1786255384" itemColour2="2007904325"
-                     textColour="16777215" bgColour="3014929966"/>
           <Component type="ScriptLabel" id="ScriptLabel272" x="5" y="4" width="80"
                      height="20" text="TRACK 3" textColour="4278190080" parentComponent="seq15"
                      fontName="Montserrat" editable="0" fontSize="20.0" alignment="left"/>
@@ -4179,7 +4173,7 @@
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="Track3" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk3" x="16" y="81" width="40" height="40"
-                     processorId="Track3" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="Track3" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq15" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4211,7 +4205,7 @@
           <Component type="ScriptLabel" id="ScriptLabel277" x="172" y="122" width="51"
                      height="15" text="release" textColour="4278190080" parentComponent="seq15"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
-          <Component type="ScriptPanel" id="EnvDisplayA3" x="126" y="31" width="90"
+          <Component type="ScriptPanel" id="EnvDisplayA3" x="17" y="31" width="196"
                      height="45" parentComponent="seq15" itemColour="1786255384" itemColour2="2007904325"
                      textColour="4291821568" bgColour="3014929966"/>
         </Component>
@@ -4222,9 +4216,6 @@
                      height="20" max="4" parentComponent="seq16" items="Voice 1&#10;Voice 2&#10;Voice 3&#10;Voice 4"
                      processorId="Track4" parameterId="Input" bgColour="4278190080"
                      textColour="4278190080"/>
-          <Component type="ScriptPanel" id="EnvPeak4" x="17" y="31" width="90" height="45"
-                     parentComponent="seq16" itemColour="1786255384" itemColour2="2007904325"
-                     textColour="16777215" bgColour="3014929966"/>
           <Component type="ScriptLabel" id="ScriptLabel278" x="5" y="4" width="80"
                      height="20" text="TRACK 4" textColour="4278190080" parentComponent="seq16"
                      fontName="Montserrat" editable="0" fontSize="20.0" alignment="left"/>
@@ -4242,7 +4233,7 @@
                      textColour="0" bgColour="4294901760" scaleFactor="0.4000000059604645"
                      processorId="Track4" parameterId="TrigPeak"/>
           <Component type="ScriptSlider" id="EnvAtk4" x="16" y="81" width="40" height="40"
-                     processorId="Track4" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="Track4" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq16" middlePosition="150.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4274,7 +4265,7 @@
           <Component type="ScriptLabel" id="ScriptLabel283" x="172" y="122" width="51"
                      height="15" text="release" textColour="4278190080" parentComponent="seq16"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
-          <Component type="ScriptPanel" id="EnvDisplayA4" x="126" y="31" width="90"
+          <Component type="ScriptPanel" id="EnvDisplayA4" x="17" y="31" width="196"
                      height="45" parentComponent="seq16" itemColour="1786255384" itemColour2="2007904325"
                      textColour="4291821568" bgColour="3014929966"/>
         </Component>
@@ -4293,7 +4284,7 @@
                      height="15" text="attack" textColour="4278190080" parentComponent="seq17"
                      fontName="Montserrat" editable="0" fontSize="15.0"/>
           <Component type="ScriptSlider" id="EnvAtk5" x="16" y="81" width="40" height="40"
-                     processorId="ENV1" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="ENV1" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq17" middlePosition="300.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4350,7 +4341,7 @@
                      height="20" text="type" textColour="4278190080" parentComponent="seq18"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptSlider" id="EnvAtk6" x="16" y="81" width="40" height="40"
-                     processorId="ENV2" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="ENV2" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq18" middlePosition="300.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4407,7 +4398,7 @@
                      height="20" text="type" textColour="4278190080" parentComponent="seq19"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptSlider" id="EnvAtk7" x="16" y="81" width="40" height="40"
-                     processorId="ENV3" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="ENV3" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq19" middlePosition="300.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"
@@ -4467,7 +4458,7 @@
                      height="20" text="type" textColour="4278190080" parentComponent="seq20"
                      fontName="Montserrat" editable="0"/>
           <Component type="ScriptSlider" id="EnvAtk8" x="16" y="81" width="40" height="40"
-                     processorId="ENV4" parameterId="A" numStrips="200.0" scaleFactor="0.550000011920929"
+                     processorId="ENV4" parameterId="A" numStrips="200.0" scaleFactor="0.0"
                      parentComponent="seq20" middlePosition="300.0" defaultValue="0.5"
                      stepSize="1.0" showValuePopup="Below" bgColour="4294967295" textColour="3018712789"
                      itemColour2="4278190080" itemColour="3018712789" mode="Time"

@@ -194,6 +194,56 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 		return true;
 	}
 
+	int getDetectedSourceChannelCount() const
+	{
+		int detectedChannels = 0;
+
+		for (int ch = 0; ch < MaxSourceChannels; ++ch)
+		{
+			if (sourceSample[(size_t) ch].size() > 1)
+				detectedChannels = ch + 1;
+		}
+
+		if (detectedChannels < 1)
+			detectedChannels = 1;
+		if (detectedChannels > 1 && (detectedChannels % 2) != 0)
+			--detectedChannels;
+
+		return detectedChannels;
+	}
+
+	void refreshSourceState(bool forceReset = false)
+	{
+		const int sampleCount = audioFile.numSamples;
+		const double sourceRate = audioFile.sampleRate;
+		const int declaredChannels = audioFile.numChannels;
+		const void* sourceData = audioFile.data;
+		const int detectedChannels = getDetectedSourceChannelCount();
+		const bool sourceChanged = forceReset
+			|| sampleCount != cachedSourceSampleCount
+			|| std::abs(sourceRate - cachedSourceSampleRate) > 0.001
+			|| declaredChannels != cachedSourceDeclaredChannelCount
+			|| sourceData != cachedSourceData
+			|| detectedChannels != cachedSourceChannelCount;
+
+		if (!sourceChanged)
+			return;
+
+		cachedSourceSampleCount = sampleCount;
+		cachedSourceSampleRate = sourceRate;
+		cachedSourceDeclaredChannelCount = declaredChannels;
+		cachedSourceData = sourceData;
+		cachedSourceChannelCount = detectedChannels;
+		sourceChannelCount = detectedChannels;
+		sourcePairCount = sourceChannelCount > 1 ? sourceChannelCount / 2 : 1;
+		sourcePairCount = jlimit(1, MaxStereoPairs, sourcePairCount);
+
+		// Grain state is expressed in samples of the previous source. A same-slot
+		// file replacement must invalidate it even though ExternalData is unchanged.
+		updateGrainSize();
+		reset();
+	}
+
 	template <typename ProcessDataType> void process(ProcessDataType& data)
 	{
 		if (!hasValidSourceData())
@@ -208,6 +258,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			reset();
 			return;
 		}
+
+		refreshSourceState();
+		if (!hasValidSourceData())
+			return;
 
 		auto& fixData = data.template as<ProcessData<2>>();
 		auto fd = fixData.toFrameData();
@@ -233,6 +287,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			reset();
 			return;
 		}
+
+		refreshSourceState();
+		if (!hasValidSourceData())
+			return;
 
 		auto& voice = voiceStates.get();
 		auto& fixFrame = span<float, 2>::as(data.begin());
@@ -268,29 +326,10 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 			return;
 
 		audioFile = data;
-		int detectedChannels = 0;
-
 		for (int ch = 0; ch < MaxSourceChannels; ++ch)
-		{
 			data.referBlockTo(sourceSample[(size_t) ch], ch);
-			if (sourceSample[(size_t) ch].size() > 1)
-				detectedChannels = ch + 1;
-		}
 
-		if (detectedChannels < 1)
-			detectedChannels = 1;
-		if (detectedChannels > 1 && (detectedChannels % 2) != 0)
-			--detectedChannels;
-
-		sourceChannelCount = detectedChannels;
-		sourcePairCount = (sourceChannelCount > 1) ? (sourceChannelCount / 2) : 1;
-		if (sourcePairCount < 1)
-			sourcePairCount = 1;
-		if (sourcePairCount > MaxStereoPairs)
-			sourcePairCount = MaxStereoPairs;
-
-		updateGrainSize();
-		reset();
+		refreshSourceState(true);
 	}
 
 	template <int P> void setParameter(double v)
@@ -2045,6 +2084,11 @@ template <int NV> struct granular_player_stepquant_density_hybrid_native : publi
 	int blockSize = 0;
 	int sourceChannelCount = 2;
 	int sourcePairCount = 1;
+	int cachedSourceSampleCount = -1;
+	double cachedSourceSampleRate = -1.0;
+	int cachedSourceDeclaredChannelCount = -1;
+	const void* cachedSourceData = nullptr;
+	int cachedSourceChannelCount = -1;
 
 	double scrub = 0.0;
 	double grainMs = 50.0;

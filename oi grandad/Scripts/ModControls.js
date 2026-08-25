@@ -873,24 +873,7 @@ const var properties = {
 
 rb.setRingBufferProperties(properties);
 
-EnvPeak1.setTimerCallback(function()
-{
 
-	this.data.buffer = rb.createPath(this.getLocalBounds(0), 
-									 [0, BUFFER_LENGTH, 0, 1.0], 
-									 0.0 
-									 );
-	this.repaint();
-});
-
-EnvPeak1.startTimer(300);
-
-EnvPeak1.setPaintRoutine(function(g)
-{
-	g.fillAll(0xFFC96868);
-	g.setColour(0xFFBFCCFB);
-	g.fillPath(this.data.buffer, this.getLocalBounds(0));
-});
 
 //env dispA
 
@@ -925,29 +908,7 @@ const var rbB1 = dpTrB.getDisplayBuffer(2);
 
 //env peak
 
-const var EnvPeak2 = Content.getComponent("EnvPeak2");
 
-
-rbB.setRingBufferProperties(properties);
-
-EnvPeak2.setTimerCallback(function()
-{
-
-	this.data.buffer = rbB.createPath(this.getLocalBounds(0), 
-									 [0, BUFFER_LENGTH, 0, 1.0], 
-									 0.0 
-									 );
-	this.repaint();
-});
-
-EnvPeak2.startTimer(300);
-
-EnvPeak2.setPaintRoutine(function(g)
-{
-	g.fillAll(0xFFC96868);
-	g.setColour(0xFFBFCCFB);
-	g.fillPath(this.data.buffer, this.getLocalBounds(0));
-});
 
 //env dispA
 
@@ -993,24 +954,7 @@ const var EnvDisplayA3 = Content.getComponent("EnvDisplayA3");
 
 
 
-EnvPeak3.setTimerCallback(function()
-{
 
-	this.data.buffer = rbC.createPath(this.getLocalBounds(0), 
-									 [0, BUFFER_LENGTH, 0, 1.0], 
-									 0.0 
-									 );
-	this.repaint();
-});
-
-EnvPeak3.startTimer(300);
-
-EnvPeak3.setPaintRoutine(function(g)
-{
-	g.fillAll(0xFFC96868);
-	g.setColour(0xFFBFCCFB);
-	g.fillPath(this.data.buffer, this.getLocalBounds(0));
-});
 
 //env dispA
 
@@ -1049,24 +993,6 @@ rbD.setRingBufferProperties(properties);
 const var EnvPeak4 = Content.getComponent("EnvPeak4");
 const var EnvDisplayA4 = Content.getComponent("EnvDisplayA4");
 
-EnvPeak4.setTimerCallback(function()
-{
-
-	this.data.buffer = rbD.createPath(this.getLocalBounds(0), 
-									 [0, BUFFER_LENGTH, 0, 1.0], 
-									 0.0 
-									 );
-	this.repaint();
-});
-
-EnvPeak4.startTimer(300);
-
-EnvPeak4.setPaintRoutine(function(g)
-{
-	g.fillAll(0xFFC96868);
-	g.setColour(0xFFBFCCFB);
-	g.fillPath(this.data.buffer, this.getLocalBounds(0));
-});
 
 //env dispA
 
