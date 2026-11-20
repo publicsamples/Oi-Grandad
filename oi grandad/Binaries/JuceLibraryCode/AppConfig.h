@@ -20,6 +20,8 @@
 
 // [END_USER_CODE_SECTION]
 
+#include "JucePluginDefines.h"
+
 /*
   ==============================================================================
 
@@ -62,6 +64,7 @@
 #define JUCE_MODULE_AVAILABLE_juce_audio_basics                   1
 #define JUCE_MODULE_AVAILABLE_juce_audio_devices                  1
 #define JUCE_MODULE_AVAILABLE_juce_audio_formats                  1
+#define JUCE_MODULE_AVAILABLE_juce_audio_plugin_client            1
 #define JUCE_MODULE_AVAILABLE_juce_audio_processors               1
 #define JUCE_MODULE_AVAILABLE_juce_audio_processors_headless      1
 #define JUCE_MODULE_AVAILABLE_juce_audio_utils                    1
@@ -96,7 +99,7 @@
 #endif
 
 #ifndef    IS_STANDALONE_APP
- #define   IS_STANDALONE_APP 1
+ #define   IS_STANDALONE_APP 0
 #endif
 
 #ifndef    DONT_CREATE_USER_PRESET_FOLDER
@@ -136,7 +139,7 @@
 #endif
 
 #ifndef    PROCESS_SOUND_GENERATORS_IN_FX_PLUGIN
- //#define PROCESS_SOUND_GENERATORS_IN_FX_PLUGIN 1
+ #define   PROCESS_SOUND_GENERATORS_IN_FX_PLUGIN 0
 #endif
 
 #ifndef    HISE_NUM_STANDALONE_OUTPUTS
@@ -156,7 +159,7 @@
 #endif
 
 #ifndef    HISE_MIDIFX_PLUGIN
- //#define HISE_MIDIFX_PLUGIN 0
+ #define   HISE_MIDIFX_PLUGIN 0
 #endif
 
 #ifndef    USE_CUSTOM_FRONTEND_TOOLBAR
@@ -164,7 +167,7 @@
 #endif
 
 #ifndef    HI_SUPPORT_MONO_CHANNEL_LAYOUT
- //#define HI_SUPPORT_MONO_CHANNEL_LAYOUT 0
+ #define   HI_SUPPORT_MONO_CHANNEL_LAYOUT 0
 #endif
 
 #ifndef    HI_SUPPORT_MONO_TO_STEREO
@@ -176,7 +179,7 @@
 #endif
 
 #ifndef    IS_STANDALONE_FRONTEND
- #define   IS_STANDALONE_FRONTEND 1
+ #define   IS_STANDALONE_FRONTEND 0
 #endif
 
 #ifndef    USE_GLITCH_DETECTION
@@ -204,7 +207,7 @@
 #endif
 
 #ifndef    HISE_ENABLE_MIDI_INPUT_FOR_FX
- //#define HISE_ENABLE_MIDI_INPUT_FOR_FX 0
+ #define   HISE_ENABLE_MIDI_INPUT_FOR_FX 0
 #endif
 
 #ifndef    HISE_COMPLAIN_ABOUT_ILLEGAL_BUFFER_SIZE
@@ -469,7 +472,7 @@
 #endif
 
 #ifndef    JUCE_ASIO
- #define   JUCE_ASIO 0
+ //#define JUCE_ASIO 0
 #endif
 
 #ifndef    JUCE_WASAPI
@@ -485,7 +488,7 @@
 #endif
 
 #ifndef    JUCE_JACK
- #define   JUCE_JACK 0
+ //#define JUCE_JACK 0
 #endif
 
 #ifndef    JUCE_BELA
@@ -529,6 +532,33 @@
 
 #ifndef    JUCE_USE_WINDOWS_MEDIA_FORMAT
  //#define JUCE_USE_WINDOWS_MEDIA_FORMAT 1
+#endif
+
+//==============================================================================
+// juce_audio_plugin_client flags:
+
+#ifndef    JUCE_VST3_CAN_REPLACE_VST2
+ #define   JUCE_VST3_CAN_REPLACE_VST2 0
+#endif
+
+#ifndef    JUCE_FORCE_USE_LEGACY_PARAM_IDS
+ //#define JUCE_FORCE_USE_LEGACY_PARAM_IDS 0
+#endif
+
+#ifndef    JUCE_FORCE_LEGACY_PARAMETER_AUTOMATION_TYPE
+ //#define JUCE_FORCE_LEGACY_PARAMETER_AUTOMATION_TYPE 0
+#endif
+
+#ifndef    JUCE_USE_STUDIO_ONE_COMPATIBLE_PARAMETERS
+ //#define JUCE_USE_STUDIO_ONE_COMPATIBLE_PARAMETERS 1
+#endif
+
+#ifndef    JUCE_AU_WRAPPERS_SAVE_PROGRAM_STATES
+ //#define JUCE_AU_WRAPPERS_SAVE_PROGRAM_STATES 0
+#endif
+
+#ifndef    JUCE_STANDALONE_FILTER_WINDOW_USE_KIOSK_MODE
+ //#define JUCE_STANDALONE_FILTER_WINDOW_USE_KIOSK_MODE 0
 #endif
 
 //==============================================================================
@@ -627,7 +657,7 @@
 // juce_dsp flags:
 
 #ifndef    JUCE_ASSERTION_FIRFILTER
- //#define JUCE_ASSERTION_FIRFILTER 1
+ #define   JUCE_ASSERTION_FIRFILTER 0
 #endif
 
 #ifndef    JUCE_DSP_USE_INTEL_MKL
@@ -726,6 +756,6 @@
  #if defined(JucePlugin_Name) && defined(JucePlugin_Build_Standalone)
   #define  JUCE_STANDALONE_APPLICATION JucePlugin_Build_Standalone
  #else
-  #define  JUCE_STANDALONE_APPLICATION 1
+  #define  JUCE_STANDALONE_APPLICATION 0
  #endif
 #endif

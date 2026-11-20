@@ -1,0 +1,282 @@
+name: Linux diagnostics
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ linux-diagnostics ]
+
+concurrency:
+  group: linux-diagnostics-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    container:
+      image: ubuntu:20.04
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Bootstrap container tools
+        run: |
+          apt-get update
+          apt-get install -y git ca-certificates
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Verify HISE checkout matches repo pin
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          expected="$(git ls-tree HEAD HISE | awk '{print $3}')"
+          actual="$(git -C HISE rev-parse HEAD)"
+          echo "Expected HISE: $expected"
+          echo "Actual HISE:   $actual"
+          test -n "$expected"
+          test "$actual" = "$expected"
+
+      - name: Resolve export roots
+        shell: bash
+        run: |
+          set -euo pipefail
+          vst3_root="$GITHUB_WORKSPACE/oi grandad/CIExports/vst3"
+          standalone_root="$GITHUB_WORKSPACE/oi grandad/CIExports/standalone"
+          fallback_root="$GITHUB_WORKSPACE/oi grandad/Binaries"
+
+          is_complete_export_root() {
+            local root="$1"
+            [[ -d "$root/Builds" && -d "$root/Source" && -d "$root/JuceLibraryCode" ]]
+          }
+
+          if is_complete_export_root "$vst3_root"; then
+            echo "VST3_ROOT=$vst3_root" >> "$GITHUB_ENV"
+          else
+            echo "VST3_ROOT=$fallback_root" >> "$GITHUB_ENV"
+          fi
+
+          if is_complete_export_root "$standalone_root"; then
+            echo "STANDALONE_ROOT=$standalone_root" >> "$GITHUB_ENV"
+          else
+            echo "STANDALONE_ROOT=$fallback_root" >> "$GITHUB_ENV"
+          fi
+
+      - name: Source fingerprint (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Commit: $GITHUB_SHA"
+          files=(
+            "oi grandad/Binaries/Source/Plugin.cpp"
+            "oi grandad/Binaries/Source/PresetData.cpp"
+            "oi grandad/Binaries/Source/CopyProtection.cpp"
+            "oi grandad/AdditionalSourceCode/nodes/factory.cpp"
+            "oi grandad/AdditionalSourceCode/nodes/RNBO.cpp"
+            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp"
+            "oi grandad/Binaries/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+          )
+          for f in "${files[@]}"; do
+            if [[ -f "$f" ]]; then
+              sha256sum "$f"
+            else
+              echo "MISSING  $f"
+            fi
+          done
+
+      - name: Install dependencies (Linux)
+        run: |
+          apt-get update
+          apt-get install -y \
+            build-essential \
+            pkg-config \
+            zip \
+            libasound2-dev \
+            libfreetype6-dev \
+            libcurl4-openssl-dev \
+            libx11-dev \
+            libxext-dev \
+            libxinerama-dev \
+            libxrandr-dev \
+            libxcursor-dev \
+            libxcomposite-dev \
+            libxrender-dev \
+            libgl1-mesa-dev
+
+      - name: Normalize project paths for CI (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          ws="$GITHUB_WORKSPACE"
+          hise="$ws/HISE"
+          plugin_makefile="$VST3_ROOT/Builds/LinuxMakefile/Makefile"
+          standalone_makefile="$STANDALONE_ROOT/Builds/LinuxMakefile/Makefile"
+          sdk_dir=""
+          for candidate in \
+            "$VST3_ROOT/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
+            "$ws/HISE/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK" \
+            "$ws/HISE/JUCE/modules/juce_audio_processors/format_types/VST3_SDK" \
+            "$VST3_ROOT/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"; do
+            if [[ -f "$candidate/pluginterfaces/vst/vsttypes.h" ]]; then
+              sdk_dir="$candidate"
+              break
+            fi
+          done
+          if [[ -z "$sdk_dir" ]]; then
+            echo "ERROR: Could not locate VST3 SDK in expected paths."
+            exit 1
+          fi
+          sdk_dir_escaped="${sdk_dir// /\\ }"
+          legacy_sdk_dir="$hise/JUCE/modules/juce_audio_processors/format_types/VST3_SDK"
+          headless_hise_sdk_dir="$hise/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK"
+
+          test -f "$sdk_dir/pluginterfaces/vst/vsttypes.h"
+
+          for makefile in "$plugin_makefile" "$standalone_makefile"; do
+            [[ -f "$makefile" ]] || continue
+
+            # Rewrite local absolute paths and remove unresolved exporter placeholders.
+            HISE_ROOT="$hise" SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
+              s#/Users/rick/Documents/GitHub/HISE#$ENV{HISE_ROOT}#g;
+              s#/JUCE/modules/juce_audio_processors/format_types/VST3_SDK#$ENV{SDK_ROOT_ESC}#g;
+              s#/Users/rick/Documents/GitHub/HISE/tools/SDK/VST3\\ SDK#$ENV{SDK_ROOT_ESC}#g;
+              s#%FFT_HEADER_PATH%;##g;
+              s#%FFT_LINKER_FLAGS%##g;
+            ' "$makefile"
+
+            # Force-include SDK root in JUCE_CPPFLAGS to avoid include resolution drift.
+            if ! grep -Fq -- "-I$sdk_dir_escaped" "$makefile"; then
+              SDK_ROOT_ESC="$sdk_dir_escaped" perl -0pi -e '
+                s/\$\(CPPFLAGS\)/-I$ENV{SDK_ROOT_ESC} \$\(CPPFLAGS\)/g;
+              ' "$makefile"
+            fi
+          done
+
+          # Ensure headless SDK path exists, but avoid replacing the legacy path to prevent symlink loops.
+          mkdir -p "$(dirname "$headless_hise_sdk_dir")"
+          if [[ ! -e "$headless_hise_sdk_dir" ]]; then
+            ln -s "$sdk_dir" "$headless_hise_sdk_dir"
+          fi
+
+          # HISE JUCE snapshot compatibility shims.
+          wrapper="$hise/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3_Wrapper.cpp"
+          if [[ -f "$wrapper" ]]; then
+            perl -0pi -e '
+              s/list->getInt\s*\(\s*Vst::ChannelContext::kChannelColorKey\s*,\s*colour\s*\)/list->getInt (Vst::ChannelContext::kChannelColorKey, (Steinberg::int64&) colour)/g;
+              s/jmax\s*\(\s*\(juce::int64\)\s*0\s*,\s*processContext\.projectTimeSamples\s*\)/jmax ((juce::int64) 0, (juce::int64) processContext.projectTimeSamples)/g;
+            ' "$wrapper"
+          fi
+
+          # Ensure FAUST headers exist at include path expected by HISE/JUCE.
+          faust_include="$hise/tools/faust/include/faust"
+          mkdir -p "$faust_include/dsp" "$faust_include/gui"
+          [[ -f "$hise/hi_faust_types/faust_wrap/dsp/dsp.h" ]] && cp "$hise/hi_faust_types/faust_wrap/dsp/dsp.h" "$faust_include/dsp/dsp.h"
+          [[ -f "$hise/hi_faust_types/faust_wrap/gui/UI.h" ]] && cp "$hise/hi_faust_types/faust_wrap/gui/UI.h" "$faust_include/gui/UI.h"
+          [[ -f "$hise/hi_faust_types/faust_wrap/gui/meta.h" ]] && cp "$hise/hi_faust_types/faust_wrap/gui/meta.h" "$faust_include/gui/meta.h"
+          [[ -f "$hise/hi_faust_lib/faust_wrap/dsp/libfaust.h" ]] && cp "$hise/hi_faust_lib/faust_wrap/dsp/libfaust.h" "$faust_include/dsp/libfaust.h"
+          cat > "$faust_include/export.h" <<'EOF'
+          #pragma once
+          #ifndef FAUST_API
+          #define FAUST_API
+          #endif
+          #ifndef FAUSTMAJORVERSION
+          #define FAUSTMAJORVERSION 2
+          #endif
+          #ifndef FAUSTMINORVERSION
+          #define FAUSTMINORVERSION 74
+          #endif
+          #ifndef FAUSTPATCHVERSION
+          #define FAUSTPATCHVERSION 6
+          #endif
+          EOF
+
+          # Autogenerated client shim may include a file absent in this JUCE snapshot.
+          client_utils="$VST3_ROOT/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+          if [[ -f "$client_utils" ]]; then
+            printf '%s\n' '#include "AppConfig.h"' > "$client_utils"
+          fi
+
+      - name: Build available Linux targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          plugin_makefile_dir="$VST3_ROOT/Builds/LinuxMakefile"
+          plugin_makefile="$plugin_makefile_dir/Makefile"
+          standalone_makefile_dir="$STANDALONE_ROOT/Builds/LinuxMakefile"
+          standalone_makefile="$standalone_makefile_dir/Makefile"
+
+          if [[ -f "$plugin_makefile" ]] && grep -Eq '^VST3[[:space:]]*:' "$plugin_makefile"; then
+            echo "Building Linux VST3 from $plugin_makefile_dir"
+            make -C "$plugin_makefile_dir" CONFIG=Release CFLAGS="-g -Og -fno-omit-frame-pointer" LDFLAGS="-g -fno-lto" VST3 -j"$(nproc)"
+          elif [[ -f "$plugin_makefile" ]]; then
+            echo "Skipping Linux VST3: no VST3 target found in $plugin_makefile"
+          fi
+
+          if [[ -f "$standalone_makefile" ]]; then
+            if [[ "$standalone_makefile_dir" != "$plugin_makefile_dir" ]] || ! grep -Eq '^VST3[[:space:]]*:' "$standalone_makefile"; then
+              echo "Building Linux standalone app from $standalone_makefile_dir"
+              make -C "$standalone_makefile_dir" CONFIG=Release CFLAGS="-g -Og -fno-omit-frame-pointer" LDFLAGS="-g -fno-lto" -j"$(nproc)"
+            fi
+          fi
+
+      - name: Inspect runtime deps (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          target_file="$(find "$VST3_ROOT" -type f -path "*.vst3/Contents/*-linux/*.so" | head -n1)"
+          if [[ -z "${target_file:-}" ]]; then
+            candidate_app="$STANDALONE_ROOT/Builds/LinuxMakefile/build/oi grandad"
+            if [[ -f "$candidate_app" ]]; then
+              target_file="$candidate_app"
+            fi
+          fi
+          if [[ -z "${target_file:-}" ]]; then
+            echo "No Linux binary found for dependency inspection"
+            exit 1
+          fi
+          echo "Inspecting: $target_file"
+          ldd "$target_file" || true
+          strings "$target_file" | grep -E 'GLIBC_[0-9]+\.[0-9]+' | sort -u | tail -n 10 || true
+
+      - name: Verify debug information
+        shell: bash
+        run: |
+          set -euo pipefail
+          app="$STANDALONE_ROOT/Builds/LinuxMakefile/build/oi grandad"
+          plugin="$(find "$VST3_ROOT" -type f -path "*.vst3/Contents/*-linux/*.so" -print -quit)"
+          test -f "$app"
+          test -f "$plugin"
+          for binary in "$app" "$plugin"; do
+            echo "Checking debug information: $binary"
+            readelf -S -W "$binary" | grep -F '.debug_info' > /dev/null
+          done
+
+      - name: Package (Linux)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          mapfile -d '' bundles < <(find "$VST3_ROOT" -type d -name "*.vst3" -print0)
+
+          for bundle in "${bundles[@]}"; do
+            base="$(basename "$bundle")"
+            (cd "$(dirname "$bundle")" && zip -r "$GITHUB_WORKSPACE/dist/${base}.zip" "$base")
+          done
+
+          app_file="$STANDALONE_ROOT/Builds/LinuxMakefile/build/oi grandad"
+          if [[ -f "$app_file" ]]; then
+            zip -j "$GITHUB_WORKSPACE/dist/oi-grandad-linux-app.zip" "$app_file"
+          fi
+
+          if ! compgen -G "dist/*.zip" > /dev/null; then
+            echo "No Linux build artifacts found"
+            exit 1
+          fi
+          ls -la dist
+
+      - name: Upload artifacts (Linux)
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-diagnostics-symbols
+          path: dist/*.zip
